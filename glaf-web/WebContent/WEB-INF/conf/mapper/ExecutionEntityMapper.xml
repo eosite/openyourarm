@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.deployment.mapper.ExecutionEntityMapper">
+
+	<resultMap id="executionEntityResultMap" type="com.glaf.deployment.domain.ExecutionEntity">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="nodeId" column="NODEID_" jdbcType="VARCHAR" />
+		<result property="serverId" column="SERVERID_" jdbcType="BIGINT" />
+		<result property="templateId" column="TEMPLATEID_" jdbcType="BIGINT" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="command" column="COMMAND_" jdbcType="VARCHAR" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="retryCount" column="RETRYCOUNT_" jdbcType="INTEGER" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="startTime" column="STARTTIME_" jdbcType="TIMESTAMP" />
+		<result property="endTime" column="ENDTIME_" jdbcType="TIMESTAMP" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="exitCode" column="EXITCODE_" jdbcType="VARCHAR" />
+		<result property="exitMessage" column="EXITMESSAGE_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertExecutionEntity" parameterType="com.glaf.deployment.domain.ExecutionEntity">
+		insert into DC_EXECUTION_ENTITY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="nodeId != null">
+				,NODEID_
+			</if>
+			<if test="serverId != null">
+				,SERVERID_
+			</if>
+			<if test="templateId != null">
+				,TEMPLATEID_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="command != null">
+				,COMMAND_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="retryCount != null">
+				,RETRYCOUNT_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="startTime != null">
+				,STARTTIME_
+			</if>
+			<if test="endTime != null">
+				,ENDTIME_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="exitCode != null">
+				,EXITCODE_
+			</if>
+			<if test="exitMessage != null">
+				,EXITMESSAGE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="nodeId != null">
+				,#{nodeId, jdbcType=BIGINT}
+			</if>
+			<if test="serverId != null">
+				,#{serverId, jdbcType=BIGINT}
+			</if>
+			<if test="templateId != null">
+				,#{templateId, jdbcType=BIGINT}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="command != null">
+				,#{command, jdbcType=VARCHAR}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="retryCount != null">
+				,#{retryCount, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="startTime != null">
+				,#{startTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endTime != null">
+				,#{endTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="exitCode != null">
+				,#{exitCode, jdbcType=VARCHAR}
+			</if>
+			<if test="exitMessage != null">
+				,#{exitMessage, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateExecutionEntity" parameterType="com.glaf.deployment.domain.ExecutionEntity">
+
+		update DC_EXECUTION_ENTITY
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="command != null">
+				COMMAND_ = #{command, jdbcType=VARCHAR},
+			</if>
+			<if test="retryCount != null">
+				RETRYCOUNT_ = #{retryCount, jdbcType=INTEGER},
+			</if>
+			<if test="startTime != null">
+				STARTTIME_ = #{startTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				ENDTIME_ = #{endTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="exitCode != null">
+				EXITCODE_ = #{exitCode, jdbcType=VARCHAR},
+			</if>
+			<if test="exitMessage != null">
+				EXITMESSAGE_ = #{exitMessage, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteExecutionEntityById" parameterType="long">
+		delete from
+		DC_EXECUTION_ENTITY
+		where ID_ = #{id}
+	</delete>
+
+
+	<select id="getExecutionEntityById" parameterType="long"
+		resultMap="executionEntityResultMap">
+		select * from DC_EXECUTION_ENTITY where ID_ = #{id}
+	</select>
+
+
+	<select id="getExecutionEntitys" parameterType="com.glaf.deployment.query.ExecutionEntityQuery"
+		resultMap="executionEntityResultMap">
+		select distinct E.*
+		<include refid="selectExecutionEntitysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.SERVERID_ asc, E.SORTNO_ asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getExecutionEntityCount" parameterType="com.glaf.deployment.query.ExecutionEntityQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectExecutionEntitysSql" />
+	</select>
+
+
+	<sql id="selectExecutionEntitysSql">
+
+		from DC_EXECUTION_ENTITY E
+
+		<where>
+			1 = 1
+
+			<if test="executionIds != null and executionIds.size() &gt; 0">
+				and E.ID_ IN
+				<foreach item="x_executionId" index="index" collection="executionIds"
+					open="(" separator="," close=")">
+					#{x_executionId}
+				</foreach>
+			</if>
+
+			<if test="nodeId != null ">
+				and E.NODEID_ = #{nodeId}
+			</if>
+
+			<if test="serverId != null">
+				and E.SERVERID_ = #{serverId}
+			</if>
+
+			<if test="templateId != null">
+				and E.TEMPLATEID_ = #{templateId}
+			</if>
+
+			<if test="category != null and category != '' ">
+				and E.CATEGORY_ = #{category}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="commandLike != null and commandLike != '' ">
+				and E.COMMAND_ like #{commandLike}
+			</if>
+
+			<if test="jobNo != null and jobNo != '' ">
+				and E.JOBNO_ = #{jobNo}
+			</if>
+
+			<if test="startTimeGreaterThanOrEqual != null">
+				and E.STARTTIME_ &gt;= #{startTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="startTimeLessThanOrEqual != null">
+				and E.STARTTIME_ &lt;= #{startTimeLessThanOrEqual}
+			</if>
+
+			<if test="endTimeGreaterThanOrEqual != null">
+				and E.ENDTIME_ &gt;= #{endTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="endTimeLessThanOrEqual != null">
+				and E.ENDTIME_ &lt;= #{endTimeLessThanOrEqual}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="exitCode != null and exitCode != '' ">
+				and E.EXITCODE_ = #{exitCode}
+			</if>
+
+			<if test="exitMessageLike != null and exitMessageLike != '' ">
+				and E.EXITMESSAGE_ like #{exitMessageLike}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

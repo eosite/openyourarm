@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemTmplDataMapper">
+
+ 	<resultMap id="convertElemTmplDataResultMap"	type="com.glaf.convert.domain.ConvertElemTmplData">
+        <id property="dataRuleId" column="DATA_RULE_ID_" jdbcType="BIGINT" />
+        <result property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT"/>
+        <result property="tableName" column="TABLE_NAME_" jdbcType="VARCHAR"/>
+        <result property="fieldName" column="FIELD_NAME_" jdbcType="VARCHAR"/>
+        <result property="dataTableId" column="DATA_TABLE_ID_" jdbcType="VARCHAR"/>
+        <result property="subTable" column="SUB_TABLE_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemTmplData" parameterType="com.glaf.convert.domain.ConvertElemTmplData">
+		insert into CVT_ELEM_TMPL_DATA 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    DATA_RULE_ID_
+			<if test="cvtElemId != null">
+				,CVT_ELEM_ID_ 
+			</if>
+			<if test="tableName != null">
+				,TABLE_NAME_ 
+			</if>
+			<if test="fieldName != null">
+				,FIELD_NAME_ 
+			</if>
+			<if test="dataTableId != null">
+				,DATA_TABLE_ID_ 
+			</if>
+			<if test="subTable != null">
+				,SUB_TABLE_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{dataRuleId, jdbcType=BIGINT}
+	     
+			<if test="cvtElemId != null">
+				,#{cvtElemId, jdbcType=BIGINT}
+			</if>
+			<if test="tableName != null">
+				,#{tableName, jdbcType=VARCHAR}
+			</if>
+			<if test="fieldName != null">
+				,#{fieldName, jdbcType=VARCHAR}
+			</if>
+			<if test="dataTableId != null">
+				,#{dataTableId, jdbcType=VARCHAR}
+			</if>
+			<if test="subTable != null">
+				,#{subTable, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemTmplData" parameterType="com.glaf.convert.domain.ConvertElemTmplData">
+		update CVT_ELEM_TMPL_DATA
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtElemId != null">
+				CVT_ELEM_ID_ = #{cvtElemId, jdbcType=BIGINT},
+			</if>
+			<if test="tableName != null">
+				TABLE_NAME_ = #{tableName, jdbcType=VARCHAR},
+			</if>
+			<if test="fieldName != null">
+				FIELD_NAME_ = #{fieldName, jdbcType=VARCHAR},
+			</if>
+			<if test="dataTableId != null">
+				DATA_TABLE_ID_ = #{dataTableId, jdbcType=VARCHAR},
+			</if>
+			<if test="subTable != null">
+				SUB_TABLE_ = #{subTable, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          DATA_RULE_ID_ = #{dataRuleId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemTmplDataById" parameterType="long"> 
+        delete from CVT_ELEM_TMPL_DATA
+        where DATA_RULE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemTmplDatas" parameterType="com.glaf.convert.query.ConvertElemTmplDataQuery">
+		delete from CVT_ELEM_TMPL_DATA
+		where ( 
+ 			  DATA_RULE_ID_ IN
+              <foreach item="x_dataRuleId" index="index" collection="dataRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_dataRuleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemTmplDataById" parameterType="long" resultMap="convertElemTmplDataResultMap">
+		select * from CVT_ELEM_TMPL_DATA where DATA_RULE_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemTmplDatas" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplDataQuery"
+		resultMap="convertElemTmplDataResultMap">
+		select distinct E.*
+		<include refid="selectConvertElemTmplDatasSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.DATA_RULE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemTmplDataCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplDataQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemTmplDatasSql" />
+	</select>
+
+
+	<sql id="selectConvertElemTmplDatasSql">
+
+		from CVT_ELEM_TMPL_DATA E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtElemId != null">
+				and E.CVT_ELEM_ID_ = #{cvtElemId}
+            </if>
+
+			<if test="cvtElemIdGreaterThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &gt;= #{cvtElemIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtElemIdLessThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &lt;= #{cvtElemIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtElemIds != null and cvtElemIds.size() &gt; 0">
+			    and E.CVT_ELEM_ID_ IN
+                <foreach item="x_cvtElemId" index="index" collection="cvtElemIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtElemId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="tableName != null and tableName != '' ">
+				and E.TABLE_NAME_ = #{tableName}
+            </if>
+
+			<if test="tableNameLike != null and tableNameLike != '' ">
+				and E.TABLE_NAME_ like #{tableNameLike}
+            </if>
+
+			<if test="tableNames != null and tableNames.size() &gt; 0">
+			    and E.TABLE_NAME_ IN
+                <foreach item="x_tableName" index="index" collection="tableNames" 
+                     open="(" separator="," close=")">
+                  #{x_tableName}
+                </foreach>
+			</if>
+	        
+			<if test="fieldName != null and fieldName != '' ">
+				and E.FIELD_NAME_ = #{fieldName}
+            </if>
+
+			<if test="fieldNameLike != null and fieldNameLike != '' ">
+				and E.FIELD_NAME_ like #{fieldNameLike}
+            </if>
+
+			<if test="fieldNames != null and fieldNames.size() &gt; 0">
+			    and E.FIELD_NAME_ IN
+                <foreach item="x_fieldName" index="index" collection="fieldNames" 
+                     open="(" separator="," close=")">
+                  #{x_fieldName}
+                </foreach>
+			</if>
+	        
+			<if test="dataTableId != null and dataTableId != '' ">
+				and E.DATA_TABLE_ID_ = #{dataTableId}
+            </if>
+
+			<if test="dataTableIdLike != null and dataTableIdLike != '' ">
+				and E.DATA_TABLE_ID_ like #{dataTableIdLike}
+            </if>
+
+			<if test="dataTableIds != null and dataTableIds.size() &gt; 0">
+			    and E.DATA_TABLE_ID_ IN
+                <foreach item="x_dataTableId" index="index" collection="dataTableIds" 
+                     open="(" separator="," close=")">
+                  #{x_dataTableId}
+                </foreach>
+			</if>
+	        
+			<if test="subTable != null and subTable != '' ">
+				and E.SUB_TABLE_ = #{subTable}
+            </if>
+
+			<if test="subTableLike != null and subTableLike != '' ">
+				and E.SUB_TABLE_ like #{subTableLike}
+            </if>
+
+			<if test="subTables != null and subTables.size() &gt; 0">
+			    and E.SUB_TABLE_ IN
+                <foreach item="x_subTable" index="index" collection="subTables" 
+                     open="(" separator="," close=")">
+                  #{x_subTable}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

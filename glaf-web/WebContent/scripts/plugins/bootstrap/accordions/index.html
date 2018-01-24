@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Metronic | Tabs, Accordions & Navs</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="../base/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../../metronic/4.5.2/theme/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+        <link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <script src="../jquery.min.js" type="text/javascript"></script>
+        <script src="../base/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <script src="../../../metronic/4.5.2/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <script src="./js/jquery.accordions.extends.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+        $(function(){
+           initAccordions();
+
+           $.each($("button"),function(index,btn){
+                $(btn).addClass('btn btn-primary');
+           });
+
+           $.each($("input"), function(index, input) {
+                $(input).addClass('form-control');
+           });
+        });
+
+        function log(contentFlag,content,title,tabIndex){
+            if(contentFlag){
+                $("#log").append("<span>"+content+"</span>");
+            }else{
+                $("#log").append("<span>选中：&emsp;标题:"+title+"&emsp;索引:"+tabIndex+"</span><br>");
+                
+            }
+            $("#log").append("<hr>");
+        }
+
+        var index=1;
+        var tabs = [
+            {
+                title:'Home',
+                content: 'Hello,Home Page!',
+                height:'200px',
+                selected:true
+            }
+        ];
+
+        function initAccordions(){
+             $('#myaccordions').accordions({
+                width: 'auto',
+                height:500,
+                multiple:true,
+                selected:0,
+                scrollable:true,
+                tabs:tabs,
+                icon:true,
+                onSelect:function(title,index){
+                    log(false,null,title,index);
+                },
+                onUnselect:function(title,index){
+
+                },
+                onAdd:function(title,index){
+                    log(true,"<span>添加：&emsp;标题："+title+"&emsp;索引:"+index+"</span>");
+                },
+                onRemove:function(title,index){
+                    log(true,"<span>删除：&emsp;标题："+title+"&emsp;索引:"+index+"</span>");
+                }
+            });
+        }
+
+        function addAccordions(){
+            var tabName = $("#tabName").val();
+            var tabContent = $("#tabContent").val();
+            var href = $("#tabHref").val();
+            var selected = $("#selected").is(':checked');
+            var tabHeight = $("#tabHeight").val();
+
+           
+            $('#myaccordions').accordions('add',{
+                id: null,
+                content: tabContent,
+                title:tabName,
+                href:href,
+                height:tabHeight,
+                selected: selected
+            });
+        }
+
+        function updateAccordion(){
+            var tabName = $("#tabName").val();
+            var tabContent = $("#tabContent").val();
+            var href = $("#tabHref").val();
+            var selected = $("#selected").is(':checked');
+            var tabHeight = $("#tabHeight").val();
+
+           
+            var accordion = $('#myaccordions').accordions('getSelected');
+            $('#myaccordions').accordions('update',{
+                accordion:accordion,
+                options:{
+                    id: null,
+                    content: tabContent,
+                    title:tabName,
+                    href:href,
+                    height:tabHeight,
+                    selected: selected
+                }
+            });
+        }
+
+        function getAccordions(){
+             var accordion = $('#myaccordions').accordions('getSelected');
+             var options = $.data(accordion,'accordions');
+
+             var tabIndex = $('#myaccordions').accordions('getAccordionIndex',accordion);
+            log(false,null,options.title,tabIndex);
+        }
+
+        function deleteAccordions(){
+            var which = $('#deleteWhich').val();
+            $('#myaccordions').accordions('remove',which);
+        }
+
+        function selectAccordions(){
+            var elem = $('#myaccordions').accordions('select',$('#selectTabInput').val());
+
+            var tabIndex = $('#myaccordions').accordions('getAccordionIndex',elem);
+            log(false,null,$.data(elem,'myaccordions').title,tabIndex);
+        }
+
+        </script>
+    </head>
+    <!-- END HEAD -->
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" style="background: #FFF">
+        <table width="98%" height="700px" border="1">
+            <tr>
+                <td width="18%">
+                    <table class="table table-striped">
+                        <tr><th colspan="2">容器属性</th></tr>
+                        <tr>
+                            <td>宽度</td><td><input type="number" onchange="$('#myaccordions').accordions({width:this.value})" placeholder="请输入宽度"/></td>
+                        </tr>
+                        <tr>
+                            <td>是否随内容滚动</td><td><input type="checkbox" checked onclick="$('#myaccordions').accordions({scrollable:this.checked})" id="scrollable" /></td>
+                        </tr>
+                        <tr>
+                            <td>是否显示展开图标</td><td><input type="checkbox" checked onclick="$('#myaccordions').accordions({icon:this.checked})" id="icon" /></td>
+                        </tr>
+                    </table>
+                </td>
+                 <td rowspan="3" style="vertical-align: top">
+                    <div data-role="accordions" id="myaccordions"></div>
+                </td>
+                <td rowspan="3" style="vertical-align: top" width="15%">
+                    <div id="log" style="border:0px;height:100%;overflow-y:auto;width:300px;margin-top:0px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table table-striped">
+                        <tr><th colspan="2">选项卡属性</th></tr>
+                        <tr>
+                            <td>标题</td>
+                            <td><input type="text" id="tabName" placeholder="请输入选项卡标题"/></td>
+                        </tr>
+                        <tr>
+                            <td>内容</td>
+                            <td><input type="text" id="tabContent" placeholder="请输入选项卡内容"/></td>
+                        </tr>
+                        <tr>
+                            <td>内容链接</td>
+                            <td><input type="text" id="tabHref" placeholder="请输入选项卡链接"/></td>
+                        </tr>
+                        <tr>
+                            <td>高度</td>
+                            <td><input type="number" id="tabHeight" placeholder="请输入高度" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="selected">是否选中</label>
+                            </td><td><input type="checkbox" id="selected" checked /></td>
+                        </tr>
+                        <tr><td colspan="2">
+                            <button type="button" onclick="addAccordions();">添加选项卡</button>
+                            <button type="button" onclick="updateAccordion()">更新当前选项卡</button>
+                        </td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table table-striped">
+                        <tr><th colspan="2">操作事件</th></tr>
+                        <tr>
+                            <td>
+                                <button type="button" onclick="getAccordions();">获得选中的选项卡</button>
+                            </td>
+                            <td>
+                                <button type="button" onclick="getAllTabs();">获得所有的选项卡</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="selectTabInput" placeholder="请输入标题或索引"/>
+                            </td>
+                            <td>
+                                <button type="button" onclick="selectAccordions();">选择选项卡</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="deleteWhich" placeholder="请输入标题或索引"/>
+                            </td>
+                            <td>
+                                <button type="button" onclick="deleteAccordions()">删除选项卡</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align: center">
+                    <button type="button" onclick="save()">保存配置</button>
+                    <button type="button" onclick="read()">读取配置</button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

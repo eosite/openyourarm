@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Export data from Gantt</title>
+</head>
+	
+	<script src="../jquery.min.js" type="text/javascript"></script>
+	<script src="../base/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../jquery.core.extends.js" type="text/javascript"></script>
+	
+	
+	<link rel='stylesheet' href='ext/dhxgantt.extend.css' type='text/css' media='screen' title='no title' charset='utf-8'>"
+	<link rel="stylesheet" href="../../codebase/skins/dhtmlxgantt_contrast_white.css" type="text/css" title="no title" charset="utf-8">
+
+	
+	<script src="../../../kendo/utils.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="codebase/sources/dhtmlxgantt.js" type="text/javascript" charset="utf-8"></script>
+	<script src="codebase/locale/locale_cn.js" type="text/javascript" charset="utf-8"></script>
+	<script src="ext/dhxgantt_ch.js" type="text/javascript" charset="utf-8"></script>
+	<script src="ext/dhtmlxgantt_quick_info.extend.js" type="text/javascript" charset="utf-8"></script>
+	<script src="ext/jquery.dhxgantt.extend.js" type="text/javascript" charset="utf-8"></script>
+	<script src="//export.dhtmlx.com/gantt/api.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="codebase/dhtmlxgantt.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+	<style type="text/css">
+		html, body{ height:100%; padding:0px; margin:0px; overflow: hidden;}
+	</style>
+	<script type="text/javascript">
+
+	function init() {
+		// var tasksC = {
+		// 	data:[{"1":{"id":"1","endKey":"2016-08-08 23:59:59.0","text":"","preTaskKey":"","start_date":"2016-08-07T16:00:00.000Z","parent":0,"duration":6,"end_date":"2016-08-25T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":0,"$rendered_parent":0,"$index":1}
+		// ,
+		// ,"6":{"id":"6","endKey":"2016-08-09 00:00:00.0","text":"","preTaskKey":"","start_date":"2016-08-07T16:00:00.000Z","parent":0,"duration":2,"end_date":"2016-08-13T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":0,"$rendered_parent":0,"$index":0}
+		// ,"7":{"id":"7","endKey":"2016-08-08 23:59:59.0","text":"","preTaskKey":"","start_date":"2016-08-07T16:00:00.000Z","parent":"1","duration":6,"end_date":"2016-08-25T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":1,"$rendered_parent":"1"}
+		// ,"8":{"id":"8","endKey":"2016-08-08 23:59:59.0","text":"","preTaskKey":"","start_date":"2016-08-07T16:00:00.000Z","parent":"1","duration":6,"end_date":"2016-08-25T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":1,"$rendered_parent":"1"}
+		// ,"9":{"id":"9","endKey":"2016-08-11 23:59:59.0","text":"","preTaskKey":"","start_date":"2016-08-08T16:00:00.000Z","parent":"1","duration":6,"end_date":"2016-08-26T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":1,"$rendered_parent":"1"}
+		// }]};
+
+		var tasksA =  {
+            data:[
+            	// {"id":"1","endKey":"2016-08-08 23:59:59.0","text":"1","preTaskKey":"","start_date":"01-11-2017 00:00","duration":6},
+            	// {"id":"6","endKey":"2016-08-09 00:00:00.0","text":"6","preTaskKey":"","start_date":"01-11-2017 00:00","parent":0,"duration":2},
+            	// {"id":"4","endKey":"2016-08-08 23:59:59.0","text":"","preTaskKey":"9","start_date":"2016-08-07T16:00:00.000Z","parent":"1","duration":6,"end_date":"2016-08-25T16:00:00.000Z","$no_start":false,"$no_end":false,"$rendered_type":"task","$source":[],"$target":[],"$open":false,"$level":1,"$rendered_parent":"1"}
+                {id:1, text:"Project #1", start_date:"01-11-2017 00:00", duration:3,order:1,
+                    progress:0.4, open: false},
+                {"id":"6","endKey":"2016-08-09 00:00:00.0","text":"","preTaskKey":"","start_date":"08-08-2016 00:00:00","duration":"2"},
+                {id:2, text:"Task #1", 	  start_date:"02-04-2013", duration:8, order:10,
+                    progress:0.6, parent:1},
+                {id:3, text:"Task #2",    start_date:"11-04-2013", duration:8, order:20,
+                    progress:0.6, parent:1}
+                //     
+                //     {"total":1,"data":[{"cell_useradd8246_0_topid":"","cell_useradd8246_0_nlevel":"","hasChildren":true,"cell_useradd8246_0_treeid":"6|","cell_useradd8246_0_old_id":"","startIndex":"1","cell_useradd8246_0_index_id":"6","cell_useradd8246_0_cell_useradd8246_user3":"节点6","startindex":"1","cell_useradd8246_0_cell_useradd8246_user1":"2016-08-09 00:00:00.0","startId":"20160809/admin-0000004","field_1471941040399":"节点6","cell_useradd8246_0_cell_useradd8246_user7":"","cell_useradd8246_0_cell_useradd8246_user6":"","cell_useradd8246_0_cell_useradd8246_user5":"08-08-2016 00:00:00","cell_useradd8246_0_id":"20160809/admin-0000004","cell_useradd8246_0_cell_useradd8246_user4":"2","row_number":"1","cell_useradd8246_0_cell_useradd8246_user9":"","cell_useradd8246_0_cell_useradd8246_user8":"","id":"6","endKey":"2016-08-09 00:00:00.0","text":"","preTaskKey":"","start_date":"08-08-2016 00:00:00","duration":"2"}]}
+            ],
+        };
+        var columns = [
+        	{name:"text",       label:"任务名称",  tree:true, width:'*' },
+		    {name:"start_date", label:"开始事件", align: "center" },
+		    // {name:"add",        label:"" }
+        ]
+
+        var tasks =  {
+            data:[
+                {id:1, text:"Project #2", start_date:"2012-12-01", duration:0,order:1,
+                    progress:1, open: true},
+                {id:2, text:"Task #1", 	  start_date:"2013-04-02", duration:0.1, order:1,
+                    progress:1, parent:1},
+                {id:3, text:"Task #2",    start_date:"2013-04-03", duration:1, order:1,
+                    progress:1, parent:1}
+            ],
+                    links:[
+            { id:1, source:1, target:2, type:"0"},
+            { id:2, source:2, target:3, type:"0"}
+        ]
+        };
+
+        var demo_tasks = {
+	"data":[
+		{"id":11, "text":"Project #1", "start_date":"28-03-2013", "duration":"11", "progress": 0.6, "open": true},
+		{"id":1, "text":"Project #2", "start_date":"01-04-2013", "duration":"18", "progress": 0.4, "open": true},
+
+		{"id":2, "text":"Task #1", "start_date":"02-04-2013", "duration":"8", "parent":"1", "progress":0.5, "open": true},
+		{"id":3, "text":"Task #2", "start_date":"11-04-2013", "duration":"8", "parent":"1", "progress": 0.6, "open": true},
+		{"id":4, "text":"Task #3", "start_date":"13-04-2013", "duration":"6", "parent":"1", "progress": 0.5, "open": true},
+		{"id":5, "text":"Task #1.1", "start_date":"02-04-2013", "duration":"7", "parent":"2", "progress": 0.6, "open": true},
+		{"id":6, "text":"Task #1.2", "start_date":"03-04-2013", "duration":"7", "parent":"2", "progress": 0.6, "open": true},
+		{"id":7, "text":"Task #2.1", "start_date":"11-04-2013", "duration":"8", "parent":"3", "progress": 0.6, "open": true},
+		{"id":8, "text":"Task #3.1", "start_date":"14-04-2013", "duration":"5", "parent":"4", "progress": 0.5, "open": true},
+		{"id":9, "text":"Task #3.2", "start_date":"14-04-2013", "duration":"4", "parent":"4", "progress": 0.5, "open": true},
+		{"id":10, "text":"Task #3.3", "start_date":"14-04-2013", "duration":"3", "parent":"4", "progress": 0.5, "open": true},
+		
+		{"id":12, "text":"Task #1", "start_date":"03-04-2013", "duration":"5", "parent":"11", "progress": 1, "open": true},
+		{"id":13, "text":"Task #2", "start_date":"02-04-2013", "duration":"7", "parent":"11", "progress": 0.5, "open": true},
+		{"id":14, "text":"Task #3", "start_date":"02-04-2013", "duration":"6", "parent":"11", "progress": 0.8, "open": true},
+		{"id":15, "text":"Task #4", "start_date":"02-04-2013", "duration":"5", "parent":"11", "progress": 0.2, "open": true},
+		{"id":16, "text":"Task #5", "start_date":"02-04-2013", "duration":"7", "parent":"11", "progress": 0, "open": true},
+
+		{"id":17, "text":"Task #2.1", "start_date":"03-04-2013", "duration":"2", "parent":"13", "progress": 1, "open": true},
+		{"id":18, "text":"Task #2.2", "start_date":"06-04-2013", "duration":"3", "parent":"13", "progress": 0.8, "open": true},
+		{"id":19, "text":"Task #2.3", "start_date":"10-04-2013", "duration":"4", "parent":"13", "progress": 0.2, "open": true},
+		{"id":20, "text":"Task #2.4", "start_date":"10-04-2013", "duration":"4", "parent":"13", "progress": 0, "open": true},
+		{"id":21, "text":"Task #4.1", "start_date":"03-04-2013", "duration":"4", "parent":"15", "progress": 0.5, "open": true},
+		{"id":22, "text":"Task #4.2", "start_date":"03-04-2013", "duration":"4", "parent":"15", "progress": 0.1, "open": true},
+		{"id":23, "text":"Task #4.3", "start_date":"03-04-2013", "duration":"5", "parent":"15", "progress": 0, "open": true}
+	],
+	"links":[
+		{"id":"1","source":"1","target":"2","type":"1"},
+		{"id":"2","source":"2","target":"3","type":"0"},
+		{"id":"3","source":"3","target":"4","type":"0"},
+		{"id":"4","source":"2","target":"5","type":"2"},
+		{"id":"5","source":"2","target":"6","type":"2"},
+		{"id":"6","source":"3","target":"7","type":"2"},
+		{"id":"7","source":"4","target":"8","type":"2"},
+		{"id":"8","source":"4","target":"9","type":"2"},
+		{"id":"9","source":"4","target":"10","type":"2"},
+		{"id":"10","source":"11","target":"12","type":"1"},
+		{"id":"11","source":"11","target":"13","type":"1"},
+		{"id":"12","source":"11","target":"14","type":"1"},
+		{"id":"13","source":"11","target":"15","type":"1"},
+		{"id":"14","source":"11","target":"16","type":"1"},
+		{"id":"15","source":"13","target":"17","type":"1"},
+		{"id":"16","source":"17","target":"18","type":"0"},
+		{"id":"17","source":"18","target":"19","type":"0"},
+		{"id":"18","source":"19","target":"20","type":"0"},
+		{"id":"19","source":"15","target":"21","type":"2"},
+		{"id":"20","source":"15","target":"22","type":"2"},
+		{"id":"21","source":"15","target":"23","type":"2"}
+	]
+};
+
+		$("#gantt_here").dhxgantt({data:demo_tasks,columns:columns});
+
+
+		// var tasks = {
+  //       data:[
+  //           {id:1, text:"Project #1", start_date:"01-04-2013", duration:8, order:5, progress: 0.6, open: false},
+  //           {id:2, text:"Task #1", start_date:"03-04-2013", duration:5, order:3, parent:1, progress: 1, open: true},
+  //           {id:3, text:"Task #2", start_date:"02-04-2013", duration:7, order:3, parent:1, progress: 0.5, open: true},
+  //           {id:4, text:"Task #2.1", start_date:"03-04-2013", duration:2, order:3, parent:3, progress: 1, open: true},
+  //           {id:5, text:"Task #2.2", start_date:"04-04-2013", duration:3, order:3, parent:3, progress: 0.8, open: true},
+  //           {id:6, text:"Task #2.3", start_date:"05-04-2013", duration:4, order:3, parent:3, progress: 0.2, open: true}
+  //       ],
+  //       links:[
+  //           {id:1,source:1,target:2,type:"1"},
+  //           {id:2,source:1,target:3,type:"1"},
+  //           {id:3,source:3,target:4,type:"1"},
+  //           {id:4,source:4,target:5,type:"0"},
+  //           {id:5,source:5,target:6,type:"0"}
+  //       ]
+  //   };
+		
+  //    gantt.init("gantt_here");
+  //   gantt.parse(tasks);
+		
+
+		// var tasksB =  {
+  //           data:[
+  //               {id:1, text:"Project #2", start_date:"01-04-2013", duration:18,order:10,
+  //                   progress:0.4, open: true},
+  //               {id:3, text:"Task #3", 	  start_date:"02-04-2013", duration:1, order:10,
+  //                   progress:0.6, parent:1},
+  //               {id:4, text:"Task #4",    start_date:"03-04-2013", duration:1, order:20,
+  //                   progress:0.6, parent:1}
+  //           ],
+  //           links:[
+	 //            { id:3, source:3, target:4, type:"0"},
+  //       	]
+  //       };
+
+		// gantt.init("gantt_here");
+		// gantt.parse(tasksA);
+
+		// gantt2 = Gantt.getGanttInstance();
+		// gantt2.init("gantt_here_too");
+		// gantt2.parse(tasksB);
+		
+	}
+</script>
+
+<body onload="init();">
+	
+	<input value="Exsssss" class="complete_button" type="button" style='margin:20px;'>
+
+	<input value="Export to PDF : Gantt 1" type="button" onclick='gantt.exportToPDF()' style='margin:20px;'>
+	<input value="Export to PNG : Gantt 1" type="button" onclick='gantt.exportToPNG()'>
+
+	<input value="Export to PDF : Gantt 2" type="button" onclick='gantt2.exportToPDF()' style='margin:20px;'>
+	<input value="Export to PNG : Gantt 2" type="button" onclick='gantt2.exportToPNG()'>
+
+
+	<div id="gantt_here" class="dhx_cal_container" style='width:100%; height:300px;'>
+	</div>
+	<br>
+	<div id="gantt_here_too" class="dhx_cal_container" style='width:100%; height:300px;'>
+	</div>	
+</body>

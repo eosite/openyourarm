@@ -1,0 +1,266 @@
+{
+	"id": "col",
+	"title": "栅格样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "leftContent",
+		"title": "左边输入框",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "info",
+			"title": "提示信息",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setInfo"
+		}]
+	},{
+		"id": "rightContent",
+		"title": "右边按钮",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "contentMargin",
+			"title": "外间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "cMarginTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCMarginTop"
+			},
+			{
+				"id": "cMarginBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCMarginBottom"
+			},
+			{
+				"id": "cMarginLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCMarginLeft"
+			},
+			{
+				"id": "cMarginRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCMarginRight"
+			}]
+		},{
+			"id": "contentPadding",
+			"title": "内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "cPaddingTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCPaddingTop"
+			},
+			{
+				"id": "cPaddingBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCPaddingBottom"
+			},
+			{
+				"id": "cPaddingLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCPaddingLeft"
+			},
+			{
+				"id": "cPaddingRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCPaddingRight"
+			}]
+		},{
+			"id": "contentBorder",
+			"title": "内容边框",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "cBorderTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCBorderTop"
+			},
+			{
+				"id": "cBorderBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCBorderBottom"
+			},
+			{
+				"id": "cBorderLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCBorderLeft"
+			},
+			{
+				"id": "cBorderRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCBorderRight"
+			}]
+		},{
+			"id": "contentBorderColor",
+			"title": "内容边框颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContentBorderColor"
+		},{
+			"id": "borderStyle",
+			"title": "边框样式",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "left",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBorderStyle",
+			"valrange": [{
+			    "name":"无",
+				"title": "无边框",
+				"value": "none"
+			},
+			{
+				"name":"—",
+				"title": "实线框",
+				"value": "solid"
+			},{
+			    "name":"--",
+				"title": "虚线框",
+				"value": "dashed"
+			},{
+			    "name":"...",
+				"title": "点线框",
+				"value": "dotted"
+			}]
+		},{
+			"id": "cfontSize",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "font-size",
+				"title": "字体大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setCfontSize"
+			}]
+		},{
+			"id": "contentFontColor",
+			"title": "内容字体颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContentFontColor"
+		}]
+	}]
+}

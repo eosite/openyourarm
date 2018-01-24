@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoGroupMapper">
+
+	<resultMap id="videoGroupResultMap" type="com.glaf.video.domain.VideoGroup">
+		<id property="groupId" column="GROUPID_" jdbcType="VARCHAR" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoGroup" parameterType="com.glaf.video.domain.VideoGroup">
+		insert into VIDEO_GROUP
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			GROUPID_
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{groupId, jdbcType=VARCHAR}
+
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateVideoGroup" parameterType="com.glaf.video.domain.VideoGroup">
+		update VIDEO_GROUP
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="developerId != null">
+				DEVELOPERID_ = #{developerId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		GROUPID_ = #{groupId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoGroupById" parameterType="string">
+		delete from
+		VIDEO_GROUP
+		where GROUPID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoGroups" parameterType="com.glaf.video.query.VideoGroupQuery">
+		delete from VIDEO_GROUP
+		where (
+		GROUPID_ IN
+		<foreach item="x_groupId" index="index" collection="groupIds"
+			open="(" separator="," close=")">
+			#{x_groupId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getVideoGroupById" parameterType="string"
+		resultMap="videoGroupResultMap">
+		select * from VIDEO_GROUP where GROUPID_ = #{id}
+	</select>
+
+
+	<select id="getVideoGroups" parameterType="com.glaf.video.query.VideoGroupQuery"
+		resultMap="videoGroupResultMap">
+		select distinct E.*
+		<include refid="selectVideoGroupsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.GROUPID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoGroupCount" parameterType="com.glaf.video.query.VideoGroupQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoGroupsSql" />
+	</select>
+
+
+	<sql id="selectVideoGroupsSql">
+
+		from VIDEO_GROUP E
+
+		<where>
+			1 = 1
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

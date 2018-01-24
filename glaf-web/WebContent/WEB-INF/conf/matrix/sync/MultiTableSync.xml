@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableSyncs>
+ <tableSync id="FileBox" table="FILEBOX" title="公文督办表" primaryKey="ID">
+    <target table="R_GLAFDB_TB3" title="任务主表" primaryKey="ID" sysId="DOC_SYS"
+	afterSql=" UPDATE R_GLAFDB_TB11 SET R_GLAFDB_TB11_COL7 = 0 WHERE EX_SYNC_KEY_ IS NOT NULL and R_GLAFDB_TB11_COL7 is null " >
+       <mapping srcTableColumn="FILEBOX.ID" targetTableColumn="R_GLAFDB_TB3.ID" title="编号"/>
+	   <mapping srcTableColumn="FILEBOX.TITLE" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL15" title="标题"/> 
+	   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL14" title="下达部门"  initValue="指挥中心(办公室)秘书一科"/>
+	   <mapping srcTableColumn="FILEBOX.FROM_WHO" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL13" title="任务下达人"/>
+	   <mapping srcTableColumn="FILEBOX.TYPE" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL12" title="来源类型"/> 
+	   <mapping srcTableColumn="FILEBOX.ADDTIME" targetTableColumn="R_GLAFDB_TB3.CTIME" title="创建时间"/> 
+	   <mapping srcTableColumn="FILEBOX.ADDTIME" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL10" title="开始时间"/> 
+	   <mapping srcTableColumn="FILEBOX.WH" targetTableColumn="R_GLAFDB_TB3.TYPE_ID" title="文件编号"/> 
+	   <mapping srcTableColumn="FILEBOX.BLSX" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL9" title="结束时间"/> 
+	   <mapping srcTableColumn="FILEBOX.PSFL" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL5" title="任务分类"/> 
+	   <mapping srcTableColumn="FILEBOX.SUPERVISE_TEXT" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL11" title="任务概述"/> 
+	   <mapping srcTableColumn="FILEBOX.ZTC" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL20" title="紧急程度"/> 
+	   <mapping srcTableColumn="FILEBOX.ADDTIME" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL6" title="创建时间"/> 
+	   <mapping srcTableColumn="FILEBOX.ID" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL2" title="来源文件"/> 
+	   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL1" title="分派状态" initValue="待分派"/>
+
+
+	   <child table="R_GLAFDB_TB11" title="任务分派明细表" primaryKey="ID" sysId="DOC_SYS"  
+	          split="," splitToColumn="R_GLAFDB_TB11_COL2" splitSrcColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL14"
+			  dataHandler="com.glaf.matrix.data.sync.handler.CommonDataHandler"
+			  afterSql="update r_glafdb_tb11 set ID=OLD_id where R_GLAFDB_TB11_COL2=R_GLAFDB_TB11_COL5 and ex_sync_key_ is not null">
+		   <mapping srcTableColumn="FILEBOX.ID" targetTableColumn="R_GLAFDB_TB11.OLD_ID" title="关联外键"/>
+		   <mapping srcTableColumn="R_GLAFDB_TB3.CTIME" targetTableColumn="R_GLAFDB_TB11.CTIME" title="创建时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL20" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL14" 
+		            title="紧急程度"/>
+		   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL1" title="分派数（循环数）分派表"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.ID" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL3" title="任务ID"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL14" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL5" 
+		            title="分派部门"/> 
+		   <mapping srcTableColumn="FILEBOX.FROM_WHO" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL6" 
+		            title="部门ID"/> 
+		   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL7" initValue="0" title="完成状态"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL10" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL10" 
+		            title="起始时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL9" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL9" 
+		            title="结束时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL11" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL12" 
+		            title="指派意见"/>
+      </child>
+
+
+	   <child table="R_GLAFDB_TB11" title="任务分派明细表" primaryKey="ID" sysId="DOC_SYS"  
+	          split="," splitToColumn="R_GLAFDB_TB11_COL2" splitSrcColumn="FILEBOX.TO_WHO1"
+			  dataHandler="com.glaf.matrix.data.sync.handler.CommonDataHandler"
+			  reprocessor="com.glaf.matrix.data.sync.handler.DepartmentDataPreprocessor" >
+		   <mapping srcTableColumn="R_GLAFDB_TB3.ID" targetTableColumn="R_GLAFDB_TB11.OLD_ID" title="关联外键"/>
+		   <mapping srcTableColumn="R_GLAFDB_TB3.CTIME" targetTableColumn="R_GLAFDB_TB11.CTIME" title="创建时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL20" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL14" 
+		            title="紧急程度"/>
+		   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL1" title="分派数（循环数）分派表"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.ID" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL3" title="任务ID"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL14" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL5" 
+		            title="分派部门"/> 
+		   <mapping srcTableColumn="FILEBOX.FROM_WHO" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL6" 
+		            title="部门ID"/> 
+		   <mapping srcTableColumn="" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL7" initValue="0" title="完成状态"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL10" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL10" 
+		            title="起始时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL9" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL9" 
+		            title="结束时间"/> 
+		   <mapping srcTableColumn="R_GLAFDB_TB3.R_GLAFDB_TB3_COL11" targetTableColumn="R_GLAFDB_TB11.R_GLAFDB_TB11_COL12" 
+		            title="指派意见"/> 
+      </child>
+
+    </target>
+  </tableSync>
+</tableSyncs>

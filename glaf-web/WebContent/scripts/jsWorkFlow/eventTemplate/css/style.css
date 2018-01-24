@@ -1,0 +1,40 @@
+.page-header.navbar.navbar-fixed-top, .page-header.navbar.navbar-static-top{
+	z-index:1000
+}
+.page-content{
+	padding:2px ;
+}
+.content-row{
+	margin-top: -20px;
+}
+.inline-row{
+	display:inline-flex;
+}
+.nav-pills, .nav-tabs{
+	margin-bottom:0px;
+}
+.mtbtn{
+	padding: 2px 6px;
+}
+.mt-ztree-tools{
+	display:none;
+}
+#myModal3 .modal-dialog{
+	width:900px;
+}
+#mappingDiv td,#mappingDiv th{
+	padding: 5px;
+	width:48%;
+}
+
+#mappingDiv,#pageTreeDiv {
+	max-height:600px;
+	overflow-y: auto;
+}
+
+.mt-sel{
+	border : 1px solid blue;
+}
+.mt-sel-err{
+	background-color:rgba(255, 137, 137, 0.61);
+}

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemTmplValidMapper">
+
+ 	<resultMap id="convertElemTmplValidResultMap"	type="com.glaf.convert.domain.ConvertElemTmplValid">
+        <id property="validRuleId" column="VALID_RULE_ID_" jdbcType="BIGINT" />
+        <result property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT"/>
+        <result property="validType" column="VALID_TYPE_" jdbcType="VARCHAR"/>
+        <result property="expression" column="EXPRESSION_" jdbcType="VARCHAR"/>
+        <result property="dType" column="DTYPE_" jdbcType="VARCHAR"/>
+        <result property="len" column="LEN_" jdbcType="INTEGER"/>
+        <result property="rangeUpper" column="RANGE_UPPER_" jdbcType="VARCHAR"/>
+        <result property="rangeLower" column="RANGE_LOWER_" jdbcType="VARCHAR"/>
+        <result property="useCondition" column="USECONDITION_" jdbcType="VARCHAR"/>
+        <result property="seq" column="SEQ_" jdbcType="INTEGER"/>
+        <result property="parentRuleId" column="PARENT_RULE_ID_" jdbcType="BIGINT"/>
+        <result property="treeId" column="TREEID_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemTmplValid" parameterType="com.glaf.convert.domain.ConvertElemTmplValid">
+		insert into CVT_ELEM_TMPL_VALID 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    VALID_RULE_ID_
+			<if test="cvtElemId != null">
+				,CVT_ELEM_ID_ 
+			</if>
+			<if test="validType != null">
+				,VALID_TYPE_ 
+			</if>
+			<if test="expression != null">
+				,EXPRESSION_ 
+			</if>
+			<if test="dType != null">
+				,DTYPE_ 
+			</if>
+			<if test="len != null">
+				,LEN_ 
+			</if>
+			<if test="rangeUpper != null">
+				,RANGE_UPPER_ 
+			</if>
+			<if test="rangeLower != null">
+				,RANGE_LOWER_ 
+			</if>
+			<if test="useCondition != null">
+				,USECONDITION_ 
+			</if>
+			<if test="seq != null">
+				,SEQ_ 
+			</if>
+			<if test="parentRuleId != null">
+				,PARENT_RULE_ID_ 
+			</if>
+			<if test="treeId != null">
+				,TREEID_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{validRuleId, jdbcType=BIGINT}
+	     
+			<if test="cvtElemId != null">
+				,#{cvtElemId, jdbcType=BIGINT}
+			</if>
+			<if test="validType != null">
+				,#{validType, jdbcType=VARCHAR}
+			</if>
+			<if test="expression != null">
+				,#{expression, jdbcType=VARCHAR}
+			</if>
+			<if test="dType != null">
+				,#{dType, jdbcType=VARCHAR}
+			</if>
+			<if test="len != null">
+				,#{len, jdbcType=INTEGER}
+			</if>
+			<if test="rangeUpper != null">
+				,#{rangeUpper, jdbcType=VARCHAR}
+			</if>
+			<if test="rangeLower != null">
+				,#{rangeLower, jdbcType=VARCHAR}
+			</if>
+			<if test="useCondition != null">
+				,#{useCondition, jdbcType=VARCHAR}
+			</if>
+			<if test="seq != null">
+				,#{seq, jdbcType=INTEGER}
+			</if>
+			<if test="parentRuleId != null">
+				,#{parentRuleId, jdbcType=BIGINT}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemTmplValid" parameterType="com.glaf.convert.domain.ConvertElemTmplValid">
+		update CVT_ELEM_TMPL_VALID
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtElemId != null">
+				CVT_ELEM_ID_ = #{cvtElemId, jdbcType=BIGINT},
+			</if>
+			<if test="validType != null">
+				VALID_TYPE_ = #{validType, jdbcType=VARCHAR},
+			</if>
+			<if test="expression != null">
+				EXPRESSION_ = #{expression, jdbcType=VARCHAR},
+			</if>
+			<if test="dType != null">
+				DTYPE_ = #{dType, jdbcType=VARCHAR},
+			</if>
+			<if test="len != null">
+				LEN_ = #{len, jdbcType=INTEGER},
+			</if>
+			<if test="rangeUpper != null">
+				RANGE_UPPER_ = #{rangeUpper, jdbcType=VARCHAR},
+			</if>
+			<if test="rangeLower != null">
+				RANGE_LOWER_ = #{rangeLower, jdbcType=VARCHAR},
+			</if>
+			<if test="useCondition != null">
+				USECONDITION_ = #{useCondition, jdbcType=VARCHAR},
+			</if>
+			<if test="seq != null">
+				SEQ_ = #{seq, jdbcType=INTEGER},
+			</if>
+			<if test="parentRuleId != null">
+				PARENT_RULE_ID_ = #{parentRuleId, jdbcType=BIGINT},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          VALID_RULE_ID_ = #{validRuleId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemTmplValidById" parameterType="long"> 
+        delete from CVT_ELEM_TMPL_VALID
+        where VALID_RULE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemTmplValids" parameterType="com.glaf.convert.query.ConvertElemTmplValidQuery">
+		delete from CVT_ELEM_TMPL_VALID
+		where ( 
+ 			  VALID_RULE_ID_ IN
+              <foreach item="x_validRuleId" index="index" collection="validRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_validRuleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemTmplValidById" parameterType="long" resultMap="convertElemTmplValidResultMap">
+		select * from CVT_ELEM_TMPL_VALID where VALID_RULE_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemTmplValids" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplValidQuery"
+		resultMap="convertElemTmplValidResultMap">
+		select distinct E.*
+		<include refid="selectConvertElemTmplValidsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.VALID_RULE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemTmplValidCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplValidQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemTmplValidsSql" />
+	</select>
+
+
+	<sql id="selectConvertElemTmplValidsSql">
+
+		from CVT_ELEM_TMPL_VALID E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtElemId != null">
+				and E.CVT_ELEM_ID_ = #{cvtElemId}
+            </if>
+
+			<if test="cvtElemIdGreaterThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &gt;= #{cvtElemIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtElemIdLessThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &lt;= #{cvtElemIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtElemIds != null and cvtElemIds.size() &gt; 0">
+			    and E.CVT_ELEM_ID_ IN
+                <foreach item="x_cvtElemId" index="index" collection="cvtElemIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtElemId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="validType != null and validType != '' ">
+				and E.VALID_TYPE_ = #{validType}
+            </if>
+
+			<if test="validTypeLike != null and validTypeLike != '' ">
+				and E.VALID_TYPE_ like #{validTypeLike}
+            </if>
+
+			<if test="validTypes != null and validTypes.size() &gt; 0">
+			    and E.VALID_TYPE_ IN
+                <foreach item="x_validType" index="index" collection="validTypes" 
+                     open="(" separator="," close=")">
+                  #{x_validType}
+                </foreach>
+			</if>
+	        
+			<if test="expression != null and expression != '' ">
+				and E.EXPRESSION_ = #{expression}
+            </if>
+
+			<if test="expressionLike != null and expressionLike != '' ">
+				and E.EXPRESSION_ like #{expressionLike}
+            </if>
+
+			<if test="expressions != null and expressions.size() &gt; 0">
+			    and E.EXPRESSION_ IN
+                <foreach item="x_expression" index="index" collection="expressions" 
+                     open="(" separator="," close=")">
+                  #{x_expression}
+                </foreach>
+			</if>
+	        
+			<if test="dType != null and dType != '' ">
+				and E.DTYPE_ = #{dType}
+            </if>
+
+			<if test="dTypeLike != null and dTypeLike != '' ">
+				and E.DTYPE_ like #{dTypeLike}
+            </if>
+
+			<if test="dTypes != null and dTypes.size() &gt; 0">
+			    and E.DTYPE_ IN
+                <foreach item="x_dType" index="index" collection="dTypes" 
+                     open="(" separator="," close=")">
+                  #{x_dType}
+                </foreach>
+			</if>
+
+			<if test="len != null">
+				and E.LEN_ = #{len}
+            </if>
+
+			<if test="lenGreaterThanOrEqual != null">
+				and E.LEN_ &gt;= #{lenGreaterThanOrEqual}
+            </if>
+
+			<if test="lenLessThanOrEqual != null">
+				and E.LEN_ &lt;= #{lenLessThanOrEqual}
+            </if>
+
+			<if test="lens != null and lens.size() &gt; 0">
+			    and E.LEN_ IN
+                <foreach item="x_len" index="index" collection="lens" 
+                     open="(" separator="," close=")">
+                  #{x_len}
+                </foreach>
+			</if>
+      
+	        
+			<if test="rangeUpper != null and rangeUpper != '' ">
+				and E.RANGE_UPPER_ = #{rangeUpper}
+            </if>
+
+			<if test="rangeUpperLike != null and rangeUpperLike != '' ">
+				and E.RANGE_UPPER_ like #{rangeUpperLike}
+            </if>
+
+			<if test="rangeUppers != null and rangeUppers.size() &gt; 0">
+			    and E.RANGE_UPPER_ IN
+                <foreach item="x_rangeUpper" index="index" collection="rangeUppers" 
+                     open="(" separator="," close=")">
+                  #{x_rangeUpper}
+                </foreach>
+			</if>
+	        
+			<if test="rangeLower != null and rangeLower != '' ">
+				and E.RANGE_LOWER_ = #{rangeLower}
+            </if>
+
+			<if test="rangeLowerLike != null and rangeLowerLike != '' ">
+				and E.RANGE_LOWER_ like #{rangeLowerLike}
+            </if>
+
+			<if test="rangeLowers != null and rangeLowers.size() &gt; 0">
+			    and E.RANGE_LOWER_ IN
+                <foreach item="x_rangeLower" index="index" collection="rangeLowers" 
+                     open="(" separator="," close=")">
+                  #{x_rangeLower}
+                </foreach>
+			</if>
+	        
+			<if test="useCondition != null and useCondition != '' ">
+				and E.USECONDITION_ = #{useCondition}
+            </if>
+
+			<if test="useConditionLike != null and useConditionLike != '' ">
+				and E.USECONDITION_ like #{useConditionLike}
+            </if>
+
+			<if test="useConditions != null and useConditions.size() &gt; 0">
+			    and E.USECONDITION_ IN
+                <foreach item="x_useCondition" index="index" collection="useConditions" 
+                     open="(" separator="," close=")">
+                  #{x_useCondition}
+                </foreach>
+			</if>
+
+			<if test="seq != null">
+				and E.SEQ_ = #{seq}
+            </if>
+
+			<if test="seqGreaterThanOrEqual != null">
+				and E.SEQ_ &gt;= #{seqGreaterThanOrEqual}
+            </if>
+
+			<if test="seqLessThanOrEqual != null">
+				and E.SEQ_ &lt;= #{seqLessThanOrEqual}
+            </if>
+
+			<if test="seqs != null and seqs.size() &gt; 0">
+			    and E.SEQ_ IN
+                <foreach item="x_seq" index="index" collection="seqs" 
+                     open="(" separator="," close=")">
+                  #{x_seq}
+                </foreach>
+			</if>
+      
+
+			<if test="parentRuleId != null">
+				and E.PARENT_RULE_ID_ = #{parentRuleId}
+            </if>
+
+			<if test="parentRuleIdGreaterThanOrEqual != null">
+				and E.PARENT_RULE_ID_ &gt;= #{parentRuleIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentRuleIdLessThanOrEqual != null">
+				and E.PARENT_RULE_ID_ &lt;= #{parentRuleIdLessThanOrEqual}
+            </if>
+
+			<if test="parentRuleIds != null and parentRuleIds.size() &gt; 0">
+			    and E.PARENT_RULE_ID_ IN
+                <foreach item="x_parentRuleId" index="index" collection="parentRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentRuleId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREEID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

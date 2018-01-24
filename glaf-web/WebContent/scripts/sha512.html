@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>SHA512</title>
+  <script type="text/javascript" src="./sha512.js"></script>
+  <script type="text/javascript">
+      function encXY(){
+		  var o = document.getElementById("o").value;
+          var v = hex_sha512(o);
+          document.getElementById("x").value = v;
+	  }
+  </script>
+ </head>
+ <body>
+  <form method="post" action="">
+	<input type="text" id="o" name="o" value="admin:111111">
+	<br><br>
+	<textarea id="x" name="x" rows="6" cols="66"></textarea>
+	<br><br>
+	<input type="button" value="加密" onclick="javascript:encXY();">
+  </form>
+ </body>
+</html>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.core.mapper.SysDataTableMapper">
+
+	<resultMap id="sysDataTableResultMap" type="com.glaf.core.domain.SysDataTable">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="serviceKey" column="SERVICEKEY_" jdbcType="VARCHAR" />
+		<result property="tablename" column="TABLENAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="INTEGER" />
+		<result property="treeType" column="TREETYPE_" jdbcType="VARCHAR" />
+		<result property="maxUser" column="MAXUSER_" jdbcType="INTEGER" />
+		<result property="maxSys" column="MAXSYS_" jdbcType="INTEGER" />
+		<result property="readUrl" column="READURL_" jdbcType="VARCHAR" />
+		<result property="createUrl" column="CREATEURL_" jdbcType="VARCHAR" />
+		<result property="updateUrl" column="UPDATEURL_" jdbcType="VARCHAR" />
+		<result property="destroyUrl" column="DESTROYURL_" jdbcType="VARCHAR" />
+		<result property="sortColumnName" column="SORTCOLUMNNAME_"
+			jdbcType="VARCHAR" />
+		<result property="sortOrder" column="SORTORDER_" jdbcType="VARCHAR" />
+		<result property="accessType" column="ACCESSTYPE_" jdbcType="VARCHAR" />
+		<result property="perms" column="PERMS_" jdbcType="VARCHAR" />
+		<result property="addressPerms" column="ADDRESSPERMS_"
+			jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="content" column="CONTENT_" jdbcType="VARCHAR" />
+		<result property="isSubTable" column="ISSUBTABLE_" jdbcType="VARCHAR" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertSysDataTable" parameterType="com.glaf.core.domain.SysDataTable">
+		insert into SYS_DATA_TABLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="serviceKey != null">
+				,SERVICEKEY_
+			</if>
+			<if test="tablename != null">
+				,TABLENAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="treeType != null">
+				,TREETYPE_
+			</if>
+			<if test="maxUser != null">
+				,MAXUSER_
+			</if>
+			<if test="maxSys != null">
+				,MAXSYS_
+			</if>
+			<if test="readUrl != null">
+				,READURL_
+			</if>
+			<if test="createUrl != null">
+				,CREATEURL_
+			</if>
+			<if test="updateUrl != null">
+				,UPDATEURL_
+			</if>
+			<if test="destroyUrl != null">
+				,DESTROYURL_
+			</if>
+			<if test="sortColumnName != null">
+				,SORTCOLUMNNAME_
+			</if>
+			<if test="sortOrder != null">
+				,SORTORDER_
+			</if>
+			<if test="accessType != null">
+				,ACCESSTYPE_
+			</if>
+			<if test="perms != null">
+				,PERMS_
+			</if>
+			<if test="addressPerms != null">
+				,ADDRESSPERMS_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="content != null">
+				,CONTENT_
+			</if>
+			<if test="isSubTable != null">
+				,ISSUBTABLE_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="serviceKey != null">
+				,#{serviceKey, jdbcType=VARCHAR}
+			</if>
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="treeType != null">
+				,#{treeType, jdbcType=VARCHAR}
+			</if>
+			<if test="maxUser != null">
+				,#{maxUser, jdbcType=INTEGER}
+			</if>
+			<if test="maxSys != null">
+				,#{maxSys, jdbcType=INTEGER}
+			</if>
+			<if test="readUrl != null">
+				,#{readUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="createUrl != null">
+				,#{createUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="updateUrl != null">
+				,#{updateUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="destroyUrl != null">
+				,#{destroyUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="sortColumnName != null">
+				,#{sortColumnName, jdbcType=VARCHAR}
+			</if>
+			<if test="sortOrder != null">
+				,#{sortOrder, jdbcType=VARCHAR}
+			</if>
+			<if test="accessType != null">
+				,#{accessType, jdbcType=VARCHAR}
+			</if>
+			<if test="perms != null">
+				,#{perms, jdbcType=VARCHAR}
+			</if>
+			<if test="addressPerms != null">
+				,#{addressPerms, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="isSubTable != null">
+				,#{isSubTable, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSysDataTable" parameterType="com.glaf.core.domain.SysDataTable">
+		update SYS_DATA_TABLE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="treeType != null">
+				TREETYPE_ = #{treeType, jdbcType=VARCHAR},
+			</if>
+			<if test="readUrl != null">
+				READURL_ = #{readUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="createUrl != null">
+				CREATEURL_ = #{createUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="updateUrl != null">
+				UPDATEURL_ = #{updateUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="destroyUrl != null">
+				DESTROYURL_ = #{destroyUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="sortColumnName != null">
+				SORTCOLUMNNAME_ = #{sortColumnName, jdbcType=VARCHAR},
+			</if>
+			<if test="sortOrder != null">
+				SORTORDER_ = #{sortOrder, jdbcType=VARCHAR},
+			</if>
+			<if test="accessType != null">
+				ACCESSTYPE_ = #{accessType, jdbcType=VARCHAR},
+			</if>
+			<if test="addressPerms != null">
+				ADDRESSPERMS_ = #{addressPerms, jdbcType=VARCHAR},
+			</if>
+			<if test="perms != null">
+				PERMS_ = #{perms, jdbcType=VARCHAR},
+			</if>
+			<if test="maxUser != null">
+				MAXUSER_ = #{maxUser, jdbcType=INTEGER},
+			</if>
+			<if test="maxSys != null">
+				MAXSYS_ = #{maxSys, jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				CONTENT_ = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="isSubTable != null">
+				ISSUBTABLE_ = #{isSubTable, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteSysDataTableById" parameterType="string">
+		delete from
+		SYS_DATA_TABLE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSysDataTables" parameterType="com.glaf.core.query.SysDataTableQuery">
+		delete from SYS_DATA_TABLE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysDataTableById" parameterType="string"
+		resultMap="sysDataTableResultMap">
+		select * from SYS_DATA_TABLE where ID_ = #{id}
+	</select>
+
+
+	<select id="getSysDataTableByServiceKey" parameterType="string"
+		resultMap="sysDataTableResultMap">
+		select * from SYS_DATA_TABLE where SERVICEKEY_ =
+		#{serviceKey}
+	</select>
+
+
+	<select id="getSysDataTableByTable" parameterType="string"
+		resultMap="sysDataTableResultMap">
+		select * from SYS_DATA_TABLE where TABLENAME_ = #{table}
+	</select>
+
+
+	<select id="getSysDataTables" parameterType="com.glaf.core.query.SysDataTableQuery"
+		resultMap="sysDataTableResultMap">
+		select distinct E.*
+		<include refid="selectSysDataTablesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysDataTableCount" parameterType="com.glaf.core.query.SysDataTableQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysDataTablesSql" />
+	</select>
+
+
+	<sql id="selectSysDataTablesSql">
+
+		from SYS_DATA_TABLE E
+
+		<where>
+			1 = 1
+
+			<if test="serviceKey != null and serviceKey != '' ">
+				and E.SERVICEKEY_ = #{serviceKey}
+			</if>
+
+			<if test="tablename != null and tablename != '' ">
+				and E.TABLENAME_ = #{tablename}
+			</if>
+
+			<if test="tablenames != null and tablenames.size != 0">
+				and E.TABLENAME_ IN
+				<foreach item="x_tablename" index="index" collection="tablenames"
+					open="(" separator="," close=")">
+					#{x_tablename}
+				</foreach>
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="types != null and types.size != 0">
+				and E.TYPE_ IN
+				<foreach item="x_type" index="index" collection="types"
+					open="(" separator="," close=")">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.CONTENT_ like #{contentLike}
+			</if>
+
+			<if test="isSubTable != null and isSubTable != '' ">
+				and E.ISSUBTABLE_ = #{isSubTable}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

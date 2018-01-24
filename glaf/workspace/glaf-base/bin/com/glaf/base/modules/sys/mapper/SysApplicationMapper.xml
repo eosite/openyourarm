@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysApplicationMapper">
+
+	<resultMap id="sysApplicationResultMap"
+		type="com.glaf.base.modules.sys.model.SysApplication">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="desc" column="APPDESC" jdbcType="VARCHAR" />
+		<result property="url" column="URL" jdbcType="VARCHAR" />
+		<result property="code" column="CODE" jdbcType="VARCHAR" />
+		<result property="sort" column="SORT" jdbcType="INTEGER" />
+		<result property="showMenu" column="SHOWMENU" jdbcType="INTEGER" />
+		<result property="showType" column="SHOWTYPE" jdbcType="VARCHAR" />
+		<result property="nodeId" column="NODEID" jdbcType="BIGINT" />
+		<result property="locked" column="LOCKED" jdbcType="INTEGER" />
+		<result property="imagePath" column="IMAGEPATH" jdbcType="VARCHAR" />
+		<result property="linkType" column="LINKTYPE" jdbcType="VARCHAR" />
+		<result property="linkFileId" column="LINKFILEID" jdbcType="VARCHAR" />
+		<result property="linkFileName" column="LINKFILENAME" jdbcType="VARCHAR" />
+		<result property="linkParam" column="LINKPARAM" jdbcType="VARCHAR" />
+		<result property="printType" column="PRINTTYPE" jdbcType="VARCHAR" />
+		<result property="printFileId" column="PRINTFILEID" jdbcType="VARCHAR" />
+		<result property="printFileName" column="PRINTFILENAME"
+			jdbcType="VARCHAR" />
+		<result property="printParam" column="PRINTPARAM" jdbcType="VARCHAR" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="uid" column="UID_" jdbcType="VARCHAR" />
+		<result property="flowid" column="FLOWID_" jdbcType="VARCHAR" />
+		<result property="cellTreedotIndex" column="CELLTREEDOTINDEX_"
+			jdbcType="VARCHAR" />
+		<result property="position" column="POSITION_" jdbcType="VARCHAR" />
+		<result property="systemFlag" column="SYSTEMFLAG_" jdbcType="VARCHAR" />
+		<result property="pageId" column="PAGEID_" jdbcType="VARCHAR" />
+		<result property="refId1" column="REFID1" jdbcType="INTEGER" />
+		<result property="refName1" column="REFNAME1" jdbcType="VARCHAR" />
+		<result property="refId2" column="REFID2" jdbcType="INTEGER" />
+		<result property="refName2" column="REFNAME2" jdbcType="VARCHAR" />
+		<result property="refId3" column="REFID3" jdbcType="INTEGER" />
+		<result property="refName3" column="REFNAME3" jdbcType="VARCHAR" />
+		<result property="refId4" column="REFID4" jdbcType="INTEGER" />
+		<result property="refName4" column="REFNAME4" jdbcType="VARCHAR" />
+		<result property="refId5" column="REFID5" jdbcType="INTEGER" />
+		<result property="refName5" column="REFNAME5" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="deleteFlag" column="DELETEFLAG" jdbcType="INTEGER" />
+		<result property="deleteTime" column="DELETETIME" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<resultMap id="realmInfoResultMap" type="com.glaf.base.modules.sys.model.RealmInfo">
+		<result property="item" column="CODE" jdbcType="VARCHAR" />
+		<result property="url" column="URL" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertSysApplication" parameterType="com.glaf.base.modules.sys.model.SysApplication">
+		insert into sys_application
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="name != null">
+				,NAME
+			</if>
+			<if test="code != null">
+				,CODE
+			</if>
+			<if test="desc != null">
+				,APPDESC
+			</if>
+			<if test="url != null">
+				,URL
+			</if>
+			<if test="sort != null">
+				,SORT
+			</if>
+			<if test="showMenu != null">
+				,SHOWMENU
+			</if>
+			<if test="showType != null">
+				,SHOWTYPE
+			</if>
+			<if test="nodeId != null">
+				,NODEID
+			</if>
+			<if test="locked != null">
+				,LOCKED
+			</if>
+
+			<if test="imagePath != null">
+				,IMAGEPATH
+			</if>
+			<if test="linkType != null">
+				,LINKTYPE
+			</if>
+			<if test="linkFileId != null">
+				,LINKFILEID
+			</if>
+			<if test="linkFileName != null">
+				,LINKFILENAME
+			</if>
+			<if test="linkParam != null">
+				,LINKPARAM
+			</if>
+			<if test="printType != null">
+				,PRINTTYPE
+			</if>
+			<if test="printFileId != null">
+				,PRINTFILEID
+			</if>
+			<if test="printFileName != null">
+				,PRINTFILENAME
+			</if>
+			<if test="printParam != null">
+				,PRINTPARAM
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="uid != null">
+				,UID_
+			</if>
+			<if test="flowid != null">
+				,FLOWID_
+			</if>
+			<if test="cellTreedotIndex != null">
+				,CELLTREEDOTINDEX_
+			</if>
+			<if test="position != null">
+				,POSITION_
+			</if>
+			<if test="systemFlag != null">
+				,SYSTEMFLAG_
+			</if>
+			<if test="pageId != null">
+				,PAGEID_
+			</if>
+			<if test="refId1 != null">
+				,REFID1
+			</if>
+			<if test="refName1 != null">
+				,REFNAME1
+			</if>
+			<if test="refId2 != null">
+				,REFID2
+			</if>
+			<if test="refName2 != null">
+				,REFNAME2
+			</if>
+			<if test="refId3 != null">
+				,REFID3
+			</if>
+			<if test="refName3 != null">
+				,REFNAME3
+			</if>
+			<if test="refId4 != null">
+				,REFID4
+			</if>
+			<if test="refName4 != null">
+				,REFNAME4
+			</if>
+			<if test="refId5 != null">
+				,REFID5
+			</if>
+			<if test="refName5 != null">
+				,REFNAME5
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG
+			</if>
+			<if test="deleteTime != null">
+				,DELETETIME
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				,#{url, jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="showMenu != null">
+				,#{showMenu, jdbcType=INTEGER}
+			</if>
+			<if test="showType != null">
+				,#{showType, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeId != null">
+				,#{nodeId, jdbcType=BIGINT}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="imagePath != null">
+				,#{imagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="linkType != null">
+				,#{linkType, jdbcType=VARCHAR}
+			</if>
+			<if test="linkFileId != null">
+				,#{linkFileId, jdbcType=VARCHAR}
+			</if>
+			<if test="linkFileName != null">
+				,#{linkFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="linkParam != null">
+				,#{linkParam, jdbcType=VARCHAR}
+			</if>
+			<if test="printType != null">
+				,#{printType, jdbcType=VARCHAR}
+			</if>
+			<if test="printFileId != null">
+				,#{printFileId, jdbcType=VARCHAR}
+			</if>
+			<if test="printFileName != null">
+				,#{printFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="printParam != null">
+				,#{printParam, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="uid != null">
+				,#{uid, jdbcType=VARCHAR}
+			</if>
+			<if test="flowid != null">
+				,#{flowid, jdbcType=VARCHAR}
+			</if>
+			<if test="cellTreedotIndex != null">
+				,#{cellTreedotIndex, jdbcType=VARCHAR}
+			</if>
+			<if test="position != null">
+				,#{position, jdbcType=VARCHAR}
+			</if>
+			<if test="systemFlag != null">
+				,#{systemFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="refId1 != null">
+				,#{refId1, jdbcType=INTEGER}
+			</if>
+			<if test="refName1 != null">
+				,#{refName1, jdbcType=VARCHAR}
+			</if>
+			<if test="refId2 != null">
+				,#{refId2, jdbcType=INTEGER}
+			</if>
+			<if test="refName2 != null">
+				,#{refName2, jdbcType=VARCHAR}
+			</if>
+			<if test="refId3 != null">
+				,#{refId3, jdbcType=INTEGER}
+			</if>
+			<if test="refName3 != null">
+				,#{refName3, jdbcType=VARCHAR}
+			</if>
+			<if test="refId4 != null">
+				,#{refId4, jdbcType=INTEGER}
+			</if>
+			<if test="refName4 != null">
+				,#{refName4, jdbcType=VARCHAR}
+			</if>
+			<if test="refId5 != null">
+				,#{refId5, jdbcType=INTEGER}
+			</if>
+			<if test="refName5 != null">
+				,#{refName5, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="deleteTime != null">
+				,#{deleteTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSysApplication" parameterType="com.glaf.base.modules.sys.model.SysApplication">
+		update sys_application
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				APPDESC = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url, jdbcType=VARCHAR},
+			</if>
+			<if test="imagePath != null">
+				IMAGEPATH = #{imagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="showMenu != null">
+				SHOWMENU = #{showMenu, jdbcType=INTEGER},
+			</if>
+			<if test="showType != null">
+				SHOWTYPE = #{showType, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeId != null">
+				NODEID = #{nodeId, jdbcType=BIGINT},
+			</if>
+			<if test="locked != null">
+				LOCKED = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="linkType != null">
+				LINKTYPE = #{linkType, jdbcType=VARCHAR},
+			</if>
+			<if test="linkFileId != null">
+				LINKFILEID = #{linkFileId, jdbcType=VARCHAR},
+			</if>
+			<if test="linkFileName != null">
+				LINKFILENAME = #{linkFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="linkParam != null">
+				LINKPARAM = #{linkParam, jdbcType=VARCHAR},
+			</if>
+			<if test="printType != null">
+				PRINTTYPE = #{printType, jdbcType=VARCHAR},
+			</if>
+			<if test="printFileId != null">
+				PRINTFILEID = #{printFileId, jdbcType=VARCHAR},
+			</if>
+			<if test="printFileName != null">
+				PRINTFILENAME = #{printFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="printParam != null">
+				PRINTPARAM = #{printParam, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="uid != null">
+				UID_ = #{uid, jdbcType=VARCHAR},
+			</if>
+			<if test="flowid != null">
+				FLOWID_ = #{flowid, jdbcType=VARCHAR},
+			</if>
+			<if test="cellTreedotIndex != null">
+				CELLTREEDOTINDEX_ = #{cellTreedotIndex,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				POSITION_ = #{position, jdbcType=VARCHAR},
+			</if>
+			<if test="systemFlag != null">
+				SYSTEMFLAG_ = #{systemFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="refId1 != null">
+				REFID1 = #{refId1, jdbcType=INTEGER},
+			</if>
+			<if test="refName1 != null">
+				REFNAME1 = #{refName1, jdbcType=VARCHAR},
+			</if>
+			<if test="refId2 != null">
+				REFID2 = #{refId2, jdbcType=INTEGER},
+			</if>
+			<if test="refName2 != null">
+				REFNAME2 = #{refName2, jdbcType=VARCHAR},
+			</if>
+			<if test="refId3 != null">
+				REFID3 = #{refId3, jdbcType=INTEGER},
+			</if>
+			<if test="refName3 != null">
+				REFNAME3 = #{refName3, jdbcType=VARCHAR},
+			</if>
+			<if test="refId4 != null">
+				REFID4 = #{refId4, jdbcType=INTEGER},
+			</if>
+			<if test="refName4 != null">
+				REFNAME4 = #{refName4, jdbcType=VARCHAR},
+			</if>
+			<if test="refId5 != null">
+				REFID5 = #{refId5, jdbcType=INTEGER},
+			</if>
+			<if test="refName5 != null">
+				REFNAME5 = #{refName5, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="deleteTime != null">
+				DELETETIME = #{deleteTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSysApplicationById" parameterType="long">
+		delete from
+		sys_application
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteSysApplications" parameterType="com.glaf.base.modules.sys.query.SysApplicationQuery">
+		delete from sys_application
+		where (
+		ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysApplicationById" parameterType="long"
+		resultMap="sysApplicationResultMap">
+		select * from sys_application where ID = #{id}
+	</select>
+
+
+	<select id="getSysApplicationsByRoleId" parameterType="long"
+		resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.ID = A.APPID
+		where A.ROLEID = #{roleId}
+		and E.LOCKED = 0
+		and
+		E.deleteFlag = 0
+
+	</select>
+
+
+	<select id="getSysApplicationsByRoleCode" parameterType="String"
+		resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.id = A.appId
+		where A.roleId in (
+		select R.id from net_role R
+		where
+		R.code = #{roleCode}
+		)
+		and E.LOCKED = 0
+		and E.deleteFlag = 0
+
+	</select>
+
+
+	<select id="getSysApplicationsByUserId" parameterType="String"
+		resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.id = A.appId
+		where A.roleId in (
+		select R.id from net_role R
+		inner join
+		userrole UR
+		on R.id = UR.roleid
+		where UR.userid = #{userId}
+		)
+		and E.LOCKED
+		= 0
+		and E.deleteFlag = 0
+
+	</select>
+
+
+	<select id="getSysApplicationsByUserId_oracle"
+		parameterType="String" resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.id = A.appId
+		where A.roleId in (
+		select R.id
+		from net_role R
+		inner join
+		userrole UR
+		on to_char(R.ID) =
+		UR.roleid
+		where UR.userid = #{userId}
+		)
+		and E.LOCKED
+		= 0
+		and E.deleteFlag =
+		0
+
+	</select>
+	
+	
+	<select id="getSysApplicationsByUserId_postgresql"
+		parameterType="String" resultMap="sysApplicationResultMap">
+
+		select E.* from sys_application E
+		inner join sys_access A
+		on
+		E.id = A.appId
+		where A.roleId in (
+		select R.id
+		from net_role R
+		inner join
+		userrole UR
+		on CAST(R.ID AS VARCHAR) =
+		UR.roleid
+		where UR.userid = #{userId}
+		)
+		and E.LOCKED
+		= 0
+		and E.deleteFlag =
+		0
+
+	</select>
+
+
+	<select id="getRealmInfos" parameterType="map" resultMap="realmInfoResultMap">
+
+		select
+		E.url, r.code from sys_application E
+		inner join sys_access A
+		on E.id =
+		A.appId
+		inner join net_role R
+		on A.roleid = R.id
+		where E.url is not null
+		and E.url != ''
+		and E.LOCKED = 0
+		and E.deleteFlag = 0
+		order by E.url asc
+
+	</select>
+
+
+	<select id="getSysApplications" parameterType="com.glaf.base.modules.sys.query.SysApplicationQuery"
+		resultMap="sysApplicationResultMap">
+		select E.*
+		<include refid="selectSysApplicationsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.LOCKED asc, E.SORT asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysApplicationCount" parameterType="com.glaf.base.modules.sys.query.SysApplicationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysApplicationsSql" />
+	</select>
+
+
+	<sql id="selectSysApplicationsSql">
+
+		from sys_application E
+
+		<if test=" parentId != null  ">
+			inner join sys_tree T
+			on E.NODEID = T.ID
+		</if>
+
+		<where>
+			1 = 1
+
+			<if test=" parentId != null  ">
+				and T.PARENT = #{parentId}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size != 0">
+				and E.NAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.APPDESC like #{descLike}
+			</if>
+
+			<if test="urlLike != null and urlLike != '' ">
+				and E.URL like #{urlLike}
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORT &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortGreaterThan != null">
+				and E.SORT &gt; #{sortGreaterThan}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORT &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="sortLessThan != null">
+				and E.SORT &lt; #{sortLessThan}
+			</if>
+
+			<if test="showMenu != null">
+				and E.SHOWMENU = #{showMenu}
+			</if>
+
+			<if test="nodeId != null">
+				and E.NODEID = #{nodeId}
+			</if>
+
+			<if test="nodeIds != null and nodeIds.size != 0">
+				and E.NODEID IN
+				<foreach item="x_nodeId" index="index" collection="nodeIds"
+					open="(" separator="," close=")">
+					#{x_nodeId}
+				</foreach>
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED is not null
+				and E.LOCKED = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG = #{deleteFlag}
+			</if>
+
+			<if test="refId1 != null">
+				and E.REFID1 = #{refId1}
+			</if>
+
+			<if test="refId2 != null">
+				and E.REFID2 = #{refId2}
+			</if>
+
+			<if test="refId3 != null">
+				and E.REFID3 = #{refId3}
+			</if>
+
+			<if test="refId4 != null">
+				and E.REFID4 = #{refId4}
+			</if>
+
+			<if test="refId5 != null">
+				and E.REFID5 = #{refId5}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

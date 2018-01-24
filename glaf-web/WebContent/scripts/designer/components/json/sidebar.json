@@ -1,0 +1,331 @@
+{
+	"id": "sidebar",
+	"title": "侧边栏样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [
+		]
+	},{
+		"id": "customsetting",
+		"title": "定制",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "borderSize",
+			"title": "边框",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "borderWidth",
+				"title": "宽",
+				"type": "int",
+				"maxval":"10",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"ctrImpl": "setBorderWidth"
+			}]
+		},{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"100",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"ctrImpl": "setWidth",
+				"unit":"%,px"
+			},{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight",
+				"unit":"%"
+			}]
+		},{
+			"id": "opacity",
+			"title": "透明度",
+			"inputMode": "touchspin",
+			"properties": [
+			{
+				"id": "opacity",
+				"title": "",
+				"type": "double",
+			    "maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setOpacity",
+				"unit":"%"
+			}]
+		},{
+			"id": "index",
+			"title": "堆叠顺序",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "zindex",
+				"title": "Z",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setZindex",
+				"unit":""
+			}]
+		},{
+			"id": "img",
+			"title": "图标",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "widthin",
+				"title": "宽度",
+				"type": "int",
+				"maxval":"2000",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"ctrImpl": "setWidthin"
+			},{
+				"id": "heightin",
+				"title": "高度",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeightin"
+			}]
+		},{
+			"id": "imgodeider",
+			"title": "图标",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "bordetop",
+				"title": "坡度",
+				"type": "int",
+				"maxval":"2000",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"ctrImpl": "setBordetop"
+			},{
+				"id": "bordeleft",
+				"title": "左边",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setBordeleft"
+			},{
+				"id": "bordebottom",
+				"title": "下边",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setBordebottom"
+			}]
+		},{
+			"id": "backedColor",
+			"title": "图标颜色",
+			"type": "string",
+			"defaultVal": "#ffffff",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBackedColor"
+		},{
+			"id": "imgode",
+			"title": "小图标",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "widthinod",
+				"title": "宽度",
+				"type": "int",
+				"maxval":"2000",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"ctrImpl": "setWidthinod"
+			},{
+				"id": "heightinod",
+				"title": "高度",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeightinod"
+			}]
+		},{
+			"id": "backColor",
+			"title": "小图标颜色",
+			"type": "string",
+			"defaultVal": "#ffffff",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBackColor"
+		},{
+			"id": "imgodeid",
+			"title": "小图标",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "bordertop",
+				"title": "坡度",
+				"type": "int",
+				"maxval":"2000",
+				"minval":"0",
+				"require": "false",
+				"readonly": "false",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"ctrImpl": "setBordertop"
+			},{
+				"id": "borderleft",
+				"title": "左边",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setBorderleft"
+			},{
+				"id": "borderbottom",
+				"title": "下边",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setBorderbottom"
+			}]
+		},{
+			"id": "borderColor",
+			"title": "边框颜色",
+			"type": "string",
+			"defaultVal": "#000000",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBorderColor"
+		},{
+			"id": "backgroundColor",
+			"title": "背景颜色",
+			"type": "string",
+			"defaultVal": "#ffffff",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBackgroundColor"
+		},{
+			"id": "padding",
+			"title": "内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "paddingTop",
+				"title": "上",
+				"type": "int",
+				"maxval": "2000",
+				"minval": "-2000",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingTop"
+			}, {
+				"id": "paddingBottom",
+				"title": "下",
+				"type": "int",
+				"maxval": "2000",
+				"minval": "-2000",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingBottom"
+			}, {
+				"id": "paddingLeft",
+				"title": "左",
+				"type": "int",
+				"maxval": "2000",
+				"minval": "-2000",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingLeft"
+			}, {
+				"id": "paddingRight",
+				"title": "右",
+				"type": "int",
+				"maxval": "2000",
+				"minval": "-2000",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingRight"
+			}]
+		}]
+	}]
+}

@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+ a.stop01{ background:url(../bfq/stop.png); position:absolute; z-index:5; width:18px; height:20px;top:80px; left:80px;cursor: pointer;}
+ a.stop01:hover {background:url(../bfq/stop1.png);z-index:5; width:18px; height:20px;top:80px; left:80px;}
+ a.sm{background:url(../img/s.png); position:absolute; z-index:4; width:15px; height:7px;top:20px; left:80px;cursor: pointer;}
+ a.sm:hover{background:url(../bfq/s01.png);}
+  a.sm:active{background:url(../bfq/s.png);}
+  a.yous{position:absolute;z-index:4; background:url(../img/ys.png); width:10px; height:10px;top:40px; left:125px;cursor: pointer;}
+  a.yous:hover{background:url(../bfq/ys01.png);}
+  a.yous:active{background:url(../bfq/ys.png);}
+  a.youb{position:absolute; background:url(../img/y.png); z-index:4; width:7px; height:15px;top:80px; left:148px;cursor: pointer;}
+  a.youb:hover{background:url(../bfq/y01.png);}
+  a.youb:active{background:url(../bfq/y.png);}
+  a.youx{position:absolute;z-index:4; background:url(../img/yx.png); width:10px; height:10px;top:120px; left:125px;cursor: pointer;}
+  a.youx:hover{background:url(../bfq/yx01.png);}
+  a.youx:active{background:url(../bfq/yx.png);}
+  a.xm{background:url(../img/x.png); position:absolute; z-index:4; width:15px; height:7px;top:150px; left:80px;cursor: pointer;}
+  a.xm:hover{background:url(../bfq/x01.png);}
+  a.xm:active{background:url(../bfq/x.png);}
+  a.zuox{position:absolute;z-index:4; background:url(../img/zx.png); width:10px; height:10px;top:120px; left:40px;cursor: pointer;}
+  a.zuox:hover{background:url(../bfq/zx01.png);}
+  a.zuox:active{background:url(../bfq/zx.png);}
+  a.zuob{position:absolute; background:url(../img/z.png); z-index:4; width:7px; height:15px;top:80px; left:20px;cursor: pointer;}
+  a.zuob:hover{background:url(../bfq/z01.png);}
+  a.zuob:active{background:url(../bfq/z.png);}
+  a.zuos{position:absolute;z-index:4; background:url(../img/zs.png); width:10px; height:10px;top:40px; left:40px;cursor: pointer;}
+  a.zuos:hover{background:url(../bfq/zs01.png);}
+  a.zuos:active{background:url(../bfq/zs.png);}

@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.PinfoMapper">
+
+ 	<resultMap id="pinfoResultMap"	type="com.glaf.isdp.domain.Pinfo">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="indexId" column="INDEX_ID" jdbcType="INTEGER"/>
+        <result property="itemNum" column="ITEMNUM" jdbcType="VARCHAR"/>
+        <result property="dtag" column="DTAG" jdbcType="VARCHAR"/>
+        <result property="ftag" column="FTAG" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="allName" column="ALLNAME" jdbcType="VARCHAR"/>
+        <result property="bcompany" column="BCOMPANY" jdbcType="VARCHAR"/>
+        <result property="ccompany" column="CCOMPANY" jdbcType="VARCHAR"/>
+        <result property="dcompany" column="DCOMPANY" jdbcType="VARCHAR"/>
+        <result property="conCompany" column="CONCOMPANY" jdbcType="VARCHAR"/>
+        <result property="icompany" column="ICOMPANY" jdbcType="VARCHAR"/>
+        <result property="cmark" column="CMARK" jdbcType="VARCHAR"/>
+        <result property="pmark" column="PMARK" jdbcType="VARCHAR"/>
+        <result property="tpmark" column="TPMARK" jdbcType="VARCHAR"/>
+        <result property="conMark" column="CONMARK" jdbcType="VARCHAR"/>
+        <result property="mapNum" column="MAPNUM" jdbcType="VARCHAR"/>
+        <result property="conStart" column="CONSTART" jdbcType="VARCHAR"/>
+        <result property="conEnd" column="CONEND" jdbcType="VARCHAR"/>
+        <result property="totalLen" column="TOTALLEN" jdbcType="DOUBLE"/>
+        <result property="startDate" column="STARTDATE" jdbcType="TIMESTAMP"/>
+        <result property="endDate" column="ENDDATE" jdbcType="TIMESTAMP"/>
+        <result property="cost" column="COST" jdbcType="DOUBLE"/>
+        <result property="balance" column="BALANCE" jdbcType="DOUBLE"/>
+        <result property="pmannager" column="PMANNAGER" jdbcType="VARCHAR"/>
+        <result property="enginee" column="ENGINEE" jdbcType="VARCHAR"/>
+        <result property="owner" column="OWNER" jdbcType="VARCHAR"/>
+        <result property="planDate" column="PLANDATE" jdbcType="TIMESTAMP"/>
+        <result property="hintDay" column="HINTDAY" jdbcType="INTEGER"/>
+        <result property="duty" column="DUTY" jdbcType="VARCHAR"/>
+        <result property="removeDate" column="REMOVEDATE" jdbcType="TIMESTAMP"/>
+        <result property="removeDuty" column="REMOVEDUTY" jdbcType="VARCHAR"/>
+        <result property="removeFile" column="REMOVEFILE" jdbcType="VARCHAR"/>
+        <result property="partProj" column="PARTPROJ" jdbcType="VARCHAR"/>
+        <result property="cnum" column="CNUM" jdbcType="VARCHAR"/>
+        <result property="concompany2" column="CONCOMPANY2" jdbcType="VARCHAR"/>
+        <result property="icompany2" column="ICOMPANY2" jdbcType="VARCHAR"/>
+        <result property="mileAge" column="MILEAGE" jdbcType="DOUBLE"/>
+        <result property="place" column="PLACE" jdbcType="VARCHAR"/>
+        <result property="place1" column="PLACE1" jdbcType="DOUBLE"/>
+        <result property="place2" column="PLACE2" jdbcType="DOUBLE"/>
+        <result property="place3" column="PLACE3" jdbcType="DOUBLE"/>
+        <result property="place4" column="PLACE4" jdbcType="DOUBLE"/>
+        <result property="setPlace" column="SETPLACE" jdbcType="VARCHAR"/>
+        <result property="setTemp" column="SETTEMP" jdbcType="VARCHAR"/>
+        <result property="bdNum" column="BDNUM" jdbcType="VARCHAR"/>
+        <result property="dtNum" column="DTNUM" jdbcType="VARCHAR"/>
+        <result property="pinfoUser2" column="PINFO_USER2" jdbcType="VARCHAR"/>
+        <result property="pinfoUser3" column="PINFO_USER3" jdbcType="DOUBLE"/>
+        <result property="pinfoUser4" column="PINFO_USER4" jdbcType="DOUBLE"/>
+        <result property="pinfoUser5" column="PINFO_USER5" jdbcType="VARCHAR"/>
+        <result property="pinfoUser6" column="PINFO_USER6" jdbcType="INTEGER"/>
+        <result property="pinfoUser7" column="PINFO_USER7" jdbcType="DOUBLE"/>
+        <result property="pinfoUser8" column="PINFO_USER8" jdbcType="DOUBLE"/>
+        <result property="pinfoUser9" column="PINFO_USER9" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertPinfo" parameterType="com.glaf.isdp.domain.Pinfo">
+		insert into PINFO 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="indexId != null">
+				,INDEX_ID 
+			</if>
+			<if test="itemNum != null">
+				,ITEMNUM 
+			</if>
+			<if test="dtag != null">
+				,DTAG 
+			</if>
+			<if test="ftag != null">
+				,FTAG 
+			</if>
+			<if test="name != null">
+				,NAME 
+			</if>
+			<if test="allName != null">
+				,ALLNAME 
+			</if>
+			<if test="bcompany != null">
+				,BCOMPANY 
+			</if>
+			<if test="ccompany != null">
+				,CCOMPANY 
+			</if>
+			<if test="dcompany != null">
+				,DCOMPANY 
+			</if>
+			<if test="conCompany != null">
+				,CONCOMPANY 
+			</if>
+			<if test="icompany != null">
+				,ICOMPANY 
+			</if>
+			<if test="cmark != null">
+				,CMARK 
+			</if>
+			<if test="pmark != null">
+				,PMARK 
+			</if>
+			<if test="tpmark != null">
+				,TPMARK 
+			</if>
+			<if test="conMark != null">
+				,CONMARK 
+			</if>
+			<if test="mapNum != null">
+				,MAPNUM 
+			</if>
+			<if test="conStart != null">
+				,CONSTART 
+			</if>
+			<if test="conEnd != null">
+				,CONEND 
+			</if>
+			<if test="totalLen != null">
+				,TOTALLEN 
+			</if>
+			<if test="startDate != null">
+				,STARTDATE 
+			</if>
+			<if test="endDate != null">
+				,ENDDATE 
+			</if>
+			<if test="cost != null">
+				,COST 
+			</if>
+			<if test="balance != null">
+				,BALANCE 
+			</if>
+			<if test="pmannager != null">
+				,PMANNAGER 
+			</if>
+			<if test="enginee != null">
+				,ENGINEE 
+			</if>
+			<if test="owner != null">
+				,OWNER 
+			</if>
+			<if test="planDate != null">
+				,PLANDATE 
+			</if>
+			<if test="hintDay != null">
+				,HINTDAY 
+			</if>
+			<if test="duty != null">
+				,DUTY 
+			</if>
+			<if test="removeDate != null">
+				,REMOVEDATE 
+			</if>
+			<if test="removeDuty != null">
+				,REMOVEDUTY 
+			</if>
+			<if test="removeFile != null">
+				,REMOVEFILE 
+			</if>
+			<if test="partProj != null">
+				,PARTPROJ 
+			</if>
+			<if test="cnum != null">
+				,CNUM 
+			</if>
+			<if test="concompany2 != null">
+				,CONCOMPANY2 
+			</if>
+			<if test="icompany2 != null">
+				,ICOMPANY2 
+			</if>
+			<if test="mileAge != null">
+				,MILEAGE 
+			</if>
+			<if test="place != null">
+				,PLACE 
+			</if>
+			<if test="place1 != null">
+				,PLACE1 
+			</if>
+			<if test="place2 != null">
+				,PLACE2 
+			</if>
+			<if test="place3 != null">
+				,PLACE3 
+			</if>
+			<if test="place4 != null">
+				,PLACE4 
+			</if>
+			<if test="setPlace != null">
+				,SETPLACE 
+			</if>
+			<if test="setTemp != null">
+				,SETTEMP 
+			</if>
+			<if test="bdNum != null">
+				,BDNUM 
+			</if>
+			<if test="dtNum != null">
+				,DTNUM 
+			</if>
+			<if test="pinfoUser2 != null">
+				,PINFO_USER2 
+			</if>
+			<if test="pinfoUser3 != null">
+				,PINFO_USER3 
+			</if>
+			<if test="pinfoUser4 != null">
+				,PINFO_USER4 
+			</if>
+			<if test="pinfoUser5 != null">
+				,PINFO_USER5 
+			</if>
+			<if test="pinfoUser6 != null">
+				,PINFO_USER6 
+			</if>
+			<if test="pinfoUser7 != null">
+				,PINFO_USER7 
+			</if>
+			<if test="pinfoUser8 != null">
+				,PINFO_USER8 
+			</if>
+			<if test="pinfoUser9 != null">
+				,PINFO_USER9 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="itemNum != null">
+				,#{itemNum, jdbcType=VARCHAR}
+			</if>
+			<if test="dtag != null">
+				,#{dtag, jdbcType=VARCHAR}
+			</if>
+			<if test="ftag != null">
+				,#{ftag, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="allName != null">
+				,#{allName, jdbcType=VARCHAR}
+			</if>
+			<if test="bcompany != null">
+				,#{bcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="ccompany != null">
+				,#{ccompany, jdbcType=VARCHAR}
+			</if>
+			<if test="dcompany != null">
+				,#{dcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="conCompany != null">
+				,#{conCompany, jdbcType=VARCHAR}
+			</if>
+			<if test="icompany != null">
+				,#{icompany, jdbcType=VARCHAR}
+			</if>
+			<if test="cmark != null">
+				,#{cmark, jdbcType=VARCHAR}
+			</if>
+			<if test="pmark != null">
+				,#{pmark, jdbcType=VARCHAR}
+			</if>
+			<if test="tpmark != null">
+				,#{tpmark, jdbcType=VARCHAR}
+			</if>
+			<if test="conMark != null">
+				,#{conMark, jdbcType=VARCHAR}
+			</if>
+			<if test="mapNum != null">
+				,#{mapNum, jdbcType=VARCHAR}
+			</if>
+			<if test="conStart != null">
+				,#{conStart, jdbcType=VARCHAR}
+			</if>
+			<if test="conEnd != null">
+				,#{conEnd, jdbcType=VARCHAR}
+			</if>
+			<if test="totalLen != null">
+				,#{totalLen, jdbcType=DOUBLE}
+			</if>
+			<if test="startDate != null">
+				,#{startDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endDate != null">
+				,#{endDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="cost != null">
+				,#{cost, jdbcType=DOUBLE}
+			</if>
+			<if test="balance != null">
+				,#{balance, jdbcType=DOUBLE}
+			</if>
+			<if test="pmannager != null">
+				,#{pmannager, jdbcType=VARCHAR}
+			</if>
+			<if test="enginee != null">
+				,#{enginee, jdbcType=VARCHAR}
+			</if>
+			<if test="owner != null">
+				,#{owner, jdbcType=VARCHAR}
+			</if>
+			<if test="planDate != null">
+				,#{planDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="hintDay != null">
+				,#{hintDay, jdbcType=INTEGER}
+			</if>
+			<if test="duty != null">
+				,#{duty, jdbcType=VARCHAR}
+			</if>
+			<if test="removeDate != null">
+				,#{removeDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="removeDuty != null">
+				,#{removeDuty, jdbcType=VARCHAR}
+			</if>
+			<if test="removeFile != null">
+				,#{removeFile, jdbcType=VARCHAR}
+			</if>
+			<if test="partProj != null">
+				,#{partProj, jdbcType=VARCHAR}
+			</if>
+			<if test="cnum != null">
+				,#{cnum, jdbcType=VARCHAR}
+			</if>
+			<if test="concompany2 != null">
+				,#{concompany2, jdbcType=VARCHAR}
+			</if>
+			<if test="icompany2 != null">
+				,#{icompany2, jdbcType=VARCHAR}
+			</if>
+			<if test="mileAge != null">
+				,#{mileAge, jdbcType=DOUBLE}
+			</if>
+			<if test="place != null">
+				,#{place, jdbcType=VARCHAR}
+			</if>
+			<if test="place1 != null">
+				,#{place1, jdbcType=DOUBLE}
+			</if>
+			<if test="place2 != null">
+				,#{place2, jdbcType=DOUBLE}
+			</if>
+			<if test="place3 != null">
+				,#{place3, jdbcType=DOUBLE}
+			</if>
+			<if test="place4 != null">
+				,#{place4, jdbcType=DOUBLE}
+			</if>
+			<if test="setPlace != null">
+				,#{setPlace, jdbcType=VARCHAR}
+			</if>
+			<if test="setTemp != null">
+				,#{setTemp, jdbcType=VARCHAR}
+			</if>
+			<if test="bdNum != null">
+				,#{bdNum, jdbcType=VARCHAR}
+			</if>
+			<if test="dtNum != null">
+				,#{dtNum, jdbcType=VARCHAR}
+			</if>
+			<if test="pinfoUser2 != null">
+				,#{pinfoUser2, jdbcType=VARCHAR}
+			</if>
+			<if test="pinfoUser3 != null">
+				,#{pinfoUser3, jdbcType=DOUBLE}
+			</if>
+			<if test="pinfoUser4 != null">
+				,#{pinfoUser4, jdbcType=DOUBLE}
+			</if>
+			<if test="pinfoUser5 != null">
+				,#{pinfoUser5, jdbcType=VARCHAR}
+			</if>
+			<if test="pinfoUser6 != null">
+				,#{pinfoUser6, jdbcType=INTEGER}
+			</if>
+			<if test="pinfoUser7 != null">
+				,#{pinfoUser7, jdbcType=DOUBLE}
+			</if>
+			<if test="pinfoUser8 != null">
+				,#{pinfoUser8, jdbcType=DOUBLE}
+			</if>
+			<if test="pinfoUser9 != null">
+				,#{pinfoUser9, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updatePinfo" parameterType="com.glaf.isdp.domain.Pinfo">
+		update PINFO
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="itemNum != null">
+				ITEMNUM = #{itemNum, jdbcType=VARCHAR},
+			</if>
+			<if test="dtag != null">
+				DTAG = #{dtag, jdbcType=VARCHAR},
+			</if>
+			<if test="ftag != null">
+				FTAG = #{ftag, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="allName != null">
+				ALLNAME = #{allName, jdbcType=VARCHAR},
+			</if>
+			<if test="bcompany != null">
+				BCOMPANY = #{bcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="ccompany != null">
+				CCOMPANY = #{ccompany, jdbcType=VARCHAR},
+			</if>
+			<if test="dcompany != null">
+				DCOMPANY = #{dcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="conCompany != null">
+				CONCOMPANY = #{conCompany, jdbcType=VARCHAR},
+			</if>
+			<if test="icompany != null">
+				ICOMPANY = #{icompany, jdbcType=VARCHAR},
+			</if>
+			<if test="cmark != null">
+				CMARK = #{cmark, jdbcType=VARCHAR},
+			</if>
+			<if test="pmark != null">
+				PMARK = #{pmark, jdbcType=VARCHAR},
+			</if>
+			<if test="tpmark != null">
+				TPMARK = #{tpmark, jdbcType=VARCHAR},
+			</if>
+			<if test="conMark != null">
+				CONMARK = #{conMark, jdbcType=VARCHAR},
+			</if>
+			<if test="mapNum != null">
+				MAPNUM = #{mapNum, jdbcType=VARCHAR},
+			</if>
+			<if test="conStart != null">
+				CONSTART = #{conStart, jdbcType=VARCHAR},
+			</if>
+			<if test="conEnd != null">
+				CONEND = #{conEnd, jdbcType=VARCHAR},
+			</if>
+			<if test="totalLen != null">
+				TOTALLEN = #{totalLen, jdbcType=DOUBLE},
+			</if>
+			<if test="startDate != null">
+				STARTDATE = #{startDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				ENDDATE = #{endDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="cost != null">
+				COST = #{cost, jdbcType=DOUBLE},
+			</if>
+			<if test="balance != null">
+				BALANCE = #{balance, jdbcType=DOUBLE},
+			</if>
+			<if test="pmannager != null">
+				PMANNAGER = #{pmannager, jdbcType=VARCHAR},
+			</if>
+			<if test="enginee != null">
+				ENGINEE = #{enginee, jdbcType=VARCHAR},
+			</if>
+			<if test="owner != null">
+				OWNER = #{owner, jdbcType=VARCHAR},
+			</if>
+			<if test="planDate != null">
+				PLANDATE = #{planDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="hintDay != null">
+				HINTDAY = #{hintDay, jdbcType=INTEGER},
+			</if>
+			<if test="duty != null">
+				DUTY = #{duty, jdbcType=VARCHAR},
+			</if>
+			<if test="removeDate != null">
+				REMOVEDATE = #{removeDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="removeDuty != null">
+				REMOVEDUTY = #{removeDuty, jdbcType=VARCHAR},
+			</if>
+			<if test="removeFile != null">
+				REMOVEFILE = #{removeFile, jdbcType=VARCHAR},
+			</if>
+			<if test="partProj != null">
+				PARTPROJ = #{partProj, jdbcType=VARCHAR},
+			</if>
+			<if test="cnum != null">
+				CNUM = #{cnum, jdbcType=VARCHAR},
+			</if>
+			<if test="concompany2 != null">
+				CONCOMPANY2 = #{concompany2, jdbcType=VARCHAR},
+			</if>
+			<if test="icompany2 != null">
+				ICOMPANY2 = #{icompany2, jdbcType=VARCHAR},
+			</if>
+			<if test="mileAge != null">
+				MILEAGE = #{mileAge, jdbcType=DOUBLE},
+			</if>
+			<if test="place != null">
+				PLACE = #{place, jdbcType=VARCHAR},
+			</if>
+			<if test="place1 != null">
+				PLACE1 = #{place1, jdbcType=DOUBLE},
+			</if>
+			<if test="place2 != null">
+				PLACE2 = #{place2, jdbcType=DOUBLE},
+			</if>
+			<if test="place3 != null">
+				PLACE3 = #{place3, jdbcType=DOUBLE},
+			</if>
+			<if test="place4 != null">
+				PLACE4 = #{place4, jdbcType=DOUBLE},
+			</if>
+			<if test="setPlace != null">
+				SETPLACE = #{setPlace, jdbcType=VARCHAR},
+			</if>
+			<if test="setTemp != null">
+				SETTEMP = #{setTemp, jdbcType=VARCHAR},
+			</if>
+			<if test="bdNum != null">
+				BDNUM = #{bdNum, jdbcType=VARCHAR},
+			</if>
+			<if test="dtNum != null">
+				DTNUM = #{dtNum, jdbcType=VARCHAR},
+			</if>
+			<if test="pinfoUser2 != null">
+				PINFO_USER2 = #{pinfoUser2, jdbcType=VARCHAR},
+			</if>
+			<if test="pinfoUser3 != null">
+				PINFO_USER3 = #{pinfoUser3, jdbcType=DOUBLE},
+			</if>
+			<if test="pinfoUser4 != null">
+				PINFO_USER4 = #{pinfoUser4, jdbcType=DOUBLE},
+			</if>
+			<if test="pinfoUser5 != null">
+				PINFO_USER5 = #{pinfoUser5, jdbcType=VARCHAR},
+			</if>
+			<if test="pinfoUser6 != null">
+				PINFO_USER6 = #{pinfoUser6, jdbcType=INTEGER},
+			</if>
+			<if test="pinfoUser7 != null">
+				PINFO_USER7 = #{pinfoUser7, jdbcType=DOUBLE},
+			</if>
+			<if test="pinfoUser8 != null">
+				PINFO_USER8 = #{pinfoUser8, jdbcType=DOUBLE},
+			</if>
+			<if test="pinfoUser9 != null">
+				PINFO_USER9 = #{pinfoUser9, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deletePinfoById" parameterType="string"> 
+        delete from PINFO
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deletePinfos" parameterType="com.glaf.isdp.query.PinfoQuery">
+		delete from PINFO
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getPinfoById" parameterType="string" resultMap="pinfoResultMap">
+		select * from PINFO where ID = #{id}
+	</select>
+
+
+	<select id="getPinfos" 
+	    parameterType="com.glaf.isdp.query.PinfoQuery"
+		resultMap="pinfoResultMap">
+		select distinct E.*
+		<include refid="selectPinfosSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getPinfoCount" 
+	    parameterType="com.glaf.isdp.query.PinfoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectPinfosSql" />
+	</select>
+
+
+	<sql id="selectPinfosSql">
+
+		from PINFO E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.INDEX_ID IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="itemNum != null and itemNum != '' ">
+				and E.ITEMNUM = #{itemNum}
+            </if>
+
+			<if test="itemNumLike != null and itemNumLike != '' ">
+				and E.ITEMNUM like #{itemNumLike}
+            </if>
+
+			<if test="itemNums != null and itemNums.size() &gt; 0">
+			    and E.ITEMNUM IN
+                <foreach item="x_itemNum" index="index" collection="itemNums" 
+                     open="(" separator="," close=")">
+                  #{x_itemNum}
+                </foreach>
+			</if>
+	        
+			<if test="dtag != null and dtag != '' ">
+				and E.DTAG = #{dtag}
+            </if>
+
+			<if test="dtagLike != null and dtagLike != '' ">
+				and E.DTAG like #{dtagLike}
+            </if>
+
+			<if test="dtags != null and dtags.size() &gt; 0">
+			    and E.DTAG IN
+                <foreach item="x_dtag" index="index" collection="dtags" 
+                     open="(" separator="," close=")">
+                  #{x_dtag}
+                </foreach>
+			</if>
+	        
+			<if test="ftag != null and ftag != '' ">
+				and E.FTAG = #{ftag}
+            </if>
+
+			<if test="ftagLike != null and ftagLike != '' ">
+				and E.FTAG like #{ftagLike}
+            </if>
+
+			<if test="ftags != null and ftags.size() &gt; 0">
+			    and E.FTAG IN
+                <foreach item="x_ftag" index="index" collection="ftags" 
+                     open="(" separator="," close=")">
+                  #{x_ftag}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="allName != null and allName != '' ">
+				and E.ALLNAME = #{allName}
+            </if>
+
+			<if test="allNameLike != null and allNameLike != '' ">
+				and E.ALLNAME like #{allNameLike}
+            </if>
+
+			<if test="allNames != null and allNames.size() &gt; 0">
+			    and E.ALLNAME IN
+                <foreach item="x_allName" index="index" collection="allNames" 
+                     open="(" separator="," close=")">
+                  #{x_allName}
+                </foreach>
+			</if>
+	        
+			<if test="bcompany != null and bcompany != '' ">
+				and E.BCOMPANY = #{bcompany}
+            </if>
+
+			<if test="bcompanyLike != null and bcompanyLike != '' ">
+				and E.BCOMPANY like #{bcompanyLike}
+            </if>
+
+			<if test="bcompanys != null and bcompanys.size() &gt; 0">
+			    and E.BCOMPANY IN
+                <foreach item="x_bcompany" index="index" collection="bcompanys" 
+                     open="(" separator="," close=")">
+                  #{x_bcompany}
+                </foreach>
+			</if>
+	        
+			<if test="ccompany != null and ccompany != '' ">
+				and E.CCOMPANY = #{ccompany}
+            </if>
+
+			<if test="ccompanyLike != null and ccompanyLike != '' ">
+				and E.CCOMPANY like #{ccompanyLike}
+            </if>
+
+			<if test="ccompanys != null and ccompanys.size() &gt; 0">
+			    and E.CCOMPANY IN
+                <foreach item="x_ccompany" index="index" collection="ccompanys" 
+                     open="(" separator="," close=")">
+                  #{x_ccompany}
+                </foreach>
+			</if>
+	        
+			<if test="dcompany != null and dcompany != '' ">
+				and E.DCOMPANY = #{dcompany}
+            </if>
+
+			<if test="dcompanyLike != null and dcompanyLike != '' ">
+				and E.DCOMPANY like #{dcompanyLike}
+            </if>
+
+			<if test="dcompanys != null and dcompanys.size() &gt; 0">
+			    and E.DCOMPANY IN
+                <foreach item="x_dcompany" index="index" collection="dcompanys" 
+                     open="(" separator="," close=")">
+                  #{x_dcompany}
+                </foreach>
+			</if>
+	        
+			<if test="conCompany != null and conCompany != '' ">
+				and E.CONCOMPANY = #{conCompany}
+            </if>
+
+			<if test="conCompanyLike != null and conCompanyLike != '' ">
+				and E.CONCOMPANY like #{conCompanyLike}
+            </if>
+
+			<if test="conCompanys != null and conCompanys.size() &gt; 0">
+			    and E.CONCOMPANY IN
+                <foreach item="x_conCompany" index="index" collection="conCompanys" 
+                     open="(" separator="," close=")">
+                  #{x_conCompany}
+                </foreach>
+			</if>
+	        
+			<if test="icompany != null and icompany != '' ">
+				and E.ICOMPANY = #{icompany}
+            </if>
+
+			<if test="icompanyLike != null and icompanyLike != '' ">
+				and E.ICOMPANY like #{icompanyLike}
+            </if>
+
+			<if test="icompanys != null and icompanys.size() &gt; 0">
+			    and E.ICOMPANY IN
+                <foreach item="x_icompany" index="index" collection="icompanys" 
+                     open="(" separator="," close=")">
+                  #{x_icompany}
+                </foreach>
+			</if>
+	        
+			<if test="cmark != null and cmark != '' ">
+				and E.CMARK = #{cmark}
+            </if>
+
+			<if test="cmarkLike != null and cmarkLike != '' ">
+				and E.CMARK like #{cmarkLike}
+            </if>
+
+			<if test="cmarks != null and cmarks.size() &gt; 0">
+			    and E.CMARK IN
+                <foreach item="x_cmark" index="index" collection="cmarks" 
+                     open="(" separator="," close=")">
+                  #{x_cmark}
+                </foreach>
+			</if>
+	        
+			<if test="pmark != null and pmark != '' ">
+				and E.PMARK = #{pmark}
+            </if>
+
+			<if test="pmarkLike != null and pmarkLike != '' ">
+				and E.PMARK like #{pmarkLike}
+            </if>
+
+			<if test="pmarks != null and pmarks.size() &gt; 0">
+			    and E.PMARK IN
+                <foreach item="x_pmark" index="index" collection="pmarks" 
+                     open="(" separator="," close=")">
+                  #{x_pmark}
+                </foreach>
+			</if>
+	        
+			<if test="tpmark != null and tpmark != '' ">
+				and E.TPMARK = #{tpmark}
+            </if>
+
+			<if test="tpmarkLike != null and tpmarkLike != '' ">
+				and E.TPMARK like #{tpmarkLike}
+            </if>
+
+			<if test="tpmarks != null and tpmarks.size() &gt; 0">
+			    and E.TPMARK IN
+                <foreach item="x_tpmark" index="index" collection="tpmarks" 
+                     open="(" separator="," close=")">
+                  #{x_tpmark}
+                </foreach>
+			</if>
+	        
+			<if test="conMark != null and conMark != '' ">
+				and E.CONMARK = #{conMark}
+            </if>
+
+			<if test="conMarkLike != null and conMarkLike != '' ">
+				and E.CONMARK like #{conMarkLike}
+            </if>
+
+			<if test="conMarks != null and conMarks.size() &gt; 0">
+			    and E.CONMARK IN
+                <foreach item="x_conMark" index="index" collection="conMarks" 
+                     open="(" separator="," close=")">
+                  #{x_conMark}
+                </foreach>
+			</if>
+	        
+			<if test="mapNum != null and mapNum != '' ">
+				and E.MAPNUM = #{mapNum}
+            </if>
+
+			<if test="mapNumLike != null and mapNumLike != '' ">
+				and E.MAPNUM like #{mapNumLike}
+            </if>
+
+			<if test="mapNums != null and mapNums.size() &gt; 0">
+			    and E.MAPNUM IN
+                <foreach item="x_mapNum" index="index" collection="mapNums" 
+                     open="(" separator="," close=")">
+                  #{x_mapNum}
+                </foreach>
+			</if>
+	        
+			<if test="conStart != null and conStart != '' ">
+				and E.CONSTART = #{conStart}
+            </if>
+
+			<if test="conStartLike != null and conStartLike != '' ">
+				and E.CONSTART like #{conStartLike}
+            </if>
+
+			<if test="conStarts != null and conStarts.size() &gt; 0">
+			    and E.CONSTART IN
+                <foreach item="x_conStart" index="index" collection="conStarts" 
+                     open="(" separator="," close=")">
+                  #{x_conStart}
+                </foreach>
+			</if>
+	        
+			<if test="conEnd != null and conEnd != '' ">
+				and E.CONEND = #{conEnd}
+            </if>
+
+			<if test="conEndLike != null and conEndLike != '' ">
+				and E.CONEND like #{conEndLike}
+            </if>
+
+			<if test="conEnds != null and conEnds.size() &gt; 0">
+			    and E.CONEND IN
+                <foreach item="x_conEnd" index="index" collection="conEnds" 
+                     open="(" separator="," close=")">
+                  #{x_conEnd}
+                </foreach>
+			</if>
+
+			<if test="totalLenGreaterThanOrEqual != null">
+				and E.TOTALLEN &gt;= #{totalLenGreaterThanOrEqual}
+            </if>
+
+			<if test="totalLenLessThanOrEqual != null">
+				and E.TOTALLEN &lt;= #{totalLenLessThanOrEqual}
+            </if>
+
+
+			<if test="startDateGreaterThanOrEqual != null">
+				and E.STARTDATE &gt;= #{startDateGreaterThanOrEqual}
+            </if>
+
+			<if test="startDateLessThanOrEqual != null">
+				and E.STARTDATE &lt;= #{startDateLessThanOrEqual}
+            </if>
+
+
+			<if test="endDateGreaterThanOrEqual != null">
+				and E.ENDDATE &gt;= #{endDateGreaterThanOrEqual}
+            </if>
+
+			<if test="endDateLessThanOrEqual != null">
+				and E.ENDDATE &lt;= #{endDateLessThanOrEqual}
+            </if>
+
+
+			<if test="costGreaterThanOrEqual != null">
+				and E.COST &gt;= #{costGreaterThanOrEqual}
+            </if>
+
+			<if test="costLessThanOrEqual != null">
+				and E.COST &lt;= #{costLessThanOrEqual}
+            </if>
+
+
+			<if test="balanceGreaterThanOrEqual != null">
+				and E.BALANCE &gt;= #{balanceGreaterThanOrEqual}
+            </if>
+
+			<if test="balanceLessThanOrEqual != null">
+				and E.BALANCE &lt;= #{balanceLessThanOrEqual}
+            </if>
+
+	        
+			<if test="pmannager != null and pmannager != '' ">
+				and E.PMANNAGER = #{pmannager}
+            </if>
+
+			<if test="pmannagerLike != null and pmannagerLike != '' ">
+				and E.PMANNAGER like #{pmannagerLike}
+            </if>
+
+			<if test="pmannagers != null and pmannagers.size() &gt; 0">
+			    and E.PMANNAGER IN
+                <foreach item="x_pmannager" index="index" collection="pmannagers" 
+                     open="(" separator="," close=")">
+                  #{x_pmannager}
+                </foreach>
+			</if>
+	        
+			<if test="enginee != null and enginee != '' ">
+				and E.ENGINEE = #{enginee}
+            </if>
+
+			<if test="engineeLike != null and engineeLike != '' ">
+				and E.ENGINEE like #{engineeLike}
+            </if>
+
+			<if test="enginees != null and enginees.size() &gt; 0">
+			    and E.ENGINEE IN
+                <foreach item="x_enginee" index="index" collection="enginees" 
+                     open="(" separator="," close=")">
+                  #{x_enginee}
+                </foreach>
+			</if>
+	        
+			<if test="owner != null and owner != '' ">
+				and E.OWNER = #{owner}
+            </if>
+
+			<if test="ownerLike != null and ownerLike != '' ">
+				and E.OWNER like #{ownerLike}
+            </if>
+
+			<if test="owners != null and owners.size() &gt; 0">
+			    and E.OWNER IN
+                <foreach item="x_owner" index="index" collection="owners" 
+                     open="(" separator="," close=")">
+                  #{x_owner}
+                </foreach>
+			</if>
+
+			<if test="planDateGreaterThanOrEqual != null">
+				and E.PLANDATE &gt;= #{planDateGreaterThanOrEqual}
+            </if>
+
+			<if test="planDateLessThanOrEqual != null">
+				and E.PLANDATE &lt;= #{planDateLessThanOrEqual}
+            </if>
+
+
+			<if test="hintDay != null">
+				and E.HINTDAY = #{hintDay}
+            </if>
+
+			<if test="hintDayGreaterThanOrEqual != null">
+				and E.HINTDAY &gt;= #{hintDayGreaterThanOrEqual}
+            </if>
+
+			<if test="hintDayLessThanOrEqual != null">
+				and E.HINTDAY &lt;= #{hintDayLessThanOrEqual}
+            </if>
+
+			<if test="hintDays != null and hintDays.size() &gt; 0">
+			    and E.HINTDAY IN
+                <foreach item="x_hintDay" index="index" collection="hintDays" 
+                     open="(" separator="," close=")">
+                  #{x_hintDay}
+                </foreach>
+			</if>
+      
+	        
+			<if test="duty != null and duty != '' ">
+				and E.DUTY = #{duty}
+            </if>
+
+			<if test="dutyLike != null and dutyLike != '' ">
+				and E.DUTY like #{dutyLike}
+            </if>
+
+			<if test="dutys != null and dutys.size() &gt; 0">
+			    and E.DUTY IN
+                <foreach item="x_duty" index="index" collection="dutys" 
+                     open="(" separator="," close=")">
+                  #{x_duty}
+                </foreach>
+			</if>
+
+			<if test="removeDateGreaterThanOrEqual != null">
+				and E.REMOVEDATE &gt;= #{removeDateGreaterThanOrEqual}
+            </if>
+
+			<if test="removeDateLessThanOrEqual != null">
+				and E.REMOVEDATE &lt;= #{removeDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="removeDuty != null and removeDuty != '' ">
+				and E.REMOVEDUTY = #{removeDuty}
+            </if>
+
+			<if test="removeDutyLike != null and removeDutyLike != '' ">
+				and E.REMOVEDUTY like #{removeDutyLike}
+            </if>
+
+			<if test="removeDutys != null and removeDutys.size() &gt; 0">
+			    and E.REMOVEDUTY IN
+                <foreach item="x_removeDuty" index="index" collection="removeDutys" 
+                     open="(" separator="," close=")">
+                  #{x_removeDuty}
+                </foreach>
+			</if>
+	        
+			<if test="removeFile != null and removeFile != '' ">
+				and E.REMOVEFILE = #{removeFile}
+            </if>
+
+			<if test="removeFileLike != null and removeFileLike != '' ">
+				and E.REMOVEFILE like #{removeFileLike}
+            </if>
+
+			<if test="removeFiles != null and removeFiles.size() &gt; 0">
+			    and E.REMOVEFILE IN
+                <foreach item="x_removeFile" index="index" collection="removeFiles" 
+                     open="(" separator="," close=")">
+                  #{x_removeFile}
+                </foreach>
+			</if>
+	        
+			<if test="partProj != null and partProj != '' ">
+				and E.PARTPROJ = #{partProj}
+            </if>
+
+			<if test="partProjLike != null and partProjLike != '' ">
+				and E.PARTPROJ like #{partProjLike}
+            </if>
+
+			<if test="partProjs != null and partProjs.size() &gt; 0">
+			    and E.PARTPROJ IN
+                <foreach item="x_partProj" index="index" collection="partProjs" 
+                     open="(" separator="," close=")">
+                  #{x_partProj}
+                </foreach>
+			</if>
+	        
+			<if test="cnum != null and cnum != '' ">
+				and E.CNUM = #{cnum}
+            </if>
+
+			<if test="cnumLike != null and cnumLike != '' ">
+				and E.CNUM like #{cnumLike}
+            </if>
+
+			<if test="cnums != null and cnums.size() &gt; 0">
+			    and E.CNUM IN
+                <foreach item="x_cnum" index="index" collection="cnums" 
+                     open="(" separator="," close=")">
+                  #{x_cnum}
+                </foreach>
+			</if>
+	        
+			<if test="concompany2 != null and concompany2 != '' ">
+				and E.CONCOMPANY2 = #{concompany2}
+            </if>
+
+			<if test="concompany2Like != null and concompany2Like != '' ">
+				and E.CONCOMPANY2 like #{concompany2Like}
+            </if>
+
+			<if test="concompany2s != null and concompany2s.size() &gt; 0">
+			    and E.CONCOMPANY2 IN
+                <foreach item="x_concompany2" index="index" collection="concompany2s" 
+                     open="(" separator="," close=")">
+                  #{x_concompany2}
+                </foreach>
+			</if>
+	        
+			<if test="icompany2 != null and icompany2 != '' ">
+				and E.ICOMPANY2 = #{icompany2}
+            </if>
+
+			<if test="icompany2Like != null and icompany2Like != '' ">
+				and E.ICOMPANY2 like #{icompany2Like}
+            </if>
+
+			<if test="icompany2s != null and icompany2s.size() &gt; 0">
+			    and E.ICOMPANY2 IN
+                <foreach item="x_icompany2" index="index" collection="icompany2s" 
+                     open="(" separator="," close=")">
+                  #{x_icompany2}
+                </foreach>
+			</if>
+
+			<if test="mileAgeGreaterThanOrEqual != null">
+				and E.MILEAGE &gt;= #{mileAgeGreaterThanOrEqual}
+            </if>
+
+			<if test="mileAgeLessThanOrEqual != null">
+				and E.MILEAGE &lt;= #{mileAgeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="place != null and place != '' ">
+				and E.PLACE = #{place}
+            </if>
+
+			<if test="placeLike != null and placeLike != '' ">
+				and E.PLACE like #{placeLike}
+            </if>
+
+			<if test="places != null and places.size() &gt; 0">
+			    and E.PLACE IN
+                <foreach item="x_place" index="index" collection="places" 
+                     open="(" separator="," close=")">
+                  #{x_place}
+                </foreach>
+			</if>
+
+			<if test="place1GreaterThanOrEqual != null">
+				and E.PLACE1 &gt;= #{place1GreaterThanOrEqual}
+            </if>
+
+			<if test="place1LessThanOrEqual != null">
+				and E.PLACE1 &lt;= #{place1LessThanOrEqual}
+            </if>
+
+
+			<if test="place2GreaterThanOrEqual != null">
+				and E.PLACE2 &gt;= #{place2GreaterThanOrEqual}
+            </if>
+
+			<if test="place2LessThanOrEqual != null">
+				and E.PLACE2 &lt;= #{place2LessThanOrEqual}
+            </if>
+
+
+			<if test="place3GreaterThanOrEqual != null">
+				and E.PLACE3 &gt;= #{place3GreaterThanOrEqual}
+            </if>
+
+			<if test="place3LessThanOrEqual != null">
+				and E.PLACE3 &lt;= #{place3LessThanOrEqual}
+            </if>
+
+
+			<if test="place4GreaterThanOrEqual != null">
+				and E.PLACE4 &gt;= #{place4GreaterThanOrEqual}
+            </if>
+
+			<if test="place4LessThanOrEqual != null">
+				and E.PLACE4 &lt;= #{place4LessThanOrEqual}
+            </if>
+
+	        
+			<if test="setPlace != null and setPlace != '' ">
+				and E.SETPLACE = #{setPlace}
+            </if>
+
+			<if test="setPlaceLike != null and setPlaceLike != '' ">
+				and E.SETPLACE like #{setPlaceLike}
+            </if>
+
+			<if test="setPlaces != null and setPlaces.size() &gt; 0">
+			    and E.SETPLACE IN
+                <foreach item="x_setPlace" index="index" collection="setPlaces" 
+                     open="(" separator="," close=")">
+                  #{x_setPlace}
+                </foreach>
+			</if>
+	        
+			<if test="setTemp != null and setTemp != '' ">
+				and E.SETTEMP = #{setTemp}
+            </if>
+
+			<if test="setTempLike != null and setTempLike != '' ">
+				and E.SETTEMP like #{setTempLike}
+            </if>
+
+			<if test="setTemps != null and setTemps.size() &gt; 0">
+			    and E.SETTEMP IN
+                <foreach item="x_setTemp" index="index" collection="setTemps" 
+                     open="(" separator="," close=")">
+                  #{x_setTemp}
+                </foreach>
+			</if>
+	        
+			<if test="bdNum != null and bdNum != '' ">
+				and E.BDNUM = #{bdNum}
+            </if>
+
+			<if test="bdNumLike != null and bdNumLike != '' ">
+				and E.BDNUM like #{bdNumLike}
+            </if>
+
+			<if test="bdNums != null and bdNums.size() &gt; 0">
+			    and E.BDNUM IN
+                <foreach item="x_bdNum" index="index" collection="bdNums" 
+                     open="(" separator="," close=")">
+                  #{x_bdNum}
+                </foreach>
+			</if>
+	        
+			<if test="dtNum != null and dtNum != '' ">
+				and E.DTNUM = #{dtNum}
+            </if>
+
+			<if test="dtNumLike != null and dtNumLike != '' ">
+				and E.DTNUM like #{dtNumLike}
+            </if>
+
+			<if test="dtNums != null and dtNums.size() &gt; 0">
+			    and E.DTNUM IN
+                <foreach item="x_dtNum" index="index" collection="dtNums" 
+                     open="(" separator="," close=")">
+                  #{x_dtNum}
+                </foreach>
+			</if>
+	        
+			<if test="pinfoUser2 != null and pinfoUser2 != '' ">
+				and E.PINFO_USER2 = #{pinfoUser2}
+            </if>
+
+			<if test="pinfoUser2Like != null and pinfoUser2Like != '' ">
+				and E.PINFO_USER2 like #{pinfoUser2Like}
+            </if>
+
+			<if test="pinfoUser2s != null and pinfoUser2s.size() &gt; 0">
+			    and E.PINFO_USER2 IN
+                <foreach item="x_pinfoUser2" index="index" collection="pinfoUser2s" 
+                     open="(" separator="," close=")">
+                  #{x_pinfoUser2}
+                </foreach>
+			</if>
+
+			<if test="pinfoUser3GreaterThanOrEqual != null">
+				and E.PINFO_USER3 &gt;= #{pinfoUser3GreaterThanOrEqual}
+            </if>
+
+			<if test="pinfoUser3LessThanOrEqual != null">
+				and E.PINFO_USER3 &lt;= #{pinfoUser3LessThanOrEqual}
+            </if>
+
+
+			<if test="pinfoUser4GreaterThanOrEqual != null">
+				and E.PINFO_USER4 &gt;= #{pinfoUser4GreaterThanOrEqual}
+            </if>
+
+			<if test="pinfoUser4LessThanOrEqual != null">
+				and E.PINFO_USER4 &lt;= #{pinfoUser4LessThanOrEqual}
+            </if>
+
+	        
+			<if test="pinfoUser5 != null and pinfoUser5 != '' ">
+				and E.PINFO_USER5 = #{pinfoUser5}
+            </if>
+
+			<if test="pinfoUser5Like != null and pinfoUser5Like != '' ">
+				and E.PINFO_USER5 like #{pinfoUser5Like}
+            </if>
+
+			<if test="pinfoUser5s != null and pinfoUser5s.size() &gt; 0">
+			    and E.PINFO_USER5 IN
+                <foreach item="x_pinfoUser5" index="index" collection="pinfoUser5s" 
+                     open="(" separator="," close=")">
+                  #{x_pinfoUser5}
+                </foreach>
+			</if>
+
+			<if test="pinfoUser6 != null">
+				and E.PINFO_USER6 = #{pinfoUser6}
+            </if>
+
+			<if test="pinfoUser6GreaterThanOrEqual != null">
+				and E.PINFO_USER6 &gt;= #{pinfoUser6GreaterThanOrEqual}
+            </if>
+
+			<if test="pinfoUser6LessThanOrEqual != null">
+				and E.PINFO_USER6 &lt;= #{pinfoUser6LessThanOrEqual}
+            </if>
+
+			<if test="pinfoUser6s != null and pinfoUser6s.size() &gt; 0">
+			    and E.PINFO_USER6 IN
+                <foreach item="x_pinfoUser6" index="index" collection="pinfoUser6s" 
+                     open="(" separator="," close=")">
+                  #{x_pinfoUser6}
+                </foreach>
+			</if>
+      
+
+			<if test="pinfoUser7GreaterThanOrEqual != null">
+				and E.PINFO_USER7 &gt;= #{pinfoUser7GreaterThanOrEqual}
+            </if>
+
+			<if test="pinfoUser7LessThanOrEqual != null">
+				and E.PINFO_USER7 &lt;= #{pinfoUser7LessThanOrEqual}
+            </if>
+
+
+			<if test="pinfoUser8GreaterThanOrEqual != null">
+				and E.PINFO_USER8 &gt;= #{pinfoUser8GreaterThanOrEqual}
+            </if>
+
+			<if test="pinfoUser8LessThanOrEqual != null">
+				and E.PINFO_USER8 &lt;= #{pinfoUser8LessThanOrEqual}
+            </if>
+
+	        
+			<if test="pinfoUser9 != null and pinfoUser9 != '' ">
+				and E.PINFO_USER9 = #{pinfoUser9}
+            </if>
+
+			<if test="pinfoUser9Like != null and pinfoUser9Like != '' ">
+				and E.PINFO_USER9 like #{pinfoUser9Like}
+            </if>
+
+			<if test="pinfoUser9s != null and pinfoUser9s.size() &gt; 0">
+			    and E.PINFO_USER9 IN
+                <foreach item="x_pinfoUser9" index="index" collection="pinfoUser9s" 
+                     open="(" separator="," close=")">
+                  #{x_pinfoUser9}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+	<select id="getPinfoListByDomainIndexId" parameterType="int" resultMap="pinfoResultMap">
+		SELECT a.* FROM pinfo a,treepname b WHERE a.index_id=b.index_id and a.dtag=1 and b.domain_index=#{domainIndexId} order by a.id asc
+	</select>
+</mapper>

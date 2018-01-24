@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ReportBaseDataMapper">
+
+ 	<resultMap id="reportBaseDataResultMap"	type="com.glaf.isdp.model.ReportBaseData">
+        <id property="id" column="ID" jdbcType="INTEGER" />
+        <result property="treepinfoId" column="TREEPINFO_ID" jdbcType="VARCHAR"/>
+        <result property="treepinfoIndexId" column="TREEPINFO_INDEX_ID" jdbcType="INTEGER"/>
+        <result property="treepinfoIndexName" column="TREEPINFO_INDEX_NAME" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENT_ID" jdbcType="INTEGER"/>
+        <result property="unitId" column="UNIT_ID" jdbcType="INTEGER"/>
+        <result property="subSectionId" column="SUBSECTION_ID" jdbcType="INTEGER"/>
+        <result property="subItemId" column="SUBITEM_ID" jdbcType="INTEGER"/>
+        <result property="intpFile1" column="INTPFILE1" jdbcType="INTEGER"/>
+        <result property="intpFile2" column="INTPFILE2" jdbcType="INTEGER"/>
+        <result property="intpFile3" column="INTPFILE3" jdbcType="INTEGER"/>
+        <result property="cell1" column="CELL1" jdbcType="INTEGER"/>
+        <result property="cell2" column="CELL2" jdbcType="INTEGER"/>
+        <result property="cell3" column="CELL3" jdbcType="INTEGER"/>
+        <result property="inspecTime" column="INSPECTIME" jdbcType="TIMESTAMP"/>
+        <result property="inspecHandleTime" column="INSPECHANDLETIME" jdbcType="TIMESTAMP"/>
+        <result property="inspecStatus" column="INSPECSTATUS" jdbcType="VARCHAR"/>
+        <result property="inspecUser" column="INSPECUSER" jdbcType="VARCHAR"/>
+        <result property="approveTime" column="APPROVETIME" jdbcType="TIMESTAMP"/>
+        <result property="finishTime" column="FINISHTIME" jdbcType="TIMESTAMP"/>
+        <result property="finishStatus" column="FINISHSTATUS" jdbcType="VARCHAR" />
+        <result property="createBy" column="createBy" jdbcType="VARCHAR"/>
+        <result property="createDate" column="createDate" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="updateDate" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="updateBy" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap  id="personReportResultMap" type="com.glaf.isdp.model.PersonReport">
+		<result property="userId" column="USERID" jdbcType="VARCHAR" />
+        <result property="userName" column="USERNAME" jdbcType="VARCHAR"/>
+        <result property="finishNum" column="FINISHNUM" jdbcType="INTEGER"/>
+        <result property="notFinishNum" column="NOTFINISHNUM" jdbcType="INTEGER"/>
+        <result property="shouldFinishNum" column="SHOULDFINISHNUM" jdbcType="INTEGER"/>
+        <result property="netRoleId" column="NETROLEID" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="unitReportResultMap"  type="com.glaf.isdp.model.ConUnitReport">
+		<result property="contractId" column="CONTRACT_ID" jdbcType="INTEGER"/>
+		<result property="unitId" column="UNIT_ID" jdbcType="INTEGER"/>
+		<result property="intpFile1" column="INTPFILE1" jdbcType="INTEGER"/>
+		<result property="cell1" column="CELL1" jdbcType="INTEGER"/>
+		<result property="intpFile2" column="INTPFILE2" jdbcType="INTEGER"/>
+		<result property="cell2" column="CELL2" jdbcType="INTEGER"/>
+		<result property="intpFile3" column="INTPFILE3" jdbcType="INTEGER"/>
+		<result property="cell3" column="CELL3" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertReportBaseData" parameterType="com.glaf.isdp.model.ReportBaseData">
+		insert into REPORT_BASE_DATA 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="treepinfoId != null">
+				,TREEPINFO_ID 
+			</if>
+			<if test="treepinfoIndexId != null">
+				,TREEPINFO_INDEX_ID 
+			</if>
+			<if test="treepinfoIndexName != null">
+				,TREEPINFO_INDEX_NAME 
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID 
+			</if>
+			<if test="unitId != null">
+				,UNIT_ID 
+			</if>
+			<if test="subSectionId != null">
+				,SUBSECTION_ID 
+			</if>
+			<if test="subItemId != null">
+				,SUBITEM_ID 
+			</if>
+			<if test="intpFile1 != null">
+				,INTPFILE1 
+			</if>
+			<if test="intpFile2 != null">
+				,INTPFILE2 
+			</if>
+			<if test="intpFile3 != null">
+				,INTPFILE3 
+			</if>
+			<if test="cell1 != null">
+				,CELL1 
+			</if>
+			<if test="cell2 != null">
+				,CELL2 
+			</if>
+			<if test="cell3 != null">
+				,CELL3 
+			</if>
+			<if test="inspecTime != null">
+				,INSPECTIME 
+			</if>
+			<if test="inspecHandleTime != null">
+				,INSPECHANDLETIME 
+			</if>
+			<if test="inspecStatus != null">
+				,INSPECSTATUS 
+			</if>
+			<if test="inspecUser != null">
+				,INSPECUSER 
+			</if>
+			<if test="approveTime != null">
+				,APPROVETIME 
+			</if>
+			<if test="finishTime != null">
+				,FINISHTIME 
+			</if>
+			<if test="finishStatus != null">
+				,FINISHSTATUS 
+			</if>
+			<if test="createBy != null">
+				,createBy 
+			</if>
+			<if test="createDate != null">
+				,createDate 
+			</if>
+			<if test="updateDate != null">
+				,updateDate 
+			</if>
+			<if test="updateBy != null">
+				,updateBy 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="treepinfoId != null">
+				,#{treepinfoId, jdbcType=VARCHAR}
+			</if>
+			<if test="treepinfoIndexId != null">
+				,#{treepinfoIndexId, jdbcType=INTEGER}
+			</if>
+			<if test="treepinfoIndexName != null">
+				,#{treepinfoIndexName, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="unitId != null">
+				,#{unitId, jdbcType=INTEGER}
+			</if>
+			<if test="subSectionId != null">
+				,#{subSectionId, jdbcType=INTEGER}
+			</if>
+			<if test="subItemId != null">
+				,#{subItemId, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile1 != null">
+				,#{intpFile1, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile2 != null">
+				,#{intpFile2, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile3 != null">
+				,#{intpFile3, jdbcType=INTEGER}
+			</if>
+			<if test="cell1 != null">
+				,#{cell1, jdbcType=INTEGER}
+			</if>
+			<if test="cell2 != null">
+				,#{cell2, jdbcType=INTEGER}
+			</if>
+			<if test="cell3 != null">
+				,#{cell3, jdbcType=INTEGER}
+			</if>
+			<if test="inspecTime != null">
+				,#{inspecTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="inspecHandleTime != null">
+				,#{inspecHandleTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="inspecStatus != null">
+				,#{inspecStatus, jdbcType=VARCHAR}
+			</if>
+			<if test="inspecUser != null">
+				,#{inspecUser, jdbcType=VARCHAR}
+			</if>
+			<if test="approveTime != null">
+				,#{approveTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="finishTime != null">
+				,#{finishTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="finishStatus != null">
+				,#{finishStatus, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateReportBaseData" parameterType="com.glaf.isdp.model.ReportBaseData">
+		update REPORT_BASE_DATA
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="treepinfoId != null">
+				TREEPINFO_ID = #{treepinfoId, jdbcType=VARCHAR},
+			</if>
+			<if test="treepinfoIndexId != null">
+				TREEPINFO_INDEX_ID = #{treepinfoIndexId, jdbcType=INTEGER},
+			</if>
+			<if test="treepinfoIndexName != null">
+				TREEPINFO_INDEX_NAME = #{treepinfoIndexName, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="unitId != null">
+				UNIT_ID = #{unitId, jdbcType=INTEGER},
+			</if>
+			<if test="subSection != null">
+				SUBSECTION_ID = #{subSection, jdbcType=INTEGER},
+			</if>
+			<if test="subItemId != null">
+				SUBITEM_ID = #{subItemId, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile1 != null">
+				INTPFILE1 = #{intpFile1, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile2 != null">
+				INTPFILE2 = #{intpFile2, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile3 != null">
+				INTPFILE3 = #{intpFile3, jdbcType=INTEGER},
+			</if>
+			<if test="cell1 != null">
+				CELL1 = #{cell1, jdbcType=INTEGER},
+			</if>
+			<if test="cell2 != null">
+				CELL2 = #{cell2, jdbcType=INTEGER},
+			</if>
+			<if test="cell3 != null">
+				CELL3 = #{cell3, jdbcType=INTEGER},
+			</if>
+			<if test="inspecTime != null">
+				INSPECTIME = #{inspecTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="inspecHandleTime != null">
+				INSPECHANDLETIME = #{inspecHandleTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="inspecStatus != null">
+				INSPECSTATUS = #{inspecStatus, jdbcType=VARCHAR},
+			</if>
+			<if test="inspecUser != null">
+				INSPECUSER = #{inspecUser, jdbcType=VARCHAR},
+			</if>
+			<if test="approveTime != null">
+				APPROVETIME = #{approveTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="finishTime != null">
+				FINISHTIME = #{finishTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="finishStatus != null">
+				FINISHSTATUS = #{finishStatus, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				createBy = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				updateDate = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				updateBy = #{updateBy, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteReportBaseDataById" parameterType="integer"> 
+        delete from REPORT_BASE_DATA
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteReportBaseDatas" parameterType="com.glaf.isdp.query.ReportBaseDataQuery">
+		delete from REPORT_BASE_DATA where 1=1
+		<if test="ids!=null and ids.size() &gt; 0">
+			and ID IN
+			<foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+             </foreach>
+		</if>
+		<if test="treepinfoIndexId != null">
+			and TREEPINFO_INDEX_ID = #{treepinfoIndexId}
+         </if>
+
+		<if test="treepinfoIndexIds != null and treepinfoIndexIds.size() &gt; 0">
+		    and TREEPINFO_INDEX_ID IN
+             <foreach item="x_treepinfoIndexId" index="index" collection="treepinfoIndexIds" 
+                  open="(" separator="," close=")">
+               #{x_treepinfoIndexId}
+             </foreach>
+		</if>
+	</delete>
+
+
+	<select id="getReportBaseDataById" parameterType="integer" resultMap="reportBaseDataResultMap">
+		select * from REPORT_BASE_DATA where ID = #{id}
+	</select>
+
+
+	<select id="getReportBaseDatas" 
+	    parameterType="com.glaf.isdp.query.ReportBaseDataQuery"
+		resultMap="reportBaseDataResultMap">
+		select distinct E.*
+		<include refid="selectReportBaseDatasSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getReportBaseDataCount" 
+	    parameterType="com.glaf.isdp.query.ReportBaseDataQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportBaseDatasSql" />
+	</select>
+
+
+	<sql id="selectReportBaseDatasSql">
+
+		from REPORT_BASE_DATA E
+		
+		 
+		<where>
+		       1 = 1  ${sqlConditionString}
+			<if test="ids!=null and ids.size() &gt; 0">
+				and E.ID IN
+				<foreach item="x_id" index="index" collection="ids" 
+	                     open="(" separator="," close=")">
+	                  #{x_id}
+	             </foreach>
+			</if>
+	        
+			<if test="treepinfoId != null and treepinfoId != '' ">
+				and E.TREEPINFO_ID = #{treepinfoId}
+            </if>
+
+			<if test="treepinfoIdLike != null and treepinfoIdLike != '' ">
+				and E.TREEPINFO_ID like #{treepinfoIdLike}
+            </if>
+
+			<if test="treepinfoIds != null and treepinfoIds.size() &gt; 0">
+			    and E.TREEPINFO_ID IN
+                <foreach item="x_treepinfoId" index="index" collection="treepinfoIds" 
+                     open="(" separator="," close=")">
+                  #{x_treepinfoId}
+                </foreach>
+			</if>
+
+			<if test="treepinfoIndexId != null">
+				and E.TREEPINFO_INDEX_ID = #{treepinfoIndexId}
+            </if>
+
+			<if test="treepinfoIndexIdGreaterThanOrEqual != null">
+				and E.TREEPINFO_INDEX_ID &gt;= #{treepinfoIndexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="treepinfoIndexIdLessThanOrEqual != null">
+				and E.TREEPINFO_INDEX_ID &lt;= #{treepinfoIndexIdLessThanOrEqual}
+            </if>
+
+			<if test="treepinfoIndexIds != null and treepinfoIndexIds.size() &gt; 0">
+			    and E.TREEPINFO_INDEX_ID IN
+                <foreach item="x_treepinfoIndexId" index="index" collection="treepinfoIndexIds" 
+                     open="(" separator="," close=")">
+                  #{x_treepinfoIndexId}
+                </foreach>
+			</if>
+
+	        
+			<if test="treepinfoIndexName != null and treepinfoIndexName != '' ">
+				and E.TREEPINFO_INDEX_NAME = #{treepinfoIndexName}
+            </if>
+
+			<if test="treepinfoIndexNameLike != null and treepinfoIndexNameLike != '' ">
+				and E.TREEPINFO_INDEX_NAME like #{treepinfoIndexNameLike}
+            </if>
+
+			<if test="treepinfoIndexNames != null and treepinfoIndexNames.size() &gt; 0">
+			    and E.TREEPINFO_INDEX_NAME IN
+                <foreach item="x_treepinfoIndexName" index="index" collection="treepinfoIndexNames" 
+                     open="(" separator="," close=")">
+                  #{x_treepinfoIndexName}
+                </foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENT_ID = #{parentId}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENT_ID IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+
+
+			<if test="intpFile1 != null">
+				and E.INTPFILE1 = #{intpFile1}
+            </if>
+
+			<if test="intpFile1GreaterThanOrEqual != null">
+				and E.INTPFILE1 &gt;= #{intpFile1GreaterThanOrEqual}
+            </if>
+
+			<if test="intpFile1LessThanOrEqual != null">
+				and E.INTPFILE1 &lt;= #{intpFile1LessThanOrEqual}
+            </if>
+
+			<if test="intpFile1s != null and intpFile1s.size() &gt; 0">
+			    and E.INTPFILE1 IN
+                <foreach item="x_intpFile1s" index="index" collection="intpFile1s" 
+                     open="(" separator="," close=")">
+                  #{x_intpFile1s}
+                </foreach>
+			</if>
+
+
+			<if test="cell1 != null">
+				and E.CELL1 = #{cell1}
+            </if>
+
+			<if test="cell1GreaterThanOrEqual != null">
+				and E.CELL1 &gt;= #{cell1GreaterThanOrEqual}
+            </if>
+
+			<if test="cell1LessThanOrEqual != null">
+				and E.CELL1 &lt;= #{cell1LessThanOrEqual}
+            </if>
+
+			<if test="cell1s != null and cell1s.size() &gt; 0">
+			    and E.CELL1 IN
+                <foreach item="x_cell1" index="index" collection="cell1s" 
+                     open="(" separator="," close=")">
+                  #{x_cell1}
+                </foreach>
+			</if>
+
+
+			<if test="inspecTime != null">
+				and E.INSPECTIME = #{inspecTime}
+            </if>
+
+			<if test="inspecTimeGreaterThanOrEqual != null">
+				and E.INSPECTIME &gt;= #{inspecTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="inspecTimeLessThanOrEqual != null">
+				and E.INSPECTIME &lt;= #{inspecTimeLessThanOrEqual}
+            </if>
+
+			<if test="inspecTimes != null and inspecTimes.size() &gt; 0">
+			    and E.INSPECTIME IN
+                <foreach item="x_inspecTime" index="index" collection="inspecTimes" 
+                     open="(" separator="," close=")">
+                  #{x_inspecTime}
+                </foreach>
+			</if>
+
+
+			<if test="inspecHandleTime != null">
+				and E.INSPECHANDLETIME = #{inspecHandleTime}
+            </if>
+
+			<if test="inspecHandleTimeGreaterThanOrEqual != null">
+				and E.INSPECHANDLETIME &gt;= #{inspecHandleTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="inspecHandleTimeLessThanOrEqual != null">
+				and E.INSPECHANDLETIME &lt;= #{inspecHandleTimeLessThanOrEqual}
+            </if>
+
+			<if test="inspecHandleTimes != null and inspecHandleTimes.size() &gt; 0">
+			    and E.INSPECHANDLETIME IN
+                <foreach item="x_inspecHandleTime" index="index" collection="inspecHandleTimes" 
+                     open="(" separator="," close=")">
+                  #{x_inspecHandleTime}
+                </foreach>
+			</if>
+
+
+			<if test="inspecStatus != null and inspecStatus != ''">
+				and E.INSPECSTATUS = #{inspecStatus}
+            </if>
+
+			<if test="inspecStatuss != null and inspecStatuss.size() &gt; 0">
+			    and E.INSPECSTATUS IN
+                <foreach item="x_inspecStatus" index="index" collection="inspecStatuss" 
+                     open="(" separator="," close=")">
+                  #{x_inspecStatus}
+                </foreach>
+			</if>
+
+	        
+			<if test="inspecUser != null and inspecUser != '' ">
+				and E.INSPECUSER = #{inspecUser}
+            </if>
+
+			<if test="inspecUserLike != null and inspecUserLike != '' ">
+				and E.INSPECUSER like #{inspecUserLike}
+            </if>
+
+			<if test="inspecUsers != null and inspecUsers.size() &gt; 0">
+			    and E.INSPECUSER IN
+                <foreach item="x_inspecUser" index="index" collection="inspecUsers" 
+                     open="(" separator="," close=")">
+                  #{x_inspecUser}
+                </foreach>
+			</if>
+
+			<if test="approveTime != null">
+				and E.APPROVETIME = #{approveTime}
+            </if>
+
+			<if test="approveTimeGreaterThanOrEqual != null">
+				and E.APPROVETIME &gt;= #{approveTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="approveTimeLessThanOrEqual != null">
+				and E.APPROVETIME &lt;= #{approveTimeLessThanOrEqual}
+            </if>
+
+			<if test="approveTimes != null and approveTimes.size() &gt; 0">
+			    and E.APPROVETIME IN
+                <foreach item="x_approveTime" index="index" collection="approveTimes" 
+                     open="(" separator="," close=")">
+                  #{x_approveTime}
+                </foreach>
+			</if>
+
+
+			<if test="finishTime != null">
+				and E.FINISHTIME = #{finishTime}
+            </if>
+
+			<if test="finishTimeGreaterThanOrEqual != null">
+				and E.FINISHTIME &gt;= #{finishTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="finishTimeLessThanOrEqual != null">
+				and E.FINISHTIME &lt;= #{finishTimeLessThanOrEqual}
+            </if>
+
+			<if test="finishTimes != null and finishTimes.size() &gt; 0">
+			    and E.FINISHTIME IN
+                <foreach item="x_finishTime" index="index" collection="finishTimes" 
+                     open="(" separator="," close=")">
+                  #{x_finishTime}
+                </foreach>
+			</if>
+
+			<if test="finishStatus != null">
+				and E.FINISHSTATUS = #{finishStatus}
+			</if>
+			
+			<if test="finishStatusList != null and finishStatusList.size() &gt; 0">
+			    and E.FINISHSTATUS IN
+                <foreach item="x_finishStatus" index="index" collection="finishStatusList" 
+                     open="(" separator="," close=")">
+                  #{x_finishStatus}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.createBy = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.createBy like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.createBy IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDate != null">
+				and E.createDate = #{createDate}
+            </if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.createDate &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.createDate &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+			<if test="createDates != null and createDates.size() &gt; 0">
+			    and E.createDate IN
+                <foreach item="x_createDate" index="index" collection="createDates" 
+                     open="(" separator="," close=")">
+                  #{x_createDate}
+                </foreach>
+			</if>
+
+
+			<if test="updateDate != null">
+				and E.updateDate = #{updateDate}
+            </if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.updateDate &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.updateDate &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+			<if test="updateDates != null and updateDates.size() &gt; 0">
+			    and E.updateDate IN
+                <foreach item="x_updateDate" index="index" collection="updateDates" 
+                     open="(" separator="," close=")">
+                  #{x_updateDate}
+                </foreach>
+			</if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.updateBy = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.updateBy like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.updateBy IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+	<select id="selectPersonReport" resultMap="personReportResultMap">
+		select distinct a.netroleid,b.username,b.userid,a.shouldFinishNum,c.finishNum,d.notFinishNum from (
+		      select netRoleId,count(*) as shouldFinishNum from flow_activ 
+			  where netRoleId is not null and netRoleId&lt;&gt;'' and exists(
+				select * from flow_process where id=flow_activ.process_id and exists(
+				  select * from cell_mytaskmain where id=flow_process.main_id and (intStop=0 or intStop is null)
+				)
+			  )
+			  group by netRoleId
+		) a left join (
+		  select a.roleid,a.userid,b.username from userRole a,userInfo b where a.userid=b.userid
+		) b on a.netroleid=b.roleid left join (
+		  select userId,netRoleId,count(*) as finishNum from flow_activ where state=1 and netRoleId&lt;&gt;'' group by userId,netRoleId
+		) c on b.userid=c.userid left join (
+		  select netRoleId,count(*) as notFinishNum from flow_activ 
+		  where state=0 and exists(
+			select * from flow_process where id=flow_activ.process_id and exists(
+			  select * from cell_mytaskmain where id=flow_process.main_id and (intStop=0 or intStop is null)
+			)
+		  )
+		  group by netRoleId
+		) d on d.netroleid=b.roleid 
+		where a.netroleid is not null and a.netroleid&lt;&gt;-1
+		order by b.userid ASC
+	</select>
+	
+	<select id="selectUnitReport" resultMap="unitReportResultMap">
+		select unit_id,sum(intpFile1) as intpFile1,sum(cell1) as cell1,sum(intpFile2) as intpFile2
+		,sum(cell2) as cell2,sum(intpFile3) as intpFile3,sum(cell3) as cell3
+		from report_base_data 
+		group by unit_id
+		order by unit_id ASC
+	</select>
+	
+	<select id="selectContractReport" parameterType="com.glaf.isdp.query.ReportBaseDataQuery" resultMap="unitReportResultMap">
+		select sum(intpFile1) as intpFile1,sum(cell1) as cell1,sum(intpFile2) as intpFile2
+		,sum(cell2) as cell2,sum(intpFile3) as intpFile3,sum(cell3) as cell3
+		from report_base_data 
+	</select>
+	
+	<select id="selectFinishStatusCount" resultType="map">
+		select subItem_Id,finishStatus,COUNT(finishStatus) as finishStatusCount
+		from Report_Base_Data where cell1&gt;0
+		group by subItem_Id,finishStatus order by subItem_Id ASC
+	</select>
+</mapper>

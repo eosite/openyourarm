@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapping>
+  <entity name="WEB_STAT" package="com.glaf.hadoop.hbase.test" table="WEB_STAT" 
+          title="WEB_STAT" englishTitle="WEB_STAT" insertOnly="true"
+	      parseType="csv" aggregationKeys="HOST,DOMAIN,FEATURE,DATE" primaryKey="id" startRow="0" >
+    <id name="id" column="id" type="String" title="id" valueExpression="#{uuid}"/>
+    <property name="HOST" column="HOST" type="String" englishTitle="HOST" position="1" length="2" title="HOST" />
+    <property name="DOMAIN" column="DOMAIN" type="String" englishTitle="DOMAIN" position="2" length="200" title="DOMAIN" />
+    <property name="FEATURE" column="FEATURE" type="String" englishTitle="FEATURE" position="3" length="200" title="FEATURE" />
+    <property name="DATE" column="DATE" type="Date" title="DATE" position="4"/>
+	<property name="USAGE.CORE" column="USAGE.CORE" type="Long" englishTitle="USAGE.CORE" position="5" title="USAGE.CORE" />
+	<property name="USAGE.DB" column="USAGE.DB" type="Long" englishTitle="USAGE.DB" position="6" title="USAGE.DB" />
+	<property name="STATS.ACTIVE_VISITOR" column="STATS.ACTIVE_VISITOR" type="Integer" englishTitle="STATS.ACTIVE_VISITOR"
+	          title="STATS.ACTIVE_VISITOR" position="7" />
+	<property name="AGGREGATIONKEY" column="AGGREGATIONKEY" type="String" englishTitle="AGGREGATIONKEY"
+	          title="AGGREGATIONKEY" length="500" />
+  </entity>
+</mapping>

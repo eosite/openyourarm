@@ -1,0 +1,9 @@
+.muitab{
+	margin:0px 0px;
+}
+.muitab	.mui-content,.muitab .slider{
+    height: 100%;
+}
+.muitab .mui-control-item,.muitab .mui-control-item:hover{
+    text-decoration: none;
+}

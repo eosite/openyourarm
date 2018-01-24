@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoUserLayoutMapper">
+
+	<resultMap id="videoUserLayoutResultMap" type="com.glaf.video.domain.VideoUserLayout">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="layout" column="LAYOUT_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoUserLayout" parameterType="com.glaf.video.domain.VideoUserLayout">
+		insert into VIDEO_USER_LAYOUT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="layout != null">
+				,LAYOUT_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="layout != null">
+				,#{layout, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoUserLayout" parameterType="java.util.List">
+		insert into VIDEO_USER_LAYOUT (
+		ID_
+		,DEVELOPERID_
+		,USERID_
+		,LAYOUT_
+		,TITLE_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="videoUserLayout" index="index"
+			separator=",">
+			(
+			#{videoUserLayout.id, jdbcType=VARCHAR}
+			,#{videoUserLayout.developerId, jdbcType=VARCHAR}
+			,#{videoUserLayout.userId, jdbcType=VARCHAR}
+			,#{videoUserLayout.layout, jdbcType=VARCHAR}
+			,#{videoUserLayout.title, jdbcType=VARCHAR}
+			,#{videoUserLayout.createTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoUserLayout_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoUserLayout" index="index">
+			insert into VIDEO_USER_LAYOUT (
+			ID_
+			,DEVELOPERID_
+			,USERID_
+			,LAYOUT_
+			,TITLE_
+			,CREATETIME_
+			) values (
+			#{videoUserLayout.id, jdbcType=VARCHAR}
+			,#{videoUserLayout.developerId, jdbcType=VARCHAR}
+			,#{videoUserLayout.userId, jdbcType=VARCHAR}
+			,#{videoUserLayout.layout, jdbcType=VARCHAR}
+			,#{videoUserLayout.title, jdbcType=VARCHAR}
+			,#{videoUserLayout.createTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoUserLayout" parameterType="com.glaf.video.domain.VideoUserLayout">
+		update VIDEO_USER_LAYOUT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="developerId != null">
+				DEVELOPERID_ = #{developerId, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="layout != null">
+				LAYOUT_ = #{layout, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoUserLayoutById" parameterType="string">
+		delete from
+		VIDEO_USER_LAYOUT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoUserLayouts" parameterType="com.glaf.video.query.VideoUserLayoutQuery">
+		delete from VIDEO_USER_LAYOUT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getVideoUserLayoutById" parameterType="string"
+		resultMap="videoUserLayoutResultMap">
+		select * from VIDEO_USER_LAYOUT where ID_ = #{id}
+	</select>
+
+
+	<select id="getVideoUserLayouts" parameterType="com.glaf.video.query.VideoUserLayoutQuery"
+		resultMap="videoUserLayoutResultMap">
+		select distinct E.*
+		<include refid="selectVideoUserLayoutsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoUserLayoutCount" parameterType="com.glaf.video.query.VideoUserLayoutQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoUserLayoutsSql" />
+	</select>
+
+
+	<sql id="selectVideoUserLayoutsSql">
+
+		from VIDEO_USER_LAYOUT E
+
+		<where>
+			1 = 1
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="developerIds != null and developerIds.size() &gt; 0">
+				and E.DEVELOPERID_ IN
+				<foreach item="x_developerId" index="index" collection="developerIds"
+					open="(" separator="," close=")">
+					#{x_developerId}
+				</foreach>
+			</if>
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

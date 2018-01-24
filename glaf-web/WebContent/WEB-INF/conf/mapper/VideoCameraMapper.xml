@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoCameraMapper">
+
+	<resultMap id="videoCameraResultMap" type="com.glaf.video.domain.VideoCamera">
+		<id property="cameraId" column="CAMERAID_" jdbcType="VARCHAR" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="cameraNo" column="CAMERANO_" jdbcType="VARCHAR" />
+		<result property="deviceId" column="DEVICEID_" jdbcType="VARCHAR" />
+		<result property="deviceName" column="DEVICENAME_" jdbcType="VARCHAR" />
+		<result property="deviceSerial" column="DEVICESERIAL_"
+			jdbcType="VARCHAR" />
+		<result property="deviceSN" column="DEVICESN_" jdbcType="VARCHAR" />
+		<result property="safeKey" column="SAFEKEY_" jdbcType="VARCHAR" />
+		<result property="channelNo" column="CHANNELNO_" jdbcType="INTEGER" />
+		<result property="picUrl" column="PICURL_" jdbcType="VARCHAR" />
+		<result property="defence" column="DEFENCE_" jdbcType="INTEGER" />
+		<result property="indexId" column="INDEXID_" jdbcType="INTEGER" />
+		<result property="indexName" column="INDEXNAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="INTEGER" />
+		<result property="isEncrypt" column="ISENCRYPT_" jdbcType="INTEGER" />
+		<result property="isShared" column="ISSHARED_" jdbcType="INTEGER" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="videoLevel" column="VIDEOLEVEL_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoCamera" parameterType="com.glaf.video.domain.VideoCamera">
+		insert into VIDEO_CAMERA
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			CAMERAID_
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="cameraNo != null">
+				,CAMERANO_
+			</if>
+			<if test="deviceId != null">
+				,DEVICEID_
+			</if>
+			<if test="deviceName != null">
+				,DEVICENAME_
+			</if>
+			<if test="deviceSerial != null">
+				,DEVICESERIAL_
+			</if>
+			<if test="deviceSN != null">
+				,DEVICESN_
+			</if>
+			<if test="channelNo != null">
+				,CHANNELNO_
+			</if>
+			<if test="picUrl != null">
+				,PICURL_
+			</if>
+			<if test="safeKey != null">
+				,SAFEKEY_
+			</if>
+			<if test="defence != null">
+				,DEFENCE_
+			</if>
+			<if test="indexId != null">
+				,INDEXID_
+			</if>
+			<if test="indexName != null">
+				,INDEXNAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="isEncrypt != null">
+				,ISENCRYPT_
+			</if>
+			<if test="isShared != null">
+				,ISSHARED_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="videoLevel != null">
+				,VIDEOLEVEL_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{cameraId, jdbcType=VARCHAR}
+
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="cameraNo != null">
+				,#{cameraNo, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceId != null">
+				,#{deviceId, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceName != null">
+				,#{deviceName, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceSerial != null">
+				,#{deviceSerial, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceSN != null">
+				,#{deviceSN, jdbcType=VARCHAR}
+			</if>
+			<if test="channelNo != null">
+				,#{channelNo, jdbcType=INTEGER}
+			</if>
+			<if test="picUrl != null">
+				,#{picUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="safeKey != null">
+				,#{safeKey, jdbcType=VARCHAR}
+			</if>
+			<if test="defence != null">
+				,#{defence, jdbcType=INTEGER}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="isEncrypt != null">
+				,#{isEncrypt, jdbcType=INTEGER}
+			</if>
+			<if test="isShared != null">
+				,#{isShared, jdbcType=INTEGER}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="videoLevel != null">
+				,#{videoLevel, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoCamera" parameterType="java.util.List">
+		insert into VIDEO_CAMERA (
+		CAMERAID_
+		,DATABASEID_
+		,DEVELOPERID_
+		,NAME_
+		,CODE_
+		,DESC_
+		,CAMERANO_
+		,DEVICEID_
+		,DEVICENAME_
+		,DEVICESERIAL_
+		,DEVICESN_
+		,CHANNELNO_
+		,PICURL_
+		,DEFENCE_
+		,INDEXID_
+		,INDEXNAME_
+		,TYPE_
+		,ISENCRYPT_
+		,ISSHARED_
+		,STATUS_
+		,VIDEOLEVEL_
+		,CREATEBY_
+		,CREATETIME_
+		,SORTNO_
+		) values
+		<foreach collection="list" item="videoCamera" index="index"
+			separator=",">
+			(
+			#{videoCamera.cameraId, jdbcType=VARCHAR}
+			,#{videoCamera.databaseId, jdbcType=BIGINT}
+			,#{videoCamera.developerId, jdbcType=VARCHAR}
+			,#{videoCamera.name,
+			jdbcType=VARCHAR}
+			,#{videoCamera.code, jdbcType=VARCHAR}
+			,#{videoCamera.desc, jdbcType=VARCHAR}
+			,#{videoCamera.cameraNo,
+			jdbcType=VARCHAR}
+			,#{videoCamera.deviceId, jdbcType=VARCHAR}
+			,#{videoCamera.deviceName, jdbcType=VARCHAR}
+			,#{videoCamera.deviceSerial, jdbcType=VARCHAR}
+			,#{videoCamera.deviceSN, jdbcType=VARCHAR}
+			,#{videoCamera.channelNo,
+			jdbcType=INTEGER}
+			,#{videoCamera.picUrl, jdbcType=VARCHAR}
+			,#{videoCamera.defence, jdbcType=INTEGER}
+			,#{videoCamera.indexId,
+			jdbcType=INTEGER}
+			,#{videoCamera.indexName, jdbcType=VARCHAR}
+			,#{videoCamera.type,
+			jdbcType=INTEGER}
+			,#{videoCamera.isEncrypt,
+			jdbcType=INTEGER}
+			,#{videoCamera.isShared,
+			jdbcType=INTEGER}
+			,#{videoCamera.status,
+			jdbcType=INTEGER}
+			,#{videoCamera.videoLevel,
+			jdbcType=INTEGER}
+			,#{videoCamera.createBy,
+			jdbcType=VARCHAR}
+			,#{videoCamera.createTime,
+			jdbcType=TIMESTAMP}
+			,#{videoCamera.sortNo,
+			jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoCamera_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoCamera" index="index">
+			insert
+			into VIDEO_CAMERA (
+			CAMERAID_
+			,DATABASEID_
+			,DEVELOPERID_
+			,NAME_
+			,CODE_
+			,DESC_
+			,CAMERANO_
+			,DEVICEID_
+			,DEVICENAME_
+			,DEVICESERIAL_
+			,DEVICESN_
+			,CHANNELNO_
+			,PICURL_
+			,DEFENCE_
+			,INDEXID_
+			,INDEXNAME_
+			,TYPE_
+			,ISENCRYPT_
+			,ISSHARED_
+			,STATUS_
+			,VIDEOLEVEL_
+			,CREATEBY_
+			,CREATETIME_
+			,SORTNO_
+			) values
+			(
+			#{videoCamera.cameraId,
+			jdbcType=VARCHAR}
+			,#{videoCamera.databaseId,
+			jdbcType=BIGINT}
+			,#{videoCamera.developerId,
+			jdbcType=VARCHAR}
+			,#{videoCamera.name,
+			jdbcType=VARCHAR}
+			,#{videoCamera.code,
+			jdbcType=VARCHAR}
+			,#{videoCamera.desc,
+			jdbcType=VARCHAR}
+			,#{videoCamera.cameraNo,
+			jdbcType=VARCHAR}
+			,#{videoCamera.deviceId,
+			jdbcType=VARCHAR}
+			,#{videoCamera.deviceName,
+			jdbcType=VARCHAR}
+			,#{videoCamera.deviceSerial, jdbcType=VARCHAR}
+			,#{videoCamera.deviceSN, jdbcType=VARCHAR}
+			,#{videoCamera.channelNo,
+			jdbcType=INTEGER}
+			,#{videoCamera.picUrl, jdbcType=VARCHAR}
+			,#{videoCamera.defence, jdbcType=INTEGER}
+			,#{videoCamera.indexId,
+			jdbcType=INTEGER}
+			,#{videoCamera.indexName, jdbcType=VARCHAR}
+			,#{videoCamera.type,
+			jdbcType=INTEGER}
+			,#{videoCamera.isEncrypt,
+			jdbcType=INTEGER}
+			,#{videoCamera.isShared,
+			jdbcType=INTEGER}
+			,#{videoCamera.status,
+			jdbcType=INTEGER}
+			,#{videoCamera.videoLevel,
+			jdbcType=INTEGER}
+			,#{videoCamera.createBy,
+			jdbcType=VARCHAR}
+			,#{videoCamera.createTime,
+			jdbcType=TIMESTAMP}
+			,#{videoCamera.sortNo,
+			jdbcType=INTEGER}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoCamera" parameterType="com.glaf.video.domain.VideoCamera">
+		update VIDEO_CAMERA
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="cameraNo != null">
+				CAMERANO_ = #{cameraNo, jdbcType=VARCHAR},
+			</if>
+			<if test="deviceName != null">
+				DEVICENAME_ = #{deviceName, jdbcType=VARCHAR},
+			</if>
+			<if test="deviceSerial != null">
+				DEVICESERIAL_ = #{deviceSerial, jdbcType=VARCHAR},
+			</if>
+			<if test="deviceSN != null">
+				DEVICESN_ = #{deviceSN, jdbcType=VARCHAR},
+			</if>
+			<if test="channelNo != null">
+				CHANNELNO_ = #{channelNo, jdbcType=INTEGER},
+			</if>
+			<if test="picUrl != null">
+				PICURL_ = #{picUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="safeKey != null">
+				SAFEKEY_ = #{safeKey, jdbcType=VARCHAR},
+			</if>
+			<if test="defence != null">
+				DEFENCE_ = #{defence, jdbcType=INTEGER},
+			</if>
+			<if test="indexId != null">
+				INDEXID_ = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				INDEXNAME_ = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="isEncrypt != null">
+				ISENCRYPT_ = #{isEncrypt, jdbcType=INTEGER},
+			</if>
+			<if test="isShared != null">
+				ISSHARED_ = #{isShared, jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="videoLevel != null">
+				VIDEOLEVEL_ = #{videoLevel, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		CAMERAID_ = #{cameraId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoCameraById" parameterType="string">
+		delete from
+		VIDEO_CAMERA
+		where CAMERAID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoCamerasByDeviceId" parameterType="string">
+		delete
+		from VIDEO_CAMERA
+		where DEVICEID_ = #{deviceId}
+	</delete>
+
+
+	<select id="getVideoCameraById" parameterType="string"
+		resultMap="videoCameraResultMap">
+		select * from VIDEO_CAMERA where CAMERAID_ = #{id}
+	</select>
+
+
+	<select id="getVideoCamerasByGroupId" parameterType="string"
+		resultMap="videoCameraResultMap">
+
+		select c.* from VIDEO_CAMERA c
+		inner join VIDEO_GROUP_CAMERA
+		g
+		on c.CAMERAID_ = g.CAMERAID_
+		where g.GROUPID_ = #{groupId}
+
+	</select>
+
+
+	<select id="getVideoCamerasByUserId" parameterType="string"
+		resultMap="videoCameraResultMap">
+
+		select c.* from VIDEO_CAMERA c
+		inner join VIDEO_GROUP_CAMERA
+		g
+		on c.CAMERAID_ = g.CAMERAID_
+		inner join
+		VIDEO_GROUP_USER u
+		on g.GROUPID_
+		= u.GROUPID_
+		where ACTORID_ = #{userId}
+
+	</select>
+
+
+	<select id="getVideoCameras" parameterType="com.glaf.video.query.VideoCameraQuery"
+		resultMap="videoCameraResultMap">
+		select distinct E.*
+		<include refid="selectVideoCamerasSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by DEVICESERIAL_ asc, E.CAMERANO_ asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoCameraCount" parameterType="com.glaf.video.query.VideoCameraQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoCamerasSql" />
+	</select>
+
+
+	<sql id="selectVideoCamerasSql">
+
+		from VIDEO_CAMERA E
+
+		<where>
+			1 = 1
+
+			<if test="cameraIds != null and cameraIds.size() &gt; 0">
+				and E.CAMERAID_ IN
+				<foreach item="x_cameraId" index="index" collection="cameraIds"
+					open="(" separator="," close=")">
+					#{x_cameraId}
+				</foreach>
+			</if>
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+			</if>
+
+			<if test="cameraNoLike != null and cameraNoLike != '' ">
+				and E.CAMERANO_ like #{cameraNoLike}
+			</if>
+
+			<if test="deviceId != null and deviceId != '' ">
+				and E.DEVICEID_ = #{deviceId}
+			</if>
+
+			<if test="deviceNameLike != null and deviceNameLike != '' ">
+				and E.DEVICENAME_ like #{deviceNameLike}
+			</if>
+
+			<if test="deviceSerialLike != null and deviceSerialLike != '' ">
+				and E.DEVICESERIAL_ like #{deviceSerialLike}
+			</if>
+
+			<if test="indexId != null">
+				and E.INDEXID_ = #{indexId}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

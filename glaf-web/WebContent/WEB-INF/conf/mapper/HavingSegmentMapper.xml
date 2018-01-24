@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.HavingSegmentMapper">
+
+	<resultMap id="havingSegmentResultMap" type="com.glaf.datamgr.domain.HavingSegment">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="datasetId" column="DATASETID_" jdbcType="VARCHAR" />
+		<result property="tableName" column="TABLENAME_" jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMNNAME_" jdbcType="VARCHAR" />
+		<result property="expression" column="EXPRESSION_" jdbcType="VARCHAR" />
+		<result property="dynamic" column="DYNAMIC_" jdbcType="VARCHAR" />
+		<result property="parameName" column="PARAMNAME_" jdbcType="VARCHAR" />
+		<result property="parameType" column="PARAMETYPE_" jdbcType="VARCHAR" />
+		<result property="collection" column="COLLECTION_" jdbcType="VARCHAR" />
+		<result property="operator" column="OPERATOR_" jdbcType="VARCHAR" />
+		<result property="connector" column="CONNECTOR_" jdbcType="VARCHAR" />
+		<result property="ordinal" column="ORDINAL_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertHavingSegment" parameterType="com.glaf.datamgr.domain.HavingSegment">
+		insert into SYS_DATA_HAVING
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="datasetId != null">
+				,DATASETID_
+			</if>
+			<if test="tableName != null">
+				,TABLENAME_
+			</if>
+			<if test="columnName != null">
+				,COLUMNNAME_
+			</if>
+			<if test="expression != null">
+				,EXPRESSION_
+			</if>
+			<if test="dynamic != null">
+				,DYNAMIC_
+			</if>
+			<if test="parameName != null">
+				,PARAMNAME_
+			</if>
+			<if test="parameType != null">
+				,PARAMETYPE_
+			</if>
+			<if test="collection != null">
+				,COLLECTION_
+			</if>
+			<if test="operator != null">
+				,OPERATOR_
+			</if>
+			<if test="connector != null">
+				,CONNECTOR_
+			</if>
+			<if test="ordinal != null">
+				,ORDINAL_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="tableName != null">
+				,#{tableName, jdbcType=VARCHAR}
+			</if>
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="expression != null">
+				,#{expression, jdbcType=VARCHAR}
+			</if>
+			<if test="dynamic != null">
+				,#{dynamic, jdbcType=VARCHAR}
+			</if>
+			<if test="parameName != null">
+				,#{parameName, jdbcType=VARCHAR}
+			</if>
+			<if test="parameType != null">
+				,#{parameType, jdbcType=VARCHAR}
+			</if>
+			<if test="collection != null">
+				,#{collection, jdbcType=VARCHAR}
+			</if>
+			<if test="operator != null">
+				,#{operator, jdbcType=VARCHAR}
+			</if>
+			<if test="connector != null">
+				,#{connector, jdbcType=VARCHAR}
+			</if>
+			<if test="ordinal != null">
+				,#{ordinal, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateHavingSegment" parameterType="com.glaf.datamgr.domain.HavingSegment">
+		update SYS_DATA_HAVING
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="datasetId != null">
+				DATASETID_ = #{datasetId, jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				TABLENAME_ = #{tableName, jdbcType=VARCHAR},
+			</if>
+			<if test="columnName != null">
+				COLUMNNAME_ = #{columnName, jdbcType=VARCHAR},
+			</if>
+			<if test="expression != null">
+				EXPRESSION_ = #{expression, jdbcType=VARCHAR},
+			</if>
+			<if test="dynamic != null">
+				DYNAMIC_ = #{dynamic, jdbcType=VARCHAR},
+			</if>
+			<if test="parameName != null">
+				PARAMNAME_ = #{parameName, jdbcType=VARCHAR},
+			</if>
+			<if test="parameType != null">
+				PARAMETYPE_ = #{parameType, jdbcType=VARCHAR},
+			</if>
+			<if test="collection != null">
+				COLLECTION_ = #{collection, jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				OPERATOR_ = #{operator, jdbcType=VARCHAR},
+			</if>
+			<if test="connector != null">
+				CONNECTOR_ = #{connector, jdbcType=VARCHAR},
+			</if>
+			<if test="ordinal != null">
+				ORDINAL_ = #{ordinal, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteHavingSegmentById" parameterType="long">
+		delete from
+		SYS_DATA_HAVING
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteHavingSegmentByDataSetId" parameterType="string">
+		delete from SYS_DATA_HAVING
+		where DATASETID_ = #{datasetId}
+	</delete>
+
+
+	<delete id="deleteHavingSegments" parameterType="com.glaf.datamgr.query.HavingSegmentQuery">
+		delete from SYS_DATA_HAVING
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getHavingSegmentById" parameterType="long"
+		resultMap="havingSegmentResultMap">
+		select * from SYS_DATA_HAVING where ID_ = #{id}
+	</select>
+
+
+	<select id="getHavingSegmentsByDataSetId" parameterType="string"
+		resultMap="havingSegmentResultMap">
+		select * from SYS_DATA_HAVING where DATASETID_ =
+		#{datasetId}
+	</select>
+
+
+	<select id="getHavingSegments" parameterType="com.glaf.datamgr.query.HavingSegmentQuery"
+		resultMap="havingSegmentResultMap">
+		select distinct E.*
+		<include refid="selectHavingSegmentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ORDINAL_ asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getHavingSegmentCount" parameterType="com.glaf.datamgr.query.HavingSegmentQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectHavingSegmentsSql" />
+	</select>
+
+
+	<sql id="selectHavingSegmentsSql">
+
+		from SYS_DATA_HAVING E
+
+		<where>
+			1 = 1
+
+			<if test="datasetId != null and datasetId != '' ">
+				and E.DATASETID_ = #{datasetId}
+			</if>
+
+			<if test="datasetIds != null and datasetIds.size() &gt; 0">
+				and E.DATASETID_ IN
+				<foreach item="x_datasetId" index="index" collection="datasetIds"
+					open="(" separator="," close=")">
+					#{x_datasetId}
+				</foreach>
+			</if>
+
+			<if test="tableName != null and tableName != '' ">
+				and E.TABLENAME_ = #{tableName}
+			</if>
+
+			<if test="tableNameLike != null and tableNameLike != '' ">
+				and E.TABLENAME_ like #{tableNameLike}
+			</if>
+
+			<if test="tableNames != null and tableNames.size() &gt; 0">
+				and E.TABLENAME_ IN
+				<foreach item="x_tableName" index="index" collection="tableNames"
+					open="(" separator="," close=")">
+					#{x_tableName}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,82 @@
+[{
+	"toolBarName" : "字体",
+	"tools" : [
+		{
+			"icon" : "font-icon" ,
+			"toolName" : "字体"
+		}, {
+			"icon" : "fontsize-icon" ,
+			"toolName" : "字体大小"
+		}, {
+			"icon" : "textbold-icon" ,
+			"toolName" : "粗体"
+		}, {
+			"icon" : "textitalic-icon" ,
+			"toolName" : "斜体"
+		}, {
+			"icon" : "textunderline-icon" ,
+			"toolName" : "下划线"
+		}, {
+			"icon" : "fillcolor-icon" ,
+			"toolName" : "填充颜色"
+		}, {
+			"icon" : "textcolor-icon" ,
+			"toolName" : "字体颜色"
+		}
+	]
+}, {
+	"toolBarName" : "排版",
+	"tools" : [
+		{
+			"icon" : "justify-icon" ,
+			"toolName" : "折行显示"
+		}, {
+			"icon" : "horizontalleft-icon" ,
+			"toolName" : "居左"
+		}, {
+			"icon" : "horizontalcenter-icon" ,
+			"toolName" : "水平居中"
+		}, {
+			"icon" : "horizontalright-icon" ,
+			"toolName" : "居右"
+		}, {
+			"icon" : "verticaltop-icon" ,
+			"toolName" : "居上"
+		}, {
+			"icon" : "verticalcenter-icon" ,
+			"toolName" : "垂直居中"
+		}, {
+			"icon" : "verticalbuttom-icon" ,
+			"toolName" : "居下"
+		}
+	]
+}, {
+	"toolBarName" : "系统",
+	"tools" : [
+		{
+			"icon" : "editundo-icon" ,
+			"toolName" : "撤销"
+		}, {
+			"icon" : "editredo-icon" ,
+			"toolName" : "恢复"
+		}, {
+			"icon" : "save-icon" ,
+			"toolName" : "保存"
+		}, {
+			"icon" : "first-icon" ,
+			"toolName" : "第一页"
+		}, {
+			"icon" : "prev-icon" ,
+			"toolName" : "上一页"
+		}, {
+			"icon" : "next-icon" ,
+			"toolName" : "下一页"
+		}, {
+			"icon" : "last-icon" ,
+			"toolName" : "最后一页"
+		}, {
+			"icon" : "print-icon" ,
+			"toolName" : "打印"
+		},
+	]
+}]

@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemTmplMapper">
+
+ <resultMap id="convertElemTmplResultMap"	type="com.glaf.convert.domain.ConvertElemTmpl">
+        <id property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT" />
+        <result property="cvtId" column="CVT_ID_" jdbcType="BIGINT"/>
+        <result property="elemType" column="ELEM_TYPE_" jdbcType="VARCHAR"/>
+        <result property="dataRole" column="DATAROLE_" jdbcType="VARCHAR"/>
+        <result property="elemName" column="ELEM_NAME_" jdbcType="VARCHAR"/>
+        <result property="elemId" column="ELEM_ID_" jdbcType="VARCHAR"/>
+        <result property="dType" column="DTYPE_" jdbcType="VARCHAR"/>
+        <result property="len" column="LEN_" jdbcType="INTEGER"/>
+        <result property="digit" column="DIGIT_" jdbcType="INTEGER"/>
+        <result property="defaultVal" column="DEFAULT_VAL_" jdbcType="VARCHAR"/>
+        <result property="rowIndex" column="ROW_INDEX_" jdbcType="INTEGER"/>
+        <result property="colIndex" column="COL_INDEX_" jdbcType="INTEGER"/>
+        <result property="readOnly" column="READONLY_" jdbcType="VARCHAR"/>
+        <result property="print" column="PRINT_" jdbcType="VARCHAR"/>
+        <result property="display" column="DISPLAY_" jdbcType="VARCHAR"/>
+        <result property="isMustFill" column="ISMUSTFILL_" jdbcType="VARCHAR"/>
+        <result property="isDataOnly" column="ISDATAONLY_" jdbcType="VARCHAR"/>
+        <result property="direction" column="DIRECTION_" jdbcType="VARCHAR"/>
+        <result property="vararea" column="VAR_AREA_" jdbcType="VARCHAR"/>
+        <result property="endRowIndex" column="END_ROW_INDEX_" jdbcType="INTEGER"/>
+        <result property="endColIndex" column="END_COL_INDEX_" jdbcType="INTEGER"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="repinfoListId" column="REPINFO_LISTID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemTmpl" parameterType="com.glaf.convert.domain.ConvertElemTmpl">
+		insert into CVT_ELEM_TMPL 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    CVT_ELEM_ID_
+			<if test="cvtId != null">
+				,CVT_ID_ 
+			</if>
+			<if test="elemType != null">
+				,ELEM_TYPE_ 
+			</if>
+			<if test="dataRole != null">
+				,DATAROLE_ 
+			</if>
+			<if test="elemName != null">
+				,ELEM_NAME_ 
+			</if>
+			<if test="elemId != null">
+				,ELEM_ID_ 
+			</if>
+			<if test="dType != null">
+				,DTYPE_ 
+			</if>
+			<if test="len != null">
+				,LEN_ 
+			</if>
+			<if test="digit != null">
+				,DIGIT_ 
+			</if>
+			<if test="defaultVal != null">
+				,DEFAULT_VAL_ 
+			</if>
+			<if test="rowIndex != null">
+				,ROW_INDEX_ 
+			</if>
+			<if test="colIndex != null">
+				,COL_INDEX_ 
+			</if>
+			<if test="readOnly != null">
+				,READONLY_ 
+			</if>
+			<if test="print != null">
+				,PRINT_ 
+			</if>
+			<if test="display != null">
+				,DISPLAY_ 
+			</if>
+			<if test="isMustFill != null">
+				,ISMUSTFILL_ 
+			</if>
+			<if test="isDataOnly != null">
+				,ISDATAONLY_ 
+			</if>
+			<if test="direction != null">
+				,DIRECTION_ 
+			</if>
+			<if test="vararea != null">
+				,VAR_AREA_ 
+			</if>
+			<if test="endRowIndex != null">
+				,END_ROW_INDEX_ 
+			</if>
+			<if test="endColIndex != null">
+				,END_COL_INDEX_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+			<if test="repinfoListId != null">
+				,REPINFO_LISTID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{cvtElemId, jdbcType=BIGINT}
+	     
+			<if test="cvtId != null">
+				,#{cvtId, jdbcType=BIGINT}
+			</if>
+			<if test="elemType != null">
+				,#{elemType, jdbcType=VARCHAR}
+			</if>
+			<if test="dataRole != null">
+				,#{dataRole, jdbcType=VARCHAR}
+			</if>
+			<if test="elemName != null">
+				,#{elemName, jdbcType=VARCHAR}
+			</if>
+			<if test="elemId != null">
+				,#{elemId, jdbcType=VARCHAR}
+			</if>
+			<if test="dType != null">
+				,#{dType, jdbcType=VARCHAR}
+			</if>
+			<if test="len != null">
+				,#{len, jdbcType=INTEGER}
+			</if>
+			<if test="digit != null">
+				,#{digit, jdbcType=INTEGER}
+			</if>
+			<if test="defaultVal != null">
+				,#{defaultVal, jdbcType=VARCHAR}
+			</if>
+			<if test="rowIndex != null">
+				,#{rowIndex, jdbcType=INTEGER}
+			</if>
+			<if test="colIndex != null">
+				,#{colIndex, jdbcType=INTEGER}
+			</if>
+			<if test="readOnly != null">
+				,#{readOnly, jdbcType=VARCHAR}
+			</if>
+			<if test="print != null">
+				,#{print, jdbcType=VARCHAR}
+			</if>
+			<if test="display != null">
+				,#{display, jdbcType=VARCHAR}
+			</if>
+			<if test="isMustFill != null">
+				,#{isMustFill, jdbcType=VARCHAR}
+			</if>
+			<if test="isDataOnly != null">
+				,#{isDataOnly, jdbcType=VARCHAR}
+			</if>
+			<if test="direction != null">
+				,#{direction, jdbcType=VARCHAR}
+			</if>
+			<if test="vararea != null">
+				,#{vararea, jdbcType=VARCHAR}
+			</if>
+			<if test="endRowIndex != null">
+				,#{endRowIndex, jdbcType=INTEGER}
+			</if>
+			<if test="endColIndex != null">
+				,#{endColIndex, jdbcType=INTEGER}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="repinfoListId != null">
+				,#{repinfoListId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemTmpl" parameterType="com.glaf.convert.domain.ConvertElemTmpl">
+		update CVT_ELEM_TMPL
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtId != null">
+				CVT_ID_ = #{cvtId, jdbcType=BIGINT},
+			</if>
+			<if test="elemType != null">
+				ELEM_TYPE_ = #{elemType, jdbcType=VARCHAR},
+			</if>
+			<if test="dataRole != null">
+				DATAROLE_ = #{dataRole, jdbcType=VARCHAR},
+			</if>
+			<if test="elemName != null">
+				ELEM_NAME_ = #{elemName, jdbcType=VARCHAR},
+			</if>
+			<if test="elemId != null">
+				ELEM_ID_ = #{elemId, jdbcType=VARCHAR},
+			</if>
+			<if test="dType != null">
+				DTYPE_ = #{dType, jdbcType=VARCHAR},
+			</if>
+			<if test="len != null">
+				LEN_ = #{len, jdbcType=INTEGER},
+			</if>
+			<if test="digit != null">
+				DIGIT_ = #{digit, jdbcType=INTEGER},
+			</if>
+			<if test="defaultVal != null">
+				DEFAULT_VAL_ = #{defaultVal, jdbcType=VARCHAR},
+			</if>
+			<if test="rowIndex != null">
+				ROW_INDEX_ = #{rowIndex, jdbcType=INTEGER},
+			</if>
+			<if test="colIndex != null">
+				COL_INDEX_ = #{colIndex, jdbcType=INTEGER},
+			</if>
+			<if test="readOnly != null">
+				READONLY_ = #{readOnly, jdbcType=VARCHAR},
+			</if>
+			<if test="print != null">
+				PRINT_ = #{print, jdbcType=VARCHAR},
+			</if>
+			<if test="display != null">
+				DISPLAY_ = #{display, jdbcType=VARCHAR},
+			</if>
+			<if test="isMustFill != null">
+				ISMUSTFILL_ = #{isMustFill, jdbcType=VARCHAR},
+			</if>
+			<if test="isDataOnly != null">
+				ISDATAONLY_ = #{isDataOnly, jdbcType=VARCHAR},
+			</if>
+			<if test="direction != null">
+				DIRECTION_ = #{direction, jdbcType=VARCHAR},
+			</if>
+			<if test="vararea != null">
+				VAR_AREA_ = #{vararea, jdbcType=VARCHAR},
+			</if>
+			<if test="endRowIndex != null">
+				END_ROW_INDEX_ = #{endRowIndex, jdbcType=INTEGER},
+			</if>
+			<if test="endColIndex != null">
+				END_COL_INDEX_ = #{endColIndex, jdbcType=INTEGER},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="repinfoListId != null">
+				REPINFO_LISTID_ = #{repinfoListId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          CVT_ELEM_ID_ = #{cvtElemId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemTmplById" parameterType="long"> 
+        delete from CVT_ELEM_TMPL
+        where CVT_ELEM_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemTmpls" parameterType="com.glaf.convert.query.ConvertElemTmplQuery">
+		delete from CVT_ELEM_TMPL
+		where ( 
+ 			  CVT_ELEM_ID_ IN
+              <foreach item="x_cvtElemId" index="index" collection="cvtElemIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtElemId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemTmplById" parameterType="long" resultMap="convertElemTmplResultMap">
+		select * from CVT_ELEM_TMPL where CVT_ELEM_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemTmpls" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplQuery"
+		resultMap="convertElemTmplResultMap">
+		select distinct E.*
+		<include refid="selectConvertElemTmplsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CVT_ELEM_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemTmplCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemTmplsSql" />
+	</select>
+
+
+	<sql id="selectConvertElemTmplsSql">
+
+		from CVT_ELEM_TMPL E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtId != null">
+				and E.CVT_ID_ = #{cvtId}
+            </if>
+
+			<if test="cvtIdGreaterThanOrEqual != null">
+				and E.CVT_ID_ &gt;= #{cvtIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtIdLessThanOrEqual != null">
+				and E.CVT_ID_ &lt;= #{cvtIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtIds != null and cvtIds.size() &gt; 0">
+			    and E.CVT_ID_ IN
+                <foreach item="x_cvtId" index="index" collection="cvtIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="elemType != null and elemType != '' ">
+				and E.ELEM_TYPE_ = #{elemType}
+            </if>
+
+			<if test="elemTypeLike != null and elemTypeLike != '' ">
+				and E.ELEM_TYPE_ like #{elemTypeLike}
+            </if>
+
+			<if test="elemTypes != null and elemTypes.size() &gt; 0">
+			    and E.ELEM_TYPE_ IN
+                <foreach item="x_elemType" index="index" collection="elemTypes" 
+                     open="(" separator="," close=")">
+                  #{x_elemType}
+                </foreach>
+			</if>
+	        
+			<if test="elemName != null and elemName != '' ">
+				and E.ELEM_NAME_ = #{elemName}
+            </if>
+
+			<if test="elemNameLike != null and elemNameLike != '' ">
+				and E.ELEM_NAME_ like #{elemNameLike}
+            </if>
+
+			<if test="elemNames != null and elemNames.size() &gt; 0">
+			    and E.ELEM_NAME_ IN
+                <foreach item="x_elemName" index="index" collection="elemNames" 
+                     open="(" separator="," close=")">
+                  #{x_elemName}
+                </foreach>
+			</if>
+	        
+			<if test="elemId != null and elemId != '' ">
+				and E.ELEM_ID_ = #{elemId}
+            </if>
+
+			<if test="elemIdLike != null and elemIdLike != '' ">
+				and E.ELEM_ID_ like #{elemIdLike}
+            </if>
+
+			<if test="elemIds != null and elemIds.size() &gt; 0">
+			    and E.ELEM_ID_ IN
+                <foreach item="x_elemId" index="index" collection="elemIds" 
+                     open="(" separator="," close=")">
+                  #{x_elemId}
+                </foreach>
+			</if>
+	        
+			<if test="dType != null and dType != '' ">
+				and E.DTYPE_ = #{dType}
+            </if>
+
+			<if test="dTypeLike != null and dTypeLike != '' ">
+				and E.DTYPE_ like #{dTypeLike}
+            </if>
+
+			<if test="dTypes != null and dTypes.size() &gt; 0">
+			    and E.DTYPE_ IN
+                <foreach item="x_dType" index="index" collection="dTypes" 
+                     open="(" separator="," close=")">
+                  #{x_dType}
+                </foreach>
+			</if>
+	        
+			<if test="defaultVal != null and defaultVal != '' ">
+				and E.DEFAULT_VAL_ = #{defaultVal}
+            </if>
+
+			<if test="defaultValLike != null and defaultValLike != '' ">
+				and E.DEFAULT_VAL_ like #{defaultValLike}
+            </if>
+
+			<if test="defaultVals != null and defaultVals.size() &gt; 0">
+			    and E.DEFAULT_VAL_ IN
+                <foreach item="x_defaultVal" index="index" collection="defaultVals" 
+                     open="(" separator="," close=")">
+                  #{x_defaultVal}
+                </foreach>
+			</if>
+
+			<if test="rowIndex != null">
+				and E.ROW_INDEX_ = #{rowIndex}
+            </if>
+
+			<if test="rowIndexGreaterThanOrEqual != null">
+				and E.ROW_INDEX_ &gt;= #{rowIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="rowIndexLessThanOrEqual != null">
+				and E.ROW_INDEX_ &lt;= #{rowIndexLessThanOrEqual}
+            </if>
+
+			<if test="rowIndexs != null and rowIndexs.size() &gt; 0">
+			    and E.ROW_INDEX_ IN
+                <foreach item="x_rowIndex" index="index" collection="rowIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_rowIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="colIndex != null">
+				and E.COL_INDEX_ = #{colIndex}
+            </if>
+
+			<if test="colIndexGreaterThanOrEqual != null">
+				and E.COL_INDEX_ &gt;= #{colIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="colIndexLessThanOrEqual != null">
+				and E.COL_INDEX_ &lt;= #{colIndexLessThanOrEqual}
+            </if>
+
+			<if test="colIndexs != null and colIndexs.size() &gt; 0">
+			    and E.COL_INDEX_ IN
+                <foreach item="x_colIndex" index="index" collection="colIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_colIndex}
+                </foreach>
+			</if>
+      
+	        
+			<if test="readOnly != null and readOnly != '' ">
+				and E.READONLY_ = #{readOnly}
+            </if>
+
+			<if test="readOnlyLike != null and readOnlyLike != '' ">
+				and E.READONLY_ like #{readOnlyLike}
+            </if>
+
+			<if test="readOnlys != null and readOnlys.size() &gt; 0">
+			    and E.READONLY_ IN
+                <foreach item="x_readOnly" index="index" collection="readOnlys" 
+                     open="(" separator="," close=")">
+                  #{x_readOnly}
+                </foreach>
+			</if>
+	        
+			<if test="print != null and print != '' ">
+				and E.PRINT_ = #{print}
+            </if>
+
+			<if test="printLike != null and printLike != '' ">
+				and E.PRINT_ like #{printLike}
+            </if>
+
+			<if test="prints != null and prints.size() &gt; 0">
+			    and E.PRINT_ IN
+                <foreach item="x_print" index="index" collection="prints" 
+                     open="(" separator="," close=")">
+                  #{x_print}
+                </foreach>
+			</if>
+	        
+			<if test="display != null and display != '' ">
+				and E.DISPLAY_ = #{display}
+            </if>
+
+			<if test="displayLike != null and displayLike != '' ">
+				and E.DISPLAY_ like #{displayLike}
+            </if>
+
+			<if test="displays != null and displays.size() &gt; 0">
+			    and E.DISPLAY_ IN
+                <foreach item="x_display" index="index" collection="displays" 
+                     open="(" separator="," close=")">
+                  #{x_display}
+                </foreach>
+			</if>
+	        
+			<if test="direction != null and direction != '' ">
+				and E.DIRECTION_ = #{direction}
+            </if>
+
+			<if test="directionLike != null and directionLike != '' ">
+				and E.DIRECTION_ like #{directionLike}
+            </if>
+
+			<if test="directions != null and directions.size() &gt; 0">
+			    and E.DIRECTION_ IN
+                <foreach item="x_direction" index="index" collection="directions" 
+                     open="(" separator="," close=")">
+                  #{x_direction}
+                </foreach>
+			</if>
+	        
+			<if test="vararea != null and vararea != '' ">
+				and E.VAR_AREA_ = #{vararea}
+            </if>
+
+			<if test="varareaLike != null and varareaLike != '' ">
+				and E.VAR_AREA_ like #{varareaLike}
+            </if>
+
+			<if test="varareas != null and varareas.size() &gt; 0">
+			    and E.VAR_AREA_ IN
+                <foreach item="x_vararea" index="index" collection="varareas" 
+                     open="(" separator="," close=")">
+                  #{x_vararea}
+                </foreach>
+			</if>
+
+			<if test="endRowIndex != null">
+				and E.END_ROW_INDEX_ = #{endRowIndex}
+            </if>
+
+			<if test="endRowIndexGreaterThanOrEqual != null">
+				and E.END_ROW_INDEX_ &gt;= #{endRowIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="endRowIndexLessThanOrEqual != null">
+				and E.END_ROW_INDEX_ &lt;= #{endRowIndexLessThanOrEqual}
+            </if>
+
+			<if test="endRowIndexs != null and endRowIndexs.size() &gt; 0">
+			    and E.END_ROW_INDEX_ IN
+                <foreach item="x_endRowIndex" index="index" collection="endRowIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_endRowIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="endColIndex != null">
+				and E.END_COL_INDEX_ = #{endColIndex}
+            </if>
+
+			<if test="endColIndexGreaterThanOrEqual != null">
+				and E.END_COL_INDEX_ &gt;= #{endColIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="endColIndexLessThanOrEqual != null">
+				and E.END_COL_INDEX_ &lt;= #{endColIndexLessThanOrEqual}
+            </if>
+
+			<if test="endColIndexs != null and endColIndexs.size() &gt; 0">
+			    and E.END_COL_INDEX_ IN
+                <foreach item="x_endColIndex" index="index" collection="endColIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_endColIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="repinfoListId != null and repinfoListId != '' ">
+				and E.REPINFO_LISTID_ = #{repinfoListId}
+            </if>
+
+			<if test="repinfoListIdLike != null and repinfoListIdLike != '' ">
+				and E.REPINFO_LISTID_ like #{repinfoListIdLike}
+            </if>
+
+			<if test="repinfoListIds != null and repinfoListIds.size() &gt; 0">
+			    and E.REPINFO_LISTID_ IN
+                <foreach item="x_repinfoListId" index="index" collection="repinfoListIds" 
+                     open="(" separator="," close=")">
+                  #{x_repinfoListId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

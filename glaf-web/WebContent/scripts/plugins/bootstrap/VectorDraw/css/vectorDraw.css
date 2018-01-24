@@ -1,0 +1,16 @@
+#text_Wrapper
+	{
+		text-align:center;
+		
+		font-size:14px;
+		border:1px solid;
+		border-radius:5px !important;
+		padding:5px;
+		position:absolute;
+		left:auto;
+		top:auto;
+		background-color:#ffffff;
+		min-width:150px;
+		
+		opacity : 0.9;
+	}

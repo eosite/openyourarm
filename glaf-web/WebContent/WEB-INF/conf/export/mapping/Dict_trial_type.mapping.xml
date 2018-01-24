@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping> 
+  <entity table="dict_trial_type" title="试验类型字典表" parseType="sqlite" exportType="json" aggregationKeys="code" insertOnly="false" primaryKey="code" batchSize="100" name="dict_trial_type">
+		<id name="id" column="id" type="String" title="编号" length="200" exportFlag="true"/>
+		<property name="code" column="code" type="String" title="编码" length="200" exportFlag="true"/>
+		<property name="name" column="name" type="String" title="名称" length="250" exportFlag="true"/>
+		<property name="status" column="status" type="Integer" title="是否启用" exportFlag="true"/>
+  </entity>
+</mapping>

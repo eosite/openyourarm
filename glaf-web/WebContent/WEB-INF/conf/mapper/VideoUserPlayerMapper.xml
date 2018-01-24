@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoUserPlayerMapper">
+
+	<resultMap id="videoUserPlayerResultMap" type="com.glaf.video.domain.VideoUserPlayer">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="cameraId" column="CAMERAID_" jdbcType="VARCHAR" />
+		<result property="location" column="LOCATION_" jdbcType="INTEGER" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoUserPlayer" parameterType="com.glaf.video.domain.VideoUserPlayer">
+		insert into VIDEO_USER_PLAYER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="cameraId != null">
+				,CAMERAID_
+			</if>
+			<if test="location != null">
+				,LOCATION_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="cameraId != null">
+				,#{cameraId, jdbcType=VARCHAR}
+			</if>
+			<if test="location != null">
+				,#{location, jdbcType=INTEGER}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoUserPlayer" parameterType="java.util.List">
+		insert into VIDEO_USER_PLAYER (
+		ID_
+		,DEVELOPERID_
+		,USERID_
+		,CAMERAID_
+		,LOCATION_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="videoUserPlayer" index="index"
+			separator=",">
+			(
+			#{videoUserPlayer.id, jdbcType=VARCHAR}
+			,#{videoUserPlayer.developerId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.userId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.cameraId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.location, jdbcType=INTEGER}
+			,#{videoUserPlayer.createTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoUserPlayer_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoUserPlayer" index="index">
+			insert into VIDEO_USER_PLAYER (
+			ID_
+			,DEVELOPERID_
+			,USERID_
+			,CAMERAID_
+			,LOCATION_
+			,CREATETIME_
+			) values (
+			#{videoUserPlayer.id,
+			jdbcType=VARCHAR}
+			,#{videoUserPlayer.developerId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.userId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.cameraId, jdbcType=VARCHAR}
+			,#{videoUserPlayer.location, jdbcType=INTEGER}
+			,#{videoUserPlayer.createTime,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoUserPlayer" parameterType="com.glaf.video.domain.VideoUserPlayer">
+		update VIDEO_USER_PLAYER
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="developerId != null">
+				DEVELOPERID_ = #{developerId, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="cameraId != null">
+				CAMERAID_ = #{cameraId, jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				LOCATION_ = #{location, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoUserPlayerById" parameterType="string">
+		delete from
+		VIDEO_USER_PLAYER
+		where ID_ = #{id}
+	</delete>
+	
+	
+	<delete id="deleteVideoUserPlayerByUserId" parameterType="string">
+		delete from
+		VIDEO_USER_PLAYER
+		where USERID_ = #{userId}
+	</delete>
+
+
+	<delete id="deleteVideoUserPlayers" parameterType="com.glaf.video.query.VideoUserPlayerQuery">
+		delete from VIDEO_USER_PLAYER
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getVideoUserPlayerById" parameterType="string"
+		resultMap="videoUserPlayerResultMap">
+		select * from VIDEO_USER_PLAYER where ID_ = #{id}
+	</select>
+
+
+	<select id="getVideoUserPlayers" parameterType="com.glaf.video.query.VideoUserPlayerQuery"
+		resultMap="videoUserPlayerResultMap">
+		select distinct E.*
+		<include refid="selectVideoUserPlayersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoUserPlayerCount" parameterType="com.glaf.video.query.VideoUserPlayerQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoUserPlayersSql" />
+	</select>
+
+
+	<sql id="selectVideoUserPlayersSql">
+
+		from VIDEO_USER_PLAYER E
+
+		<where>
+			1 = 1
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="developerIds != null and developerIds.size() &gt; 0">
+				and E.DEVELOPERID_ IN
+				<foreach item="x_developerId" index="index" collection="developerIds"
+					open="(" separator="," close=")">
+					#{x_developerId}
+				</foreach>
+			</if>
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

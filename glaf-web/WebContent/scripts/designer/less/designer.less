@@ -1,0 +1,65 @@
+@rowMarginTop:0d;
+@rowMarginLeft:0d;
+@rowMarginBottom:0d;
+@rowMarginRight:0d;
+@rowPaddingTop:0d;
+@rowPaddingLeft:0d;
+@rowPaddingBottom:0d;
+@rowPaddingRight:0d;
+@colMarginTop:0d;
+@colMarginLeft:0d;
+@colMarginBottom:0d;
+@colMarginRight:0d;
+@colPaddingTop:0d;
+@colPaddingLeft:0d;
+@colPaddingBottom:0d;
+@colPaddingRight:0d;
+@backgroundColor:white;
+@transparency:100;
+@backgroundSize:'';
+@backgroundRepeat:repeat;
+@contextPath:'/glaf/';
+@baseURL:'/website/lob/lob2/download/';
+@backgroundImage:'';
+@backgroundImageFullPath:'';
+.margin(@direct,@val) when (ispixel(@val)){margin-@{direct}: @val}
+.margin(@direct,@val) when (ispixel(@val)=false)and (isunit(@val, d)=false) and (@val=0){margin-@{direct}: @val}
+.margin(@direct,@val) when (ispixel(@val)=false)and (isunit(@val, d)=false) and(@val>0){margin-@{direct}: ~'@{val}px'}
+.padding(@direct,@val) when (ispixel(@val)){padding-@{direct}: @val}
+.padding(@direct,@val) when (ispixel(@val)=false)and (isunit(@val, d)=false) and(@val=0){padding-@{direct}: @val}
+.padding(@direct,@val) when (ispixel(@val)=false)and (isunit(@val, d)=false) and(@val>0){padding-@{direct}: ~'@{val}px'}
+.backgroundImage(@contextPath,@baseURL,@imgPath,@fullPath) when not (fullPath=''){background-image: url('@{contextPath}@{fullPath}')}
+.backgroundImage(@contextPath,@baseURL,@imgPath,@fullPath) when (fullPath='') and not (imgPath=''){background-image: url('@{contextPath}@{baseURL}@{imgPath}')}
+.edit .designer {
+  background-color:@backgroundColor;
+  background-size:@backgroundSize;
+  background-repeat:@backgroundRepeat;
+  .backgroundImage(@contextPath,@baseURL,@backgroundImage,replace(@backgroundImageFullPath,'1sb','/',"gi"));
+}
+.preview .designer {
+  background-color:@backgroundColor;
+  opacity:@transparency/100;
+  background-size:@backgroundSize;
+  background-repeat:@backgroundRepeat;
+  .backgroundImage(@contextPath,@baseURL,@backgroundImage,replace(@backgroundImageFullPath,'1sb','/',"gi"));
+}
+.preview .designer .row{
+  .margin(top,@rowMarginTop);
+  .margin(left,@rowMarginLeft);
+  .margin(bottom,@rowMarginBottom);
+  .margin(right,@rowMarginRight);
+  .padding(top,@rowPaddingTop);
+  .padding(left,@rowPaddingLeft);
+  .padding(bottom,@rowPaddingBottom);
+  .padding(right,@rowPaddingRight);
+}
+.preview .designer .row .column{
+  .margin(top,@colMarginTop);
+  .margin(left,@colMarginLeft);
+  .margin(bottom,@colMarginBottom);
+  .margin(right,@colMarginRight);
+  .padding(top,@colPaddingTop);
+  .padding(left,@colPaddingLeft);
+  .padding(bottom,@colPaddingBottom);
+  .padding(right,@colPaddingRight);
+}

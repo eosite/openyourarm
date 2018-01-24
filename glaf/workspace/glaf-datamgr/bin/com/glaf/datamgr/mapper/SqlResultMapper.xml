@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SqlResultMapper">
+
+	<resultMap id="sqlResultResultMap" type="com.glaf.datamgr.domain.SqlResult">
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="projectId" column="PROJECTID_" jdbcType="BIGINT" />
+		<result property="count" column="COUNT_" jdbcType="INTEGER" />
+		<result property="value" column="VALUE_" jdbcType="DOUBLE" />
+		<result property="ext1" column="EXT1_" jdbcType="VARCHAR" />
+		<result property="ext2" column="EXT2_" jdbcType="VARCHAR" />
+		<result property="ext3" column="EXT3_" jdbcType="VARCHAR" />
+		<result property="ext4" column="EXT4_" jdbcType="VARCHAR" />
+		<result property="ext5" column="EXT5_" jdbcType="VARCHAR" />
+		<result property="ext6" column="EXT6_" jdbcType="VARCHAR" />
+		<result property="ext7" column="EXT7_" jdbcType="VARCHAR" />
+		<result property="ext8" column="EXT8_" jdbcType="VARCHAR" />
+		<result property="ext9" column="EXT9_" jdbcType="VARCHAR" />
+		<result property="ext10" column="EXT10_" jdbcType="VARCHAR" />
+		<result property="ext101" column="EXT101_" jdbcType="DOUBLE" />
+		<result property="ext102" column="EXT102_" jdbcType="DOUBLE" />
+		<result property="ext103" column="EXT103_" jdbcType="DOUBLE" />
+		<result property="ext104" column="EXT104_" jdbcType="DOUBLE" />
+		<result property="ext105" column="EXT105_" jdbcType="DOUBLE" />
+		<result property="ext106" column="EXT106_" jdbcType="DOUBLE" />
+		<result property="ext107" column="EXT107_" jdbcType="DOUBLE" />
+		<result property="ext108" column="EXT108_" jdbcType="DOUBLE" />
+		<result property="ext109" column="EXT109_" jdbcType="DOUBLE" />
+		<result property="ext110" column="EXT110_" jdbcType="DOUBLE" />
+		<result property="ext111" column="EXT111_" jdbcType="DOUBLE" />
+		<result property="ext112" column="EXT112_" jdbcType="DOUBLE" />
+		<result property="ext113" column="EXT113_" jdbcType="DOUBLE" />
+		<result property="ext114" column="EXT114_" jdbcType="DOUBLE" />
+		<result property="ext115" column="EXT115_" jdbcType="DOUBLE" />
+		<result property="ext116" column="EXT116_" jdbcType="DOUBLE" />
+		<result property="ext117" column="EXT117_" jdbcType="DOUBLE" />
+		<result property="ext118" column="EXT118_" jdbcType="DOUBLE" />
+		<result property="ext119" column="EXT119_" jdbcType="DOUBLE" />
+		<result property="ext120" column="EXT120_" jdbcType="DOUBLE" />
+		<result property="ext201" column="EXT201_" jdbcType="BIGINT" />
+		<result property="ext202" column="EXT202_" jdbcType="BIGINT" />
+		<result property="ext203" column="EXT203_" jdbcType="BIGINT" />
+		<result property="ext204" column="EXT204_" jdbcType="BIGINT" />
+		<result property="ext205" column="EXT205_" jdbcType="BIGINT" />
+		<result property="ext206" column="EXT206_" jdbcType="BIGINT" />
+		<result property="ext207" column="EXT207_" jdbcType="BIGINT" />
+		<result property="ext208" column="EXT208_" jdbcType="BIGINT" />
+		<result property="ext209" column="EXT209_" jdbcType="BIGINT" />
+		<result property="ext210" column="EXT210_" jdbcType="BIGINT" />
+		<result property="ext301" column="EXT301_" jdbcType="INTEGER" />
+		<result property="ext302" column="EXT302_" jdbcType="INTEGER" />
+		<result property="ext303" column="EXT303_" jdbcType="INTEGER" />
+		<result property="ext304" column="EXT304_" jdbcType="INTEGER" />
+		<result property="ext305" column="EXT305_" jdbcType="INTEGER" />
+		<result property="ext306" column="EXT306_" jdbcType="INTEGER" />
+		<result property="ext307" column="EXT307_" jdbcType="INTEGER" />
+		<result property="ext308" column="EXT308_" jdbcType="INTEGER" />
+		<result property="ext309" column="EXT309_" jdbcType="INTEGER" />
+		<result property="ext310" column="EXT310_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="runYear" column="RUNYEAR_" jdbcType="INTEGER" />
+		<result property="runMonth" column="RUNMONTH_" jdbcType="INTEGER" />
+		<result property="runWeek" column="RUNWEEK_" jdbcType="INTEGER" />
+		<result property="runQuarter" column="RUNQUARTER_" jdbcType="INTEGER" />
+		<result property="runDay" column="RUNDAY_" jdbcType="INTEGER" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSqlResult" parameterType="com.glaf.datamgr.domain.SqlResult">
+
+		insert into SYS_SQL_RESULT${suffix}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="projectId != null">
+				,PROJECTID_
+			</if>
+			<if test="count != null">
+				,COUNT_
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="ext1 != null">
+				,EXT1_
+			</if>
+			<if test="ext2 != null">
+				,EXT2_
+			</if>
+			<if test="ext3 != null">
+				,EXT3_
+			</if>
+			<if test="ext4 != null">
+				,EXT4_
+			</if>
+			<if test="ext5 != null">
+				,EXT5_
+			</if>
+			<if test="ext6 != null">
+				,EXT6_
+			</if>
+			<if test="ext7 != null">
+				,EXT7_
+			</if>
+			<if test="ext8 != null">
+				,EXT8_
+			</if>
+			<if test="ext9 != null">
+				,EXT9_
+			</if>
+			<if test="ext10 != null">
+				,EXT10_
+			</if>
+			<if test="ext101 != null">
+				,EXT101_
+			</if>
+			<if test="ext102 != null">
+				,EXT102_
+			</if>
+			<if test="ext103 != null">
+				,EXT103_
+			</if>
+			<if test="ext104 != null">
+				,EXT104_
+			</if>
+			<if test="ext105 != null">
+				,EXT105_
+			</if>
+			<if test="ext106 != null">
+				,EXT106_
+			</if>
+			<if test="ext107 != null">
+				,EXT107_
+			</if>
+			<if test="ext108 != null">
+				,EXT108_
+			</if>
+			<if test="ext109 != null">
+				,EXT109_
+			</if>
+			<if test="ext110 != null">
+				,EXT110_
+			</if>
+			<if test="ext111 != null">
+				,EXT111_
+			</if>
+			<if test="ext112 != null">
+				,EXT112_
+			</if>
+			<if test="ext113 != null">
+				,EXT113_
+			</if>
+			<if test="ext114 != null">
+				,EXT114_
+			</if>
+			<if test="ext115 != null">
+				,EXT115_
+			</if>
+			<if test="ext116 != null">
+				,EXT116_
+			</if>
+			<if test="ext117 != null">
+				,EXT117_
+			</if>
+			<if test="ext118 != null">
+				,EXT118_
+			</if>
+			<if test="ext119 != null">
+				,EXT119_
+			</if>
+			<if test="ext120 != null">
+				,EXT120_
+			</if>
+			<if test="ext201 != null">
+				,EXT201_
+			</if>
+			<if test="ext202 != null">
+				,EXT202_
+			</if>
+			<if test="ext203 != null">
+				,EXT203_
+			</if>
+			<if test="ext204 != null">
+				,EXT204_
+			</if>
+			<if test="ext205 != null">
+				,EXT205_
+			</if>
+			<if test="ext206 != null">
+				,EXT206_
+			</if>
+			<if test="ext207 != null">
+				,EXT207_
+			</if>
+			<if test="ext208 != null">
+				,EXT208_
+			</if>
+			<if test="ext209 != null">
+				,EXT209_
+			</if>
+			<if test="ext210 != null">
+				,EXT210_
+			</if>
+			<if test="ext301 != null">
+				,EXT301_
+			</if>
+			<if test="ext302 != null">
+				,EXT302_
+			</if>
+			<if test="ext303 != null">
+				,EXT303_
+			</if>
+			<if test="ext304 != null">
+				,EXT304_
+			</if>
+			<if test="ext305 != null">
+				,EXT305_
+			</if>
+			<if test="ext306 != null">
+				,EXT306_
+			</if>
+			<if test="ext307 != null">
+				,EXT307_
+			</if>
+			<if test="ext308 != null">
+				,EXT308_
+			</if>
+			<if test="ext309 != null">
+				,EXT309_
+			</if>
+			<if test="ext310 != null">
+				,EXT310_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="runYear != null">
+				,RUNYEAR_
+			</if>
+			<if test="runMonth != null">
+				,RUNMONTH_
+			</if>
+			<if test="runWeek != null">
+				,RUNWEEK_
+			</if>
+			<if test="runQuarter != null">
+				,RUNQUARTER_
+			</if>
+			<if test="runDay != null">
+				,RUNDAY_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="projectId != null">
+				,#{projectId, jdbcType=BIGINT}
+			</if>
+			<if test="count != null">
+				,#{count, jdbcType=INTEGER}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=DOUBLE}
+			</if>
+			<if test="ext1 != null">
+				,#{ext1, jdbcType=VARCHAR}
+			</if>
+			<if test="ext2 != null">
+				,#{ext2, jdbcType=VARCHAR}
+			</if>
+			<if test="ext3 != null">
+				,#{ext3, jdbcType=VARCHAR}
+			</if>
+			<if test="ext4 != null">
+				,#{ext4, jdbcType=VARCHAR}
+			</if>
+			<if test="ext5 != null">
+				,#{ext5, jdbcType=VARCHAR}
+			</if>
+			<if test="ext6 != null">
+				,#{ext6, jdbcType=VARCHAR}
+			</if>
+			<if test="ext7 != null">
+				,#{ext7, jdbcType=VARCHAR}
+			</if>
+			<if test="ext8 != null">
+				,#{ext8, jdbcType=VARCHAR}
+			</if>
+			<if test="ext9 != null">
+				,#{ext9, jdbcType=VARCHAR}
+			</if>
+			<if test="ext10 != null">
+				,#{ext10, jdbcType=VARCHAR}
+			</if>
+			<if test="ext101 != null">
+				,#{ext101, jdbcType=DOUBLE}
+			</if>
+			<if test="ext102 != null">
+				,#{ext102, jdbcType=DOUBLE}
+			</if>
+			<if test="ext103 != null">
+				,#{ext103, jdbcType=DOUBLE}
+			</if>
+			<if test="ext104 != null">
+				,#{ext104, jdbcType=DOUBLE}
+			</if>
+			<if test="ext105 != null">
+				,#{ext105, jdbcType=DOUBLE}
+			</if>
+			<if test="ext106 != null">
+				,#{ext106, jdbcType=DOUBLE}
+			</if>
+			<if test="ext107 != null">
+				,#{ext107, jdbcType=DOUBLE}
+			</if>
+			<if test="ext108 != null">
+				,#{ext108, jdbcType=DOUBLE}
+			</if>
+			<if test="ext109 != null">
+				,#{ext109, jdbcType=DOUBLE}
+			</if>
+			<if test="ext110 != null">
+				,#{ext110, jdbcType=DOUBLE}
+			</if>
+			<if test="ext111 != null">
+				,#{ext111, jdbcType=DOUBLE}
+			</if>
+			<if test="ext112 != null">
+				,#{ext112, jdbcType=DOUBLE}
+			</if>
+			<if test="ext113 != null">
+				,#{ext113, jdbcType=DOUBLE}
+			</if>
+			<if test="ext114 != null">
+				,#{ext114, jdbcType=DOUBLE}
+			</if>
+			<if test="ext115 != null">
+				,#{ext115, jdbcType=DOUBLE}
+			</if>
+			<if test="ext116 != null">
+				,#{ext116, jdbcType=DOUBLE}
+			</if>
+			<if test="ext117 != null">
+				,#{ext117, jdbcType=DOUBLE}
+			</if>
+			<if test="ext118 != null">
+				,#{ext118, jdbcType=DOUBLE}
+			</if>
+			<if test="ext119 != null">
+				,#{ext119, jdbcType=DOUBLE}
+			</if>
+			<if test="ext120 != null">
+				,#{ext120, jdbcType=DOUBLE}
+			</if>
+			<if test="ext201 != null">
+				,#{ext201, jdbcType=BIGINT}
+			</if>
+			<if test="ext202 != null">
+				,#{ext202, jdbcType=BIGINT}
+			</if>
+			<if test="ext203 != null">
+				,#{ext203, jdbcType=BIGINT}
+			</if>
+			<if test="ext204 != null">
+				,#{ext204, jdbcType=BIGINT}
+			</if>
+			<if test="ext205 != null">
+				,#{ext205, jdbcType=BIGINT}
+			</if>
+			<if test="ext206 != null">
+				,#{ext206, jdbcType=BIGINT}
+			</if>
+			<if test="ext207 != null">
+				,#{ext207, jdbcType=BIGINT}
+			</if>
+			<if test="ext208 != null">
+				,#{ext208, jdbcType=BIGINT}
+			</if>
+			<if test="ext209 != null">
+				,#{ext209, jdbcType=BIGINT}
+			</if>
+			<if test="ext210 != null">
+				,#{ext210, jdbcType=BIGINT}
+			</if>
+			<if test="ext301 != null">
+				,#{ext301, jdbcType=INTEGER}
+			</if>
+			<if test="ext302 != null">
+				,#{ext302, jdbcType=INTEGER}
+			</if>
+			<if test="ext303 != null">
+				,#{ext303, jdbcType=INTEGER}
+			</if>
+			<if test="ext304 != null">
+				,#{ext304, jdbcType=INTEGER}
+			</if>
+			<if test="ext305 != null">
+				,#{ext305, jdbcType=INTEGER}
+			</if>
+			<if test="ext306 != null">
+				,#{ext306, jdbcType=INTEGER}
+			</if>
+			<if test="ext307 != null">
+				,#{ext307, jdbcType=INTEGER}
+			</if>
+			<if test="ext308 != null">
+				,#{ext308, jdbcType=INTEGER}
+			</if>
+			<if test="ext309 != null">
+				,#{ext309, jdbcType=INTEGER}
+			</if>
+			<if test="ext310 != null">
+				,#{ext310, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="runYear != null">
+				,#{runYear, jdbcType=INTEGER}
+			</if>
+			<if test="runMonth != null">
+				,#{runMonth, jdbcType=INTEGER}
+			</if>
+			<if test="runWeek != null">
+				,#{runWeek, jdbcType=INTEGER}
+			</if>
+			<if test="runQuarter != null">
+				,#{runQuarter, jdbcType=INTEGER}
+			</if>
+			<if test="runDay != null">
+				,#{runDay, jdbcType=INTEGER}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+	<insert id="bulkInsertSqlResult" parameterType="java.util.List">
+		insert into SYS_SQL_RESULT (
+		ID_
+		,DATABASEID_
+		,SQLDEFID_
+		,PROJECTID_
+		,COUNT_
+		,VALUE_
+		,EXT1_
+		,EXT2_
+		,EXT3_
+		,EXT4_
+		,EXT5_
+		,EXT6_
+		,EXT7_
+		,EXT8_
+		,EXT9_
+		,EXT10_
+		,EXT11_
+		,EXT12_
+		,EXT13_
+		,EXT14_
+		,EXT15_
+		,EXT16_
+		,EXT17_
+		,EXT18_
+		,EXT19_
+		,EXT20_
+		,EXT101_
+		,EXT102_
+		,EXT103_
+		,EXT104_
+		,EXT105_
+		,EXT106_
+		,EXT107_
+		,EXT108_
+		,EXT109_
+		,EXT110_
+		,EXT111_
+		,EXT112_
+		,EXT113_
+		,EXT114_
+		,EXT115_
+		,EXT116_
+		,EXT117_
+		,EXT118_
+		,EXT119_
+		,EXT120_
+		,EXT201_
+		,EXT202_
+		,EXT203_
+		,EXT204_
+		,EXT205_
+		,EXT206_
+		,EXT207_
+		,EXT208_
+		,EXT209_
+		,EXT210_
+		,EXT301_
+		,EXT302_
+		,EXT303_
+		,EXT304_
+		,EXT305_
+		,EXT306_
+		,EXT307_
+		,EXT308_
+		,EXT309_
+		,EXT310_
+		,TYPE_
+		,AGGREGATIONFLAG_
+		,RUNYEAR_
+		,RUNMONTH_
+		,RUNWEEK_
+		,RUNQUARTER_
+		,RUNDAY_
+		,JOBNO_
+		,OPERATION_
+		,CREATEBY_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="sqlResult" index="index"
+			separator=",">
+			(
+			#{sqlResult.id, jdbcType=BIGINT}
+			,#{sqlResult.databaseId, jdbcType=BIGINT}
+			,#{sqlResult.sqlDefId, jdbcType=BIGINT}
+			,#{sqlResult.projectId, jdbcType=BIGINT}
+			,#{sqlResult.count, jdbcType=INTEGER}
+			,#{sqlResult.value, jdbcType=DOUBLE}
+			,#{sqlResult.ext1, jdbcType=VARCHAR}
+			,#{sqlResult.ext2, jdbcType=VARCHAR}
+			,#{sqlResult.ext3, jdbcType=VARCHAR}
+			,#{sqlResult.ext4, jdbcType=VARCHAR}
+			,#{sqlResult.ext5, jdbcType=VARCHAR}
+			,#{sqlResult.ext6, jdbcType=VARCHAR}
+			,#{sqlResult.ext7, jdbcType=VARCHAR}
+			,#{sqlResult.ext8, jdbcType=VARCHAR}
+			,#{sqlResult.ext9, jdbcType=VARCHAR}
+			,#{sqlResult.ext10, jdbcType=VARCHAR}
+			,#{sqlResult.ext11, jdbcType=VARCHAR}
+			,#{sqlResult.ext12, jdbcType=VARCHAR}
+			,#{sqlResult.ext13, jdbcType=VARCHAR}
+			,#{sqlResult.ext14, jdbcType=VARCHAR}
+			,#{sqlResult.ext15, jdbcType=VARCHAR}
+			,#{sqlResult.ext16, jdbcType=VARCHAR}
+			,#{sqlResult.ext17, jdbcType=VARCHAR}
+			,#{sqlResult.ext18, jdbcType=VARCHAR}
+			,#{sqlResult.ext19, jdbcType=VARCHAR}
+			,#{sqlResult.ext20, jdbcType=VARCHAR}
+			,#{sqlResult.ext101, jdbcType=DOUBLE}
+			,#{sqlResult.ext102, jdbcType=DOUBLE}
+			,#{sqlResult.ext103, jdbcType=DOUBLE}
+			,#{sqlResult.ext104, jdbcType=DOUBLE}
+			,#{sqlResult.ext105, jdbcType=DOUBLE}
+			,#{sqlResult.ext106, jdbcType=DOUBLE}
+			,#{sqlResult.ext107, jdbcType=DOUBLE}
+			,#{sqlResult.ext108, jdbcType=DOUBLE}
+			,#{sqlResult.ext109, jdbcType=DOUBLE}
+			,#{sqlResult.ext110, jdbcType=DOUBLE}
+			,#{sqlResult.ext111, jdbcType=DOUBLE}
+			,#{sqlResult.ext112, jdbcType=DOUBLE}
+			,#{sqlResult.ext113, jdbcType=DOUBLE}
+			,#{sqlResult.ext114, jdbcType=DOUBLE}
+			,#{sqlResult.ext115, jdbcType=DOUBLE}
+			,#{sqlResult.ext116, jdbcType=DOUBLE}
+			,#{sqlResult.ext117, jdbcType=DOUBLE}
+			,#{sqlResult.ext118, jdbcType=DOUBLE}
+			,#{sqlResult.ext119, jdbcType=DOUBLE}
+			,#{sqlResult.ext120, jdbcType=DOUBLE}
+			,#{sqlResult.ext201, jdbcType=BIGINT}
+			,#{sqlResult.ext202, jdbcType=BIGINT}
+			,#{sqlResult.ext203, jdbcType=BIGINT}
+			,#{sqlResult.ext204, jdbcType=BIGINT}
+			,#{sqlResult.ext205, jdbcType=BIGINT}
+			,#{sqlResult.ext206, jdbcType=BIGINT}
+			,#{sqlResult.ext207, jdbcType=BIGINT}
+			,#{sqlResult.ext208, jdbcType=BIGINT}
+			,#{sqlResult.ext209, jdbcType=BIGINT}
+			,#{sqlResult.ext210, jdbcType=BIGINT}
+			,#{sqlResult.ext301, jdbcType=INTEGER}
+			,#{sqlResult.ext302, jdbcType=INTEGER}
+			,#{sqlResult.ext303, jdbcType=INTEGER}
+			,#{sqlResult.ext304, jdbcType=INTEGER}
+			,#{sqlResult.ext305, jdbcType=INTEGER}
+			,#{sqlResult.ext306, jdbcType=INTEGER}
+			,#{sqlResult.ext307, jdbcType=INTEGER}
+			,#{sqlResult.ext308, jdbcType=INTEGER}
+			,#{sqlResult.ext309, jdbcType=INTEGER}
+			,#{sqlResult.ext310, jdbcType=INTEGER}
+			,#{sqlResult.type, jdbcType=VARCHAR}
+			,#{sqlResult.aggregationFlag, jdbcType=VARCHAR}
+			,#{sqlResult.runYear, jdbcType=INTEGER}
+			,#{sqlResult.runMonth, jdbcType=INTEGER}
+			,#{sqlResult.runWeek, jdbcType=INTEGER}
+			,#{sqlResult.runQuarter, jdbcType=INTEGER}
+			,#{sqlResult.runDay, jdbcType=INTEGER}
+			,#{sqlResult.jobNo, jdbcType=VARCHAR}
+			,#{sqlResult.operation, jdbcType=VARCHAR}
+			,#{sqlResult.createBy, jdbcType=VARCHAR}
+			,#{sqlResult.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertSqlResult_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="sqlResult" index="index">
+			insert into SYS_SQL_RESULT (
+			ID_
+			,DATABASEID_
+			,SQLDEFID_
+			,PROJECTID_
+			,COUNT_
+			,VALUE_
+			,EXT1_
+			,EXT2_
+			,EXT3_
+			,EXT4_
+			,EXT5_
+			,EXT6_
+			,EXT7_
+			,EXT8_
+			,EXT9_
+			,EXT10_
+			,EXT11_
+			,EXT12_
+			,EXT13_
+			,EXT14_
+			,EXT15_
+			,EXT16_
+			,EXT17_
+			,EXT18_
+			,EXT19_
+			,EXT20_
+			,EXT101_
+			,EXT102_
+			,EXT103_
+			,EXT104_
+			,EXT105_
+			,EXT106_
+			,EXT107_
+			,EXT108_
+			,EXT109_
+			,EXT110_
+			,EXT111_
+			,EXT112_
+			,EXT113_
+			,EXT114_
+			,EXT115_
+			,EXT116_
+			,EXT117_
+			,EXT118_
+			,EXT119_
+			,EXT120_
+			,EXT201_
+			,EXT202_
+			,EXT203_
+			,EXT204_
+			,EXT205_
+			,EXT206_
+			,EXT207_
+			,EXT208_
+			,EXT209_
+			,EXT210_
+			,EXT301_
+			,EXT302_
+			,EXT303_
+			,EXT304_
+			,EXT305_
+			,EXT306_
+			,EXT307_
+			,EXT308_
+			,EXT309_
+			,EXT310_
+			,TYPE_
+			,AGGREGATIONFLAG_
+			,RUNYEAR_
+			,RUNMONTH_
+			,RUNWEEK_
+			,RUNQUARTER_
+			,RUNDAY_
+			,JOBNO_
+			,OPERATION_
+			,CREATEBY_
+			,CREATETIME_
+			) values (
+			#{sqlResult.id, jdbcType=BIGINT}
+			,#{sqlResult.databaseId, jdbcType=BIGINT}
+			,#{sqlResult.sqlDefId, jdbcType=BIGINT}
+			,#{sqlResult.projectId, jdbcType=BIGINT}
+			,#{sqlResult.count, jdbcType=INTEGER}
+			,#{sqlResult.value, jdbcType=DOUBLE}
+			,#{sqlResult.ext1, jdbcType=VARCHAR}
+			,#{sqlResult.ext2, jdbcType=VARCHAR}
+			,#{sqlResult.ext3, jdbcType=VARCHAR}
+			,#{sqlResult.ext4, jdbcType=VARCHAR}
+			,#{sqlResult.ext5, jdbcType=VARCHAR}
+			,#{sqlResult.ext6, jdbcType=VARCHAR}
+			,#{sqlResult.ext7, jdbcType=VARCHAR}
+			,#{sqlResult.ext8, jdbcType=VARCHAR}
+			,#{sqlResult.ext9, jdbcType=VARCHAR}
+			,#{sqlResult.ext10, jdbcType=VARCHAR}
+			,#{sqlResult.ext11, jdbcType=VARCHAR}
+			,#{sqlResult.ext12, jdbcType=VARCHAR}
+			,#{sqlResult.ext13, jdbcType=VARCHAR}
+			,#{sqlResult.ext14, jdbcType=VARCHAR}
+			,#{sqlResult.ext15, jdbcType=VARCHAR}
+			,#{sqlResult.ext16, jdbcType=VARCHAR}
+			,#{sqlResult.ext17, jdbcType=VARCHAR}
+			,#{sqlResult.ext18, jdbcType=VARCHAR}
+			,#{sqlResult.ext19, jdbcType=VARCHAR}
+			,#{sqlResult.ext20, jdbcType=VARCHAR}
+			,#{sqlResult.ext101, jdbcType=DOUBLE}
+			,#{sqlResult.ext102, jdbcType=DOUBLE}
+			,#{sqlResult.ext103, jdbcType=DOUBLE}
+			,#{sqlResult.ext104, jdbcType=DOUBLE}
+			,#{sqlResult.ext105, jdbcType=DOUBLE}
+			,#{sqlResult.ext106, jdbcType=DOUBLE}
+			,#{sqlResult.ext107, jdbcType=DOUBLE}
+			,#{sqlResult.ext108, jdbcType=DOUBLE}
+			,#{sqlResult.ext109, jdbcType=DOUBLE}
+			,#{sqlResult.ext110, jdbcType=DOUBLE}
+			,#{sqlResult.ext111, jdbcType=DOUBLE}
+			,#{sqlResult.ext112, jdbcType=DOUBLE}
+			,#{sqlResult.ext113, jdbcType=DOUBLE}
+			,#{sqlResult.ext114, jdbcType=DOUBLE}
+			,#{sqlResult.ext115, jdbcType=DOUBLE}
+			,#{sqlResult.ext116, jdbcType=DOUBLE}
+			,#{sqlResult.ext117, jdbcType=DOUBLE}
+			,#{sqlResult.ext118, jdbcType=DOUBLE}
+			,#{sqlResult.ext119, jdbcType=DOUBLE}
+			,#{sqlResult.ext120, jdbcType=DOUBLE}
+			,#{sqlResult.ext201, jdbcType=BIGINT}
+			,#{sqlResult.ext202, jdbcType=BIGINT}
+			,#{sqlResult.ext203, jdbcType=BIGINT}
+			,#{sqlResult.ext204, jdbcType=BIGINT}
+			,#{sqlResult.ext205, jdbcType=BIGINT}
+			,#{sqlResult.ext206, jdbcType=BIGINT}
+			,#{sqlResult.ext207, jdbcType=BIGINT}
+			,#{sqlResult.ext208, jdbcType=BIGINT}
+			,#{sqlResult.ext209, jdbcType=BIGINT}
+			,#{sqlResult.ext210, jdbcType=BIGINT}
+			,#{sqlResult.ext301, jdbcType=INTEGER}
+			,#{sqlResult.ext302, jdbcType=INTEGER}
+			,#{sqlResult.ext303, jdbcType=INTEGER}
+			,#{sqlResult.ext304, jdbcType=INTEGER}
+			,#{sqlResult.ext305, jdbcType=INTEGER}
+			,#{sqlResult.ext306, jdbcType=INTEGER}
+			,#{sqlResult.ext307, jdbcType=INTEGER}
+			,#{sqlResult.ext308, jdbcType=INTEGER}
+			,#{sqlResult.ext309, jdbcType=INTEGER}
+			,#{sqlResult.ext310, jdbcType=INTEGER}
+			,#{sqlResult.type, jdbcType=VARCHAR}
+			,#{sqlResult.aggregationFlag, jdbcType=VARCHAR}
+			,#{sqlResult.runYear, jdbcType=INTEGER}
+			,#{sqlResult.runMonth, jdbcType=INTEGER}
+			,#{sqlResult.runWeek, jdbcType=INTEGER}
+			,#{sqlResult.runQuarter, jdbcType=INTEGER}
+			,#{sqlResult.runDay, jdbcType=INTEGER}
+			,#{sqlResult.jobNo, jdbcType=VARCHAR}
+			,#{sqlResult.operation, jdbcType=VARCHAR}
+			,#{sqlResult.createBy, jdbcType=VARCHAR}
+			,#{sqlResult.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+	<delete id="deleteSqlResultById" parameterType="com.glaf.datamgr.query.SqlResultQuery">
+		delete from
+		SYS_SQL_RESULT${suffix}
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteByDatabaseId" parameterType="com.glaf.datamgr.query.SqlResultQuery">
+		delete from
+		SYS_SQL_RESULT${suffix}
+		where DATABASEID_ = #{databaseId}
+	</delete>
+
+
+	<delete id="deleteBySqlDefId" parameterType="com.glaf.datamgr.query.SqlResultQuery">
+		delete from
+		SYS_SQL_RESULT${suffix}
+		where SQLDEFID_ = #{sqlDefId}
+	</delete>
+
+
+	<delete id="deleteSqlResults" parameterType="com.glaf.datamgr.query.SqlResultQuery">
+
+		delete from
+		SYS_SQL_RESULT${suffix}
+		where SQLDEFID_ = #{sqlDefId}
+		and TYPE_ =
+		#{type}
+		and RUNDAY_ = #{runDay}
+
+	</delete>
+
+
+	<select id="getSqlResultById" parameterType="com.glaf.datamgr.query.SqlResultQuery"
+		resultMap="sqlResultResultMap">
+		select * from SYS_SQL_RESULT${suffix} where ID_ = #{id}
+	</select>
+
+
+	<select id="selectSqlResults" parameterType="com.glaf.datamgr.query.SqlResultQuery"
+		resultType="map">
+
+		select E.OPERATION_ as operation, E.COUNT_ as count, E.CREATEBY_ as
+		createBy,
+		E.CREATETIME_ as createTime, S.TITLE_ as title
+		from
+		SYS_SQL_RESULT${suffix} E
+		inner join
+		SYS_SQL S
+		on E.SQLDEFID_ = S.ID_
+		where
+		E.DATABASEID_ = #{databaseId}
+
+		<if test="sqlDefId != null">
+			and E.SQLDEFID_ = #{sqlDefId}
+		</if>
+
+		<if test="jobNo != null and jobNo != '' ">
+			and E.JOBNO_ = #{jobNo}
+		</if>
+
+		<if test="type != null and type != '' ">
+			and E.TYPE_ = #{type}
+		</if>
+
+		<if test="runDayGreaterThanOrEqual != null">
+			and E.RUNDAY_ &gt;= #{runDayGreaterThanOrEqual}
+		</if>
+
+		<if test="runDayLessThanOrEqual != null">
+			and E.RUNDAY_ &lt;= #{runDayLessThanOrEqual}
+		</if>
+
+		<if test="createBy != null and createBy != '' ">
+			and E.CREATEBY_ = #{createBy}
+		</if>
+
+		<if test="createTimeGreaterThanOrEqual != null">
+			and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+		</if>
+
+	</select>
+
+
+	<select id="getSqlResults" parameterType="com.glaf.datamgr.query.SqlResultQuery"
+		resultMap="sqlResultResultMap">
+		select distinct E.*
+		<include refid="selectSqlResultsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSqlResultCount" parameterType="com.glaf.datamgr.query.SqlResultQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSqlResultsSql" />
+	</select>
+
+
+	<sql id="selectSqlResultsSql">
+
+		from SYS_SQL_RESULT${suffix} E
+
+		<where>
+			1 = 1
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="projectId != null">
+				and E.PROJECTID_ = #{projectId}
+			</if>
+
+			<if test="sqlDefId != null">
+				and E.SQLDEFID_ = #{sqlDefId}
+			</if>
+
+			<if test="sqlDefIds != null and sqlDefIds.size() &gt; 0">
+				and E.SQLDEFID_ IN
+				<foreach item="x_sqlDefId" index="index" collection="sqlDefIds"
+					open="(" separator="," close=")">
+					#{x_sqlDefId}
+				</foreach>
+			</if>
+
+			<if test="jobNo != null and jobNo != '' ">
+				and E.JOBNO_ = #{jobNo}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="runYear != null">
+				and E.RUNYEAR_ = #{runYear}
+			</if>
+
+			<if test="runMonth != null">
+				and E.RUNMONTH_ = #{runMonth}
+			</if>
+
+			<if test="runWeek != null">
+				and E.RUNWEEK_ = #{runWeek}
+			</if>
+
+			<if test="runQuarter != null">
+				and E.RUNQUARTER_ = #{runQuarter}
+			</if>
+
+			<if test="runDay != null">
+				and E.RUNDAY_ = #{runDay}
+			</if>
+
+			<if test="runDayGreaterThanOrEqual != null">
+				and E.RUNDAY_ &gt;= #{runDayGreaterThanOrEqual}
+			</if>
+
+			<if test="runDayLessThanOrEqual != null">
+				and E.RUNDAY_ &lt;= #{runDayLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

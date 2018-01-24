@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>Metronic | Tabs, Accordions & Navs</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../../metronic/4.5.2/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="../../../metronic/4.5.2/theme/assets/layouts/layout2/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../metronic/4.5.2/theme/assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="../../../metronic/4.5.2/theme/assets/layouts/layout2/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <script>
+    var contextPath = '/';
+    </script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="../../../metronic/4.5.2/theme/assets/global/plugins/bootstrap-tabdrop/js/bootstrap-tabdrop.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../../../metronic/4.5.2/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="../../../metronic/4.5.2/theme/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="../../../metronic/4.5.2/theme/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="./js/jquery.tabs.extends.js" type="text/javascript"></script>
+    <link href="./style/plugins.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+    $(function() {
+        initTabs();
+
+        $.each($("button"), function(index, btn) {
+            $(btn).addClass('btn btn-primary');
+        });
+
+        $.each($("input"), function(index, input) {
+            $(input).addClass('form-control');
+        });
+    });
+
+
+    function log(contentFlag, content, title, tabIndex) {
+        if (contentFlag) {
+            $("#log").append("<span>" + content + "</span>");
+        } else {
+            $("#log").append("<span>选中：&emsp;标题:" + title + "&emsp;索引:" + tabIndex + "</span><br>");
+
+        }
+        $("#log").append("<hr>");
+    }
+
+    var index = 1;
+    var tabs = [{
+        content: 'Hello,Home Page!',
+        title: 'Home',
+        cache: true,
+        //selected: true,
+        icon: null,
+        closeable: false
+    }];
+
+    function initTabs() {
+        $('#mytab').tabs({
+            width: 800,
+            height: 400,
+            reversed: false,
+            border: true,
+            fit: false,
+            tabdrop: true,
+            tabPosition: 'top', //top、bottom、left、right
+            tabStyle: 'tabs', //tabs、pills、tabbableLine、tabbableCustom
+            tabs: tabs,
+            onLoad: function() {
+                log(true, "<span>加载完成！</span><br>");
+            },
+            onClose: function(title, index) {
+                log(true, "<span>删除：&emsp;标题:" + title + "&emsp;索引:" + index + "</span><br>");
+            },
+            onSelect: function(title, index) {
+                console.log('select:' + title + ', ' + index);
+                log(false, null, title, index);
+            },
+            onAdd: function(title, index) {
+                log(true, "<span>添加：&emsp;标题:" + title + "&emsp;索引:" + index + "</span><br>");
+            },
+            onUpdate: function(title, index) {
+                log(true, "<span>更新：&emsp;标题:" + title + "&emsp;索引:" + index + "</span><br>");
+            }
+        });
+    }
+
+    function addTab() {
+
+        var tabName = $("#tabName").val();
+        var tabContent = $("#tabContent").val();
+        var href = $("#tabHref").val();
+        var closeable = $("#closeable").is(':checked');
+        var selected = $("#selected").is(':checked');
+        var isDropdownMenu = $("#isDropdownMenu").is(':checked');
+
+        var hasTab = $('#mytab').tabs('exists', tabName);
+        if (hasTab) {
+            alert('已添加 ' + tabName + ' 选项卡，请输入其他名称');
+            return;
+        }
+        $('#mytab').tabs('add', {
+            id: null,
+            content: tabContent,
+            title: tabName,
+            href: href,
+            closeable: closeable,
+            selected: selected,
+            isDropdownMenu: isDropdownMenu
+        });
+    }
+
+    function getSelectedTab() {
+        var tab = $('#mytab').tabs('getSelected');
+        var options = $.data(tab, 'tabs');
+
+        var tabIndex = $('#mytab').tabs('getTabIndex', tab);
+        log(false, null, options.title, tabIndex);
+
+        var gettab = $('#mytab').tabs('getTab', 3);
+        console.log(gettab);
+    }
+
+    function selectTab() {
+        var elem = $('#mytab').tabs('select', $('#selectTabInput').val());
+
+        var tabIndex = $('#mytab').tabs('getTabIndex', elem);
+        log(false, null, $.data(elem, 'tabs').title, tabIndex);
+    }
+
+    function getAllTabs() {
+        var tabs = $('#mytab').tabs('tabs');
+        $.each(tabs, function(index, val) {
+            var tabIndex = $('#mytab').tabs('getTabIndex', val);
+            log(true, "<span>" + (index + 1) + "、标题:" + val.title + ",索引：" + val.tabIndex + "</span><br>");
+        });
+    }
+
+    function closeTab() {
+        var temp = $('#closeTabInput').val();
+        if (parseInt(temp)) {
+            temp = parseInt(temp);
+        }
+
+        $('#mytab').tabs('close', temp);
+    }
+
+    function updateTab() {
+        var tabName = $("#tabName").val();
+        var tabContent = $("#tabContent").val();
+        var href = $("#tabHref").val();
+        var closeable = $("#closeable").is(':checked');
+        var selected = $("#selected").is(':checked');
+        var isDropdownMenu = $("#isDropdownMenu").is(':checked');
+
+        var tab = $('#mytab').tabs('getSelected');
+        $('#mytab').tabs('update', {
+            tab: tab,
+            options: {
+                id: null,
+                title: tabName,
+                content: tabContent,
+                href: href,
+                closeable: closeable,
+                selected: selected,
+                isDropdownMenu: false
+            }
+        });
+    }
+
+    function changePorlet(position) {
+        if (position == 'left' || position == 'right') {
+            if ($('#tabdrop_cb').prop('checked')) {
+                $('#tabdrop_cb').trigger('click');
+            }
+            $('#tabdrop_cb').prop('disabled', true);
+        } else {
+            $('#tabdrop_cb').prop('disabled', false);
+        }
+        $('#mytab').tabs({
+            tabPosition: position
+        })
+    }
+
+    function save() {
+        var options = $('#mytab').tabs("options");
+
+        var tabs = $('#mytab').tabs("tabs");
+        options.tabs = tabs;
+
+        window.sessionStorage.setItem('tabOptions', JSON.stringify(options));
+    }
+
+    function read() {
+        var options = window.sessionStorage.getItem('tabOptions');
+        console.log(options);
+        var tabOptions = JSON.parse(options);
+        console.log(tabOptions);
+        $('#mytab').tabs(tabOptions);
+    }
+    </script>
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid" style="background: #FFF">
+    <table width="98%" height="700px" border="1">
+        <tr>
+            <td width="18%">
+                <table class="table table-striped">
+                    <tr>
+                        <th colspan="2">容器属性</th>
+                    </tr>
+                    <tr>
+                        <td>宽度</td>
+                        <td>
+                            <input type="number" value="800" onchange="$('#mytab').tabs({width:this.value})" placeholder="请输入宽度" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>高度</td>
+                        <td>
+                            <input type="number" value="400" onchange="$('#mytab').tabs({height:this.value})" placeholder="请输入高度" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>选项卡位置</td>
+                        <td>
+                            <select onchange="changePorlet(this.value)">
+                                <option value="top">Top</option>
+                                <option value="bottom">bottom</option>
+                                <option value="left">Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>反向显示</td>
+                        <td>
+                            <input type="checkbox" onclick="$('#mytab').tabs({reversed:this.checked})" id="reversed" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>显示边框</td>
+                        <td>
+                            <input type="checkbox" checked onclick="$('#mytab').tabs({border:this.checked})" id="border" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="tabdrop_cb">溢出显示下拉</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="tabdrop_cb" checked onclick="$('#mytab').tabs({tabdrop:this.checked})" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td rowspan="3" style="vertical-align: top">
+                <div data-role="tabs" id="mytab"></div>
+            </td>
+            <td rowspan="3" style="vertical-align: top" width="15%">
+                <div id="log" style="border:0px;height:100%;overflow-y:auto;width:300px;margin-top:0px;"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-striped">
+                    <tr>
+                        <th colspan="2">选项卡属性</th>
+                    </tr>
+                    <tr>
+                        <td>标题</td>
+                        <td>
+                            <input type="text" id="tabName" placeholder="请输入选项卡标题" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>内容</td>
+                        <td>
+                            <input type="text" id="tabContent" placeholder="请输入选项卡内容" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>内容链接</td>
+                        <td>
+                            <input type="text" id="tabHref" placeholder="请输入选项卡链接" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="closeable">可关闭</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="closeable" checked />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="selected">是否选中</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="selected" checked />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="isDropdownMenu">是否列表菜单</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="isDropdownMenu" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="button" onclick="addTab();">添加选项卡</button>
+                            <button type="button" onclick="updateTab()">更新当前选项卡</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="table table-striped">
+                    <tr>
+                        <th colspan="2">操作事件</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="button" onclick="getSelectedTab();">获得选中的选项卡</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="getAllTabs();">获得所有的选项卡</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="selectTabInput" placeholder="请输入标题或索引" />
+                        </td>
+                        <td>
+                            <button type="button" onclick="selectTab();">选择选项卡</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="closeTabInput" placeholder="请输入标题或索引" />
+                        </td>
+                        <td>
+                            <button type="button" onclick="closeTab()">删除选项卡</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align: center">
+                <button type="button" onclick="save()">保存配置</button>
+                <button type="button" onclick="read()">读取配置</button>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

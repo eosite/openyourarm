@@ -1,0 +1,281 @@
+.spread_tools_combo {
+    background: #d5deec;
+    padding: 0px;
+}
+
+.spread_tools_header {
+    padding: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #b7c3d2;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #253449;
+    background: -webkit-linear-gradient(#f5faff, #dce7f5);
+    /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#f5faff, #dce7f5);
+    /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#f5faff, #dce7f5);
+    /* Firefox 3.6 - 15 */
+    background: linear-gradient(#f5faff, #dce7f5);
+    /* 标准的语法 */
+}
+
+.spread_tools_header .tab-content.hideContent {
+    display: none;
+}
+
+.spread_tools_header>ul>li {
+    margin-top: 5px;
+    margin-bottom: -3px;
+    height: 25px;
+}
+
+.spread_tools_header>ul>li:first-child {
+    margin-left: 30px;
+}
+
+.spread_tools_header .titleControl {
+    border: 1px solid #b7c3d2;
+    border-bottom-color: transparent;
+    font-size: 12px;
+    height: 25px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #f5faff
+}
+
+.spread_tools_myicon {
+    height: 40px;
+    padding-top: 0px;
+    margin-top: 0px;
+    min-width: 50px;
+    border: 1px solid;
+    border-color: transparent;
+    background: transparent;
+    /* transition: all .3s ease; */
+}
+
+.spreadjs_toolbar select.spread_tools {
+    height: 30px;
+    padding: 0px 12px;
+    margin-top: 2px;
+}
+
+.spread_tools_myicon:hover {
+    background-color: #ffcd6d;
+    border: 1px solid #c29b29;
+}
+
+.disabled.spread_tools_myicon:hover {
+    border: 1px solid;
+    border-color: transparent;
+    /*background:transparent; */
+}
+
+.spread_tools_myicon div {
+    color: #253449;
+    margin-bottom: 0px;
+}
+
+.spreadjs_toolbar {
+    background: transparent;
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+
+.spread_tools_header .title {
+    font-size: 12px;
+    color: #253449;
+    padding-left: 225px;
+    padding-top: 10px;
+    background: #dce7f5;
+}
+
+.spreadjs_toolbar .ui-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 16px;
+    margin-bottom: 0;
+    margin-top: 0px;
+}
+
+.spread_tools_myicon div {
+    margin-top: 0px;
+}
+
+.spreadjs_toolbar .save-icon {
+    background-image: url(images/document-save-5.png);
+}
+
+.spreadjs_toolbar .first-icon {
+    background-image: url(images/First_16x16.png);
+}
+
+.spreadjs_toolbar .last-icon {
+    background-image: url(images/Last_16x16.png);
+}
+
+.spreadjs_toolbar .prev-icon {
+    background-image: url(images/Prev_16x16.png);
+}
+
+.spreadjs_toolbar .next-icon {
+    background-image: url(images/Next_16x16.png);
+}
+
+.spreadjs_toolbar .print-icon {
+    background-image: url(images/Print_16x16.png);
+}
+
+.spreadjs_toolbar .advprint-icon {
+    background-image: url(images/PrintDialog_16x16.png);
+}
+
+.spreadjs_toolbar .preview-icon {
+    background-image: url(images/Preview_16x16.png);
+}
+
+.spreadjs_toolbar .printpdf-icon {
+    background-image: url(images/PrintViaPDF_16x16.png);
+}
+
+.spreadjs_toolbar .textbold-icon {
+    background-image: url(images/format-text-bold-4.png);
+}
+
+.spreadjs_toolbar .textitalic-icon {
+    background-image: url(images/format-text-italic-4.png);
+}
+
+.spreadjs_toolbar .textunderline-icon {
+    background-image: url(images/format-text-underline-4.png);
+}
+
+.spreadjs_toolbar .fillcolor-icon {
+    background-image: url(images/format-fill-color.png);
+}
+
+.spreadjs_toolbar .textcolor-icon {
+    background-image: url(images/format-text-color.png);
+}
+
+.spreadjs_toolbar .superscript-icon {
+    background-image: url(images/format-text-superscript-2.png);
+}
+
+.spreadjs_toolbar .subscript-icon {
+    background-image: url(images/format-text-subscript-2.png);
+}
+
+.spreadjs_toolbar .justify-icon {
+    background-image: url(images/format-justify-left-5.png);
+}
+
+.spreadjs_toolbar .horizontalleft-icon {
+    background-image: url(images/align-horizontal-left.png);
+}
+
+.spreadjs_toolbar .horizontalcenter-icon {
+    background-image: url(images/align-horizontal-center-2.png);
+}
+
+.spreadjs_toolbar .horizontalright-icon {
+    background-image: url(images/align-horizontal-right-2.png);
+}
+
+.spreadjs_toolbar .verticaltop-icon {
+    background-image: url(images/align-vertical-top-2.png);
+}
+
+.spreadjs_toolbar .verticalcenter-icon {
+    background-image: url(images/align-vertical-center-2.png);
+}
+
+.spreadjs_toolbar .verticalbuttom-icon {
+    background-image: url(images/align-vertical-bottom-2.png);
+}
+
+.spreadjs_toolbar .editundo-icon {
+    background-image: url(images/edit-undo-8.png);
+}
+
+.spreadjs_toolbar .editredo-icon {
+    background-image: url(images/edit-redo-8.png);
+}
+
+.spreadjs_toolbar .disabled {
+    -webkit-filter: grayscale(1);
+}
+
+.spreadjs_toolbar a {
+    height: 60px;
+}
+
+.spreadjs_cell_color tr {
+    margin: 2px;
+}
+
+.spreadjs_cell_color {
+    border: 1px solid;
+    padding: 0px 10px;
+    width: 180px;
+    background-color: white;
+    position: absolute;
+    display: none;
+}
+
+.spread_color_chunk {
+    width: 16px;
+    height: 16px;
+    border: 1px solid;
+}
+
+.spread_color_chunk:hover {
+    border: 1px solid #c29b29;
+}
+
+.spread_foot {
+    border-top: 1px solid #b7c3d2;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 35px;
+}
+
+.spread_zoom {
+    position: absolute;
+    width: 250px;
+    top: -15px;
+    right: 20px;
+    float: right;
+    font-family: "微软雅黑";
+}
+
+.spread_zoomBt {
+    position: absolute;
+    top: 2px;
+    right: 265px;
+}
+
+.spread_zoomBt ul li {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.spread_zoomBt button {
+    padding: 0 5px;
+    background: transparent;
+    border-color: transparent;
+}
+
+.spread_center {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 98%;
+    height : 100%;
+}

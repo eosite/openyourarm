@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DataSetMapper">
+
+	<resultMap id="dataSetResultMap" type="com.glaf.datamgr.domain.DataSet">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="executeDatabaseIds" column="EXECUTEDATABASEIDS_"
+			jdbcType="VARCHAR" />
+		<result property="nodeId" column="NODEID_" jdbcType="BIGINT" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+		<result property="statementId" column="STATEMENTID_" jdbcType="VARCHAR" />
+		<result property="sql" column="SQL_" jdbcType="VARCHAR" />
+		<result property="extText" column="EXTTEXT_" jdbcType="VARCHAR" />
+		<result property="accessType" column="ACCESSTYPE_" jdbcType="VARCHAR" />
+		<result property="perms" column="PERMS_" jdbcType="VARCHAR" />
+		<result property="addressPerms" column="ADDRESSPERMS_"
+			jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="active" column="ACTIVE_" jdbcType="VARCHAR" />
+		<result property="cacheFlag" column="CACHEFLAG_" jdbcType="VARCHAR" />
+		<result property="chartFlag" column="CHARTFLAG_" jdbcType="VARCHAR" />
+		<result property="dynamicFlag" column="DYNAMICFLAG_" jdbcType="VARCHAR" />
+		<result property="dynamicDataSet" column="DYNAMICDATASET_"
+			jdbcType="VARCHAR" />
+		<result property="distinctFlag" column="DISTINCTFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="scheduleFlag" column="SCHEDULEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="shareFlag" column="SHAREFLAG_" jdbcType="VARCHAR" />
+		<result property="publicFlag" column="PUBLICFLAG_" jdbcType="VARCHAR" />
+		<result property="saveFlag" column="SAVEFLAG_" jdbcType="VARCHAR" />
+		<result property="updateFlag" column="UPDATEFLAG_" jdbcType="VARCHAR" />
+		<result property="verify" column="VERIFY_" jdbcType="VARCHAR" />
+		<result property="initFlag" column="INITFLAG_" jdbcType="VARCHAR" />
+		<result property="deleteFetch" column="DELETEFETCH_" jdbcType="VARCHAR" />
+		<result property="exportFlag" column="EXPORTFLAG_" jdbcType="VARCHAR" />
+		<result property="primaryKeys" column="PRIMARYKEYS_" jdbcType="VARCHAR" />
+		<result property="exportTableName" column="EXPORTTABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="exportDBName" column="EXPORTDBNAME_"
+			jdbcType="VARCHAR" />
+		<result property="lastExportStatus" column="LASTEXPORTSTATUS_"
+			jdbcType="INTEGER" />
+		<result property="lastExportTime" column="LASTEXPORTTIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="sourceRuleId" column="SOURCERULEID_"
+			jdbcType="VARCHAR" />
+		<result property="sourceRuleType" column="SOURCERULETYPE_"
+			jdbcType="VARCHAR" />
+		<result property="sourceTables" column="SOURCETABLES_"
+			jdbcType="VARCHAR" />
+		<result property="rowKey" column="ROWKEY_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+		<result property="topId" column="TOPID_" jdbcType="VARCHAR" />
+		<result property="treeId" column="TREEID_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertDataSet" parameterType="com.glaf.datamgr.domain.DataSet">
+		insert into SYS_DATASET
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="executeDatabaseIds != null">
+				,EXECUTEDATABASEIDS_
+			</if>
+			<if test="nodeId != null">
+				,NODEID_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_
+			</if>
+			<if test="statementId != null">
+				,STATEMENTID_
+			</if>
+			<if test="sql != null">
+				,SQL_
+			</if>
+			<if test="sourceRuleId != null">
+				,SOURCERULEID_
+			</if>
+			<if test="sourceRuleType != null">
+				,SOURCERULETYPE_
+			</if>
+			<if test="sourceTables != null">
+				,SOURCETABLES_
+			</if>
+			<if test="accessType != null">
+				,ACCESSTYPE_
+			</if>
+			<if test="perms != null">
+				,PERMS_
+			</if>
+			<if test="addressPerms != null">
+				,ADDRESSPERMS_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="active != null">
+				,ACTIVE_
+			</if>
+			<if test="cacheFlag != null">
+				,CACHEFLAG_
+			</if>
+			<if test="chartFlag != null">
+				,CHARTFLAG_
+			</if>
+			<if test="dynamicFlag != null">
+				,DYNAMICFLAG_
+			</if>
+			<if test="dynamicDataSet != null">
+				,DYNAMICDATASET_
+			</if>
+			<if test="distinctFlag != null">
+				,DISTINCTFLAG_
+			</if>
+			<if test="shareFlag != null">
+				,SHAREFLAG_
+			</if>
+			<if test="scheduleFlag != null">
+				,SCHEDULEFLAG_
+			</if>
+			<if test="publicFlag != null">
+				,PUBLICFLAG_
+			</if>
+			<if test="saveFlag != null">
+				,SAVEFLAG_
+			</if>
+			<if test="updateFlag != null">
+				,UPDATEFLAG_
+			</if>
+			<if test="verify != null">
+				,VERIFY_
+			</if>
+			<if test="initFlag != null">
+				,INITFLAG_
+			</if>
+			<if test="deleteFetch != null">
+				,DELETEFETCH_
+			</if>
+			<if test="exportFlag != null">
+				,EXPORTFLAG_
+			</if>
+			<if test="exportTableName != null">
+				,EXPORTTABLENAME_
+			</if>
+			<if test="exportDBName != null">
+				,EXPORTDBNAME_
+			</if>
+			<if test="lastExportStatus != null">
+				,LASTEXPORTSTATUS_
+			</if>
+			<if test="lastExportTime != null">
+				,LASTEXPORTTIME_
+			</if>
+			<if test="rowKey != null">
+				,ROWKEY_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+			<if test="primaryKeys != null">
+				,PRIMARYKEYS_
+			</if>
+			<if test="topId != null">
+				,TOPID_
+			</if>
+			<if test="treeId != null">
+				,TREEID_
+			</if>
+			<if test="extText != null">
+				,EXTTEXT_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="executeDatabaseIds != null">
+				,#{executeDatabaseIds, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeId != null">
+				,#{nodeId, jdbcType=BIGINT}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="statementId != null">
+				,#{statementId, jdbcType=VARCHAR}
+			</if>
+			<if test="sql != null">
+				,#{sql, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceRuleId != null">
+				,#{sourceRuleId, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceRuleType != null">
+				,#{sourceRuleType, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceTables != null">
+				,#{sourceTables, jdbcType=VARCHAR}
+			</if>
+			<if test="accessType != null">
+				,#{accessType, jdbcType=VARCHAR}
+			</if>
+			<if test="perms != null">
+				,#{perms, jdbcType=VARCHAR}
+			</if>
+			<if test="addressPerms != null">
+				,#{addressPerms, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="active != null">
+				,#{active, jdbcType=VARCHAR}
+			</if>
+			<if test="cacheFlag != null">
+				,#{cacheFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="chartFlag != null">
+				,#{chartFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="dynamicFlag != null">
+				,#{dynamicFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="dynamicDataSet != null">
+				,#{dynamicDataSet, jdbcType=VARCHAR}
+			</if>
+			<if test="distinctFlag != null">
+				,#{distinctFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="shareFlag != null">
+				,#{shareFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="scheduleFlag != null">
+				,#{scheduleFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="publicFlag != null">
+				,#{publicFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="saveFlag != null">
+				,#{saveFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="updateFlag != null">
+				,#{updateFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="verify != null">
+				,#{verify, jdbcType=VARCHAR}
+			</if>
+			<if test="initFlag != null">
+				,#{initFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFetch != null">
+				,#{deleteFetch, jdbcType=VARCHAR}
+			</if>
+			<if test="exportFlag != null">
+				,#{exportFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="exportTableName != null">
+				,#{exportTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="exportDBName != null">
+				,#{exportDBName, jdbcType=VARCHAR}
+			</if>
+			<if test="lastExportStatus != null">
+				,#{lastExportStatus, jdbcType=INTEGER}
+			</if>
+			<if test="lastExportTime != null">
+				,#{lastExportTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="rowKey != null">
+				,#{rowKey, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="primaryKeys != null">
+				,#{primaryKeys, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="extText != null">
+				,#{extText, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDataSet" parameterType="com.glaf.datamgr.domain.DataSet">
+		update SYS_DATASET
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="executeDatabaseIds != null">
+				EXECUTEDATABASEIDS_ = #{executeDatabaseIds,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				CATEGORY_ = #{category, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeId != null">
+				NODEID_ = #{nodeId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="statementId != null">
+				STATEMENTID_ = #{statementId, jdbcType=VARCHAR},
+			</if>
+			<if test="sql != null">
+				SQL_ = #{sql, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceRuleId != null">
+				SOURCERULEID_ = #{sourceRuleId, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceRuleType != null">
+				SOURCERULETYPE_ = #{sourceRuleType, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceTables != null">
+				SOURCETABLES_ = #{sourceTables, jdbcType=VARCHAR},
+			</if>
+			<if test="accessType != null">
+				ACCESSTYPE_ = #{accessType, jdbcType=VARCHAR},
+			</if>
+			<if test="perms != null">
+				PERMS_ = #{perms, jdbcType=VARCHAR},
+			</if>
+			<if test="addressPerms != null">
+				ADDRESSPERMS_ = #{addressPerms, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="active != null">
+				ACTIVE_ = #{active, jdbcType=VARCHAR},
+			</if>
+			<if test="cacheFlag != null">
+				CACHEFLAG_ = #{cacheFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="chartFlag != null">
+				CHARTFLAG_ = #{chartFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="dynamicFlag != null">
+				DYNAMICFLAG_ = #{dynamicFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="dynamicDataSet != null">
+				DYNAMICDATASET_ = #{dynamicDataSet, jdbcType=VARCHAR},
+			</if>
+			<if test="distinctFlag != null">
+				DISTINCTFLAG_ = #{distinctFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="initFlag != null">
+				INITFLAG_ = #{initFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleFlag != null">
+				SCHEDULEFLAG_ = #{scheduleFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="shareFlag != null">
+				SHAREFLAG_ = #{shareFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="publicFlag != null">
+				PUBLICFLAG_ = #{publicFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="saveFlag != null">
+				SAVEFLAG_ = #{saveFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="verify != null">
+				VERIFY_ = #{verify, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFetch != null">
+				DELETEFETCH_ = #{deleteFetch, jdbcType=VARCHAR},
+			</if>
+			<if test="exportFlag != null">
+				EXPORTFLAG_ = #{exportFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="exportTableName != null">
+				EXPORTTABLENAME_ = #{exportTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="exportDBName != null">
+				EXPORTDBNAME_ = #{exportDBName, jdbcType=VARCHAR},
+			</if>
+			<if test="lastExportStatus != null">
+				LASTEXPORTSTATUS_ = #{lastExportStatus,
+				jdbcType=INTEGER},
+			</if>
+			<if test="lastExportTime != null">
+				LASTEXPORTTIME_ = #{lastExportTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="rowKey != null">
+				ROWKEY_ = #{rowKey, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="primaryKeys != null">
+				PRIMARYKEYS_ = #{primaryKeys, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOPID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="extText != null">
+				EXTTEXT_ = #{extText, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="updateDataSetExportStatus" parameterType="com.glaf.datamgr.domain.DataSet">
+		update SYS_DATASET
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="lastExportStatus != null">
+				LASTEXPORTSTATUS_ = #{lastExportStatus,
+				jdbcType=INTEGER},
+			</if>
+			<if test="lastExportTime != null">
+				LASTEXPORTTIME_ = #{lastExportTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+
+		where ID_ = #{id}
+
+	</update>
+
+
+	<delete id="deleteDataSetById" parameterType="string">
+		delete from
+		SYS_DATASET
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteDataSets" parameterType="com.glaf.datamgr.query.DataSetQuery">
+		delete from SYS_DATASET
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDataSetTree_oracle" parameterType="string"
+		resultType="map">
+		SELECT
+		to_char(ID) "indexId",
+		NAME "indexName",
+		PARENT
+		"parentId",
+		'F' as "ds"
+		FROM
+		SYS_TREE
+		WHERE
+		TREEID LIKE
+		(
+		SELECT DISTINCT
+		TREEID
+		FROM
+		SYS_TREE
+		WHERE
+		CODE = #{code}
+		)
+		|| '%'
+		UNION
+		SELECT
+		to_char(ID_) "indexId",
+		NAME_
+		"indexName",
+		CASE
+		WHEN
+		NODEID_ IS NULL
+		THEN
+		(
+		SELECT DISTINCT
+		ID
+		FROM
+		SYS_TREE
+		WHERE
+		CODE = #{code}
+		)
+		ELSE NODEID_
+		END "parentId",
+		'T' as "ds"
+		FROM
+		SYS_DATASET WHERE VERIFY_ = 'Y'
+	</select>
+
+
+	<select id="getDataSetTree" parameterType="string" resultType="map">
+		SELECT
+		CONVERT(VARCHAR, ID) indexId,
+		NAME indexName,
+		PARENT parentId,
+		'F'
+		as ds
+		FROM
+		SYS_TREE
+		WHERE
+		TREEID LIKE
+		(
+		SELECT DISTINCT
+		TREEID
+		FROM
+		SYS_TREE
+		WHERE
+		CODE = #{code}
+		)
+		+ '%'
+		UNION
+		SELECT
+		ID_ indexId,
+		NAME_ indexName,
+		CASE
+		WHEN
+		NODEID_ IS NULL
+		THEN
+		(
+		SELECT DISTINCT
+		ID
+		FROM
+		SYS_TREE
+		WHERE
+		CODE =
+		#{code}
+		)
+		ELSE NODEID_
+		END parentId,
+		'T' as ds
+		FROM
+		SYS_DATASET WHERE
+		VERIFY_ = 'Y'
+	</select>
+
+	<select id="getDataSetById" parameterType="string" resultMap="dataSetResultMap">
+		select * from SYS_DATASET where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataSets" parameterType="com.glaf.datamgr.query.DataSetQuery"
+		resultMap="dataSetResultMap">
+		select E.*
+		<include refid="selectDataSetsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDataSetCount" parameterType="com.glaf.datamgr.query.DataSetQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataSetsSql" />
+	</select>
+
+
+	<sql id="selectDataSetsSql">
+
+		from SYS_DATASET E
+
+		<where>
+			1 = 1
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="datasetIds != null and datasetIds.size() &gt; 0">
+				and E.ID_ IN
+				<foreach item="x_datasetId" index="index" collection="datasetIds"
+					open="(" separator="," close=")">
+					#{x_datasetId}
+				</foreach>
+			</if>
+
+			<if test="nodeId != null ">
+				and E.NODEID_ = #{nodeId}
+			</if>
+
+			<if test="category != null and category != '' ">
+				and E.CATEGORY_ = #{category}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+			</if>
+
+			<if test="keywordsLike != null and keywordsLike != '' ">
+				and ( E.NAME_ like #{keywordsLike}
+				or E.TITLE_ like
+				#{keywordsLike}
+				or E.DESCRIPTION_ like #{keywordsLike}
+				)
+			</if>
+
+			<if test="accessType != null and accessType != '' ">
+				and E.ACCESSTYPE_ = #{accessType}
+			</if>
+
+			<if test="perms != null and perms != '' ">
+				and E.PERMS_ = #{perms}
+			</if>
+
+			<if test="permsLike != null and permsLike != '' ">
+				and E.PERMS_ like #{permsLike}
+			</if>
+
+			<if test="addressPerms != null and addressPerms != '' ">
+				and E.ADDRESSPERMS_ = #{addressPerms}
+			</if>
+
+			<if test="addressPermsLike != null and addressPermsLike != '' ">
+				and E.ADDRESSPERMS_ like #{addressPermsLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="active != null and active != '' ">
+				and E.ACTIVE_ = #{active}
+			</if>
+
+			<if test="cacheFlag != null and cacheFlag != '' ">
+				and E.CACHEFLAG_ = #{cacheFlag}
+			</if>
+
+			<if test="dynamicFlag != null and dynamicFlag != '' ">
+				and E.DYNAMICFLAG_ = #{dynamicFlag}
+			</if>
+
+			<if test="initFlag != null and initFlag != '' ">
+				and E.INITFLAG_ = #{initFlag}
+			</if>
+
+			<if test="shareFlag != null and shareFlag != '' ">
+				and E.SHAREFLAG_ = #{shareFlag}
+			</if>
+
+			<if test="scheduleFlag != null and scheduleFlag != '' ">
+				and E.SCHEDULEFLAG_ = #{scheduleFlag}
+			</if>
+
+			<if test="publicFlag != null and publicFlag != '' ">
+				and E.PUBLICFLAG_ = #{publicFlag}
+			</if>
+
+			<if test="saveFlag != null and saveFlag != '' ">
+				and E.SAVEFLAG_ = #{saveFlag}
+			</if>
+
+			<if test="updateFlag != null and updateFlag != '' ">
+				and E.UPDATEFLAG_ = #{updateFlag}
+			</if>
+
+			<if test="verify != null and verify != '' ">
+				and E.VERIFY_ = #{verify}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+			</if>
+
+			<if test="topId != null and topId != '' ">
+				and E.TOPID_ = #{topId}
+			</if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID_ like #{topIdLike}
+			</if>
+
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+			</if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+			</if>
+
+			<if test="pageId != null and pageId != '' ">
+				and ID_ IN
+				(
+				SELECT
+				DATASETID_
+				FROM
+				FORM_DATASET
+				WHERE
+				DATASETID_ IS NOT NULL AND PAGEID_ = '${pageId}'
+				GROUP BY
+				DATASETID_,
+				PAGEID_)
+			</if>
+
+			<if test="dsId != null and dsId != '' ">
+				and ID_ IN
+				(
+				select dsmid_ id_ from sys_dataset_mapping
+				where parentid_ = '${dsId}')
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

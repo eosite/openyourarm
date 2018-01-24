@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<link href="../styles/kendoui.css" rel="stylesheet">
+    <link href="../styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.silver.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.silver.mobile.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="../styles/kendo.dataviz.silver.min.css" rel="stylesheet" />
+	<script src="../js/jquery.min.js"></script>
+    <script src="../js/kendo.all.min.js"></script>
+    <script src="../js/kendo.timezones.min.js"></script>
+    <!-- <script src="../js/angular.min.js"></script> -->
+    <script src="map.js"></script>
+	
+	<script type="text/javascript">
+	//全局函数，用于加载js渲染
+	var jsMap = new Map(); 
+	//加载xml
+	function loadXMLDoc(xmlFile){
+		var xmlDoc;
+		try{
+			//Internet Explorer 可以使用其原生方法加载 XML
+			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+		}catch(e){
+			try{
+				var parser=new DOMParser();
+				xmlDoc=parser.parseFromString(text,xmlFile);
+				return xmlDoc ;
+				//使用 XMLHttpRequest 替代,适用于大部分浏览器
+				//var xmlHttp=new XMLHttpRequest() ;
+				//xmlHttp.open("GET",xmlFile,false) ;
+				//xmlHttp.send(null) ;
+				//return xmlHttp.responseXML;
+			}catch(e){
+				alert(e.message());
+				return null;
+			}
+		}
+		xmlDoc.async="false";
+		xmlDoc.load(xmlFile);
+		return xmlDoc;
+	}
+	//解析xml dom节点属性值转化成对象返回
+	function setField(cellElem){
+		var cell = new Object;
+		var attrs = cellElem.attributes ;
+		for(var i=0;i<attrs.length;i++){
+			var node = attrs.nextNode()
+			cell[node.nodeName] = node.nodeValue ;
+		}
+		return cell ;
+	}
+	//e document元素，o为对象{field:'xxx'}
+	var setAttr = function(e,o){
+		for(var p in o){
+			e.setAttribute(p,o[p]);
+		}
+	}
+	var setStyle = function (e,o){
+		for(var p in o){
+			//e.style[p] = o[p];
+		}
+	}
+	//获取属性 e document元素 , s为字符串
+	var getAttr = function(e,s){
+		//alert(s);
+		return e.getAttribute(s);
+	}
+	Array.prototype.getCellsByRowIndex = function (rowIndex){
+		var array = new Array();
+		for(var i=0;i<this.length;i++){
+			var cell = this[i] ;
+			if(cell.rowIndex == rowIndex){
+				array.push(cell) ;
+			}
+		}
+		return array ;
+	}
+	var createTr = function(tr,cells,checkArray){
+		var td  ;
+		for(var i=0;i<cells.length;i++){
+			var cell = cells[i];
+			var flag = false ;
+			for(var j=cell.rowIndex-1;j<(new Number(cell.rowIndex)+new Number(cell.rowSpan)-1);j++){
+				for(var k=cell.colIndex-1;k<(new Number(cell.colIndex)+new Number(cell.colSpan)-1);k++){
+					if(checkArray[j][k]){
+						flag = true ;
+						break;
+					}else{
+						checkArray[j][k] = true ;
+					}			
+				}
+				if(flag){break;}
+			}
+			if(!flag){
+				td = document.createElement("td");
+				setAttr(td,{colSpan:cell.colSpan,rowSpan:cell.rowSpan}); //设置td属性
+				setStyle(td,{width:cell.width+'px',height:cell.height+'px'});//设置样式
+				eval(cell.nodeType+'(td,cell)');
+				tr.appendChild(td);
+			}	
+		}
+	}
+	function label(td,cell){//文本显示
+		//var obj = document.createElement("span");
+		//obj.innerHTML = (cell.title==""?"&nbsp;":cell.title)  ;
+		//td.appendChild(obj);
+		var isBold = cell.isBold=='true'? "bold" : "" ;
+		var isItalic = cell.isItalic=='true'? "italic" : "" ;
+		setStyle(td,{'font-size':cell.fontSize+'pt','font-weight':isBold,'text-align':cell.textAlignment,'vertical-align':cell.verticalAlignment,'font-style':isItalic});
+		td.innerHTML = (cell.title==""?"&nbsp;":cell.title)  ;
+	}
+	function numberfield(td,cell){//数字输入框
+		var id = "fzmt_xml_number_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("input");
+		setAttr(obj,{'id':id,'data-role':"numerictextbox",'data-bind':"visible: isVisible,enabled: isEnabled, value: val"}) ;
+		setStyle(obj,{width:cell.width+'px'});
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isEnabled: true,
+			isVisible: true
+		});
+		jsMap.put(id,viewModel);
+	}
+	function datefield(td,cell){//日期输入框
+		var id = "fzmt_xml_data_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("input");
+		setAttr(obj,{'id':id,'data-role':"datepicker",'data-bind':"visible: isVisible,enabled: isEnabled, value: val"}) ;
+		setStyle(obj,{width:cell.width+'px'});//,height:cell.height+'px'
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isEnabled: true,
+			isVisible: true
+		});
+		jsMap.put(id,viewModel);
+	}
+	function textfield(td,cell){//文本输入框
+		var id = "fzmt_xml_field_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("input");
+		setAttr(obj,{'id':id,'data-role':"maskedtextbox",'data-bind':"visible: isVisible,enabled: isEnabled, value: val"}) ;
+		setStyle(obj,{width:cell.width+'px',height:cell.height+'px'});
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isEnabled: true,
+			isVisible: true
+		});
+		jsMap.put(id,viewModel);
+	}
+	function textarea(td,cell){//文本域
+		var id = "fzmt_xml_textarea_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("textarea");
+		setAttr(obj,{'id':id,'data-role':"editor",'data-tools':'[]','data-bind':"visible: isVisible, value: val"}) ;
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isVisible: true
+		});
+		jsMap.put(id,viewModel);
+	}
+	function editor(td,cell){//富文本编辑器
+		var id = "fzmt_xml_editor_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("textarea");
+		//var tools = "['bold','italic','underline','strikethrough','justifyLeft','justifyCenter','justifyRight','justifyFull']" ;
+		setAttr(obj,{'id':id,'data-role':"editor",'data-bind':"visible: isVisible, value: val"}) ;
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isVisible: true
+		});
+		jsMap.put(id,viewModel);
+	}
+	function grid(td,cell){//表格
+		
+	}
+	function pivotgrid(td,cell){
+	}
+	function listview(td,cell){
+	}
+	function treeview(td,cell){
+	}
+	function password(td,cell){
+	}
+	function select(td,cell){
+	}
+	function scheduler(td,cell){
+	}
+	function radio(td,cell){
+
+	}
+	function checkbox(td,cell){
+	}
+	function image(td,cell){
+	}
+	function double(td,cell){
+	}
+	function comboboxfield(td,cell){//下拉选框
+		var id = "fzmt_xml_combo_"+Math.floor((Math.random()*(999999999-900000000)+900000000));
+		var obj = document.createElement("input");
+		setAttr(obj,{'id':id,'data-role':"combobox",'data-text-field':"ProductName",'data-value-field':"ProductID",'data-bind':"visible: isVisible,enabled: isEnabled, value: val,source:products"}) ;
+		td.appendChild(obj);
+		var viewModel = kendo.observable({
+			val: null,
+			isPrimitive: false,
+			isEnabled: true,
+			isVisible: true,
+			products: new kendo.data.DataSource({
+				transport: {
+					read: {
+						url: "http://demos.telerik.com/kendo-ui/service/products",
+						dataType: "jsonp"
+					}
+				}
+			})
+		});
+		jsMap.put(id,viewModel);
+	}
+	$(document).ready(function() {
+		//*********解析xml*****************
+		var xml= 
+		loadXMLDoc("./test.fdl.xml");
+		if(xml==null);
+		//loadXMLDoc("cell_file.xml");
+		//loadXMLDoc("InvoiceApply.fdl.xml"); // 加载文档 
+		//获取 XML 文档
+		var domElems=xml.getElementsByTagName("form-definition");
+		var form = domElems[0] ;//根元素
+		var cellElems = xml.getElementsByTagName("cell");
+		//alert(domElems.length+'/'+cellElems.length);
+		//获取文档中"cells"元素节点集合(数组)
+		var cells=new Array(cellElems.length);
+		//
+		for(var i=0;i<cellElems.length;i++){
+			var cellElem = cellElems[i] ;
+			cells[i] = setField(cellElem); 
+		}
+		//渲染HTML
+		var table = document.createElement("table");
+		setStyle(table,{'table-layout':'fixed'});
+		setStyle(table,{width:getAttr(form,'Width')+'px',height:getAttr(form,'height')+'px'});
+		var tbody = document.createElement("tbody");
+		table.appendChild(tbody);
+		var rows = getAttr(form,'rows') ;
+		var cols = getAttr(form,'cols') ;
+		//定义二维数组用来检查cell节点重合
+		var checkArray = new Array();
+		for(var c=0;c<rows;c++){
+			checkArray[c] = new Array();
+		}
+		var tr,td ;
+		for(var j=1;j<=rows;j++){
+			tr= document.createElement("tr");
+			createTr(tr,cells.getCellsByRowIndex(j),checkArray);
+			tbody.appendChild(tr);
+		}
+		
+		document.body.appendChild(table);
+		
+		//渲染kendo
+		var keys = jsMap.keys() ;
+		for(var i=0;i<keys.length;i++){
+			var key = keys[i];
+			kendo.bind($("#"+key), jsMap.get(key));
+		}
+	});
+	
+
+	</script>
+
+</head>
+
+<body >
+
+</body>
+</html>
+

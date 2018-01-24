@@ -1,0 +1,45 @@
+<div class="inbox-header inbox-view-header">
+    <h1 class="pull-left"><#if subject?exists>${subject}</#if>
+        <a href="#" class="mail-list"> 返回列表 </a>
+    </h1>
+    <div class="pull-right">
+        <a href="javascript:;" class="btn btn-icon-only dark btn-outline">
+            <i class="fa fa-print"></i>
+        </a>
+    </div>
+</div>
+<div class="inbox-view-info">
+    <div class="row">
+        <div class="col-md-7">
+            <span class="sbold">发件人</span>
+            <span><#if fromAddr?exists>&#60;${fromAddr}&#62;</#if> </span>
+            <span class="sbold"> 收件人 </span> <span><#if toAddr?exists>&#60;${toAddr}&#62;</#if> </span> 发件时间  <#if date?exists>${date}</#if> </div>
+        <div class="col-md-5 inbox-info-btn">
+           
+        </div>
+    </div>
+</div>
+<div class="inbox-view">
+    <#if contentHtml?exists>${contentHtml}
+    <#elseif contentText?exists>${contentText?html}
+    <#else>
+    </#if>
+</div>
+<hr>
+<#if emailAtts?exists>
+<div class="inbox-attached">
+    <div class="margin-bottom-15">
+        <span>附件列表 — </span>
+        <!--<a href="javascript:;">下载所有附件 </a>-->
+    </div>
+    <div class="margin-bottom-25">
+       
+        <#list emailAtts as emailAtt>
+        <div>
+            <strong>${emailAtt.fileName}</strong>
+            <span>${emailAtt.fileSize/1000}KB</span>
+            <a att-id="${emailAtt.fileId}" class="downloadAttFile">下载 </a>
+        </div>
+        </#list>
+</div>
+</#if>

@@ -1,0 +1,370 @@
+{
+	"id": "progressbarbt",
+	"title": "进度条",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},
+	{
+		"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [
+		{
+			"id": "margin",
+			"title": "外间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "margin-top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginTop"
+			},
+			{
+				"id": "margin-bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginBottom"
+			},
+			{
+				"id": "margin-left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginLeft"
+			},
+			{
+				"id": "margin-right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginRight"
+			}]
+			
+		},{
+			"id": "position",
+			"title": "位置",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPositionTop"
+			},
+			{
+				"id": "bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPositionBottom"
+			},
+			{
+				"id": "left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPositionLeft"
+			},
+			{
+				"id": "right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPositionRight"
+			}]
+		},{
+			"id": "position",
+			"title": "定位",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "top",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setPositonStyle",
+			"valrange": [{
+				"name": "Au",
+				"title": "默认值",
+				"value": "static"
+			},
+			{
+				"name": "R",
+				"title": "相对于父元素绝对定位",
+				"value": "relative"
+			}]
+		},{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight"
+			}]
+		}]
+	},{
+		"id": "background",
+		"title": "背景",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "theme",
+			"title": "主题",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "select",
+			"valrange": [
+			{ 
+				"title": "成功",
+			  	"value": "progress-bar-success"
+			},
+			{ 
+				"title": "提示",
+			  	"value": "progress-bar-info"
+			},
+			{ 
+				"title": "警告",
+			  	"value": "progress-bar-warning"
+			},
+			{ 
+				"title": "错误",
+			  	"value": "progress-bar-danger"
+			}
+			],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTheme"
+		},
+		{
+			"id": "transparency",
+			"title": "透明度",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "rangeSlider",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTransparency"
+		}]
+	},{
+			"id": "font",
+			"title": "文本",
+			"description": "",
+			"expland": "false",
+			"properties": [
+		{
+			"id": "fontFamily",
+			"title": "字体<i class=\"fa fa-font\"></i>",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "宋体",
+			"inputMode": "select",
+			"valrange": [{
+				"title": "Microsoft YaHei",
+				"value": "Microsoft YaHei"
+			},{	
+				"title": "Arial",
+				"value": "Arial"
+			},{
+				"title": "Glyphicons Halflings",
+				"value": "Glyphicons Halflings"
+			},{
+				"title": "Consolas",
+				"value": "Consolas"
+			},{
+				"title": "Courier New",
+				"value": "Courier New"
+			},
+			{	
+				"title": "宋体",
+				"value": "SimSun"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontFamily"
+		},{
+			"id": "fontStyle",
+			"title": "字体样式",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontStyle",
+			"valrange": [{
+				"title": "字体加粗",
+				"value": "bold",
+				"icon":"bold"
+			},
+			{
+				"title": "斜体",
+				"value": "italic",
+				"icon":"italic"
+			}]
+		 },{
+			"id": "fontSize",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "font-size",
+				"title": "字体大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontSize"
+			}]
+			
+		},{
+			"id": "spacing",
+			"title": "字体间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "letter-spacing",
+				"title": "横向间距",
+				"icon":"text-width",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setLetterSpacing"
+			}]
+			
+		},{
+			"id": "leftFontColor",
+			"title": "字体颜色(完成)",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setLeftFontColor"
+		},{
+			"id": "rightFontColor",
+			"title": "字体颜色(未完成)",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setRightFontColor"
+		},{
+			"id": "fontFamily",
+			"title": "字体<i class=\"fa fa-font\"></i>",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "宋体",
+			"inputMode": "select",
+			"valrange": [{
+				"title": "Microsoft YaHei",
+				"value": "Microsoft YaHei"
+			},{	
+				"title": "Arial",
+				"value": "Arial"
+			},{
+				"title": "Glyphicons Halflings",
+				"value": "Glyphicons Halflings"
+			},{
+				"title": "Consolas",
+				"value": "Consolas"
+			},{
+				"title": "Courier New",
+				"value": "Courier New"
+			},
+			{	
+				"title": "宋体",
+				"value": "SimSun"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontFamily"
+		}]
+	}]
+}

@@ -1,0 +1,207 @@
+{
+	"id": "gridbt",
+	"title": "Bootstrap Grid",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "selectedColor",
+			"title": "选中行颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setselectedColor"
+		},{
+			"id": "sizeStyle",
+			"title": "按钮样式",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "left",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setSizeStyle",
+			"valrange": [{
+			    "name":"特小",
+				"title": "特小",
+				"value": "hmtdxs"
+			}]
+		},{
+			"id": "titlePadding",
+			"title": "标题内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "titlePaddingTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "settitlePaddingTop"
+			},
+			{
+				"id": "titlePaddingBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "settitlePaddingBottom"
+			},
+			{
+				"id": "titlePaddingLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "settitlePaddingLeft"
+			},
+			{
+				"id": "titlePaddingRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "settitlePaddingRight"
+			}]
+		},{
+			"id": "switchSize",
+			"title": "开关栏宽高",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "switchWidth",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchWidth"
+			},
+			{
+				"id": "switchHeight",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchHeight"
+			}]
+		},{
+			"id": "switchFont",
+			"title": "开关字体设置",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "switchFontSize",
+				"title": "大小",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchFontSize"
+			},
+			{
+				"id": "switchFontTop",
+				"title": "上",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchFontTop"
+			}]
+		},{
+			"id": "switchHandleSize",
+			"title": "开关设置",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "switchHandleWidth",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchHandleWidth"
+			},
+			{
+				"id": "switchHandleHeight",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchHandleHeight"
+			},{
+				"id": "switchHandleTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchHandleTop"
+			},
+			{
+				"id": "switchHandleLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setswitchHandleLeft"
+			}]
+		}]
+	}]
+}

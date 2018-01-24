@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapping>
+    <entity name="SysLog" package="com.glaf.base.modules.sys" table="sys_log" title="系统日志" englishTitle="SysLog">
+        <id name="id" column="ID" type="Long" englishTitle="id" title="编号" ordinal="99"/>
+        <property name="account" column="ACCOUNT" type="String" englishTitle="account" length="255" title="用户名" ordinal="85" />
+        <property name="ip" column="IP" type="String" englishTitle="ip" length="255" title="IP地址" ordinal="60" />
+        <property name="createTime" column="CREATETIME" type="Date" englishTitle="createTime" length="23" title="创建时间" ordinal="80" />
+        <property name="operate" column="OPERATE" type="String" englishTitle="operate" length="255" title="操作" ordinal="20" />
+        <property name="flag" column="FLAG" type="Integer" englishTitle="flag" length="10" title="标识" ordinal="0" />
+    </entity>
+</mapping>

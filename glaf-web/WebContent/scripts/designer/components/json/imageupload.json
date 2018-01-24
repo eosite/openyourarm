@@ -1,0 +1,95 @@
+{
+	"id": "imageupload",
+	"title": "图片上传",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},
+		{
+			"id": "backgroundImage",
+			"title": "底图",
+			"type": "string",
+			"inputMode": "template",
+			"require": "true",
+			"template":"<div class=\"input-group form-group form-md-line-input\"><input type=\"text\" class=\"form-control\" id=\"backgroundImage1\" onblur=\"$('#backgroundImage').val('');$('#backgroundImage').click();\"><span class=\"input-group-btn\"><button class=\"btn blue input-sm\" type=\"button\" onclick=\"javascript:imagePage(this);\" >...</button></span></div>",
+			"ctrImpl": "setPreimage",
+			"initImpl":"initBackgroundImage"
+		},{
+			"id": "hasBorder",
+			"title": "是否有边框",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "是",
+				"value": "no"
+			},
+			{
+				"title": "否",
+				"value": "off"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBorder"
+		},{
+			"id": "gfd",
+			"title": "圆边",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setRadiu"
+		}]
+	},{
+		"id": "customsetting",
+		"title": "定制",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight",
+				"unit":"px,%,em"
+			}]
+		}]
+	}]
+}

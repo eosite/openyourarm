@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form-definition name="发票申请表" title="发票申请表" rows="17" columns="29" width="725" height="1143">
+  <cell nodeType="label" title="发票申请表" foreground="#3366FF" background="#000000" x="0" y="0" rowIndex="1" colIndex="1" height="42" width="725" rowSpan="1" colSpan="29"/>
+  <cell nodeType="label" title="申请人" foreground="#000000" background="#000000" x="0" y="42" rowIndex="2" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f1" x="175" y="42" rowIndex="2" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="申请部门" foreground="#000000" background="#000000" x="400" y="42" rowIndex="2" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f2" x="525" y="42" rowIndex="2" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="客户名称" foreground="#000000" background="#000000" x="0" y="77" rowIndex="3" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f3" x="175" y="77" rowIndex="3" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="签订人" foreground="#000000" background="#000000" x="400" y="77" rowIndex="3" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f4" x="525" y="77" rowIndex="3" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="项目名称" foreground="#000000" background="#000000" x="0" y="112" rowIndex="4" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f5" x="175" y="112" rowIndex="4" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="开票金额" foreground="#000000" background="#000000" x="400" y="112" rowIndex="4" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="numberfield" foreground="#000000" background="#000000" name="f6" x="525" y="112" rowIndex="4" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="地址" foreground="#000000" background="#000000" x="0" y="147" rowIndex="5" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f7" x="175" y="147" rowIndex="5" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="联系人" foreground="#000000" background="#000000" x="400" y="147" rowIndex="5" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f8" x="525" y="147" rowIndex="5" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="电话" foreground="#000000" background="#000000" x="0" y="182" rowIndex="6" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f9" x="175" y="182" rowIndex="6" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="传真" foreground="#000000" background="#000000" x="400" y="182" rowIndex="6" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f10" x="525" y="182" rowIndex="6" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="合同号" foreground="#000000" background="#000000" x="0" y="217" rowIndex="7" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f11" x="175" y="217" rowIndex="7" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="日期" foreground="#000000" background="#000000" x="400" y="217" rowIndex="7" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="datefield" foreground="#000000" background="#000000" name="f20" x="525" y="217" rowIndex="7" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="合同状态" foreground="#000000" background="#000000" x="0" y="252" rowIndex="8" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="select" foreground="#000000" background="#000000" name="f13" x="175" y="252" rowIndex="8" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="进度" foreground="#000000" background="#000000" x="400" y="252" rowIndex="8" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="select" foreground="#000000" background="#000000" name="f14" x="525" y="252" rowIndex="8" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="发票类型" foreground="#000000" background="#000000" x="0" y="287" rowIndex="9" colIndex="1" height="35" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="select" foreground="#000000" background="#000000" name="f15" x="175" y="287" rowIndex="9" colIndex="8" height="35" width="225" rowSpan="1" colSpan="9"/>
+  <cell nodeType="label" title="发票号" foreground="#000000" background="#000000" x="400" y="287" rowIndex="9" colIndex="17" height="35" width="125" rowSpan="1" colSpan="5"/>
+  <cell nodeType="textfield" foreground="#000000" background="#000000" name="f16" x="525" y="287" rowIndex="9" colIndex="22" height="35" width="200" rowSpan="1" colSpan="8"/>
+  <cell nodeType="label" title="服务内容" foreground="#000000" background="#000000" x="0" y="322" rowIndex="10" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f17" x="175" y="322" rowIndex="10" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="付款条件" foreground="#000000" background="#000000" x="0" y="428" rowIndex="11" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f18" x="175" y="428" rowIndex="11" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="备注" foreground="#000000" background="#000000" x="0" y="534" rowIndex="12" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f19" x="175" y="534" rowIndex="12" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="申请部门意见" foreground="#000000" background="#000000" x="0" y="640" rowIndex="13" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f21" x="175" y="640" rowIndex="13" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="出纳审核意见" foreground="#000000" background="#000000" x="0" y="746" rowIndex="14" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f22" x="175" y="746" rowIndex="14" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="公司审批意见" foreground="#000000" background="#000000" x="0" y="852" rowIndex="15" colIndex="1" height="106" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="textarea" foreground="#000000" background="#000000" name="f23" x="175" y="852" rowIndex="15" colIndex="8" height="106" width="550" rowSpan="1" colSpan="22"/>
+  <cell nodeType="label" title="A" foreground="#000000" background="#000000" x="0" y="958" rowIndex="16" colIndex="1" height="92" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="label" title="C" foreground="#000000" background="#000000" x="175" y="958" rowIndex="16" colIndex="8" height="185" width="450" rowSpan="2" colSpan="18"/>
+  <cell nodeType="label" title="D" foreground="#000000" background="#000000" x="625" y="958" rowIndex="16" colIndex="26" height="92" width="100" rowSpan="1" colSpan="4"/>
+  <cell nodeType="label" title="B" foreground="#000000" background="#000000" x="0" y="1050" rowIndex="17" colIndex="1" height="93" width="175" rowSpan="1" colSpan="7"/>
+  <cell nodeType="label" title="E" foreground="#000000" background="#000000" x="625" y="1050" rowIndex="17" colIndex="26" height="93" width="100" rowSpan="1" colSpan="4"/>
+</form-definition>

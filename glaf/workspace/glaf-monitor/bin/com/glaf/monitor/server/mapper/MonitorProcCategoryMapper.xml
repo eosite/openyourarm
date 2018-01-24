@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.monitor.server.mapper.MonitorProcCategoryMapper">
+
+ 	<resultMap id="monitorProcCategoryResultMap"	type="com.glaf.monitor.server.domain.MonitorProcCategory">
+        <id property="id" column="ID_" jdbcType="INTEGER" />
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="pid" column="PID_" jdbcType="INTEGER"/>
+        <result property="treeid" column="TREEID_" jdbcType="VARCHAR"/>
+        <result property="createby" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateby" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updatetime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertMonitorProcCategory" parameterType="com.glaf.monitor.server.domain.MonitorProcCategory">
+		insert into MONITOR_PROC_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="pid != null">
+				,PID_ 
+			</if>
+			<if test="treeid != null">
+				,TREEID_ 
+			</if>
+			<if test="createby != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createtime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateby != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updatetime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="treeid != null">
+				,#{treeid, jdbcType=VARCHAR}
+			</if>
+			<if test="createby != null">
+				,#{createby, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				,#{createtime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateby != null">
+				,#{updateby, jdbcType=VARCHAR}
+			</if>
+			<if test="updatetime != null">
+				,#{updatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMonitorProcCategory" parameterType="com.glaf.monitor.server.domain.MonitorProcCategory">
+		update MONITOR_PROC_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				PID_ = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="treeid != null">
+				TREEID_ = #{treeid, jdbcType=VARCHAR},
+			</if>
+			<if test="createby != null">
+				CREATEBY_ = #{createby, jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME_ = #{createtime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null">
+				UPDATEBY_ = #{updateby, jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME_ = #{updatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteMonitorProcCategoryById" parameterType="integer"> 
+        delete from MONITOR_PROC_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMonitorProcCategorys" parameterType="com.glaf.monitor.server.query.MonitorProcCategoryQuery">
+		delete from MONITOR_PROC_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMonitorProcCategoryById" parameterType="integer" resultMap="monitorProcCategoryResultMap">
+		select * from MONITOR_PROC_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getMonitorProcCategorys" 
+	    parameterType="com.glaf.monitor.server.query.MonitorProcCategoryQuery"
+		resultMap="monitorProcCategoryResultMap">
+		select distinct E.*
+		<include refid="selectMonitorProcCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMonitorProcCategoryCount" 
+	    parameterType="com.glaf.monitor.server.query.MonitorProcCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMonitorProcCategorysSql" />
+	</select>
+
+
+	<sql id="selectMonitorProcCategorysSql">
+
+		from MONITOR_PROC_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+
+			<if test="pid != null">
+				and E.PID_ = #{pid}
+            </if>
+
+			<if test="pidGreaterThanOrEqual != null">
+				and E.PID_ &gt;= #{pidGreaterThanOrEqual}
+            </if>
+
+			<if test="pidLessThanOrEqual != null">
+				and E.PID_ &lt;= #{pidLessThanOrEqual}
+            </if>
+
+			<if test="pids != null and pids.size() &gt; 0">
+			    and E.PID_ IN
+                <foreach item="x_pid" index="index" collection="pids" 
+                     open="(" separator="," close=")">
+                  #{x_pid}
+                </foreach>
+			</if>
+      
+	        
+			<if test="treeid != null and treeid != '' ">
+				and E.TREEID_ = #{treeid}
+            </if>
+
+			<if test="treeidLike != null and treeidLike != '' ">
+				and E.TREEID_ like #{treeidLike}
+            </if>
+
+			<if test="treeids != null and treeids.size() &gt; 0">
+			    and E.TREEID_ IN
+                <foreach item="x_treeid" index="index" collection="treeids" 
+                     open="(" separator="," close=")">
+                  #{x_treeid}
+                </foreach>
+			</if>
+	        
+			<if test="createby != null and createby != '' ">
+				and E.CREATEBY_ = #{createby}
+            </if>
+
+			<if test="createbyLike != null and createbyLike != '' ">
+				and E.CREATEBY_ like #{createbyLike}
+            </if>
+
+			<if test="createbys != null and createbys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createby" index="index" collection="createbys" 
+                     open="(" separator="," close=")">
+                  #{x_createby}
+                </foreach>
+			</if>
+
+			<if test="createtimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createtimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createtimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateby != null and updateby != '' ">
+				and E.UPDATEBY_ = #{updateby}
+            </if>
+
+			<if test="updatebyLike != null and updatebyLike != '' ">
+				and E.UPDATEBY_ like #{updatebyLike}
+            </if>
+
+			<if test="updatebys != null and updatebys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateby" index="index" collection="updatebys" 
+                     open="(" separator="," close=")">
+                  #{x_updateby}
+                </foreach>
+			</if>
+
+			<if test="updatetimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updatetimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

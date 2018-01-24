@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+	<link rel="stylesheet" type="text/css" href="./css/sidebar.extends.css">
+	<title>Document</title>
+	<style type="text/css">
+		/* 最小屏幕为992的 */
+		@media(min-width: 992px){
+			.sidebarExt {
+				display : block;
+				max-height : none!important;
+			}
+		}
+		/* 最小屏幕为768的 */
+		@media(min-width: 768px){
+			.sidebarExt{
+				display: block!important;
+			    height: auto!important;
+			    overflow: visible!important;
+			}
+		}
+		@media(max-width: 768px){
+			.sidebarExt{
+				width: auto!important;
+			}
+		}
+
+
+		@media (min-width: 992px){
+			.sidebarExt {
+			    width: 235px;
+			    float: left;
+			    position: relative;
+			    margin-right: -100%;
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<div style="height:666px;">
+		<div id="aaa">
+			<div class="sidebarExt containerComp" style=" min-height: 200px;border:1px solid black"></div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="../jquery.min.js" type="text/javascript"></script>
+<script src="../base/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../jquery.core.extends.js" type="text/javascript"></script>
+<script src="./ext/jquery.sidebar.extends.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	$(function(){
+		// $('#aaa').sidebarExt();
+	})
+
+</script>

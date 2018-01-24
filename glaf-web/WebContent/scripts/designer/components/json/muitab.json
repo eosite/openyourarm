@@ -1,0 +1,244 @@
+{
+	"id": "col",
+	"title": "栅格样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "progressDelay",
+			"title": "滑动延迟(ms)",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "marginTop",
+				"title": "S",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setProgressDelay"
+			}]
+		},{
+			"id": "progress",
+			"title": "滑动栏",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"require": "true",
+			"readonly": "false",
+			"valrange": [{
+				"title": "有",
+				"value":"1"
+			},{
+				"title": "无",
+				"value":"0"
+			}],
+			"ctrImpl": "setProgress"
+		},{
+			"id": "progressColor",
+			"title": "滚动条颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setProgressColor"
+		},{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth",
+				"unit":"px,%"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight",
+				"unit":"px,%"
+			}]
+		}]
+	},{
+		"id": "addtab",
+		"title": "添加选项卡",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "setitems",
+			"title": "快速添加",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "items",
+				"title": "",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "2",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setItems"
+			}]
+		}]
+	},{
+		"id": "modifytab",
+		"title": "修改选项卡(当前选中)",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "titleName",
+			"title": "标题名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "MyTab",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "updateTab"
+		}]
+	},{
+		"id": "deletetab",
+		"title": "删除选项卡(当前选中)",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "deltab",
+			"title": "删除",
+			"type": "string",
+			"defaultVal": "true",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "deleteTab",
+			"valrange": [{
+			    "name":"删除",
+				"title": "删除",
+				"value": "true"
+			}]
+		 }]
+	},{
+		"id": "title",
+		"title": "标题栏",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "font",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "fontSize",
+				"title": "T",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "2",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontSize"
+			}]
+		},{
+			"id": "titleHeight2",
+			"title": "标题栏高度",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "titleHeight",
+				"title": "T",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "2",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTitleHeight"
+			}]
+		},{
+			"id": "titleColor",
+			"title": "字体颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTitleColor"
+		},{
+			"id": "titleBackColor",
+			"title": "背景颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTitleBackColor"
+		},{
+			"id": "titleColor_s",
+			"title": "字体颜色(选中)",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTitleColor_s"
+		},{
+			"id": "titleBackColor_s",
+			"title": "背景颜色(选中)",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTitleBackColor_s"
+		}]
+	},{
+		"id": "content",
+		"title": "内容",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "contentBackColor",
+			"title": "背景颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContentBackColor"
+		}]
+	}]
+}

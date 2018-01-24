@@ -1,0 +1,203 @@
+{
+	"id": "login_verify",
+	"title": "验证码区",
+	"description": "",
+	"propertyPackages": [
+	{
+		"id": "componentConfig",
+		"title": "组件配置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "remove",
+			"title": "移除区域",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setRemove",
+			"valrange": [{
+				"title": "移除",
+				"value": "yes",
+				"icon":"close"
+			}]
+		},{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "info",
+			"title": "验证框提示信息",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setInfo"
+		},
+		{
+			"id": "width",
+			"title": "验证框宽度",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setWidth"
+		},
+		{
+			"id": "padding",
+			"title": "验证框内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "tPaddingTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTPaddingTop"
+			},
+			{
+				"id": "tPaddingBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTPaddingBottom"
+			},
+			{
+				"id": "tPaddingLeft",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTPaddingLeft"
+			},
+			{
+				"id": "tPaddingRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTPaddingRight"
+			}]
+		},
+		{
+			"id": "padding",
+			"title": "图片区内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "padding-top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingTop"
+			},
+			{
+				"id": "padding-bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingBottom"
+			},
+			{
+				"id": "padding-left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingLeft"
+			},
+			{
+				"id": "padding-right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingRight"
+			}]
+		},
+		{
+			"id": "text-align",
+			"title": "图片区对齐方式",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "left",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTextAlign",
+			"valrange": [{
+				"title": "水平左对齐",
+				"value": "left",
+				"icon":"align-left"
+			},
+			{
+				"title": "水平居中对齐",
+				"value": "center",
+				"icon":"align-center"
+			},{
+				"title": "右对齐",
+				"value": "right",
+				"icon":"align-right"
+			}]
+		}]
+	}]
+		
+	
+}

@@ -1,0 +1,228 @@
+{
+	"id": "login_copyright",
+	"title": "验证码区",
+	"description": "",
+	"propertyPackages": [{
+		"id": "componentConfig",
+		"title": "组件配置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "remove",
+			"title": "移除区域",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setRemove",
+			"valrange": [{
+				"title": "移除",
+				"value": "yes",
+				"icon":"close"
+			}]
+		},{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},
+	{	"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [
+		{
+			"id": "margin",
+			"title": "外间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "margin-top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginTop"
+			},
+			{
+				"id": "margin-bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginBottom"
+			},
+			{
+				"id": "margin-left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginLeft"
+			},
+			{
+				"id": "margin-right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginRight"
+			}]
+			
+		},{
+			"id": "text-align",
+			"title": "对齐方式",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "left",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTextAlign",
+			"valrange": [{
+				"title": "水平左对齐",
+				"value": "left",
+				"icon":"align-left"
+			},
+			{
+				"title": "水平居中对齐",
+				"value": "center",
+				"icon":"align-center"
+			},{
+				"title": "右对齐",
+				"value": "right",
+				"icon":"align-right"
+			}]
+		}]
+	},
+	{
+		"id": "font",
+		"title": "文本",
+		"description": "",
+		"expland": "false",
+		"properties":[{
+			"id": "font-family",
+			"title": "字体<i class=\"fa fa-font\"></i>",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "宋体",
+			"inputMode": "select",
+			"valrange": [{
+				"title": "Microsoft YaHei",
+				"value": "Microsoft YaHei"
+			},{	
+				"title": "Arial",
+				"value": "Arial"
+			},{
+				"title": "Glyphicons Halflings",
+				"value": "Glyphicons Halflings"
+			},{
+				"title": "Consolas",
+				"value": "Consolas"
+			},{
+				"title": "Courier New",
+				"value": "Courier New"
+			},
+			{	
+				"title": "宋体",
+				"value": "SimSun"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontFamily"
+		},
+		{
+			"id": "font-color",
+			"title": "颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontColor"
+		},{
+			"id": "font-style",
+			"title": "字体样式",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontStyle",
+			"valrange": [{
+				"title": "字体加粗",
+				"value": "bold",
+				"icon":"bold"
+			},
+			{
+				"title": "斜体",
+				"value": "italic",
+				"icon":"italic"
+			}]
+		 },		{
+			"id": "spacing",
+			"title": "字体间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "letter-spacing",
+				"title": "横向间距",
+				"icon":"text-width",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setLetterSpacing"
+			}]
+			
+		},{
+			"id": "font-size",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "font-size",
+				"title": "字体大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontSize"
+			}]		
+		}]
+	}]
+		
+	
+}

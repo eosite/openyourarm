@@ -1,0 +1,298 @@
+{
+	"id": "jqfileupload2",
+	"title": "文件上传",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "btnName",
+			"title": "按钮内容",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBtnName"
+		},{
+			"id": "btnIcon",
+			"title": "按钮图标",
+			"type": "string",
+			"inputMode": "template",
+			"require": "true",
+			"template":"<div class=\"input-group\"><i id=\"icon\"></i><span id=\"iconName\"></span><span class=\"input-group-btn\"><button class=\"btn blue input-sm\" type=\"button\" onclick=\"javascript:selectIconPage(this);\" >...</button></span></div>",
+			"ctrImpl": "setBtnIcon",
+			"initImpl":"initIconClass"
+		},{
+			"id": "progressStatus",
+			"title": "进度条",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "显示",
+				"value": "yes"
+			},
+			{
+				"title": "隐藏",
+				"value": "no"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setProgressStatus"
+		},{
+			"id": "btnColor",
+			"title": "按钮颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBtnColor"
+		},{
+			"id": "disabledBackColor",
+			"title": "禁用背景颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setDisabledBackColor"
+		},{
+			"id": "disabledColor",
+			"title": "禁用文字颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setDisabledColor"
+		},{
+			"id": "btnBorderColor",
+			"title": "按钮边框颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBtnBorderColor"
+		},{
+			"id": "sortType",
+			"title": "排序格式",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "vertical",
+			"inputMode": "select",
+			"valrange": [{	
+				"title": "纵向",
+				"value": "verticalType"
+			},{
+				"title": "水平",
+				"value": "horizontalType"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setSortType"
+		}]
+	},{
+		"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "width",
+			"title": "宽度",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight"
+			}]
+		},
+	    {
+			"id": "size",
+			"title": "大小设置",
+			"type": "string",
+			"defaultVal": "false",
+			"inputMode": "select",
+			"valrange": [{
+			    "name":"默认",
+				"title": "默认",
+				"value": ""
+			},{
+			    "name":"特小",
+				"title": "特小",
+				"value": "hmtd-xs"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setSize"
+		}]
+	},{
+		"id": "content",
+		"title": "内容",
+		"description": "",
+		"expland": "false",
+		"properties": [
+			{
+				"id": "fontColor",
+				"title": "字体颜色",
+				"type": "string",
+				"defaultVal": "",
+				"inputMode": "colorpicker",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontColor"
+			},{
+				"id": "font-style",
+				"title": "字体样式",
+				"type": "string",
+				"defaultVal": "",
+				"inputMode": "buttongroup",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontStyle",
+				"valrange": [{
+					"title": "字体加粗",
+					"value": "bold",
+					"icon":"bold"
+				},
+				{
+					"title": "斜体",
+					"value": "italic",
+					"icon":"italic"
+				}]
+			 },{
+				"id": "font-size",
+				"title": "字体大小",
+				"inputMode": "touchspin",
+				"properties":[{
+					"id": "font-size",
+					"title": "字体大小",
+					"icon":"font",
+					"type": "int",
+					"maxval":"100",
+				    "minval":"1",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setFontSize"
+				}]
+			},{
+				"id": "btnIconColor",
+				"title": "图标颜色",
+				"type": "string",
+				"defaultVal": "",
+				"inputMode": "colorpicker",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setBtnIconColor"
+			},{
+				"id": "btnIconSize",
+				"title": "字体大小",
+				"inputMode": "touchspin",
+				"properties":[{
+					"id": "btnIconSize",
+					"title": "字体大小",
+					"icon":"font",
+					"type": "int",
+					"maxval":"100",
+				    "minval":"1",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setBtnIconSize"
+				}]
+			},{
+				"id": "btnPadding",
+				"title": "按钮内间距",
+				"inputMode": "touchspin",
+				"properties": [{
+					"id": "btnpadding-top",
+					"title": "上",
+					"type": "int",
+					"maxval":"2000",
+				    "minval":"-2000",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setBtnPaddingTop"
+				},
+				{
+					"id": "btnpadding-bottom",
+					"title": "下",
+					"type": "int",
+				    "maxval":"2000",
+				    "minval":"-2000",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setBtnPaddingBottom"
+				},
+				{
+					"id": "btnpadding-left",
+					"title": "左",
+					"type": "int",
+				    "maxval":"2000",
+				    "minval":"-2000",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setBtnPaddingLeft"
+				},
+				{
+					"id": "btnpadding-right",
+					"title": "右",
+					"type": "int",
+				    "maxval":"2000",
+				    "minval":"-2000",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setBtnPaddingRight"
+				}]
+			}
+		]
+	}
+]}

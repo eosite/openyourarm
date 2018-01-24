@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.RdataFieldMapper">
+
+	<resultMap id="rdataFieldResultMap" type="com.glaf.isdp.domain.RdataField">
+		<id property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="tableid" column="TABLEID" jdbcType="VARCHAR" />
+		<result property="fieldname" column="FIELDNAME" jdbcType="VARCHAR" />
+		<result property="userid" column="USERID" jdbcType="VARCHAR" />
+		<result property="maxuser" column="MAXUSER" jdbcType="INTEGER" />
+		<result property="maxsys" column="MAXSYS" jdbcType="INTEGER" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="sysnum" column="SYSNUM" jdbcType="VARCHAR" />
+		<result property="tablename" column="TABLENAME" jdbcType="VARCHAR" />
+		<result property="dname" column="DNAME" jdbcType="VARCHAR" />
+		<result property="userindex" column="USERINDEX" jdbcType="VARCHAR" />
+		<result property="treetablenameB" column="TREETABLENAME_B"
+			jdbcType="VARCHAR" />
+		<result property="formula" column="FORMULA" jdbcType="VARCHAR" />
+		<result property="lgcexpress" column="LGCEXPRESS" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertRdataField" parameterType="com.glaf.isdp.domain.RdataField">
+		insert into R_DATA_FIELD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="tableid != null">
+				,TABLEID
+			</if>
+			<if test="fieldname != null">
+				,FIELDNAME
+			</if>
+			<if test="userid != null">
+				,USERID
+			</if>
+			<if test="maxuser != null">
+				,MAXUSER
+			</if>
+			<if test="maxsys != null">
+				,MAXSYS
+			</if>
+			<if test="ctime != null">
+				,CTIME
+			</if>
+			<if test="sysnum != null">
+				,SYSNUM
+			</if>
+			<if test="tablename != null">
+				,TABLENAME
+			</if>
+			<if test="dname != null">
+				,DNAME
+			</if>
+			<if test="userindex != null">
+				,USERINDEX
+			</if>
+			<if test="treetablenameB != null">
+				,TREETABLENAME_B
+			</if>
+			<if test="formula != null">
+				,FORMULA
+			</if>
+			<if test="lgcexpress != null">
+				,LGCEXPRESS
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="tableid != null">
+				,#{tableid, jdbcType=VARCHAR}
+			</if>
+			<if test="fieldname != null">
+				,#{fieldname, jdbcType=VARCHAR}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="maxuser != null">
+				,#{maxuser, jdbcType=INTEGER}
+			</if>
+			<if test="maxsys != null">
+				,#{maxsys, jdbcType=INTEGER}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="sysnum != null">
+				,#{sysnum, jdbcType=VARCHAR}
+			</if>
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="dname != null">
+				,#{dname, jdbcType=VARCHAR}
+			</if>
+			<if test="userindex != null">
+				,#{userindex, jdbcType=VARCHAR}
+			</if>
+			<if test="treetablenameB != null">
+				,#{treetablenameB, jdbcType=VARCHAR}
+			</if>
+			<if test="formula != null">
+				,#{formula, jdbcType=VARCHAR}
+			</if>
+			<if test="lgcexpress != null">
+				,#{lgcexpress, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateRdataField" parameterType="com.glaf.isdp.domain.RdataField">
+		update R_DATA_FIELD
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="tableid != null">
+				TABLEID = #{tableid, jdbcType=VARCHAR},
+			</if>
+			<if test="fieldname != null">
+				FIELDNAME = #{fieldname, jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				USERID = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="maxuser != null">
+				MAXUSER = #{maxuser, jdbcType=INTEGER},
+			</if>
+			<if test="maxsys != null">
+				MAXSYS = #{maxsys, jdbcType=INTEGER},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="sysnum != null">
+				SYSNUM = #{sysnum, jdbcType=VARCHAR},
+			</if>
+			<if test="tablename != null">
+				TABLENAME = #{tablename, jdbcType=VARCHAR},
+			</if>
+			<if test="dname != null">
+				DNAME = #{dname, jdbcType=VARCHAR},
+			</if>
+			<if test="userindex != null">
+				USERINDEX = #{userindex, jdbcType=VARCHAR},
+			</if>
+			<if test="treetablenameB != null">
+				TREETABLENAME_B = #{treetablenameB, jdbcType=VARCHAR},
+			</if>
+			<if test="formula != null">
+				FORMULA = #{formula, jdbcType=VARCHAR},
+			</if>
+			<if test="lgcexpress != null">
+				LGCEXPRESS = #{lgcexpress, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteRdataFieldById" parameterType="string">
+		delete from
+		R_DATA_FIELD
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteRdataFields" parameterType="com.glaf.isdp.query.RdataFieldQuery">
+		delete from R_DATA_FIELD
+		where (
+		ID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getRdataFieldById" parameterType="string"
+		resultMap="rdataFieldResultMap">
+		select * from R_DATA_FIELD where ID = #{id}
+	</select>
+
+	<select id="getNextMaxUser" resultType="int">
+		SELECT
+		CASE
+		WHEN
+		MAX(MAXUSER) IS NULL
+		THEN 1
+		ELSE MAX(MAXUSER)+1
+		END MAXUSERID
+		FROM
+		R_DATA_FIELD
+		WHERE
+		TABLEID = #{tableid}
+	</select>
+
+	<select id="getRdataFields" parameterType="com.glaf.isdp.query.RdataFieldQuery"
+		resultMap="rdataFieldResultMap">
+		select distinct E.*
+		<include refid="selectRdataFieldsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getRdataFieldCount" parameterType="com.glaf.isdp.query.RdataFieldQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectRdataFieldsSql" />
+	</select>
+
+
+	<sql id="selectRdataFieldsSql">
+
+		from R_DATA_FIELD E
+
+		<where>
+			1 = 1
+
+
+			<if test="tableid != null and tableid != '' ">
+				and E.TABLEID = #{tableid}
+			</if>
+
+			<if test="tableidLike != null and tableidLike != '' ">
+				and E.TABLEID like #{tableidLike}
+			</if>
+
+			<if test="tableids != null and tableids.size() &gt; 0">
+				and E.TABLEID IN
+				<foreach item="x_tableid" index="index" collection="tableids"
+					open="(" separator="," close=")">
+					#{x_tableid}
+				</foreach>
+			</if>
+
+			<if test="fieldname != null and fieldname != '' ">
+				and E.FIELDNAME = #{fieldname}
+			</if>
+
+			<if test="fieldnameLike != null and fieldnameLike != '' ">
+				and E.FIELDNAME like #{fieldnameLike}
+			</if>
+
+			<if test="fieldnames != null and fieldnames.size() &gt; 0">
+				and E.FIELDNAME IN
+				<foreach item="x_fieldname" index="index" collection="fieldnames"
+					open="(" separator="," close=")">
+					#{x_fieldname}
+				</foreach>
+			</if>
+
+			<if test="userid != null and userid != '' ">
+				and E.USERID = #{userid}
+			</if>
+
+			<if test="useridLike != null and useridLike != '' ">
+				and E.USERID like #{useridLike}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+				and E.USERID IN
+				<foreach item="x_userid" index="index" collection="userids"
+					open="(" separator="," close=")">
+					#{x_userid}
+				</foreach>
+			</if>
+
+			<if test="maxuser != null">
+				and E.MAXUSER = #{maxuser}
+			</if>
+
+			<if test="maxuserGreaterThanOrEqual != null">
+				and E.MAXUSER &gt;= #{maxuserGreaterThanOrEqual}
+			</if>
+
+			<if test="maxuserLessThanOrEqual != null">
+				and E.MAXUSER &lt;= #{maxuserLessThanOrEqual}
+			</if>
+
+			<if test="maxusers != null and maxusers.size() &gt; 0">
+				and E.MAXUSER IN
+				<foreach item="x_maxuser" index="index" collection="maxusers"
+					open="(" separator="," close=")">
+					#{x_maxuser}
+				</foreach>
+			</if>
+
+
+			<if test="maxsys != null">
+				and E.MAXSYS = #{maxsys}
+			</if>
+
+			<if test="maxsysGreaterThanOrEqual != null">
+				and E.MAXSYS &gt;= #{maxsysGreaterThanOrEqual}
+			</if>
+
+			<if test="maxsysLessThanOrEqual != null">
+				and E.MAXSYS &lt;= #{maxsysLessThanOrEqual}
+			</if>
+
+			<if test="maxsyss != null and maxsyss.size() &gt; 0">
+				and E.MAXSYS IN
+				<foreach item="x_maxsys" index="index" collection="maxsyss"
+					open="(" separator="," close=")">
+					#{x_maxsys}
+				</foreach>
+			</if>
+
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+
+			<if test="sysnum != null and sysnum != '' ">
+				and E.SYSNUM = #{sysnum}
+			</if>
+
+			<if test="sysnumLike != null and sysnumLike != '' ">
+				and E.SYSNUM like #{sysnumLike}
+			</if>
+
+			<if test="sysnums != null and sysnums.size() &gt; 0">
+				and E.SYSNUM IN
+				<foreach item="x_sysnum" index="index" collection="sysnums"
+					open="(" separator="," close=")">
+					#{x_sysnum}
+				</foreach>
+			</if>
+
+			<if test="tablename != null and tablename != '' ">
+				and E.TABLENAME = #{tablename}
+			</if>
+
+			<if test="tablenameLike != null and tablenameLike != '' ">
+				and E.TABLENAME like #{tablenameLike}
+			</if>
+
+			<if test="tablenames != null and tablenames.size() &gt; 0">
+				and E.TABLENAME IN
+				<foreach item="x_tablename" index="index" collection="tablenames"
+					open="(" separator="," close=")">
+					#{x_tablename}
+				</foreach>
+			</if>
+
+			<if test="dname != null and dname != '' ">
+				and E.DNAME = #{dname}
+			</if>
+
+			<if test="dnameLike != null and dnameLike != '' ">
+				and E.DNAME like #{dnameLike}
+			</if>
+
+			<if test="dnames != null and dnames.size() &gt; 0">
+				and E.DNAME IN
+				<foreach item="x_dname" index="index" collection="dnames"
+					open="(" separator="," close=")">
+					#{x_dname}
+				</foreach>
+			</if>
+
+			<if test="userindex != null and userindex != '' ">
+				and E.USERINDEX = #{userindex}
+			</if>
+
+			<if test="userindexLike != null and userindexLike != '' ">
+				and E.USERINDEX like #{userindexLike}
+			</if>
+
+			<if test="userindexs != null and userindexs.size() &gt; 0">
+				and E.USERINDEX IN
+				<foreach item="x_userindex" index="index" collection="userindexs"
+					open="(" separator="," close=")">
+					#{x_userindex}
+				</foreach>
+			</if>
+
+			<if test="treetablenameB != null and treetablenameB != '' ">
+				and E.TREETABLENAME_B = #{treetablenameB}
+			</if>
+
+			<if test="treetablenameBLike != null and treetablenameBLike != '' ">
+				and E.TREETABLENAME_B like #{treetablenameBLike}
+			</if>
+
+			<if test="treetablenameBs != null and treetablenameBs.size() &gt; 0">
+				and E.TREETABLENAME_B IN
+				<foreach item="x_treetablenameB" index="index" collection="treetablenameBs"
+					open="(" separator="," close=")">
+					#{x_treetablenameB}
+				</foreach>
+			</if>
+
+			<if test="formula != null and formula != '' ">
+				and E.FORMULA = #{formula}
+			</if>
+
+			<if test="formulaLike != null and formulaLike != '' ">
+				and E.FORMULA like #{formulaLike}
+			</if>
+
+			<if test="formulas != null and formulas.size() &gt; 0">
+				and E.FORMULA IN
+				<foreach item="x_formula" index="index" collection="formulas"
+					open="(" separator="," close=")">
+					#{x_formula}
+				</foreach>
+			</if>
+
+			<if test="lgcexpress != null and lgcexpress != '' ">
+				and E.LGCEXPRESS = #{lgcexpress}
+			</if>
+
+			<if test="lgcexpressLike != null and lgcexpressLike != '' ">
+				and E.LGCEXPRESS like #{lgcexpressLike}
+			</if>
+
+			<if test="lgcexpresss != null and lgcexpresss.size() &gt; 0">
+				and E.LGCEXPRESS IN
+				<foreach item="x_lgcexpress" index="index" collection="lgcexpresss"
+					open="(" separator="," close=")">
+					#{x_lgcexpress}
+				</foreach>
+			</if>
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

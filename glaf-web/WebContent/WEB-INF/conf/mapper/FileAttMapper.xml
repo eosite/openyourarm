@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FileAttMapper">
+
+ 	<resultMap id="fileAttResultMap"	type="com.glaf.isdp.domain.FileAtt">
+        <id property="fileID" column="FILEID" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOPID" jdbcType="VARCHAR"/>
+        <result property="num" column="NUM" jdbcType="VARCHAR"/>
+        <result property="actor" column="ACTOR" jdbcType="VARCHAR"/>
+        <result property="fname" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="fileContent" column="FILE_CONTENT" jdbcType="VARCHAR"/>
+        <result property="vision" column="VISION" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="fileSize" column="FILESIZE" jdbcType="INTEGER"/>
+        <result property="visID" column="VISID" jdbcType="VARCHAR"/>
+        <result property="attID" column="ATTID" jdbcType="VARCHAR"/>
+        <result property="isTextContent" column="ISTEXTCONTENT" jdbcType="INTEGER"/>
+        <result property="textContent" column="TEXTCONTENT" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFileAtt" parameterType="com.glaf.isdp.domain.FileAtt">
+		insert into FILEATT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    FILEID
+			<if test="topId != null">
+				,TOPID 
+			</if>
+			<if test="num != null">
+				,NUM 
+			</if>
+			<if test="actor != null">
+				,ACTOR 
+			</if>
+			<if test="fname != null">
+				,FNAME 
+			</if>
+			<if test="fileName != null">
+				,FILE_NAME 
+			</if>
+			<if test="fileContent != null">
+				,FILE_CONTENT 
+			</if>
+			<if test="vision != null">
+				,VISION 
+			</if>
+			<if test="ctime != null">
+				,CTIME 
+			</if>
+			<if test="fileSize != null">
+				,FILESIZE 
+			</if>
+			<if test="visID != null">
+				,VISID 
+			</if>
+			<if test="attID != null">
+				,ATTID 
+			</if>
+			<if test="isTextContent != null">
+				,ISTEXTCONTENT 
+			</if>
+			<if test="textContent != null">
+				,TEXTCONTENT 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileID, jdbcType=VARCHAR}
+	     
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="actor != null">
+				,#{actor, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=VARCHAR}
+			</if>
+			<if test="vision != null">
+				,#{vision, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileSize != null">
+				,#{fileSize, jdbcType=INTEGER}
+			</if>
+			<if test="visID != null">
+				,#{visID, jdbcType=VARCHAR}
+			</if>
+			<if test="attID != null">
+				,#{attID, jdbcType=VARCHAR}
+			</if>
+			<if test="isTextContent != null">
+				,#{isTextContent, jdbcType=INTEGER}
+			</if>
+			<if test="textContent != null">
+				,#{textContent, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFileAtt" parameterType="com.glaf.isdp.domain.FileAtt">
+		update FILEATT
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topId != null">
+				TOPID = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="actor != null">
+				ACTOR = #{actor, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				FNAME = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				FILE_NAME = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				FILE_CONTENT = #{fileContent, jdbcType=VARCHAR},
+			</if>
+			<if test="vision != null">
+				VISION = #{vision, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileSize != null">
+				FILESIZE = #{fileSize, jdbcType=INTEGER},
+			</if>
+			<if test="visID != null">
+				VISID = #{visID, jdbcType=VARCHAR},
+			</if>
+			<if test="attID != null">
+				ATTID = #{attID, jdbcType=VARCHAR},
+			</if>
+			<if test="isTextContent != null">
+				ISTEXTCONTENT = #{isTextContent, jdbcType=INTEGER},
+			</if>
+			<if test="textContent != null">
+				TEXTCONTENT = #{textContent, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          FILEID = #{fileID, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFileAttById" parameterType="string"> 
+        delete from FILEATT
+        where FILEID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFileAtts" parameterType="com.glaf.isdp.query.FileAttQuery">
+		delete from FILEATT
+		where ( 
+ 			  FILEID IN
+              <foreach item="x_fileID" index="index" collection="fileIDs" 
+                     open="(" separator="," close=")">
+                  #{x_fileID}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFileAttById" parameterType="string" resultMap="fileAttResultMap">
+		select * from FILEATT where FILEID = #{id}
+	</select>
+
+
+	<select id="getFileAtts" 
+	    parameterType="com.glaf.isdp.query.FileAttQuery"
+		resultMap="fileAttResultMap">
+		select distinct E.*
+		<include refid="selectFileAttsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.FILEID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFileAttCount" 
+	    parameterType="com.glaf.isdp.query.FileAttQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFileAttsSql" />
+	</select>
+
+
+	<sql id="selectFileAttsSql">
+
+		from FILEATT E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOPID = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOPID IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="num != null and num != '' ">
+				and E.NUM = #{num}
+            </if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.NUM like #{numLike}
+            </if>
+
+			<if test="nums != null and nums.size() &gt; 0">
+			    and E.NUM IN
+                <foreach item="x_num" index="index" collection="nums" 
+                     open="(" separator="," close=")">
+                  #{x_num}
+                </foreach>
+			</if>
+	        
+			<if test="actor != null and actor != '' ">
+				and E.ACTOR = #{actor}
+            </if>
+
+			<if test="actorLike != null and actorLike != '' ">
+				and E.ACTOR like #{actorLike}
+            </if>
+
+			<if test="actors != null and actors.size() &gt; 0">
+			    and E.ACTOR IN
+                <foreach item="x_actor" index="index" collection="actors" 
+                     open="(" separator="," close=")">
+                  #{x_actor}
+                </foreach>
+			</if>
+	        
+			<if test="fname != null and fname != '' ">
+				and E.FNAME = #{fname}
+            </if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.FNAME like #{fnameLike}
+            </if>
+
+			<if test="fnames != null and fnames.size() &gt; 0">
+			    and E.FNAME IN
+                <foreach item="x_fname" index="index" collection="fnames" 
+                     open="(" separator="," close=")">
+                  #{x_fname}
+                </foreach>
+			</if>
+	        
+			<if test="fileName != null and fileName != '' ">
+				and E.FILE_NAME = #{fileName}
+            </if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILE_NAME like #{fileNameLike}
+            </if>
+
+			<if test="fileNames != null and fileNames.size() &gt; 0">
+			    and E.FILE_NAME IN
+                <foreach item="x_fileName" index="index" collection="fileNames" 
+                     open="(" separator="," close=")">
+                  #{x_fileName}
+                </foreach>
+			</if>
+	        
+			<if test="fileContent != null and fileContent != '' ">
+				and E.FILE_CONTENT = #{fileContent}
+            </if>
+
+			<if test="fileContentLike != null and fileContentLike != '' ">
+				and E.FILE_CONTENT like #{fileContentLike}
+            </if>
+
+			<if test="fileContents != null and fileContents.size() &gt; 0">
+			    and E.FILE_CONTENT IN
+                <foreach item="x_fileContent" index="index" collection="fileContents" 
+                     open="(" separator="," close=")">
+                  #{x_fileContent}
+                </foreach>
+			</if>
+	        
+			<if test="vision != null and vision != '' ">
+				and E.VISION = #{vision}
+            </if>
+
+			<if test="visionLike != null and visionLike != '' ">
+				and E.VISION like #{visionLike}
+            </if>
+
+			<if test="visions != null and visions.size() &gt; 0">
+			    and E.VISION IN
+                <foreach item="x_vision" index="index" collection="visions" 
+                     open="(" separator="," close=")">
+                  #{x_vision}
+                </foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+
+			<if test="fileSize != null">
+				and E.FILESIZE = #{fileSize}
+            </if>
+
+			<if test="fileSizeGreaterThanOrEqual != null">
+				and E.FILESIZE &gt;= #{fileSizeGreaterThanOrEqual}
+            </if>
+
+			<if test="fileSizeLessThanOrEqual != null">
+				and E.FILESIZE &lt;= #{fileSizeLessThanOrEqual}
+            </if>
+
+			<if test="fileSizes != null and fileSizes.size() &gt; 0">
+			    and E.FILESIZE IN
+                <foreach item="x_fileSize" index="index" collection="fileSizes" 
+                     open="(" separator="," close=")">
+                  #{x_fileSize}
+                </foreach>
+			</if>
+      
+	        
+			<if test="visID != null and visID != '' ">
+				and E.VISID = #{visID}
+            </if>
+
+			<if test="visIDLike != null and visIDLike != '' ">
+				and E.VISID like #{visIDLike}
+            </if>
+
+			<if test="visIDs != null and visIDs.size() &gt; 0">
+			    and E.VISID IN
+                <foreach item="x_visID" index="index" collection="visIDs" 
+                     open="(" separator="," close=")">
+                  #{x_visID}
+                </foreach>
+			</if>
+	        
+			<if test="attID != null and attID != '' ">
+				and E.ATTID = #{attID}
+            </if>
+
+			<if test="attIDLike != null and attIDLike != '' ">
+				and E.ATTID like #{attIDLike}
+            </if>
+
+			<if test="attIDs != null and attIDs.size() &gt; 0">
+			    and E.ATTID IN
+                <foreach item="x_attID" index="index" collection="attIDs" 
+                     open="(" separator="," close=")">
+                  #{x_attID}
+                </foreach>
+			</if>
+
+			<if test="isTextContent != null">
+				and E.ISTEXTCONTENT = #{isTextContent}
+            </if>
+
+			<if test="isTextContentGreaterThanOrEqual != null">
+				and E.ISTEXTCONTENT &gt;= #{isTextContentGreaterThanOrEqual}
+            </if>
+
+			<if test="isTextContentLessThanOrEqual != null">
+				and E.ISTEXTCONTENT &lt;= #{isTextContentLessThanOrEqual}
+            </if>
+
+			<if test="isTextContents != null and isTextContents.size() &gt; 0">
+			    and E.ISTEXTCONTENT IN
+                <foreach item="x_isTextContent" index="index" collection="isTextContents" 
+                     open="(" separator="," close=")">
+                  #{x_isTextContent}
+                </foreach>
+			</if>
+      
+	        
+			<if test="textContent != null and textContent != '' ">
+				and E.TEXTCONTENT = #{textContent}
+            </if>
+
+			<if test="textContentLike != null and textContentLike != '' ">
+				and E.TEXTCONTENT like #{textContentLike}
+            </if>
+
+			<if test="textContents != null and textContents.size() &gt; 0">
+			    and E.TEXTCONTENT IN
+                <foreach item="x_textContent" index="index" collection="textContents" 
+                     open="(" separator="," close=")">
+                  #{x_textContent}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

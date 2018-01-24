@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.matrix.data.sync.mapper.CombineHistoryMapper">
+
+	<resultMap id="combineHistoryResultMap"
+		type="com.glaf.matrix.data.sync.domain.CombineHistory">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="combineId" column="COMBINEID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="databaseName" column="DATABASENAME_"
+			jdbcType="VARCHAR" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="total" column="TOTAL_" jdbcType="INTEGER" />
+		<result property="totalTime" column="TOTALTIME_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertCombineHistory" parameterType="com.glaf.matrix.data.sync.domain.CombineHistory">
+		insert into SYS_COMBINE_HISTORY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="combineId != null">
+				,COMBINEID_
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="databaseName != null">
+				,DATABASENAME_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="total != null">
+				,TOTAL_
+			</if>
+			<if test="totalTime != null">
+				,TOTALTIME_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="combineId != null">
+				,#{combineId, jdbcType=BIGINT}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="databaseName != null">
+				,#{databaseName, jdbcType=VARCHAR}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="total != null">
+				,#{total, jdbcType=INTEGER}
+			</if>
+			<if test="totalTime != null">
+				,#{totalTime, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+
+
+
+	<delete id="deleteCombineHistoryById" parameterType="long">
+		delete from
+		SYS_COMBINE_HISTORY
+		where ID_ = #{id}
+	</delete>
+
+
+
+	<select id="getCombineHistoryById" parameterType="long"
+		resultMap="combineHistoryResultMap">
+		select * from SYS_COMBINE_HISTORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getCombineHistorys" parameterType="com.glaf.matrix.data.sync.query.CombineHistoryQuery"
+		resultMap="combineHistoryResultMap">
+		select distinct E.*
+		<include refid="selectCombineHistorysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getCombineHistoryCount" parameterType="com.glaf.matrix.data.sync.query.CombineHistoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCombineHistorysSql" />
+	</select>
+
+
+	<sql id="selectCombineHistorysSql">
+
+		from SYS_COMBINE_HISTORY E
+
+		<where>
+			1 = 1
+
+			<if test="combineId != null">
+				and E.COMBINEID_ = #{combineId}
+			</if>
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="databaseNameLike != null and databaseNameLike != '' ">
+				and E.DATABASENAME_ like #{databaseNameLike}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="totalGreaterThanOrEqual != null">
+				and E.TOTAL_ &gt;= #{totalGreaterThanOrEqual}
+			</if>
+
+			<if test="totalLessThanOrEqual != null">
+				and E.TOTAL_ &lt;= #{totalLessThanOrEqual}
+			</if>
+
+			<if test="totalTimeGreaterThanOrEqual != null">
+				and E.TOTALTIME_ &gt;= #{totalTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="totalTimeLessThanOrEqual != null">
+				and E.TOTALTIME_ &lt;= #{totalTimeLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

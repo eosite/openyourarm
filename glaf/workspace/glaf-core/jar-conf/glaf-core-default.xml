@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+	<property>
+		<name>i18n.messages_key</name>
+		<value>ApplicationStrings</value>
+	</property>
+
+	<property>
+		<name>distributed.config.enabled</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>distributed.resource.enabled</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>log_storage_strategy</name>
+		<value>db</value>
+	</property>
+
+	<property>
+		<name>log_storage_delay</name>
+		<value>10</value>
+	</property>
+
+	<property>
+		<name>dataset_query_timeout</name>
+		<value>30000</value>
+	</property>
+
+	<property>
+		<name>sql_query_timeout</name>
+		<value>60000</value>
+	</property>
+
+</configuration>

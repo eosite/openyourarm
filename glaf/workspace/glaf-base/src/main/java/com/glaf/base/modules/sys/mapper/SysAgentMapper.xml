@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysAgentMapper">
+
+	<resultMap id="sysAgentResultMap" type="com.glaf.base.modules.sys.model.SysAgent">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="assignFrom" column="ASSIGNFROM_" jdbcType="VARCHAR" />
+		<result property="assignFromName" column="ASSIGNFROMNAME_"
+			jdbcType="VARCHAR" />
+		<result property="assignTo" column="ASSIGNTO_" jdbcType="VARCHAR" />
+		<result property="assignToName" column="ASSIGNTONAME_"
+			jdbcType="VARCHAR" />
+		<result property="processName" column="PROCESSNAME_" jdbcType="VARCHAR" />
+		<result property="taskName" column="TASKNAME_" jdbcType="VARCHAR" />
+		<result property="serviceKey" column="SERVICEKEY_" jdbcType="VARCHAR" />
+		<result property="objectId" column="OBJECTID_" jdbcType="VARCHAR" />
+		<result property="objectValue" column="OBJECTVALUE_" jdbcType="VARCHAR" />
+		<result property="startDate" column="STARTDATE_" jdbcType="TIMESTAMP" />
+		<result property="endDate" column="ENDDATE_" jdbcType="TIMESTAMP" />
+		<result property="agentType" column="AGENTTYPE_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSysAgent" parameterType="com.glaf.base.modules.sys.model.SysAgent">
+		insert into SYS_AGENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="assignFrom != null">
+				,ASSIGNFROM_
+			</if>
+			<if test="assignFromName != null">
+				,ASSIGNFROMNAME_
+			</if>
+			<if test="assignTo != null">
+				,ASSIGNTO_
+			</if>
+			<if test="assignToName != null">
+				,ASSIGNTONAME_
+			</if>
+			<if test="processName != null">
+				,PROCESSNAME_
+			</if>
+			<if test="taskName != null">
+				,TASKNAME_
+			</if>
+			<if test="serviceKey != null">
+				,SERVICEKEY_
+			</if>
+			<if test="objectId != null">
+				,OBJECTID_
+			</if>
+			<if test="objectValue != null">
+				,OBJECTVALUE_
+			</if>
+			<if test="startDate != null">
+				,STARTDATE_
+			</if>
+			<if test="endDate != null">
+				,ENDDATE_
+			</if>
+			<if test="agentType != null">
+				,AGENTTYPE_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="assignFrom != null">
+				,#{assignFrom, jdbcType=VARCHAR}
+			</if>
+			<if test="assignFromName != null">
+				,#{assignFromName, jdbcType=VARCHAR}
+			</if>
+			<if test="assignTo != null">
+				,#{assignTo, jdbcType=VARCHAR}
+			</if>
+			<if test="assignToName != null">
+				,#{assignToName, jdbcType=VARCHAR}
+			</if>
+			<if test="processName != null">
+				,#{processName, jdbcType=VARCHAR}
+			</if>
+			<if test="taskName != null">
+				,#{taskName, jdbcType=VARCHAR}
+			</if>
+			<if test="serviceKey != null">
+				,#{serviceKey, jdbcType=VARCHAR}
+			</if>
+			<if test="objectId != null">
+				,#{objectId, jdbcType=VARCHAR}
+			</if>
+			<if test="objectValue != null">
+				,#{objectValue, jdbcType=VARCHAR}
+			</if>
+			<if test="startDate != null">
+				,#{startDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endDate != null">
+				,#{endDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="agentType != null">
+				,#{agentType, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertSysAgent" parameterType="java.util.List">
+		insert into SYS_AGENT (
+		ID_
+		,ASSIGNFROM_
+		,ASSIGNFROMNAME_
+		,ASSIGNTO_
+		,ASSIGNTONAME_
+		,PROCESSNAME_
+		,TASKNAME_
+		,SERVICEKEY_
+		,OBJECTID_
+		,OBJECTVALUE_
+		,STARTDATE_
+		,ENDDATE_
+		,AGENTTYPE_
+		,LOCKED_
+		,CREATEBY_
+		,CREATEDATE_
+		) values
+		<foreach collection="list" item="sysAgent" index="index"
+			separator=",">
+			(
+			#{sysAgent.id, jdbcType=VARCHAR}
+			,#{sysAgent.assignFrom,
+			jdbcType=VARCHAR}
+			,#{sysAgent.assignFromName, jdbcType=VARCHAR}
+			,#{sysAgent.assignTo, jdbcType=VARCHAR}
+			,#{sysAgent.assignToName,
+			jdbcType=VARCHAR}
+			,#{sysAgent.processName, jdbcType=VARCHAR}
+			,#{sysAgent.taskName, jdbcType=VARCHAR}
+			,#{sysAgent.serviceKey,
+			jdbcType=VARCHAR}
+			,#{sysAgent.objectId, jdbcType=VARCHAR}
+			,#{sysAgent.objectValue, jdbcType=VARCHAR}
+			,#{sysAgent.startDate,
+			jdbcType=TIMESTAMP}
+			,#{sysAgent.endDate, jdbcType=TIMESTAMP}
+			,#{sysAgent.agentType, jdbcType=INTEGER}
+			,#{sysAgent.locked,
+			jdbcType=INTEGER}
+			,#{sysAgent.createBy, jdbcType=VARCHAR}
+			,#{sysAgent.createDate, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertSysAgent_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="sysAgent" index="index">
+			insert into
+			SYS_AGENT (
+			ID_
+			,ASSIGNFROM_
+			,ASSIGNFROMNAME_
+			,ASSIGNTO_
+			,ASSIGNTONAME_
+			,PROCESSNAME_
+			,TASKNAME_
+			,SERVICEKEY_
+			,OBJECTID_
+			,OBJECTVALUE_
+			,STARTDATE_
+			,ENDDATE_
+			,AGENTTYPE_
+			,LOCKED_
+			,CREATEBY_
+			,CREATEDATE_
+			) values
+			(
+			#{sysAgent.id, jdbcType=VARCHAR}
+			,#{sysAgent.assignFrom,
+			jdbcType=VARCHAR}
+			,#{sysAgent.assignFromName, jdbcType=VARCHAR}
+			,#{sysAgent.assignTo, jdbcType=VARCHAR}
+			,#{sysAgent.assignToName,
+			jdbcType=VARCHAR}
+			,#{sysAgent.processName, jdbcType=VARCHAR}
+			,#{sysAgent.taskName, jdbcType=VARCHAR}
+			,#{sysAgent.serviceKey,
+			jdbcType=VARCHAR}
+			,#{sysAgent.objectId, jdbcType=VARCHAR}
+			,#{sysAgent.objectValue, jdbcType=VARCHAR}
+			,#{sysAgent.startDate,
+			jdbcType=TIMESTAMP}
+			,#{sysAgent.endDate, jdbcType=TIMESTAMP}
+			,#{sysAgent.agentType, jdbcType=INTEGER}
+			,#{sysAgent.locked,
+			jdbcType=INTEGER}
+			,#{sysAgent.createBy, jdbcType=VARCHAR}
+			,#{sysAgent.createDate, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateSysAgent" parameterType="com.glaf.base.modules.sys.model.SysAgent">
+		update SYS_AGENT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="assignFrom != null">
+				ASSIGNFROM_ = #{assignFrom, jdbcType=VARCHAR},
+			</if>
+			<if test="assignFromName != null">
+				ASSIGNFROMNAME_ = #{assignFromName, jdbcType=VARCHAR},
+			</if>
+			<if test="assignTo != null">
+				ASSIGNTO_ = #{assignTo, jdbcType=VARCHAR},
+			</if>
+			<if test="assignToName != null">
+				ASSIGNTONAME_ = #{assignToName, jdbcType=VARCHAR},
+			</if>
+			<if test="processName != null">
+				PROCESSNAME_ = #{processName, jdbcType=VARCHAR},
+			</if>
+			<if test="taskName != null">
+				TASKNAME_ = #{taskName, jdbcType=VARCHAR},
+			</if>
+			<if test="serviceKey != null">
+				SERVICEKEY_ = #{serviceKey, jdbcType=VARCHAR},
+			</if>
+			<if test="objectId != null">
+				OBJECTID_ = #{objectId, jdbcType=VARCHAR},
+			</if>
+			<if test="objectValue != null">
+				OBJECTVALUE_ = #{objectValue, jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null">
+				STARTDATE_ = #{startDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				ENDDATE_ = #{endDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="agentType != null">
+				AGENTTYPE_ = #{agentType, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteSysAgentById" parameterType="string">
+		delete from
+		SYS_AGENT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSysAgents" parameterType="com.glaf.base.modules.sys.query.SysAgentQuery">
+		delete from SYS_AGENT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysAgentById" parameterType="string" resultMap="sysAgentResultMap">
+		select * from SYS_AGENT where ID_ = #{id}
+	</select>
+
+
+	<select id="getSysAgents" parameterType="com.glaf.base.modules.sys.query.SysAgentQuery"
+		resultMap="sysAgentResultMap">
+		select distinct E.*
+		<include refid="selectSysAgentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysAgentCount" parameterType="com.glaf.base.modules.sys.query.SysAgentQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysAgentsSql" />
+	</select>
+
+
+	<sql id="selectSysAgentsSql">
+
+		from SYS_AGENT E
+
+		<where>
+			1 = 1
+
+			<if test="assignFrom != null and assignFrom != '' ">
+				and E.ASSIGNFROM_ = #{assignFrom}
+			</if>
+
+			<if test="assignFromNameLike != null and assignFromNameLike != '' ">
+				and E.ASSIGNFROMNAME_ like #{assignFromNameLike}
+			</if>
+
+			<if test="assignTo != null and assignTo != '' ">
+				and E.ASSIGNTO_ = #{assignTo}
+			</if>
+
+			<if test="assignToNameLike != null and assignToNameLike != '' ">
+				and E.ASSIGNTONAME_ like #{assignToNameLike}
+			</if>
+
+			<if test="processName != null and processName != '' ">
+				and E.PROCESSNAME_ = #{processName}
+			</if>
+
+			<if test="processNameLike != null and processNameLike != '' ">
+				and E.PROCESSNAME_ like #{processNameLike}
+			</if>
+
+			<if test="taskName != null and taskName != '' ">
+				and E.TASKNAME_ = #{taskName}
+			</if>
+
+			<if test="taskNameLike != null and taskNameLike != '' ">
+				and E.TASKNAME_ like #{taskNameLike}
+			</if>
+
+			<if test="serviceKey != null and serviceKey != '' ">
+				and E.SERVICEKEY_ = #{serviceKey}
+			</if>
+
+			<if test="objectId != null and objectId != '' ">
+				and E.OBJECTID_ = #{objectId}
+			</if>
+
+			<if test="objectValue != null and objectValue != '' ">
+				and E.OBJECTVALUE_ = #{objectValue}
+			</if>
+
+			<if test="startDateGreaterThanOrEqual != null">
+				and E.STARTDATE_ &gt;= #{startDateGreaterThanOrEqual}
+			</if>
+
+			<if test="startDateLessThanOrEqual != null">
+				and E.STARTDATE_ &lt;= #{startDateLessThanOrEqual}
+			</if>
+
+			<if test="endDateGreaterThanOrEqual != null">
+				and E.ENDDATE_ &gt;= #{endDateGreaterThanOrEqual}
+			</if>
+
+			<if test="endDateLessThanOrEqual != null">
+				and E.ENDDATE_ &lt;= #{endDateLessThanOrEqual}
+			</if>
+
+			<if test="agentType != null">
+				and E.AGENTTYPE_ = #{agentType}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

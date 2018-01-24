@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>demo</title>
+<link rel="stylesheet" type="text/css" href="../styles/kendo.common.min.css">
+<link rel="stylesheet" type="text/css" href="../styles/kendo.default.min.css">
+<link rel="stylesheet" type="text/css" href="../css/kendoui.css">
+<script type='text/javascript' src='../js/jquery.min.js'></script>
+<script type='text/javascript' src='../js/json_parse.js'></script>
+<script type='text/javascript' src='../js/json2.js'></script>
+<script type='text/javascript' src="../js/kendo.all.min.js"></script>
+<script type="text/javascript" src="../js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="../js/messages/kendo.messages.zh-CN.min.js"></script>
+<script type='text/javascript' src="./MultiSelectBox.js"></script>  
+<style type='text/css'>
+    body { font-family: sans-serif; }
+</style>
+<script type='text/javascript'> 
+	    jQuery(function() {
+
+				var data = [
+					{"name":"汽车","text":"汽车","value":"汽车"},
+					{"name":"火车","text":"火车","value":"火车"},
+					{"name":"飞机","text":"飞机","value":"飞机"},
+					{"name":"轮船","text":"轮船","value":"轮船"},
+					{"name":"自驾车","text":"自驾车","value":"自驾车"}
+				];
+
+				$("#dropDownList").kendoMultiSelectBox({
+					dataTextField: "text",
+					dataValueField: "value",
+					dataSource: data,
+					showSelectAll: true
+				});
+
+			}); 
+ 
+            var dropdownlist = $("#dropDownList").data("kendoMultiSelectBox"),
+            setValue = function(e) {
+                if (e.type != "keypress" || kendo.keys.ENTER == e.keyCode) {
+                    dropdownlist.dataSource.filter({}); //clear applied filter before setting value
+                    alert("setting");
+                    dropdownlist.value($("#value").val().split(","));
+                }
+            },
+            setSearch = function (e) {
+                if (e.type != "keypress" || kendo.keys.ENTER == e.keyCode) {
+                    dropdownlist.search($("#value").val());
+                }
+            };
+
+</script>
+</head>
+<body style="margin:5px;">
+<form method="post" id="iForm" name="iForm">
+  <span id="transTypeView">
+	<!-- <input  id="dropDownList" name="dropDownList"> -->
+	<select id="dropDownList" name="dropDownList" data-placeholder="Select ..."></select>
+  </span>
+  <input id="startDate" validationMessage="请输入开始日期" name="startDate" />
+  <script type='text/javascript'>
+     jQuery(function(){
+	      jQuery("#startDate").kendoDatePicker({"value":null,"format":"yyyy-MM-dd","culture":"zh-CN"});
+	 })
+</script>
+<input id="value" value="飞机,汽车" class="k-textbox" style="width: 140px; margin: 0;" /> 
+<input type="button" value="Check" onclick="javascript:checkXYForm();">
+<input type="button" value="CheckByIndex" onclick="javascript:checkXYFormByIndex();">
+<input type="button" value="Confirm" onclick="javascript:submitXYForm();">
+</form>
+<script type="text/javascript">
+
+  function checkXYForm(){
+      
+
+	  alert(dropdownlist.value());
+	  dropdownlist.value(setValue);
+	  alert(dropdownlist.value());
+  }
+
+  function checkXYFormByIndex(){
+      var dropdownlist = jQuery("#dropDownList").data("kendoMultiSelectBox");
+	  dropdownlist.select(2)
+	  alert(dropdownlist.value());
+  }
+
+  function submitXYForm(){
+		var dropdownlist = jQuery("#dropDownList").data("kendoMultiSelectBox");
+		alert(dropdownlist.value());
+		alert(document.getElementById("startDate").value);
+  }
+</script>
+</body>
+</html>

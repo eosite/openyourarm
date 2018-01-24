@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DownloadHistoryMapper">
+
+	<resultMap id="downloadHistoryResultMap" type="com.glaf.datamgr.domain.DownloadHistory">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="fileId" column="FILEID_" jdbcType="VARCHAR" />
+		<result property="filename" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="ip" column="IP_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="downloadTime" column="DOWNLOADTIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertDownloadHistory" parameterType="com.glaf.datamgr.domain.DownloadHistory">
+		insert into DOWNLOAD_HISTORY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="fileId != null">
+				,FILEID_
+			</if>
+			<if test="filename != null">
+				,FILENAME_
+			</if>
+			<if test="ip != null">
+				,IP_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="downloadTime != null">
+				,DOWNLOADTIME_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="fileId != null">
+				,#{fileId, jdbcType=VARCHAR}
+			</if>
+			<if test="filename != null">
+				,#{filename, jdbcType=VARCHAR}
+			</if>
+			<if test="ip != null">
+				,#{ip, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="downloadTime != null">
+				,#{downloadTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDownloadHistory" parameterType="com.glaf.datamgr.domain.DownloadHistory">
+
+		update DOWNLOAD_HISTORY
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<select id="getDownloadHistoryById" parameterType="string"
+		resultMap="downloadHistoryResultMap">
+		select * from DOWNLOAD_HISTORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getDownloadHistorys" parameterType="com.glaf.datamgr.query.DownloadHistoryQuery"
+		resultMap="downloadHistoryResultMap">
+		select distinct E.*
+		<include refid="selectDownloadHistorysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.DOWNLOADTIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDownloadHistoryCount" parameterType="com.glaf.datamgr.query.DownloadHistoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDownloadHistorysSql" />
+	</select>
+
+
+	<sql id="selectDownloadHistorysSql">
+
+		from DOWNLOAD_HISTORY E
+
+		<where>
+			1 = 1
+
+			<if test="fileId != null and fileId != '' ">
+				and E.FILEID_ = #{fileId}
+			</if>
+
+			<if test="fileIds != null and fileIds.size() &gt; 0">
+				and E.FILEID_ IN
+				<foreach item="x_fileId" index="index" collection="fileIds"
+					open="(" separator="," close=")">
+					#{x_fileId}
+				</foreach>
+			</if>
+
+			<if test="filenameLike != null and filenameLike != '' ">
+				and E.FILENAME_ like #{filenameLike}
+			</if>
+
+			<if test="ipLike != null and ipLike != '' ">
+				and E.IP_ like #{ipLike}
+			</if>
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="downloadTimeGreaterThanOrEqual != null">
+				and E.DOWNLOADTIME_ &gt;=
+				#{downloadTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="downloadTimeLessThanOrEqual != null">
+				and E.DOWNLOADTIME_ &lt;= #{downloadTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

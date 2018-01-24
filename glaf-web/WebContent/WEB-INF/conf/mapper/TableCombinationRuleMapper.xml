@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TableCombinationRuleMapper">
+
+	<resultMap id="tableCombinationRuleResultMap" type="com.glaf.datamgr.domain.TableCombinationRule">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="combinationId" column="COMBINATIONID_"
+			jdbcType="BIGINT" />
+		<result property="targetTableName" column="TARGETTABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="targetTablePrimaryKey" column="TARGETTABLEPRIMARYKEY_"
+			jdbcType="VARCHAR" />
+		<result property="sqlCondition" column="SQLCONDITION_"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertTableCombinationRule" parameterType="com.glaf.datamgr.domain.TableCombinationRule">
+		insert into TABLE_COMBINATION_RULE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="combinationId != null">
+				,COMBINATIONID_
+			</if>
+			<if test="targetTableName != null">
+				,TARGETTABLENAME_
+			</if>
+			<if test="targetTablePrimaryKey != null">
+				,TARGETTABLEPRIMARYKEY_
+			</if>
+			<if test="sqlCondition != null">
+				,SQLCONDITION_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="combinationId != null">
+				,#{combinationId, jdbcType=BIGINT}
+			</if>
+			<if test="targetTableName != null">
+				,#{targetTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTablePrimaryKey != null">
+				,#{targetTablePrimaryKey, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlCondition != null">
+				,#{sqlCondition, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<delete id="deleteTableCombinationRules" parameterType="long">
+		delete
+		from TABLE_COMBINATION_RULE
+		where COMBINATIONID_ = #{combinationId}
+	</delete>
+
+
+	<select id="getTableCombinationRuleById" parameterType="long"
+		resultMap="tableCombinationRuleResultMap">
+		select * from TABLE_COMBINATION_RULE where ID_ = #{id}
+	</select>
+
+
+	<select id="getTableCombinationRules" parameterType="long"
+		resultMap="tableCombinationRuleResultMap">
+		select E.* from TABLE_COMBINATION_RULE E
+		where E.COMBINATIONID_ = #{combinationId}
+	</select>
+
+</mapper>

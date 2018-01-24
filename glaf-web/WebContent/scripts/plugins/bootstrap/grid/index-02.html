@@ -1,0 +1,182 @@
+<!DOCTYPE HTML > 
+<html lang="ch-CN"> 
+<head> 
+<meta charset="utf-8"> 
+<title>grid</title>
+<!-- --><link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/grid.css" rel="stylesheet"></link>
+<script src="../jquery.min.js"></script>
+
+<script src="../jquery.core.extends.js"></script>
+<script src="../pagination/js/jquery.pagination.extends.js"></script>
+<script src="js/jquery.grid.extends.js"></script>
+<script>
+
+	var $ajax = {
+		read : {
+			url : 'http://demos.telerik.com/kendo-ui/service/EmployeeDirectory/All',
+			dataType : 'jsonp',
+			async : true
+		},
+		destroy : {
+			url : '',
+			data : {},
+		},
+		schema : {
+			data : 'rows',
+			total : 'total'
+		}
+	}, $columns = [
+		{
+			field : 'FirstName',
+			title : '名称',
+			style : 'width:120px;text-align:center"',
+			rowspan : 3,
+			editor : true
+		},
+		{
+			field : 'LastName',
+			title : '代码-1',
+			style : 'width:100px;',
+			rowspan : 3,
+			editor : true
+		},
+		{
+			field : 'Position',
+			title : '代码-2',
+			style : 'width:100px;',
+			rowspan : 3,
+			editor : true
+		},
+		{
+			title : '成绩',
+			colspan : 6,
+			columns : [
+				{
+					title : '数学',
+					colspan : 2,
+					columns : [
+						{
+							field : 'math-1',
+							title : '数学-1',
+							style : 'width:100px;',
+			editor : true
+						},
+						{
+							field : 'math-2',
+							title : '数学-2',
+							style : 'width:100px;',
+			editor : true
+						}
+					]
+				},
+				{
+					colspan : 2,
+					columns : [
+						{
+							field : 'Phone',
+							title : '法语',
+							style : 'width:100px;',
+			editor : true
+						},
+						{
+							field : 'City',
+							title : '英语',
+							style : 'width:100px;',
+			editor : true
+						}
+					]
+				},
+				{
+					colspan : 2,
+					columns : [
+						{
+							field : 'Phone',
+							title : '法语-0',
+							style : 'width:100px;',
+							editor : function(container, options, row){
+								var chk = $("<select>", {
+									class : 'form-control'
+								}).css({
+									width : '100%'
+								}).change(function(){
+									
+								}).append(opts.join(''));
+								
+								container.append(chk);
+							}
+						},
+						{
+							field : 'City',
+							title : '英语-0',
+							style : 'width:100px;'
+						}
+					]
+				}
+			]
+		},
+		{
+			field : 'Position',
+			title : '代码-2',
+			rowspan : 3,
+			style : 'width:100px;',
+			editor : function(container, options, row){
+				var $input = $("<input>",{
+					class : 'form-control'
+				}).css({
+					width : '100%'
+				}).change(function(){
+					row[options.field] = $(this).val();
+				}).val(row[options.field] || '');
+				container.append($input);
+			}
+		},
+		{
+			title : '操作',
+			rowspan : 3,
+			style : 'width:100px;',
+			template : function(opts, row){
+				return '<button t="{Position}" class="btn btn-info" onclick="deleteFunc(this)">删除</button>';
+			}
+		}
+	], $events = {
+		onDblClickRow : function(index, row){
+			
+		},
+		onClickCell : function(index, field, value){
+			//alert(field);
+		}
+	}, $pagination = {
+		paging : true,
+		page : 1,
+		pageSize : 10
+	};
+	var opts = [];
+	for(var i = 0; i < 10; i ++){
+		opts.push("<option>{0}</option>".format("select-" + i));
+	}
+	
+	function getSelectedRows(){
+		var t = $("#table-01").data('grid');
+		var rows = t.getSelectedRows();
+		$.log(rows)
+	}
+	
+	function deleteFunc(o){
+		var f = $(o).closest('[data-role=grid]').data('grid');
+		if(f){
+			f.removeRow(o);
+		}
+	}
+	
+	function deleteFunc2(){
+		
+	}
+	
+</script>
+</head> 
+<body>
+<button class='btn-info' onclick='getSelectedRows()'>getSelectedRows</button>
+	<div class="mt-grid" id="table-01" data-role="grid" data-options="datas:null,editable:true,ajax:$ajax,columns:$columns,events:$events,pagination:$pagination"></div>
+</body>
+</html>

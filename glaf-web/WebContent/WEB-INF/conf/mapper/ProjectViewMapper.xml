@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.project.mapper.ProjectViewMapper">
+
+	<resultMap id="projectViewResultMap" type="com.glaf.base.project.domain.ProjectView">
+		<id property="uid" column="_UID_" jdbcType="VARCHAR" />
+		<result property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="parentId" column="PARENTID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="category" column="CATEGORY_" jdbcType="BIGINT" />
+		<result property="discriminator" column="DISCRIMINATOR_"
+			jdbcType="VARCHAR" />
+		<result property="area" column="AREA_" jdbcType="VARCHAR" />
+		<result property="icon" column="ICON_" jdbcType="VARCHAR" />
+		<result property="iconCls" column="ICONCLS_" jdbcType="VARCHAR" />
+		<result property="level" column="LEVEL_" jdbcType="INTEGER" />
+		<result property="treeId" column="TREEID_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="sort" column="SORT_" jdbcType="INTEGER" />
+		<result property="active" column="ACTIVE_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="userName" column="USERNAME_" jdbcType="VARCHAR" />
+		<result property="orgName" column="ORGNAME_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertProjectView" parameterType="com.glaf.base.project.domain.ProjectView">
+		insert into PROJECT_VIEW
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			_UID_
+			<if test="id != null">
+				,ID_
+			</if>
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="discriminator != null">
+				,DISCRIMINATOR_
+			</if>
+			<if test="area != null">
+				,AREA_
+			</if>
+			<if test="icon != null">
+				,ICON_
+			</if>
+			<if test="iconCls != null">
+				,ICONCLS_
+			</if>
+			<if test="level != null">
+				,LEVEL_
+			</if>
+			<if test="treeId != null">
+				,TREEID_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="sort != null">
+				,SORT_
+			</if>
+			<if test="active != null">
+				,ACTIVE_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="userName != null">
+				,USERNAME_
+			</if>
+			<if test="orgName != null">
+				,ORGNAME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{uid, jdbcType=VARCHAR}
+
+			<if test="id != null">
+				,#{id, jdbcType=BIGINT}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="discriminator != null">
+				,#{discriminator, jdbcType=VARCHAR}
+			</if>
+			<if test="area != null">
+				,#{area, jdbcType=VARCHAR}
+			</if>
+			<if test="icon != null">
+				,#{icon, jdbcType=VARCHAR}
+			</if>
+			<if test="iconCls != null">
+				,#{iconCls, jdbcType=VARCHAR}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=INTEGER}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="active != null">
+				,#{active, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="userName != null">
+				,#{userName, jdbcType=VARCHAR}
+			</if>
+			<if test="orgName != null">
+				,#{orgName, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	
+	
+	<delete id="deleteProjectViewById" parameterType="string">
+		delete from
+		PROJECT_VIEW
+		where _UID_ = #{uid}
+	</delete>
+	
+	
+	<delete id="deleteProjectViewByProjectId" parameterType="long">
+		delete from
+		PROJECT_VIEW
+		where ID_ = #{projectId}
+	</delete>
+
+
+	<delete id="deleteProjectViewByUserId" parameterType="string">
+		delete from
+		PROJECT_VIEW
+		where USERID_ = #{userId}
+	</delete>
+
+
+</mapper>

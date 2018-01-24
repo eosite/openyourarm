@@ -1,0 +1,7 @@
+.portlet.calendar.light .fc-button {
+	top: 0px;
+}
+
+.calendarbt_disabledtime .calendar .fc-time{
+	display: none;
+}

@@ -1,0 +1,81 @@
+﻿html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border: 0;
+	overflow: hidden; /* disable scrollbars */
+	display: block;
+    -ms-content-zooming: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+	font-family: arial;
+    font-size: 100%; /* 1em = 16px */
+	margin: 0;
+	padding: 0;
+}
+
+/* styles that used to be in Common, but have since been deleted
+    these styles are still used somewhere else, and were just not defined
+   these should either be cleaned up if they are no longer needed
+*/
+/*
+.no-text-selection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+*/
+
+/**  进度条的css **/
+#graph{
+    width: 450px;
+    border: 1px solid #C75211;
+    height: 25px;
+    position:absolute;
+    margin-left: 400px;
+    margin-top:250px;
+    display: none;
+    z-index: 9999;
+}
+#bar{
+    display: block;
+    background: #F2F2F2;
+    float: left;
+    height: 100%;
+    text-align: center;
+    font-family: Verdana;
+    line-height: 25px;
+    color: #FFF;
+}
+
+/**     公司Logo   **/
+.carsLogo{
+    float: right;
+    height: 45px;
+    width: 71px;
+    right: 5px;
+    bottom: 35px;
+    position: absolute;
+    text-align: center;
+    font-family: Verdana;
+    line-height: 25px;
+    z-index: 18999;
+    display: none;
+}
+.logo{
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.version{
+    font-size: 14px;
+    font-family: 宋体;
+    font-weight: bold;
+    color: #2b2b2b;
+}

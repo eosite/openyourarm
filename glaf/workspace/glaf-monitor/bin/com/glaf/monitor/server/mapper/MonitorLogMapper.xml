@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.monitor.server.mapper.MonitorLogMapper">
+
+ 	<resultMap id="monitorLogResultMap"	type="com.glaf.monitor.server.domain.MonitorLog">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="logTime" column="LOG_TIME_" jdbcType="TIMESTAMP"/>
+        <result property="logPath" column="LOG_PATH_" jdbcType="VARCHAR"/>
+        <result property="objectId" column="OBJECT_ID_" jdbcType="VARCHAR"/>
+        <result property="objectType" column="OBJECT_TYPE_" jdbcType="VARCHAR"/>
+        <result property="createby" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateby" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updatetime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertMonitorLog" parameterType="com.glaf.monitor.server.domain.MonitorLog">
+		insert into MONITOR_LOG_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="logTime != null">
+				,LOG_TIME_ 
+			</if>
+			<if test="logPath != null">
+				,LOG_PATH_ 
+			</if>
+			<if test="objectId != null">
+				,OBJECT_ID_ 
+			</if>
+			<if test="objectType != null">
+				,OBJECT_TYPE_ 
+			</if>
+			<if test="createby != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createtime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateby != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updatetime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="logTime != null">
+				,#{logTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="logPath != null">
+				,#{logPath, jdbcType=VARCHAR}
+			</if>
+			<if test="objectId != null">
+				,#{objectId, jdbcType=VARCHAR}
+			</if>
+			<if test="objectType != null">
+				,#{objectType, jdbcType=VARCHAR}
+			</if>
+			<if test="createby != null">
+				,#{createby, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				,#{createtime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateby != null">
+				,#{updateby, jdbcType=VARCHAR}
+			</if>
+			<if test="updatetime != null">
+				,#{updatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMonitorLog" parameterType="com.glaf.monitor.server.domain.MonitorLog">
+		update MONITOR_LOG_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="logTime != null">
+				LOG_TIME_ = #{logTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="logPath != null">
+				LOG_PATH_ = #{logPath, jdbcType=VARCHAR},
+			</if>
+			<if test="objectId != null">
+				OBJECT_ID_ = #{objectId, jdbcType=VARCHAR},
+			</if>
+			<if test="objectType != null">
+				OBJECT_TYPE_ = #{objectType, jdbcType=VARCHAR},
+			</if>
+			<if test="createby != null">
+				CREATEBY_ = #{createby, jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME_ = #{createtime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null">
+				UPDATEBY_ = #{updateby, jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME_ = #{updatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteMonitorLogById" parameterType="string"> 
+        delete from MONITOR_LOG_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMonitorLogs" parameterType="com.glaf.monitor.server.query.MonitorLogQuery">
+		delete from MONITOR_LOG_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMonitorLogById" parameterType="string" resultMap="monitorLogResultMap">
+		select * from MONITOR_LOG_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getMonitorLogs" 
+	    parameterType="com.glaf.monitor.server.query.MonitorLogQuery"
+		resultMap="monitorLogResultMap">
+		select distinct E.*
+		<include refid="selectMonitorLogsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMonitorLogCount" 
+	    parameterType="com.glaf.monitor.server.query.MonitorLogQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMonitorLogsSql" />
+	</select>
+
+
+	<sql id="selectMonitorLogsSql">
+
+		from MONITOR_LOG_ E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="logTimeGreaterThanOrEqual != null">
+				and E.LOG_TIME_ &gt;= #{logTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="logTimeLessThanOrEqual != null">
+				and E.LOG_TIME_ &lt;= #{logTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="logPath != null and logPath != '' ">
+				and E.LOG_PATH_ = #{logPath}
+            </if>
+
+			<if test="logPathLike != null and logPathLike != '' ">
+				and E.LOG_PATH_ like #{logPathLike}
+            </if>
+
+			<if test="logPaths != null and logPaths.size() &gt; 0">
+			    and E.LOG_PATH_ IN
+                <foreach item="x_logPath" index="index" collection="logPaths" 
+                     open="(" separator="," close=")">
+                  #{x_logPath}
+                </foreach>
+			</if>
+	        
+			<if test="objectId != null and objectId != '' ">
+				and E.OBJECT_ID_ = #{objectId}
+            </if>
+
+			<if test="objectIdLike != null and objectIdLike != '' ">
+				and E.OBJECT_ID_ like #{objectIdLike}
+            </if>
+
+			<if test="objectIds != null and objectIds.size() &gt; 0">
+			    and E.OBJECT_ID_ IN
+                <foreach item="x_objectId" index="index" collection="objectIds" 
+                     open="(" separator="," close=")">
+                  #{x_objectId}
+                </foreach>
+			</if>
+	        
+			<if test="objectType != null and objectType != '' ">
+				and E.OBJECT_TYPE_ = #{objectType}
+            </if>
+
+			<if test="objectTypeLike != null and objectTypeLike != '' ">
+				and E.OBJECT_TYPE_ like #{objectTypeLike}
+            </if>
+
+			<if test="objectTypes != null and objectTypes.size() &gt; 0">
+			    and E.OBJECT_TYPE_ IN
+                <foreach item="x_objectType" index="index" collection="objectTypes" 
+                     open="(" separator="," close=")">
+                  #{x_objectType}
+                </foreach>
+			</if>
+	        
+			<if test="createby != null and createby != '' ">
+				and E.CREATEBY_ = #{createby}
+            </if>
+
+			<if test="createbyLike != null and createbyLike != '' ">
+				and E.CREATEBY_ like #{createbyLike}
+            </if>
+
+			<if test="createbys != null and createbys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createby" index="index" collection="createbys" 
+                     open="(" separator="," close=")">
+                  #{x_createby}
+                </foreach>
+			</if>
+
+			<if test="createtimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createtimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createtimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateby != null and updateby != '' ">
+				and E.UPDATEBY_ = #{updateby}
+            </if>
+
+			<if test="updatebyLike != null and updatebyLike != '' ">
+				and E.UPDATEBY_ like #{updatebyLike}
+            </if>
+
+			<if test="updatebys != null and updatebys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateby" index="index" collection="updatebys" 
+                     open="(" separator="," close=")">
+                  #{x_updateby}
+                </foreach>
+			</if>
+
+			<if test="updatetimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updatetimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.cell.mapper.CellConvertTaskMapper">
+
+ 	<resultMap id="fileDotResultMap"	type="com.glaf.cell.domain.FileDotExt">
+        <id property="fileID" column="FILEID" jdbcType="VARCHAR"/>
+        <result property="listId" column="LISTID" jdbcType="VARCHAR"/>
+        <result property="indexId" column="INDEX_ID" jdbcType="INTEGER"/>
+        <result property="fbelong" column="FBELONG" jdbcType="VARCHAR"/>
+        <result property="fnum" column="FNUM" jdbcType="VARCHAR"/>
+        <result property="pbelong" column="PBELONG" jdbcType="VARCHAR"/>
+        <result property="num" column="NUM" jdbcType="VARCHAR"/>
+        <result property="fname" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="dotName" column="DOTNAME" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="dtime" column="DTIME" jdbcType="TIMESTAMP"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="fileContent" column="FILE_CONTENT" jdbcType="BLOB"/>
+        <result property="fileSize" column="FILESIZE" jdbcType="INTEGER"/>
+        <result property="dwid" column="DWID" jdbcType="INTEGER"/>
+        <result property="fbid" column="FBID" jdbcType="INTEGER"/>
+        <result property="fxid" column="FXID" jdbcType="INTEGER"/>
+        <result property="jid" column="JID" jdbcType="VARCHAR"/>
+        <result property="flid" column="FLID" jdbcType="VARCHAR"/>
+        <result property="topNode" column="TOPNODE" jdbcType="VARCHAR"/>
+        <result property="cman" column="CMAN" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="listFlag" column="LISTFLAG" jdbcType="VARCHAR"/>
+        <result property="toFile" column="TOFILE" jdbcType="INTEGER"/>
+        <result property="isInk" column="ISINK" jdbcType="VARCHAR"/>
+        <result property="dotType" column="DOTTYPE" jdbcType="INTEGER"/>
+        <result property="ctimeDName" column="CTIMEDNAME" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="INTEGER"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="utreeIndex" column="UTREE_INDEX" jdbcType="INTEGER"/>
+        <result property="isQuan" column="ISQUAN" jdbcType="VARCHAR"/>
+        <result property="intSysForm" column="INTSYSFORM" jdbcType="INTEGER"/>
+        <result property="xmlContent" column="XML_CONTENT" jdbcType="BLOB"/>
+	</resultMap>
+    <resultMap id="elementExtPropResultMap"	type="com.glaf.cell.domain.ElementExtProp">
+        <id property="listId" column="LISTID" jdbcType="VARCHAR"/>
+        <result property="dataTableId" column="DATATABLEID" jdbcType="VARCHAR"/>
+        <result property="fName" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="dType" column="DTYPE" jdbcType="VARCHAR"/>
+        <result property="inType" column="INTYPE" jdbcType="VARCHAR"/>
+        <result property="cellType" column="CELLTYPE" jdbcType="INTEGER"/>
+        <result property="orderId" column="ORDERID" jdbcType="VARCHAR"/>
+        <result property="strlen" column="STRLEN" jdbcType="INTEGER"/>
+        <result property="dataPoint" column="DATAPOINT" jdbcType="INTEGER"/>
+        <result property="defaultValue" column="DEFAULTVALUE" jdbcType="VARCHAR"/>
+        <result property="ost_row" column="OST_ROW" jdbcType="INTEGER"/>
+        <result property="ost_col" column="OST_COL" jdbcType="INTEGER"/>
+        <result property="isPrintValue" column="ISPRINTVALUE" jdbcType="VARCHAR"/>
+        <result property="isListShow" column="ISLISTROW" jdbcType="VARCHAR"/>
+        <result property="isMustfill" column="ISMUSTFILL" jdbcType="VARCHAR"/>
+        <result property="tableName" column="TABLENAME" jdbcType="VARCHAR"/>
+        <result property="columnName" column="DNAME" jdbcType="VARCHAR"/>
+        <result property="isSubTable" column="ISSUBTABLE" jdbcType="VARCHAR"/>
+        <result property="isDataOnly" column="ISDATAONLY" jdbcType="VARCHAR"/>
+        <result property="dataTableName" column="DATA_TABLENAME" jdbcType="VARCHAR"/>
+        <result property="dataFieldName" column="DATA_FIELDNAME" jdbcType="VARCHAR"/>
+        <result property="nodeIndex" column="NODE_INDEX" jdbcType="INTEGER"/>
+        <result property="userIndex" column="USERINDEX" jdbcType="VARCHAR"/>
+        <result property="orderCon" column="ORDER_CON" jdbcType="INTEGER"/>
+        <result property="orderIndex" column="ORDER_INDEX" jdbcType="INTEGER"/>
+        <result property="parentDName" column="PARENT_DNAME" jdbcType="VARCHAR"/>
+	</resultMap>
+	 <resultMap id="cellCategory" type="com.glaf.cell.domain.CellCategory">
+        <result property="categoryName" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="row_index" column="OST_ROW" jdbcType="INTEGER"/>
+        <result property="col_index" column="OST_COL" jdbcType="INTEGER"/>
+     </resultMap>
+     <resultMap id="dictionaryDim" type="com.glaf.cell.domain.DictionaryDim">
+        <result property="dimId" column="ID" jdbcType="VARCHAR"/>
+        <result property="startRowIndex" column="OST_ROW" jdbcType="INTEGER"/>
+        <result property="startColIndex" column="OST_COL" jdbcType="INTEGER"/>
+        <result property="endRowIndex" column="OST_ROWEND" jdbcType="INTEGER"/>
+        <result property="endColIndex" column="OST_COLEND" jdbcType="INTEGER"/>
+        <result property="dimWay" column="OST_WAY" jdbcType="INTEGER"/>
+        <result property="fName" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>     
+     </resultMap>
+	<select id="getCellTemplateCount" parameterType="map" resultType="int">
+		select count(fileID) from filedot where fileid in (select distinct c.filedot_fileid 
+		         from flow_activ_d a,dbo.flow_process_d b,mycell_tasks_sub c,filedot d 
+		         where a.process_id=b.id  and b.Main_id=c.flowid and c.filedot_fileid=d.fileID
+		         and intusedomain=#{useDomain} and d.XML_CreateDate &gt; =#{startDate}) and xml_content is not null
+	</select>
+    
+	<select id="getCellTemplates" 
+	    parameterType="map"
+		resultMap="fileDotResultMap">
+		select * from filedot where fileid in (select distinct c.filedot_fileid 
+		         from flow_activ_d a,dbo.flow_process_d b,mycell_tasks_sub c,filedot d 
+		         where a.process_id=b.id  and b.Main_id=c.flowid and c.filedot_fileid=d.fileID
+		         and intusedomain=#{useDomain} and d.XML_CreateDate &gt; =#{startDate}) and xml_content is not null
+	</select>
+	<select id="getFileElementsExtProp"  parameterType="string" resultMap="elementExtPropResultMap">
+	     select a.listId,a.intype,a.fname,a.celltype,a.dtype,a.orderId,a.order_con,strlen,dataPoint,a.defaultvalue,ost_row,ost_col,isprintvalue,isListShow,ismustfill,
+	     b.id as dataTableId,b.tablename,b.name,a.dname,b.issubtable,a.isdataonly,data_tablename,data_fieldname,node_index,
+	     userindex,order_index,parent_dname from cell_repinfo a,cell_data_table b 
+	     where a.frmtype=b.id and b.filedot_fileid=#{fileId}
+	</select>
+	<!--获取变长区栏目 -->
+	<select id="getVarAreaCellCategorys"  parameterType="map" resultMap="cellCategory">
+	   select ost_row,ost_col from dbo.cell_repinfo where ost_row&gt;=#{startRowIndex} and  ost_row&lt;=#{endRowIndex} 
+	    and ost_col&gt;=#{startColIndex} and ost_col&lt;=#{endColIndex} and filedot_fileid=#{fileId}
+        <if test="way==1">
+			order by ost_row
+		</if>
+         <if test="way==0">
+			order by ost_col
+		</if>
+	</select>
+	<!-- 更新栏目变成区范围 -->
+	<update id="updateCellCategoryVarArea"  parameterType="map">
+	  update CVT_ELEM_TMPL set END_ROW_INDEX_=#{endRowIndex},END_COL_INDEX_=#{endColIndex},DIRECTION_=#{way},VAR_AREA_='1' where ROW_INDEX_=#{startRowIndex} and  COL_INDEX_=#{startColIndex} and CVT_ID_=#{cvtId}
+	</update>
+	<!-- 更新变长标识为1 -->
+	<update id="updateVarAreaElemsByCvtId"  parameterType="long">
+	 update CVT_ELEM_TMPL set  VAR_AREA_='1' where CVT_ID_=#{cvtId} and exists (select * from CVT_ELEM_TMPL b where CVT_ELEM_TMPL.CVT_ID_=b.CVT_ID_ and b.VAR_AREA_=1 and CVT_ELEM_TMPL.ROW_INDEX_&gt;=b.ROW_INDEX_ and CVT_ELEM_TMPL.ROW_INDEX_&lt;=b.END_ROW_INDEX_
+     and CVT_ELEM_TMPL.COL_INDEX_&gt;=b.COL_INDEX_ and CVT_ELEM_TMPL.COL_INDEX_&lt;=b.END_COL_INDEX_)
+	</update>
+	<!-- 更新变长区元素类型为textbox -->
+	<update id="updateCellVarAreaElemDataRole"  parameterType="long">
+	  update CVT_ELEM_TMPL set  ELEM_ID_='textbox'+'_'+convert(varchar(20),ROW_INDEX_)+'_'+convert(varchar(20),COL_INDEX_),DATAROLE_='textbox' where DATAROLE_='label' and VAR_AREA_=1 and CVT_ID_=#{cvtId}
+	</update>
+	<!-- 获取字典表维度定义 -->
+	<select id="getDictionaryDimByFileId" parameterType="string" resultMap="dictionaryDim">
+	   select a.id,a.ost_row,a.ost_col,a.ost_rowend,a.ost_colend,a.ost_way,a.fname,a.content from cell_repinfo2 a where  a.filedot_fileid=#{fileId}
+	</select>
+	<!-- 获取规范统计对应的表格单元格 -->
+	<select id="getCritStatFieldExtProp" parameterType="map" resultMap="elementExtPropResultMap">
+	     select a.listId,a.intype,a.fname,a.celltype,a.dtype,a.orderId,a.order_con,strlen,dataPoint,a.defaultvalue,ost_row,ost_col,isprintvalue,isListShow,ismustfill,
+	     b.id as dataTableId,b.tablename,b.name,a.dname,b.issubtable,a.isdataonly,data_tablename,data_fieldname,node_index,
+	     userindex,order_index,parent_dname from cell_repinfo a,cell_data_table b 
+	     where a.frmtype=b.id and b.filedot_fileid=#{fileId} and  a.dname=#{dName}
+	</select>
+</mapper>

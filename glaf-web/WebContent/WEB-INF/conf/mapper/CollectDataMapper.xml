@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.CollectDataMapper">
+
+	<resultMap id="collectDataResultMap" type="com.glaf.datamgr.domain.CollectData">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="projectName" column="PROJECTNAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="count" column="COUNT_" jdbcType="INTEGER" />
+		<result property="runYear" column="RUNYEAR_" jdbcType="INTEGER" />
+		<result property="runMonth" column="RUNMONTH_" jdbcType="INTEGER" />
+		<result property="runWeek" column="RUNWEEK_" jdbcType="INTEGER" />
+		<result property="runQuarter" column="RUNQUARTER_" jdbcType="INTEGER" />
+		<result property="runDay" column="RUNDAY_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="selectCollectProjectCount" parameterType="com.glaf.datamgr.query.CollectDataQuery" resultType="int">
+		select count(distinct c.DATABASEID_)
+		<include refid="selectCollectDataSql" />
+	</select>
+	
+	<select id="selectCollectDataCount" parameterType="com.glaf.datamgr.query.CollectDataQuery" resultType="int">
+		select count(distinct c.ID_)
+		<include refid="selectCollectDataSql" />
+	</select>
+	
+	<select id="selectCollectDatas" parameterType="com.glaf.datamgr.query.CollectDataQuery" resultMap="collectDataResultMap">
+		select distinct c.ID_,c.DATABASEID_,d.NAME_ as PROJECTNAME_,a.TITLE_,b.CODE_,b.NAME_,c.COUNT_,c.CREATEBY_,c.CREATETIME_,c.RUNDAY_,c.RUNYEAR_,c.RUNMONTH_,c.RUNWEEK_,c.RUNQUARTER_,c.SQLDEFID_
+		<include refid="selectCollectDataSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by c.DATABASEID_ ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<sql id="selectCollectDataSql">
+		from SYS_DATABASE a,SYS_SQL b,(
+			select d.* from SYS_SQL_RESULT d right join (
+				select MAX(ID_) as ID_,DATABASEID_,RUNDAY_,SQLDEFID_ from SYS_SQL_RESULT 
+				group by DATABASEID_,RUNDAY_,SQLDEFID_
+			) e on d.ID_=e.ID_ where 1=1 
+			<if test="projectId != null">
+				and d.DATABASEID_ in (select DATABASEID_ from PROJECT_DATABASE where PROJECTID_=#{projectId})
+			</if>
+		) c,PROJECT_QUERY d,PROJECT_DATABASE e
+		where a.ID_=c.DATABASEID_ and b.ID_=c.SQLDEFID_ and a.ID_=e.DATABASEID_ and e.PROJECTID_=d.ID_
+		
+		<if test="code != null and code != '' ">
+			and b.CODE_ = #{code}
+		</if>
+		
+		<if test="codes != null and codes.size() &gt; 0">
+			and b.CODE_ IN
+			<foreach item="x_code" index="index" collection="codes"
+				open="(" separator="," close=")">
+				#{x_code}
+			</foreach>
+		</if>
+		
+		<if test="databaseId != null">
+			and c.DATABASEID_ = #{databaseId}
+		</if>
+			
+		<if test="databaseIds != null and databaseIds.size() &gt; 0">
+			and c.DATABASEID_ IN
+			<foreach item="x_databaseId" index="index" collection="databaseIds"
+				open="(" separator="," close=")">
+				#{x_databaseId}
+			</foreach>
+		</if>
+		
+		<if test="createTimeGreaterThanOrEqual != null">
+			and c.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+		</if>
+
+		<if test="createTimeLessThanOrEqual != null">
+			and c.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+		</if>
+		
+		<if test="projectId != null">
+			and c.DATABASEID_ in (select DATABASEID_ from PROJECT_DATABASE where PROJECTID_=#{projectId})
+		</if>
+		
+		<if test="sqlDefId != null">
+			and c.SQLDEFID_ = #{sqlDefId}
+		</if>
+
+		<if test="sqlDefIds != null and sqlDefIds.size() &gt; 0">
+			and c.SQLDEFID_ IN
+			<foreach item="x_sqlDefId" index="index" collection="sqlDefIds"
+				open="(" separator="," close=")">
+				#{x_sqlDefId}
+			</foreach>
+		</if>
+		
+		<if test="runYear != null">
+			and c.RUNYEAR_ = #{runYear}
+		</if>
+
+		<if test="runMonth != null">
+			and c.RUNMONTH_ = #{runMonth}
+		</if>
+
+		<if test="runWeek != null">
+			and c.RUNWEEK_ = #{runWeek}
+		</if>
+
+		<if test="runQuarter != null">
+			and c.RUNQUARTER_ = #{runQuarter}
+		</if>
+
+		<if test="runDay != null">
+			and c.RUNDAY_ = #{runDay}
+		</if>
+		
+		<if test="runDayGreaterThanOrEqual != null">
+			and c.RUNDAY_ &gt;= #{runDayGreaterThanOrEqual}
+		</if>
+
+		<if test="runDayLessThanOrEqual != null">
+			and c.RUNDAY_ &lt;= #{runDayLessThanOrEqual}
+		</if>
+	</sql>
+</mapper>

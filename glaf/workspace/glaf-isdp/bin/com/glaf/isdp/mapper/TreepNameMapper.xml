@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreepNameMapper">
+
+ 	<resultMap id="treepNameResultMap"	type="com.glaf.isdp.domain.TreepName">
+        <id property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="num" column="NUM" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENT_ID" jdbcType="INTEGER"/>
+        <result property="indexName" column="INDEX_NAME" jdbcType="VARCHAR"/>
+        <result property="Level" column="NLEVEL" jdbcType="INTEGER"/>
+        <result property="showId" column="SHOWID" jdbcType="INTEGER"/>
+        <result property="ruleId" column="RULEID" jdbcType="VARCHAR"/>
+        <result property="nodeIco" column="NODEICO" jdbcType="INTEGER"/>
+        <result property="fruleId" column="FRULEID" jdbcType="VARCHAR"/>
+        <result property="wcompany" column="WCOMPANY" jdbcType="VARCHAR"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="sysId" column="SYS_ID" jdbcType="VARCHAR"/>
+        <result property="domainIndex" column="DOMAIN_INDEX" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreepName" parameterType="com.glaf.isdp.domain.TreepName">
+		insert into TREEPNAME 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    INDEX_ID
+			<if test="id != null">
+				,ID 
+			</if>
+			<if test="num != null">
+				,NUM 
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID 
+			</if>
+			<if test="indexName != null">
+				,INDEX_NAME 
+			</if>
+			<if test="Level != null">
+				,NLEVEL 
+			</if>
+			<if test="showId != null">
+				,SHOWID 
+			</if>
+			<if test="ruleId != null">
+				,RULEID 
+			</if>
+			<if test="nodeIco != null">
+				,NODEICO 
+			</if>
+			<if test="fruleId != null">
+				,FRULEID 
+			</if>
+			<if test="wcompany != null">
+				,WCOMPANY 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="sysId != null">
+				,SYS_ID 
+			</if>
+			<if test="domainIndex != null">
+				,DOMAIN_INDEX 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{indexId, jdbcType=INTEGER}
+	     
+			<if test="id != null">
+				,#{id, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="Level != null">
+				,#{Level, jdbcType=INTEGER}
+			</if>
+			<if test="showId != null">
+				,#{showId, jdbcType=INTEGER}
+			</if>
+			<if test="ruleId != null">
+				,#{ruleId, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeIco != null">
+				,#{nodeIco, jdbcType=INTEGER}
+			</if>
+			<if test="fruleId != null">
+				,#{fruleId, jdbcType=VARCHAR}
+			</if>
+			<if test="wcompany != null">
+				,#{wcompany, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+			<if test="domainIndex != null">
+				,#{domainIndex, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreepName" parameterType="com.glaf.isdp.domain.TreepName">
+		update TREEPNAME
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="id != null">
+				ID = #{id, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				INDEX_NAME = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="Level != null">
+				NLEVEL = #{Level, jdbcType=INTEGER},
+			</if>
+			<if test="showId != null">
+				SHOWID = #{showId, jdbcType=INTEGER},
+			</if>
+			<if test="ruleId != null">
+				RULEID = #{ruleId, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeIco != null">
+				NODEICO = #{nodeIco, jdbcType=INTEGER},
+			</if>
+			<if test="fruleId != null">
+				FRULEID = #{fruleId, jdbcType=VARCHAR},
+			</if>
+			<if test="wcompany != null">
+				WCOMPANY = #{wcompany, jdbcType=VARCHAR},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="sysId != null">
+				SYS_ID = #{sysId, jdbcType=VARCHAR},
+			</if>
+			<if test="domainIndex != null">
+				DOMAIN_INDEX = #{domainIndex, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          INDEX_ID = #{indexId, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteTreepNameById" parameterType="integer"> 
+        delete from TREEPNAME
+        where INDEX_ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteTreepNames" parameterType="com.glaf.isdp.query.TreepNameQuery">
+		delete from TREEPNAME
+		where ( 
+ 			  INDEX_ID IN
+              <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreepNameById" parameterType="integer" resultMap="treepNameResultMap">
+		select * from TREEPNAME where INDEX_ID = #{id}
+	</select>
+
+
+	<select id="getTreepNames" 
+	    parameterType="com.glaf.isdp.query.TreepNameQuery"
+		resultMap="treepNameResultMap">
+		select distinct E.*
+		<include refid="selectTreepNamesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.INDEX_ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getTreepNameCount" 
+	    parameterType="com.glaf.isdp.query.TreepNameQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreepNamesSql" />
+	</select>
+
+
+	<sql id="selectTreepNamesSql">
+
+		from TREEPNAME E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="id != null and id != '' ">
+				and E.ID = #{id}
+            </if>
+
+			<if test="idLike != null and idLike != '' ">
+				and E.ID like #{idLike}
+            </if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+			    and E.ID IN
+                <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+                </foreach>
+			</if>
+	        
+			<if test="num != null and num != '' ">
+				and E.NUM = #{num}
+            </if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.NUM like #{numLike}
+            </if>
+
+			<if test="nums != null and nums.size() &gt; 0">
+			    and E.NUM IN
+                <foreach item="x_num" index="index" collection="nums" 
+                     open="(" separator="," close=")">
+                  #{x_num}
+                </foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENT_ID = #{parentId}
+            </if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENT_ID &gt;= #{parentIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENT_ID &lt;= #{parentIdLessThanOrEqual}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENT_ID IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="indexName != null and indexName != '' ">
+				and E.INDEX_NAME = #{indexName}
+            </if>
+
+			<if test="indexNameLike != null and indexNameLike != '' ">
+				and E.INDEX_NAME like #{indexNameLike}
+            </if>
+
+			<if test="indexNames != null and indexNames.size() &gt; 0">
+			    and E.INDEX_NAME IN
+                <foreach item="x_indexName" index="index" collection="indexNames" 
+                     open="(" separator="," close=")">
+                  #{x_indexName}
+                </foreach>
+			</if>
+
+			<if test="Level != null">
+				and E.NLEVEL = #{Level}
+            </if>
+
+			<if test="LevelGreaterThanOrEqual != null">
+				and E.NLEVEL &gt;= #{LevelGreaterThanOrEqual}
+            </if>
+
+			<if test="LevelLessThanOrEqual != null">
+				and E.NLEVEL &lt;= #{LevelLessThanOrEqual}
+            </if>
+
+			<if test="Levels != null and Levels.size() &gt; 0">
+			    and E.NLEVEL IN
+                <foreach item="x_Level" index="index" collection="Levels" 
+                     open="(" separator="," close=")">
+                  #{x_Level}
+                </foreach>
+			</if>
+      
+
+			<if test="showId != null">
+				and E.SHOWID = #{showId}
+            </if>
+
+			<if test="showIdGreaterThanOrEqual != null">
+				and E.SHOWID &gt;= #{showIdGreaterThanOrEqual}
+            </if>
+
+			<if test="showIdLessThanOrEqual != null">
+				and E.SHOWID &lt;= #{showIdLessThanOrEqual}
+            </if>
+
+			<if test="showIds != null and showIds.size() &gt; 0">
+			    and E.SHOWID IN
+                <foreach item="x_showId" index="index" collection="showIds" 
+                     open="(" separator="," close=")">
+                  #{x_showId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="ruleId != null and ruleId != '' ">
+				and E.RULEID = #{ruleId}
+            </if>
+
+			<if test="ruleIdLike != null and ruleIdLike != '' ">
+				and E.RULEID like #{ruleIdLike}
+            </if>
+
+			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+			    and E.RULEID IN
+                <foreach item="x_ruleId" index="index" collection="ruleIds" 
+                     open="(" separator="," close=")">
+                  #{x_ruleId}
+                </foreach>
+			</if>
+
+			<if test="nodeIco != null">
+				and E.NODEICO = #{nodeIco}
+            </if>
+
+			<if test="nodeIcoGreaterThanOrEqual != null">
+				and E.NODEICO &gt;= #{nodeIcoGreaterThanOrEqual}
+            </if>
+
+			<if test="nodeIcoLessThanOrEqual != null">
+				and E.NODEICO &lt;= #{nodeIcoLessThanOrEqual}
+            </if>
+
+			<if test="nodeIcos != null and nodeIcos.size() &gt; 0">
+			    and E.NODEICO IN
+                <foreach item="x_nodeIco" index="index" collection="nodeIcos" 
+                     open="(" separator="," close=")">
+                  #{x_nodeIco}
+                </foreach>
+			</if>
+      
+	        
+			<if test="fruleId != null and fruleId != '' ">
+				and E.FRULEID = #{fruleId}
+            </if>
+
+			<if test="fruleIdLike != null and fruleIdLike != '' ">
+				and E.FRULEID like #{fruleIdLike}
+            </if>
+
+			<if test="fruleIds != null and fruleIds.size() &gt; 0">
+			    and E.FRULEID IN
+                <foreach item="x_fruleId" index="index" collection="fruleIds" 
+                     open="(" separator="," close=")">
+                  #{x_fruleId}
+                </foreach>
+			</if>
+	        
+			<if test="wcompany != null and wcompany != '' ">
+				and E.WCOMPANY = #{wcompany}
+            </if>
+
+			<if test="wcompanyLike != null and wcompanyLike != '' ">
+				and E.WCOMPANY like #{wcompanyLike}
+            </if>
+
+			<if test="wcompanys != null and wcompanys.size() &gt; 0">
+			    and E.WCOMPANY IN
+                <foreach item="x_wcompany" index="index" collection="wcompanys" 
+                     open="(" separator="," close=")">
+                  #{x_wcompany}
+                </foreach>
+			</if>
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+	        
+			<if test="sysId != null and sysId != '' ">
+				and E.SYS_ID = #{sysId}
+            </if>
+
+			<if test="sysIdLike != null and sysIdLike != '' ">
+				and E.SYS_ID like #{sysIdLike}
+            </if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+			    and E.SYS_ID IN
+                <foreach item="x_sysId" index="index" collection="sysIds" 
+                     open="(" separator="," close=")">
+                  #{x_sysId}
+                </foreach>
+			</if>
+
+			<if test="domainIndex != null">
+				and E.DOMAIN_INDEX = #{domainIndex}
+            </if>
+
+			<if test="domainIndexGreaterThanOrEqual != null">
+				and E.DOMAIN_INDEX &gt;= #{domainIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="domainIndexLessThanOrEqual != null">
+				and E.DOMAIN_INDEX &lt;= #{domainIndexLessThanOrEqual}
+            </if>
+
+			<if test="domainIndexs != null and domainIndexs.size() &gt; 0">
+			    and E.DOMAIN_INDEX IN
+                <foreach item="x_domainIndex" index="index" collection="domainIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_domainIndex}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+	<select id="getTreepNameByDomainIndexId" parameterType="int" resultMap="treepNameResultMap">
+		 SELECT * FROM TreepName WHERE domain_index=#{domainIndexId}
+	</select>
+</mapper>

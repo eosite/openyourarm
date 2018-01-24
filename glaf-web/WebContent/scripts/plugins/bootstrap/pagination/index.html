@@ -1,0 +1,26 @@
+<!DOCTYPE HTML >
+<html lang="ch-CN">
+<head>
+<meta charset="utf-8">
+<title>pagination</title>
+
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+
+<script src="../jquery.core.extends.js"></script>
+<script src="js/jquery.pagination.extends.js"></script>
+<script>
+$(function(){
+	
+	$("#page-01").pagination({
+		total : 956,
+		pageSize : 32
+	});
+	
+});
+</script>
+</head>
+<body>
+	<div id="page-01" data-role="pagination"></div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+.gridList_box .gridList_ul> li> .demo_content.disabledCell{
+  background-color:rgba(0,0,0,0.2) !important;
+}
+.gridList_box .gridList_ul> li> .demo_content.disabledCell img{
+  opacity:0.3 !important;
+}
+
+.gridList_box{
+}
+.gridList_box .gridList_ul{
+    list-style-type: none;
+    padding: 0 0;
+    margin: 0 0;
+    /*overflow: hidden;*/
+}
+.gridList_box .gridList_ul> li{
+    float: left;
+    margin: 0;
+    padding : 1px;
+}
+.gridList_box .gridList_ul> li > demo_content{
+    overflow: hidden;
+    /*position: relative;
+    z-index: 1;*/
+    display: block;
+}
+.gridList_box .gridList_ul> li > div:hover{
+	border-color: #f00;
+	/*z-index: 2;*/
+}
+.gridList_ul{
+	/*z-index: 100;*/
+}
+
+.gridList_mask{
+    display: none;
+}
+
+.gridList_content:hover .gridList_mask{
+    display:none;
+    display:block;
+    background-color:rgba(0,0,0,0.8);
+    filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    opacity:0.4;
+    color:yellow;
+    font-weight:bold;
+    text-align:center;
+}
+
+.pageBt-toolbar button{
+    height: 34px;
+}
+
+.thumbnailbt {
+      padding: 3px 10px;
+      color: #fff;
+      border: 1px #fff solid;
+      /*margin: auto;*/
+      background: transparent;
+      position: relative;
+      /*top: 50%;*/
+      font-size: 12px;
+}

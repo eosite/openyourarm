@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemTmplFormlMapper">
+
+ 	<resultMap id="convertElemTmplFormlResultMap"	type="com.glaf.convert.domain.ConvertElemTmplForml">
+        <id property="formlRuleId" column="FORML_RULE_ID_" jdbcType="BIGINT" />
+        <result property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT"/>
+        <result property="formlName" column="FORML_NAME_" jdbcType="VARCHAR"/>
+        <result property="formlContent" column="FORML_CONTENT_" jdbcType="VARCHAR"/>
+        <result property="cvtFormlContent" column="CVT_FORML_CONTENT_" jdbcType="VARCHAR"/>
+        <result property="useConditon" column="USECONDITION_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	
+	<resultMap id="convertElemTmplFormlExtResultMap" type="com.glaf.convert.domain.ConvertElemTmplFormlExt">
+		<id property="formlRuleId" column="FORML_RULE_ID_" jdbcType="BIGINT" />
+        <result property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT"/>
+        <result property="formlName" column="FORML_NAME_" jdbcType="VARCHAR"/>
+        <result property="formlContent" column="FORML_CONTENT_" jdbcType="VARCHAR"/>
+        <result property="cvtFormlContent" column="CVT_FORML_CONTENT_" jdbcType="VARCHAR"/>
+        <result property="useConditon" column="USECONDITION_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="cvtId" column="CVT_ID_" jdbcType="BIGINT"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemTmplForml" parameterType="com.glaf.convert.domain.ConvertElemTmplForml">
+		insert into CVT_ELEM_TMPL_FORML 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    FORML_RULE_ID_
+			<if test="cvtElemId != null">
+				,CVT_ELEM_ID_ 
+			</if>
+			<if test="formlName != null">
+				,FORML_NAME_ 
+			</if>
+			<if test="formlContent != null">
+				,FORML_CONTENT_ 
+			</if>
+			<if test="cvtFormlContent != null">
+				,CVT_FORML_CONTENT_ 
+			</if>
+			<if test="useConditon != null">
+				,USECONDITION_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{formlRuleId, jdbcType=BIGINT}
+	     
+			<if test="cvtElemId != null">
+				,#{cvtElemId, jdbcType=BIGINT}
+			</if>
+			<if test="formlName != null">
+				,#{formlName, jdbcType=VARCHAR}
+			</if>
+			<if test="formlContent != null">
+				,#{formlContent, jdbcType=VARCHAR}
+			</if>
+			<if test="cvtFormlContent != null">
+				,#{cvtFormlContent, jdbcType=VARCHAR}
+			</if>
+			<if test="useConditon != null">
+				,#{useConditon, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemTmplForml" parameterType="com.glaf.convert.domain.ConvertElemTmplForml">
+		update CVT_ELEM_TMPL_FORML
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtElemId != null">
+				CVT_ELEM_ID_ = #{cvtElemId, jdbcType=BIGINT},
+			</if>
+			<if test="formlName != null">
+				FORML_NAME_ = #{formlName, jdbcType=VARCHAR},
+			</if>
+			<if test="formlContent != null">
+				FORML_CONTENT_ = #{formlContent, jdbcType=VARCHAR},
+			</if>
+			<if test="cvtFormlContent != null">
+				CVT_FORML_CONTENT_ = #{cvtFormlContent, jdbcType=VARCHAR},
+			</if>
+			<if test="useConditon != null">
+				USECONDITION_ = #{useConditon, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          FORML_RULE_ID_ = #{formlRuleId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemTmplFormlById" parameterType="long"> 
+        delete from CVT_ELEM_TMPL_FORML
+        where FORML_RULE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemTmplFormls" parameterType="com.glaf.convert.query.ConvertElemTmplFormlQuery">
+		delete from CVT_ELEM_TMPL_FORML
+		where ( 
+ 			  FORML_RULE_ID_ IN
+              <foreach item="x_formlRuleId" index="index" collection="formlRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_formlRuleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemTmplFormlById" parameterType="long" resultMap="convertElemTmplFormlResultMap">
+		select * from CVT_ELEM_TMPL_FORML where FORML_RULE_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemTmplFormls" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplFormlQuery"
+		resultMap="convertElemTmplFormlResultMap">
+		select E.*
+		<include refid="selectConvertElemTmplFormlsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.FORML_RULE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemTmplFormlCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplFormlQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemTmplFormlsSql" />
+	</select>
+
+
+	<sql id="selectConvertElemTmplFormlsSql">
+
+		from CVT_ELEM_TMPL_FORML E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtElemId != null">
+				and E.CVT_ELEM_ID_ = #{cvtElemId}
+            </if>
+
+			<if test="cvtElemIdGreaterThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &gt;= #{cvtElemIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtElemIdLessThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &lt;= #{cvtElemIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtElemIds != null and cvtElemIds.size() &gt; 0">
+			    and E.CVT_ELEM_ID_ IN
+                <foreach item="x_cvtElemId" index="index" collection="cvtElemIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtElemId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="formlName != null and formlName != '' ">
+				and E.FORML_NAME_ = #{formlName}
+            </if>
+
+			<if test="formlNameLike != null and formlNameLike != '' ">
+				and E.FORML_NAME_ like #{formlNameLike}
+            </if>
+
+			<if test="formlNames != null and formlNames.size() &gt; 0">
+			    and E.FORML_NAME_ IN
+                <foreach item="x_formlName" index="index" collection="formlNames" 
+                     open="(" separator="," close=")">
+                  #{x_formlName}
+                </foreach>
+			</if>
+	        
+			<if test="formlContent != null and formlContent != '' ">
+				and E.FORML_CONTENT_ = #{formlContent}
+            </if>
+
+			<if test="formlContentLike != null and formlContentLike != '' ">
+				and E.FORML_CONTENT_ like #{formlContentLike}
+            </if>
+
+			<if test="formlContents != null and formlContents.size() &gt; 0">
+			    and E.FORML_CONTENT_ IN
+                <foreach item="x_formlContent" index="index" collection="formlContents" 
+                     open="(" separator="," close=")">
+                  #{x_formlContent}
+                </foreach>
+			</if>
+	        
+			<if test="useConditon != null and useConditon != '' ">
+				and E.USECONDITION_ = #{useConditon}
+            </if>
+
+			<if test="useConditonLike != null and useConditonLike != '' ">
+				and E.USECONDITION_ like #{useConditonLike}
+            </if>
+
+			<if test="useConditons != null and useConditons.size() &gt; 0">
+			    and E.USECONDITION_ IN
+                <foreach item="x_useConditon" index="index" collection="useConditons" 
+                     open="(" separator="," close=")">
+                  #{x_useConditon}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<select id="getConvertElemTmplFormlsByCvtId" 
+	    parameterType="Long"
+		resultMap="convertElemTmplFormlResultMap">
+		select E.* FROM CVT_ELEM_TMPL_FORML E WHERE CVT_ELEM_ID_ IN ( SELECT F.CVT_ELEM_ID_ FROM CVT_ELEM_TMPL F WHERE F.CVT_ID_ = #{cvtId} )
+	</select>
+
+	<select id="getAllConvertElemFormlExts" resultMap="convertElemTmplFormlExtResultMap">
+		select b.CVT_ID_,E.* from CVT_ELEM_TMPL_FORML E left join CVT_ELEM_TMPL b on E.CVT_ELEM_ID_=b.CVT_ELEM_ID_
+	</select>
+	
+</mapper>

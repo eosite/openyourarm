@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.deployment.mapper.TemplateVariableInstanceMapper">
+
+	<resultMap id="templateVariableInstanceResultMap"
+		type="com.glaf.deployment.domain.TemplateVariableInstance">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="templateId" column="TEMPLATEID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="segmentId" column="SEGMENTID_" jdbcType="BIGINT" />
+		<result property="variableId" column="VARIABLEID_" jdbcType="BIGINT" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTemplateVariableInstance" parameterType="com.glaf.deployment.domain.TemplateVariableInstance">
+		insert into DC_TEMPLATE_VAR_INST
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="templateId != null">
+				,TEMPLATEID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="segmentId != null">
+				,SEGMENTID_
+			</if>
+			<if test="variableId != null">
+				,VARIABLEID_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="templateId != null">
+				,#{templateId, jdbcType=BIGINT}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="segmentId != null">
+				,#{segmentId, jdbcType=BIGINT}
+			</if>
+			<if test="variableId != null">
+				,#{variableId, jdbcType=BIGINT}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateTemplateVariableInstance" parameterType="com.glaf.deployment.domain.TemplateVariableInstance">
+
+		update DC_TEMPLATE_VAR_INST
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteTemplateVariableInstanceById" parameterType="long">
+		delete from DC_TEMPLATE_VAR_INST
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTemplateVariableInstancesByDeploymentId"
+		parameterType="string">
+		delete from DC_TEMPLATE_VAR_INST
+		where DEPLOYMENTID_ =
+		#{deploymentId}
+	</delete>
+
+
+	<select id="getTemplateVariableInstanceById" parameterType="long"
+		resultMap="templateVariableInstanceResultMap">
+		select * from DC_TEMPLATE_VAR_INST where ID_ = #{id}
+	</select>
+
+
+	<select id="getTemplateVariableInstances"
+		parameterType="com.glaf.deployment.query.TemplateVariableInstanceQuery"
+		resultMap="templateVariableInstanceResultMap">
+		select distinct E.*
+		<include refid="selectTemplateVariableInstancesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTemplateVariableInstanceCount"
+		parameterType="com.glaf.deployment.query.TemplateVariableInstanceQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTemplateVariableInstancesSql" />
+	</select>
+
+
+	<sql id="selectTemplateVariableInstancesSql">
+
+		from DC_TEMPLATE_VAR_INST E
+
+		<where>
+			1 = 1
+
+			<if test="templateId != null">
+				and E.TEMPLATEID_ = #{templateId}
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="variableId != null">
+				and E.VARIABLEID_ = #{variableId}
+			</if>
+
+			<if test="segmentId != null">
+				and E.SEGMENTID_ = #{segmentId}
+			</if>
+
+			<if test="category != null and category != '' ">
+				and E.CATEGORY_ = #{category}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

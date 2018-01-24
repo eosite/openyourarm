@@ -1,0 +1,118 @@
+{
+	"id": "ratylimaster",
+	"title": "窗口样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "customsetting",
+		"title": "定制",
+		"description": "",
+		"expland": "true",
+		"properties": [
+		{
+			"id": "width",
+			"title": "宽高",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth"
+			},{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight"
+			}]
+		}
+		]
+			
+	},{
+		"id": "font",
+		"title": "文本",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "color",
+			"title": "未选定颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setColor"
+		},{
+			"id": "color",
+			"title": "选定颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setActiveColor"
+		}]
+			
+		},{
+			"id": "icon",
+			"title": "图标",
+			"description": "",
+			"expland": "false",
+			"properties": [
+		{
+			"id": "icon-class",
+			"title": "选择图标",
+			"type": "string",
+			"inputMode": "template",
+			"require": "true",
+			"template":"<div class=\"input-group\"><i id=\"icon\"></i><span id=\"iconName\"></span><span class=\"input-group-btn\"><button class=\"btn blue input-sm\" type=\"button\" onclick=\"javascript:selectIconPage(this);\" >...</button></span></div>",
+			"ctrImpl": "setIconClass",
+			"initImpl":"initIconClass"
+		},
+		{
+			"id": "icon-size",
+			"title": "图标大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "icon-size",
+				"title": "图标大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setIconSize"
+			}]
+		}]
+	}]
+}

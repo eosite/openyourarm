@@ -1,0 +1,1395 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.SysUserMapper">
+
+	<resultMap id="sysUserResultMap" type="com.glaf.base.modules.sys.model.SysUser">
+		<id property="account" column="USERID" jdbcType="BIGINT" />
+		<result property="name" column="USERNAME" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="VARCHAR" />
+		<result property="createTime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="mobile" column="MOBILE" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" jdbcType="VARCHAR" />
+		<result property="telephone" column="TELEPHONE" jdbcType="VARCHAR" />
+		<result property="headship" column="HEADSHIP" jdbcType="VARCHAR" />
+		<result property="userType" column="USERTYPE" jdbcType="INTEGER" />
+		<result property="accountType" column="ACCOUNTTYPE" jdbcType="INTEGER" />
+		<result property="deptId" column="DEPID" jdbcType="BIGINT" />
+		<result property="adminFlag" column="ISSYSTEM" jdbcType="VARCHAR" />
+		<result property="superiorIds" column="SUPERIORIDS" jdbcType="VARCHAR" />
+		<result property="lastLoginTime" column="LASTLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="lastLoginIP" column="LASTLOGINIP" jdbcType="VARCHAR" />
+		<result property="lockLoginTime" column="LOCKLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="loginRetry" column="LOGINRETRY" jdbcType="INTEGER" />
+		<result property="mqLoginFlag" column="MQLOGINFLAG_" jdbcType="VARCHAR" />
+		<result property="secretLoginFlag" column="SECRETLOGINFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="loginSecret" column="LOGINSECRET_" jdbcType="VARCHAR" />
+		<result property="loginSecretUpdateTime" column="LOGINSECRETUPDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="syncFlag" column="SYNCFLAG" jdbcType="INTEGER" />
+		<result property="syncTime" column="SYNCTIME" jdbcType="TIMESTAMP" />
+		<result property="syncOperatorType" column="SYNCOPERATORTYPE"
+			jdbcType="VARCHAR" />
+		<result property="deleteFlag" column="DELETEFLAG" jdbcType="INTEGER" />
+		<result property="deleteTime" column="DELETETIME" jdbcType="TIMESTAMP" />
+		<result property="pwdUpdateFlag" column="PWDUPDATEFLAG" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<resultMap id="sysUserTokenResultMap" type="com.glaf.base.modules.sys.model.SysUser">
+		<id property="account" column="USERID" jdbcType="BIGINT" />
+		<result property="name" column="USERNAME" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="VARCHAR" />
+		<result property="createTime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="mobile" column="MOBILE" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" jdbcType="VARCHAR" />
+		<result property="telephone" column="TELEPHONE" jdbcType="VARCHAR" />
+		<result property="headship" column="HEADSHIP" jdbcType="VARCHAR" />
+		<result property="userType" column="USERTYPE" jdbcType="INTEGER" />
+		<result property="accountType" column="ACCOUNTTYPE" jdbcType="INTEGER" />
+		<result property="deptId" column="DEPID" jdbcType="BIGINT" />
+		<result property="adminFlag" column="ISSYSTEM" jdbcType="VARCHAR" />
+		<result property="superiorIds" column="SUPERIORIDS" jdbcType="VARCHAR" />
+		<result property="lastLoginTime" column="LASTLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="lastLoginIP" column="LASTLOGINIP" jdbcType="VARCHAR" />
+		<result property="lockLoginTime" column="LOCKLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="loginRetry" column="LOGINRETRY" jdbcType="INTEGER" />
+		<result property="mqLoginFlag" column="MQLOGINFLAG_" jdbcType="VARCHAR" />
+		<result property="secretLoginFlag" column="SECRETLOGINFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="loginSecret" column="LOGINSECRET_" jdbcType="VARCHAR" />
+		<result property="loginSecretUpdateTime" column="LOGINSECRETUPDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="appId" column="APPID" jdbcType="VARCHAR" />
+		<result property="appSecret" column="APPSECRET" jdbcType="VARCHAR" />
+		<result property="token" column="TOKEN" jdbcType="VARCHAR" />
+		<result property="tokenTime" column="TOKENTIME" jdbcType="TIMESTAMP" />
+		<result property="syncFlag" column="SYNCFLAG" jdbcType="INTEGER" />
+		<result property="syncTime" column="SYNCTIME" jdbcType="TIMESTAMP" />
+		<result property="syncOperatorType" column="SYNCOPERATORTYPE"
+			jdbcType="VARCHAR" />
+		<result property="deleteFlag" column="DELETEFLAG" jdbcType="INTEGER" />
+		<result property="pwdUpdateFlag" column="PWDUPDATEFLAG" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<resultMap id="sysUserLoginSecretResultMap" type="com.glaf.base.modules.sys.model.SysUser">
+		<id property="account" column="USERID" jdbcType="BIGINT" />
+		<result property="name" column="USERNAME" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="VARCHAR" />
+		<result property="createTime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="mobile" column="MOBILE" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" jdbcType="VARCHAR" />
+		<result property="telephone" column="TELEPHONE" jdbcType="VARCHAR" />
+		<result property="headship" column="HEADSHIP" jdbcType="VARCHAR" />
+		<result property="userType" column="USERTYPE" jdbcType="INTEGER" />
+		<result property="accountType" column="ACCOUNTTYPE" jdbcType="INTEGER" />
+		<result property="deptId" column="DEPID" jdbcType="BIGINT" />
+		<result property="adminFlag" column="ISSYSTEM" jdbcType="VARCHAR" />
+		<result property="superiorIds" column="SUPERIORIDS" jdbcType="VARCHAR" />
+		<result property="lastLoginTime" column="LASTLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="lastLoginIP" column="LASTLOGINIP" jdbcType="VARCHAR" />
+		<result property="lockLoginTime" column="LOCKLOGINTIME"
+			jdbcType="TIMESTAMP" />
+		<result property="loginRetry" column="LOGINRETRY" jdbcType="INTEGER" />
+		<result property="secretLoginFlag" column="SECRETLOGINFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="loginSecret" column="LOGINSECRET_" jdbcType="VARCHAR" />
+		<result property="loginSecretUpdateTime" column="LOGINSECRETUPDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="syncFlag" column="SYNCFLAG" jdbcType="INTEGER" />
+		<result property="syncTime" column="SYNCTIME" jdbcType="TIMESTAMP" />
+		<result property="syncOperatorType" column="SYNCOPERATORTYPE"
+			jdbcType="VARCHAR" />
+		<result property="deleteFlag" column="DELETEFLAG" jdbcType="INTEGER" />
+		<result property="pwdUpdateFlag" column="PWDUPDATEFLAG" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertSysUser" parameterType="com.glaf.base.modules.sys.model.SysUser">
+		insert into UserInfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			USERID
+			<if test="passwordHash != null">
+				,PASSWORD_HASH
+			</if>
+			<if test="name != null">
+				,USERNAME
+			</if>
+			<if test="status != null">
+				,STATUS
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="createTime != null">
+				,CTIME
+			</if>
+			<if test="mobile != null">
+				,MOBILE
+			</if>
+			<if test="email != null">
+				,EMAIL
+			</if>
+			<if test="telephone != null">
+				,TELEPHONE
+			</if>
+			<if test="headship != null">
+				,HEADSHIP
+			</if>
+			<if test="userType != null">
+				,USERTYPE
+			</if>
+			<if test="accountType != null">
+				,ACCOUNTTYPE
+			</if>
+			<if test="deptId != null">
+				,DEPID
+			</if>
+			<if test="adminFlag != null">
+				,ISSYSTEM
+			</if>
+			<if test="superiorIds != null">
+				,SUPERIORIDS
+			</if>
+			<if test="lastLoginTime != null">
+				,LASTLOGINTIME
+			</if>
+			<if test="lastLoginIP != null">
+				,LASTLOGINIP
+			</if>
+			<if test="lockLoginTime != null">
+				,LOCKLOGINTIME
+			</if>
+			<if test="loginRetry != null">
+				,LOGINRETRY
+			</if>
+			<if test="mqLoginFlag != null">
+				,MQLOGINFLAG_
+			</if>
+			<if test="secretLoginFlag != null">
+				,SECRETLOGINFLAG_
+			</if>
+			<if test="loginSecret != null">
+				,LOGINSECRET_
+			</if>
+			<if test="loginSecretUpdateTime != null">
+				,LOGINSECRETUPDATETIME_
+			</if>
+			<if test="appId != null">
+				,APPID
+			</if>
+			<if test="appSecret != null">
+				,APPSECRET
+			</if>
+			<if test="token != null">
+				,TOKEN
+			</if>
+			<if test="tokenTime != null">
+				,TOKENTIME
+			</if>
+			<if test="syncFlag != null">
+				,SYNCFLAG
+			</if>
+			<if test="syncTime != null">
+				,SYNCTIME
+			</if>
+			<if test="syncOperatorType != null">
+				,SYNCOPERATORTYPE
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG
+			</if>
+			<if test="deleteTime != null">
+				,DELETETIME
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{account, jdbcType=VARCHAR}
+
+			<if test="passwordHash != null">
+				,#{passwordHash, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="mobile != null">
+				,#{mobile, jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null">
+				,#{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="headship != null">
+				,#{headship, jdbcType=VARCHAR}
+			</if>
+			<if test="userType != null">
+				,#{userType, jdbcType=INTEGER}
+			</if>
+			<if test="accountType != null">
+				,#{accountType, jdbcType=INTEGER}
+			</if>
+			<if test="deptId != null">
+				,#{deptId, jdbcType=BIGINT}
+			</if>
+			<if test="adminFlag != null">
+				,#{adminFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="superiorIds != null">
+				,#{superiorIds, jdbcType=VARCHAR}
+			</if>
+			<if test="lastLoginTime != null">
+				,#{lastLoginTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastLoginIP != null">
+				,#{lastLoginIP, jdbcType=VARCHAR}
+			</if>
+			<if test="lockLoginTime != null">
+				,#{lockLoginTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="loginRetry != null">
+				,#{loginRetry, jdbcType=INTEGER}
+			</if>
+			<if test="mqLoginFlag != null">
+				,#{mqLoginFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="secretLoginFlag != null">
+				,#{secretLoginFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="loginSecret != null">
+				,#{loginSecret, jdbcType=VARCHAR}
+			</if>
+			<if test="loginSecretUpdateTime != null">
+				,#{loginSecretUpdateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="appId != null">
+				,#{appId, jdbcType=VARCHAR}
+			</if>
+			<if test="appSecret != null">
+				,#{appSecret, jdbcType=VARCHAR}
+			</if>
+			<if test="token != null">
+				,#{token, jdbcType=VARCHAR}
+			</if>
+			<if test="tokenTime != null">
+				,#{tokenTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="syncFlag != null">
+				,#{syncFlag, jdbcType=INTEGER}
+			</if>
+			<if test="syncTime != null">
+				,#{syncTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="syncOperatorType != null">
+				,#{syncOperatorType, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="deleteTime != null">
+				,#{deleteTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="resetUserAppSecret" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set
+		APPID = #{appId, jdbcType=VARCHAR},
+		APPSECRET = #{appSecret,
+		jdbcType=VARCHAR},
+		TOKEN = #{token, jdbcType=VARCHAR},
+		TOKENTIME =
+		#{tokenTime, jdbcType=TIMESTAMP}
+		where USERID = #{account,
+		jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="resetUserToken" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set
+		TOKEN = #{token, jdbcType=VARCHAR},
+		TOKENTIME = #{tokenTime,
+		jdbcType=TIMESTAMP}
+		where USERID = #{account, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="updateSysUser" parameterType="com.glaf.base.modules.sys.model.SysUser">
+		update UserInfo
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				USERNAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status, jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE = #{mobile, jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email, jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone, jdbcType=VARCHAR},
+			</if>
+			<if test="headship != null">
+				HEADSHIP = #{headship, jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				USERTYPE = #{userType, jdbcType=INTEGER},
+			</if>
+			<if test="accountType != null">
+				ACCOUNTTYPE = #{accountType, jdbcType=INTEGER},
+			</if>
+			<if test="deptId != null">
+				DEPID = #{deptId, jdbcType=BIGINT},
+			</if>
+			<if test="adminFlag != null">
+				ISSYSTEM = #{adminFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="superiorIds != null">
+				SUPERIORIDS = #{superiorIds, jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				LASTLOGINTIME = #{lastLoginTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastLoginIP != null">
+				LASTLOGINIP = #{lastLoginIP, jdbcType=VARCHAR},
+			</if>
+			<if test="lockLoginTime != null">
+				LOCKLOGINTIME = #{lockLoginTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginRetry != null">
+				LOGINRETRY = #{loginRetry, jdbcType=INTEGER},
+			</if>
+			<if test="mqLoginFlag != null">
+				MQLOGINFLAG_ = #{mqLoginFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="secretLoginFlag != null">
+				SECRETLOGINFLAG_ = #{secretLoginFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="loginSecret != null">
+				LOGINSECRET_ = #{loginSecret, jdbcType=VARCHAR},
+			</if>
+			<if test="loginSecretUpdateTime != null">
+				LOGINSECRETUPDATETIME_ = #{loginSecretUpdateTime,
+				jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncFlag != null">
+				SYNCFLAG = #{syncFlag, jdbcType=INTEGER},
+			</if>
+			<if test="syncTime != null">
+				SYNCTIME = #{syncTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncOperatorType != null">
+				SYNCOPERATORTYPE = #{syncOperatorType, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="deleteTime != null">
+				DELETETIME = #{deleteTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="pwdUpdateFlag != null">
+				PWDUPDATEFLAG = #{pwdUpdateFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		USERID = #{account, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="resetLoginStatus" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set
+		LOGINRETRY = #{loginRetry, jdbcType=INTEGER},
+		LOCKLOGINTIME =
+		#{lockLoginTime, jdbcType=TIMESTAMP},
+		LOGINSECRET_ =
+		#{loginSecret,jdbcType=VARCHAR},
+		LOGINSECRETUPDATETIME_ =
+		#{loginSecretUpdateTime,jdbcType=TIMESTAMP}
+		where USERID =
+		#{account,jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="resetStatus" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set STATUS
+		= #{status, jdbcType=VARCHAR}
+		where USERID =
+		#{account,jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="updateUserLoginRetry" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set LOGINRETRY = #{loginRetry, jdbcType=INTEGER},
+		LOCKLOGINTIME =
+		#{lockLoginTime, jdbcType=TIMESTAMP}
+		where USERID =
+		#{account,jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="updateUserPassword" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set
+		LOGINRETRY = 0,
+		LOCKLOGINTIME = null,
+		PWDUPDATEFLAG=#{pwdUpdateFlag},
+		PASSWORD_HASH = #{passwordHash,
+		jdbcType=VARCHAR}
+		where USERID = #{account,jdbcType=VARCHAR}
+
+	</update>
+
+
+	<update id="updateUserLoginSecret" parameterType="com.glaf.base.modules.sys.model.SysUser">
+
+		update UserInfo
+		set
+		LOGINRETRY = 0,
+		LOCKLOGINTIME = null,
+		LOGINSECRET_ =
+		#{loginSecret,jdbcType=VARCHAR},
+		LOGINSECRETUPDATETIME_ =
+		#{loginSecretUpdateTime,jdbcType=TIMESTAMP}
+		where USERID =
+		#{account,jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteSysUserById" parameterType="string">
+
+		delete from
+		UserInfo
+		where USERID = #{account}
+
+	</delete>
+
+
+	<delete id="deleteSysUsers" parameterType="com.glaf.base.modules.sys.query.SysUserQuery">
+		delete from UserInfo
+		where (
+		USERID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSysUsersByAppId" parameterType="long" resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID =
+		b.USERID
+		inner join sys_access c
+		on b.roleId = c.roleId
+		where c.appId =
+		#{appId}
+		and a.DELETEFLAG = 0
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleCode" parameterType="string"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = c.id
+		where c.code
+		= #{roleCode}
+		and a.DELETEFLAG = 0
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleCode_oracle" parameterType="string"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = to_char(c.ID)
+		where c.code
+		= #{roleCode}
+		and a.DELETEFLAG = 0
+		order by a.STATUS
+		asc,
+		a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleCode_postgresql" parameterType="string"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = CAST(c.ID AS
+		VARCHAR)
+		where c.code
+		= #{roleCode}
+		and a.DELETEFLAG = 0
+		order by a.STATUS
+		asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByPostId" parameterType="long"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join sys_post_user b
+		on a.USERID = b.USERID
+		where b.POSTID = #{postId}
+		and a.DELETEFLAG = 0
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleId" parameterType="long"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = c.id
+		where c.id =
+		#{roleId}
+		and a.DELETEFLAG = 0
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleId_oracle" parameterType="long"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = to_char(c.ID)
+		where c.id =
+		#{roleId}
+		and a.DELETEFLAG = 0
+		order by a.STATUS
+		asc,
+		a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleId_postgresql" parameterType="long"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on
+		a.USERID = b.USERID
+		inner join net_role c
+		on b.roleId = CAST(c.ID AS
+		VARCHAR)
+		where c.id =
+		#{roleId}
+		and a.DELETEFLAG = 0
+		order by a.STATUS
+		asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleIds" parameterType="map"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID =
+		b.USERID
+		inner join net_role c
+		on b.roleId = c.id
+		where 1=1
+		and
+		a.DELETEFLAG = 0
+
+		<if test="roleIds != null and roleIds.size != 0">
+			AND c.id IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleIds_oracle" parameterType="map"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID =
+		b.USERID
+		inner join net_role c
+		on b.roleId = to_char(c.ID)
+		where
+		1=1
+		and
+		a.DELETEFLAG = 0
+
+		<if test="roleIds != null and roleIds.size != 0">
+			AND c.id IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUsersByRoleIds_postgresql" parameterType="map"
+		resultMap="sysUserResultMap">
+
+		select distinct a.*
+		from UserInfo a
+		inner join userrole b
+		on a.USERID =
+		b.USERID
+		inner join net_role c
+		on b.roleId = CAST(c.ID AS VARCHAR)
+		where
+		1=1
+		and
+		a.DELETEFLAG = 0
+
+		<if test="roleIds != null and roleIds.size != 0">
+			AND c.id IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		order by a.STATUS asc, a.UserName asc
+
+	</select>
+
+
+	<select id="getSysUserLoginSecret" parameterType="String"
+		resultMap="sysUserLoginSecretResultMap">
+		select * from UserInfo where UserID = #{account}
+	</select>
+
+
+	<select id="getSysUserLoginSecretList" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultMap="sysUserLoginSecretResultMap">
+
+		select E.* from UserInfo E
+		where 1=1
+		and E.DELETEFLAG = 0
+
+		<include refid="selectSysUsersSql" />
+
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.STATUS asc, E.UserName asc
+			</otherwise>
+		</choose>
+
+	</select>
+
+
+	<select id="getSysUserToken" parameterType="String"
+		resultMap="sysUserTokenResultMap">
+		select * from UserInfo where UserID = #{account}
+	</select>
+
+
+	<select id="getSysUserByAccount" parameterType="String"
+		resultMap="sysUserResultMap">
+		select * from UserInfo where UserID = #{account}
+	</select>
+
+
+	<select id="getSysUserByAppId" parameterType="String"
+		resultMap="sysUserTokenResultMap">
+		select * from UserInfo where APPID = #{appId}
+	</select>
+
+
+	<select id="getSysUserByMail" parameterType="string" resultMap="sysUserResultMap">
+		select * from UserInfo where EMAIL = #{mail}
+	</select>
+
+
+	<select id="getSysUserByMobile" parameterType="string"
+		resultMap="sysUserResultMap">
+		select * from UserInfo where MOBILE = #{mobile}
+	</select>
+
+
+	<select id="getPasswordHashByAccount" parameterType="String"
+		resultType="String">
+		select PASSWORD_HASH from UserInfo where UserID =
+		#{account}
+	</select>
+
+
+	<select id="getCountAuthorizedUsers" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultType="int">
+
+		select count(distinct E.USERID) from UserInfo E
+		inner join userrole R
+		on E.USERID = R.USERID
+		where 1=1
+		and E.DELETEFLAG = 0
+
+		<if test="deptId != null  ">
+			and E.DEPID = #{deptId}
+		</if>
+
+		<if test="nameLike != null and nameLike != '' ">
+			and E.USERNAME like #{nameLike}
+		</if>
+
+		<if test="availDateStartGreaterThanOrEqual != null">
+			and R.AVAILDATESTART &gt;=
+			#{availDateStartGreaterThanOrEqual}
+		</if>
+
+		<if test="availDateStartLessThanOrEqual != null">
+			and R.AVAILDATESTART &lt;=
+			#{availDateStartLessThanOrEqual}
+		</if>
+
+		<if test="availDateEndGreaterThanOrEqual != null">
+			and R.AVAILDATEEND &gt;= #{availDateEndGreaterThanOrEqual}
+		</if>
+
+		<if test="availDateEndLessThanOrEqual != null">
+			and R.AVAILDATEEND &lt;= #{availDateEndLessThanOrEqual}
+		</if>
+
+	</select>
+
+	<select id="getAuthorizedUsers" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultMap="sysUserResultMap">
+
+		select distinct E.* from UserInfo E
+		inner join userrole R
+		on E.USERID =
+		R.USERID
+		where 1=1
+		and E.DELETEFLAG = 0
+
+		<if test="deptId != null  ">
+			and E.DEPID = #{deptId}
+		</if>
+
+		<if test="nameLike != null and nameLike != '' ">
+			and E.UserName like #{nameLike}
+		</if>
+
+		<if test="availDateStartGreaterThanOrEqual != null">
+			and R.AVAILDATESTART &gt;=
+			#{availDateStartGreaterThanOrEqual}
+		</if>
+
+		<if test="availDateStartLessThanOrEqual != null">
+			and R.AVAILDATESTART &lt;=
+			#{availDateStartLessThanOrEqual}
+		</if>
+
+		<if test="availDateEndGreaterThanOrEqual != null">
+			and R.AVAILDATEEND &gt;= #{availDateEndGreaterThanOrEqual}
+		</if>
+
+		<if test="availDateEndLessThanOrEqual != null">
+			and R.AVAILDATEEND &lt;= #{availDateEndLessThanOrEqual}
+		</if>
+
+		order by E.UserID asc
+
+	</select>
+
+
+	<select id="getAuthorizedUsersByUserId" parameterType="string"
+		resultMap="sysUserResultMap">
+
+		select distinct E.* from UserInfo E
+		inner join userrole R
+		on
+		E.USERID = R.USERID
+		where R.AUTHORIZEFROM = #{authorizeFrom}
+		and
+		E.DELETEFLAG = 0
+		order by E.STATUS asc, E.UserName asc
+
+	</select>
+
+
+	<select id="getSysRoleUsers" parameterType="long" resultMap="sysUserResultMap">
+
+		select distinct E.* from UserInfo E
+		inner join userrole R
+		on E.USERID =
+		R.USERID
+		where R.ROLEID = #{roleId}
+		and E.DELETEFLAG = 0
+		order by
+		E.STATUS asc, E.UserName asc
+
+	</select>
+
+
+	<select id="getRoleUserViews" parameterType="com.glaf.base.modules.sys.query.UserRoleQuery"
+		resultType="com.glaf.base.modules.sys.model.UserRole">
+
+		select u.USERID as actorId, u.USERNAME as actorName, r.ID as roleId,
+		r.CODE as roleCode, r.ROLENAME as roleName
+		from USERINFO u
+		inner join
+		USERROLE ur
+		on u.USERID = ur.USERID
+		inner join NET_ROLE r
+		on ur.ROLEID =
+		r.ID
+		where 1=1
+		and u.DELETEFLAG = 0
+
+		<if test="actorId != null and actorId != '' ">
+			and u.USERID = #{actorId}
+		</if>
+
+		<if test="actorIds != null and actorIds.size != 0">
+			and u.USERID IN
+			<foreach item="x_account" index="index" collection="actorIds"
+				open="(" separator="," close=")">
+				#{x_account}
+			</foreach>
+		</if>
+
+		<if test="deptId != null">
+			and u.DEPID = #{deptId}
+		</if>
+
+		<if test="deptIds != null and deptIds.size != 0">
+			and u.DEPID IN
+			<foreach item="x_deptId" index="index" collection="deptIds"
+				open="(" separator="," close=")">
+				#{x_deptId}
+			</foreach>
+		</if>
+
+		<if test="roleId != null">
+			and r.ID = #{roleId}
+		</if>
+
+		<if test="roleIds != null and roleIds.size != 0">
+			and r.ID IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		<if test="roleCode != null">
+			and r.CODE = #{roleCode}
+		</if>
+
+		<if test="roleCodes != null and roleCodes.size != 0">
+			and r.CODE IN
+			<foreach item="x_roleCode" index="index" collection="roleCodes"
+				open="(" separator="," close=")">
+				#{x_roleCode}
+			</foreach>
+		</if>
+
+	</select>
+
+
+	<select id="getRoleUserViews_oracle" parameterType="com.glaf.base.modules.sys.query.UserRoleQuery"
+		resultType="com.glaf.base.modules.sys.model.UserRole">
+
+		select u.USERID as actorId, u.USERNAME as actorName, r.ID as roleId,
+		r.CODE as roleCode, r.ROLENAME as roleName
+		from USERINFO u
+		inner join
+		USERROLE ur
+		on u.USERID = ur.USERID
+		inner join NET_ROLE r
+		on ur.ROLEID =
+		to_char(r.ID)
+		where 1=1
+		and u.DELETEFLAG = 0
+
+		<if test="actorId != null and actorId != '' ">
+			and u.USERID = #{actorId}
+		</if>
+
+		<if test="actorIds != null and actorIds.size != 0">
+			and u.USERID IN
+			<foreach item="x_account" index="index" collection="actorIds"
+				open="(" separator="," close=")">
+				#{x_account}
+			</foreach>
+		</if>
+
+		<if test="deptId != null">
+			and u.DEPID = #{deptId}
+		</if>
+
+		<if test="deptIds != null and deptIds.size != 0">
+			and u.DEPID IN
+			<foreach item="x_deptId" index="index" collection="deptIds"
+				open="(" separator="," close=")">
+				#{x_deptId}
+			</foreach>
+		</if>
+
+		<if test="roleId != null">
+			and r.ID = #{roleId}
+		</if>
+
+		<if test="roleIds != null and roleIds.size != 0">
+			and r.ID IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		<if test="roleCode != null">
+			and r.CODE = #{roleCode}
+		</if>
+
+		<if test="roleCodes != null and roleCodes.size != 0">
+			and r.CODE IN
+			<foreach item="x_roleCode" index="index" collection="roleCodes"
+				open="(" separator="," close=")">
+				#{x_roleCode}
+			</foreach>
+		</if>
+
+	</select>
+
+
+	<select id="getRoleUserViews_postgresql" parameterType="com.glaf.base.modules.sys.query.UserRoleQuery"
+		resultType="com.glaf.base.modules.sys.model.UserRole">
+
+		select u.USERID as actorId, u.USERNAME as actorName, r.ID as roleId,
+		r.CODE as roleCode, r.ROLENAME as roleName
+		from USERINFO u
+		inner join
+		USERROLE ur
+		on u.USERID = ur.USERID
+		inner join NET_ROLE r
+		on ur.ROLEID =
+		CAST(r.ID AS VARCHAR)
+		where 1=1
+		and u.DELETEFLAG = 0
+
+		<if test="actorId != null and actorId != '' ">
+			and u.USERID = #{actorId}
+		</if>
+
+		<if test="actorIds != null and actorIds.size != 0">
+			and u.USERID IN
+			<foreach item="x_account" index="index" collection="actorIds"
+				open="(" separator="," close=")">
+				#{x_account}
+			</foreach>
+		</if>
+
+		<if test="deptId != null">
+			and u.DEPID = #{deptId}
+		</if>
+
+		<if test="deptIds != null and deptIds.size != 0">
+			and u.DEPID IN
+			<foreach item="x_deptId" index="index" collection="deptIds"
+				open="(" separator="," close=")">
+				#{x_deptId}
+			</foreach>
+		</if>
+
+		<if test="roleId != null">
+			and r.ID = #{roleId}
+		</if>
+
+		<if test="roleIds != null and roleIds.size != 0">
+			and r.ID IN
+			<foreach item="x_roleId" index="index" collection="roleIds"
+				open="(" separator="," close=")">
+				#{x_roleId}
+			</foreach>
+		</if>
+
+		<if test="roleCode != null">
+			and r.CODE = #{roleCode}
+		</if>
+
+		<if test="roleCodes != null and roleCodes.size != 0">
+			and r.CODE IN
+			<foreach item="x_roleCode" index="index" collection="roleCodes"
+				open="(" separator="," close=")">
+				#{x_roleCode}
+			</foreach>
+		</if>
+
+	</select>
+
+
+	<select id="getSysUsers" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultMap="sysUserResultMap">
+		select E.*
+		<include refid="selectSysUsersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.STATUS asc, E.UserName asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysUsersEx" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultMap="sysUserResultMap">
+		select * from (
+		select distinct
+		USERID,USERNAME,STATUS,CTIME,MOBILE,EMAIL,TELEPHONE,HEADSHIP,USERTYPE,ACCOUNTTYPE,DEPID,ISSYSTEM,SUPERIORIDS,LASTLOGINTIME,LASTLOGINIP,LOCKLOGINTIME,LOGINRETRY,APPID,APPSECRET,TOKEN,TOKENTIME
+		<include refid="selectSysUsersSqlEx" />
+		) E
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.STATUS asc, E.UserName asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSysUserCount" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysUsersSql" />
+	</select>
+
+
+	<select id="getSysUserExCount" parameterType="com.glaf.base.modules.sys.query.SysUserQuery"
+		resultType="int">
+		select count(distinct userid)
+		<include refid="selectSysUsersSqlEx" />
+	</select>
+
+
+	<sql id="selectSysUsersSql">
+
+		from UserInfo E
+
+		<if test="deptNameLike != null and deptNameLike != '' ">
+			inner join sys_department D
+			on E.DEPID = D.ID
+		</if>
+
+		<where>
+			1 = 1
+
+			<if test="deptNameLike != null and deptNameLike != '' ">
+				and D.NAME like #{deptNameLike}
+			</if>
+
+			<if test="account != null and account != '' ">
+				and E.USERID = #{account}
+			</if>
+
+			<if test="accountLike != null and accountLike != '' ">
+				and E.USERID like #{accountLike}
+			</if>
+
+			<if test="accounts != null and accounts.size != 0">
+				and E.USERID IN
+				<foreach item="x_account" index="index" collection="accounts"
+					open="(" separator="," close=")">
+					#{x_account}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.USERNAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.USERNAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size != 0">
+				and E.USERNAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="mobile != null and mobile != '' ">
+				and E.MOBILE = #{mobile}
+			</if>
+
+			<if test="mobileLike != null and mobileLike != '' ">
+				and E.MOBILE like #{mobileLike}
+			</if>
+
+			<if test="email != null and email != '' ">
+				and E.EMAIL = #{email}
+			</if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.EMAIL like #{emailLike}
+			</if>
+
+			<if test="deptId != null">
+				and E.DEPID = #{deptId}
+			</if>
+
+			<if test="deptIds != null and deptIds.size != 0">
+				and E.DEPID IN
+				<foreach item="x_deptId" index="index" collection="deptIds"
+					open="(" separator="," close=")">
+					#{x_deptId}
+				</foreach>
+			</if>
+
+			<if test="adminFlag != null and adminFlag != '' ">
+				and E.ISSYSTEM = #{adminFlag}
+			</if>
+
+			<if test="syncFlag != null">
+				and E.SYNCFLAG = #{syncFlag}
+			</if>
+
+			<if test="syncOperatorType != null and syncOperatorType != '' ">
+				and E.SYNCOPERATORTYPE = #{syncOperatorType}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG = #{deleteFlag}
+			</if>
+
+			<if test="groupUserId != null and groupUserId != '' ">
+				and E.USERID not in ( select USERID from sys_group_user
+				where GROUPID=#{groupUserId})
+			</if>
+
+			<if test="groupLeaderId != null and groupLeaderId != '' ">
+				and E.USERID not in ( select USERID from sys_group_leader
+				where GROUPID=#{groupLeaderId})
+			</if>
+
+			<if test="accountsNotIn != null and accountsNotIn.size != 0">
+				and E.USERID NOT IN
+				<foreach item="x_account" index="index" collection="accountsNotIn"
+					open="(" separator="," close=")">
+					#{x_account}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+		</where>
+	</sql>
+
+
+	<sql id="selectSysUsersSqlEx">
+
+		FROM (
+		SELECT DISTINCT E.*,F.NAME as DEPTNAME,f.ID as DEPTID,f.CODE as
+		DEPTCODE,K.rolename,j.roleid,K.CODE as ROLECODE from UserInfo E LEFT
+		JOIN dbo.sys_department F on E.DEPID = F.ID
+		LEFT JOIN userrole J on
+		E.UserID=J.userid LEFT JOIN dbo.net_role K on
+		J.roleid=k.id )E
+
+		<if test="deptNameLike != null and deptNameLike != '' ">
+			inner join sys_department D
+			on E.DEPID = D.ID
+		</if>
+
+		<where>
+			1 = 1
+
+			<if test="deptNameLike != null and deptNameLike != '' ">
+				and D.NAME like #{deptNameLike}
+			</if>
+
+			<if test="account != null and account != '' ">
+				and E.USERID = #{account}
+			</if>
+
+			<if test="accountLike != null and accountLike != '' ">
+				and E.USERID like #{accountLike}
+			</if>
+
+			<if test="accounts != null and accounts.size != 0">
+				and E.USERID IN
+				<foreach item="x_account" index="index" collection="accounts"
+					open="(" separator="," close=")">
+					#{x_account}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.USERNAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.USERNAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size != 0">
+				and E.USERNAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="mobile != null and mobile != '' ">
+				and E.MOBILE = #{mobile}
+			</if>
+
+			<if test="mobileLike != null and mobileLike != '' ">
+				and E.MOBILE like #{mobileLike}
+			</if>
+
+			<if test="email != null and email != '' ">
+				and E.EMAIL = #{email}
+			</if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.EMAIL like #{emailLike}
+			</if>
+
+			<if test="deptId != null">
+				and E.DEPID = #{deptId}
+			</if>
+
+			<if test="deptIds != null and deptIds.size != 0">
+				and E.DEPID IN
+				<foreach item="x_deptId" index="index" collection="deptIds"
+					open="(" separator="," close=")">
+					#{x_deptId}
+				</foreach>
+			</if>
+
+			<if test="adminFlag != null and adminFlag != '' ">
+				and E.ISSYSTEM = #{adminFlag}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG = #{deleteFlag}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+</mapper>

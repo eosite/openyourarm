@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.project.mapper.ProjectAccessMapper">
+
+	<resultMap id="projectAccessResultMap" type="com.glaf.base.project.domain.ProjectAccess">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="projectId" column="PROJECTID_" jdbcType="BIGINT" />
+		<result property="actorId" column="ACTORID_" jdbcType="VARCHAR" />
+		<result property="dynamic" column="DYNAMIC_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertProjectAccess" parameterType="com.glaf.base.project.domain.ProjectAccess">
+
+		insert into
+		PROJECT_ACCESS ( ID_, PROJECTID_, ACTORID_, DYNAMIC_ )
+		values
+		(#{id,jdbcType=BIGINT},
+		#{projectId, jdbcType=BIGINT},
+		#{actorId,jdbcType=VARCHAR},
+		#{dynamic,jdbcType=VARCHAR}
+		)
+
+	</insert>
+
+
+	<delete id="deleteAccessor" parameterType="com.glaf.base.project.domain.ProjectAccess">
+		delete from
+		PROJECT_ACCESS
+		where PROJECTID_ = #{projectId}
+		and ACTORID_ =
+		#{actorId}
+	</delete>
+
+
+	<delete id="deleteProjectAccessByProjectId" parameterType="long">
+		delete from PROJECT_ACCESS
+		where PROJECTID_ = #{projectId}
+	</delete>
+
+
+	<delete id="deleteProjectAccessByActorId" parameterType="string">
+		delete
+		from PROJECT_ACCESS
+		where ACTORID_ = #{actorId}
+	</delete>
+
+
+	<select id="getProjectAccessesByProjectId" parameterType="long"
+		resultMap="projectAccessResultMap">
+		select * from PROJECT_ACCESS
+		where PROJECTID_ =
+		#{projectId}
+	</select>
+
+
+	<select id="getProjectAccessesByActorId" parameterType="string"
+		resultMap="projectAccessResultMap">
+		select *
+		from PROJECT_ACCESS
+		where ACTORID_ = #{actorId}
+	</select>
+
+
+	<select id="getAllProjectAccesses" resultMap="projectAccessResultMap">
+		select *
+		from
+		PROJECT_ACCESS
+	</select>
+
+</mapper>

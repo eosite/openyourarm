@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.CvtRunHisMapper">
+
+ 	<resultMap id="cvtRunHisResultMap"	type="com.glaf.convert.domain.CvtRunHis">
+        <id property="taskCode" column="TASKCODE_" jdbcType="VARCHAR"/>
+        <result property="taskName" column="TASKNAME_" jdbcType="VARCHAR"/>
+        <result property="runTime" column="RUNTIME_" jdbcType="TIMESTAMP"/>
+        <result property="runFlag" column="RUNFLAG_" jdbcType="INTEGER"/>
+        <result property="succCount" column="SUCCCOUNT_" jdbcType="INTEGER"/>
+        <result property="failCount" column="FAILCOUNT_" jdbcType="INTEGER"/>
+        <result property="log" column="LOG_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+	</resultMap>
+
+ 
+	<insert id="insertCvtRunHis" parameterType="com.glaf.convert.domain.CvtRunHis">
+		insert into CVT_RUN_HIS 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    TASKCODE_
+			<if test="taskName != null">
+				,TASKNAME_ 
+			</if>
+			<if test="runTime != null">
+				,RUNTIME_ 
+			</if>
+			<if test="runFlag != null">
+				,RUNFLAG_ 
+			</if>
+			<if test="succCount != null">
+				,SUCCCOUNT_ 
+			</if>
+			<if test="failCount != null">
+				,FAILCOUNT_ 
+			</if>
+			<if test="log != null">
+				,LOG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{taskCode, jdbcType=VARCHAR}
+	     
+			<if test="taskName != null">
+				,#{taskName, jdbcType=VARCHAR}
+			</if>
+			<if test="runTime != null">
+				,#{runTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="runFlag != null">
+				,#{runFlag, jdbcType=INTEGER}
+			</if>
+			<if test="succCount != null">
+				,#{succCount, jdbcType=INTEGER}
+			</if>
+			<if test="failCount != null">
+				,#{failCount, jdbcType=INTEGER}
+			</if>
+			<if test="log != null">
+				,#{log, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateCvtRunHis" parameterType="com.glaf.convert.domain.CvtRunHis">
+		update CVT_RUN_HIS
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="taskName != null">
+				TASKNAME_ = #{taskName, jdbcType=VARCHAR},
+			</if>
+			<if test="runTime != null">
+				RUNTIME_ = #{runTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="runFlag != null">
+				RUNFLAG_ = #{runFlag, jdbcType=INTEGER},
+			</if>
+			<if test="succCount != null">
+				SUCCCOUNT_ = #{succCount, jdbcType=INTEGER},
+			</if>
+			<if test="failCount != null">
+				FAILCOUNT_ = #{failCount, jdbcType=INTEGER},
+			</if>
+			<if test="log != null">
+				LOG_ = #{log, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+        </trim>
+		where
+          TASKCODE_ = #{taskCode, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteCvtRunHisById" parameterType="string"> 
+        delete from CVT_RUN_HIS
+        where TASKCODE_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteCvtRunHiss" parameterType="com.glaf.convert.query.CvtRunHisQuery">
+		delete from CVT_RUN_HIS
+		where ( 
+ 			  TASKCODE_ IN
+              <foreach item="x_taskCode" index="index" collection="taskCodes" 
+                     open="(" separator="," close=")">
+                  #{x_taskCode}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getCvtRunHisById" parameterType="string" resultMap="cvtRunHisResultMap">
+		select * from CVT_RUN_HIS where TASKCODE_ = #{id}
+	</select>
+
+
+	<select id="getCvtRunHiss" 
+	    parameterType="com.glaf.convert.query.CvtRunHisQuery"
+		resultMap="cvtRunHisResultMap">
+		select distinct E.*
+		<include refid="selectCvtRunHissSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.TASKCODE_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getCvtRunHisCount" 
+	    parameterType="com.glaf.convert.query.CvtRunHisQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCvtRunHissSql" />
+	</select>
+
+
+	<sql id="selectCvtRunHissSql">
+
+		from CVT_RUN_HIS E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="taskName != null and taskName != '' ">
+				and E.TASKNAME_ = #{taskName}
+            </if>
+
+			<if test="taskNameLike != null and taskNameLike != '' ">
+				and E.TASKNAME_ like #{taskNameLike}
+            </if>
+
+			<if test="taskNames != null and taskNames.size() &gt; 0">
+			    and E.TASKNAME_ IN
+                <foreach item="x_taskName" index="index" collection="taskNames" 
+                     open="(" separator="," close=")">
+                  #{x_taskName}
+                </foreach>
+			</if>
+
+			<if test="runTimeGreaterThanOrEqual != null">
+				and E.RUNTIME_ &gt;= #{runTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="runTimeLessThanOrEqual != null">
+				and E.RUNTIME_ &lt;= #{runTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="runFlag != null">
+				and E.RUNFLAG_ = #{runFlag}
+            </if>
+
+			<if test="runFlagGreaterThanOrEqual != null">
+				and E.RUNFLAG_ &gt;= #{runFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="runFlagLessThanOrEqual != null">
+				and E.RUNFLAG_ &lt;= #{runFlagLessThanOrEqual}
+            </if>
+
+			<if test="runFlags != null and runFlags.size() &gt; 0">
+			    and E.RUNFLAG_ IN
+                <foreach item="x_runFlag" index="index" collection="runFlags" 
+                     open="(" separator="," close=")">
+                  #{x_runFlag}
+                </foreach>
+			</if>
+      
+
+			<if test="succCount != null">
+				and E.SUCCCOUNT_ = #{succCount}
+            </if>
+
+			<if test="succCountGreaterThanOrEqual != null">
+				and E.SUCCCOUNT_ &gt;= #{succCountGreaterThanOrEqual}
+            </if>
+
+			<if test="succCountLessThanOrEqual != null">
+				and E.SUCCCOUNT_ &lt;= #{succCountLessThanOrEqual}
+            </if>
+
+			<if test="succCounts != null and succCounts.size() &gt; 0">
+			    and E.SUCCCOUNT_ IN
+                <foreach item="x_succCount" index="index" collection="succCounts" 
+                     open="(" separator="," close=")">
+                  #{x_succCount}
+                </foreach>
+			</if>
+      
+
+			<if test="failCount != null">
+				and E.FAILCOUNT_ = #{failCount}
+            </if>
+
+			<if test="failCountGreaterThanOrEqual != null">
+				and E.FAILCOUNT_ &gt;= #{failCountGreaterThanOrEqual}
+            </if>
+
+			<if test="failCountLessThanOrEqual != null">
+				and E.FAILCOUNT_ &lt;= #{failCountLessThanOrEqual}
+            </if>
+
+			<if test="failCounts != null and failCounts.size() &gt; 0">
+			    and E.FAILCOUNT_ IN
+                <foreach item="x_failCount" index="index" collection="failCounts" 
+                     open="(" separator="," close=")">
+                  #{x_failCount}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

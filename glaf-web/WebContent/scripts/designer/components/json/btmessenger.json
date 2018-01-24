@@ -1,0 +1,124 @@
+{
+	"id": "messenger",
+	"title": "Bootstrap Messenger",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "defaultSetting",
+		"title": "默认设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "message",
+			"title": "消息内容",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContent"
+		},{
+			"id": "data-theme",
+			"title": "主题风格",
+			"type": "string",
+			"defaultVal": "flat",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTheme",
+			"valrange": [{
+			    "name":"平整",
+				"title": "平整",
+				"value": "flat"
+			},{
+				"name":"立体",
+				"title": "立体",
+				"value": "future"
+			},{
+			    "name":"方块",
+				"title": "方块",
+				"value": "block"
+			},{
+			    "name":"透明",
+				"title": "透明",
+				"value": "air"
+			},{
+			    "name":"冰块",
+				"title": "冰块",
+				"value": "ice"
+			}]
+		 },{
+			"id": "x-position",
+			"title": "水平位置",
+			"type": "string",
+			"defaultVal": "right",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setXposition",
+			"valrange": [{
+			    "name":"左",
+				"title": "左",
+				"value": "left"
+			},{
+				"name":"中",
+				"title": "中",
+				"value": "center"
+			},{
+			    "name":"右",
+				"title": "右",
+				"value": "right"
+			}]
+		 },{
+			"id": "y-position",
+			"title": "垂直位置",
+			"type": "string",
+			"defaultVal": "right",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setYposition",
+			"valrange": [{
+			    "name":"上",
+				"title": "上",
+				"value": "top"
+			},{
+				"name":"下",
+				"title": "下",
+				"value": "bottom"
+			}]
+		 },{
+			"id": "save",
+			"title": "暂存配置（暂存后，点击查看按钮）",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "save",
+			"valrange": [{
+			    "name":"暂存",
+				"title": "暂存",
+				"value": ""
+			}]
+		 }]
+	}]
+}

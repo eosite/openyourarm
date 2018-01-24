@@ -1,0 +1,18 @@
+<style type="text/css">
+.videoTitle {
+	width: 99%;
+	height: 22px;
+	padding-top: 3px;
+	padding-left: 5px;
+	font-weight: bold;
+	background-color: #EBEBEB;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="${contextPath}/scripts/NetVideoActiveX23/doc/css/bfq.css">
+<script type='text/javascript' src='${contextPath}/scripts/ysVideo.js'></script>
+<script type='text/javascript'>
+jQuery(function() {
+	$('#Video_ID').ysVideo({url:"${contextPath}/mx/form/videoData/videoData",autoPlay:{{autoPlay}},params:{params:JSON.stringify(getParams()||{})}});
+	
+});
+</script>

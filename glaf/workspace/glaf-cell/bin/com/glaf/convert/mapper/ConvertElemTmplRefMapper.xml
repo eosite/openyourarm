@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemTmplRefMapper">
+
+ 	<resultMap id="convertElemTmplRefResultMap"	type="com.glaf.convert.domain.ConvertElemTmplRef">
+        <id property="refRuleId" column="REF_RULE_ID_" jdbcType="BIGINT" />
+        <result property="cvtElemId" column="CVT_ELEM_ID_" jdbcType="BIGINT"/>
+        <result property="refType" column="REF_TYPE_" jdbcType="VARCHAR"/>
+        <result property="refContent" column="REF_CONTENT_" jdbcType="VARCHAR"/>
+        <result property="refCondition" column="REF_CONDITON_" jdbcType="VARCHAR"/>
+        <result property="refFieldId" column="REF_FIELD_ID_" jdbcType="VARCHAR"/>
+        <result property="useCondition" column="USECONDITION_" jdbcType="VARCHAR"/>
+        <result property="transtionFlag" column="TRANSTION_FLAG_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemTmplRef" parameterType="com.glaf.convert.domain.ConvertElemTmplRef">
+		insert into CVT_ELEM_TMPL_REF 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    REF_RULE_ID_
+			<if test="cvtElemId != null">
+				,CVT_ELEM_ID_ 
+			</if>
+			<if test="refType != null">
+				,REF_TYPE_ 
+			</if>
+			<if test="refContent != null">
+				,REF_CONTENT_ 
+			</if>
+			<if test="refCondition != null">
+				,REF_CONDITON_ 
+			</if>
+			<if test="refFieldId != null">
+				,REF_FIELD_ID_ 
+			</if>
+			<if test="useCondition != null">
+				,USECONDITION_ 
+			</if>
+			<if test="transtionFlag != null">
+				,TRANSTION_FLAG_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{refRuleId, jdbcType=BIGINT}
+	     
+			<if test="cvtElemId != null">
+				,#{cvtElemId, jdbcType=BIGINT}
+			</if>
+			<if test="refType != null">
+				,#{refType, jdbcType=VARCHAR}
+			</if>
+			<if test="refContent != null">
+				,#{refContent, jdbcType=VARCHAR}
+			</if>
+			<if test="refCondition != null">
+				,#{refCondition, jdbcType=VARCHAR}
+			</if>
+			<if test="refFieldId != null">
+				,#{refFieldId, jdbcType=VARCHAR}
+			</if>
+			<if test="useCondition != null">
+				,#{useCondition, jdbcType=VARCHAR}
+			</if>
+			<if test="transtionFlag != null">
+				,#{transtionFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemTmplRef" parameterType="com.glaf.convert.domain.ConvertElemTmplRef">
+		update CVT_ELEM_TMPL_REF
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtElemId != null">
+				CVT_ELEM_ID_ = #{cvtElemId, jdbcType=BIGINT},
+			</if>
+			<if test="refType != null">
+				REF_TYPE_ = #{refType, jdbcType=VARCHAR},
+			</if>
+			<if test="refContent != null">
+				REF_CONTENT_ = #{refContent, jdbcType=VARCHAR},
+			</if>
+			<if test="refCondition != null">
+				REF_CONDITON_ = #{refCondition, jdbcType=VARCHAR},
+			</if>
+			<if test="refFieldId != null">
+				REF_FIELD_ID_ = #{refFieldId, jdbcType=VARCHAR},
+			</if>
+			<if test="useCondition != null">
+				USECONDITION_ = #{useCondition, jdbcType=VARCHAR},
+			</if>
+			<if test="transtionFlag != null">
+				TRANSTION_FLAG_ = #{transtionFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          REF_RULE_ID_ = #{refRuleId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemTmplRefById" parameterType="long"> 
+        delete from CVT_ELEM_TMPL_REF
+        where REF_RULE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemTmplRefs" parameterType="com.glaf.convert.query.ConvertElemTmplRefQuery">
+		delete from CVT_ELEM_TMPL_REF
+		where ( 
+ 			  REF_RULE_ID_ IN
+              <foreach item="x_refRuleId" index="index" collection="refRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_refRuleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemTmplRefById" parameterType="long" resultMap="convertElemTmplRefResultMap">
+		select * from CVT_ELEM_TMPL_REF where REF_RULE_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemTmplRefs" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplRefQuery"
+		resultMap="convertElemTmplRefResultMap">
+		select distinct E.*
+		<include refid="selectConvertElemTmplRefsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.REF_RULE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemTmplRefCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemTmplRefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemTmplRefsSql" />
+	</select>
+
+
+	<sql id="selectConvertElemTmplRefsSql">
+
+		from CVT_ELEM_TMPL_REF E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtElemId != null">
+				and E.CVT_ELEM_ID_ = #{cvtElemId}
+            </if>
+
+			<if test="cvtElemIdGreaterThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &gt;= #{cvtElemIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtElemIdLessThanOrEqual != null">
+				and E.CVT_ELEM_ID_ &lt;= #{cvtElemIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtElemIds != null and cvtElemIds.size() &gt; 0">
+			    and E.CVT_ELEM_ID_ IN
+                <foreach item="x_cvtElemId" index="index" collection="cvtElemIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtElemId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="refType != null and refType != '' ">
+				and E.REF_TYPE_ = #{refType}
+            </if>
+
+			<if test="refTypeLike != null and refTypeLike != '' ">
+				and E.REF_TYPE_ like #{refTypeLike}
+            </if>
+
+			<if test="refTypes != null and refTypes.size() &gt; 0">
+			    and E.REF_TYPE_ IN
+                <foreach item="x_refType" index="index" collection="refTypes" 
+                     open="(" separator="," close=")">
+                  #{x_refType}
+                </foreach>
+			</if>
+	        
+			<if test="refContent != null and refContent != '' ">
+				and E.REF_CONTENT_ = #{refContent}
+            </if>
+
+			<if test="refContentLike != null and refContentLike != '' ">
+				and E.REF_CONTENT_ like #{refContentLike}
+            </if>
+
+			<if test="refContents != null and refContents.size() &gt; 0">
+			    and E.REF_CONTENT_ IN
+                <foreach item="x_refContent" index="index" collection="refContents" 
+                     open="(" separator="," close=")">
+                  #{x_refContent}
+                </foreach>
+			</if>
+	        
+			<if test="refCondition != null and refCondition != '' ">
+				and E.REF_CONDITON_ = #{refCondition}
+            </if>
+
+			<if test="refConditionLike != null and refConditionLike != '' ">
+				and E.REF_CONDITON_ like #{refConditionLike}
+            </if>
+
+			<if test="refConditions != null and refConditions.size() &gt; 0">
+			    and E.REF_CONDITON_ IN
+                <foreach item="x_refCondition" index="index" collection="refConditions" 
+                     open="(" separator="," close=")">
+                  #{x_refCondition}
+                </foreach>
+			</if>
+	        
+			<if test="refFieldId != null and refFieldId != '' ">
+				and E.REF_FIELD_ID_ = #{refFieldId}
+            </if>
+
+			<if test="refFieldIdLike != null and refFieldIdLike != '' ">
+				and E.REF_FIELD_ID_ like #{refFieldIdLike}
+            </if>
+
+			<if test="refFieldIds != null and refFieldIds.size() &gt; 0">
+			    and E.REF_FIELD_ID_ IN
+                <foreach item="x_refFieldId" index="index" collection="refFieldIds" 
+                     open="(" separator="," close=")">
+                  #{x_refFieldId}
+                </foreach>
+			</if>
+	        
+			<if test="useCondition != null and useCondition != '' ">
+				and E.USECONDITION_ = #{useCondition}
+            </if>
+
+			<if test="useConditionLike != null and useConditionLike != '' ">
+				and E.USECONDITION_ like #{useConditionLike}
+            </if>
+
+			<if test="useConditions != null and useConditions.size() &gt; 0">
+			    and E.USECONDITION_ IN
+                <foreach item="x_useCondition" index="index" collection="useConditions" 
+                     open="(" separator="," close=")">
+                  #{x_useCondition}
+                </foreach>
+			</if>
+	        
+			<if test="transtionFlag != null and transtionFlag != '' ">
+				and E.TRANSTION_FLAG_ = #{transtionFlag}
+            </if>
+
+			<if test="transtionFlagLike != null and transtionFlagLike != '' ">
+				and E.TRANSTION_FLAG_ like #{transtionFlagLike}
+            </if>
+
+			<if test="transtionFlags != null and transtionFlags.size() &gt; 0">
+			    and E.TRANSTION_FLAG_ IN
+                <foreach item="x_transtionFlag" index="index" collection="transtionFlags" 
+                     open="(" separator="," close=")">
+                  #{x_transtionFlag}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<select id="getConvertElemTmplRefsByCvtId" 
+		resultMap="convertElemTmplRefResultMap">
+		select E.* from CVT_ELEM_TMPL_REF E where CVT_ELEM_ID_ in ( select F.CVT_ELEM_ID_ from CVT_ELEM_TMPL F where F.CVT_ID_ = #{cvtId}) 
+		 <if test="isCri != null and isCri == true ">
+			    and E.REF_TYPE_ not like 'criterion%'
+		</if>
+	</select>
+
+</mapper>

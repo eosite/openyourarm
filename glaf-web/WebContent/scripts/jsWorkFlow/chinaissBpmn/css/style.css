@@ -1,0 +1,83 @@
+.page-header.navbar.navbar-fixed-top, .page-header.navbar.navbar-static-top{
+	z-index:1000
+}
+th.active .arrow {
+	opacity: 1;
+}
+
+.arrow {
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 0;
+	margin-left: 5px;
+	opacity: 0.66;
+}
+
+.arrow.asc {
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 4px solid black;
+}
+
+.arrow.dsc {
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid black;
+}
+
+.page-quick-sidebar {
+	height: 100%;
+}
+
+.mtbox {
+	background-color: #F0F0F0;
+}
+
+.mt_select, .select2-container--bootstrap .select2-selection--single {
+	height: 24px !important;
+}
+
+.bpmn-icon-eye:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: '\f06e';
+}
+.bpmn-icon-view-tmp:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: '\f21d';
+}
+
+.tab-pane {
+	height: 100%
+}
+
+#tab2 {
+	background: wheat;
+}
+
+#tab3 {
+	background: #c7e1fb;
+}
+
+#tab4 {
+	background: #efc7fb;
+}
+
+.mt-blue {
+	color: blue !important;
+}
+
+.mt-red {
+	color: red !important;
+}
+
+.myalert {
+    width: 300px;
+    position: fixed;
+    top: 40px;
+    bottom: auto;
+    right: 5px;
+    left: auto;
+    display: block;
+    z-index: 99999999999;
+}

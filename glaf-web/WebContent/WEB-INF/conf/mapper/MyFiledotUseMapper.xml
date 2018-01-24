@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.MyFiledotUseMapper">
+
+	<resultMap id="myFiledotUseResultMap" type="com.glaf.base.modules.sys.model.FiledotUse">
+		<id property="fileID" column="FILEID" jdbcType="VARCHAR" />
+		<result property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="projid" column="PROJID" jdbcType="INTEGER" />
+		<result property="pid" column="PID" jdbcType="INTEGER" />
+		<result property="dotid" column="DOTID" jdbcType="VARCHAR" />
+		<result property="num" column="NUM" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="cman" column="CMAN" jdbcType="VARCHAR" />
+		<result property="createTime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="fileName" column="FILE_NAME" jdbcType="VARCHAR" />
+		<result property="fileContent" column="FILE_CONTENT" jdbcType="BLOB" />
+		<result property="filesize" column="FILESIZE" jdbcType="INTEGER" />
+		<result property="vision" column="VISION" jdbcType="VARCHAR" />
+		<result property="savetime" column="SAVETIME" jdbcType="VARCHAR" />
+		<result property="remark" column="REMARK" jdbcType="VARCHAR" />
+		<result property="dwid" column="DWID" jdbcType="INTEGER" />
+		<result property="fbid" column="FBID" jdbcType="INTEGER" />
+		<result property="fxid" column="FXID" jdbcType="INTEGER" />
+		<result property="jid" column="JID" jdbcType="VARCHAR" />
+		<result property="flid" column="FLID" jdbcType="VARCHAR" />
+		<result property="topnode" column="TOPNODE" jdbcType="VARCHAR" />
+		<result property="topid" column="TOPID" jdbcType="VARCHAR" />
+		<result property="fname" column="FNAME" jdbcType="VARCHAR" />
+		<result property="ischeck" column="ISCHECK" jdbcType="INTEGER" />
+		<result property="isink" column="ISINK" jdbcType="VARCHAR" />
+		<result property="oldid" column="OLD_ID" jdbcType="VARCHAR" />
+		<result property="taskid" column="TASK_ID" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFiledotUse" parameterType="com.glaf.base.modules.sys.model.FiledotUse">
+		insert into DOTUSE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			FILEID
+			<if test="indexId != null">
+				,INDEX_ID
+			</if>
+			<if test="projid != null">
+				,PROJID
+			</if>
+			<if test="pid != null">
+				,PID
+			</if>
+			<if test="dotid != null">
+				,DOTID
+			</if>
+			<if test="num != null">
+				,NUM
+			</if>
+			<if test="name != null">
+				,NAME
+			</if>
+			<if test="cman != null">
+				,CMAN
+			</if>
+			<if test="createTime != null">
+				,CTIME
+			</if>
+			<if test="fileName != null">
+				,FILE_NAME
+			</if>
+			<if test="fileContent != null">
+				,FILE_CONTENT
+			</if>
+			<if test="filesize != null">
+				,FILESIZE
+			</if>
+			<if test="vision != null">
+				,VISION
+			</if>
+			<if test="savetime != null">
+				,SAVETIME
+			</if>
+			<if test="remark != null">
+				,REMARK
+			</if>
+			<if test="dwid != null">
+				,DWID
+			</if>
+			<if test="fbid != null">
+				,FBID
+			</if>
+			<if test="fxid != null">
+				,FXID
+			</if>
+			<if test="jid != null">
+				,JID
+			</if>
+			<if test="flid != null">
+				,FLID
+			</if>
+			<if test="topnode != null">
+				,TOPNODE
+			</if>
+			<if test="topid != null">
+				,TOPID
+			</if>
+			<if test="fname != null">
+				,FNAME
+			</if>
+			<if test="ischeck != null">
+				,ISCHECK
+			</if>
+			<if test="ISINK != null">
+				,ISINK
+			</if>
+			<if test="oldid != null">
+				,OLD_ID
+			</if>
+			<if test="taskid != null">
+				,TASK_ID
+			</if>
+			<if test="type != null">
+				,TYPE
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{fileID, jdbcType=VARCHAR}
+
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="projid != null">
+				,#{projid, jdbcType=INTEGER}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=INTEGER}
+			</if>
+			<if test="dotid != null">
+				,#{dotid, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="cman != null">
+				,#{cman, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="filesize != null">
+				,#{filesize, jdbcType=INTEGER}
+			</if>
+			<if test="vision != null">
+				,#{vision, jdbcType=VARCHAR}
+			</if>
+			<if test="savetime != null">
+				,#{savetime, jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null">
+				,#{remark, jdbcType=VARCHAR}
+			</if>
+			<if test="dwid != null">
+				,#{dwid, jdbcType=INTEGER}
+			</if>
+			<if test="fbid != null">
+				,#{fbid, jdbcType=INTEGER}
+			</if>
+			<if test="fxid != null">
+				,#{fxid, jdbcType=INTEGER}
+			</if>
+			<if test="jid != null">
+				,#{jid, jdbcType=VARCHAR}
+			</if>
+			<if test="flid != null">
+				,#{flid, jdbcType=VARCHAR}
+			</if>
+			<if test="topnode != null">
+				,#{topnode, jdbcType=VARCHAR}
+			</if>
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="ischeck != null">
+				,#{ischeck, jdbcType=INTEGER}
+			</if>
+			<if test="ISINK != null">
+				,#{ISINK, jdbcType=VARCHAR}
+			</if>
+			<if test="oldid != null">
+				,#{oldid, jdbcType=VARCHAR}
+			</if>
+			<if test="taskid != null">
+				,#{taskid, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFiledotUse" parameterType="com.glaf.base.modules.sys.model.FiledotUse">
+		update DOTUSE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="projid != null">
+				PROJID = #{projid, jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				PID = #{pid, jdbcType=INTEGER},
+			</if>
+			<if test="dotid != null">
+				DOTID = #{dotid, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="cman != null">
+				CMAN = #{cman, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CTIME = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileName != null">
+				FILE_NAME = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				FILE_CONTENT = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="filesize != null">
+				FILESIZE = #{filesize, jdbcType=INTEGER},
+			</if>
+			<if test="vision != null">
+				VISION = #{vision, jdbcType=VARCHAR},
+			</if>
+			<if test="savetime != null">
+				SAVETIME = #{savetime, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark, jdbcType=VARCHAR},
+			</if>
+			<if test="dwid != null">
+				DWID = #{dwid, jdbcType=INTEGER},
+			</if>
+			<if test="fbid != null">
+				FBID = #{fbid, jdbcType=INTEGER},
+			</if>
+			<if test="fxid != null">
+				FXID = #{fxid, jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				JID = #{jid, jdbcType=VARCHAR},
+			</if>
+			<if test="flid != null">
+				FLID = #{flid, jdbcType=VARCHAR},
+			</if>
+			<if test="topnode != null">
+				TOPNODE = #{topnode, jdbcType=VARCHAR},
+			</if>
+			<if test="topid != null">
+				TOPID = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				FNAME = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="ischeck != null">
+				ISCHECK = #{ischeck, jdbcType=INTEGER},
+			</if>
+			<if test="ISINK != null">
+				ISINK = #{ISINK, jdbcType=VARCHAR},
+			</if>
+			<if test="oldid != null">
+				OLD_ID = #{oldid, jdbcType=VARCHAR},
+			</if>
+			<if test="taskid != null">
+				TASK_ID = #{taskid, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		FILEID = #{fileID, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFiledotUseById" parameterType="string">
+		delete from
+		DOTUSE
+		where FILEID = #{id}
+	</delete>
+
+
+	<delete id="deleteFiledotUses" parameterType="com.glaf.base.modules.sys.query.FiledotUseQuery">
+		delete from DOTUSE
+		where (
+		FILEID IN
+		<foreach item="x_fileID" index="index" collection="fileIDs"
+			open="(" separator="," close=")">
+			#{x_fileID}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFiledotUseById" parameterType="string"
+		resultMap="myFiledotUseResultMap">
+		select * from DOTUSE where FILEID = #{id}
+	</select>
+
+
+	<select id="getFiledotUses" parameterType="com.glaf.base.modules.sys.query.FiledotUseQuery"
+		resultMap="myFiledotUseResultMap">
+		select E.FILEID,
+		E.INDEX_ID,
+		E.PROJID,
+		E.PID,
+		E.DOTID,
+		E.NUM,
+		E.NAME,
+		E.CMAN,
+		E.CTIME,
+		E.FILE_NAME,
+		E.FILESIZE,
+		E.VISION,
+		E.SAVETIME,
+		E.REMARK,
+		E.DWID,
+		E.FBID,
+		E.FXID,
+		E.JID,
+		E.FLID,
+		E.TOPNODE,
+		E.TOPID,
+		E.TYPE,
+		E.FNAME,
+		E.ISINK
+		<include refid="selectFiledotUsesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CTIME desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFiledotUseCount" parameterType="com.glaf.base.modules.sys.query.FiledotUseQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFiledotUsesSql" />
+	</select>
+
+
+	<sql id="selectFiledotUsesSql">
+
+		from DOTUSE E
+
+		<where>
+			1 = 1
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+			</if>
+
+			<if test="projid != null">
+				and E.PROJID = #{projid}
+			</if>
+
+			<if test="pid != null">
+				and E.PID = #{pid}
+			</if>
+
+			<if test="dotid != null and dotid != '' ">
+				and E.DOTID = #{dotid}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+			</if>
+
+			<if test="cman != null and cman != '' ">
+				and E.CMAN = #{cman}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="fileName != null and fileName != '' ">
+				and E.FILE_NAME = #{fileName}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILE_NAME like #{fileNameLike}
+			</if>
+
+			<if test="topnode != null and topnode != '' ">
+				and E.TOPNODE = #{topnode}
+			</if>
+
+			<if test="topnodeLike != null and topnodeLike != '' ">
+				and E.TOPNODE like #{topnodeLike}
+			</if>
+
+			<if test="topid != null and topid != '' ">
+				and E.TOPID = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.TOPID like #{topidLike}
+			</if>
+
+			<if test="taskid != null and taskid != '' ">
+				and E.TASK_ID = #{taskid}
+			</if>
+
+			<if test="type != null">
+				and E.TYPE = #{type}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

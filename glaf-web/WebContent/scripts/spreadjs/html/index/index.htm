@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- disable IE compatible view -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="spreadjs culture" content="zh-cn" />
+    <title data-bind="text: res.title">SpreadJS Designer</title>
+
+    <!-- Libraries -->
+    <link href="../lib/jquery-ui/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="../lib/gcui.min.css" rel="stylesheet" type="text/css" />
+    <link href="../lib/spread/gcspread.sheets.excel2013white.9.40.20153.0.css" rel="stylesheet" type="text/css" />
+    <link href="../lib/zTreeStyle/css/zTreeStyle.css" rel="stylesheet" type="text/css" />
+
+    <!-- Common -->
+    <link href="../common/common.min.css" rel="stylesheet" type="text/css" />
+    <link href="../common/qt.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Common Widgets -->
+    <link href="../widgets/colorpicker/colorpicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../widgets/fontpicker/fontpicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../widgets/comboframe/comboframe.min.css" rel="stylesheet" type="text/css" />
+    <link href="../widgets/borderpicker/borderpicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="../widgets/sliderpanel/sliderpanel.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Dialogs -->
+    <link href="../dialogs/dialogs.min.css" rel="stylesheet" type="text/css" />
+    <link href="../dialogs/dialogs2.min.css" rel="stylesheet" type="text/css" />
+    <link href="../formatDialog/formatDialog.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Page Parts -->
+    <link href="../ribbon/ribbon.min.css" rel="stylesheet">
+    <link href="../formulaBar/formulaBar.min.css" rel="stylesheet">
+    <link href="../spreadWrapper/spreadWrapper.min.css" rel="stylesheet">
+    <link href="../statusBar/statusBar.min.css" rel="stylesheet">
+    <link href="../contextMenu/contextMenu.min.css" rel="stylesheet" />
+    <link href="../fileMenu/fileMenu.min.css" rel="stylesheet" />
+
+    <!-- Index -->
+    <link href="index.min.css" rel="stylesheet" type="text/css" />
+    <link href="../common/local.cn.css" rel="stylesheet" type="text/css"/>
+</head>
+<body unselectable="on" style="-moz-user-select: none; -webkit-user-select: none;">
+     <div class="row">
+		        <div class="col-md-6 col-xs-12">
+		            <div class="form-inline well well-sm">
+		                <input class="form-control" type="file" name="files[]" multiple id="import_excel_file" accept=".xlsx,.xls" />
+		                <input class="btn btn-default" type="button" id="import_excel" value="导入">
+		            </div>
+		        </div>
+		        <div class="col-md-6 col-xs-12">
+		            <div class="form-inline well well-sm">
+		                <input type="text" id="exportFileName" placeholder="Export file name" class="form-control" />
+		                <input type="button" class="btn btn-default" id="export_excel" value="导出Excel" />
+		                <input type="button" class="btn btn-default" id="export_pdf" value="导出PDF" />
+		            </div>
+		        </div>
+	 </div>
+    <div class="container">
+        <div class="loading-placeholder background-mask-layer"></div>
+        <span class="loading-placeholder loading-pic"></span>
+        <div class="header">
+            <div data-include="ribbon">
+            </div>
+            <div data-include="formulaBar">
+            </div>
+        </div>
+        <div class="content">
+            <div class="vertical-splitter ui-draggable hidden" id="verticalSplitter"></div>
+            <div class="fill-spread-content" data-include="spreadWrapper">
+            </div>
+        </div>
+        <div class="footer">
+            <div data-include="statusBar">
+            </div>
+        </div>
+        <div class="context-menu hidden">
+            <div data-include="contextMenu"></div>
+        </div>
+        <div class="file-menu hidden">
+            <div data-include="fileMenu"></div>
+        </div>
+        <div class="slicer-contextmenu-width hidden">
+            <span id="name-container"></span>
+        </div>
+    </div>
+   
+    <!-- Libraries -->
+    <script src="../lib/jquery-2.0.2.min.js"></script>
+    <script src="../lib/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../lib/knockout-2.3.0.min.js"></script>
+    <script src="../lib/gcui.min.js"></script>
+    <script src="../lib/spread/gcspread.sheets.all.9.40.20153.0.min.js"></script>
+    <script src="../lib/spread/gcspread.sheets.resources.zh.9.40.20153.0.min.js"></script>
+    <script src="../lib/spread/gcspread.sheets.print.9.40.20153.0.min.js"></script>
+
+    <script src="../lib/zTreeStyle/js/jquery.ztree.all-3.5.min.js"></script>
+
+    <!-- Resources -->
+    <script src="../common/resources.js"></script>
+    <script src="../common/resources.en.js"></script>
+
+  <!-- Common Widgets -->
+    <script src="../widgets/colorpicker/colorpicker.min.js"></script>
+    <script src="../widgets/fontpicker/fontpicker.min.js"></script>
+    <script src="../widgets/comboframe/comboframe.min.js"></script>
+    <script src="../widgets/borderpicker/borderpicker.min.js"></script>
+    <script src="../widgets/sliderpanel/sliderpanel.min.js"></script>
+
+    <!-- Common Utilities -->
+    <script src="../common/c1Broker.min.js"></script>
+    <script src="../common/util.min.js"></script>
+    <script src="../common/asyncLoader.min.js"></script>
+    <script src="../common/metadata.min.js"></script>
+    <script src="../common/colorHelper.min.js"></script>
+
+    <!-- Spread special utilities -->
+    <script src="../spreadWrapper/spreadMeta.min.js"></script>
+    <script src="../spreadWrapper/spreadWrapper.min.js"></script>
+    <script src="../spreadWrapper/spreadActions.min.js"></script>
+    <script src="../spreadWrapper/actions.min.js"></script>
+    <script src="../spreadWrapper/ceUtility.min.js"></script>
+    <script src="../spreadWrapper/spreadUtility.min.js"></script>
+
+    <!-- Dialogs -->
+    <script src="../dialogs/baseDialog.min.js"></script>
+    <script src="../dialogs/dialogs.min.js"></script>
+    <script src="../dialogs/dialogs2.min.js"></script>
+    <script src="../formatDialog/formatDialog.min.js"></script>
+
+    <!-- Page parts -->
+    <script src="../ribbon/ribbon.min.js"></script>
+    <script src="../formulaBar/formulaBar.min.js"></script>
+    <script src="../statusBar/statusBar.min.js"></script>
+    <script src="../contextMenu/contextMenu.min.js"></script>
+    <script src="../fileMenu/fileMenu.min.js"></script>
+    
+    <script src="index.min.js"></script>
+        <script type="text/javascript">
+    $("#import_excel").click(function () {
+        var files = $('#import_excel_file').prop('files');
+        var fd = new FormData();
+        fd.append('files[]', files[0]);
+        fd.append('ExcelOpenFlags', 0);
+        fd.append('Password', '');
+
+        $.ajax({
+            url: getImportServerUrl(),
+            type: "POST",
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                var spreadObj = response.spread;
+                if (spreadObj) {
+                    var spread = $("#ss").data("spread");
+                    spread.fromJSON(spreadObj);
+                    //updateSheetList();
+                    //hideLoading();
+                    spreadObj = null;
+                } else if (spreadJson.error) {
+                   // hideLoading();
+                    alert(spreadJson.error);
+                }
+            },
+            error: function (jqXHR, textStatus, errorMessage) {
+                //hideLoading();
+                console.log(errorMessage);
+            }
+        });
+    });
+    function getSheetList(spread) {
+        var sheetCount = spread.getSheetCount();
+        var sheetIndexes = [];
+        var list = $("#sheetList").val();
+        if (list === "All") {
+            for (var index = 0; index < sheetCount; index++) {
+                sheetIndexes.push(index);
+            }
+        } else if (list !== "") {
+            if (spread && spread.sheets && spread.sheets.length >= 0) {
+                for (var index = 0; index < spread.sheets.length; index++) {
+                    var sheetName = spread.sheets[index].getName();
+                    if (list === sheetName) {
+                        sheetIndexes.push(index);
+                        break;
+                    }
+                }
+            }
+        }
+        return sheetIndexes;
+    }
+  
+    function htmlSpecialCharsEntityEncode(str) {
+        var htmlSpecialCharsRegEx = /[<>&\r\n"']/gm;
+        var htmlSpecialCharsPlaceHolders = {
+            '<': 'lt;',
+            '>': 'gt;',
+            '&': 'amp;',
+            '\r': "#13;",
+            '\n': "#10;",
+            '"': 'quot;',
+            "'": 'apos;' /*single quotes just to be safe*/
+        };
+        return str.replace(htmlSpecialCharsRegEx, function (match) {
+            return '&' + htmlSpecialCharsPlaceHolders[match];
+        });
+    }
+  //Export File
+    function exportFile(serverUrl, content) {
+        var formInnerHtml = '<input type="hidden" name="type" value="application/json" />';
+        formInnerHtml += '<input type="hidden" name="data" value="' + htmlSpecialCharsEntityEncode(content) + '" />';
+        content = null;
+        var $iframe = $("<iframe style='display: none' src='about:blank'></iframe>").appendTo("body");
+        $iframe.ready(function () {
+            var formDoc = getiframeDocument($iframe);
+            formDoc.write("<html><head></head><body><form method='Post' action='" + serverUrl + "'>" + formInnerHtml + "</form>dummy windows for postback</body></html>");
+            formInnerHtml = null;
+            var $form = $(formDoc).find('form');
+            $form.submit();
+            $form[0].reset();
+        });
+    }
+
+    //Help Method
+    function getiframeDocument($iframe) {
+        var iframeDoc = $iframe[0].contentWindow || $iframe[0].contentDocument;
+        if (iframeDoc.document) {
+            iframeDoc = iframeDoc.document;
+        }
+        return iframeDoc;
+    }
+    function setExportFileName(data) {
+        var name = $("#exportFileName").val();
+
+        if (data && name) {
+            data["exportFileName"] = name;
+        }
+    }
+    function getImportServerUrl(){
+    	 return "http://localhost:24532/xsapi/Import";
+    }
+    function getExportServerUrl() {
+        return "http://192.168.1.217:10787/xsapi/Export";
+    }
+    $("#export_excel").click(function () {
+        var spread = $("#ss").data("spread");
+        var saveFlags = getSaveFlags();
+        var password = $("#exportPassword").val();
+        var dataObj = {
+            "spread": spread.toJSON(),
+            "exportFileType": "xlsx",
+            "excel": {
+                "saveFlags": saveFlags,
+                "password": password
+            }
+        };
+        setExportFileName(dataObj);
+        var content = JSON.stringify(dataObj);
+        dataObj = null;
+        var serverUrl = getExportServerUrl();
+        exportFile(serverUrl, content);
+    });
+    function getSaveFlags() {
+        var ExcelSaveFlags = {
+            NoFlagsSet: 0,
+            NoFormulas: 1,
+            SaveCustomRowHeaders: 2,
+            SaveCustomColumnHeaders: 4,
+            SaveAsFiltered: 8,
+            SaveBothCustomRowAndColumnHeaders: 6,
+            SaveAsViewed: 136,
+            DataOnly: 32,
+            AutoRowHeight: 4096
+        };
+
+        var flags = ExcelSaveFlags.NoFlagsSet;
+        var collection = $("#saveFlags input");
+        $.each(collection, function (i, v) {
+            if (collection[i].checked) {
+                flags |= ExcelSaveFlags[collection[i].id];
+            }
+        });
+        return flags;
+    }
+    function getSavePDFSettings() {
+        var author_prop = $("#author").val(),
+            title_prop = $("#title").val(),
+            subject_prop = $("#subject").val(),
+            creator_prop = $("#application").val(),
+            keywords_prop = $("#keyWords").val(),
+            centerWindow_prop = $("#centerWindow").prop("checked"),
+            displayDocTitle_prop = $("#showTitle").prop("checked"),
+            hideMenubar_prop = !($("#showMenuBar").prop("checked")),
+            fitWindow_prop = $("#fitWindow").prop("checked"),
+            hideToolbar_prop = !($("#showToolbar").prop("checked")),
+            hideWindowUI_prop = $("#showWindowUI").prop("checked");
+        var settings = {
+            author: author_prop,
+            title: title_prop,
+            subject: subject_prop,
+            creator: creator_prop,
+            keywords: keywords_prop,
+            centerWindow: centerWindow_prop,
+            displayDocTitle: displayDocTitle_prop,
+            hideMenubar: hideMenubar_prop,
+            fitWindow: fitWindow_prop,
+            hideToolbar: hideToolbar_prop,
+            hideWindowUI: hideWindowUI_prop
+        };
+        return settings;
+    }
+    $("#export_pdf").click(function () {
+        var spread = $("#ss").data("spread");
+        var settings = getSavePDFSettings();
+        var sheetIndexes = getSheetList(spread);
+        var dataObj = {
+            "spread": spread.toJSON(),
+            "exportFileType": "pdf",
+            "pdf": {
+                "sheetIndexes": sheetIndexes,
+                "setting": settings
+            }
+        };
+        setExportFileName(dataObj);
+        var content = JSON.stringify(dataObj);
+        dataObj = null;
+        var serverUrl = getExportServerUrl();
+        exportFile(serverUrl, content);
+    });
+    </script>
+</body>
+</html>

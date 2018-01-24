@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TreeTableModifierMapper">
+
+	<resultMap id="treeTableModifierResultMap" type="com.glaf.datamgr.domain.TreeTableModifier">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="tableName" column="TABLENAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="databaseIds" column="DATABASEIDS_" jdbcType="VARCHAR" />
+		<result property="primaryKey" column="PRIMARYKEY_" jdbcType="VARCHAR" />
+		<result property="idColumn" column="IDCOLUMN_" jdbcType="VARCHAR" />
+		<result property="parentIdColumn" column="PARENTIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="treeIdColumn" column="TREEIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="levelColumn" column="LEVELCOLUMN_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTreeTableModifier" parameterType="com.glaf.datamgr.domain.TreeTableModifier">
+		insert into SYS_TREETABLE_MODIFIER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="tableName != null">
+				,TABLENAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="databaseIds != null">
+				,DATABASEIDS_
+			</if>
+			<if test="primaryKey != null">
+				,PRIMARYKEY_
+			</if>
+			<if test="idColumn != null">
+				,IDCOLUMN_
+			</if>
+			<if test="parentIdColumn != null">
+				,PARENTIDCOLUMN_
+			</if>
+			<if test="treeIdColumn != null">
+				,TREEIDCOLUMN_
+			</if>
+			<if test="levelColumn != null">
+				,LEVELCOLUMN_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="tableName != null">
+				,#{tableName, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseIds != null">
+				,#{databaseIds, jdbcType=VARCHAR}
+			</if>
+			<if test="primaryKey != null">
+				,#{primaryKey, jdbcType=VARCHAR}
+			</if>
+			<if test="idColumn != null">
+				,#{idColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="parentIdColumn != null">
+				,#{parentIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="treeIdColumn != null">
+				,#{treeIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="levelColumn != null">
+				,#{levelColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableModifier" parameterType="java.util.List">
+		insert into SYS_TREETABLE_MODIFIER (
+		ID_
+		,TABLENAME_
+		,TITLE_
+		,DATABASEIDS_
+		,PRIMARYKEY_
+		,IDCOLUMN_
+		,PARENTIDCOLUMN_
+		,TREEIDCOLUMN_
+		,LEVELCOLUMN_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		)
+		values
+		<foreach collection="list" item="treeTableModifier" index="index"
+			separator=",">
+			(
+			#{treeTableModifier.id, jdbcType=BIGINT}
+			,#{treeTableModifier.tableName, jdbcType=VARCHAR}
+			,#{treeTableModifier.title, jdbcType=VARCHAR}
+			,#{treeTableModifier.databaseIds, jdbcType=VARCHAR}
+			,#{treeTableModifier.primaryKey, jdbcType=VARCHAR}
+			,#{treeTableModifier.idColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.parentIdColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.treeIdColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.levelColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.locked, jdbcType=INTEGER}
+			,#{treeTableModifier.createBy, jdbcType=VARCHAR}
+			,#{treeTableModifier.createTime, jdbcType=TIMESTAMP}
+			,#{treeTableModifier.updateBy, jdbcType=VARCHAR}
+			,#{treeTableModifier.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableModifier_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="treeTableModifier" index="index">
+			insert into SYS_TREETABLE_MODIFIER (
+			ID_
+			,TABLENAME_
+			,TITLE_
+			,DATABASEIDS_
+			,PRIMARYKEY_
+			,IDCOLUMN_
+			,PARENTIDCOLUMN_
+			,TREEIDCOLUMN_
+			,LEVELCOLUMN_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			)
+			values (
+			#{treeTableModifier.id, jdbcType=BIGINT}
+			,#{treeTableModifier.tableName, jdbcType=VARCHAR}
+			,#{treeTableModifier.title, jdbcType=VARCHAR}
+			,#{treeTableModifier.databaseIds, jdbcType=VARCHAR}
+			,#{treeTableModifier.primaryKey, jdbcType=VARCHAR}
+			,#{treeTableModifier.idColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.parentIdColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.treeIdColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.levelColumn, jdbcType=VARCHAR}
+			,#{treeTableModifier.locked, jdbcType=INTEGER}
+			,#{treeTableModifier.createBy, jdbcType=VARCHAR}
+			,#{treeTableModifier.createTime, jdbcType=TIMESTAMP}
+			,#{treeTableModifier.updateBy, jdbcType=VARCHAR}
+			,#{treeTableModifier.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTreeTableModifier" parameterType="com.glaf.datamgr.domain.TreeTableModifier">
+		update SYS_TREETABLE_MODIFIER
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="tableName != null">
+				TABLENAME_ = #{tableName, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseIds != null">
+				DATABASEIDS_ = #{databaseIds, jdbcType=VARCHAR},
+			</if>
+			<if test="primaryKey != null">
+				PRIMARYKEY_ = #{primaryKey, jdbcType=VARCHAR},
+			</if>
+			<if test="idColumn != null">
+				IDCOLUMN_ = #{idColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="parentIdColumn != null">
+				PARENTIDCOLUMN_ = #{parentIdColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="treeIdColumn != null">
+				TREEIDCOLUMN_ = #{treeIdColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="levelColumn != null">
+				LEVELCOLUMN_ = #{levelColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteTreeTableModifierById" parameterType="long">
+		delete
+		from SYS_TREETABLE_MODIFIER
+		where ID_ = #{id}
+	</delete>
+
+
+	<select id="getTreeTableModifierById" parameterType="long"
+		resultMap="treeTableModifierResultMap">
+		select * from SYS_TREETABLE_MODIFIER where ID_ = #{id}
+	</select>
+
+
+	<select id="getTreeTableModifiers" parameterType="com.glaf.datamgr.query.TreeTableModifierQuery"
+		resultMap="treeTableModifierResultMap">
+		select distinct E.*
+		<include refid="selectTreeTableModifiersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTreeTableModifierCount" parameterType="com.glaf.datamgr.query.TreeTableModifierQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeTableModifiersSql" />
+	</select>
+
+
+	<sql id="selectTreeTableModifiersSql">
+
+		from SYS_TREETABLE_MODIFIER E
+
+		<where>
+			1 = 1
+
+			<if test="tableName != null and tableName != '' ">
+				and E.TABLENAME_ = #{tableName}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

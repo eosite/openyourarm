@@ -1,0 +1,114 @@
+.orgchart {
+	background-image:none;
+}
+
+.orgchart .nocontent .title
+{
+	border-radius:0px;
+}
+.orgchart .node .content
+{
+	border-radius:0px;
+}
+ 
+.orgchart .top-circle{
+	border-radius:1000px 1000px 0px 0px!important;
+}
+.orgchart .bottom-circle{
+	border-radius:0px 0px 1000px 1000px!important;
+}
+.orgchart .circle{
+	border-radius:1000px!important;
+}
+
+/**
+ * 显示禁用状态
+ */
+.orgchart.view-state .edge {
+    display: none;
+}
+
+/*图片*/
+.orgchart .second-menu-icon {
+    transition: opacity .5s;
+    opacity: 0;
+    right: -5px;
+    top: -5px;
+    z-index: 2;
+    color: rgba(68, 157, 68, 0.5);
+    font-size: 18px;
+    position: absolute;
+}
+.orgchart .second-menu-icon:hover {
+  color: #449d44;
+}
+.orgchart .node:hover .second-menu-icon {
+  opacity: 1;
+}
+.orgchart .node .second-menu {
+  position: absolute;
+  top: 0;
+  right: -70px;
+  border-radius: 35px!important;
+  box-shadow: 0 0 10px 1px #999;
+  background-color: #fff;
+  z-index: 1;
+}
+.orgchart .node .second-menu .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px!important;
+  float: left;
+  margin: 5px;
+}
+
+
+/*背景色*/
+.orgchart .stone-blue .title {
+  background-color: #006699 !important;
+}
+.orgchart .stone-blue .content {
+  border-color: #006699 !important;
+}
+.orgchart .jade-green .title {
+  background-color: #009933 !important;
+}
+.orgchart .jade-green .content {
+  border-color: #009933 !important;
+}
+.orgchart .dark-red .title {
+  background-color: #993366 !important;
+}
+.orgchart .dark-red .content {
+  border-color: #993366 !important;
+}
+.orgchart .grey-brownness .title {
+  background-color: #996633 !important;
+}
+.orgchart .grey-brownness .content {
+  border-color: #996633 !important;
+}
+.orgchart .bright-red .title {
+  background-color: #cc0066 !important;
+}
+.orgchart .bright-red .content {
+  border-color: #cc0066 !important;
+}
+.orgchart .red .title {
+  border-color: #e7505a !important;
+}
+.orgchart .red .content {
+  border-color: #e7505a !important;
+}
+.orgchart .purple .title {
+  border-color: #8e44ad !important;
+}
+.orgchart .purple .content {
+  border-color: #8e44ad !important;
+}
+.orgchart .yellow-gold .title {
+  border-color: #e87e04 !important;
+}
+.orgchart .yellow-gold .content {
+  border-color: #e87e04 !important;
+}

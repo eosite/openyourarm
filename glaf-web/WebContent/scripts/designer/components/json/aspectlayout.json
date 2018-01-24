@@ -1,0 +1,198 @@
+{
+	"id": "col",
+	"title": "栅格样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth",
+				"unit":"px,%"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight",
+				"unit":"px,%"
+			}]
+		},{
+			"id": "margin",
+			"title": "外间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "marginTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginTop",
+				"unit":""
+			},
+			{
+				"id": "marginBottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginBottom",
+				"unit":""
+			},{
+				"id": "marginLeft",
+				"title": "左",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginLeft",
+				"unit":""
+			},
+			{
+				"id": "marginRight",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setMarginRight",
+				"unit":""
+			}]
+		}]
+	},{
+		"id": "content",
+		"title": "内容栏",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "content",
+			"title": "内容设置",
+			"type": "string",
+			"defaultVal": "default",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContent",
+			"valrange": [{
+				"name":"上",
+				"title": "上",
+				"value": "north"
+			},{
+			    "name":"下",
+				"title": "下",
+				"value": "south"
+			},{
+			    "name":"左",
+				"title": "左",
+				"value": "west"
+			},{
+			    "name":"右",
+				"title": "右",
+				"value": "east"
+			}]
+		 },{
+			"id": "size",
+			"title": "内容尺寸(高)",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "northHeight",
+				"title": "上",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setNorthHeight",
+				"unit":"px,%"
+			},{
+				"id": "southHeight",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setSouthHeight",
+				"unit":"px,%"
+			}]
+		},{
+			"id": "size",
+			"title": "内容尺寸(宽)",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "westWidth",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWestWidth",
+				"unit":"px,%"
+			},{
+				"id": "eastWidth",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setEastWidth",
+				"unit":"px,%"
+			}]
+		}]
+	}]
+}

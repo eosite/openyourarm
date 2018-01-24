@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.monitor.server.mapper.MonitorTerminalMapper">
+
+ 	<resultMap id="monitorTerminalResultMap"	type="com.glaf.monitor.server.domain.MonitorTerminal">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+        <result property="desc" column="DESC_" jdbcType="VARCHAR"/>
+        <result property="level" column="LEVEL_" jdbcType="VARCHAR"/>
+        <result property="prod" column="PROD_" jdbcType="VARCHAR"/>
+        <result property="domain" column="DOMAIN_" jdbcType="VARCHAR"/>
+        <result property="address" column="ADDRESS_" jdbcType="VARCHAR"/>
+        <result property="monitorServiceAddress" column="MONITOR_SERVICE_ADDRESS_" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS_" jdbcType="INTEGER"/>
+        <result property="platform" column="PLATFORM_" jdbcType="VARCHAR"/>
+        <result property="osName" column="OS_NAME_" jdbcType="VARCHAR"/>
+        <result property="osFac" column="OS_FAC_" jdbcType="VARCHAR"/>
+        <result property="osVer" column="OS_VER_" jdbcType="VARCHAR"/>
+        <result property="cpuFac" column="CPU_FAC_" jdbcType="VARCHAR"/>
+        <result property="cpuCores" column="CPU_CORES_" jdbcType="INTEGER"/>
+        <result property="coreMhz" column="CORE_MHZ_" jdbcType="INTEGER"/>
+        <result property="memType" column="MEM_TYPE_" jdbcType="VARCHAR"/>
+        <result property="memSize" column="MEM_SIZE_" jdbcType="INTEGER"/>
+        <result property="diskType" column="DISK_TYPE_" jdbcType="VARCHAR"/>
+        <result property="diskSize" column="DISK_SIZE_" jdbcType="INTEGER"/>
+        <result property="otherItems" column="OTHER_ITEMS_" jdbcType="VARCHAR"/>
+        <result property="createby" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateby" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updatetime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertMonitorTerminal" parameterType="com.glaf.monitor.server.domain.MonitorTerminal">
+		insert into MONITOR_TERMINAL 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="desc != null">
+				,DESC_ 
+			</if>
+			<if test="level != null">
+				,LEVEL_ 
+			</if>
+			<if test="prod != null">
+				,PROD_ 
+			</if>
+			<if test="domain != null">
+				,DOMAIN_ 
+			</if>
+			<if test="address != null">
+				,ADDRESS_ 
+			</if>
+			<if test="monitorServiceAddress != null">
+				,MONITOR_SERVICE_ADDRESS_ 
+			</if>
+			<if test="status != null">
+				,STATUS_ 
+			</if>
+			<if test="platform != null">
+				,PLATFORM_ 
+			</if>
+			<if test="osName != null">
+				,OS_NAME_ 
+			</if>
+			<if test="osFac != null">
+				,OS_FAC_ 
+			</if>
+			<if test="osVer != null">
+				,OS_VER_ 
+			</if>
+			<if test="cpuFac != null">
+				,CPU_FAC_ 
+			</if>
+			<if test="cpuCores != null">
+				,CPU_CORES_ 
+			</if>
+			<if test="coreMhz != null">
+				,CORE_MHZ_ 
+			</if>
+			<if test="memType != null">
+				,MEM_TYPE_ 
+			</if>
+			<if test="memSize != null">
+				,MEM_SIZE_ 
+			</if>
+			<if test="diskType != null">
+				,DISK_TYPE_ 
+			</if>
+			<if test="diskSize != null">
+				,DISK_SIZE_ 
+			</if>
+			<if test="otherItems != null">
+				,OTHER_ITEMS_ 
+			</if>
+			<if test="createby != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createtime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateby != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updatetime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=VARCHAR}
+			</if>
+			<if test="prod != null">
+				,#{prod, jdbcType=VARCHAR}
+			</if>
+			<if test="domain != null">
+				,#{domain, jdbcType=VARCHAR}
+			</if>
+			<if test="address != null">
+				,#{address, jdbcType=VARCHAR}
+			</if>
+			<if test="monitorServiceAddress != null">
+				,#{monitorServiceAddress, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="platform != null">
+				,#{platform, jdbcType=VARCHAR}
+			</if>
+			<if test="osName != null">
+				,#{osName, jdbcType=VARCHAR}
+			</if>
+			<if test="osFac != null">
+				,#{osFac, jdbcType=VARCHAR}
+			</if>
+			<if test="osVer != null">
+				,#{osVer, jdbcType=VARCHAR}
+			</if>
+			<if test="cpuFac != null">
+				,#{cpuFac, jdbcType=VARCHAR}
+			</if>
+			<if test="cpuCores != null">
+				,#{cpuCores, jdbcType=INTEGER}
+			</if>
+			<if test="coreMhz != null">
+				,#{coreMhz, jdbcType=INTEGER}
+			</if>
+			<if test="memType != null">
+				,#{memType, jdbcType=VARCHAR}
+			</if>
+			<if test="memSize != null">
+				,#{memSize, jdbcType=INTEGER}
+			</if>
+			<if test="diskType != null">
+				,#{diskType, jdbcType=VARCHAR}
+			</if>
+			<if test="diskSize != null">
+				,#{diskSize, jdbcType=INTEGER}
+			</if>
+			<if test="otherItems != null">
+				,#{otherItems, jdbcType=VARCHAR}
+			</if>
+			<if test="createby != null">
+				,#{createby, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				,#{createtime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateby != null">
+				,#{updateby, jdbcType=VARCHAR}
+			</if>
+			<if test="updatetime != null">
+				,#{updatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMonitorTerminal" parameterType="com.glaf.monitor.server.domain.MonitorTerminal">
+		update MONITOR_TERMINAL
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=VARCHAR},
+			</if>
+			<if test="prod != null">
+				PROD_ = #{prod, jdbcType=VARCHAR},
+			</if>
+			<if test="domain != null">
+				DOMAIN_ = #{domain, jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS_ = #{address, jdbcType=VARCHAR},
+			</if>
+			<if test="monitorServiceAddress != null">
+				MONITOR_SERVICE_ADDRESS_ = #{monitorServiceAddress, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="platform != null">
+				PLATFORM_ = #{platform, jdbcType=VARCHAR},
+			</if>
+			<if test="osName != null">
+				OS_NAME_ = #{osName, jdbcType=VARCHAR},
+			</if>
+			<if test="osFac != null">
+				OS_FAC_ = #{osFac, jdbcType=VARCHAR},
+			</if>
+			<if test="osVer != null">
+				OS_VER_ = #{osVer, jdbcType=VARCHAR},
+			</if>
+			<if test="cpuFac != null">
+				CPU_FAC_ = #{cpuFac, jdbcType=VARCHAR},
+			</if>
+			<if test="cpuCores != null">
+				CPU_CORES_ = #{cpuCores, jdbcType=INTEGER},
+			</if>
+			<if test="coreMhz != null">
+				CORE_MHZ_ = #{coreMhz, jdbcType=INTEGER},
+			</if>
+			<if test="memType != null">
+				MEM_TYPE_ = #{memType, jdbcType=VARCHAR},
+			</if>
+			<if test="memSize != null">
+				MEM_SIZE_ = #{memSize, jdbcType=INTEGER},
+			</if>
+			<if test="diskType != null">
+				DISK_TYPE_ = #{diskType, jdbcType=VARCHAR},
+			</if>
+			<if test="diskSize != null">
+				DISK_SIZE_ = #{diskSize, jdbcType=INTEGER},
+			</if>
+			<if test="otherItems != null">
+				OTHER_ITEMS_ = #{otherItems, jdbcType=VARCHAR},
+			</if>
+			<if test="createby != null">
+				CREATEBY_ = #{createby, jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME_ = #{createtime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null">
+				UPDATEBY_ = #{updateby, jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				UPDATETIME_ = #{updatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteMonitorTerminalById" parameterType="string"> 
+        delete from MONITOR_TERMINAL
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMonitorTerminals" parameterType="com.glaf.monitor.server.query.MonitorTerminalQuery">
+		delete from MONITOR_TERMINAL
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMonitorTerminalById" parameterType="string" resultMap="monitorTerminalResultMap">
+		select * from MONITOR_TERMINAL where ID_ = #{id}
+	</select>
+
+
+	<select id="getMonitorTerminals" 
+	    parameterType="com.glaf.monitor.server.query.MonitorTerminalQuery"
+		resultMap="monitorTerminalResultMap">
+		select E.* from MONITOR_TERMINAL E 
+		<if test="categoryId != null">
+			left join MONITOR_TERMINAL_BUS_CATEGORY M
+				on E.ID_ = M.TERMINAL_ID_ 
+		</if>
+		<include refid="selectMonitorTerminalsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMonitorTerminalCount" 
+	    parameterType="com.glaf.monitor.server.query.MonitorTerminalQuery"
+		resultType="int">
+		select count(*) from MONITOR_TERMINAL E 
+		<if test="categoryId != null">
+			left join MONITOR_TERMINAL_BUS_CATEGORY M
+				on E.ID_ = M.TERMINAL_ID_ 
+		</if>
+		<include refid="selectMonitorTerminalsSql" />
+	</select>
+	
+	<sql id="selectMonitorTerminalsSql">
+		<where>
+		       1 = 1  
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+	        
+			<if test="desc != null and desc != '' ">
+				and E.DESC_ = #{desc}
+            </if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+            </if>
+
+			<if test="descs != null and descs.size() &gt; 0">
+			    and E.DESC_ IN
+                <foreach item="x_desc" index="index" collection="descs" 
+                     open="(" separator="," close=")">
+                  #{x_desc}
+                </foreach>
+			</if>
+	        
+			<if test="level != null and level != '' ">
+				and E.LEVEL_ = #{level}
+            </if>
+
+			<if test="levelLike != null and levelLike != '' ">
+				and E.LEVEL_ like #{levelLike}
+            </if>
+
+			<if test="levels != null and levels.size() &gt; 0">
+			    and E.LEVEL_ IN
+                <foreach item="x_level" index="index" collection="levels" 
+                     open="(" separator="," close=")">
+                  #{x_level}
+                </foreach>
+			</if>
+	        
+			<if test="prod != null and prod != '' ">
+				and E.PROD_ = #{prod}
+            </if>
+
+			<if test="prodLike != null and prodLike != '' ">
+				and E.PROD_ like #{prodLike}
+            </if>
+
+			<if test="prods != null and prods.size() &gt; 0">
+			    and E.PROD_ IN
+                <foreach item="x_prod" index="index" collection="prods" 
+                     open="(" separator="," close=")">
+                  #{x_prod}
+                </foreach>
+			</if>
+	        
+			<if test="domain != null and domain != '' ">
+				and E.DOMAIN_ = #{domain}
+            </if>
+
+			<if test="domainLike != null and domainLike != '' ">
+				and E.DOMAIN_ like #{domainLike}
+            </if>
+
+			<if test="domains != null and domains.size() &gt; 0">
+			    and E.DOMAIN_ IN
+                <foreach item="x_domain" index="index" collection="domains" 
+                     open="(" separator="," close=")">
+                  #{x_domain}
+                </foreach>
+			</if>
+	        
+			<if test="address != null and address != '' ">
+				and E.ADDRESS_ = #{address}
+            </if>
+
+			<if test="addressLike != null and addressLike != '' ">
+				and E.ADDRESS_ like #{addressLike}
+            </if>
+
+			<if test="addresss != null and addresss.size() &gt; 0">
+			    and E.ADDRESS_ IN
+                <foreach item="x_address" index="index" collection="addresss" 
+                     open="(" separator="," close=")">
+                  #{x_address}
+                </foreach>
+			</if>
+	        
+			<if test="monitorServiceAddress != null and monitorServiceAddress != '' ">
+				and E.MONITOR_SERVICE_ADDRESS_ = #{monitorServiceAddress}
+            </if>
+
+			<if test="monitorServiceAddressLike != null and monitorServiceAddressLike != '' ">
+				and E.MONITOR_SERVICE_ADDRESS_ like #{monitorServiceAddressLike}
+            </if>
+
+			<if test="monitorServiceAddresss != null and monitorServiceAddresss.size() &gt; 0">
+			    and E.MONITOR_SERVICE_ADDRESS_ IN
+                <foreach item="x_monitorServiceAddress" index="index" collection="monitorServiceAddresss" 
+                     open="(" separator="," close=")">
+                  #{x_monitorServiceAddress}
+                </foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+            </if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS_ &gt;= #{statusGreaterThanOrEqual}
+            </if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS_ &lt;= #{statusLessThanOrEqual}
+            </if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+			    and E.STATUS_ IN
+                <foreach item="x_status" index="index" collection="statuss" 
+                     open="(" separator="," close=")">
+                  #{x_status}
+                </foreach>
+			</if>
+      
+	        
+			<if test="platform != null and platform != '' ">
+				and E.PLATFORM_ = #{platform}
+            </if>
+
+			<if test="platformLike != null and platformLike != '' ">
+				and E.PLATFORM_ like #{platformLike}
+            </if>
+
+			<if test="platforms != null and platforms.size() &gt; 0">
+			    and E.PLATFORM_ IN
+                <foreach item="x_platform" index="index" collection="platforms" 
+                     open="(" separator="," close=")">
+                  #{x_platform}
+                </foreach>
+			</if>
+	        
+			<if test="osName != null and osName != '' ">
+				and E.OS_NAME_ = #{osName}
+            </if>
+
+			<if test="osNameLike != null and osNameLike != '' ">
+				and E.OS_NAME_ like #{osNameLike}
+            </if>
+
+			<if test="osNames != null and osNames.size() &gt; 0">
+			    and E.OS_NAME_ IN
+                <foreach item="x_osName" index="index" collection="osNames" 
+                     open="(" separator="," close=")">
+                  #{x_osName}
+                </foreach>
+			</if>
+	        
+			<if test="osFac != null and osFac != '' ">
+				and E.OS_FAC_ = #{osFac}
+            </if>
+
+			<if test="osFacLike != null and osFacLike != '' ">
+				and E.OS_FAC_ like #{osFacLike}
+            </if>
+
+			<if test="osFacs != null and osFacs.size() &gt; 0">
+			    and E.OS_FAC_ IN
+                <foreach item="x_osFac" index="index" collection="osFacs" 
+                     open="(" separator="," close=")">
+                  #{x_osFac}
+                </foreach>
+			</if>
+	        
+			<if test="osVer != null and osVer != '' ">
+				and E.OS_VER_ = #{osVer}
+            </if>
+
+			<if test="osVerLike != null and osVerLike != '' ">
+				and E.OS_VER_ like #{osVerLike}
+            </if>
+
+			<if test="osVers != null and osVers.size() &gt; 0">
+			    and E.OS_VER_ IN
+                <foreach item="x_osVer" index="index" collection="osVers" 
+                     open="(" separator="," close=")">
+                  #{x_osVer}
+                </foreach>
+			</if>
+	        
+			<if test="cpuFac != null and cpuFac != '' ">
+				and E.CPU_FAC_ = #{cpuFac}
+            </if>
+
+			<if test="cpuFacLike != null and cpuFacLike != '' ">
+				and E.CPU_FAC_ like #{cpuFacLike}
+            </if>
+
+			<if test="cpuFacs != null and cpuFacs.size() &gt; 0">
+			    and E.CPU_FAC_ IN
+                <foreach item="x_cpuFac" index="index" collection="cpuFacs" 
+                     open="(" separator="," close=")">
+                  #{x_cpuFac}
+                </foreach>
+			</if>
+
+			<if test="cpuCores != null">
+				and E.CPU_CORES_ = #{cpuCores}
+            </if>
+
+			<if test="cpuCoresGreaterThanOrEqual != null">
+				and E.CPU_CORES_ &gt;= #{cpuCoresGreaterThanOrEqual}
+            </if>
+
+			<if test="cpuCoresLessThanOrEqual != null">
+				and E.CPU_CORES_ &lt;= #{cpuCoresLessThanOrEqual}
+            </if>
+
+			<if test="cpuCoress != null and cpuCoress.size() &gt; 0">
+			    and E.CPU_CORES_ IN
+                <foreach item="x_cpuCores" index="index" collection="cpuCoress" 
+                     open="(" separator="," close=")">
+                  #{x_cpuCores}
+                </foreach>
+			</if>
+      
+
+			<if test="coreMhz != null">
+				and E.CORE_MHZ_ = #{coreMhz}
+            </if>
+
+			<if test="coreMhzGreaterThanOrEqual != null">
+				and E.CORE_MHZ_ &gt;= #{coreMhzGreaterThanOrEqual}
+            </if>
+
+			<if test="coreMhzLessThanOrEqual != null">
+				and E.CORE_MHZ_ &lt;= #{coreMhzLessThanOrEqual}
+            </if>
+
+			<if test="coreMhzs != null and coreMhzs.size() &gt; 0">
+			    and E.CORE_MHZ_ IN
+                <foreach item="x_coreMhz" index="index" collection="coreMhzs" 
+                     open="(" separator="," close=")">
+                  #{x_coreMhz}
+                </foreach>
+			</if>
+      
+	        
+			<if test="memType != null and memType != '' ">
+				and E.MEM_TYPE_ = #{memType}
+            </if>
+
+			<if test="memTypeLike != null and memTypeLike != '' ">
+				and E.MEM_TYPE_ like #{memTypeLike}
+            </if>
+
+			<if test="memTypes != null and memTypes.size() &gt; 0">
+			    and E.MEM_TYPE_ IN
+                <foreach item="x_memType" index="index" collection="memTypes" 
+                     open="(" separator="," close=")">
+                  #{x_memType}
+                </foreach>
+			</if>
+
+			<if test="memSize != null">
+				and E.MEM_SIZE_ = #{memSize}
+            </if>
+
+			<if test="memSizeGreaterThanOrEqual != null">
+				and E.MEM_SIZE_ &gt;= #{memSizeGreaterThanOrEqual}
+            </if>
+
+			<if test="memSizeLessThanOrEqual != null">
+				and E.MEM_SIZE_ &lt;= #{memSizeLessThanOrEqual}
+            </if>
+
+			<if test="memSizes != null and memSizes.size() &gt; 0">
+			    and E.MEM_SIZE_ IN
+                <foreach item="x_memSize" index="index" collection="memSizes" 
+                     open="(" separator="," close=")">
+                  #{x_memSize}
+                </foreach>
+			</if>
+      
+	        
+			<if test="diskType != null and diskType != '' ">
+				and E.DISK_TYPE_ = #{diskType}
+            </if>
+
+			<if test="diskTypeLike != null and diskTypeLike != '' ">
+				and E.DISK_TYPE_ like #{diskTypeLike}
+            </if>
+
+			<if test="diskTypes != null and diskTypes.size() &gt; 0">
+			    and E.DISK_TYPE_ IN
+                <foreach item="x_diskType" index="index" collection="diskTypes" 
+                     open="(" separator="," close=")">
+                  #{x_diskType}
+                </foreach>
+			</if>
+
+			<if test="diskSize != null">
+				and E.DISK_SIZE_ = #{diskSize}
+            </if>
+
+			<if test="diskSizeGreaterThanOrEqual != null">
+				and E.DISK_SIZE_ &gt;= #{diskSizeGreaterThanOrEqual}
+            </if>
+
+			<if test="diskSizeLessThanOrEqual != null">
+				and E.DISK_SIZE_ &lt;= #{diskSizeLessThanOrEqual}
+            </if>
+
+			<if test="diskSizes != null and diskSizes.size() &gt; 0">
+			    and E.DISK_SIZE_ IN
+                <foreach item="x_diskSize" index="index" collection="diskSizes" 
+                     open="(" separator="," close=")">
+                  #{x_diskSize}
+                </foreach>
+			</if>
+      
+	        
+			<if test="otherItems != null and otherItems != '' ">
+				and E.OTHER_ITEMS_ = #{otherItems}
+            </if>
+
+			<if test="otherItemsLike != null and otherItemsLike != '' ">
+				and E.OTHER_ITEMS_ like #{otherItemsLike}
+            </if>
+
+			<if test="otherItemss != null and otherItemss.size() &gt; 0">
+			    and E.OTHER_ITEMS_ IN
+                <foreach item="x_otherItems" index="index" collection="otherItemss" 
+                     open="(" separator="," close=")">
+                  #{x_otherItems}
+                </foreach>
+			</if>
+	        
+			<if test="createby != null and createby != '' ">
+				and E.CREATEBY_ = #{createby}
+            </if>
+
+			<if test="createbyLike != null and createbyLike != '' ">
+				and E.CREATEBY_ like #{createbyLike}
+            </if>
+
+			<if test="createbys != null and createbys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createby" index="index" collection="createbys" 
+                     open="(" separator="," close=")">
+                  #{x_createby}
+                </foreach>
+			</if>
+
+			<if test="createtimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createtimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createtimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateby != null and updateby != '' ">
+				and E.UPDATEBY_ = #{updateby}
+            </if>
+
+			<if test="updatebyLike != null and updatebyLike != '' ">
+				and E.UPDATEBY_ like #{updatebyLike}
+            </if>
+
+			<if test="updatebys != null and updatebys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateby" index="index" collection="updatebys" 
+                     open="(" separator="," close=")">
+                  #{x_updateby}
+                </foreach>
+			</if>
+
+			<if test="updatetimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updatetimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+			<if test="categoryId != null">
+				and M.CATEGORY_ID_ = #{categoryId}
+			</if>
+			 
+			 
+		</where>
+	</sql>
+
+</mapper>

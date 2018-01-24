@@ -1,0 +1,61 @@
+{
+	"page": [],
+	"textbox": [{
+		"name": "setValue",
+		"title": "赋值"
+	},{
+		"name": "click",
+		"title": "单击"
+	},{
+		"name": "getValue",
+		"title": "获取值"
+	},{
+		"name": "insertImg",
+		"title": "插入图片"
+	}],
+	"button": [{
+		"name": "click",
+		"title": "单击"
+	}],
+	"radio": [{
+		"name": "checked",
+		"title": "选中"
+	},{
+		"name": "setValue",
+		"title": "赋值"
+	},{
+		"name": "getValue",
+		"title": "获取值"
+	}],
+	"checkbox": [{
+		"name": "checked",
+		"title": "选中"
+	},{
+		"name": "setValue",
+		"title": "赋值"
+	},{
+		"name": "getValue",
+		"title": "获取值"
+	}],
+	"combobox": [{
+		"name": "checked",
+		"title": "选中"
+	},{
+		"name": "setValue",
+		"title": "赋值"
+	},{
+		"name": "getValue",
+		"title": "获取值"
+	}],
+	"image": [{
+		"name": "click",
+		"title": "单击"
+	}],
+	"datebox": [{
+		"name": "setValue",
+		"title": "赋值"
+	},{
+		"name": "getValue",
+		"title": "获取值"
+	}]
+}

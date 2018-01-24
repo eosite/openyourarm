@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FlowActivMapper">
+
+ 	<resultMap id="flowActivResultMap"	type="com.glaf.isdp.domain.FlowActiv">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="activDId" column="ACTIV_D_ID" jdbcType="VARCHAR"/>
+        <result property="processId" column="PROCESS_ID" jdbcType="VARCHAR"/>
+        <result property="typeOfAct" column="TYPEOFACT" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="strFuntion" column="STRFUNTION" jdbcType="VARCHAR"/>
+        <result property="netRoleId" column="NETROLEID" jdbcType="VARCHAR"/>
+        <result property="userId" column="USERID" jdbcType="VARCHAR"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="timeLimit" column="TIMELIMIT" jdbcType="DOUBLE"/>
+        <result property="ctimeStart" column="CTIME_START" jdbcType="TIMESTAMP"/>
+        <result property="ctimeEnd" column="CTIME_END" jdbcType="TIMESTAMP"/>
+        <result property="state" column="STATE" jdbcType="INTEGER"/>
+        <result property="intBack" column="INTBACK" jdbcType="INTEGER"/>
+        <result property="sysId" column="SYS_ID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFlowActiv" parameterType="com.glaf.isdp.domain.FlowActiv">
+		insert into FLOW_ACTIV 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="activDId != null">
+				,ACTIV_D_ID 
+			</if>
+			<if test="processId != null">
+				,PROCESS_ID 
+			</if>
+			<if test="typeOfAct != null">
+				,TYPEOFACT 
+			</if>
+			<if test="name != null">
+				,NAME 
+			</if>
+			<if test="content != null">
+				,CONTENT 
+			</if>
+			<if test="strFuntion != null">
+				,STRFUNTION 
+			</if>
+			<if test="netRoleId != null">
+				,NETROLEID 
+			</if>
+			<if test="userId != null">
+				,USERID 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="timeLimit != null">
+				,TIMELIMIT 
+			</if>
+			<if test="ctimeStart != null">
+				,CTIME_START 
+			</if>
+			<if test="ctimeEnd != null">
+				,CTIME_END 
+			</if>
+			<if test="state != null">
+				,STATE 
+			</if>
+			<if test="intBack != null">
+				,INTBACK 
+			</if>
+			<if test="sysId != null">
+				,SYS_ID 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="activDId != null">
+				,#{activDId, jdbcType=VARCHAR}
+			</if>
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="typeOfAct != null">
+				,#{typeOfAct, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="strFuntion != null">
+				,#{strFuntion, jdbcType=VARCHAR}
+			</if>
+			<if test="netRoleId != null">
+				,#{netRoleId, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="timeLimit != null">
+				,#{timeLimit, jdbcType=DOUBLE}
+			</if>
+			<if test="ctimeStart != null">
+				,#{ctimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="ctimeEnd != null">
+				,#{ctimeEnd, jdbcType=TIMESTAMP}
+			</if>
+			<if test="state != null">
+				,#{state, jdbcType=INTEGER}
+			</if>
+			<if test="intBack != null">
+				,#{intBack, jdbcType=INTEGER}
+			</if>
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFlowActiv" parameterType="com.glaf.isdp.domain.FlowActiv">
+		update FLOW_ACTIV
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="activDId != null">
+				ACTIV_D_ID = #{activDId, jdbcType=VARCHAR},
+			</if>
+			<if test="processId != null">
+				PROCESS_ID = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="typeOfAct != null">
+				TYPEOFACT = #{typeOfAct, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="strFuntion != null">
+				STRFUNTION = #{strFuntion, jdbcType=VARCHAR},
+			</if>
+			<if test="netRoleId != null">
+				NETROLEID = #{netRoleId, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USERID = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="timeLimit != null">
+				TIMELIMIT = #{timeLimit, jdbcType=DOUBLE},
+			</if>
+			<if test="ctimeStart != null">
+				CTIME_START = #{ctimeStart, jdbcType=TIMESTAMP},
+			</if>
+			<if test="ctimeEnd != null">
+				CTIME_END = #{ctimeEnd, jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				STATE = #{state, jdbcType=INTEGER},
+			</if>
+			<if test="intBack != null">
+				INTBACK = #{intBack, jdbcType=INTEGER},
+			</if>
+			<if test="sysId != null">
+				SYS_ID = #{sysId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFlowActivById" parameterType="string"> 
+        delete from FLOW_ACTIV
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFlowActivs" parameterType="com.glaf.isdp.query.FlowActivQuery">
+		delete from FLOW_ACTIV
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowActivById" parameterType="string" resultMap="flowActivResultMap">
+		select * from FLOW_ACTIV where ID = #{id}
+	</select>
+
+
+	<select id="getFlowActivs" 
+	    parameterType="com.glaf.isdp.query.FlowActivQuery"
+		resultMap="flowActivResultMap">
+		select distinct E.*
+		<include refid="selectFlowActivsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFlowActivCount" 
+	    parameterType="com.glaf.isdp.query.FlowActivQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowActivsSql" />
+	</select>
+
+
+	<sql id="selectFlowActivsSql">
+
+		from FLOW_ACTIV E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="activDId != null and activDId != '' ">
+				and E.ACTIV_D_ID = #{activDId}
+            </if>
+
+			<if test="activDIdLike != null and activDIdLike != '' ">
+				and E.ACTIV_D_ID like #{activDIdLike}
+            </if>
+
+			<if test="activDIds != null and activDIds.size() &gt; 0">
+			    and E.ACTIV_D_ID IN
+                <foreach item="x_activDId" index="index" collection="activDIds" 
+                     open="(" separator="," close=")">
+                  #{x_activDId}
+                </foreach>
+			</if>
+	        
+			<if test="processId != null and processId != '' ">
+				and E.PROCESS_ID = #{processId}
+            </if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESS_ID like #{processIdLike}
+            </if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.PROCESS_ID IN
+                <foreach item="x_processId" index="index" collection="processIds" 
+                     open="(" separator="," close=")">
+                  #{x_processId}
+                </foreach>
+			</if>
+	        
+			<if test="typeOfAct != null and typeOfAct != '' ">
+				and E.TYPEOFACT = #{typeOfAct}
+            </if>
+
+			<if test="typeOfActLike != null and typeOfActLike != '' ">
+				and E.TYPEOFACT like #{typeOfActLike}
+            </if>
+
+			<if test="typeOfActs != null and typeOfActs.size() &gt; 0">
+			    and E.TYPEOFACT IN
+                <foreach item="x_typeOfAct" index="index" collection="typeOfActs" 
+                     open="(" separator="," close=")">
+                  #{x_typeOfAct}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="content != null and content != '' ">
+				and E.CONTENT = #{content}
+            </if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.CONTENT like #{contentLike}
+            </if>
+
+			<if test="contents != null and contents.size() &gt; 0">
+			    and E.CONTENT IN
+                <foreach item="x_content" index="index" collection="contents" 
+                     open="(" separator="," close=")">
+                  #{x_content}
+                </foreach>
+			</if>
+	        
+			<if test="strFuntion != null and strFuntion != '' ">
+				and E.STRFUNTION = #{strFuntion}
+            </if>
+
+			<if test="strFuntionLike != null and strFuntionLike != '' ">
+				and E.STRFUNTION like #{strFuntionLike}
+            </if>
+
+			<if test="strFuntions != null and strFuntions.size() &gt; 0">
+			    and E.STRFUNTION IN
+                <foreach item="x_strFuntion" index="index" collection="strFuntions" 
+                     open="(" separator="," close=")">
+                  #{x_strFuntion}
+                </foreach>
+			</if>
+	        
+			<if test="netRoleId != null and netRoleId != '' ">
+				and E.NETROLEID = #{netRoleId}
+            </if>
+
+			<if test="netRoleIdLike != null and netRoleIdLike != '' ">
+				and E.NETROLEID like #{netRoleIdLike}
+            </if>
+
+			<if test="netRoleIds != null and netRoleIds.size() &gt; 0">
+			    and E.NETROLEID IN
+                <foreach item="x_netRoleId" index="index" collection="netRoleIds" 
+                     open="(" separator="," close=")">
+                  #{x_netRoleId}
+                </foreach>
+			</if>
+	        
+			<if test="userId != null and userId != '' ">
+				and E.USERID = #{userId}
+            </if>
+
+			<if test="userIdLike != null and userIdLike != '' ">
+				and E.USERID like #{userIdLike}
+            </if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+			    and E.USERID IN
+                <foreach item="x_userId" index="index" collection="userIds" 
+                     open="(" separator="," close=")">
+                  #{x_userId}
+                </foreach>
+			</if>
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+
+			<if test="timeLimitGreaterThanOrEqual != null">
+				and E.TIMELIMIT &gt;= #{timeLimitGreaterThanOrEqual}
+            </if>
+
+			<if test="timeLimitLessThanOrEqual != null">
+				and E.TIMELIMIT &lt;= #{timeLimitLessThanOrEqual}
+            </if>
+
+
+			<if test="ctimeStartGreaterThanOrEqual != null">
+				and E.CTIME_START &gt;= #{ctimeStartGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeStartLessThanOrEqual != null">
+				and E.CTIME_START &lt;= #{ctimeStartLessThanOrEqual}
+            </if>
+
+
+			<if test="ctimeEndGreaterThanOrEqual != null">
+				and E.CTIME_END &gt;= #{ctimeEndGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeEndLessThanOrEqual != null">
+				and E.CTIME_END &lt;= #{ctimeEndLessThanOrEqual}
+            </if>
+
+
+			<if test="state != null">
+				and E.STATE = #{state}
+            </if>
+
+			<if test="stateGreaterThanOrEqual != null">
+				and E.STATE &gt;= #{stateGreaterThanOrEqual}
+            </if>
+
+			<if test="stateLessThanOrEqual != null">
+				and E.STATE &lt;= #{stateLessThanOrEqual}
+            </if>
+
+			<if test="states != null and states.size() &gt; 0">
+			    and E.STATE IN
+                <foreach item="x_state" index="index" collection="states" 
+                     open="(" separator="," close=")">
+                  #{x_state}
+                </foreach>
+			</if>
+      
+
+			<if test="intBack != null">
+				and E.INTBACK = #{intBack}
+            </if>
+
+			<if test="intBackGreaterThanOrEqual != null">
+				and E.INTBACK &gt;= #{intBackGreaterThanOrEqual}
+            </if>
+
+			<if test="intBackLessThanOrEqual != null">
+				and E.INTBACK &lt;= #{intBackLessThanOrEqual}
+            </if>
+
+			<if test="intBacks != null and intBacks.size() &gt; 0">
+			    and E.INTBACK IN
+                <foreach item="x_intBack" index="index" collection="intBacks" 
+                     open="(" separator="," close=")">
+                  #{x_intBack}
+                </foreach>
+			</if>
+      
+	        
+			<if test="sysId != null and sysId != '' ">
+				and E.SYS_ID = #{sysId}
+            </if>
+
+			<if test="sysIdLike != null and sysIdLike != '' ">
+				and E.SYS_ID like #{sysIdLike}
+            </if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+			    and E.SYS_ID IN
+                <foreach item="x_sysId" index="index" collection="sysIds" 
+                     open="(" separator="," close=")">
+                  #{x_sysId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

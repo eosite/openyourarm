@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TableSyntheticMapper">
+
+	<resultMap id="tableSyntheticResultMap" type="com.glaf.datamgr.domain.TableSynthetic">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="syncStatus" column="SYNCSTATUS_" jdbcType="INTEGER" />
+		<result property="syncTime" column="SYNCTIME_" jdbcType="TIMESTAMP" />
+		<result property="sourceDatabaseIds" column="SOURCEDATABASEIDS_"
+			jdbcType="VARCHAR" />
+		<result property="sourceTableName" column="SOURCETABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="primaryKey" column="PRIMARYKEY_" jdbcType="VARCHAR" />
+		<result property="syncColumns" column="SYNCCOLUMNS_" jdbcType="VARCHAR" />
+		<result property="sqlCriteria" column="SQLCRITERIA_" jdbcType="VARCHAR" />
+		<result property="targetTableName" column="TARGETTABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="targetDatabaseId" column="TARGETDATABASEID_"
+			jdbcType="BIGINT" />
+		<result property="scheduleFlag" column="SCHEDULEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="createTableFlag" column="CREATETABLEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="deleteFetch" column="DELETEFETCH_" jdbcType="VARCHAR" />
+		<result property="insertOnly" column="INSERTONLY_" jdbcType="VARCHAR" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTableSynthetic" parameterType="com.glaf.datamgr.domain.TableSynthetic">
+		insert into SYS_TABLE_SYNTHETIC
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="sourceDatabaseIds != null">
+				,SOURCEDATABASEIDS_
+			</if>
+			<if test="sourceTableName != null">
+				,SOURCETABLENAME_
+			</if>
+			<if test="primaryKey != null">
+				,PRIMARYKEY_
+			</if>
+			<if test="syncColumns != null">
+				,SYNCCOLUMNS_
+			</if>
+			<if test="sqlCriteria != null">
+				,SQLCRITERIA_
+			</if>
+			<if test="targetTableName != null">
+				,TARGETTABLENAME_
+			</if>
+			<if test="targetDatabaseId != null">
+				,TARGETDATABASEID_
+			</if>
+			<if test="scheduleFlag != null">
+				,SCHEDULEFLAG_
+			</if>
+			<if test="createTableFlag != null">
+				,CREATETABLEFLAG_
+			</if>
+			<if test="deleteFetch != null">
+				,DELETEFETCH_
+			</if>
+			<if test="insertOnly != null">
+				,INSERTONLY_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="syncStatus != null">
+				,SYNCSTATUS_
+			</if>
+			<if test="syncTime != null">
+				,SYNCTIME_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceDatabaseIds != null">
+				,#{sourceDatabaseIds, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceTableName != null">
+				,#{sourceTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="primaryKey != null">
+				,#{primaryKey, jdbcType=VARCHAR}
+			</if>
+			<if test="syncColumns != null">
+				,#{syncColumns, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlCriteria != null">
+				,#{sqlCriteria, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTableName != null">
+				,#{targetTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="targetDatabaseId != null">
+				,#{targetDatabaseId, jdbcType=BIGINT}
+			</if>
+			<if test="scheduleFlag != null">
+				,#{scheduleFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="createTableFlag != null">
+				,#{createTableFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFetch != null">
+				,#{deleteFetch, jdbcType=VARCHAR}
+			</if>
+			<if test="insertOnly != null">
+				,#{insertOnly, jdbcType=VARCHAR}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="syncStatus != null">
+				,#{syncStatus, jdbcType=INTEGER}
+			</if>
+			<if test="syncTime != null">
+				,#{syncTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTableSynthetic" parameterType="java.util.List">
+		insert into SYS_TABLE_SYNTHETIC (
+		ID_
+		,NAME_
+		,TITLE_
+		,TYPE_
+		,SOURCEDATABASEIDS_
+		,SOURCETABLENAME_
+		,PRIMARYKEY_
+		,SYNCCOLUMNS_
+		,SQLCRITERIA_
+		,TARGETTABLENAME_
+		,TARGETDATABASEID_
+		,SCHEDULEFLAG_
+		,CREATETABLEFLAG_
+		,DELETEFETCH_
+		,INSERTONLY_
+		,JOBNO_
+		,SYNCSTATUS_
+		,SYNCTIME_
+		,SORTNO_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		) values
+		<foreach collection="list" item="tableSynthetic" index="index"
+			separator=",">
+			(
+			#{tableSynthetic.id, jdbcType=BIGINT}
+			,#{tableSynthetic.name,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.title,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.type, jdbcType=VARCHAR}
+			,#{tableSynthetic.sourceDatabaseIds,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.sourceTableName, jdbcType=VARCHAR}
+			,#{tableSynthetic.primaryKey, jdbcType=VARCHAR}
+			,#{tableSynthetic.syncColumns,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.sqlCriteria, jdbcType=VARCHAR}
+			,#{tableSynthetic.targetTableName, jdbcType=VARCHAR}
+			,#{tableSynthetic.targetDatabaseId, jdbcType=BIGINT}
+			,#{tableSynthetic.scheduleFlag, jdbcType=VARCHAR}
+			,#{tableSynthetic.createTableFlag, jdbcType=VARCHAR}
+			,#{tableSynthetic.deleteFetch, jdbcType=VARCHAR}
+			,#{tableSynthetic.insertOnly,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.jobNo, jdbcType=VARCHAR}
+			,#{tableSynthetic.syncStatus, jdbcType=INTEGER}
+			,#{tableSynthetic.syncTime, jdbcType=TIMESTAMP}
+			,#{tableSynthetic.sortNo,
+			jdbcType=INTEGER}
+			,#{tableSynthetic.locked,
+			jdbcType=INTEGER}
+			,#{tableSynthetic.createBy, jdbcType=VARCHAR}
+			,#{tableSynthetic.createTime,
+			jdbcType=TIMESTAMP}
+			,#{tableSynthetic.updateBy, jdbcType=VARCHAR}
+			,#{tableSynthetic.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTableSynthetic_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="tableSynthetic" index="index">
+			insert
+			into
+			SYS_TABLE_SYNTHETIC (
+			ID_
+			,NAME_
+			,TITLE_
+			,TYPE_
+			,SOURCEDATABASEIDS_
+			,SOURCETABLENAME_
+			,PRIMARYKEY_
+			,SYNCCOLUMNS_
+			,SQLCRITERIA_
+			,TARGETTABLENAME_
+			,TARGETDATABASEID_
+			,SCHEDULEFLAG_
+			,CREATETABLEFLAG_
+			,DELETEFETCH_
+			,INSERTONLY_
+			,JOBNO_
+			,SYNCSTATUS_
+			,SYNCTIME_
+			,SORTNO_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			) values
+			(
+			#{tableSynthetic.id,
+			jdbcType=BIGINT}
+			,#{tableSynthetic.name,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.title,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.type,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.sourceDatabaseIds, jdbcType=VARCHAR}
+			,#{tableSynthetic.sourceTableName, jdbcType=VARCHAR}
+			,#{tableSynthetic.primaryKey, jdbcType=VARCHAR}
+			,#{tableSynthetic.syncColumns,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.sqlCriteria, jdbcType=VARCHAR}
+			,#{tableSynthetic.targetTableName, jdbcType=VARCHAR}
+			,#{tableSynthetic.targetDatabaseId, jdbcType=BIGINT}
+			,#{tableSynthetic.scheduleFlag, jdbcType=VARCHAR}
+			,#{tableSynthetic.createTableFlag, jdbcType=VARCHAR}
+			,#{tableSynthetic.deleteFetch, jdbcType=VARCHAR}
+			,#{tableSynthetic.insertOnly,
+			jdbcType=VARCHAR}
+			,#{tableSynthetic.jobNo, jdbcType=VARCHAR}
+			,#{tableSynthetic.syncStatus, jdbcType=INTEGER}
+			,#{tableSynthetic.syncTime, jdbcType=TIMESTAMP}
+			,#{tableSynthetic.sortNo,
+			jdbcType=INTEGER}
+			,#{tableSynthetic.locked,
+			jdbcType=INTEGER}
+			,#{tableSynthetic.createBy, jdbcType=VARCHAR}
+			,#{tableSynthetic.createTime,
+			jdbcType=TIMESTAMP}
+			,#{tableSynthetic.updateBy, jdbcType=VARCHAR}
+			,#{tableSynthetic.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTableSynthetic" parameterType="com.glaf.datamgr.domain.TableSynthetic">
+		update SYS_TABLE_SYNTHETIC
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceDatabaseIds != null">
+				SOURCEDATABASEIDS_ = #{sourceDatabaseIds,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceTableName != null">
+				SOURCETABLENAME_ = #{sourceTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="primaryKey != null">
+				PRIMARYKEY_ = #{primaryKey, jdbcType=VARCHAR},
+			</if>
+			<if test="syncColumns != null">
+				SYNCCOLUMNS_ = #{syncColumns, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlCriteria != null">
+				SQLCRITERIA_ = #{sqlCriteria, jdbcType=VARCHAR},
+			</if>
+			<if test="targetTableName != null">
+				TARGETTABLENAME_ = #{targetTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="targetDatabaseId != null">
+				TARGETDATABASEID_ = #{targetDatabaseId,
+				jdbcType=BIGINT},
+			</if>
+			<if test="scheduleFlag != null">
+				SCHEDULEFLAG_ = #{scheduleFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="createTableFlag != null">
+				CREATETABLEFLAG_ = #{createTableFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFetch != null">
+				DELETEFETCH_ = #{deleteFetch, jdbcType=VARCHAR},
+			</if>
+			<if test="insertOnly != null">
+				INSERTONLY_ = #{insertOnly, jdbcType=VARCHAR},
+			</if>
+			<if test="syncStatus != null">
+				SYNCSTATUS_ = #{syncStatus, jdbcType=INTEGER},
+			</if>
+			<if test="syncTime != null">
+				SYNCTIME_ = #{syncTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<update id="updateTableSyntheticStatus" parameterType="com.glaf.datamgr.domain.TableSynthetic">
+
+		update SYS_TABLE_SYNTHETIC
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="syncStatus != null">
+				SYNCSTATUS_ = #{syncStatus, jdbcType=INTEGER},
+			</if>
+			<if test="syncTime != null">
+				SYNCTIME_ = #{syncTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<update id="resetAllTableSyntheticStatus">
+
+		update SYS_TABLE_SYNTHETIC
+		set SYNCSTATUS_ = 0,
+		SYNCTIME_ = null
+		where LOCKED_ = 0
+
+	</update>
+
+
+	<delete id="deleteTableSyntheticById" parameterType="long">
+		delete from
+		SYS_TABLE_SYNTHETIC
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTableSynthetics" parameterType="com.glaf.datamgr.query.TableSyntheticQuery">
+		delete from SYS_TABLE_SYNTHETIC
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTableSyntheticById" parameterType="long"
+		resultMap="tableSyntheticResultMap">
+		select * from SYS_TABLE_SYNTHETIC where ID_ = #{id}
+	</select>
+
+
+	<select id="getTableSynthetics" parameterType="com.glaf.datamgr.query.TableSyntheticQuery"
+		resultMap="tableSyntheticResultMap">
+		select distinct E.*
+		<include refid="selectTableSyntheticsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTableSyntheticCount" parameterType="com.glaf.datamgr.query.TableSyntheticQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTableSyntheticsSql" />
+	</select>
+
+
+	<sql id="selectTableSyntheticsSql">
+
+		from SYS_TABLE_SYNTHETIC E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="syncStatus != null">
+				and E.SYNCSTATUS_ = #{syncStatus}
+			</if>
+
+			<if test="syncTimeGreaterThanOrEqual != null">
+				and E.SYNCTIME_ &gt;= #{syncTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="syncTimeLessThanOrEqual != null">
+				and E.SYNCTIME_ &lt;= #{syncTimeLessThanOrEqual}
+			</if>
+
+			<if test="sourceTableName != null and sourceTableName != '' ">
+				and E.SOURCETABLENAME_ = #{sourceTableName}
+			</if>
+
+			<if test="targetTableName != null and targetTableName != '' ">
+				and E.TARGETTABLENAME_ = #{targetTableName}
+			</if>
+
+			<if test="scheduleFlag != null and scheduleFlag != '' ">
+				and E.SCHEDULEFLAG_ = #{scheduleFlag}
+			</if>
+
+			<if test="createTableFlag != null and createTableFlag != '' ">
+				and E.CREATETABLEFLAG_ = #{createTableFlag}
+			</if>
+
+			<if test="deleteFetch != null and deleteFetch != '' ">
+				and E.DELETEFETCH_ = #{deleteFetch}
+			</if>
+
+			<if test="insertOnly != null and insertOnly != '' ">
+				and E.INSERTONLY_ = #{insertOnly}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

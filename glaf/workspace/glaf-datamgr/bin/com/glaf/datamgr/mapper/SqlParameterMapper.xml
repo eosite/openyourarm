@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SqlParameterMapper">
+
+	<resultMap id="sqlParameterResultMap" type="com.glaf.datamgr.domain.SqlParameter">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="datasetId" column="DATASETID_" jdbcType="VARCHAR" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="mapping" column="MAPPING_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="defaultValue" column="DEFAULTVALUE_"
+			jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="collection" column="COLLECTION_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSqlParameter" parameterType="com.glaf.datamgr.domain.SqlParameter">
+		insert into SYS_SQL_PARAM
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="datasetId != null">
+				,DATASETID_
+			</if>
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="mapping != null">
+				,MAPPING_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="defaultValue != null">
+				,DEFAULTVALUE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="collection != null">
+				,COLLECTION_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="mapping != null">
+				,#{mapping, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="defaultValue != null">
+				,#{defaultValue, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="collection != null">
+				,#{collection, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSqlParameter" parameterType="com.glaf.datamgr.domain.SqlParameter">
+		update SYS_SQL_PARAM
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="mapping != null">
+				MAPPING_ = #{mapping, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="defaultValue != null">
+				DEFAULTVALUE_ = #{defaultValue, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="collection != null">
+				COLLECTION_ = #{collection, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSqlParameterById" parameterType="long">
+		delete from
+		SYS_SQL_PARAM
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSqlParameterByDatasetId" parameterType="string">
+		delete
+		from SYS_SQL_PARAM
+		where DATASETID_ = #{datasetId}
+	</delete>
+
+
+	<delete id="deleteSqlParameterBySqlDefId" parameterType="long">
+		delete
+		from SYS_SQL_PARAM
+		where SQLDEFID_ = #{sqlDefId}
+	</delete>
+
+
+	<select id="getSqlParameterById" parameterType="long"
+		resultMap="sqlParameterResultMap">
+		select * from SYS_SQL_PARAM where ID_ = #{id}
+	</select>
+
+
+	<select id="getSqlParametersByDatasetId" parameterType="string"
+		resultMap="sqlParameterResultMap">
+
+		select * from SYS_SQL_PARAM
+		where DATASETID_ = #{datasetId}
+		order by NAME_ asc
+
+	</select>
+
+
+	<select id="getSqlParametersBySqlDefId" parameterType="long"
+		resultMap="sqlParameterResultMap">
+
+		select * from SYS_SQL_PARAM
+		where SQLDEFID_ = #{sqlDefId}
+		order by NAME_ asc
+
+	</select>
+
+
+	<select id="getSqlParameters" parameterType="com.glaf.datamgr.query.SqlParameterQuery"
+		resultMap="sqlParameterResultMap">
+		select E.*
+		<include refid="selectSqlParametersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.SQLDEFID_ desc, E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSqlParameterCount" parameterType="com.glaf.datamgr.query.SqlParameterQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSqlParametersSql" />
+	</select>
+
+
+	<sql id="selectSqlParametersSql">
+
+		from SYS_SQL_PARAM E
+
+		<where>
+			1 = 1
+
+			<if test="datasetId != null and datasetId != '' ">
+				and E.DATASETID_ = #{datasetId}
+			</if>
+
+			<if test="sqlDefId != null">
+				and E.SQLDEFID_ = #{sqlDefId}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,17 @@
+/* No CSS needed, but you can pimp the container and the signs as you wish. */
+
+
+/* all sign style */
+.ratymode .rate{color: #fe5845; font-size: 24px;}
+
+/* empty sign style */
+.ratymode .rate-empty{color: #666;}
+
+/* full sign style after rating*/
+.ratymode.rated .rate-full{color: #fe5845;}
+
+/* active signs (hover)*/
+.ratymode .rate-active{color: #a94039;}
+
+
+

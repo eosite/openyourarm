@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SystemDBFuncMappingMapper">
+
+ 	<resultMap id="systemDBFuncMappingResultMap"	type="com.glaf.datamgr.domain.SystemDBFuncMapping">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="funcId" column="FUNC_ID_" jdbcType="VARCHAR"/>
+        <result property="dtype" column="DTYPE_" jdbcType="VARCHAR"/>
+        <result property="funcName" column="FUNCNAME_" jdbcType="VARCHAR"/>
+        <result property="params" column="PARAMS_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertSystemDBFuncMapping" parameterType="com.glaf.datamgr.domain.SystemDBFuncMapping">
+		insert into SYSTEM_DB_FUNC_MAPPING_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="funcId != null">
+				,FUNC_ID_ 
+			</if>
+			<if test="dtype != null">
+				,DTYPE_ 
+			</if>
+			<if test="funcName != null">
+				,FUNCNAME_ 
+			</if>
+			<if test="params != null">
+				,PARAMS_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="funcId != null">
+				,#{funcId, jdbcType=VARCHAR}
+			</if>
+			<if test="dtype != null">
+				,#{dtype, jdbcType=VARCHAR}
+			</if>
+			<if test="funcName != null">
+				,#{funcName, jdbcType=VARCHAR}
+			</if>
+			<if test="params != null">
+				,#{params, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSystemDBFuncMapping" parameterType="com.glaf.datamgr.domain.SystemDBFuncMapping">
+		update SYSTEM_DB_FUNC_MAPPING_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="funcId != null">
+				FUNC_ID_ = #{funcId, jdbcType=VARCHAR},
+			</if>
+			<if test="dtype != null">
+				DTYPE_ = #{dtype, jdbcType=VARCHAR},
+			</if>
+			<if test="funcName != null">
+				FUNCNAME_ = #{funcName, jdbcType=VARCHAR},
+			</if>
+			<if test="params != null">
+				PARAMS_ = #{params, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteSystemDBFuncMappingById" parameterType="string"> 
+        delete from SYSTEM_DB_FUNC_MAPPING_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteSystemDBFuncMappings" parameterType="com.glaf.datamgr.query.SystemDBFuncMappingQuery">
+		delete from SYSTEM_DB_FUNC_MAPPING_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSystemDBFuncMappingById" parameterType="string" resultMap="systemDBFuncMappingResultMap">
+		select * from SYSTEM_DB_FUNC_MAPPING_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getSystemDBFuncMappings" 
+	    parameterType="com.glaf.datamgr.query.SystemDBFuncMappingQuery"
+		resultMap="systemDBFuncMappingResultMap">
+		select  E.*
+		<include refid="selectSystemDBFuncMappingsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getSystemDBFuncMappingCount" 
+	    parameterType="com.glaf.datamgr.query.SystemDBFuncMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSystemDBFuncMappingsSql" />
+	</select>
+
+
+	<sql id="selectSystemDBFuncMappingsSql">
+
+		from SYSTEM_DB_FUNC_MAPPING_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="funcId != null and funcId != '' ">
+				and E.FUNC_ID_ = #{funcId}
+            </if>
+
+			<if test="funcIdLike != null and funcIdLike != '' ">
+				and E.FUNC_ID_ like #{funcIdLike}
+            </if>
+
+			<if test="funcIds != null and funcIds.size() &gt; 0">
+			    and E.FUNC_ID_ IN
+                <foreach item="x_funcId" index="index" collection="funcIds" 
+                     open="(" separator="," close=")">
+                  #{x_funcId}
+                </foreach>
+			</if>
+	        
+			<if test="dtype != null and dtype != '' ">
+				and E.DTYPE_ = #{dtype}
+            </if>
+
+			<if test="dtypeLike != null and dtypeLike != '' ">
+				and E.DTYPE_ like #{dtypeLike}
+            </if>
+
+			<if test="dtypes != null and dtypes.size() &gt; 0">
+			    and E.DTYPE_ IN
+                <foreach item="x_dtype" index="index" collection="dtypes" 
+                     open="(" separator="," close=")">
+                  #{x_dtype}
+                </foreach>
+			</if>
+	        
+			<if test="funcName != null and funcName != '' ">
+				and E.FUNCNAME_ = #{funcName}
+            </if>
+
+			<if test="funcNameLike != null and funcNameLike != '' ">
+				and E.FUNCNAME_ like #{funcNameLike}
+            </if>
+
+			<if test="funcNames != null and funcNames.size() &gt; 0">
+			    and E.FUNCNAME_ IN
+                <foreach item="x_funcName" index="index" collection="funcNames" 
+                     open="(" separator="," close=")">
+                  #{x_funcName}
+                </foreach>
+			</if>
+	        
+			<if test="params != null and params != '' ">
+				and E.PARAMS_ = #{params}
+            </if>
+
+			<if test="paramsLike != null and paramsLike != '' ">
+				and E.PARAMS_ like #{paramsLike}
+            </if>
+
+			<if test="paramss != null and paramss.size() &gt; 0">
+			    and E.PARAMS_ IN
+                <foreach item="x_params" index="index" collection="paramss" 
+                     open="(" separator="," close=")">
+                  #{x_params}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

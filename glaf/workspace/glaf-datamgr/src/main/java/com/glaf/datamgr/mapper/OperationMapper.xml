@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.OperationMapper">
+
+	<resultMap id="operationResultMap" type="com.glaf.datamgr.domain.Operation">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+		<result property="method" column="METHOD_" jdbcType="VARCHAR" />
+		<result property="url" column="URL_" jdbcType="VARCHAR" />
+		<result property="tablename" column="TABLENAME_" jdbcType="VARCHAR" />
+		<result property="idField" column="IDFIELD_" jdbcType="VARCHAR" />
+		<result property="idColumn" column="IDCOLUMN_" jdbcType="VARCHAR" />
+		<result property="idJavaType" column="IDJAVATYPE_" jdbcType="VARCHAR" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="sort" column="SORT_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertOperation" parameterType="com.glaf.datamgr.domain.Operation">
+		insert into SYS_OPERATION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_
+			</if>
+			<if test="method != null">
+				,METHOD_
+			</if>
+			<if test="url != null">
+				,URL_
+			</if>
+			<if test="tablename != null">
+				,TABLENAME_
+			</if>
+			<if test="idField != null">
+				,IDFIELD_
+			</if>
+			<if test="idColumn != null">
+				,IDCOLUMN_
+			</if>
+			<if test="idJavaType != null">
+				,IDJAVATYPE_
+			</if>
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="sort != null">
+				,SORT_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="method != null">
+				,#{method, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				,#{url, jdbcType=VARCHAR}
+			</if>
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="idField != null">
+				,#{idField, jdbcType=VARCHAR}
+			</if>
+			<if test="idColumn != null">
+				,#{idColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="idJavaType != null">
+				,#{idJavaType, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateOperation" parameterType="com.glaf.datamgr.domain.Operation">
+		update SYS_OPERATION
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="method != null">
+				METHOD_ = #{method, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL_ = #{url, jdbcType=VARCHAR},
+			</if>
+			<if test="tablename != null">
+				TABLENAME_ = #{tablename, jdbcType=VARCHAR},
+			</if>
+			<if test="idField != null">
+				IDFIELD_ = #{idField, jdbcType=VARCHAR},
+			</if>
+			<if test="idColumn != null">
+				IDCOLUMN_ = #{idColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="idJavaType != null">
+				IDJAVATYPE_ = #{idJavaType, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlDefId != null">
+				SQLDEFID_ = #{sqlDefId, jdbcType=BIGINT},
+			</if>
+			<if test="sort != null">
+				SORT_ = #{sort, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteOperationById" parameterType="long">
+		delete from
+		SYS_OPERATION
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteOperations" parameterType="com.glaf.datamgr.query.OperationQuery">
+		delete from SYS_OPERATION
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getOperationById" parameterType="long" resultMap="operationResultMap">
+		select * from SYS_OPERATION where ID_ = #{id}
+	</select>
+
+
+	<select id="getOperations" parameterType="com.glaf.datamgr.query.OperationQuery"
+		resultMap="operationResultMap">
+		select distinct E.*
+		<include refid="selectOperationsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getOperationCount" parameterType="com.glaf.datamgr.query.OperationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectOperationsSql" />
+	</select>
+
+
+	<sql id="selectOperationsSql">
+
+		from SYS_OPERATION E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+			</if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+			</if>
+
+			<if test="method != null and method != '' ">
+				and E.METHOD_ = #{method}
+			</if>
+
+			<if test="tablename != null and tablename != '' ">
+				and E.TABLENAME_ = #{tablename}
+			</if>
+
+			<if test="tablenameLike != null and tablenameLike != '' ">
+				and E.TABLENAME_ like #{tablenameLike}
+			</if>
+
+			<if test="sqlDefId != null">
+				and E.SQLDEFID_ = #{sqlDefId}
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORT_ &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORT_ &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,12 @@
+delete from SYS_DATA_ITEM_DEF where CATEGORY_ = 'synthetic';
+
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1101, 0, 'synthetic', '数据集合成', 'dataset_synthetic', 'dataset_synthetic', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_DATASET_SYNTHETIC where LOCKED_ = 0 and DELETEFLAG_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1102, 0, 'synthetic', '表同步', 'table_sync', 'table_sync', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_TABLE_SYNC where LOCKED_ = 0 and LOCKED_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1103, 0, 'synthetic', '表合成', 'table_synthetic', 'table_synthetic', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_TABLE_SYNTHETIC where LOCKED_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1104, 0, 'synthetic', '表列转换', 'table_transform', 'table_transform', 'TABLENAME_', 'TITLE_', 'select TABLENAME_, TITLE_ from SYS_TABLE_TRANSFORM where LOCKED_ = 0 and DELETEFLAG_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1105, 0, 'synthetic', '树表合成', 'treetable_synthetic', 'treetable_synthetic', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_TREETABLE_SYNTHETIC where LOCKED_ = 0 and DELETEFLAG_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1106, 0, 'synthetic', '树表逐级汇总', 'treetable_aggregate', 'treetable_aggregate', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_TREETABLE_AGGREGATE where LOCKED_ = 0 and DELETEFLAG_ = 0');
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1107, 0, 'synthetic', '组合表', 'table_combination', 'table_combination', 'ID_', 'TITLE_', 'select ID_, TITLE_ from TABLE_COMBINATION where LOCKED_ = 0');
+
+
+INSERT INTO SYS_DATA_ITEM_DEF (ID_, NODEID_, CATEGORY_, TITLE_, CODE_, TYPE_, KEYCOLUMN_, VALUECOLUMN_, SQL_) VALUES (1301, 0, 'sql_mgr', 'SQL语句', 'sql_mgr', 'sql_mgr', 'ID_', 'TITLE_', 'select ID_, TITLE_ from SYS_SQL where LOCKED_ = 0 ');

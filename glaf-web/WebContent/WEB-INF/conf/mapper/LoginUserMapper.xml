@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.LoginUserMapper">
+
+	<resultMap id="loginUserResultMap" type="com.glaf.base.modules.sys.model.LoginUser">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="name" column="USERNAME_" jdbcType="VARCHAR" />
+		<result property="loginId" column="LOGINID_" jdbcType="VARCHAR" />
+		<result property="password" column="PASSWORD_" jdbcType="VARCHAR" />
+		<result property="passwordType" column="PASSWORDTYPE_"
+			jdbcType="VARCHAR" />
+		<result property="systemCode" column="SYSTEMCODE_" jdbcType="VARCHAR" />
+		<result property="organization" column="ORGANIZATION_"
+			jdbcType="VARCHAR" />
+		<result property="department" column="DEPARTMENT_" jdbcType="VARCHAR" />
+		<result property="position" column="POSITION_" jdbcType="VARCHAR" />
+		<result property="mail" column="MAIL_" jdbcType="VARCHAR" />
+		<result property="mobile" column="MOBILE_" jdbcType="VARCHAR" />
+		<result property="timeLive" column="TIMELIVE_" jdbcType="INTEGER" />
+		<result property="loginTime" column="LOGINTIME_" jdbcType="TIMESTAMP" />
+		<result property="attribute" column="ATTRIBUTE_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertLoginUser" parameterType="com.glaf.base.modules.sys.model.LoginUser">
+		insert into LOGIN_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="name != null">
+				,USERNAME_
+			</if>
+			<if test="loginId != null">
+				,LOGINID_
+			</if>
+			<if test="password != null">
+				,PASSWORD_
+			</if>
+			<if test="passwordType != null">
+				,PASSWORDTYPE_
+			</if>
+			<if test="systemCode != null">
+				,SYSTEMCODE_
+			</if>
+			<if test="organization != null">
+				,ORGANIZATION_
+			</if>
+			<if test="department != null">
+				,DEPARTMENT_
+			</if>
+			<if test="position != null">
+				,POSITION_
+			</if>
+			<if test="mail != null">
+				,MAIL_
+			</if>
+			<if test="mobile != null">
+				,MOBILE_
+			</if>
+			<if test="timeLive != null">
+				,TIMELIVE_
+			</if>
+			<if test="loginTime != null">
+				,LOGINTIME_
+			</if>
+			<if test="attribute != null">
+				,ATTRIBUTE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="loginId != null">
+				,#{loginId, jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				,#{password, jdbcType=VARCHAR}
+			</if>
+			<if test="passwordType != null">
+				,#{passwordType, jdbcType=VARCHAR}
+			</if>
+			<if test="systemCode != null">
+				,#{systemCode, jdbcType=VARCHAR}
+			</if>
+			<if test="organization != null">
+				,#{organization, jdbcType=VARCHAR}
+			</if>
+			<if test="department != null">
+				,#{department, jdbcType=VARCHAR}
+			</if>
+			<if test="position != null">
+				,#{position, jdbcType=VARCHAR}
+			</if>
+			<if test="mail != null">
+				,#{mail, jdbcType=VARCHAR}
+			</if>
+			<if test="mobile != null">
+				,#{mobile, jdbcType=VARCHAR}
+			</if>
+			<if test="timeLive != null">
+				,#{timeLive, jdbcType=INTEGER}
+			</if>
+			<if test="loginTime != null">
+				,#{loginTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="attribute != null">
+				,#{attribute, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertLoginUser" parameterType="java.util.List">
+		insert into LOGIN_USER (
+		ID_
+		,USERID_
+		,USERNAME_
+		,LOGINID_
+		,PASSWORD_
+		,PASSWORDTYPE_
+		,SYSTEMCODE_
+		,ORGANIZATION_
+		,DEPARTMENT_
+		,POSITION_
+		,MAIL_
+		,MOBILE_
+		,TIMELIVE_
+		,LOGINTIME_
+		,ATTRIBUTE_
+		,CREATEBY_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="loginUser" index="index"
+			separator=",">
+			(
+			#{loginUser.id, jdbcType=VARCHAR}
+			,#{loginUser.userId,
+			jdbcType=VARCHAR}
+			,#{loginUser.name, jdbcType=VARCHAR}
+			,#{loginUser.loginId, jdbcType=VARCHAR}
+			,#{loginUser.password,
+			jdbcType=VARCHAR}
+			,#{loginUser.passwordType, jdbcType=VARCHAR}
+			,#{loginUser.systemCode, jdbcType=VARCHAR}
+			,#{loginUser.organization,
+			jdbcType=VARCHAR}
+			,#{loginUser.department, jdbcType=VARCHAR}
+			,#{loginUser.position, jdbcType=VARCHAR}
+			,#{loginUser.mail,
+			jdbcType=VARCHAR}
+			,#{loginUser.mobile, jdbcType=VARCHAR}
+			,#{loginUser.timeLive, jdbcType=INTEGER}
+			,#{loginUser.loginTime,
+			jdbcType=TIMESTAMP}
+			,#{loginUser.attribute, jdbcType=VARCHAR}
+			,#{loginUser.createBy, jdbcType=VARCHAR}
+			,#{loginUser.createTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertLoginUser_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="loginUser" index="index">
+			insert into
+			LOGIN_USER (
+			ID_
+			,USERID_
+			,USERNAME_
+			,LOGINID_
+			,PASSWORD_
+			,PASSWORDTYPE_
+			,SYSTEMCODE_
+			,ORGANIZATION_
+			,DEPARTMENT_
+			,POSITION_
+			,MAIL_
+			,MOBILE_
+			,TIMELIVE_
+			,LOGINTIME_
+			,ATTRIBUTE_
+			,CREATEBY_
+			,CREATETIME_
+			) values (
+			#{loginUser.id, jdbcType=VARCHAR}
+			,#{loginUser.userId,
+			jdbcType=VARCHAR}
+			,#{loginUser.name, jdbcType=VARCHAR}
+			,#{loginUser.loginId, jdbcType=VARCHAR}
+			,#{loginUser.password,
+			jdbcType=VARCHAR}
+			,#{loginUser.passwordType, jdbcType=VARCHAR}
+			,#{loginUser.systemCode, jdbcType=VARCHAR}
+			,#{loginUser.organization,
+			jdbcType=VARCHAR}
+			,#{loginUser.department, jdbcType=VARCHAR}
+			,#{loginUser.position, jdbcType=VARCHAR}
+			,#{loginUser.mail,
+			jdbcType=VARCHAR}
+			,#{loginUser.mobile, jdbcType=VARCHAR}
+			,#{loginUser.timeLive, jdbcType=INTEGER}
+			,#{loginUser.loginTime,
+			jdbcType=TIMESTAMP}
+			,#{loginUser.attribute, jdbcType=VARCHAR}
+			,#{loginUser.createBy, jdbcType=VARCHAR}
+			,#{loginUser.createTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateLoginUser" parameterType="com.glaf.base.modules.sys.model.LoginUser">
+		update LOGIN_USER
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				USERNAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="loginId != null">
+				LOGINID_ = #{loginId, jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD_ = #{password, jdbcType=VARCHAR},
+			</if>
+			<if test="passwordType != null">
+				PASSWORDTYPE_ = #{passwordType, jdbcType=VARCHAR},
+			</if>
+			<if test="systemCode != null">
+				SYSTEMCODE_ = #{systemCode, jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				ORGANIZATION_ = #{organization, jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				DEPARTMENT_ = #{department, jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				POSITION_ = #{position, jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				MAIL_ = #{mail, jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE_ = #{mobile, jdbcType=VARCHAR},
+			</if>
+			<if test="timeLive != null">
+				TIMELIVE_ = #{timeLive, jdbcType=INTEGER},
+			</if>
+			<if test="loginTime != null">
+				LOGINTIME_ = #{loginTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="attribute != null">
+				ATTRIBUTE_ = #{attribute, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteLoginUserById" parameterType="string">
+		delete from
+		LOGIN_USER
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteLoginUsers" parameterType="com.glaf.base.modules.sys.query.LoginUserQuery">
+		delete from LOGIN_USER
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getLoginUserById" parameterType="string" resultMap="loginUserResultMap">
+		select * from LOGIN_USER where ID_ = #{id}
+	</select>
+
+
+	<select id="getLoginUsers" parameterType="com.glaf.base.modules.sys.query.LoginUserQuery"
+		resultMap="loginUserResultMap">
+		select distinct E.*
+		<include refid="selectLoginUsersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getLoginUserCount" parameterType="com.glaf.base.modules.sys.query.LoginUserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectLoginUsersSql" />
+	</select>
+
+
+	<sql id="selectLoginUsersSql">
+
+		from LOGIN_USER E
+
+		<where>
+			1 = 1
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.USERNAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.USERNAME_ like #{nameLike}
+			</if>
+
+			<if test="systemCode != null and systemCode != '' ">
+				and E.SYSTEMCODE_ = #{systemCode}
+			</if>
+
+			<if test="systemCodes != null and systemCodes.size() &gt; 0">
+				and E.SYSTEMCODE_ IN
+				<foreach item="x_systemCode" index="index" collection="systemCodes"
+					open="(" separator="," close=")">
+					#{x_systemCode}
+				</foreach>
+			</if>
+
+			<if test="organizationLike != null and organizationLike != '' ">
+				and E.ORGANIZATION_ like #{organizationLike}
+			</if>
+
+			<if test="departmentLike != null and departmentLike != '' ">
+				and E.DEPARTMENT_ like #{departmentLike}
+			</if>
+
+			<if test="positionLike != null and positionLike != '' ">
+				and E.POSITION_ like #{positionLike}
+			</if>
+
+			<if test="mailLike != null and mailLike != '' ">
+				and E.MAIL_ like #{mailLike}
+			</if>
+
+			<if test="mobileLike != null and mobileLike != '' ">
+				and E.MOBILE_ like #{mobileLike}
+			</if>
+
+			<if test="loginTimeGreaterThanOrEqual != null">
+				and E.LOGINTIME_ &gt;= #{loginTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="loginTimeLessThanOrEqual != null">
+				and E.LOGINTIME_ &lt;= #{loginTimeLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

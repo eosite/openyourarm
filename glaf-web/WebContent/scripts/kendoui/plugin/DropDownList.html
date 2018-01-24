@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>demo</title>
+<link rel="stylesheet" type="text/css" href="../styles/kendo.common.min.css">
+<link rel="stylesheet" type="text/css" href="../styles/kendo.default.min.css">
+<link rel="stylesheet" type="text/css" href="../css/kendoui.css">
+<script type='text/javascript' src='../js/jquery.min.js'></script>
+<script type='text/javascript' src="../js/kendo.all.min.js"></script>
+<script type="text/javascript" src="../js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="../js/messages/kendo.messages.zh-CN.min.js"></script>
+<script type='text/javascript' src="./MultiSelectBox.js"></script>  
+<style type='text/css'>
+    body { font-family: sans-serif; }
+</style>
+<script type='text/javascript'> 
+	    jQuery(function() {
+
+				var data = [
+					{"name":"汽车","text":"汽车","value":"汽车"},
+					{"name":"火车","text":"火车","value":"火车"},
+					{"name":"飞机","text":"飞机","value":"飞机"},
+					{"name":"轮船","text":"轮船","value":"轮船"},
+					{"name":"自驾车","text":"自驾车","value":"自驾车"}
+				];
+
+				$("#dropDownList").kendoDropDownList({
+					dataTextField: "text",
+					dataValueField: "value",
+					dataSource: data
+				});
+			}); 
+ 
+
+</script>
+</head>
+<body style="margin:5px;">
+<form method="post" id="iForm" name="iForm">
+  <span id="transTypeView">
+	<input  id="dropDownList" name="dropDownList">
+  </span>
+  <input id="startDate" validationMessage="请输入开始日期" name="startDate" />
+  <script type='text/javascript'>
+     jQuery(function(){
+	      jQuery("#startDate").kendoDatePicker({"value":null,"format":"yyyy-MM-dd","culture":"zh-CN"});
+	 })
+</script>
+<input type="button" value="Check" onclick="javascript:checkXYForm();">
+<input type="button" value="CheckByIndex" onclick="javascript:checkXYFormByIndex();">
+<input type="button" value="Confirm" onclick="javascript:submitXYForm();">
+</form>
+<script type="text/javascript">
+
+  function checkXYForm(){
+      var dropdownlist = jQuery("#dropDownList").data("kendoDropDownList");
+	  alert(dropdownlist.value());
+	  dropdownlist.value("飞机");
+	  alert(dropdownlist.value());
+  }
+
+  function checkXYFormByIndex(){
+      var dropdownlist = jQuery("#dropDownList").data("kendoDropDownList");
+	  dropdownlist.select(2)
+	  alert(dropdownlist.value());
+  }
+
+  function submitXYForm(){
+		var dropdownlist = jQuery("#dropDownList").data("kendoDropDownList");
+		alert(dropdownlist.value());
+		alert(document.getElementById("startDate").value);
+  }
+</script>
+</body>
+</html>

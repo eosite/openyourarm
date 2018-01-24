@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FlowForwardMapper">
+
+ 	<resultMap id="flowForwardResultMap"	type="com.glaf.isdp.domain.FlowForward">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="processId" column="PROCESS_ID" jdbcType="VARCHAR"/>
+        <result property="activDId" column="ACTIV_D_ID" jdbcType="VARCHAR"/>
+        <result property="activDNext" column="ACTIV_D_NEXT" jdbcType="VARCHAR"/>
+        <result property="sendType" column="SENDTYPE" jdbcType="INTEGER"/>
+        <result property="sendTimes" column="SENDTIMES" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertFlowForward" parameterType="com.glaf.isdp.domain.FlowForward">
+		insert into FLOW_FORWARD 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="processId != null">
+				,PROCESS_ID 
+			</if>
+			<if test="activDId != null">
+				,ACTIV_D_ID 
+			</if>
+			<if test="activDNext != null">
+				,ACTIV_D_NEXT 
+			</if>
+			<if test="sendType != null">
+				,SENDTYPE 
+			</if>
+			<if test="sendTimes != null">
+				,SENDTIMES 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="activDId != null">
+				,#{activDId, jdbcType=VARCHAR}
+			</if>
+			<if test="activDNext != null">
+				,#{activDNext, jdbcType=VARCHAR}
+			</if>
+			<if test="sendType != null">
+				,#{sendType, jdbcType=INTEGER}
+			</if>
+			<if test="sendTimes != null">
+				,#{sendTimes, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFlowForward" parameterType="com.glaf.isdp.domain.FlowForward">
+		update FLOW_FORWARD
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="processId != null">
+				PROCESS_ID = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="activDId != null">
+				ACTIV_D_ID = #{activDId, jdbcType=VARCHAR},
+			</if>
+			<if test="activDNext != null">
+				ACTIV_D_NEXT = #{activDNext, jdbcType=VARCHAR},
+			</if>
+			<if test="sendType != null">
+				SENDTYPE = #{sendType, jdbcType=INTEGER},
+			</if>
+			<if test="sendTimes != null">
+				SENDTIMES = #{sendTimes, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFlowForwardById" parameterType="string"> 
+        delete from FLOW_FORWARD
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFlowForwards" parameterType="com.glaf.isdp.query.FlowForwardQuery">
+		delete from FLOW_FORWARD
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowForwardById" parameterType="string" resultMap="flowForwardResultMap">
+		select * from FLOW_FORWARD where ID = #{id}
+	</select>
+
+
+	<select id="getFlowForwards" 
+	    parameterType="com.glaf.isdp.query.FlowForwardQuery"
+		resultMap="flowForwardResultMap">
+		select distinct E.*
+		<include refid="selectFlowForwardsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFlowForwardCount" 
+	    parameterType="com.glaf.isdp.query.FlowForwardQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardsSql" />
+	</select>
+
+
+	<sql id="selectFlowForwardsSql">
+
+		from FLOW_FORWARD E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="processId != null and processId != '' ">
+				and E.PROCESS_ID = #{processId}
+            </if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESS_ID like #{processIdLike}
+            </if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.PROCESS_ID IN
+                <foreach item="x_processId" index="index" collection="processIds" 
+                     open="(" separator="," close=")">
+                  #{x_processId}
+                </foreach>
+			</if>
+	        
+			<if test="activDId != null and activDId != '' ">
+				and E.ACTIV_D_ID = #{activDId}
+            </if>
+
+			<if test="activDIdLike != null and activDIdLike != '' ">
+				and E.ACTIV_D_ID like #{activDIdLike}
+            </if>
+
+			<if test="activDIds != null and activDIds.size() &gt; 0">
+			    and E.ACTIV_D_ID IN
+                <foreach item="x_activDId" index="index" collection="activDIds" 
+                     open="(" separator="," close=")">
+                  #{x_activDId}
+                </foreach>
+			</if>
+	        
+			<if test="activDNext != null and activDNext != '' ">
+				and E.ACTIV_D_NEXT = #{activDNext}
+            </if>
+
+			<if test="activDNextLike != null and activDNextLike != '' ">
+				and E.ACTIV_D_NEXT like #{activDNextLike}
+            </if>
+
+			<if test="activDNexts != null and activDNexts.size() &gt; 0">
+			    and E.ACTIV_D_NEXT IN
+                <foreach item="x_activDNext" index="index" collection="activDNexts" 
+                     open="(" separator="," close=")">
+                  #{x_activDNext}
+                </foreach>
+			</if>
+
+			<if test="sendType != null">
+				and E.SENDTYPE = #{sendType}
+            </if>
+
+			<if test="sendTypeGreaterThanOrEqual != null">
+				and E.SENDTYPE &gt;= #{sendTypeGreaterThanOrEqual}
+            </if>
+
+			<if test="sendTypeLessThanOrEqual != null">
+				and E.SENDTYPE &lt;= #{sendTypeLessThanOrEqual}
+            </if>
+
+			<if test="sendTypes != null and sendTypes.size() &gt; 0">
+			    and E.SENDTYPE IN
+                <foreach item="x_sendType" index="index" collection="sendTypes" 
+                     open="(" separator="," close=")">
+                  #{x_sendType}
+                </foreach>
+			</if>
+      
+
+			<if test="sendTimes != null">
+				and E.SENDTIMES = #{sendTimes}
+            </if>
+
+			<if test="sendTimesGreaterThanOrEqual != null">
+				and E.SENDTIMES &gt;= #{sendTimesGreaterThanOrEqual}
+            </if>
+
+			<if test="sendTimesLessThanOrEqual != null">
+				and E.SENDTIMES &lt;= #{sendTimesLessThanOrEqual}
+            </if>
+
+			<if test="sendTimess != null and sendTimess.size() &gt; 0">
+			    and E.SENDTIMES IN
+                <foreach item="x_sendTimes" index="index" collection="sendTimess" 
+                     open="(" separator="," close=")">
+                  #{x_sendTimes}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

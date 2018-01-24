@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+
+	<!--Spring配置文件位置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/spring/spring-config.xml</param-value>
+	</context-param>
+
+	<!--由Spring载入的Log4j配置文件位置 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>glaf.webapp.root</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.glaf.core.context.StartupListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, POST, HEAD, PUT, DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>Authorization, Accept, Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified,
+                Cache-Control, Expires, Content-Type, X-E4M-With</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposedHeaders</param-name>
+			<param-value>Set-Cookie</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--转码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>permissionFilter</filter-name>
+		<filter-class>com.glaf.base.filter.PermissionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>permissionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- <filter>
+		<filter-name>ExpiresFilter</filter-name>
+		<filter-class>com.glaf.core.web.filter.ExpiresFilter</filter-class>
+		<init-param>
+			<param-name>ExpiresByType image</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType text/css</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType text/javascript</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType script</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType stylesheet</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType font</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType jpg</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType gif</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType png</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ExpiresByType application/javascript</param-name>
+			<param-value>access plus 30 days</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ExpiresFilter</filter-name>
+		<servlet-name>WebResourceServlet</servlet-name> 
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping> -->
+
+	<!--shiroFilter -->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>JSONPFilter</filter-name>
+		<filter-class>com.glaf.workflow.filter.JsonpCallbackFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>JSONPFilter</filter-name>
+		<url-pattern>/service/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>com.glaf.base.servlet.SpringDispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/mx/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>website</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>website</servlet-name>
+		<url-pattern>/website/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>resteasy</servlet-name>
+		<servlet-class>com.glaf.base.servlet.SpringDispatcherServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resteasy</servlet-name>
+		<url-pattern>/rs/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>resteasy</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>InitBaseData</servlet-name>
+		<servlet-class>com.glaf.base.modules.InitBaseDataServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<servlet-class>com.glaf.core.web.servlet.FileUploadServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FileUploadServlet</servlet-name>
+		<url-pattern>/myupload</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FileUploadBackGroundServlet</servlet-name>
+		<servlet-class>com.glaf.base.utils.upload.FileUploadBackGroundServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FileUploadBackGroundServlet</servlet-name>
+		<url-pattern>/fileUploadService</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<servlet-class>com.glaf.core.web.servlet.WebResourceServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/css/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/icons/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/scripts/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/themes/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>WebResourceServlet</servlet-name>
+		<url-pattern>/diagram-viewer/*</url-pattern>
+	</servlet-mapping> -->
+	
+    <servlet>
+		<servlet-name>imageResource</servlet-name>
+		<servlet-class>com.glaf.web.servlet.ImageDispatcherServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>imageResource</servlet-name>
+		<url-pattern>/ueditor/uploaddb/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+       <servlet-name>DruidStatView</servlet-name>
+       <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+     </servlet>
+
+     <servlet-mapping>
+       <servlet-name>DruidStatView</servlet-name>
+       <url-pattern>/druid/*</url-pattern>
+     </servlet-mapping>
+	
+	<!-- <servlet> <servlet-name>CXFServlet</servlet-name> <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class> 
+		<load-on-startup>1</load-on-startup> </servlet> <servlet-mapping> <servlet-name>CXFServlet</servlet-name> 
+		<url-pattern>/ws/*</url-pattern> </servlet-mapping> -->
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Session timeout on 60 * 8 (in minutes) -->
+	<session-config>
+		<session-timeout>480</session-timeout>
+	</session-config>
+
+	<error-page>
+		<exception-type>com.glaf.base.modules.sys.interceptor.AuthorizeException</exception-type>
+		<location>/unauthorized.jsp</location>
+	</error-page>
+
+	<distributable />
+
+</web-app>

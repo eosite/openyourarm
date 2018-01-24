@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoGroupUserMapper">
+
+	<resultMap id="videoGroupUserResultMap" type="com.glaf.video.domain.VideoGroupUser">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="groupId" column="GROUPID_" jdbcType="VARCHAR" />
+		<result property="actorId" column="ACTORID_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertVideoGroupUser" parameterType="com.glaf.video.domain.VideoGroupUser">
+		insert into VIDEO_GROUP_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="groupId != null">
+				,GROUPID_
+			</if>
+			<if test="actorId != null">
+				,ACTORID_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="groupId != null">
+				,#{groupId, jdbcType=VARCHAR}
+			</if>
+			<if test="actorId != null">
+				,#{actorId, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoGroupUser" parameterType="java.util.List">
+		insert into VIDEO_GROUP_USER (
+		ID_
+		,DEVELOPERID_
+		,GROUPID_
+		,ACTORID_
+		)
+		values
+		<foreach collection="list" item="videoGroupUser" index="index"
+			separator=",">
+			(
+			#{videoGroupUser.id, jdbcType=VARCHAR}
+			,#{videoGroupUser.developerId, jdbcType=VARCHAR}
+			,#{videoGroupUser.groupId, jdbcType=VARCHAR}
+			,#{videoGroupUser.actorId, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoGroupUser_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoGroupUser" index="index">
+			insert
+			into VIDEO_GROUP_USER (
+			ID_
+			,DEVELOPERID_
+			,GROUPID_
+			,ACTORID_
+			) values (
+			#{videoGroupUser.id, jdbcType=VARCHAR}
+			,#{videoGroupUser.developerId,
+			jdbcType=VARCHAR}
+			,#{videoGroupUser.groupId, jdbcType=VARCHAR}
+			,#{videoGroupUser.actorId, jdbcType=VARCHAR}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoGroupUser" parameterType="com.glaf.video.domain.VideoGroupUser">
+		update VIDEO_GROUP_USER
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="developerId != null">
+				DEVELOPERID_ = #{developerId, jdbcType=VARCHAR},
+			</if>
+			<if test="groupId != null">
+				GROUPID_ = #{groupId, jdbcType=VARCHAR},
+			</if>
+			<if test="actorId != null">
+				ACTORID_ = #{actorId, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoGroupUserById" parameterType="string">
+		delete from
+		VIDEO_GROUP_USER
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoGroupUsersByGroupId" parameterType="string">
+		delete from VIDEO_GROUP_USER
+		where GROUPID_ = #{groupId}
+	</delete>
+
+
+	<select id="getVideoGroupUserById" parameterType="string"
+		resultMap="videoGroupUserResultMap">
+		select * from VIDEO_GROUP_USER where ID_ = #{id}
+	</select>
+
+
+	<select id="getVideoGroupUserIdsByGroupId" parameterType="string"
+		resultType="string">
+		select ACTORID_ from VIDEO_GROUP_USER where GROUPID_ =
+		#{groupId}
+	</select>
+
+
+	<select id="getVideoGroupUsersByGroupId" parameterType="string"
+		resultMap="videoGroupUserResultMap">
+		select * from VIDEO_GROUP_USER where GROUPID_ = #{groupId}
+	</select>
+
+
+	<select id="getVideoGroupUsers" parameterType="com.glaf.video.query.VideoGroupUserQuery"
+		resultMap="videoGroupUserResultMap">
+		select distinct E.*
+		<include refid="selectVideoGroupUsersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoGroupUserCount" parameterType="com.glaf.video.query.VideoGroupUserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoGroupUsersSql" />
+	</select>
+
+
+	<sql id="selectVideoGroupUsersSql">
+
+		from VIDEO_GROUP_USER E
+
+		<where>
+			1 = 1
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="groupId != null and groupId != '' ">
+				and E.GROUPID_ = #{groupId}
+			</if>
+
+			<if test="actorId != null and actorId != '' ">
+				and E.ACTORID_ = #{actorId}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FileDotMapper">
+
+ 	<resultMap id="fileDotResultMap"	type="com.glaf.isdp.domain.FileDot">
+        <id property="fileID" column="FILEID" jdbcType="VARCHAR"/>
+        <result property="listId" column="LISTID" jdbcType="VARCHAR"/>
+        <result property="indexId" column="INDEX_ID" jdbcType="INTEGER"/>
+        <result property="fbelong" column="FBELONG" jdbcType="VARCHAR"/>
+        <result property="fnum" column="FNUM" jdbcType="VARCHAR"/>
+        <result property="pbelong" column="PBELONG" jdbcType="VARCHAR"/>
+        <result property="num" column="NUM" jdbcType="VARCHAR"/>
+        <result property="fname" column="FNAME" jdbcType="VARCHAR"/>
+        <result property="dotName" column="DOTNAME" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="dtime" column="DTIME" jdbcType="TIMESTAMP"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="fileContent" column="FILE_CONTENT" jdbcType="BLOB"/>
+        <result property="fileSize" column="FILESIZE" jdbcType="INTEGER"/>
+        <result property="dwid" column="DWID" jdbcType="INTEGER"/>
+        <result property="fbid" column="FBID" jdbcType="INTEGER"/>
+        <result property="fxid" column="FXID" jdbcType="INTEGER"/>
+        <result property="jid" column="JID" jdbcType="VARCHAR"/>
+        <result property="flid" column="FLID" jdbcType="VARCHAR"/>
+        <result property="topNode" column="TOPNODE" jdbcType="VARCHAR"/>
+        <result property="cman" column="CMAN" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="listFlag" column="LISTFLAG" jdbcType="VARCHAR"/>
+        <result property="toFile" column="TOFILE" jdbcType="INTEGER"/>
+        <result property="isInk" column="ISINK" jdbcType="VARCHAR"/>
+        <result property="dotType" column="DOTTYPE" jdbcType="INTEGER"/>
+        <result property="ctimeDName" column="CTIMEDNAME" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="INTEGER"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="utreeIndex" column="UTREE_INDEX" jdbcType="INTEGER"/>
+        <result property="isQuan" column="ISQUAN" jdbcType="VARCHAR"/>
+        <result property="intSysForm" column="INTSYSFORM" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertFileDot" parameterType="com.glaf.isdp.domain.FileDot">
+		insert into FILEDOT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    FILEID
+			<if test="listId != null">
+				,LISTID 
+			</if>
+			<if test="indexId != null">
+				,INDEX_ID 
+			</if>
+			<if test="fbelong != null">
+				,FBELONG 
+			</if>
+			<if test="fnum != null">
+				,FNUM 
+			</if>
+			<if test="pbelong != null">
+				,PBELONG 
+			</if>
+			<if test="num != null">
+				,NUM 
+			</if>
+			<if test="fname != null">
+				,FNAME 
+			</if>
+			<if test="dotName != null">
+				,DOTNAME 
+			</if>
+			<if test="ctime != null">
+				,CTIME 
+			</if>
+			<if test="dtime != null">
+				,DTIME 
+			</if>
+			<if test="fileName != null">
+				,FILE_NAME 
+			</if>
+			<if test="fileContent != null">
+				,FILE_CONTENT 
+			</if>
+			<if test="fileSize != null">
+				,FILESIZE 
+			</if>
+			<if test="dwid != null">
+				,DWID 
+			</if>
+			<if test="fbid != null">
+				,FBID 
+			</if>
+			<if test="fxid != null">
+				,FXID 
+			</if>
+			<if test="jid != null">
+				,JID 
+			</if>
+			<if test="flid != null">
+				,FLID 
+			</if>
+			<if test="topNode != null">
+				,TOPNODE 
+			</if>
+			<if test="cman != null">
+				,CMAN 
+			</if>
+			<if test="content != null">
+				,CONTENT 
+			</if>
+			<if test="listFlag != null">
+				,LISTFLAG 
+			</if>
+			<if test="toFile != null">
+				,TOFILE 
+			</if>
+			<if test="isInk != null">
+				,ISINK 
+			</if>
+			<if test="dotType != null">
+				,DOTTYPE 
+			</if>
+			<if test="ctimeDName != null">
+				,CTIMEDNAME 
+			</if>
+			<if test="type != null">
+				,TYPE 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="utreeIndex != null">
+				,UTREE_INDEX 
+			</if>
+			<if test="isQuan != null">
+				,ISQUAN 
+			</if>
+			<if test="intSysForm != null">
+				,INTSYSFORM 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileID, jdbcType=VARCHAR}
+	     
+			<if test="listId != null">
+				,#{listId, jdbcType=VARCHAR}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="fbelong != null">
+				,#{fbelong, jdbcType=VARCHAR}
+			</if>
+			<if test="fnum != null">
+				,#{fnum, jdbcType=VARCHAR}
+			</if>
+			<if test="pbelong != null">
+				,#{pbelong, jdbcType=VARCHAR}
+			</if>
+			<if test="num != null">
+				,#{num, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="dotName != null">
+				,#{dotName, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="dtime != null">
+				,#{dtime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="fileSize != null">
+				,#{fileSize, jdbcType=INTEGER}
+			</if>
+			<if test="dwid != null">
+				,#{dwid, jdbcType=INTEGER}
+			</if>
+			<if test="fbid != null">
+				,#{fbid, jdbcType=INTEGER}
+			</if>
+			<if test="fxid != null">
+				,#{fxid, jdbcType=INTEGER}
+			</if>
+			<if test="jid != null">
+				,#{jid, jdbcType=VARCHAR}
+			</if>
+			<if test="flid != null">
+				,#{flid, jdbcType=VARCHAR}
+			</if>
+			<if test="topNode != null">
+				,#{topNode, jdbcType=VARCHAR}
+			</if>
+			<if test="cman != null">
+				,#{cman, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="listFlag != null">
+				,#{listFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="toFile != null">
+				,#{toFile, jdbcType=INTEGER}
+			</if>
+			<if test="isInk != null">
+				,#{isInk, jdbcType=VARCHAR}
+			</if>
+			<if test="dotType != null">
+				,#{dotType, jdbcType=INTEGER}
+			</if>
+			<if test="ctimeDName != null">
+				,#{ctimeDName, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="utreeIndex != null">
+				,#{utreeIndex, jdbcType=INTEGER}
+			</if>
+			<if test="isQuan != null">
+				,#{isQuan, jdbcType=VARCHAR}
+			</if>
+			<if test="intSysForm != null">
+				,#{intSysForm, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFileDot" parameterType="com.glaf.isdp.domain.FileDot">
+		update FILEDOT
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="listId != null">
+				LISTID = #{listId, jdbcType=VARCHAR},
+			</if>
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="fbelong != null">
+				FBELONG = #{fbelong, jdbcType=VARCHAR},
+			</if>
+			<if test="fnum != null">
+				FNUM = #{fnum, jdbcType=VARCHAR},
+			</if>
+			<if test="pbelong != null">
+				PBELONG = #{pbelong, jdbcType=VARCHAR},
+			</if>
+			<if test="num != null">
+				NUM = #{num, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				FNAME = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="dotName != null">
+				DOTNAME = #{dotName, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="dtime != null">
+				DTIME = #{dtime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileName != null">
+				FILE_NAME = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				FILE_CONTENT = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="fileSize != null">
+				FILESIZE = #{fileSize, jdbcType=INTEGER},
+			</if>
+			<if test="dwid != null">
+				DWID = #{dwid, jdbcType=INTEGER},
+			</if>
+			<if test="fbid != null">
+				FBID = #{fbid, jdbcType=INTEGER},
+			</if>
+			<if test="fxid != null">
+				FXID = #{fxid, jdbcType=INTEGER},
+			</if>
+			<if test="jid != null">
+				JID = #{jid, jdbcType=VARCHAR},
+			</if>
+			<if test="flid != null">
+				FLID = #{flid, jdbcType=VARCHAR},
+			</if>
+			<if test="topNode != null">
+				TOPNODE = #{topNode, jdbcType=VARCHAR},
+			</if>
+			<if test="cman != null">
+				CMAN = #{cman, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="listFlag != null">
+				LISTFLAG = #{listFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="toFile != null">
+				TOFILE = #{toFile, jdbcType=INTEGER},
+			</if>
+			<if test="isInk != null">
+				ISINK = #{isInk, jdbcType=VARCHAR},
+			</if>
+			<if test="dotType != null">
+				DOTTYPE = #{dotType, jdbcType=INTEGER},
+			</if>
+			<if test="ctimeDName != null">
+				CTIMEDNAME = #{ctimeDName, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="utreeIndex != null">
+				UTREE_INDEX = #{utreeIndex, jdbcType=INTEGER},
+			</if>
+			<if test="isQuan != null">
+				ISQUAN = #{isQuan, jdbcType=VARCHAR},
+			</if>
+			<if test="intSysForm != null">
+				INTSYSFORM = #{intSysForm, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          FILEID = #{fileID, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFileDotById" parameterType="string"> 
+        delete from FILEDOT
+        where FILEID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFileDots" parameterType="com.glaf.isdp.query.FileDotQuery">
+		delete from FILEDOT
+		where ( 
+ 			  FILEID IN
+              <foreach item="x_fileID" index="index" collection="fileIDs" 
+                     open="(" separator="," close=")">
+                  #{x_fileID}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFileDotById" parameterType="string" resultMap="fileDotResultMap">
+		select * from FILEDOT where FILEID = #{id}
+	</select>
+
+
+	<select id="getFileDots" 
+	    parameterType="com.glaf.isdp.query.FileDotQuery"
+		resultMap="fileDotResultMap">
+		select E.*
+		<include refid="selectFileDotsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.FILEID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFileDotCount" 
+	    parameterType="com.glaf.isdp.query.FileDotQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFileDotsSql" />
+	</select>
+
+
+	<sql id="selectFileDotsSql">
+
+		from FILEDOT E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="listId != null and listId != '' ">
+				and E.LISTID = #{listId}
+            </if>
+
+			<if test="listIdLike != null and listIdLike != '' ">
+				and E.LISTID like #{listIdLike}
+            </if>
+
+			<if test="listIds != null and listIds.size() &gt; 0">
+			    and E.LISTID IN
+                <foreach item="x_listId" index="index" collection="listIds" 
+                     open="(" separator="," close=")">
+                  #{x_listId}
+                </foreach>
+			</if>
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.INDEX_ID IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="fbelong != null and fbelong != '' ">
+				and E.FBELONG = #{fbelong}
+            </if>
+
+			<if test="fbelongLike != null and fbelongLike != '' ">
+				and E.FBELONG like #{fbelongLike}
+            </if>
+
+			<if test="fbelongs != null and fbelongs.size() &gt; 0">
+			    and E.FBELONG IN
+                <foreach item="x_fbelong" index="index" collection="fbelongs" 
+                     open="(" separator="," close=")">
+                  #{x_fbelong}
+                </foreach>
+			</if>
+	        
+			<if test="fnum != null and fnum != '' ">
+				and E.FNUM = #{fnum}
+            </if>
+
+			<if test="fnumLike != null and fnumLike != '' ">
+				and E.FNUM like #{fnumLike}
+            </if>
+
+			<if test="fnums != null and fnums.size() &gt; 0">
+			    and E.FNUM IN
+                <foreach item="x_fnum" index="index" collection="fnums" 
+                     open="(" separator="," close=")">
+                  #{x_fnum}
+                </foreach>
+			</if>
+	        
+			<if test="pbelong != null and pbelong != '' ">
+				and E.PBELONG = #{pbelong}
+            </if>
+
+			<if test="pbelongLike != null and pbelongLike != '' ">
+				and E.PBELONG like #{pbelongLike}
+            </if>
+
+			<if test="pbelongs != null and pbelongs.size() &gt; 0">
+			    and E.PBELONG IN
+                <foreach item="x_pbelong" index="index" collection="pbelongs" 
+                     open="(" separator="," close=")">
+                  #{x_pbelong}
+                </foreach>
+			</if>
+	        
+			<if test="num != null and num != '' ">
+				and E.NUM = #{num}
+            </if>
+
+			<if test="numLike != null and numLike != '' ">
+				and E.NUM like #{numLike}
+            </if>
+
+			<if test="nums != null and nums.size() &gt; 0">
+			    and E.NUM IN
+                <foreach item="x_num" index="index" collection="nums" 
+                     open="(" separator="," close=")">
+                  #{x_num}
+                </foreach>
+			</if>
+	        
+			<if test="fname != null and fname != '' ">
+				and E.FNAME = #{fname}
+            </if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.FNAME like #{fnameLike}
+            </if>
+
+			<if test="fnames != null and fnames.size() &gt; 0">
+			    and E.FNAME IN
+                <foreach item="x_fname" index="index" collection="fnames" 
+                     open="(" separator="," close=")">
+                  #{x_fname}
+                </foreach>
+			</if>
+	        
+			<if test="dotName != null and dotName != '' ">
+				and E.DOTNAME = #{dotName}
+            </if>
+
+			<if test="dotNameLike != null and dotNameLike != '' ">
+				and E.DOTNAME like #{dotNameLike}
+            </if>
+
+			<if test="dotNames != null and dotNames.size() &gt; 0">
+			    and E.DOTNAME IN
+                <foreach item="x_dotName" index="index" collection="dotNames" 
+                     open="(" separator="," close=")">
+                  #{x_dotName}
+                </foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+
+			<if test="dtimeGreaterThanOrEqual != null">
+				and E.DTIME &gt;= #{dtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="dtimeLessThanOrEqual != null">
+				and E.DTIME &lt;= #{dtimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="fileName != null and fileName != '' ">
+				and E.FILE_NAME = #{fileName}
+            </if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILE_NAME like #{fileNameLike}
+            </if>
+
+			<if test="fileNames != null and fileNames.size() &gt; 0">
+			    and E.FILE_NAME IN
+                <foreach item="x_fileName" index="index" collection="fileNames" 
+                     open="(" separator="," close=")">
+                  #{x_fileName}
+                </foreach>
+			</if>
+	        <!-- 
+			<if test="fileContent != null and fileContent != '' ">
+				and E.FILE_CONTENT = #{fileContent}
+            </if>
+
+			<if test="fileContentLike != null and fileContentLike != '' ">
+				and E.FILE_CONTENT like #{fileContentLike}
+            </if>
+
+			<if test="fileContents != null and fileContents.size() &gt; 0">
+			    and E.FILE_CONTENT IN
+                <foreach item="x_fileContent" index="index" collection="fileContents" 
+                     open="(" separator="," close=")">
+                  #{x_fileContent}
+                </foreach>
+			</if>
+			 -->
+			<if test="fileSize != null">
+				and E.FILESIZE = #{fileSize}
+            </if>
+
+			<if test="fileSizeGreaterThanOrEqual != null">
+				and E.FILESIZE &gt;= #{fileSizeGreaterThanOrEqual}
+            </if>
+
+			<if test="fileSizeLessThanOrEqual != null">
+				and E.FILESIZE &lt;= #{fileSizeLessThanOrEqual}
+            </if>
+
+			<if test="fileSizes != null and fileSizes.size() &gt; 0">
+			    and E.FILESIZE IN
+                <foreach item="x_fileSize" index="index" collection="fileSizes" 
+                     open="(" separator="," close=")">
+                  #{x_fileSize}
+                </foreach>
+			</if>
+      
+
+			<if test="dwid != null">
+				and E.DWID = #{dwid}
+            </if>
+
+			<if test="dwidGreaterThanOrEqual != null">
+				and E.DWID &gt;= #{dwidGreaterThanOrEqual}
+            </if>
+
+			<if test="dwidLessThanOrEqual != null">
+				and E.DWID &lt;= #{dwidLessThanOrEqual}
+            </if>
+
+			<if test="dwids != null and dwids.size() &gt; 0">
+			    and E.DWID IN
+                <foreach item="x_dwid" index="index" collection="dwids" 
+                     open="(" separator="," close=")">
+                  #{x_dwid}
+                </foreach>
+			</if>
+      
+
+			<if test="fbid != null">
+				and E.FBID = #{fbid}
+            </if>
+
+			<if test="fbidGreaterThanOrEqual != null">
+				and E.FBID &gt;= #{fbidGreaterThanOrEqual}
+            </if>
+
+			<if test="fbidLessThanOrEqual != null">
+				and E.FBID &lt;= #{fbidLessThanOrEqual}
+            </if>
+
+			<if test="fbids != null and fbids.size() &gt; 0">
+			    and E.FBID IN
+                <foreach item="x_fbid" index="index" collection="fbids" 
+                     open="(" separator="," close=")">
+                  #{x_fbid}
+                </foreach>
+			</if>
+      
+
+			<if test="fxid != null">
+				and E.FXID = #{fxid}
+            </if>
+
+			<if test="fxidGreaterThanOrEqual != null">
+				and E.FXID &gt;= #{fxidGreaterThanOrEqual}
+            </if>
+
+			<if test="fxidLessThanOrEqual != null">
+				and E.FXID &lt;= #{fxidLessThanOrEqual}
+            </if>
+
+			<if test="fxids != null and fxids.size() &gt; 0">
+			    and E.FXID IN
+                <foreach item="x_fxid" index="index" collection="fxids" 
+                     open="(" separator="," close=")">
+                  #{x_fxid}
+                </foreach>
+			</if>
+      
+	        
+			<if test="jid != null and jid != '' ">
+				and E.JID = #{jid}
+            </if>
+
+			<if test="jidLike != null and jidLike != '' ">
+				and E.JID like #{jidLike}
+            </if>
+
+			<if test="jids != null and jids.size() &gt; 0">
+			    and E.JID IN
+                <foreach item="x_jid" index="index" collection="jids" 
+                     open="(" separator="," close=")">
+                  #{x_jid}
+                </foreach>
+			</if>
+	        
+			<if test="flid != null and flid != '' ">
+				and E.FLID = #{flid}
+            </if>
+
+			<if test="flidLike != null and flidLike != '' ">
+				and E.FLID like #{flidLike}
+            </if>
+
+			<if test="flids != null and flids.size() &gt; 0">
+			    and E.FLID IN
+                <foreach item="x_flid" index="index" collection="flids" 
+                     open="(" separator="," close=")">
+                  #{x_flid}
+                </foreach>
+			</if>
+	        
+			<if test="topNode != null and topNode != '' ">
+				and E.TOPNODE = #{topNode}
+            </if>
+
+			<if test="topNodeLike != null and topNodeLike != '' ">
+				and E.TOPNODE like #{topNodeLike}
+            </if>
+
+			<if test="topNodes != null and topNodes.size() &gt; 0">
+			    and E.TOPNODE IN
+                <foreach item="x_topNode" index="index" collection="topNodes" 
+                     open="(" separator="," close=")">
+                  #{x_topNode}
+                </foreach>
+			</if>
+	        
+			<if test="cman != null and cman != '' ">
+				and E.CMAN = #{cman}
+            </if>
+
+			<if test="cmanLike != null and cmanLike != '' ">
+				and E.CMAN like #{cmanLike}
+            </if>
+
+			<if test="cmans != null and cmans.size() &gt; 0">
+			    and E.CMAN IN
+                <foreach item="x_cman" index="index" collection="cmans" 
+                     open="(" separator="," close=")">
+                  #{x_cman}
+                </foreach>
+			</if>
+	        
+			<if test="content != null and content != '' ">
+				and E.CONTENT = #{content}
+            </if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.CONTENT like #{contentLike}
+            </if>
+
+			<if test="contents != null and contents.size() &gt; 0">
+			    and E.CONTENT IN
+                <foreach item="x_content" index="index" collection="contents" 
+                     open="(" separator="," close=")">
+                  #{x_content}
+                </foreach>
+			</if>
+	        
+			<if test="listFlag != null and listFlag != '' ">
+				and E.LISTFLAG = #{listFlag}
+            </if>
+
+			<if test="listFlagLike != null and listFlagLike != '' ">
+				and E.LISTFLAG like #{listFlagLike}
+            </if>
+
+			<if test="listFlags != null and listFlags.size() &gt; 0">
+			    and E.LISTFLAG IN
+                <foreach item="x_listFlag" index="index" collection="listFlags" 
+                     open="(" separator="," close=")">
+                  #{x_listFlag}
+                </foreach>
+			</if>
+
+			<if test="toFile != null">
+				and E.TOFILE = #{toFile}
+            </if>
+
+			<if test="toFileGreaterThanOrEqual != null">
+				and E.TOFILE &gt;= #{toFileGreaterThanOrEqual}
+            </if>
+
+			<if test="toFileLessThanOrEqual != null">
+				and E.TOFILE &lt;= #{toFileLessThanOrEqual}
+            </if>
+
+			<if test="toFiles != null and toFiles.size() &gt; 0">
+			    and E.TOFILE IN
+                <foreach item="x_toFile" index="index" collection="toFiles" 
+                     open="(" separator="," close=")">
+                  #{x_toFile}
+                </foreach>
+			</if>
+      
+	        
+			<if test="isInk != null and isInk != '' ">
+				and E.ISINK = #{isInk}
+            </if>
+
+			<if test="isInkLike != null and isInkLike != '' ">
+				and E.ISINK like #{isInkLike}
+            </if>
+
+			<if test="isInks != null and isInks.size() &gt; 0">
+			    and E.ISINK IN
+                <foreach item="x_isInk" index="index" collection="isInks" 
+                     open="(" separator="," close=")">
+                  #{x_isInk}
+                </foreach>
+			</if>
+
+			<if test="dotType != null">
+				and E.DOTTYPE = #{dotType}
+            </if>
+
+			<if test="dotTypeGreaterThanOrEqual != null">
+				and E.DOTTYPE &gt;= #{dotTypeGreaterThanOrEqual}
+            </if>
+
+			<if test="dotTypeLessThanOrEqual != null">
+				and E.DOTTYPE &lt;= #{dotTypeLessThanOrEqual}
+            </if>
+
+			<if test="dotTypes != null and dotTypes.size() &gt; 0">
+			    and E.DOTTYPE IN
+                <foreach item="x_dotType" index="index" collection="dotTypes" 
+                     open="(" separator="," close=")">
+                  #{x_dotType}
+                </foreach>
+			</if>
+      
+	        
+			<if test="ctimeDName != null and ctimeDName != '' ">
+				and E.CTIMEDNAME = #{ctimeDName}
+            </if>
+
+			<if test="ctimeDNameLike != null and ctimeDNameLike != '' ">
+				and E.CTIMEDNAME like #{ctimeDNameLike}
+            </if>
+
+			<if test="ctimeDNames != null and ctimeDNames.size() &gt; 0">
+			    and E.CTIMEDNAME IN
+                <foreach item="x_ctimeDName" index="index" collection="ctimeDNames" 
+                     open="(" separator="," close=")">
+                  #{x_ctimeDName}
+                </foreach>
+			</if>
+
+			<if test="type != null">
+				and E.TYPE = #{type}
+            </if>
+
+			<if test="typeGreaterThanOrEqual != null">
+				and E.TYPE &gt;= #{typeGreaterThanOrEqual}
+            </if>
+
+			<if test="typeLessThanOrEqual != null">
+				and E.TYPE &lt;= #{typeLessThanOrEqual}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+      
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+
+			<if test="utreeIndex != null">
+				and E.UTREE_INDEX = #{utreeIndex}
+            </if>
+
+			<if test="utreeIndexGreaterThanOrEqual != null">
+				and E.UTREE_INDEX &gt;= #{utreeIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="utreeIndexLessThanOrEqual != null">
+				and E.UTREE_INDEX &lt;= #{utreeIndexLessThanOrEqual}
+            </if>
+
+			<if test="utreeIndexs != null and utreeIndexs.size() &gt; 0">
+			    and E.UTREE_INDEX IN
+                <foreach item="x_utreeIndex" index="index" collection="utreeIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_utreeIndex}
+                </foreach>
+			</if>
+      
+	        
+			<if test="isQuan != null and isQuan != '' ">
+				and E.ISQUAN = #{isQuan}
+            </if>
+
+			<if test="isQuanLike != null and isQuanLike != '' ">
+				and E.ISQUAN like #{isQuanLike}
+            </if>
+
+			<if test="isQuans != null and isQuans.size() &gt; 0">
+			    and E.ISQUAN IN
+                <foreach item="x_isQuan" index="index" collection="isQuans" 
+                     open="(" separator="," close=")">
+                  #{x_isQuan}
+                </foreach>
+			</if>
+
+			<if test="intSysForm != null">
+				and E.INTSYSFORM = #{intSysForm}
+            </if>
+
+			<if test="intSysFormGreaterThanOrEqual != null">
+				and E.INTSYSFORM &gt;= #{intSysFormGreaterThanOrEqual}
+            </if>
+
+			<if test="intSysFormLessThanOrEqual != null">
+				and E.INTSYSFORM &lt;= #{intSysFormLessThanOrEqual}
+            </if>
+
+			<if test="intSysForms != null and intSysForms.size() &gt; 0">
+			    and E.INTSYSFORM IN
+                <foreach item="x_intSysForm" index="index" collection="intSysForms" 
+                     open="(" separator="," close=")">
+                  #{x_intSysForm}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into glaf-isdp-site.xml and change them -->
+<!-- there.  If glaf-isdp-site.xml does not already exist, create it.      -->
+
+<configuration>
+
+	<property>
+		<name>isdp.render.beanFactory</name>
+		<value>spring</value>
+		<description>beanfactory type:spring or pool</description>
+	</property>
+	
+</configuration>

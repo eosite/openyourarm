@@ -1,0 +1,420 @@
+body{
+    min-width: 1300px;
+}
+.portlet.box>.portlet-body{
+    padding:3px 3px;
+}
+.myFieldset{
+    border:2px groove #fdfdfd;
+    padding:5px 5px;
+}
+.myFieldset legend{
+    width: inherit;
+    margin-bottom: 0px;
+    border-bottom: 0;
+    font-size: 14px;
+
+}
+.theme_panel{
+    float: left;
+    border:1px solid grey;
+    height: 100%;
+}
+.themeTreePanel{
+    width: 150px;
+}
+.theme_attr_panel{
+    width: 400px;
+}
+
+/**
+ * select特小样式
+ */
+.hmtd-xs select{
+  height: 26px;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+/**
+ * touchSpin输入框特小样式
+ */
+.hmtd-xs .input-group.bootstrap-touchspin>.spininput{
+  height: 26px;
+}
+.hmtd-xs .input-group.bootstrap-touchspin>.input-group-btn-vertical>.btn{
+  height: 14px !important;
+  padding: 6px 12px;
+}
+.hmtd-xs .bootstrap-touchspin .input-group-btn-vertical i{
+    top :0px;
+}
+.hmtd-xs .input-group-addon{
+    padding: 0 6px !important;
+    height: 24px !important;
+    line-height:1 !important;
+    display: table-cell;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    color: #4d6b8a;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hmtd-xs input{
+    padding: 0 4px;
+}
+
+
+.myMenu{
+    width:120px;
+    left:50px;
+    top:100px;
+    padding: 0px 0px;
+}
+.myMenu li{
+    padding: 5px 3px;
+    text-align: center;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+.myMenu li:hover{
+    background-color: #98dcf8;
+}
+
+.theme_thumbnail{
+    height: 160px;
+    width: 193px;
+}
+.theme_thumbnail_panel{
+    height: 162px;
+    width: 195px;
+    border:1px solid black;
+}
+.theme_thumbnail_title{
+    text-align: center;
+    width: 195px;
+}
+.theme_thumbnail_panel span{
+    margin-top: 54px;
+}
+.theme_thumbnail_panel a{
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+.theme_thumbnail_panel a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.theme_thumbnail_upload{
+    opacity: 0;
+    position:absolute;
+    cursor:pointer;
+}
+        
+    /**自由布局设置样式*/
+#freelayoutModal .modal-dialog .modal-content .modal-body table tbody tr td{
+    height:30px;
+}
+#freelayoutModal .modal-dialog .modal-content .modal-body table tbody tr td div{
+    background:#F2FEFF;
+    border:1px dashed black; 
+}
+#freelayoutModal .modal-dialog .modal-content .modal-body table tbody tr td div:hover,#freelayoutModal .modal-dialog .modal-content .modal-body table tbody tr td div.active:hover{
+    background:#d64635;
+    border:1px solid black;
+    cursor:pointer;
+}
+#freelayoutModal .modal-dialog .modal-content .modal-body table tbody tr td div.active{
+    background:#2e2cb5;
+    border:1px solid black;
+    color:white;
+}
+
+    /**自由布局设置样式*/
+.layoutShow table tbody tr td{
+    height:30px;
+}
+.layoutShow table tbody tr td div{
+    background:#F2FEFF;
+    border:1px dashed black; 
+}
+.layoutShow table tbody tr td div:hover,.layoutShow table tbody tr td div.active:hover{
+    background:#d64635;
+    border:1px solid black;
+    cursor:pointer;
+}
+.layoutShow table tbody tr td div.active{
+    background:#2e2cb5;
+    border:1px solid black;
+    color:white;
+}
+
+
+
+.compbox.active{
+    border:3px solid red;
+}
+
+.attrItem.active fieldset{
+    border-color:red;
+}
+
+.modal-open .colorpicker{
+    z-index: 100 !important;
+}
+
+.changePanelBtn{
+    background-color: #2d5f8b;
+    color:white;
+}
+.changePanelBtn:hover{
+    background-color: #2e8bdc;
+    color:white;
+}
+.changePanelBtn.active{
+    background-color:#e43a45;
+    color:white;
+}
+
+.layoutDsp .layout{
+    min-height: 200px;
+    border:1px dashed #c2bdbd;
+}
+
+@-webkit-keyframes  shineRed {  
+    from { -webkit-box-shadow: 0 0 5px #bbb; }  
+    50% { -webkit-box-shadow: 0 0 10px red; }  
+    to { -webkit-box-shadow: 0 0 5px #bbb; }  
+}  
+@-webkit-keyframes shineBlue {  
+    from { -webkit-box-shadow: 0 0 9px #333; }  
+    50% { -webkit-box-shadow: 0 0 18px blue; }  
+    to { -webkit-box-shadow: 0 0 9px #333; }  
+}  
+.shine_red{  
+    -webkit-animation-name: shineRed;   
+    -webkit-animation-duration: 1s;  
+    -webkit-animation-iteration-count: infinite;   
+} 
+
+
+.dspPanel{
+    overflow-y: scroll;
+    /*overflow-x : scroll;*/
+    padding:0px 5px;
+}
+.setting_left_panel{
+    width: 430px;
+}
+html{
+        height: 100%;
+}
+
+.layoutContainer{
+    width: 100%;
+}
+
+.gobalControlItem {
+    width: 20%;
+    padding: 3px 3px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px dashed grey;
+    border-style: dashed;
+}
+#compDsp{
+    height: 100%;
+}
+.leftPanel,.rightPanel{
+    /*display: inline-block;*/
+    float: left;
+    vertical-align: top;
+    height: 100%;
+    border: 1px dashed grey;
+}
+.leftPanel{
+    width: 70%;
+}
+.rightPanel{
+    width: 30%;
+}
+#compDsp .leftPanel,#compDsp .rightPanel{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    overflow:hidden;
+    /*overflow-y: scroll;*/
+}
+#compDsp .leftPanel{
+    width: 70%;
+}
+#compDsp .rightPanel{
+    width: 29%;
+}
+
+.gobalControlItem{
+    overflow: hidden;
+}
+
+.btn-group-sm>.btn, .btn-sm{
+    height:26px;
+}
+.hmtd-xs .minicolors input{
+    height: 25px;
+}
+
+.minicolors-theme-bootstrap .minicolors-swatch{
+    height: 20px;
+}
+
+.form-group.hmtd-xs{
+    margin-top: 5px;
+}
+
+
+.settingPanel .content{
+    display: none ;
+}
+
+.settingPanel.active .content{
+    display: block ;
+}
+
+.settingPanel .top{
+    height:19px;
+    background-color:#D3D3D3;
+    text-align:center;
+    cursor: pointer;
+    border:1px solid black;
+}
+
+     .theme_item .item_name_div{
+        text-align: center;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+     .theme_add{
+        text-align: center;
+    }
+     .theme_add .addBtn{
+        width: 145px;
+        height: 145px;
+        
+    }
+     .theme_add .addBtn i{
+        font-size: 100px;
+        line-height: 145px;
+    }
+     .theme_item .mask{
+        height: 194px;
+        width: 194px;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        background-color: rgba(0,0,0,0.5);
+        display: none;
+    }
+     .theme_item .mask .operatorGroup{
+        text-align: center;
+        margin-top:82px;
+    }
+
+     .theme_item.used{
+        border-color: red;
+        background-color: rgba(242, 121, 121, 0.5);
+    }
+
+.theme_item{
+        /*display: inline-block;*/
+        float: left;
+        width:200px;
+        height:200px;
+        border:1px solid #ddd;
+        overflow: hidden;
+        position: relative;
+        padding:3px 3px;
+    }
+
+
+.cmpTypeParentUl{
+    list-style-type: none;
+    -webkit-padding-start: 0px;
+}
+ul{
+    list-style-type: none;
+    -webkit-padding-start: 0px;   
+}
+
+.cmpTypeTitle{
+    display: block;
+    padding: 3px 3px;
+    
+}
+
+.oneTitle{
+    background-color: #d4e7f0;
+    padding-left: 10px;
+    border-bottom: 1px solid grey;
+
+}
+
+.secondTitle{
+    padding-left:20px;
+    cursor: pointer;
+}
+.cmpTypeParent{
+    cursor: pointer;
+}
+.cmpTypeParent.active ul{
+    display: block;
+}
+.cmpTypeParent ul{
+    display: none;
+}
+.controlItem.seclected{
+    background-color: #a5bac4;
+}
+.controlItem{
+    color: black;
+}
+.cmpTypeParent:hover,.controlItem:hover{
+    color:#00a4ac;
+}
+
+/**
+ * 激活按钮
+ */
+.attrBtn.btn.active{
+    color: #fff;
+    background-color: #7b7373;
+    font-weight: bold;
+}
+.attrBtn.btn:hover{
+    background-color: #c4aeae;
+}
+
+.controlDislayPanel{
+    padding:5px 5px;
+}
+
+.theme_item.default {
+    border-color: blue;
+}
+
+
+.titlePanel {
+    text-align: center;
+    border-bottom: 10px;
+    border-bottom: 3px solid #8d8989;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: aliceblue;
+}

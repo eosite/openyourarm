@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoDeveloperMapper">
+
+	<resultMap id="videoDeveloperResultMap" type="com.glaf.video.domain.VideoDeveloper">
+		<id property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="phoneNumber" column="PHONENUMBER_" jdbcType="VARCHAR" />
+		<result property="appKey" column="APPKEY_" jdbcType="VARCHAR" />
+		<result property="secretKey" column="SECRETKEY_" jdbcType="VARCHAR" />
+		<result property="authAddr" column="AUTHADDR_" jdbcType="VARCHAR" />
+		<result property="platformAddr" column="PLATFORMADDR_"
+			jdbcType="VARCHAR" />
+		<result property="apiUrl" column="APIURL_" jdbcType="VARCHAR" />
+		<result property="accessToken" column="ACCESSTOKEN_" jdbcType="VARCHAR" />
+		<result property="tokenUpdateTime" column="TOKENUPDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="isEncrypt" column="ISENCRYPT_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoDeveloper" parameterType="com.glaf.video.domain.VideoDeveloper">
+		insert into VIDEO_DEVELOPER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			DEVELOPERID_
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="phoneNumber != null">
+				,PHONENUMBER_
+			</if>
+			<if test="appKey != null">
+				,APPKEY_
+			</if>
+			<if test="secretKey != null">
+				,SECRETKEY_
+			</if>
+			<if test="authAddr != null">
+				,AUTHADDR_
+			</if>
+			<if test="platformAddr != null">
+				,PLATFORMADDR_
+			</if>
+			<if test="apiUrl != null">
+				,APIURL_
+			</if>
+			<if test="accessToken != null">
+				,ACCESSTOKEN_
+			</if>
+			<if test="tokenUpdateTime != null">
+				,TOKENUPDATETIME_
+			</if>
+			<if test="isEncrypt != null">
+				,ISENCRYPT_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{developerId, jdbcType=VARCHAR}
+
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="phoneNumber != null">
+				,#{phoneNumber, jdbcType=VARCHAR}
+			</if>
+			<if test="appKey != null">
+				,#{appKey, jdbcType=VARCHAR}
+			</if>
+			<if test="secretKey != null">
+				,#{secretKey, jdbcType=VARCHAR}
+			</if>
+			<if test="authAddr != null">
+				,#{authAddr, jdbcType=VARCHAR}
+			</if>
+			<if test="platformAddr != null">
+				,#{platformAddr, jdbcType=VARCHAR}
+			</if>
+			<if test="apiUrl != null">
+				,#{apiUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="accessToken != null">
+				,#{accessToken, jdbcType=VARCHAR}
+			</if>
+			<if test="tokenUpdateTime != null">
+				,#{tokenUpdateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="isEncrypt != null">
+				,#{isEncrypt, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoDeveloper" parameterType="java.util.List">
+		insert into VIDEO_DEVELOPER (
+		DEVELOPERID_
+		,USERID_
+		,NAME_
+		,DESC_
+		,PHONENUMBER_
+		,APPKEY_
+		,SECRETKEY_
+		,AUTHADDR_
+		,PLATFORMADDR_
+		,APIURL_
+		,ACCESSTOKEN_
+		,TOKENUPDATETIME_
+		,ISENCRYPT_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="videoDeveloper" index="index"
+			separator=",">
+			(
+			#{videoDeveloper.developerId, jdbcType=VARCHAR}
+			,#{videoDeveloper.userId, jdbcType=VARCHAR}
+			,#{videoDeveloper.name,
+			jdbcType=VARCHAR}
+			,#{videoDeveloper.desc, jdbcType=VARCHAR}
+			,#{videoDeveloper.phoneNumber, jdbcType=VARCHAR}
+			,#{videoDeveloper.appKey, jdbcType=VARCHAR}
+			,#{videoDeveloper.secretKey, jdbcType=VARCHAR}
+			,#{videoDeveloper.authAddr, jdbcType=VARCHAR}
+			,#{videoDeveloper.platformAddr, jdbcType=VARCHAR}
+			,#{videoDeveloper.apiUrl, jdbcType=VARCHAR}
+			,#{videoDeveloper.accessToken, jdbcType=VARCHAR}
+			,#{videoDeveloper.tokenUpdateTime, jdbcType=TIMESTAMP}
+			,#{videoDeveloper.isEncrypt, jdbcType=INTEGER}
+			,#{videoDeveloper.locked, jdbcType=INTEGER}
+			,#{videoDeveloper.createBy, jdbcType=VARCHAR}
+			,#{videoDeveloper.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoDeveloper_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoDeveloper" index="index">
+			insert
+			into VIDEO_DEVELOPER (
+			DEVELOPERID_
+			,USERID_
+			,NAME_
+			,DESC_
+			,PHONENUMBER_
+			,APPKEY_
+			,SECRETKEY_
+			,AUTHADDR_
+			,PLATFORMADDR_
+			,APIURL_
+			,ACCESSTOKEN_
+			,TOKENUPDATETIME_
+			,ISENCRYPT_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			) values (
+			#{videoDeveloper.developerId, jdbcType=VARCHAR}
+			,#{videoDeveloper.userId, jdbcType=VARCHAR}
+			,#{videoDeveloper.name,
+			jdbcType=VARCHAR}
+			,#{videoDeveloper.desc, jdbcType=VARCHAR}
+			,#{videoDeveloper.phoneNumber, jdbcType=VARCHAR}
+			,#{videoDeveloper.appKey, jdbcType=VARCHAR}
+			,#{videoDeveloper.secretKey, jdbcType=VARCHAR}
+			,#{videoDeveloper.authAddr, jdbcType=VARCHAR}
+			,#{videoDeveloper.platformAddr, jdbcType=VARCHAR}
+			,#{videoDeveloper.apiUrl, jdbcType=VARCHAR}
+			,#{videoDeveloper.accessToken, jdbcType=VARCHAR}
+			,#{videoDeveloper.tokenUpdateTime, jdbcType=TIMESTAMP}
+			,#{videoDeveloper.isEncrypt, jdbcType=INTEGER}
+			,#{videoDeveloper.locked, jdbcType=INTEGER}
+			,#{videoDeveloper.createBy, jdbcType=VARCHAR}
+			,#{videoDeveloper.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoDeveloper" parameterType="com.glaf.video.domain.VideoDeveloper">
+		update VIDEO_DEVELOPER
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				PHONENUMBER_ = #{phoneNumber, jdbcType=VARCHAR},
+			</if>
+			<if test="appKey != null">
+				APPKEY_ = #{appKey, jdbcType=VARCHAR},
+			</if>
+			<if test="secretKey != null">
+				SECRETKEY_ = #{secretKey, jdbcType=VARCHAR},
+			</if>
+			<if test="authAddr != null">
+				AUTHADDR_ = #{authAddr, jdbcType=VARCHAR},
+			</if>
+			<if test="platformAddr != null">
+				PLATFORMADDR_ = #{platformAddr, jdbcType=VARCHAR},
+			</if>
+			<if test="apiUrl != null">
+				APIURL_ = #{apiUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="accessToken != null">
+				ACCESSTOKEN_ = #{accessToken, jdbcType=VARCHAR},
+			</if>
+			<if test="tokenUpdateTime != null">
+				TOKENUPDATETIME_ = #{tokenUpdateTime,
+				jdbcType=TIMESTAMP},
+			</if>
+			<if test="isEncrypt != null">
+				ISENCRYPT_ = #{isEncrypt, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		DEVELOPERID_ = #{developerId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoDeveloperById" parameterType="string">
+		delete from
+		VIDEO_DEVELOPER
+		where DEVELOPERID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoDevelopers" parameterType="com.glaf.video.query.VideoDeveloperQuery">
+		delete from VIDEO_DEVELOPER
+		where (
+		DEVELOPERID_ IN
+		<foreach item="x_developerId" index="index" collection="developerIds"
+			open="(" separator="," close=")">
+			#{x_developerId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getVideoDeveloperById" parameterType="string"
+		resultMap="videoDeveloperResultMap">
+		select * from VIDEO_DEVELOPER where DEVELOPERID_ = #{id}
+	</select>
+
+
+	<select id="getVideoDeveloperByUserId" parameterType="string"
+		resultMap="videoDeveloperResultMap">
+		select * from VIDEO_DEVELOPER where USERID_ = #{userId}
+	</select>
+
+
+	<select id="getVideoDevelopers" parameterType="com.glaf.video.query.VideoDeveloperQuery"
+		resultMap="videoDeveloperResultMap">
+		select distinct E.*
+		<include refid="selectVideoDevelopersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoDeveloperCount" parameterType="com.glaf.video.query.VideoDeveloperQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoDevelopersSql" />
+	</select>
+
+
+	<sql id="selectVideoDevelopersSql">
+
+		from VIDEO_DEVELOPER E
+
+		<where>
+			1 = 1
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+			</if>
+
+			<if test="phoneNumberLike != null and phoneNumberLike != '' ">
+				and E.PHONENUMBER_ like #{phoneNumberLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

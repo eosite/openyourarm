@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TaskTableMapper">
+
+	<resultMap id="taskTableResultMap" type="com.glaf.datamgr.domain.TaskTable">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="tableName" column="TABLENAME_" jdbcType="VARCHAR" />
+		<result property="idColumn" column="IDCOLUMN_" jdbcType="VARCHAR" />
+		<result property="nameColumn" column="NAMECOLUMN_" jdbcType="VARCHAR" />
+		<result property="nameExpression" column="NAMEEXPRESSION_"
+			jdbcType="VARCHAR" />
+		<result property="valueColumn" column="VALUECOLUMN_" jdbcType="VARCHAR" />
+		<result property="valueExpression" column="VALUEEXPRESSION_"
+			jdbcType="VARCHAR" />
+		<result property="typeColumn" column="TYPECOLUMN_" jdbcType="VARCHAR" />
+		<result property="startDateColumn" column="STARTDATECOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="endDateColumn" column="ENDDATECOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="databaseIds" column="DATABASEIDS_" jdbcType="VARCHAR" />
+		<result property="syncColumns" column="SYNCCOLUMNS_" jdbcType="VARCHAR" />
+		<result property="startTime" column="STARTTIME_" jdbcType="TIMESTAMP" />
+		<result property="endTime" column="ENDTIME_" jdbcType="TIMESTAMP" />
+		<result property="frequency" column="FREQUENCY_" jdbcType="INTEGER" />
+		<result property="executeDay" column="EXECUTEDAY_" jdbcType="INTEGER" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTaskTable" parameterType="com.glaf.datamgr.domain.TaskTable">
+		insert into SYS_TASK_TABLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="tableName != null">
+				,TABLENAME_
+			</if>
+			<if test="idColumn != null">
+				,IDCOLUMN_
+			</if>
+			<if test="nameColumn != null">
+				,NAMECOLUMN_
+			</if>
+			<if test="nameExpression != null">
+				,NAMEEXPRESSION_
+			</if>
+			<if test="valueColumn != null">
+				,VALUECOLUMN_
+			</if>
+			<if test="valueExpression != null">
+				,VALUEEXPRESSION_
+			</if>
+			<if test="typeColumn != null">
+				,TYPECOLUMN_
+			</if>
+			<if test="startDateColumn != null">
+				,STARTDATECOLUMN_
+			</if>
+			<if test="endDateColumn != null">
+				,ENDDATECOLUMN_
+			</if>
+			<if test="databaseIds != null">
+				,DATABASEIDS_
+			</if>
+			<if test="syncColumns != null">
+				,SYNCCOLUMNS_
+			</if>
+			<if test="startTime != null">
+				,STARTTIME_
+			</if>
+			<if test="endTime != null">
+				,ENDTIME_
+			</if>
+			<if test="frequency != null">
+				,FREQUENCY_
+			</if>
+			<if test="executeDay != null">
+				,EXECUTEDAY_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="tableName != null">
+				,#{tableName, jdbcType=VARCHAR}
+			</if>
+			<if test="idColumn != null">
+				,#{idColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="nameColumn != null">
+				,#{nameColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="nameExpression != null">
+				,#{nameExpression, jdbcType=VARCHAR}
+			</if>
+			<if test="valueColumn != null">
+				,#{valueColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="valueExpression != null">
+				,#{valueExpression, jdbcType=VARCHAR}
+			</if>
+			<if test="typeColumn != null">
+				,#{typeColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="startDateColumn != null">
+				,#{startDateColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="endDateColumn != null">
+				,#{endDateColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseIds != null">
+				,#{databaseIds, jdbcType=VARCHAR}
+			</if>
+			<if test="syncColumns != null">
+				,#{syncColumns, jdbcType=VARCHAR}
+			</if>
+			<if test="startTime != null">
+				,#{startTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endTime != null">
+				,#{endTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="frequency != null">
+				,#{frequency, jdbcType=INTEGER}
+			</if>
+			<if test="executeDay != null">
+				,#{executeDay, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTaskTable" parameterType="java.util.List">
+		insert into SYS_TASK_TABLE (
+		ID_
+		,TITLE_
+		,TYPE_
+		,TABLENAME_
+		,IDCOLUMN_
+		,NAMECOLUMN_
+		,NAMEEXPRESSION_
+		,VALUECOLUMN_
+		,VALUEEXPRESSION_
+		,TYPECOLUMN_
+		,STARTDATECOLUMN_
+		,ENDDATECOLUMN_
+		,DATABASEIDS_
+		,SYNCCOLUMNS_
+		,STARTTIME_
+		,ENDTIME_
+		,FREQUENCY_
+		,EXECUTEDAY_
+		,SORTNO_
+		,DELETEFLAG_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		)
+		values
+		<foreach collection="list" item="taskTable" index="index"
+			separator=",">
+			(
+			#{taskTable.id, jdbcType=BIGINT}
+			,#{taskTable.title,
+			jdbcType=VARCHAR}
+			,#{taskTable.type, jdbcType=VARCHAR}
+			,#{taskTable.tableName, jdbcType=VARCHAR}
+			,#{taskTable.idColumn,
+			jdbcType=VARCHAR}
+			,#{taskTable.nameColumn, jdbcType=VARCHAR}
+			,#{taskTable.nameExpression, jdbcType=VARCHAR}
+			,#{taskTable.valueColumn, jdbcType=VARCHAR}
+			,#{taskTable.valueExpression, jdbcType=VARCHAR}
+			,#{taskTable.typeColumn, jdbcType=VARCHAR}
+			,#{taskTable.startDateColumn, jdbcType=VARCHAR}
+			,#{taskTable.endDateColumn, jdbcType=VARCHAR}
+			,#{taskTable.databaseIds, jdbcType=VARCHAR}
+			,#{taskTable.syncColumns,
+			jdbcType=VARCHAR}
+			,#{taskTable.startTime,
+			jdbcType=TIMESTAMP}
+			,#{taskTable.endTime, jdbcType=TIMESTAMP}
+			,#{taskTable.frequency,
+			jdbcType=INTEGER}
+			,#{taskTable.executeDay, jdbcType=INTEGER}
+			,#{taskTable.sortNo,
+			jdbcType=INTEGER}
+			,#{taskTable.deleteFlag,
+			jdbcType=INTEGER}
+			,#{taskTable.locked,
+			jdbcType=INTEGER}
+			,#{taskTable.createBy,
+			jdbcType=VARCHAR}
+			,#{taskTable.createTime,
+			jdbcType=TIMESTAMP}
+			,#{taskTable.updateBy,
+			jdbcType=VARCHAR}
+			,#{taskTable.updateTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTaskTable_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="taskTable" index="index">
+			insert into
+			SYS_TASK_TABLE (
+			ID_
+			,TITLE_
+			,TYPE_
+			,TABLENAME_
+			,IDCOLUMN_
+			,NAMECOLUMN_
+			,NAMEEXPRESSION_
+			,VALUECOLUMN_
+			,VALUEEXPRESSION_
+			,TYPECOLUMN_
+			,STARTDATECOLUMN_
+			,ENDDATECOLUMN_
+			,DATABASEIDS_
+			,SYNCCOLUMNS_
+			,STARTTIME_
+			,ENDTIME_
+			,FREQUENCY_
+			,EXECUTEDAY_
+			,SORTNO_
+			,DELETEFLAG_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			)
+			values (
+			#{taskTable.id,
+			jdbcType=BIGINT}
+			,#{taskTable.title,
+			jdbcType=VARCHAR}
+			,#{taskTable.type, jdbcType=VARCHAR}
+			,#{taskTable.tableName,
+			jdbcType=VARCHAR}
+			,#{taskTable.idColumn,
+			jdbcType=VARCHAR}
+			,#{taskTable.nameColumn, jdbcType=VARCHAR}
+			,#{taskTable.nameExpression, jdbcType=VARCHAR}
+			,#{taskTable.valueColumn, jdbcType=VARCHAR}
+			,#{taskTable.valueExpression, jdbcType=VARCHAR}
+			,#{taskTable.typeColumn, jdbcType=VARCHAR}
+			,#{taskTable.startDateColumn, jdbcType=VARCHAR}
+			,#{taskTable.endDateColumn, jdbcType=VARCHAR}
+			,#{taskTable.databaseIds, jdbcType=VARCHAR}
+			,#{taskTable.syncColumns,
+			jdbcType=VARCHAR}
+			,#{taskTable.startTime,
+			jdbcType=TIMESTAMP}
+			,#{taskTable.endTime, jdbcType=TIMESTAMP}
+			,#{taskTable.frequency,
+			jdbcType=INTEGER}
+			,#{taskTable.executeDay, jdbcType=INTEGER}
+			,#{taskTable.sortNo,
+			jdbcType=INTEGER}
+			,#{taskTable.deleteFlag,
+			jdbcType=INTEGER}
+			,#{taskTable.locked,
+			jdbcType=INTEGER}
+			,#{taskTable.createBy,
+			jdbcType=VARCHAR}
+			,#{taskTable.createTime,
+			jdbcType=TIMESTAMP}
+			,#{taskTable.updateBy,
+			jdbcType=VARCHAR}
+			,#{taskTable.updateTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTaskTable" parameterType="com.glaf.datamgr.domain.TaskTable">
+		update SYS_TASK_TABLE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				TABLENAME_ = #{tableName, jdbcType=VARCHAR},
+			</if>
+			<if test="idColumn != null">
+				IDCOLUMN_ = #{idColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="nameColumn != null">
+				NAMECOLUMN_ = #{nameColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="nameExpression != null">
+				NAMEEXPRESSION_ = #{nameExpression, jdbcType=VARCHAR},
+			</if>
+			<if test="valueColumn != null">
+				VALUECOLUMN_ = #{valueColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="valueExpression != null">
+				VALUEEXPRESSION_ = #{valueExpression, jdbcType=VARCHAR},
+			</if>
+			<if test="typeColumn != null">
+				TYPECOLUMN_ = #{typeColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="startDateColumn != null">
+				STARTDATECOLUMN_ = #{startDateColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="endDateColumn != null">
+				ENDDATECOLUMN_ = #{endDateColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseIds != null">
+				DATABASEIDS_ = #{databaseIds, jdbcType=VARCHAR},
+			</if>
+			<if test="syncColumns != null">
+				SYNCCOLUMNS_ = #{syncColumns, jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				STARTTIME_ = #{startTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				ENDTIME_ = #{endTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="frequency != null">
+				FREQUENCY_ = #{frequency, jdbcType=INTEGER},
+			</if>
+			<if test="executeDay != null">
+				EXECUTEDAY_ = #{executeDay, jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteTaskTableById" parameterType="long">
+		delete from
+		SYS_TASK_TABLE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTaskTables" parameterType="com.glaf.datamgr.query.TaskTableQuery">
+		delete from SYS_TASK_TABLE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTaskTableById" parameterType="long" resultMap="taskTableResultMap">
+		select * from SYS_TASK_TABLE where ID_ = #{id}
+	</select>
+
+
+	<select id="getTaskTables" parameterType="com.glaf.datamgr.query.TaskTableQuery"
+		resultMap="taskTableResultMap">
+		select distinct E.*
+		<include refid="selectTaskTablesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTaskTableCount" parameterType="com.glaf.datamgr.query.TaskTableQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTaskTablesSql" />
+	</select>
+
+
+	<sql id="selectTaskTablesSql">
+
+		from SYS_TASK_TABLE E
+
+		<where>
+			1 = 1
+
+			<if test="title != null and title != '' ">
+				and E.TITLE_ = #{title}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="tableName != null and tableName != '' ">
+				and E.TABLENAME_ = #{tableName}
+			</if>
+
+			<if test="tableNameLike != null and tableNameLike != '' ">
+				and E.TABLENAME_ like #{tableNameLike}
+			</if>
+
+			<if test="startTimeGreaterThanOrEqual != null">
+				and E.STARTTIME_ &gt;= #{startTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="startTimeLessThanOrEqual != null">
+				and E.STARTTIME_ &lt;= #{startTimeLessThanOrEqual}
+			</if>
+
+			<if test="endTimeGreaterThanOrEqual != null">
+				and E.ENDTIME_ &gt;= #{endTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="endTimeLessThanOrEqual != null">
+				and E.ENDTIME_ &lt;= #{endTimeLessThanOrEqual}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

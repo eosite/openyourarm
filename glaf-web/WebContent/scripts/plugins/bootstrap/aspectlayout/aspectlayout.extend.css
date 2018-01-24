@@ -1,0 +1,71 @@
+.aspectlayout{
+	/*height:606px;*/
+	width: 100%;
+	margin:0;
+	padding:0;
+}
+.aspectlayout-designer .aspectlayout-middle,
+.aspectlayout-designer .aspectlayout-north,
+.aspectlayout-designer .aspectlayout-south,
+.aspectlayout-designer .aspectlayout-west,
+.aspectlayout-designer .aspectlayout-east{
+	border:#3298fe 1px dashed;
+}
+.aspectlayout-designer .aspectlayout-north{
+	border-bottom-style: none;
+}
+.aspectlayout-designer .aspectlayout-south{
+	border-top-style: none;	
+}
+.aspectlayout-designer .aspectlayout-west{
+	border-style: none;
+	border-right-style:dashed;
+}
+.aspectlayout-designer .aspectlayout-east{
+	border-style: none;
+	border-left-style:dashed;
+}
+.aspectlayout-designer .aspectlayout-north,
+.aspectlayout-designer .aspectlayout-south,
+.aspectlayout-designer .aspectlayout-middle,
+.aspectlayout-designer .aspectlayout-west,
+.aspectlayout-designer .aspectlayout-east,
+.aspectlayout-designer .aspectlayout-center,
+.aspectlayout-designer .containerComp{
+	min-height: 200px;
+}
+
+/*.aspectlayout-north,.aspectlayout-south,.aspectlayout-west,.aspectlayout-center,.aspectlayout-east{
+	border:#3298fe 1px dashed;
+}*/
+
+.aspectlayout-middle{
+	overflow:hidden;
+}
+.aspectlayout-content{
+	height:100%;
+}
+/*.designer .aspectlayout-middle{
+	overflow:inherit;
+}*/
+.aspectlayout-west,.aspectlayout-center,.aspectlayout-east{
+	/*display: inline-block;*/
+	float:left;
+	height: 100%;
+}
+.aspectlayout-west,.aspectlayout-east{
+	width: 30%;
+}
+.aspectlayout-center{
+	width:40%;
+}
+.aspectlayout-north,.aspectlayout-south{
+	height:200px;
+}
+.aspectlayout-north,.aspectlayout-south,.aspectlayout-middle{
+	width: 100%;
+}
+
+.aspectlayout{
+	height: 100%;
+}

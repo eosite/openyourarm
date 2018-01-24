@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step</title>
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet">
+<link href="../base/css/font-awesome.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+
+
+<script>
+$(function(){	
+	$("#container").on("click",'#btn',function(){
+		show();
+	});
+	$("#btn2").on("click",'',function(){
+		show();
+	});
+})
+
+function show(){
+	alert("1111");
+			
+}
+
+
+</script>
+</head>
+<body>
+
+	<div class="mt-element-step">
+		<div class="row step-line">
+	
+			<div class="col-md-4 mt-step-col first done">
+				<div class="mt-step-number bg-white">1</div>
+				<div class="mt-step-title uppercase font-grey-cascade">采购</div>
+				<div class="mt-step-content font-grey-cascade">购买商品</div>
+			</div>
+			<div class="col-md-4 mt-step-col error">
+				<div class="mt-step-number bg-white">2</div>
+				<div class="mt-step-title uppercase font-grey-cascade">付款</div>
+				<div class="mt-step-content font-grey-cascade">支付你的款项</div>
+			</div>
+			<div class="col-md-4 mt-step-col last">
+				<div class="mt-step-number bg-white">3</div>
+				<div class="mt-step-title uppercase font-grey-cascade">部署</div>
+				<div class="mt-step-content font-grey-cascade">接收商品</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row step-line">
+			
+			<div class="col-md-3 mt-step-col first done">
+				<div class="mt-step-number bg-white">1</div>
+				<div class="mt-step-title uppercase font-grey-cascade">Setup</div>
+				<div class="mt-step-content font-grey-cascade">Lorem ipsum dolor sit amet</div>
+			</div>
+			<div class="col-md-3 mt-step-col done">
+				<div class="mt-step-number bg-white">2</div>
+				<div class="mt-step-title uppercase font-grey-cascade">Develop</div>
+				<div class="mt-step-content font-grey-cascade">Lorem ipsum dolor sit amet</div>
+			</div>
+			<div class="col-md-3 mt-step-col active">
+				<div class="mt-step-number bg-white">3</div>
+				<div class="mt-step-title uppercase font-grey-cascade">Testing</div>
+				<div class="mt-step-content font-grey-cascade">Lorem ipsum dolor sit amet</div>
+			</div>
+			<div class="col-md-3 mt-step-col last">
+				<div class="mt-step-number bg-white">4</div>
+				<div class="mt-step-title uppercase font-grey-cascade">Launch</div>
+				<div class="mt-step-content font-grey-cascade">Lorem ipsum dolor sit amet</div>
+			</div>
+		</div>
+	</div>
+	
+	
+   
+</body>
+</html>

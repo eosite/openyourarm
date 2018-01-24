@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DataSetMappingItemMapper">
+
+ 	<resultMap id="dataSetMappingItemResultMap"	type="com.glaf.datamgr.domain.DataSetMappingItem">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="mappingName" column="MAPPINGNAME_" jdbcType="VARCHAR"/>
+        <result property="mappingCode" column="MAPPINGCODE_" jdbcType="VARCHAR"/>
+        <result property="mappingType" column="MAPPINGTYPE_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREEID_" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOPID_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENTID_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertDataSetMappingItem" parameterType="com.glaf.datamgr.domain.DataSetMappingItem">
+		insert into SYS_DATASET_MAPPING_ITEM 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="mappingName != null">
+				,MAPPINGNAME_ 
+			</if>
+			<if test="mappingCode != null">
+				,MAPPINGCODE_ 
+			</if>
+			<if test="mappingType != null">
+				,MAPPINGTYPE_ 
+			</if>
+			<if test="treeId != null">
+				,TREEID_ 
+			</if>
+			<if test="topId != null">
+				,TOPID_ 
+			</if>
+			<if test="parentId != null">
+				,PARENTID_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingName != null">
+				,#{mappingName, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingCode != null">
+				,#{mappingCode, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingType != null">
+				,#{mappingType, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDataSetMappingItem" parameterType="com.glaf.datamgr.domain.DataSetMappingItem">
+		update SYS_DATASET_MAPPING_ITEM
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="mappingName != null">
+				MAPPINGNAME_ = #{mappingName, jdbcType=VARCHAR},
+			</if>
+			<if test="mappingCode != null">
+				MAPPINGCODE_ = #{mappingCode, jdbcType=VARCHAR},
+			</if>
+			<if test="mappingType != null">
+				MAPPINGTYPE_ = #{mappingType, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOPID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDataSetMappingItemById" parameterType="string"> 
+        delete from SYS_DATASET_MAPPING_ITEM
+        where ID_ =	#{id}
+	</delete>
+	
+	<delete id="deleteByParentId" parameterType="string"> 
+        delete from SYS_DATASET_MAPPING_ITEM  where PARENTID_ = #{parentId}
+	</delete>
+
+	
+	<delete id="deleteDataSetMappingItems" parameterType="com.glaf.datamgr.query.DataSetMappingItemQuery">
+		delete from SYS_DATASET_MAPPING_ITEM
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDataSetMappingItemById" parameterType="string" resultMap="dataSetMappingItemResultMap">
+		select * from SYS_DATASET_MAPPING_ITEM where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataSetMappingItems" 
+	    parameterType="com.glaf.datamgr.query.DataSetMappingItemQuery"
+		resultMap="dataSetMappingItemResultMap">
+		select distinct E.*
+		<include refid="selectDataSetMappingItemsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDataSetMappingItemCount" 
+	    parameterType="com.glaf.datamgr.query.DataSetMappingItemQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataSetMappingItemsSql" />
+	</select>
+
+
+	<sql id="selectDataSetMappingItemsSql">
+
+		from SYS_DATASET_MAPPING_ITEM E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="mappingName != null and mappingName != '' ">
+				and E.MAPPINGNAME_ = #{mappingName}
+            </if>
+
+			<if test="mappingNameLike != null and mappingNameLike != '' ">
+				and E.MAPPINGNAME_ like #{mappingNameLike}
+            </if>
+
+			<if test="mappingNames != null and mappingNames.size() &gt; 0">
+			    and E.MAPPINGNAME_ IN
+                <foreach item="x_mappingName" index="index" collection="mappingNames" 
+                     open="(" separator="," close=")">
+                  #{x_mappingName}
+                </foreach>
+			</if>
+	        
+			<if test="mappingCode != null and mappingCode != '' ">
+				and E.MAPPINGCODE_ = #{mappingCode}
+            </if>
+
+			<if test="mappingCodeLike != null and mappingCodeLike != '' ">
+				and E.MAPPINGCODE_ like #{mappingCodeLike}
+            </if>
+
+			<if test="mappingCodes != null and mappingCodes.size() &gt; 0">
+			    and E.MAPPINGCODE_ IN
+                <foreach item="x_mappingCode" index="index" collection="mappingCodes" 
+                     open="(" separator="," close=")">
+                  #{x_mappingCode}
+                </foreach>
+			</if>
+	        
+			<if test="mappingType != null and mappingType != '' ">
+				and E.MAPPINGTYPE_ = #{mappingType}
+            </if>
+
+			<if test="mappingTypeLike != null and mappingTypeLike != '' ">
+				and E.MAPPINGTYPE_ like #{mappingTypeLike}
+            </if>
+
+			<if test="mappingTypes != null and mappingTypes.size() &gt; 0">
+			    and E.MAPPINGTYPE_ IN
+                <foreach item="x_mappingType" index="index" collection="mappingTypes" 
+                     open="(" separator="," close=")">
+                  #{x_mappingType}
+                </foreach>
+			</if>
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREEID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOPID_ = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID_ like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOPID_ IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="parentId != null and parentId != '' ">
+				and E.PARENTID_ = #{parentId}
+            </if>
+			<if test="parentId_ != null and parentId_ != '' ">
+				and E.PARENTID_ = #{parentId_}
+            </if>
+
+			<if test="parentIdLike != null and parentIdLike != '' ">
+				and E.PARENTID_ like #{parentIdLike}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENTID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

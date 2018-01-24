@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SynchronizationRuleMapper">
+
+	<resultMap id="synchronizationRuleResultMap" type="com.glaf.datamgr.domain.SynchronizationRule">
+		<id property="id" column="INTERFACEID" jdbcType="VARCHAR" />
+		<result property="actionName" column="ACTIONNAME" jdbcType="VARCHAR" />
+		<result property="formulas" column="FORMULAS" jdbcType="VARCHAR" />
+		<result property="targetTable" column="TARGETTABLE" jdbcType="VARCHAR" />
+		<result property="souceTable" column="SOUCETABLE" jdbcType="VARCHAR" />
+		<result property="wbsTable" column="WBSTABLE" jdbcType="VARCHAR" />
+		<result property="targetTableModel" column="TARGETTABLEMODEL"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertSynchronizationRule" parameterType="com.glaf.datamgr.domain.SynchronizationRule">
+		insert into SysSynchronization
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			INTERFACEID
+			<if test="actionName != null">
+				,ACTIONNAME
+			</if>
+			<if test="formulas != null">
+				,FORMULAS
+			</if>
+			<if test="targetTable != null">
+				,TARGETTABLE
+			</if>
+			<if test="souceTable != null">
+				,SOUCETABLE
+			</if>
+			<if test="wbsTable != null">
+				,WBSTABLE
+			</if>
+			<if test="targetTableModel != null">
+				,TARGETTABLEMODEL
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="actionName != null">
+				,#{actionName, jdbcType=VARCHAR}
+			</if>
+			<if test="formulas != null">
+				,#{formulas, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTable != null">
+				,#{targetTable, jdbcType=VARCHAR}
+			</if>
+			<if test="souceTable != null">
+				,#{souceTable, jdbcType=VARCHAR}
+			</if>
+			<if test="wbsTable != null">
+				,#{wbsTable, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTableModel != null">
+				,#{targetTableModel, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertSynchronizationRule" parameterType="java.util.List">
+		insert into SysSynchronization (
+		INTERFACEID
+		,ACTIONNAME
+		,FORMULAS
+		,TARGETTABLE
+		,SOUCETABLE
+		,WBSTABLE
+		,TARGETTABLEMODEL
+		) values
+		<foreach collection="list" item="synchronizationRule" index="index"
+			separator=",">
+			(
+			#{synchronizationRule.id, jdbcType=VARCHAR}
+			,#{synchronizationRule.actionName, jdbcType=VARCHAR}
+			,#{synchronizationRule.formulas, jdbcType=VARCHAR}
+			,#{synchronizationRule.targetTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.souceTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.wbsTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.targetTableModel, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertSynchronizationRule_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="synchronizationRule" index="index">
+			insert into SysSynchronization (
+			INTERFACEID
+			,ACTIONNAME
+			,FORMULAS
+			,TARGETTABLE
+			,SOUCETABLE
+			,WBSTABLE
+			,TARGETTABLEMODEL
+			) values (
+			#{synchronizationRule.id, jdbcType=VARCHAR}
+			,#{synchronizationRule.actionName, jdbcType=VARCHAR}
+			,#{synchronizationRule.formulas, jdbcType=VARCHAR}
+			,#{synchronizationRule.targetTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.souceTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.wbsTable, jdbcType=VARCHAR}
+			,#{synchronizationRule.targetTableModel, jdbcType=VARCHAR}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateSynchronizationRule" parameterType="com.glaf.datamgr.domain.SynchronizationRule">
+		update SysSynchronization
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="actionName != null">
+				ACTIONNAME = #{actionName, jdbcType=VARCHAR},
+			</if>
+			<if test="formulas != null">
+				FORMULAS = #{formulas, jdbcType=VARCHAR},
+			</if>
+			<if test="targetTable != null">
+				TARGETTABLE = #{targetTable, jdbcType=VARCHAR},
+			</if>
+			<if test="souceTable != null">
+				SOUCETABLE = #{souceTable, jdbcType=VARCHAR},
+			</if>
+			<if test="wbsTable != null">
+				WBSTABLE = #{wbsTable, jdbcType=VARCHAR},
+			</if>
+			<if test="targetTableModel != null">
+				TARGETTABLEMODEL = #{targetTableModel, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		INTERFACEID = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteSynchronizationRuleById" parameterType="string">
+		delete
+		from SysSynchronization
+		where INTERFACEID = #{id}
+	</delete>
+
+
+	<delete id="deleteSynchronizationRules" parameterType="com.glaf.datamgr.query.SynchronizationRuleQuery">
+		delete from SysSynchronization
+		where (
+		INTERFACEID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSynchronizationRuleById" parameterType="string"
+		resultMap="synchronizationRuleResultMap">
+		select * from SysSynchronization where INTERFACEID = #{id}
+	</select>
+
+
+	<select id="getSynchronizationRuleByTargetTable" parameterType="string"
+		resultMap="synchronizationRuleResultMap">
+		select * from SysSynchronization where TARGETTABLE =
+		#{targetTable}
+	</select>
+
+
+	<select id="getSynchronizationRules" parameterType="com.glaf.datamgr.query.SynchronizationRuleQuery"
+		resultMap="synchronizationRuleResultMap">
+		select distinct E.*
+		<include refid="selectSynchronizationRulesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.INTERFACEID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSynchronizationRuleCount" parameterType="com.glaf.datamgr.query.SynchronizationRuleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSynchronizationRulesSql" />
+	</select>
+
+
+	<sql id="selectSynchronizationRulesSql">
+
+		from SysSynchronization E
+
+		<where>
+			1 = 1
+
+			<if test="actionName != null and actionName != '' ">
+				and E.ACTIONNAME = #{actionName}
+			</if>
+
+			<if test="formulasLike != null and formulasLike != '' ">
+				and E.FORMULAS like #{formulasLike}
+			</if>
+
+			<if test="targetTable != null and targetTable != '' ">
+				and E.TARGETTABLE = #{targetTable}
+			</if>
+
+			<if test="souceTableLike != null and souceTableLike != '' ">
+				and E.SOUCETABLE like #{souceTableLike}
+			</if>
+
+			<if test="wbsTable != null and wbsTable != '' ">
+				and E.WBSTABLE = #{wbsTable}
+			</if>
+
+			<if test="wbsTableLike != null and wbsTableLike != '' ">
+				and E.WBSTABLE like #{wbsTableLike}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,180 @@
+
+<HTML>
+    
+    <HEAD>
+        <title>
+            用户登录
+        </title>
+        <meta http-equiv="content-type" content="text/html; charset=gb2312">
+       <script type="text/javascript" src="security.js"></script>
+    </HEAD>
+    
+    <BODY>
+        <table class="x-login-main">
+            <tr>
+                <td>
+                    <form action="" method="post">
+                        <table class="login-table-info" align="center">
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" class="login-td-topTitle">
+                                                <script>
+                                                   // document.write(StringFilter("用户登录"))
+                                                </script>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5" colspan="2" class="login-table-tophr">
+                                                <hr align="left" size="1">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="login-table-topMsg">
+                                                提示：在您使用系统之前，需要进行身份验证。
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="x-login-body">
+                                        <tr onKeyDown="input(event.keyCode);">
+                                            <td class="x-form-label">
+                                                用户名：
+                                            </td>
+                                            <td>
+                                                <input type="text" id="username" name="userName" class="x-form-text" maxlength="63">
+                                            </td>
+                                        </tr>
+                                        <tr onKeyDown="input(event.keyCode);">
+                                            <td class="x-form-label">
+                                                密&nbsp;&nbsp;&nbsp;码：
+                                            </td>
+                                            <td>
+                                                <input type="password" id="password" class="x-form-password" maxlength="30">
+                                            </td>
+                                        </tr>
+
+										<tr onKeyDown="input(event.keyCode);">
+                                            <td class="x-form-label">
+                                                 
+                                            </td>
+                                            <td>
+                                                 <textarea id="password2" name="password2" rows="6" cols="66"></textarea>
+                                            </td>
+                                        </tr>
+                                     
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td valign="middle">
+                                                            <input type="button" id="login" name="login" class="login-button-style"
+                                                            onClick="submitValue();" value="登&nbsp;录">
+                                                        </td>
+                                                        <td width="20px">
+                                                        </td>
+                                                        <td valign="middle">
+                                                            <input type="button" id="reset" name="reset" class="login-button-style"
+                                                            onClick="resetValue();" value="重&nbsp;置">
+                                                        </td>
+                                                        <td width="20px">
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="login-table-topMsg" id="userLogining" name="userLogining"
+                                                        style="display: none;">
+                                                        </td>
+                                                        <td width="20px">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <input type="hidden" id="actionType" name="actionType" value="umlogin">
+                                    <INPUT TYPE="hidden" id="userIpMac" NAME="userIpMac" value="">
+                                    <INPUT TYPE="hidden" id="authorization" NAME="authorization" value="">
+                                    <INPUT TYPE="hidden" id="redirectUrl" NAME="redirectUrl" value="">
+                                    <table class="login-table-endInfor">
+                                        <tr>
+                                            <td class="login-td-endInfor">
+                                                <div id="TextInfoDiv">
+                                                    <script>
+                                                       // document.write(StringFilter(""))
+                                                    </script>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <script language="JavaScript">
+            var form = document.forms[0];
+            form.language.value = 1;
+            if (form.language.value == 0) {
+                document.getElementById("changePwd").style.width = '120px';
+                document.getElementById("login").style.width = '120px';
+                document.getElementById("reset").style.width = '120px';
+            }
+            function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return "";
+            }
+            function input(key) {
+                if (key == 13) {
+                    submitValue();
+                }
+            }
+            function select(obj) {
+                form.actionType.value = "changeLanguage";
+                form.method = "get";
+                form.action = "http://192.168.1.100:8888";
+                form.submit();
+            }
+            var key;
+            var isLogin = 0;
+            function submitValue() {
+                //if (isLogin == 1) {
+                //    return;
+                // }
+                //document.getElementById("userLogining").style.display = "";
+                //document.getElementById("userLogining").innerHTML = "正在登陆中，请稍候......";
+                RSAUtils.setMaxDigits(130);
+				//alert("login");
+                key = RSAUtils.getKeyPair("010001", "", "00842e582a3afbd8608f831b49464fdf0b387b242d2fae4b983909dd61bc0a494e72cf114c6e329f824cc1f501aa5ce2cf7c5238b6a2ac32021b82baf681720ee98f28de073d12643b142055b274dc76852b373a58ec04c1ee014772b3585585e4af0de8581c98edb0c720155a57cf4a1a6570e3b06de9cd5551122d3a4c7f2cd1");
+                var pwd = form.password.value;
+				//alert(pwd);
+				//alert(RSAUtils.encryptedString(key, pwd));
+                form.actionType.value = "umlogin";
+                form.authorization.value = RSAUtils.encryptedString(key, pwd);
+				document.getElementById("password2").value=form.authorization.value;
+				alert("xxxx");
+				alert(RSAUtils.decryptedString(key, document.getElementById("password2").value));
+                //form.redirectUrl.value = GetQueryString("redirect");
+                //form.action = "http://192.168.1.100:8888";
+                isLogin = 1;
+                //form.submit();
+            }
+            function resetValue() {
+                form.username.value = "";
+                form.password.value = "";
+            }
+            function changePassword() {
+                form.actionType.value = "umModifyPwPage";
+                form.submit();
+            }
+        </script>
+    </BODY>
+
+</HTML>

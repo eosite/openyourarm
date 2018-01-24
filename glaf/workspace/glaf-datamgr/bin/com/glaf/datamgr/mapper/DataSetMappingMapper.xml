@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DataSetMappingMapper">
+
+	<resultMap id="dataSetMappingResultMap" type="com.glaf.datamgr.domain.DataSetMapping">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="dsName" column="DSNAME_" jdbcType="VARCHAR" />
+		<result property="dsmId" column="DSMID_" jdbcType="VARCHAR" />
+		<result property="dsmName" column="DSMNAME_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="treeId" column="TREEID_" jdbcType="VARCHAR" />
+		<result property="topId" column="TOPID_" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENTID_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertDataSetMapping" parameterType="com.glaf.datamgr.domain.DataSetMapping">
+		insert into SYS_DATASET_MAPPING
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="dsName != null">
+				,DSNAME_
+			</if>
+			<if test="dsmId != null">
+				,DSMID_
+			</if>
+			<if test="dsmName != null">
+				,DSMNAME_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="treeId != null">
+				,TREEID_
+			</if>
+			<if test="topId != null">
+				,TOPID_
+			</if>
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="dsName != null">
+				,#{dsName, jdbcType=VARCHAR}
+			</if>
+			<if test="dsmId != null">
+				,#{dsmId, jdbcType=VARCHAR}
+			</if>
+			<if test="dsmName != null">
+				,#{dsmName, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDataSetMapping" parameterType="com.glaf.datamgr.domain.DataSetMapping">
+		update SYS_DATASET_MAPPING
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="dsName != null">
+				DSNAME_ = #{dsName, jdbcType=VARCHAR},
+			</if>
+			<if test="dsmId != null">
+				DSMID_ = #{dsmId, jdbcType=VARCHAR},
+			</if>
+			<if test="dsmName != null">
+				DSMNAME_ = #{dsmName, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOPID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteDataSetMappingById" parameterType="string">
+		delete from SYS_DATASET_MAPPING
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteDataSetMappings" parameterType="com.glaf.datamgr.query.DataSetMappingQuery">
+		delete from SYS_DATASET_MAPPING
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDataSetMappingById" parameterType="string"
+		resultMap="dataSetMappingResultMap">
+		select * from SYS_DATASET_MAPPING where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataSetMappings" parameterType="com.glaf.datamgr.query.DataSetMappingQuery"
+		resultMap="dataSetMappingResultMap">
+		select distinct E.*
+		<include refid="selectDataSetMappingsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDataSetMappingCount" parameterType="com.glaf.datamgr.query.DataSetMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataSetMappingsSql" />
+	</select>
+
+
+	<sql id="selectDataSetMappingsSql">
+
+		from SYS_DATASET_MAPPING E
+
+		<where>
+			1 = 1
+
+
+			<if test="dsName != null and dsName != '' ">
+				and E.DSNAME_ = #{dsName}
+			</if>
+
+			<if test="dsNameLike != null and dsNameLike != '' ">
+				and E.DSNAME_ like #{dsNameLike}
+			</if>
+
+			<if test="dsNames != null and dsNames.size() &gt; 0">
+				and E.DSNAME_ IN
+				<foreach item="x_dsName" index="index" collection="dsNames"
+					open="(" separator="," close=")">
+					#{x_dsName}
+				</foreach>
+			</if>
+
+			<if test="dsmId != null and dsmId != '' ">
+				and E.DSMID_ = #{dsmId}
+			</if>
+
+			<if test="dsmIdLike != null and dsmIdLike != '' ">
+				and E.DSMID_ like #{dsmIdLike}
+			</if>
+
+			<if test="dsmIds != null and dsmIds.size() &gt; 0">
+				and E.DSMID_ IN
+				<foreach item="x_dsmId" index="index" collection="dsmIds"
+					open="(" separator="," close=")">
+					#{x_dsmId}
+				</foreach>
+			</if>
+
+			<if test="dsmName != null and dsmName != '' ">
+				and E.DSMNAME_ = #{dsmName}
+			</if>
+
+			<if test="dsmNameLike != null and dsmNameLike != '' ">
+				and E.DSMNAME_ like #{dsmNameLike}
+			</if>
+
+			<if test="dsmNames != null and dsmNames.size() &gt; 0">
+				and E.DSMNAME_ IN
+				<foreach item="x_dsmName" index="index" collection="dsmNames"
+					open="(" separator="," close=")">
+					#{x_dsmName}
+				</foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS_ &gt;= #{statusGreaterThanOrEqual}
+			</if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS_ &lt;= #{statusLessThanOrEqual}
+			</if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+				and E.STATUS_ IN
+				<foreach item="x_status" index="index" collection="statuss"
+					open="(" separator="," close=")">
+					#{x_status}
+				</foreach>
+			</if>
+
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+				and E.TYPE_ IN
+				<foreach item="x_type" index="index" collection="types"
+					open="(" separator="," close=")">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+			</if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+			</if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+				and E.TREEID_ IN
+				<foreach item="x_treeId" index="index" collection="treeIds"
+					open="(" separator="," close=")">
+					#{x_treeId}
+				</foreach>
+			</if>
+
+			<if test="topId != null and topId != '' ">
+				and E.TOPID_ = #{topId}
+			</if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID_ like #{topIdLike}
+			</if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+				and E.TOPID_ IN
+				<foreach item="x_topId" index="index" collection="topIds"
+					open="(" separator="," close=")">
+					#{x_topId}
+				</foreach>
+			</if>
+
+			<if test="parentId != null and parentId != '' ">
+				and E.PARENTID_ = #{parentId}
+			</if>
+			<if test="parentId_ != null and parentId_ != '' ">
+				and E.PARENTID_ = #{parentId_}
+			</if>
+			<if test="parentIdLike != null and parentIdLike != '' ">
+				and E.PARENTID_ like #{parentIdLike}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+				and E.PARENTID_ IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

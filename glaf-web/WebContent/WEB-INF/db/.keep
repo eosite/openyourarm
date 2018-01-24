@@ -1,0 +1,5 @@
+1、更新glaf-core.jar及glaf-matrix.jar 
+2、把基础数据写入sqlite (名称为initdb)
+   (或在开发环境执行：/mx/sys/tableMgr/exportDB?systemName=default) 
+3、将生成的sqlite文件命名为initdb并放到WEB-INF/db/目录 
+4、执行init.jsp进行初始化导入（只限没有数据的空表，已经有的数据不做导入）

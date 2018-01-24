@@ -1,0 +1,36 @@
+{
+	'formHandler':{
+		title:'选卡1',
+		className:'com.glaf.form.systemServer.FormHandlerServerImpl',
+	},
+	'test2':{
+		title:'测试2',
+		gridData:[
+			{
+				key:"register",
+				name:"注册",
+				url:"sys/xxx/register",
+				param:[{
+						code:'name',
+						title:'名称1',
+						desc:"名称1"
+					},{
+						code:'name2',
+						title:'名称2',
+						desc:"名称2"
+					},
+				],
+				defaultParam : [{
+					key:'uuid',
+					name:'内置参数',
+					value:"kkkkdfsdfs"
+				}],
+				callbackParam : [{
+					code:'test',
+					title:'测试',
+					desc:"测试"
+				}]
+			}
+		]
+	}
+}

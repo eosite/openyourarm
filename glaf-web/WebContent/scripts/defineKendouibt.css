@@ -1,0 +1,90 @@
+
+/*图片上传控件样式*/
+.image_upload_div {
+	border: 1px solid #ccc;
+}
+
+.image_upload_div img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.image_upload_btn_select {
+	display: inline-block;
+	width: 100%;
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+	background-color: #ccc;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	padding-bottom: 0;
+}
+
+.image_upload_input_file {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	right: 0;
+	top: 0;
+	opacity: 0;
+}
+
+.img_upload_progress_bar {
+	width: 0%;
+	height: 5px;
+	background-color: green;
+	margin: 0px;
+	padding: 0px;
+}
+
+.image_upload_div a {
+	visibility: hidden;
+}
+
+.image_upload_div:hover a {
+	visibility: visible;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	text-align: center;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.75);
+	transition: background .2s linear, color .2s linear;
+	-moz-transition: background .2s linear, color .2s linear;
+	-webkit-transition: background .2s linear, color .2s linear;
+	-o-transition: background .2s linear, color .2s linear;
+	opacity: 0.3;
+}
+
+.imageupload_del {
+	top: 0;
+	right: 0;
+	position: absolute;
+	z-index: 999;
+}
+
+.imageupload_tools {
+	position: absolute;
+}
+
+body>form{
+	height: 100%;
+}
+
+
+.mt_little_page ul.pagination a,.mt_little_page ul.pagination span{
+	padding: 3px 6px;
+}
+
+.mt_hidden_page_size ul.pagination+div.page-size{
+	display: none;
+}
+.mt_hidden_page_total ul.pagination+div.page-size+div.total{
+	display: none;
+}

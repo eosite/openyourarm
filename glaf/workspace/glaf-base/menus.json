@@ -1,0 +1,606 @@
+[
+          {
+                    "classes": "folder",
+                    "id": "701",
+                    "text": "内容管理",
+                    "cls": "folder",
+                    "name": "内容管理",
+                    "children": [
+                              {
+                                        "id": "702",
+                                        "text": "新闻管理",
+                                        "name": "新闻管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/cms/info?serviceKey=news"
+                              },
+                              {
+                                        "id": "703",
+                                        "text": "公告管理",
+                                        "name": "公告管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/cms/info?serviceKey=bulletin"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "8",
+                    "text": "系统管理",
+                    "cls": "folder",
+                    "name": "系统管理",
+                    "children": [
+                              {
+                                        "id": "16",
+                                        "text": "字典管理",
+                                        "name": "字典管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/dictory/showFrame"
+                              },
+                              {
+                                        "id": "17",
+                                        "text": "缓存管理",
+                                        "name": "缓存管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/cacheMgr"
+                              },
+                              {
+                                        "id": "18",
+                                        "text": "主键管理",
+                                        "name": "主键管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/sequence"
+                              },
+                              {
+                                        "id": "19",
+                                        "text": "模板管理",
+                                        "name": "模板管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/template/showFrame"
+                              },
+                              {
+                                        "id": "11",
+                                        "text": "系统目录",
+                                        "name": "系统目录",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/tree/showMain"
+                              },
+                              {
+                                        "id": "20",
+                                        "text": "数据管理",
+                                        "name": "数据管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/table"
+                              },
+                              {
+                                        "id": "21",
+                                        "text": "数据重载",
+                                        "name": "数据重载",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/dictory/loadDictory"
+                              },
+                              {
+                                        "id": "30",
+                                        "text": "文件管理",
+                                        "name": "文件管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/webfile/jsp/main.jsp"
+                              },
+                              {
+                                        "id": "449",
+                                        "text": "工作日历",
+                                        "name": "工作日历",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/workCalendar/showList"
+                              },
+                              {
+                                        "id": "450",
+                                        "text": "系统参数",
+                                        "name": "系统参数",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/property/edit?category=SYS"
+                              },
+                              {
+                                        "id": "452",
+                                        "text": "邮件服务设置",
+                                        "name": "邮件服务设置",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/mailConfig"
+                              },
+                              {
+                                        "id": "494",
+                                        "text": "TODO配置",
+                                        "name": "TODO配置",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/todo/showList"
+                              },
+                              {
+                                        "id": "495",
+                                        "text": "调度管理",
+                                        "name": "调度管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/scheduler/showList"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "10",
+                    "text": "安全设置",
+                    "cls": "folder",
+                    "name": "安全设置",
+                    "children": [
+                              {
+                                        "id": "15",
+                                        "text": "模块管理",
+                                        "name": "模块管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/application/showFrame"
+                              },
+                              {
+                                        "id": "14",
+                                        "text": "角色管理",
+                                        "name": "角色管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/role/showList"
+                              },
+                              {
+                                        "id": "12",
+                                        "text": "部门管理",
+                                        "name": "部门管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/department/showFrame"
+                              },
+                              {
+                                        "id": "512",
+                                        "text": "授权管理",
+                                        "name": "授权管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/sysUserRole/showUsers"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "42",
+                    "text": "统计报表",
+                    "cls": "folder",
+                    "name": "统计报表",
+                    "children": [
+                              {
+                                        "id": "43",
+                                        "text": "查询管理",
+                                        "name": "查询管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/dts/query"
+                              },
+                              {
+                                        "id": "44",
+                                        "text": "表管理",
+                                        "name": "表管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/dts/table"
+                              },
+                              {
+                                        "id": "45",
+                                        "text": "图表管理",
+                                        "name": "图表管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/bi/chart"
+                              },
+                              {
+                                        "id": "46",
+                                        "text": "报表管理",
+                                        "name": "报表管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/bi/report"
+                              },
+                              {
+                                        "id": "47",
+                                        "text": "报表发送管理",
+                                        "name": "报表发送管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/bi/reportTask"
+                              },
+                              {
+                                        "id": "48",
+                                        "text": "调度管理",
+                                        "name": "调度管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/dts/scheduler"
+                              },
+                              {
+                                        "id": "49",
+                                        "text": "任务管理",
+                                        "name": "任务管理",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/dts/task"
+                              },
+                              {
+                                        "id": "50",
+                                        "text": "参数设置",
+                                        "name": "参数设置",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/sys/property/edit?category=RPT"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "901",
+                    "text": "个人设置",
+                    "cls": "folder",
+                    "name": "个人设置",
+                    "children": [
+                              {
+                                        "id": "902",
+                                        "text": "修改密码",
+                                        "name": "修改密码",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/identity/user/prepareModifyPwd"
+                              },
+                              {
+                                        "id": "903",
+                                        "text": "修改个人信息",
+                                        "name": "修改个人信息",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/identity/user/prepareModifyInfo"
+                              },
+                              {
+                                        "id": "904",
+                                        "text": "首页板块",
+                                        "name": "首页板块",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/panel"
+                              },
+                              {
+                                        "id": "905",
+                                        "text": "首页布局",
+                                        "name": "首页布局",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/layout"
+                              },
+                              {
+                                        "id": "906",
+                                        "text": "portal设置",
+                                        "name": "portal设置",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/user/portal?edit=true"
+                              },
+                              {
+                                        "id": "907",
+                                        "text": "收发消息",
+                                        "name": "收发消息",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/workspace/message/showReceiveList"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "53",
+                    "text": "Activiti流程管理",
+                    "cls": "folder",
+                    "name": "Activiti流程管理",
+                    "children": [
+                              {
+                                        "id": "54",
+                                        "text": "发布流程包",
+                                        "name": "发布流程包",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/activiti/deploy"
+                              },
+                              {
+                                        "id": "55",
+                                        "text": "流程定义",
+                                        "name": "流程定义",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/activiti/process/processDefinitions"
+                              },
+                              {
+                                        "id": "56",
+                                        "text": "流程实例",
+                                        "name": "流程实例",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/activiti/process/processInstances"
+                              },
+                              {
+                                        "id": "57",
+                                        "text": "历史流程实例",
+                                        "name": "历史流程实例",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/activiti/history/historyProcessInstances"
+                              },
+                              {
+                                        "id": "58",
+                                        "text": "任务列表",
+                                        "name": "任务列表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/activiti/task/taskList"
+                              },
+                              {
+                                        "id": "59",
+                                        "text": "流程演示",
+                                        "name": "流程演示",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/workflow/activiti/index.jsp"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "3888",
+                    "text": "GIS文件查询",
+                    "cls": "folder",
+                    "name": "GIS文件查询",
+                    "children": [
+                              {
+                                        "id": "3922",
+                                        "text": "平面位置文件查询",
+                                        "name": "平面位置文件查询",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/graphic/showMap?type=planeMap"
+                              },
+                              {
+                                        "id": "3924",
+                                        "text": "纵断面位置文件查询",
+                                        "name": "纵断面位置文件查询",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/graphic/showMap?type=profileMap"
+                              },
+                              {
+                                        "id": "5287",
+                                        "text": "平面位置定义",
+                                        "name": "平面位置定义",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/gis/gisMapDefined/definedGis"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "3896",
+                    "text": "项目文件查询",
+                    "cls": "folder",
+                    "name": "项目文件查询",
+                    "children": [
+                              {
+                                        "id": "3916",
+                                        "text": "表格查看",
+                                        "name": "表格查看",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileview/muiProjList/showList?code=table"
+                              },
+                              {
+                                        "id": "3918",
+                                        "text": "报审文件查看",
+                                        "name": "报审文件查看",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileview/muiProjList/showList?code=report"
+                              },
+                              {
+                                        "id": "3920",
+                                        "text": "形成文件查看",
+                                        "name": "形成文件查看",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileview/muiProjList/showList?code=file"
+                              },
+                              {
+                                        "id": "8287",
+                                        "text": "混凝土强度分析表",
+                                        "name": "混凝土强度分析表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=main&type=shiyan_report_main"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "4187",
+                    "text": "文件进度报表",
+                    "cls": "folder",
+                    "name": "文件进度报表",
+                    "children": [
+                              {
+                                        "id": "4189",
+                                        "text": "标段总体进度表",
+                                        "name": "标段总体进度表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileschedulereport/show?type=master"
+                              },
+                              {
+                                        "id": "4191",
+                                        "text": "单位工程进度表",
+                                        "name": "单位工程进度表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileschedulereport/show?type=tenders"
+                              },
+                              {
+                                        "id": "7687",
+                                        "text": "资料进度基础表",
+                                        "name": "资料进度基础表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=main&type=base_data_main"
+                              },
+                              {
+                                        "id": "7887",
+                                        "text": "实际进度报表",
+                                        "name": "实际进度报表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=main&type=actual_report_main"
+                              },
+                              {
+                                        "id": "7987",
+                                        "text": "人员内业完成情况表",
+                                        "name": "人员内业完成情况表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=main&type=person_report_main"
+                              },
+                              {
+                                        "id": "8087",
+                                        "text": "单位业内进度报表",
+                                        "name": "单位业内进度报表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=main&type=unit_report_main"
+                              },
+                              {
+                                        "id": "8187",
+                                        "text": "标段内业进度报表",
+                                        "name": "标段内业进度报表",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportBaseData?method=contractReport"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "3894",
+                    "text": "文件进度动态查询",
+                    "cls": "folder",
+                    "name": "文件进度动态查询",
+                    "children": [
+                              {
+                                        "id": "3912",
+                                        "text": "文件进度条件查询",
+                                        "name": "文件进度条件查询",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportMain?type=table"
+                              },
+                              {
+                                        "id": "3987",
+                                        "text": "图形化查询统计",
+                                        "name": "图形化查询统计",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/report/reportMain?type=graphical"
+                              },
+                              {
+                                        "id": "4987",
+                                        "text": "完成情况检查",
+                                        "name": "完成情况检查",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/fileview/muiProjList/showList?code=wbs"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          },
+          {
+                    "classes": "folder",
+                    "id": "3890",
+                    "text": "基本情况",
+                    "cls": "folder",
+                    "name": "基本情况",
+                    "children": [
+                              {
+                                        "id": "3898",
+                                        "text": "标段基本情况",
+                                        "name": "标段基本情况",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/baseinfo/list?type=tendersBaseinfo"
+                              },
+                              {
+                                        "id": "3900",
+                                        "text": "单位工程基本情况",
+                                        "name": "单位工程基本情况",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/baseinfo/list?type=unitBaseinfo"
+                              },
+                              {
+                                        "id": "4087",
+                                        "text": "添加基本信息",
+                                        "name": "添加基本信息",
+                                        "leaf": true,
+                                        "code": "",
+                                        "url": "/mx/docManage/yz/baseinfo/baseInfoAdd"
+                              }
+                    ],
+                    "leaf": false,
+                    "code": "",
+                    "url": ""
+          }
+]

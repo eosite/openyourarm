@@ -1,0 +1,109 @@
+/* This is a function for icons position*/
+.ribbon .gcui-ribbon .gcui-ribbon-bigbutton .ui-button-text,
+.ribbon .gcui-ribbon .ui-button .ui-button-text,
+.ribbon .ui-tabs .ui-tabs-nav li a,
+.ribbon #condition-format-popup .ui-button-text-big,
+.ribbon #condition-format-popup .ui-button-text-small,
+.ribbon #condition-format-popup .submenu-title {
+  font-size: 12px;
+}
+.ribbon .gcui-ribbon .gcui-ribbon-groups .gcui-ribbon-group {
+  height: 102px;
+}
+.ribbon .gcui-ribbon .gcui-ribbon-group .gcui-ribbon-group-content {
+  height: 85px;
+}
+.ribbon .gcui-ribbon .gcui-ribbon-group .gcui-ribbon-bigbutton {
+  height: 85px;
+  margin-top: -18px;
+}
+.ribbon .gcui-ribbon .gcui-ribbon-group .gcui-ribbon-bigbutton .ui-button-text {
+  padding-top: 4em;
+}
+.ribbon .gcui-ribbon-abbrevクリップボード {
+  background-position: 0px -768px;
+}
+.ribbon .gcui-ribbon-abbrevフォント {
+  background-position: 0px -400px;
+}
+.ribbon .gcui-ribbon-abbrev配置 {
+  background-position: 0px -48px;
+}
+.ribbon .gcui-ribbon-abbrev数値 {
+  background-position: 0px -2064px;
+}
+.ribbon .gcui-ribbon-abbrevセル型 {
+  background-position: 0px -3728px;
+}
+.ribbon .gcui-ribbon-abbrevスタイル {
+  background-position: 0px -1232px;
+}
+.ribbon .gcui-ribbon-abbrevセル {
+  background-position: 0px -1216px;
+}
+.ribbon .gcui-ribbon-abbrev編集 {
+  background-position: 0px -1024px;
+}
+.ribbon .gcui-ribbon-abbrevテーブル {
+  background-position: 0px -1648px;
+}
+.ribbon .gcui-ribbon-abbrevスパークライン {
+  background-position: 0px -2912px;
+}
+.ribbon .gcui-ribbon-abbrev関数 {
+  background-position: 0px -1600px;
+}
+.ribbon .gcui-ribbon-abbrev名前 {
+  background-position: 0px -1872px;
+}
+.ribbon .gcui-ribbon-abbrevソートとフィルター {
+  background-position: 0px -2752px;
+}
+.ribbon .gcui-ribbon-abbrevデータツール {
+  background-position: 0px -784px;
+}
+.ribbon .gcui-ribbon-abbrevアウトライン {
+  background-position: 0px -1456px;
+}
+.ribbon .gcui-ribbon-abbrev表示 {
+  background-position: 0px -3600px;
+}
+.ribbon .gcui-ribbon-abbrevズーム {
+  background-position: 0px -3584px;
+}
+.ribbon .gcui-ribbon-abbrevウインドウ {
+  background-position: 0px -1264px;
+}
+.ribbon .gcui-ribbon-abbrevSpread設定 {
+  background-position: 0px -2128px;
+}
+.ribbon .gcui-ribbon-abbrevシート {
+  background-position: 0px -2112px;
+}
+.ui-tabs .ui-tabs-nav li a {
+  color: #333;
+}
+.ui-tabs .ui-tabs-nav li a:hover {
+  color: #333;
+}
+.only-for-native {
+  font-size: 12px;
+}
+#data-bars-popup {
+  width: 190px;
+}
+.content > .fill-spread-content {
+  top: 197px;
+}
+.ui-dialog-buttonpane .ui-button {
+  width: 95px;
+}
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button,
+html,
+body {
+  font-family: 'Meiryo UI', 'MS UI Gothic';
+}

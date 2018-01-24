@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SqlTransportLogMapper">
+
+	<resultMap id="sqlTransportLogResultMap" type="com.glaf.datamgr.domain.SqlTransportLog">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="projectId" column="PROJECTID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="runYear" column="RUNYEAR_" jdbcType="INTEGER" />
+		<result property="runMonth" column="RUNMONTH_" jdbcType="INTEGER" />
+		<result property="runWeek" column="RUNWEEK_" jdbcType="INTEGER" />
+		<result property="runQuarter" column="RUNQUARTER_" jdbcType="INTEGER" />
+		<result property="runDay" column="RUNDAY_" jdbcType="INTEGER" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSqlTransportLog" parameterType="com.glaf.datamgr.domain.SqlTransportLog">
+		insert into SQL_TRANS_LOG
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="projectId != null">
+				,PROJECTID_
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="runYear != null">
+				,RUNYEAR_
+			</if>
+			<if test="runMonth != null">
+				,RUNMONTH_
+			</if>
+			<if test="runWeek != null">
+				,RUNWEEK_
+			</if>
+			<if test="runQuarter != null">
+				,RUNQUARTER_
+			</if>
+			<if test="runDay != null">
+				,RUNDAY_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="projectId != null">
+				,#{projectId, jdbcType=BIGINT}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="runYear != null">
+				,#{runYear, jdbcType=INTEGER}
+			</if>
+			<if test="runMonth != null">
+				,#{runMonth, jdbcType=INTEGER}
+			</if>
+			<if test="runWeek != null">
+				,#{runWeek, jdbcType=INTEGER}
+			</if>
+			<if test="runQuarter != null">
+				,#{runQuarter, jdbcType=INTEGER}
+			</if>
+			<if test="runDay != null">
+				,#{runDay, jdbcType=INTEGER}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSqlTransportLog" parameterType="com.glaf.datamgr.domain.SqlTransportLog">
+		update SQL_TRANS_LOG
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="runYear != null">
+				RUNYEAR_ = #{runYear, jdbcType=INTEGER},
+			</if>
+			<if test="runMonth != null">
+				RUNMONTH_ = #{runMonth, jdbcType=INTEGER},
+			</if>
+			<if test="runWeek != null">
+				RUNWEEK_ = #{runWeek, jdbcType=INTEGER},
+			</if>
+			<if test="runQuarter != null">
+				RUNQUARTER_ = #{runQuarter, jdbcType=INTEGER},
+			</if>
+			<if test="runDay != null">
+				RUNDAY_ = #{runDay, jdbcType=INTEGER},
+			</if>
+			<if test="jobNo != null">
+				JOBNO_ = #{jobNo, jdbcType=VARCHAR},
+			</if>
+
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSqlTransportLogById" parameterType="long">
+		delete from
+		SQL_TRANS_LOG
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSqlTransportLogs" parameterType="com.glaf.datamgr.query.SqlTransportLogQuery">
+		delete from SQL_TRANS_LOG
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSqlTransportLogById" parameterType="long"
+		resultMap="sqlTransportLogResultMap">
+		select * from SQL_TRANS_LOG where ID_ = #{id}
+	</select>
+
+
+	<select id="getSqlTransportLogs" parameterType="com.glaf.datamgr.query.SqlTransportLogQuery"
+		resultMap="sqlTransportLogResultMap">
+		select distinct E.*
+		<include refid="selectSqlTransportLogsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSqlTransportLogCount" parameterType="com.glaf.datamgr.query.SqlTransportLogQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSqlTransportLogsSql" />
+	</select>
+
+
+	<sql id="selectSqlTransportLogsSql">
+
+		from SQL_TRANS_LOG E
+
+		<where>
+			1 = 1
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="projectId != null">
+				and E.PROJECTID_ = #{projectId}
+			</if>
+
+			<if test="sqlDefId != null">
+				and E.SQLDEFID_ = #{sqlDefId}
+			</if>
+
+			<if test="sqlDefIds != null and sqlDefIds.size() &gt; 0">
+				and E.SQLDEFID_ IN
+				<foreach item="x_sqlDefId" index="index" collection="sqlDefIds"
+					open="(" separator="," close=")">
+					#{x_sqlDefId}
+				</foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="runYear != null">
+				and E.RUNYEAR_ = #{runYear}
+			</if>
+
+			<if test="runMonth != null">
+				and E.RUNMONTH_ = #{runMonth}
+			</if>
+
+			<if test="runWeek != null">
+				and E.RUNWEEK_ = #{runWeek}
+			</if>
+
+			<if test="runDay != null">
+				and E.RUNDAY_ = #{runDay}
+			</if>
+
+			<if test="jobNo != null and jobNo != '' ">
+				and E.JOBNO_ = #{jobNo}
+			</if>
+
+			<if test="jobNoLike != null and jobNoLike != '' ">
+				and E.JOBNO_ like #{jobNoLike}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

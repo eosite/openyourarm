@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>datepicker</title>
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<!---->
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"></link>
+<link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet">
+
+<link href="../base/css/font-awesome.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+<script>
+
+
+$(document).ready(function(){    
+	
+    $.fn.datepicker.dates["zh-CN"]={
+	        days: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+	        daysShort: ["日", "一", "二", "三", "四", "五", "六", "七"],
+	        daysMin: ["日", "一", "二", "三", "四", "五", "六", "七"],
+	        months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+	        monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+	        today: "今天",
+	        clear: "清除"
+	};
+	
+	$("#datepicker1").datepicker({
+		  format: "yyyy-mm-dd",
+		  orientation:"left top",
+		  autoclose: true,
+		  todayBtn: 'linked',
+		  language: 'zh-CN'
+	});
+	
+	$("#datepicker2").datepicker({
+		  format: "yyyy-mm-dd",
+		  orientation: "right top",
+		  autoclose: true,
+		  todayBtn: 'linked',
+		  language: 'zh-CN'
+	});
+	
+	$("#datepicker3").datepicker({
+		format: "yyyy-mm-dd",
+		orientation: "left top",
+		autoclose: true,
+		todayBtn: 'linked',
+		language: 'zh-CN'
+	});
+	
+	$("#btn").on("click",getDate);
+	
+});
+
+	
+
+
+	function getDate(){
+
+		//var date = $("#datepicker1").datepicker("setFormat","yyyy/mm/dd");	
+		//console.log(date);
+		
+		$("#datepicker1").data("datepicker").o.format="yyyy/mm/dd";
+		$("#datepicker2").data("datepicker").o.format="yyyy/mm/dd"; 
+		var date = format(1458361516319,"yyyy-MM-dd");
+		alert(date);
+	}
+
+	function format(time, format){
+	    var t = new Date(time);
+	    var tf = function(i){return (i < 10 ? '0' : '') + i};
+	    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function(a){
+	        switch(a){
+	            case 'yyyy':
+	                return tf(t.getFullYear());
+	                break;
+	            case 'MM':
+	                return tf(t.getMonth() + 1);
+	                break;
+	            case 'mm':
+	                return tf(t.getMinutes());
+	                break;
+	            case 'dd':
+	                return tf(t.getDate());
+	                break;
+	            case 'HH':
+	                return tf(t.getHours());
+	                break;
+	            case 'ss':
+	                return tf(t.getSeconds());
+	                break;
+	        }
+	    })   
+	}
+	
+</script>
+</head>
+
+
+<body>
+	
+	<div style="width:250px;">
+		<input id="datepicker1" type="text" class="form-control  datepickerbt id frame-variable" frame-variable="fv1" readonly style="padding:6px 12px 6px 12px;display;">
+	</div> 
+	
+	
+	<div id="datepicker2" class="input-group  date datepickerbt" data-date-format="dd-mm-yyyy" style="width:250px;">		
+			<input type="text" class="form-control id frame-variable" frame-variable="fv1"  >
+			<span class="input-group-btn">
+				<button class="btn default form-control" type="button" >
+					<i class="fa fa-calendar"></i>
+				</button>
+			</span>
+	</div>
+	
+	<div id="datepicker3" class="input-group input-group-lg input-daterange id frame-variable"  frame-variable="fv1" >
+		<input type="text" class="form-control" name="from" disabled>
+		<span class="input-group-addon" > to </span>
+		<input type="text" class="form-control" name="to" disabled> 
+	</div>
+	
+	
+	<button id="btn">按钮</button>
+	
+  
+  <script src="js/bootstrap-daterangepicker.js"></script> 
+  
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.monitor.server.mapper.MonitorProcBusCategoryMapper">
+
+ 	<resultMap id="monitorProcBusCategoryResultMap"	type="com.glaf.monitor.server.domain.MonitorProcBusCategory">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="procCategoryId" column="PROC_CATEGORY_ID_" jdbcType="INTEGER"/>
+        <result property="createby" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<insert id="blukInsertMonitorProcBusCategory" >
+		insert into MONITOR_PROC_BUS_CATEGORY
+		(ID_,PROC_CATEGORY_ID_)
+		values  
+	    <foreach collection="categoryIds" item="item" index="index" separator="," >  
+	        (#{id},#{item})  
+	    </foreach> 
+    </insert>
+ 
+	<insert id="insertMonitorProcBusCategory" parameterType="com.glaf.monitor.server.domain.MonitorProcBusCategory">
+		insert into MONITOR_PROC_BUS_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="procCategoryId != null">
+				,PROC_CATEGORY_ID_ 
+			</if>
+			<if test="createby != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createtime != null">
+				,CREATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="procCategoryId != null">
+				,#{procCategoryId, jdbcType=INTEGER}
+			</if>
+			<if test="createby != null">
+				,#{createby, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				,#{createtime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMonitorProcBusCategory" parameterType="com.glaf.monitor.server.domain.MonitorProcBusCategory">
+		update MONITOR_PROC_BUS_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="procCategoryId != null">
+				PROC_CATEGORY_ID_ = #{procCategoryId, jdbcType=INTEGER},
+			</if>
+			<if test="createby != null">
+				CREATEBY_ = #{createby, jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME_ = #{createtime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteMonitorProcBusCategoryById" parameterType="string"> 
+        delete from MONITOR_PROC_BUS_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMonitorProcBusCategorys" parameterType="com.glaf.monitor.server.query.MonitorProcBusCategoryQuery">
+		delete from MONITOR_PROC_BUS_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMonitorProcBusCategoryById" parameterType="string" resultMap="monitorProcBusCategoryResultMap">
+		select * from MONITOR_PROC_BUS_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getMonitorProcBusCategorys" 
+	    parameterType="com.glaf.monitor.server.query.MonitorProcBusCategoryQuery"
+		resultMap="monitorProcBusCategoryResultMap">
+		select distinct E.*
+		<include refid="selectMonitorProcBusCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMonitorProcBusCategoryCount" 
+	    parameterType="com.glaf.monitor.server.query.MonitorProcBusCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMonitorProcBusCategorysSql" />
+	</select>
+
+
+	<sql id="selectMonitorProcBusCategorysSql">
+
+		from MONITOR_PROC_BUS_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+			 <if test="id != null">
+				and E.ID_ = #{id}
+            </if>
+
+			<if test="procCategoryId != null">
+				and E.PROC_CATEGORY_ID_ = #{procCategoryId}
+            </if>
+
+			<if test="procCategoryIdGreaterThanOrEqual != null">
+				and E.PROC_CATEGORY_ID_ &gt;= #{procCategoryIdGreaterThanOrEqual}
+            </if>
+
+			<if test="procCategoryIdLessThanOrEqual != null">
+				and E.PROC_CATEGORY_ID_ &lt;= #{procCategoryIdLessThanOrEqual}
+            </if>
+
+			<if test="procCategoryIds != null and procCategoryIds.size() &gt; 0">
+			    and E.PROC_CATEGORY_ID_ IN
+                <foreach item="x_procCategoryId" index="index" collection="procCategoryIds" 
+                     open="(" separator="," close=")">
+                  #{x_procCategoryId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createby != null and createby != '' ">
+				and E.CREATEBY_ = #{createby}
+            </if>
+
+			<if test="createbyLike != null and createbyLike != '' ">
+				and E.CREATEBY_ like #{createbyLike}
+            </if>
+
+			<if test="createbys != null and createbys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createby" index="index" collection="createbys" 
+                     open="(" separator="," close=")">
+                  #{x_createby}
+                </foreach>
+			</if>
+
+			<if test="createtimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createtimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createtimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ReportFlowInfoMapper">
+
+ 	<resultMap id="reportFlowInfoResultMap"	type="com.glaf.isdp.model.ReportFlowInfo">
+        <id property="id" column="ID" jdbcType="INTEGER" />
+        <result property="reportBaseDataId" column="REPORT_BASE_DATA_ID" jdbcType="INTEGER"/>
+        <result property="flowName" column="FLOW_NAME" jdbcType="VARCHAR"/>
+        <result property="taskName" column="TASKNAME" jdbcType="VARCHAR"/>
+        <result property="flowStatus" column="FLOW_STATUS" jdbcType="VARCHAR"/>
+        <result property="flowType" column="FLOW_TYPE" jdbcType="INTEGER"/>
+        <result property="netRoleId" column="NETROLEID" jdbcType="VARCHAR"/>
+        <result property="userId" column="USERID" jdbcType="VARCHAR"/>
+        <result property="flowPreUserName" column="FLOW_PRE_USERNAME" jdbcType="VARCHAR"/>
+        <result property="flowPreUserId" column="FLOW_PRE_USERID" jdbcType="VARCHAR"/>
+        <result property="flowPreNetRoleId" column="FLOW_PRE_NETROLEID" jdbcType="VARCHAR"/>
+        <result property="ctimeStart" column="CTIME_START" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="createBy" jdbcType="VARCHAR"/>
+        <result property="createDate" column="createDate" jdbcType="TIMESTAMP"/>
+        <result property="updateDate" column="updateDate" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="updateBy" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertReportFlowInfo" parameterType="com.glaf.isdp.model.ReportFlowInfo">
+		insert into REPORT_FLOW_INFO 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="reportBaseDataId != null">
+				,REPORT_BASE_DATA_ID 
+			</if>
+			<if test="flowName != null">
+				,FLOW_NAME 
+			</if>
+			<if test="taskName != null">
+				,TASKNAME 
+			</if>
+			<if test="flowStatus != null">
+				,FLOW_STATUS 
+			</if>
+			<if test="flowType != null">
+				,FLOW_TYPE 
+			</if>
+			<if test="netRoleId != null">
+				,NETROLEID 
+			</if>
+			<if test="userId != null">
+				,USERID 
+			</if>
+			<if test="flowPreUserName != null">
+				,FLOW_PRE_USERNAME 
+			</if>
+			<if test="flowPreUserId != null">
+				,FLOW_PRE_USERID 
+			</if>
+			<if test="flowPreNetRoleId != null">
+				,FLOW_PRE_NETROLEID 
+			</if>
+			<if test="ctimeStart != null">
+				,CTIME_START 
+			</if>
+			<if test="createBy != null">
+				,createBy 
+			</if>
+			<if test="createDate != null">
+				,createDate 
+			</if>
+			<if test="updateDate != null">
+				,updateDate 
+			</if>
+			<if test="updateBy != null">
+				,updateBy 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="reportBaseDataId != null">
+				,#{reportBaseDataId, jdbcType=INTEGER}
+			</if>
+			<if test="flowName != null">
+				,#{flowName, jdbcType=VARCHAR}
+			</if>
+			<if test="taskName != null">
+				,#{taskName, jdbcType=VARCHAR}
+			</if>
+			<if test="flowStatus != null">
+				,#{flowStatus, jdbcType=VARCHAR}
+			</if>
+			<if test="flowType != null">
+				,#{flowType, jdbcType=INTEGER}
+			</if>
+			<if test="netRoleId != null">
+				,#{netRoleId, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="flowPreUserName != null">
+				,#{flowPreUserName, jdbcType=VARCHAR}
+			</if>
+			<if test="flowPreUserId != null">
+				,#{flowPreUserId, jdbcType=VARCHAR}
+			</if>
+			<if test="flowPreNetRoleId != null">
+				,#{flowPreNetRoleId, jdbcType=VARCHAR}
+			</if>
+			<if test="ctimeStart != null">
+				,#{ctimeStart, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateReportFlowInfo" parameterType="com.glaf.isdp.model.ReportFlowInfo">
+		update REPORT_FLOW_INFO
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="reportBaseDataId != null">
+				REPORT_BASE_DATA_ID = #{reportBaseDataId, jdbcType=INTEGER},
+			</if>
+			<if test="flowName != null">
+				FLOW_NAME = #{flowName, jdbcType=VARCHAR},
+			</if>
+			<if test="taskName != null">
+				TASKNAME = #{taskName, jdbcType=VARCHAR},
+			</if>
+			<if test="flowStatus != null">
+				FLOW_STATUS = #{flowStatus, jdbcType=VARCHAR},
+			</if>
+			<if test="flowType != null">
+				FLOW_TYPE = #{flowType, jdbcType=INTEGER},
+			</if>
+			<if test="netRoleId != null">
+				NETROLEID = #{netRoleId, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USERID = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="flowPreUserName != null">
+				FLOW_PRE_USERNAME = #{flowPreUserName, jdbcType=VARCHAR},
+			</if>
+			<if test="flowPreUserId != null">
+				FLOW_PRE_USERID = #{flowPreUserId, jdbcType=VARCHAR},
+			</if>
+			<if test="flowPreNetRoleId != null">
+				FLOW_PRE_NETROLEID = #{flowPreNetRoleId, jdbcType=VARCHAR},
+			</if>
+			<if test="ctimeStart != null">
+				CTIME_START = #{ctimeStart, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				createBy = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				updateDate = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				updateBy = #{updateBy, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteReportFlowInfoById" parameterType="integer"> 
+        delete from REPORT_FLOW_INFO
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteReportFlowInfos" parameterType="com.glaf.isdp.query.ReportFlowInfoQuery">
+		delete from REPORT_FLOW_INFO where 1=1
+		<if test="ids!=null and ids.size() &gt; 0">
+ 			 and ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		</if>
+		
+		<if test="reportBaseDataId != null">
+			and REPORT_BASE_DATA_ID = #{reportBaseDataId}
+         </if>
+
+		<if test="reportBaseDataIds != null and reportBaseDataIds.size() &gt; 0">
+		    and REPORT_BASE_DATA_ID IN
+             <foreach item="x_reportBaseDataId" index="index" collection="reportBaseDataIds" 
+                  open="(" separator="," close=")">
+               #{x_reportBaseDataId}
+             </foreach>
+		</if>
+	</delete>
+
+
+	<select id="getReportFlowInfoById" parameterType="integer" resultMap="reportFlowInfoResultMap">
+		select * from REPORT_FLOW_INFO where ID = #{id}
+	</select>
+
+
+	<select id="getReportFlowInfos" 
+	    parameterType="com.glaf.isdp.query.ReportFlowInfoQuery"
+		resultMap="reportFlowInfoResultMap">
+		select distinct E.*
+		<include refid="selectReportFlowInfosSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getReportFlowInfoCount" 
+	    parameterType="com.glaf.isdp.query.ReportFlowInfoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportFlowInfosSql" />
+	</select>
+
+
+	<sql id="selectReportFlowInfosSql">
+
+		from REPORT_FLOW_INFO E
+		
+		 
+		<where>
+		       1 = 1  
+
+			<if test="reportBaseDataId != null">
+				and E.REPORT_BASE_DATA_ID = #{reportBaseDataId}
+            </if>
+
+			<if test="reportBaseDataIdGreaterThanOrEqual != null">
+				and E.REPORT_BASE_DATA_ID &gt;= #{reportBaseDataIdGreaterThanOrEqual}
+            </if>
+
+			<if test="reportBaseDataIdLessThanOrEqual != null">
+				and E.REPORT_BASE_DATA_ID &lt;= #{reportBaseDataIdLessThanOrEqual}
+            </if>
+
+			<if test="reportBaseDataIds != null and reportBaseDataIds.size() &gt; 0">
+			    and E.REPORT_BASE_DATA_ID IN
+                <foreach item="x_reportBaseDataId" index="index" collection="reportBaseDataIds" 
+                     open="(" separator="," close=")">
+                  #{x_reportBaseDataId}
+                </foreach>
+			</if>
+
+	        
+			<if test="flowName != null and flowName != '' ">
+				and E.FLOW_NAME = #{flowName}
+            </if>
+
+			<if test="flowNameLike != null and flowNameLike != '' ">
+				and E.FLOW_NAME like #{flowNameLike}
+            </if>
+
+			<if test="flowNames != null and flowNames.size() &gt; 0">
+			    and E.FLOW_NAME IN
+                <foreach item="x_flowName" index="index" collection="flowNames" 
+                     open="(" separator="," close=")">
+                  #{x_flowName}
+                </foreach>
+			</if>
+	        
+			<if test="flowStatus != null and flowStatus != '' ">
+				and E.FLOW_STATUS = #{flowStatus}
+            </if>
+
+			<if test="flowStatusLike != null and flowStatusLike != '' ">
+				and E.FLOW_STATUS like #{flowStatusLike}
+            </if>
+
+			<if test="flowStatuss != null and flowStatuss.size() &gt; 0">
+			    and E.FLOW_STATUS IN
+                <foreach item="x_flowStatus" index="index" collection="flowStatuss" 
+                     open="(" separator="," close=")">
+                  #{x_flowStatus}
+                </foreach>
+			</if>
+
+			<if test="flowType != null">
+				and E.FLOW_TYPE = #{flowType}
+            </if>
+
+			<if test="flowTypeGreaterThanOrEqual != null">
+				and E.FLOW_TYPE &gt;= #{flowTypeGreaterThanOrEqual}
+            </if>
+
+			<if test="flowTypeLessThanOrEqual != null">
+				and E.FLOW_TYPE &lt;= #{flowTypeLessThanOrEqual}
+            </if>
+
+			<if test="flowTypes != null and flowTypes.size() &gt; 0">
+			    and E.FLOW_TYPE IN
+                <foreach item="x_flowType" index="index" collection="flowTypes" 
+                     open="(" separator="," close=")">
+                  #{x_flowType}
+                </foreach>
+			</if>
+
+	        
+			<if test="netRoleId != null and netRoleId != '' ">
+				and E.NETROLEID = #{netRoleId}
+            </if>
+
+			<if test="netRoleIdLike != null and netRoleIdLike != '' ">
+				and E.NETROLEID like #{netRoleIdLike}
+            </if>
+
+			<if test="netRoleIds != null and netRoleIds.size() &gt; 0">
+			    and E.NETROLEID IN
+                <foreach item="x_netRoleId" index="index" collection="netRoleIds" 
+                     open="(" separator="," close=")">
+                  #{x_netRoleId}
+                </foreach>
+			</if>
+	        
+			<if test="userId != null and userId != '' ">
+				and E.USERID = #{userId}
+            </if>
+
+			<if test="userIdLike != null and userIdLike != '' ">
+				and E.USERID like #{userIdLike}
+            </if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+			    and E.USERID IN
+                <foreach item="x_userId" index="index" collection="userIds" 
+                     open="(" separator="," close=")">
+                  #{x_userId}
+                </foreach>
+			</if>
+	        
+			<if test="flowPreUserName != null and flowPreUserName != '' ">
+				and E.FLOW_PRE_USERNAME = #{flowPreUserName}
+            </if>
+
+			<if test="flowPreUserNameLike != null and flowPreUserNameLike != '' ">
+				and E.FLOW_PRE_USERNAME like #{flowPreUserNameLike}
+            </if>
+
+			<if test="flowPreUserNames != null and flowPreUserNames.size() &gt; 0">
+			    and E.FLOW_PRE_USERNAME IN
+                <foreach item="x_flowPreUserName" index="index" collection="flowPreUserNames" 
+                     open="(" separator="," close=")">
+                  #{x_flowPreUserName}
+                </foreach>
+			</if>
+	        
+			<if test="flowPreUserId != null and flowPreUserId != '' ">
+				and E.FLOW_PRE_USERID = #{flowPreUserId}
+            </if>
+
+			<if test="flowPreUserIdLike != null and flowPreUserIdLike != '' ">
+				and E.FLOW_PRE_USERID like #{flowPreUserIdLike}
+            </if>
+
+			<if test="flowPreUserIds != null and flowPreUserIds.size() &gt; 0">
+			    and E.FLOW_PRE_USERID IN
+                <foreach item="x_flowPreUserId" index="index" collection="flowPreUserIds" 
+                     open="(" separator="," close=")">
+                  #{x_flowPreUserId}
+                </foreach>
+			</if>
+	        
+			<if test="flowPreNetRoleId != null and flowPreNetRoleId != '' ">
+				and E.FLOW_PRE_NETROLEID = #{flowPreNetRoleId}
+            </if>
+
+			<if test="flowPreNetRoleIdLike != null and flowPreNetRoleIdLike != '' ">
+				and E.FLOW_PRE_NETROLEID like #{flowPreNetRoleIdLike}
+            </if>
+
+			<if test="flowPreNetRoleIds != null and flowPreNetRoleIds.size() &gt; 0">
+			    and E.FLOW_PRE_NETROLEID IN
+                <foreach item="x_flowPreNetRoleId" index="index" collection="flowPreNetRoleIds" 
+                     open="(" separator="," close=")">
+                  #{x_flowPreNetRoleId}
+                </foreach>
+			</if>
+
+			<if test="ctimeStart != null">
+				and E.CTIME_START = #{ctimeStart}
+            </if>
+
+			<if test="ctimeStartGreaterThanOrEqual != null">
+				and E.CTIME_START &gt;= #{ctimeStartGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeStartLessThanOrEqual != null">
+				and E.CTIME_START &lt;= #{ctimeStartLessThanOrEqual}
+            </if>
+
+			<if test="ctimeStarts != null and ctimeStarts.size() &gt; 0">
+			    and E.CTIME_START IN
+                <foreach item="x_ctimeStart" index="index" collection="ctimeStarts" 
+                     open="(" separator="," close=")">
+                  #{x_ctimeStart}
+                </foreach>
+			</if>
+
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.createBy = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.createBy like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.createBy IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDate != null">
+				and E.createDate = #{createDate}
+            </if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.createDate &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.createDate &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+			<if test="createDates != null and createDates.size() &gt; 0">
+			    and E.createDate IN
+                <foreach item="x_createDate" index="index" collection="createDates" 
+                     open="(" separator="," close=")">
+                  #{x_createDate}
+                </foreach>
+			</if>
+
+
+			<if test="updateDate != null">
+				and E.updateDate = #{updateDate}
+            </if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.updateDate &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.updateDate &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+			<if test="updateDates != null and updateDates.size() &gt; 0">
+			    and E.updateDate IN
+                <foreach item="x_updateDate" index="index" collection="updateDates" 
+                     open="(" separator="," close=")">
+                  #{x_updateDate}
+                </foreach>
+			</if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.updateBy = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.updateBy like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.updateBy IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,60 @@
+.treelist-indent {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+}
+
+.treelist-expander {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+}
+
+.treelist-expander-expanded {
+	background-image: url(../img/collapse.png);
+}
+
+.treelist-expander-collapsed {
+	background-image: url(../img/expand.png);
+}
+
+.treelist-expander-loading {
+	background-image: url(../img/loading.gif);
+}
+
+.treelist-selected>td {
+	background-color: #00a2eb;
+}
+
+.table-bordered>thead>tr>td,.table-bordered>thead>tr>th {
+	border-bottom-width: 0px;
+}
+
+.table-bordered>tbody>tr>td,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>td,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>thead>tr>th
+	{
+	border: 1px solid rgb(221, 238, 245);
+}
+
+.table {
+	margin-bottom: 0px;
+}
+
+.table-plus {
+	table-layout:fixed;
+}
+
+div.grid-header {
+	background-color: #eee;
+	/* padding-right: 17px; */
+}
+
+div.grid-header table thead {
+	background-color: #FFF;
+}
+
+div.grid-content {
+	/*overflow-y: auto;*/
+}

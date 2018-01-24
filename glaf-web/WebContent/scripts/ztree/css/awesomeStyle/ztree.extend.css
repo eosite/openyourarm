@@ -1,0 +1,57 @@
+.ztree{
+	background-color: white !important;
+}
+
+.ztree *{
+	background-color: white !important;
+}
+.ztree li a{
+	color:black !important;
+}
+
+.ztree li{
+	line-height: 30px;
+}
+.ztree li span{
+	font-size: 25px;
+}
+
+.ztree li span.button.switch{
+	width: 25px;
+}
+
+.ztree li span.button.chk{
+	width: 25px;
+}
+
+.ztree li a:hover{
+	text-decoration: none !important;
+}
+
+.ztree li span.button.chk.checkbox_true_full_focus::before{
+	color: black;
+}
+.ztree li span.button.chk.checkbox_false_full_focus::before{
+	color: black;
+}
+.ztree li span.button.chk.checkbox_false_part_focus::before{
+	color:black;
+}
+.ztree li span.button.chk.checkbox_true_part_focus::before{
+	color:black;
+}
+
+.ztree li span.button{
+	line-height: auto;
+	width: 20px;
+    height: 20px;
+    background-size: cover !important;
+}
+
+.ztree *,.ztree  :after,.ztree  :before{
+	box-sizing: initial;
+}
+
+.ztree li .button.chk.checkbox_false_disable{
+	display: none !important;
+}

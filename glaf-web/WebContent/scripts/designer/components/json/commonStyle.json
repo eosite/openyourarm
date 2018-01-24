@@ -1,0 +1,325 @@
+[{
+	"id": "font-family",
+	"title": "字体",
+	"type": "string",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "宋体",
+	"inputMode": "select",
+	"valrange": [{
+		"title": "Microsoft YaHei",
+		"value": "Microsoft YaHei"
+	},{	
+		"title": "Arial",
+		"value": "Arial"
+	},{
+		"title": "Glyphicons Halflings",
+		"value": "Glyphicons Halflings"
+	},{
+		"title": "Consolas",
+		"value": "Consolas"
+	},{
+		"title": "Courier New",
+		"value": "Courier New"
+	},
+	{	
+		"title": "宋体",
+		"value": "SimSun"
+	}],
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setFontFamily"
+},{
+	"id": "font-size",
+	"title": "",
+	"label": "",
+	"width": "",
+	"type":"number",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "",
+	"inputMode": "numberInput",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setFontSize"
+},{
+	"id": "split",
+	"inputMode": "split"
+},{
+	"id": "font-weight",
+	"title": "",
+	"type": "string",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "left",
+	"inputMode": "buttongroup",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setFontBold",
+	"valrange": [{
+		"title": "加粗",
+		"value": "bold",
+		"icon":"bold"
+	}]
+},{
+	"id": "font-style",
+	"title": "",
+	"type": "string",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "left",
+	"inputMode": "buttongroup",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setTextItalic",
+	"valrange": [{
+		"title": "倾斜",
+		"value": "italic",
+		"icon":"italic"
+	}]
+},{
+	"id": "text-decoration",
+	"title": "",
+	"type": "string",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "left",
+	"inputMode": "buttongroup",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setTextUnderline",
+	"valrange": [{
+		"title": "水平左对齐",
+		"value": "underline",
+		"icon":"underline"
+	}]
+},{
+	"id": "split",
+	"inputMode": "split"
+},{
+	"id": "text-align",
+	"title": "",
+	"type": "string",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "left",
+	"inputMode": "buttongroup",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setTextAlign",
+	"valrange": [{
+		"title": "水平左对齐",
+		"value": "left",
+		"icon":"align-left"
+	},
+	{
+		"title": "水平居中对齐",
+		"value": "center",
+		"icon":"align-center"
+	},{
+		"title": "右对齐",
+		"value": "right",
+		"icon":"align-right"
+	}]
+},{
+	"id": "split",
+	"inputMode": "split"
+},{
+	"id": "padding",
+	"title": "内间距",
+	"label":"内间距:",
+	"img":"/scripts/designer/images/toolbar/padding.png",
+	"inputMode": "touchspin",
+	"properties": [{
+		"id": "padding-top",
+		"title": "上",
+		"type": "int",
+		"maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setPaddingTop"
+	},
+	{
+		"id": "padding-bottom",
+		"title": "下",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setPaddingBottom"
+	},
+	{
+		"id": "padding-left",
+		"title": "左",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setPaddingLeft"
+	},
+	{
+		"id": "padding-right",
+		"title": "右",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setPaddingRight"
+	}]
+},{
+	"id": "margin",
+	"title": "外间距",
+	"label": "外间距",
+	"img":"/scripts/designer/images/toolbar/margin.png",
+	"inputMode": "touchspin",
+	"properties": [{
+		"id": "margin-top",
+		"title": "上",
+		"type": "int",
+		"maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setMarginTop"
+	},
+	{
+		"id": "margin-bottom",
+		"title": "下",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setMarginBottom"
+	},
+	{
+		"id": "margin-left",
+		"title": "左",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setMarginLeft"
+	},
+	{
+		"id": "margin-right",
+		"title": "右",
+		"type": "int",
+	    "maxval":"2000",
+	    "minval":"-2000",
+		"defaultVal": "",
+		"inputMode": "touchspin",
+		"require": "false",
+		"readonly": "false",
+		"ctrImpl": "setMarginRight"
+	}]
+},{
+	"id": "split",
+	"inputMode": "split"
+},{
+	"id": "border",
+	"title": "边框",
+	"label": "边框:",
+	"type": "string",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "",
+	"inputMode": "select",
+	"valrange": [{
+		"title": "全部",
+		"value": ""
+	},{	
+		"title": "上",
+		"value": "top"
+	},{
+		"title": "下",
+		"value": "bottom"
+	},{
+		"title": "左",
+		"value": "left"
+	},{
+		"title": "右",
+		"value": "right"
+	}],
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setBorder"
+},{
+	"id": "borderSize",
+	"title": "宽",
+	"label": "",
+	"width": "",
+	"type":"number",
+	"max":"50",
+	"min":"0",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "",
+	"inputMode": "numberInput",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setBorderSize"
+},{
+	"id": "borderStyle",
+	"title": "样式",
+	"label": "",
+	"type": "string",
+	"maxlen": "50",
+	"minlen": "5",
+	"defaultVal": "宋体",
+	"inputMode": "select",
+	"valrange": [{
+		"title": "无",
+		"value": ""
+	},{	
+		"title": "——",
+		"value": "solid"
+	},{
+		"title": "----",
+		"value": "dashed"
+	},{
+		"title": "......",
+		"value": "dotted"
+	}],
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setBorderStyle"
+},{
+	"id": "borderColor",
+	"title": "颜色",
+	"type": "string",
+	"defaultVal": "",
+	"inputMode": "colorpicker",
+	"require": "false",
+	"readonly": "false",
+	"ctrImpl": "setBorderColor"
+}]

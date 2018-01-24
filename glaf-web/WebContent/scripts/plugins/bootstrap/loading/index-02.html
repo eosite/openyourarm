@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery带遮罩无限循环loading进度条插件</title>
+  <script src="http://libs.useso.com/js/jquery/1.9.0/jquery.min.js"></script>
+  <script src="js/loading-overlay.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/default.css">
+  <link type="text/css" href="css/demo.css" rel="stylesheet">
+</head>
+<body>
+
+     <div class="demo">
+    <div class="demo-content">
+      <button class="toggle-loading">Toggle Overlay</button>
+      <input type="checkbox" id="css-input" checked />
+      <label for="css-input">show with demo css</label>
+      <div id="target"></div>
+    </div>
+ </div>
+
+  <script>
+  jQuery(function () {
+    $('#target').loadingOverlay();
+  });
+  </script>
+</body>
+</html>

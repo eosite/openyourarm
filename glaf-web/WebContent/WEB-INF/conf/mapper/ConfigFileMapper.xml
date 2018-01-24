@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.deployment.mapper.ConfigFileMapper">
+
+	<resultMap id="configFileResultMap" type="com.glaf.deployment.domain.ConfigFile">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="templateId" column="TEMPLATEID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="serverId" column="SERVERID_" jdbcType="BIGINT" />
+		<result property="variableId" column="VARIABLEID_" jdbcType="BIGINT" />
+		<result property="content" column="CONTENT_" jdbcType="VARCHAR" />
+		<result property="filename" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="path" column="PATH_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertConfigFile" parameterType="com.glaf.deployment.domain.ConfigFile">
+		insert into DC_CONFIG_FILE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="templateId != null">
+				,TEMPLATEID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="serverId != null">
+				,SERVERID_
+			</if>
+			<if test="variableId != null">
+				,VARIABLEID_
+			</if>
+			<if test="content != null">
+				,CONTENT_
+			</if>
+			<if test="filename != null">
+				,FILENAME_
+			</if>
+			<if test="path != null">
+				,PATH_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="templateId != null">
+				,#{templateId, jdbcType=BIGINT}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="serverId != null">
+				,#{serverId, jdbcType=BIGINT}
+			</if>
+			<if test="variableId != null">
+				,#{variableId, jdbcType=BIGINT}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="filename != null">
+				,#{filename, jdbcType=VARCHAR}
+			</if>
+			<if test="path != null">
+				,#{path, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateConfigFile" parameterType="com.glaf.deployment.domain.ConfigFile">
+		update DC_CONFIG_FILE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="templateId != null">
+				TEMPLATEID_ = #{templateId, jdbcType=BIGINT},
+			</if>
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="serverId != null">
+				SERVERID_ = #{serverId, jdbcType=BIGINT},
+			</if>
+			<if test="variableId != null">
+				VARIABLEID_ = #{variableId, jdbcType=BIGINT},
+			</if>
+			<if test="content != null">
+				CONTENT_ = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="filename != null">
+				FILENAME_ = #{filename, jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				PATH_ = #{path, jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteConfigFileById" parameterType="long">
+		delete from
+		DC_CONFIG_FILE
+		where ID_ = #{id}
+	</delete>
+
+
+	<select id="getConfigFileById" parameterType="long"
+		resultMap="configFileResultMap">
+		select * from DC_CONFIG_FILE where ID_ = #{id}
+	</select>
+
+
+	<select id="getConfigFiles" parameterType="com.glaf.deployment.query.ConfigFileQuery"
+		resultMap="configFileResultMap">
+		select distinct E.*
+		<include refid="selectConfigFilesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getConfigFileCount" parameterType="com.glaf.deployment.query.ConfigFileQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConfigFilesSql" />
+	</select>
+
+
+	<sql id="selectConfigFilesSql">
+
+		from DC_CONFIG_FILE E
+
+		<where>
+			1 = 1
+
+			<if test="templateId != null">
+				and E.TEMPLATEID_ = #{templateId}
+			</if>
+
+			<if test="templateIds != null and templateIds.size() &gt; 0">
+				and E.TEMPLATEID_ IN
+				<foreach item="x_templateId" index="index" collection="templateIds"
+					open="(" separator="," close=")">
+					#{x_templateId}
+				</foreach>
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="serverId != null">
+				and E.SERVERID_ = #{serverId}
+			</if>
+
+			<if test="variableId != null">
+				and E.VARIABLEID_ = #{variableId}
+			</if>
+
+			<if test="variableIds != null and variableIds.size() &gt; 0">
+				and E.VARIABLEID_ IN
+				<foreach item="x_variableId" index="index" collection="variableIds"
+					open="(" separator="," close=")">
+					#{x_variableId}
+				</foreach>
+			</if>
+
+			<if test="filename != null and filename != '' ">
+				and E.FILENAME_ = #{filename}
+			</if>
+
+			<if test="filenameLike != null and filenameLike != '' ">
+				and E.FILENAME_ like #{filenameLike}
+			</if>
+
+			<if test="path != null and path != '' ">
+				and E.PATH_ = #{path}
+			</if>
+
+			<if test="pathLike != null and pathLike != '' ">
+				and E.PATH_ like #{pathLike}
+			</if>
+
+			<if test="version != null">
+				and E.VERSION_ = #{version}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

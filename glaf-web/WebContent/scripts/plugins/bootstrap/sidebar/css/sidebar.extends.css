@@ -1,0 +1,61 @@
+/* 最小屏幕为992的 */
+@media(min-width: 992px)
+.sidebarExt {
+	display : block;
+	max-height : none!important;
+}
+/* 最小屏幕为768的 */
+@media(min-width: 768px)
+.sidebarExt{
+	display: block!important;
+    height: auto!important;
+    overflow: visible!important;
+}
+
+
+@media (min-width: 992px)
+.sidebarExt {
+    width: 235px;
+    float: left;
+    position: relative;
+    margin-right: -100%;
+}
+
+
+element.style {
+    top: 45%;
+}
+
+.editHandle {
+    left: -25px;
+    top: 50%;
+    z-index: 6;
+    opacity: 0.9;
+}
+
+.imgres{
+	float: left;
+    right: -25px;
+    top: 50%;
+    z-index: 6;
+    opacity: 0.9;
+}
+.con.left:hover,  .con.left:focus{left:0!important;}
+.con.right:hover,  .con.right:focus{right:0!important;}
+
+
+.con {
+	float: left;
+    background: white;
+    -moz-opacity: 0.8;
+    border-right: 1px solid black;
+    width: 250px;
+    padding-left: 20px;
+    padding-right: 10px;
+    z-index: 5;
+    font-size: 0.9em;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+    -moz-box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 4px 0 10px rgba(0,0,0,0.25);
+}
+

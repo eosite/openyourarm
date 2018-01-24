@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="run">
+	<property name="build.home" location="." />
+	<property name="build.dest" location="bin" />
+	<property name="build.src" location="src" />
+
+	<path id="classpath">
+		<fileset dir="lib" includes="*.jar" />
+		<fileset dir="../glaf-core/lib" includes="*.jar" />
+		<pathelement location="${build.home}/bin" />
+	</path>
+
+	<target name="build">
+		<echo message="编译应用程序......" />
+		<javac srcdir="${build.home}/src" destdir="${build.dest}" 
+			   nowarn="false" encoding="UTF-8"
+			   debug="true" debuglevel="lines,vars,source">
+			<include name="main/java/**/*.java" />
+			<include name="test/java/**/*.java" />
+			<classpath refid="classpath" />
+		</javac>
+		<copy todir="bin">
+			<fileset dir="src/main/java" includes="com/**/*.conf,com/**/*.sql,com/**/*.properties,com/**/*.xml" />
+		</copy>
+	</target>
+
+	<target name="jar"  >
+		<jar jarfile="glaf-session-src.zip">
+			<fileset dir="." excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn"
+			    includes=".classpath, .project, .settings/**, *.bat, *.xml, *.txt, config/**/*.*, mapping/**/*.*, sql/**/*.*, src/**/*.*,conf/**/*.*,jar-conf/**/*.*,process/**/*.*,db/**/*.sql"  />
+		</jar>
+
+		<jar jarfile="tomcat-redis-session-manager.jar">
+			<fileset dir="bin" includes="com/orangefunction/**/*.*,com/orangefunction/**/*.xml,com/orangefunction/**/*.properties" 
+			             excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn, **/*Test*" />
+		</jar>
+
+		<jar jarfile="tomcat-zookeeper-session-manager.jar">
+			<fileset dir="bin" includes="com/glaf/**/*.*,com/glaf/**/*.xml,com/glaf/**/*.properties" 
+			             excludes="**/*.cvs,**/*.bak,**/*.tmp,**/*.scc,**/*.svn, **/*Test*" />
+		</jar>
+
+	</target>
+
+	<target name="copy">
+		<copy todir="../../../glaf-web/WebContent/WEB-INF/classes">
+			<fileset dir="bin" includes="com/**/*.class,**/*.properties,**/*.xml" />
+		</copy>
+	</target> 
+
+
+	<target name="run" depends="build">
+		<echo message="运行应用程序......" />
+
+		<copy todir="bin">
+			<fileset dir="src/main/java" includes="com/**/*.conf,com/**/*.sql,com/**/*.properties,com/**/*.xml" />
+		</copy>
+
+	</target>
+</project>

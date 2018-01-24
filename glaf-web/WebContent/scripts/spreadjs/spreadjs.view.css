@@ -1,0 +1,241 @@
+@CHARSET "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    border-radius:0px !important
+}
+
+html {
+    font-size: 100%;
+    background: #d0ddee no-repeat top center;
+}
+
+body {
+    font-size: 14px;
+    min-width: 1024px;
+    font-family: 'Gotham SSm A', 'Gotham SSm B';
+    font-style: normal;
+    font-weight:300;
+	background-color: #d5deec;
+}
+.header {
+    padding: 0px;
+	padding: 0px;
+	border-bottom:1px solid #b7c3d2;
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#253449;
+	background: -webkit-linear-gradient(#f5faff,#dce7f5); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#f5faff,#dce7f5); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#f5faff,#dce7f5); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#f5faff,#dce7f5); /* 标准的语法 */
+}
+.foot{
+	border-top:1px solid #b7c3d2;
+	margin-left:0px;
+	margin-right:0px;
+}
+.foot .pagemsg{
+	float:center;
+	margin-top:3px;
+}
+#loading {
+    margin-bottom: 0px;
+    width: 98%;
+}
+.collapse-content {
+    border:1px solid #dcdcdc;
+}
+.spreadDiv{
+	min-height:600px;
+	min-width:990px;
+	width:98%;
+	height:600px;
+	margin:10px;
+	border: 1px solid gray;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Forza SSm A', 'Forza SSm B';
+  font-weight: 800;
+  font-style: normal;
+  margin-bottom: 0.4em;
+  color: red;
+}
+.modal-body .row{
+	padding-top:5px;
+}
+.tab-content{
+ background: -webkit-linear-gradient(#f5faff,#dce7f5); /* Safari 5.1 - 6.0 */
+ background: -o-linear-gradient(#f5faff,#dce7f5); /* Opera 11.1 - 12.0 */
+ background: -moz-linear-gradient(#f5faff,#dce7f5); /* Firefox 3.6 - 15 */
+ background: linear-gradient(#f5faff,#dce7f5); 
+}
+.tab-content.hideContent{
+	display: none;
+}
+.myicon {
+ min-width:50px;
+ border:1px solid;
+ border-color: transparent;
+ background:transparent; 
+  /* transition: all .3s ease; */
+}
+.myicon:hover {
+  background-color: #ffcd6d;
+  border:1px solid #c29b29;
+}
+.disabled.myicon:hover{
+ border:1px solid;
+ border-color: transparent;
+ background:transparent; 
+}
+.myicon div{
+	color:#253449;
+}
+.icon-btn, a {
+  text-shadow: none;
+}
+.toolbar{
+	background:transparent; 
+	border-bottom:0;
+	padding:0;
+	margin:0;
+	font-family:"微软雅黑";
+}
+.header .title{
+	font-size:12px;
+	color:#253449;
+	padding-left:225px;
+	padding-top:10px;
+	background:#dce7f5;
+}
+.toolbar .ui-icon{
+	width:32px;
+	height:32px;
+	margin-left: 8px;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.toolbar .save-icon{
+	background-image:url(images/Save_32x32.png);
+}
+.toolbar .first-icon{
+	background-image:url(images/First_32x32.png);
+}
+.toolbar .last-icon{
+	background-image:url(images/Last_32x32.png);
+}
+.toolbar .prev-icon{
+	background-image:url(images/Prev_32x32.png);
+}
+.toolbar .next-icon{
+	background-image:url(images/Next_32x32.png);
+}
+.toolbar .print-icon{
+	background-image:url(images/Print_32x32.png);
+}
+.toolbar .advprint-icon{
+	background-image:url(images/PrintDialog_32x32.png);
+}
+.toolbar .preview-icon{
+	background-image:url(images/Preview_32x32.png);
+}
+.toolbar .printpdf-icon{
+	background-image:url(images/PrintViaPDF_32x32.png);
+}
+
+.toolbar .textbold-icon{
+	background-image:url(images/format-text-bold.png);
+}
+.toolbar .textitalic-icon{
+	background-image:url(images/format-text-italic.png);
+}
+.toolbar .textunderline-icon{
+	background-image:url(images/format-text-underline.png);
+}
+.toolbar .fillcolor-icon{
+	background-image:url(images/format-fill-color.png);
+}
+.toolbar .textcolor-icon{
+	background-image:url(images/format-text-color.png);
+}
+.toolbar .superscript-icon{
+	background-image:url(images/format-text-superscript-2.png);
+}
+.toolbar .subscript-icon{
+	background-image:url(images/format-text-subscript-2.png);
+}
+
+.toolbar .justify-icon{
+	background-image:url(images/format-justify-left-5.png);
+}
+.toolbar .horizontalleft-icon{
+	background-image:url(images/align-horizontal-left.png);
+}
+.toolbar .horizontalcenter-icon{
+	background-image:url(images/align-horizontal-center-2.png);
+}
+.toolbar .horizontalright-icon{
+	background-image:url(images/align-horizontal-right-2.png);
+}
+
+.toolbar .verticaltop-icon{
+	background-image:url(images/align-vertical-top-2.png);
+}
+.toolbar .verticalcenter-icon{
+	background-image:url(images/align-vertical-center-2.png);
+}
+.toolbar .verticalbuttom-icon{
+	background-image:url(images/align-vertical-bottom-2.png);
+}
+
+.toolbar .editundo-icon{
+	background-image:url(images/edit-undo-8.png);
+}
+.toolbar .editredo-icon{
+	background-image:url(images/edit-redo-8.png);
+}
+
+.toolbar .disabled{
+	-webkit-filter:grayscale(1);
+}
+.toolbar a{
+	height:60px;
+}
+.center{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.zoom{
+	position:absolute;
+	width:250px;
+	top:-15px;
+	right:20px;
+	float:right;
+	font-family:"微软雅黑";
+}
+.zoomBt{
+	position:absolute;
+	top:2px;
+	right:265px;
+}
+.zoomBt ul li{
+	font-size:12px;
+	margin-left:10px;
+}
+.zoomBt button{
+	padding:0 5px;
+	background:transparent;
+	border-color:transparent;
+}
+.actzoom{
+	font-family:"微软雅黑";
+	margin-left:0px;
+}

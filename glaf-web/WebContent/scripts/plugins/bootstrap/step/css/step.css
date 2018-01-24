@@ -1,0 +1,9 @@
+.mt-element-step .step-line .step{
+	position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+  
+}
+    

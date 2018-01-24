@@ -1,0 +1,3 @@
+copy core.js+utils.js+kendo.extend.js+base.js+cell.extend.js+a.extend.js+button.extend.js+charts.extend.js+combobox.extend.js+custom.extend.js+date.extend.js+definedTable.extend.js+treelistbt.extend.js+diagram.extend.js+gis.extend.js+grid.extend.js+imageupload.extend.js+jsgis.extend.js+listview.extend.js+multiselect.extend.js+page.extend.js+progress.extend.js+radio.extend.js+tabstrip.extend.js+textbox.extend.js+upload.extend.js+video.extend.js+yscroll.extend.js+ztree.extend.js+defineui.js ..\defineKendoui.js /b
+
+uglifyjs defineKendoui.js -m -o defineKendoui.min.js

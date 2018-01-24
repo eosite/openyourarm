@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.HintMapper">
+
+ 	<resultMap id="hintResultMap"	type="com.glaf.isdp.domain.Hint">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="hint" column="HINTID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="getHintById" parameterType="string" resultMap="hintResultMap">
+		SELECT * FROM HINT WHERE ID = #{id}
+	</select>
+	
+	<select id="getHints" 
+	    parameterType="com.glaf.isdp.query.HintQuery"
+		resultMap="hintResultMap">
+		SELECT distinct E.*
+		<include refid="selectHintsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID ASC
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getHintCount" 
+	    parameterType="com.glaf.isdp.query.HintQuery"
+		resultType="int">
+		SELECT count(*)
+		<include refid="selectHintsSql" />
+	</select>
+ 
+	<sql id="selectHintsSql">
+
+		FROM HINT E
+		
+		<where>
+		       1 = 1  
+			
+			 <if test="id != null and id != '' ">
+			  AND E.ID = #{id}
+			 </if>
+			 
+			  <if test="idLike != null and idLike != '' ">
+			  AND E.ID LIKE #{idLike}
+			 </if>
+			 
+			 <if test="hint != null and hint != '' ">
+			  AND E.HINT = #{hint}
+			 </if>
+		</where>
+	</sql>
+
+</mapper>

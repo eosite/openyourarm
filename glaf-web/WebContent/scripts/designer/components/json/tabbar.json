@@ -1,0 +1,640 @@
+{
+	"id": "tabbar",
+	"title": "栅格样式",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "addtab",
+		"title": "添加导航",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "setitems",
+			"title": "快速添加",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "items",
+				"title": "",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "2",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setItems"
+			}]
+		}]
+	},{
+		"id": "modifytab",
+		"title": "修改导航(当前选中)",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "titleName",
+			"title": "标题名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "MyTab",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "updateTab"
+		}]
+	},{
+		"id": "deletetab",
+		"title": "删除导航(当前选中)",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "deltab",
+			"title": "删除",
+			"type": "string",
+			"defaultVal": "true",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "deleteTab",
+			"valrange": [{
+			    "name":"删除",
+				"title": "删除",
+				"value": "true"
+			}]
+		 }]
+	},{
+		"id": "customsetting",
+		"title": "定制",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "size",
+			"title": "外尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "outWidth",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setOutWidth",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "outHeight",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setOutHeight",
+				"unit":"px,%,em"
+			}]
+		},{
+			"id": "size",
+			"title": "内尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setHeight",
+				"unit":"px,%,em"
+			}]
+		},{
+			"id": "TabbarHeight",
+			"title": "导航尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "TabbarHeight",
+				"title": "高",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarHeight",
+				"unit":"px,%,em"
+			}
+			]
+		},{
+			"id": "TabbarlableHeight",
+			"title": "导航文字尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "TabbarlableHeight",
+				"title": "高",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarlableHeight",
+				"unit":"px,%,em"
+			}
+			]
+		},{
+			"id": "TabbarIconHeight",
+			"title": "导航图标尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "TabbarIconHeight",
+				"title": "高",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarIconHeight",
+				"unit":"px,%,em"
+			}
+			]
+		},{
+			"id": "tabbarMargin",
+			"title": "边距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "TabbarMarginTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarMarginTop",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarMarginBottom",
+				"title": "下",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarMarginBottom",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarMarginLeft",
+				"title": "左",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarMarginLeft",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarMarginRight",
+				"title": "右",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarMarginRight",
+				"unit":"px,%,em"
+			}
+			]
+		},{
+			"id": "TabbarIconMarginTop",
+			"title": "图标边距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "TabbarIconMarginTop",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarIconMarginTop",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarIconMarginBottom",
+				"title": "下",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarIconMarginBottom",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarIconMarginLeft",
+				"title": "左",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarIconMarginLeft",
+				"unit":"px,%,em"
+			},
+			{
+				"id": "TabbarIconMarginRight",
+				"title": "右",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabbarIconMarginRight",
+				"unit":"px,%,em"
+			}
+			]
+		},{
+			"id": "TabSelected",
+			"title": "导航选中",
+			"inputMode": "touchspin",
+			"properties": [
+			{
+				"id": "zindex",
+				"title": "",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "0",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setTabSelected"
+			}]
+		},{
+			"id": "border",
+			"title": "显示边框",
+			"type": "boolean",
+			"defaultVal": "false",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "是",
+				"value": "true"
+			},
+			{	
+				"title": "否",
+				"value": "false"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBorder"
+		},{
+			"id": "tabPosition",
+			"title": "导航位置",
+			"type": "string",
+			"defaultVal": "top",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setTabPosition",
+			"valrange": [{
+			    "name":"上",
+				"title": "Top",
+				"value": "top"
+			},{
+			    "name":"下",
+				"title": "Bottom",
+				"value": "bottom"
+			}
+			]
+		 },
+		{
+			"id": "padding",
+			"title": "内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "padding-top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "10",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingTop"
+			},
+			{
+				"id": "padding-bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "10",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingBottom"
+			},
+			{
+				"id": "padding-left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "15",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingLeft"
+			},
+			{
+				"id": "padding-right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "15",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setPaddingRight"
+			}]
+		},
+		{
+			"id": "contentpadding",
+			"title": "内容内间距",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "content-padding-top",
+				"title": "上",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "10",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setContentPaddingTop"
+			},
+			{
+				"id": "content-padding-bottom",
+				"title": "下",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "10",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setContentPaddingBottom"
+			},
+			{
+				"id": "content-padding-left",
+				"title": "左",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "15",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setContentPaddingLeft"
+			},
+			{
+				"id": "content-padding-right",
+				"title": "右",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"-2000",
+				"defaultVal": "15",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setContentPaddingRight"
+			}]
+		}
+		]
+	},
+	{
+			"id": "icon",
+			"title": "图标",
+			"description": "",
+			"expland": "false",
+			"properties": [
+		{
+			"id": "IconClass",
+			"title": "选择图标",
+			"type": "string",
+			"inputMode": "template",
+			"require": "true",
+			"template":"<div class=\"input-group\"><i id=\"icon\"></i><span id=\"iconName\"></span><span class=\"input-group-btn\"><button class=\"btn blue input-sm\" type=\"button\" onclick=\"javascript:selectIconPage(this);\" >...</button></span></div>",
+			"ctrImpl": "setIconClass",
+			"initImpl":"initIconClass"
+		},
+		{
+			"id": "IconColor",
+			"title": "图标颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setIconColor"
+		},{
+			"id": "IconSize",
+			"title": "图标大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "icon-size",
+				"title": "图标大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setIconSize"
+			}]
+		},{
+			"id": "deleteIcon",
+			"title": "删除",
+			"type": "string",
+			"defaultVal": "true",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "deleteIcon",
+			"valrange": [{
+			    "name":"删除",
+				"title": "删除",
+				"value": "true"
+			}]
+		 },{
+			"id": "IconSize",
+			"title": "图标大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "IconSize",
+				"title": "图标大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setIconSize"
+			}]
+		}]
+	},
+	{
+			"id": "font",
+			"title": "样式定义",
+			"description": "",
+			"expland": "false",
+			"properties": [
+		{
+			"id": "FontColor",
+			"title": "未选中颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontColor"
+		},{
+			"id": "SelectColor",
+			"title": "选中颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setSelectColor"
+		},{
+			"id": "backGroundcolor",
+			"title": "选项卡背景颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setBackGroundColor"
+		},{
+			"id": "FontStyle",
+			"title": "字体样式",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontStyle",
+			"valrange": [{
+				"title": "字体加粗",
+				"value": "bold",
+				"icon":"bold"
+			},
+			{
+				"title": "斜体",
+				"value": "italic",
+				"icon":"italic"
+			}]
+		 },{
+			"id": "FontSize",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "FontSize",
+				"title": "字体大小",
+				"icon":"font",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontSize"
+			}]
+		},
+		{
+			"id": "WeightSize",
+			"title": "加粗大小",
+			"inputMode": "touchspin",
+			"properties":[{
+				"id": "WeightSize",
+				"title": "加粗大小",
+				"icon":"bold",
+				"type": "int",
+				"maxval":"1000",
+			    "minval":"1",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWeightSize"
+			}]
+		}]
+	}]
+}

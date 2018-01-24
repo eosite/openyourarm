@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TreeTableSyntheticRuleMapper">
+
+	<resultMap id="treeTableSyntheticRuleResultMap"
+		type="com.glaf.datamgr.domain.TreeTableSyntheticRule">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="syntheticId" column="SYNTHETICID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMNNAME_" jdbcType="VARCHAR" />
+		<result property="columnLabel" column="COLUMNLABEL_" jdbcType="VARCHAR" />
+		<result property="columnTitle" column="COLUMNTITLE_" jdbcType="VARCHAR" />
+		<result property="columnSize" column="COLUMNSIZE_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="mappingToSourceIdColumn" column="MAPPINGTOSOURCEIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="mappingToTargetColumn" column="MAPPINGTOTARGETCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="mappingToTargetAlias" column="MAPPINGTOTARGETALIAS_"
+			jdbcType="VARCHAR" />
+		<result property="datasetId" column="DATASETID_" jdbcType="VARCHAR" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertTreeTableSyntheticRule" parameterType="com.glaf.datamgr.domain.TreeTableSyntheticRule">
+		insert into SYS_TREETABLE_SYNTHETIC_RULE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="syntheticId != null">
+				,SYNTHETICID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="columnName != null">
+				,COLUMNNAME_
+			</if>
+			<if test="columnLabel != null">
+				,COLUMNLABEL_
+			</if>
+			<if test="columnTitle != null">
+				,COLUMNTITLE_
+			</if>
+			<if test="columnSize != null">
+				,COLUMNSIZE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="mappingToSourceIdColumn != null">
+				,MAPPINGTOSOURCEIDCOLUMN_
+			</if>
+			<if test="mappingToTargetColumn != null">
+				,MAPPINGTOTARGETCOLUMN_
+			</if>
+			<if test="mappingToTargetAlias != null">
+				,MAPPINGTOTARGETALIAS_
+			</if>
+			<if test="datasetId != null">
+				,DATASETID_
+			</if>
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="syntheticId != null">
+				,#{syntheticId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="columnLabel != null">
+				,#{columnLabel, jdbcType=VARCHAR}
+			</if>
+			<if test="columnTitle != null">
+				,#{columnTitle, jdbcType=VARCHAR}
+			</if>
+			<if test="columnSize != null">
+				,#{columnSize, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingToSourceIdColumn != null">
+				,#{mappingToSourceIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingToTargetColumn != null">
+				,#{mappingToTargetColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingToTargetAlias != null">
+				,#{mappingToTargetAlias, jdbcType=VARCHAR}
+			</if>
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableSyntheticRule" parameterType="java.util.List">
+		insert into SYS_TREETABLE_SYNTHETIC_RULE (
+		ID_
+		,SYNTHETICID_
+		,NAME_
+		,TITLE_
+		,COLUMNNAME_
+		,COLUMNLABEL_
+		,COLUMNTITLE_
+		,COLUMNSIZE_
+		,TYPE_
+		,MAPPINGTOSOURCEIDCOLUMN_
+		,MAPPINGTOTARGETCOLUMN_
+		,MAPPINGTOTARGETALIAS_
+		,DATASETID_
+		,SQLDEFID_
+		,LOCKED_
+		) values
+		<foreach collection="list" item="treeTableSyntheticRule"
+			index="index" separator=",">
+			(
+			#{treeTableSyntheticRule.id,
+			jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.syntheticId,
+			jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.name, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.title, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnName, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnLabel, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnTitle, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnSize, jdbcType=INTEGER}
+			,#{treeTableSyntheticRule.type, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToSourceIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToTargetColumn, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToTargetAlias, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.datasetId, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.sqlDefId, jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableSyntheticRule_oracle"
+		parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="treeTableSyntheticRule"
+			index="index">
+			insert into SYS_TREETABLE_SYNTHETIC_RULE (
+			ID_
+			,SYNTHETICID_
+			,NAME_
+			,TITLE_
+			,COLUMNNAME_
+			,COLUMNLABEL_
+			,COLUMNTITLE_
+			,COLUMNSIZE_
+			,TYPE_
+			,MAPPINGTOSOURCEIDCOLUMN_
+			,MAPPINGTOTARGETCOLUMN_
+			,MAPPINGTOTARGETALIAS_
+			,DATASETID_
+			,SQLDEFID_
+			,LOCKED_
+			) values (
+			#{treeTableSyntheticRule.id, jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.syntheticId, jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.name, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.title, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnName, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnLabel, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnTitle, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.columnSize, jdbcType=INTEGER}
+			,#{treeTableSyntheticRule.type, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToSourceIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToTargetColumn, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.mappingToTargetAlias, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.datasetId, jdbcType=VARCHAR}
+			,#{treeTableSyntheticRule.sqlDefId, jdbcType=BIGINT}
+			,#{treeTableSyntheticRule.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTreeTableSyntheticRule" parameterType="com.glaf.datamgr.domain.TreeTableSyntheticRule">
+		update SYS_TREETABLE_SYNTHETIC_RULE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="columnTitle != null">
+				COLUMNTITLE_ = #{columnTitle, jdbcType=VARCHAR},
+			</if>
+			<if test="columnSize != null">
+				COLUMNSIZE_ = #{columnSize, jdbcType=INTEGER},
+			</if>
+			<if test="mappingToSourceIdColumn != null">
+				MAPPINGTOSOURCEIDCOLUMN_ = #{mappingToSourceIdColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="mappingToTargetColumn != null">
+				MAPPINGTOTARGETCOLUMN_ = #{mappingToTargetColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="mappingToTargetAlias != null">
+				MAPPINGTOTARGETALIAS_ = #{mappingToTargetAlias,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="datasetId != null">
+				DATASETID_ = #{datasetId, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlDefId != null">
+				SQLDEFID_ = #{sqlDefId, jdbcType=BIGINT},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteTreeTableSyntheticRuleById" parameterType="long">
+		delete from SYS_TREETABLE_SYNTHETIC_RULE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTreeTableSyntheticRulesBySyntheticId"
+		parameterType="long">
+		delete from SYS_TREETABLE_SYNTHETIC_RULE
+		where
+		SYNTHETICID_ = #{syntheticId}
+	</delete>
+
+
+	<select id="getTreeTableSyntheticRuleById" parameterType="long"
+		resultMap="treeTableSyntheticRuleResultMap">
+		select * from SYS_TREETABLE_SYNTHETIC_RULE where ID_ = #{id}
+	</select>
+
+
+	<select id="getTreeTableSyntheticRulesBySyntheticId"
+		parameterType="long" resultMap="treeTableSyntheticRuleResultMap">
+		select * from
+		SYS_TREETABLE_SYNTHETIC_RULE where SYNTHETICID_ = #{syntheticId}
+	</select>
+
+
+	<select id="getTreeTableSyntheticRulesByTableName"
+		parameterType="string" resultMap="treeTableSyntheticRuleResultMap">
+		select R.* from
+		SYS_TREETABLE_SYNTHETIC_RULE R
+		inner join SYS_TREETABLE_SYNTHETIC E
+		on
+		R.SYNTHETICID_ = E.ID_
+		where TARGETTABLENAME_ = #{tableName}
+		and
+		E.DELETEFLAG_ = 0
+	</select>
+
+
+</mapper>

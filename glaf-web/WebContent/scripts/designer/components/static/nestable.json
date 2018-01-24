@@ -1,0 +1,21 @@
+{
+	"id": "nestable",
+	"title": "Bootstrap Grid",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "staticData",
+			"title": "静态数据",
+			"type": "string",
+			"inputMode": "template",
+			"require": "true",
+			"template":"<div class=\"input-group form-group form-md-line-input\"><input type=\"text\" class=\"form-control\" id=\"staticData1\" onblur=\"$('#staticData').val('');$('#staticData').click();\"><span class=\"input-group-btn\"><button class=\"btn blue input-sm\" type=\"button\" onclick=\"javascript:setStaticData(this,'ztree');\" >...</button></span></div>",
+			"ctrImpl": "setStaticData",
+			"initImpl":"initStaticData"
+		}]
+	}]
+}

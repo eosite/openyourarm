@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.RdataTableMapper">
+
+	<resultMap id="rdataTableResultMap" type="com.glaf.isdp.domain.RdataTable">
+		<id property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="tablename" column="TABLENAME" jdbcType="VARCHAR" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="addtype" column="ADDTYPE" jdbcType="INTEGER" />
+		<result property="maxuser" column="MAXUSER" jdbcType="INTEGER" />
+		<result property="maxsys" column="MAXSYS" jdbcType="INTEGER" />
+		<result property="userid" column="USERID" jdbcType="VARCHAR" />
+		<result property="ctime" column="CTIME" jdbcType="TIMESTAMP" />
+		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
+		<result property="sysnum" column="SYSNUM" jdbcType="VARCHAR" />
+		<result property="issubtable" column="ISSUBTABLE" jdbcType="VARCHAR" />
+		<result property="topid" column="TOPID" jdbcType="VARCHAR" />
+		<result property="filedotFileid" column="FILEDOT_FILEID"
+			jdbcType="VARCHAR" />
+		<result property="indexId" column="INDEX_ID" jdbcType="INTEGER" />
+		<result property="winWidth" column="WIN_WIDTH" jdbcType="INTEGER" />
+		<result property="winHeight" column="WIN_HEIGHT" jdbcType="INTEGER" />
+		<result property="intQuote" column="INTQUOTE" jdbcType="INTEGER" />
+		<result property="intLineEdit" column="INTLINEEDIT" jdbcType="INTEGER" />
+		<result property="printfileid" column="PRINTFILEID" jdbcType="VARCHAR" />
+		<result property="INTUSESTREEWBS" column="INTUSESTREEWBS"
+			jdbcType="INTEGER" />
+		<result property="intUseIf" column="INTUSEIF" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertRdataTable" parameterType="com.glaf.isdp.domain.RdataTable">
+		insert into R_DATA_TABLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="tablename != null">
+				,TABLENAME
+			</if>
+			<if test="name != null">
+				,NAME
+			</if>
+			<if test="addtype != null">
+				,ADDTYPE
+			</if>
+			<if test="maxuser != null">
+				,MAXUSER
+			</if>
+			<if test="maxsys != null">
+				,MAXSYS
+			</if>
+			<if test="userid != null">
+				,USERID
+			</if>
+			<if test="ctime != null">
+				,CTIME
+			</if>
+			<if test="content != null">
+				,CONTENT
+			</if>
+			<if test="sysnum != null">
+				,SYSNUM
+			</if>
+			<if test="issubtable != null">
+				,ISSUBTABLE
+			</if>
+			<if test="topid != null">
+				,TOPID
+			</if>
+			<if test="filedotFileid != null">
+				,FILEDOT_FILEID
+			</if>
+			<if test="indexId != null">
+				,INDEX_ID
+			</if>
+			<if test="winWidth != null">
+				,WIN_WIDTH
+			</if>
+			<if test="winHeight != null">
+				,WIN_HEIGHT
+			</if>
+			<if test="intQuote != null">
+				,INTQUOTE
+			</if>
+			<if test="intLineEdit != null">
+				,INTLINEEDIT
+			</if>
+			<if test="printfileid != null">
+				,PRINTFILEID
+			</if>
+			<if test="INTUSESTREEWBS != null">
+				,INTUSESTREEWBS
+			</if>
+			<if test="intUseIf != null">
+				,INTUSEIF
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="tablename != null">
+				,#{tablename, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="addtype != null">
+				,#{addtype, jdbcType=INTEGER}
+			</if>
+			<if test="maxuser != null">
+				,#{maxuser, jdbcType=INTEGER}
+			</if>
+			<if test="maxsys != null">
+				,#{maxsys, jdbcType=INTEGER}
+			</if>
+			<if test="userid != null">
+				,#{userid, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="sysnum != null">
+				,#{sysnum, jdbcType=VARCHAR}
+			</if>
+			<if test="issubtable != null">
+				,#{issubtable, jdbcType=VARCHAR}
+			</if>
+			<if test="topid != null">
+				,#{topid, jdbcType=VARCHAR}
+			</if>
+			<if test="filedotFileid != null">
+				,#{filedotFileid, jdbcType=VARCHAR}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="winWidth != null">
+				,#{winWidth, jdbcType=INTEGER}
+			</if>
+			<if test="winHeight != null">
+				,#{winHeight, jdbcType=INTEGER}
+			</if>
+			<if test="intQuote != null">
+				,#{intQuote, jdbcType=INTEGER}
+			</if>
+			<if test="intLineEdit != null">
+				,#{intLineEdit, jdbcType=INTEGER}
+			</if>
+			<if test="printfileid != null">
+				,#{printfileid, jdbcType=VARCHAR}
+			</if>
+			<if test="INTUSESTREEWBS != null">
+				,#{INTUSESTREEWBS, jdbcType=INTEGER}
+			</if>
+			<if test="intUseIf != null">
+				,#{intUseIf, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateRdataTable" parameterType="com.glaf.isdp.domain.RdataTable">
+		update R_DATA_TABLE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="tablename != null">
+				TABLENAME = #{tablename, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="addtype != null">
+				ADDTYPE = #{addtype, jdbcType=INTEGER},
+			</if>
+			<if test="maxuser != null">
+				MAXUSER = #{maxuser, jdbcType=INTEGER},
+			</if>
+			<if test="maxsys != null">
+				MAXSYS = #{maxsys, jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				USERID = #{userid, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="sysnum != null">
+				SYSNUM = #{sysnum, jdbcType=VARCHAR},
+			</if>
+			<if test="issubtable != null">
+				ISSUBTABLE = #{issubtable, jdbcType=VARCHAR},
+			</if>
+			<if test="topid != null">
+				TOPID = #{topid, jdbcType=VARCHAR},
+			</if>
+			<if test="filedotFileid != null">
+				FILEDOT_FILEID = #{filedotFileid, jdbcType=VARCHAR},
+			</if>
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="winWidth != null">
+				WIN_WIDTH = #{winWidth, jdbcType=INTEGER},
+			</if>
+			<if test="winHeight != null">
+				WIN_HEIGHT = #{winHeight, jdbcType=INTEGER},
+			</if>
+			<if test="intQuote != null">
+				INTQUOTE = #{intQuote, jdbcType=INTEGER},
+			</if>
+			<if test="intLineEdit != null">
+				INTLINEEDIT = #{intLineEdit, jdbcType=INTEGER},
+			</if>
+			<if test="printfileid != null">
+				PRINTFILEID = #{printfileid, jdbcType=VARCHAR},
+			</if>
+			<if test="INTUSESTREEWBS != null">
+				INTUSESTREEWBS = #{INTUSESTREEWBS, jdbcType=INTEGER},
+			</if>
+			<if test="intUseIf != null">
+				INTUSEIF = #{intUseIf, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteRdataTableById" parameterType="string">
+		delete from
+		R_DATA_TABLE
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteRdataTables" parameterType="com.glaf.isdp.query.RdataTableQuery">
+		delete from R_DATA_TABLE
+		where (
+		ID IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getRdataTableById" parameterType="string"
+		resultMap="rdataTableResultMap">
+		select * from R_DATA_TABLE where ID = #{id}
+	</select>
+
+	<select id="getNextMaxUser" resultType="int">
+		SELECT
+		CASE
+		WHEN
+		MAX(MAXUSER) IS NULL
+		THEN 1
+		ELSE MAX(MAXUSER)+1
+		END MAXUSERID
+		FROM
+		R_DATA_TABLE
+	</select>
+
+	<select id="getRdataTables" parameterType="com.glaf.isdp.query.RdataTableQuery"
+		resultMap="rdataTableResultMap">
+		select distinct E.*
+		<include refid="selectRdataTablesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getRdataTableCount" parameterType="com.glaf.isdp.query.RdataTableQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectRdataTablesSql" />
+	</select>
+
+
+	<sql id="selectRdataTablesSql">
+
+		from R_DATA_TABLE E
+
+		<where>
+			1 = 1
+
+
+			<if test="tablename != null and tablename != '' ">
+				and E.TABLENAME = #{tablename}
+			</if>
+
+			<if test="tablenameLike != null and tablenameLike != '' ">
+				and E.TABLENAME like #{tablenameLike}
+			</if>
+
+			<if test="tablenames != null and tablenames.size() &gt; 0">
+				and E.TABLENAME IN
+				<foreach item="x_tablename" index="index" collection="tablenames"
+					open="(" separator="," close=")">
+					#{x_tablename}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="addtype != null">
+				and E.ADDTYPE = #{addtype}
+			</if>
+
+			<if test="addtypeGreaterThanOrEqual != null">
+				and E.ADDTYPE &gt;= #{addtypeGreaterThanOrEqual}
+			</if>
+
+			<if test="addtypeLessThanOrEqual != null">
+				and E.ADDTYPE &lt;= #{addtypeLessThanOrEqual}
+			</if>
+
+			<if test="addtypes != null and addtypes.size() &gt; 0">
+				and E.ADDTYPE IN
+				<foreach item="x_addtype" index="index" collection="addtypes"
+					open="(" separator="," close=")">
+					#{x_addtype}
+				</foreach>
+			</if>
+
+
+			<if test="maxuser != null">
+				and E.MAXUSER = #{maxuser}
+			</if>
+
+			<if test="maxuserGreaterThanOrEqual != null">
+				and E.MAXUSER &gt;= #{maxuserGreaterThanOrEqual}
+			</if>
+
+			<if test="maxuserLessThanOrEqual != null">
+				and E.MAXUSER &lt;= #{maxuserLessThanOrEqual}
+			</if>
+
+			<if test="maxusers != null and maxusers.size() &gt; 0">
+				and E.MAXUSER IN
+				<foreach item="x_maxuser" index="index" collection="maxusers"
+					open="(" separator="," close=")">
+					#{x_maxuser}
+				</foreach>
+			</if>
+
+
+			<if test="maxsys != null">
+				and E.MAXSYS = #{maxsys}
+			</if>
+
+			<if test="maxsysGreaterThanOrEqual != null">
+				and E.MAXSYS &gt;= #{maxsysGreaterThanOrEqual}
+			</if>
+
+			<if test="maxsysLessThanOrEqual != null">
+				and E.MAXSYS &lt;= #{maxsysLessThanOrEqual}
+			</if>
+
+			<if test="maxsyss != null and maxsyss.size() &gt; 0">
+				and E.MAXSYS IN
+				<foreach item="x_maxsys" index="index" collection="maxsyss"
+					open="(" separator="," close=")">
+					#{x_maxsys}
+				</foreach>
+			</if>
+
+
+			<if test="userid != null and userid != '' ">
+				and E.USERID = #{userid}
+			</if>
+
+			<if test="useridLike != null and useridLike != '' ">
+				and E.USERID like #{useridLike}
+			</if>
+
+			<if test="userids != null and userids.size() &gt; 0">
+				and E.USERID IN
+				<foreach item="x_userid" index="index" collection="userids"
+					open="(" separator="," close=")">
+					#{x_userid}
+				</foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+			</if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+			</if>
+
+
+			<if test="content != null and content != '' ">
+				and E.CONTENT = #{content}
+			</if>
+
+			<if test="contentLike != null and contentLike != '' ">
+				and E.CONTENT like #{contentLike}
+			</if>
+
+			<if test="contents != null and contents.size() &gt; 0">
+				and E.CONTENT IN
+				<foreach item="x_content" index="index" collection="contents"
+					open="(" separator="," close=")">
+					#{x_content}
+				</foreach>
+			</if>
+
+			<if test="sysnum != null and sysnum != '' ">
+				and E.SYSNUM = #{sysnum}
+			</if>
+
+			<if test="sysnumLike != null and sysnumLike != '' ">
+				and E.SYSNUM like #{sysnumLike}
+			</if>
+
+			<if test="sysnums != null and sysnums.size() &gt; 0">
+				and E.SYSNUM IN
+				<foreach item="x_sysnum" index="index" collection="sysnums"
+					open="(" separator="," close=")">
+					#{x_sysnum}
+				</foreach>
+			</if>
+
+			<if test="issubtable != null and issubtable != '' ">
+				and E.ISSUBTABLE = #{issubtable}
+			</if>
+
+			<if test="issubtableLike != null and issubtableLike != '' ">
+				and E.ISSUBTABLE like #{issubtableLike}
+			</if>
+
+			<if test="issubtables != null and issubtables.size() &gt; 0">
+				and E.ISSUBTABLE IN
+				<foreach item="x_issubtable" index="index" collection="issubtables"
+					open="(" separator="," close=")">
+					#{x_issubtable}
+				</foreach>
+			</if>
+
+			<if test="topid != null and topid != '' ">
+				and E.TOPID = #{topid}
+			</if>
+
+			<if test="topidLike != null and topidLike != '' ">
+				and E.TOPID like #{topidLike}
+			</if>
+
+			<if test="topids != null and topids.size() &gt; 0">
+				and E.TOPID IN
+				<foreach item="x_topid" index="index" collection="topids"
+					open="(" separator="," close=")">
+					#{x_topid}
+				</foreach>
+			</if>
+
+			<if test="filedotFileid != null and filedotFileid != '' ">
+				and E.FILEDOT_FILEID = #{filedotFileid}
+			</if>
+
+			<if test="filedotFileidLike != null and filedotFileidLike != '' ">
+				and E.FILEDOT_FILEID like #{filedotFileidLike}
+			</if>
+
+			<if test="filedotFileids != null and filedotFileids.size() &gt; 0">
+				and E.FILEDOT_FILEID IN
+				<foreach item="x_filedotFileid" index="index" collection="filedotFileids"
+					open="(" separator="," close=")">
+					#{x_filedotFileid}
+				</foreach>
+			</if>
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+			</if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+			</if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+				and E.INDEX_ID IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+
+			<if test="winWidth != null">
+				and E.WIN_WIDTH = #{winWidth}
+			</if>
+
+			<if test="winWidthGreaterThanOrEqual != null">
+				and E.WIN_WIDTH &gt;= #{winWidthGreaterThanOrEqual}
+			</if>
+
+			<if test="winWidthLessThanOrEqual != null">
+				and E.WIN_WIDTH &lt;= #{winWidthLessThanOrEqual}
+			</if>
+
+			<if test="winWidths != null and winWidths.size() &gt; 0">
+				and E.WIN_WIDTH IN
+				<foreach item="x_winWidth" index="index" collection="winWidths"
+					open="(" separator="," close=")">
+					#{x_winWidth}
+				</foreach>
+			</if>
+
+
+			<if test="winHeight != null">
+				and E.WIN_HEIGHT = #{winHeight}
+			</if>
+
+			<if test="winHeightGreaterThanOrEqual != null">
+				and E.WIN_HEIGHT &gt;= #{winHeightGreaterThanOrEqual}
+			</if>
+
+			<if test="winHeightLessThanOrEqual != null">
+				and E.WIN_HEIGHT &lt;= #{winHeightLessThanOrEqual}
+			</if>
+
+			<if test="winHeights != null and winHeights.size() &gt; 0">
+				and E.WIN_HEIGHT IN
+				<foreach item="x_winHeight" index="index" collection="winHeights"
+					open="(" separator="," close=")">
+					#{x_winHeight}
+				</foreach>
+			</if>
+
+
+			<if test="intQuote != null">
+				and E.INTQUOTE = #{intQuote}
+			</if>
+
+			<if test="intQuoteGreaterThanOrEqual != null">
+				and E.INTQUOTE &gt;= #{intQuoteGreaterThanOrEqual}
+			</if>
+
+			<if test="intQuoteLessThanOrEqual != null">
+				and E.INTQUOTE &lt;= #{intQuoteLessThanOrEqual}
+			</if>
+
+			<if test="intQuotes != null and intQuotes.size() &gt; 0">
+				and E.INTQUOTE IN
+				<foreach item="x_intQuote" index="index" collection="intQuotes"
+					open="(" separator="," close=")">
+					#{x_intQuote}
+				</foreach>
+			</if>
+
+
+			<if test="intLineEdit != null">
+				and E.INTLINEEDIT = #{intLineEdit}
+			</if>
+
+			<if test="intLineEditGreaterThanOrEqual != null">
+				and E.INTLINEEDIT &gt;= #{intLineEditGreaterThanOrEqual}
+			</if>
+
+			<if test="intLineEditLessThanOrEqual != null">
+				and E.INTLINEEDIT &lt;= #{intLineEditLessThanOrEqual}
+			</if>
+
+			<if test="intLineEdits != null and intLineEdits.size() &gt; 0">
+				and E.INTLINEEDIT IN
+				<foreach item="x_intLineEdit" index="index" collection="intLineEdits"
+					open="(" separator="," close=")">
+					#{x_intLineEdit}
+				</foreach>
+			</if>
+
+
+			<if test="printfileid != null and printfileid != '' ">
+				and E.PRINTFILEID = #{printfileid}
+			</if>
+
+			<if test="printfileidLike != null and printfileidLike != '' ">
+				and E.PRINTFILEID like #{printfileidLike}
+			</if>
+
+			<if test="printfileids != null and printfileids.size() &gt; 0">
+				and E.PRINTFILEID IN
+				<foreach item="x_printfileid" index="index" collection="printfileids"
+					open="(" separator="," close=")">
+					#{x_printfileid}
+				</foreach>
+			</if>
+
+			<if test="INTUSESTREEWBS != null">
+				and E.INTUSESTREEWBS = #{INTUSESTREEWBS}
+			</if>
+
+			<if test="INTUSESTREEWBSGreaterThanOrEqual != null">
+				and E.INTUSESTREEWBS &gt;=
+				#{INTUSESTREEWBSGreaterThanOrEqual}
+			</if>
+
+			<if test="INTUSESTREEWBSLessThanOrEqual != null">
+				and E.INTUSESTREEWBS &lt;=
+				#{INTUSESTREEWBSLessThanOrEqual}
+			</if>
+
+			<if test="INTUSESTREEWBSs != null and INTUSESTREEWBSs.size() &gt; 0">
+				and E.INTUSESTREEWBS IN
+				<foreach item="x_INTUSESTREEWBS" index="index" collection="INTUSESTREEWBSs"
+					open="(" separator="," close=")">
+					#{x_INTUSESTREEWBS}
+				</foreach>
+			</if>
+
+
+			<if test="intUseIf != null">
+				and E.INTUSEIF = #{intUseIf}
+			</if>
+
+			<if test="intUseIfGreaterThanOrEqual != null">
+				and E.INTUSEIF &gt;= #{intUseIfGreaterThanOrEqual}
+			</if>
+
+			<if test="intUseIfLessThanOrEqual != null">
+				and E.INTUSEIF &lt;= #{intUseIfLessThanOrEqual}
+			</if>
+
+			<if test="intUseIfs != null and intUseIfs.size() &gt; 0">
+				and E.INTUSEIF IN
+				<foreach item="x_intUseIf" index="index" collection="intUseIfs"
+					open="(" separator="," close=")">
+					#{x_intUseIf}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.PostMapper">
+
+	<resultMap id="sysRoleResultMap" type="com.glaf.base.modules.sys.model.Post">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE" jdbcType="VARCHAR" />
+		<result property="content" column="CONTENT" jdbcType="VARCHAR" />
+		<result property="code" column="CODE" jdbcType="VARCHAR" />
+		<result property="sort" column="SORTNO" jdbcType="INTEGER" />
+		<result property="indexUrl" column="INDEXURL" jdbcType="VARCHAR" />
+		<result property="isUseBranch" column="ISUSEBRANCH" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="deleteFlag" column="DELETEFLAG" jdbcType="INTEGER" />
+		<result property="deleteTime" column="DELETETIME" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+    <resultMap id="deptRolePostTreeNodeMap" type="com.glaf.base.modules.sys.model.DeptRolePostTreeNode">
+		<result property="name" column="NAME" jdbcType="VARCHAR" />
+		<result property="deptId" column="DEPTID" jdbcType="BIGINT" />
+		<result property="deptCode" column="DEPTCODE" jdbcType="VARCHAR" />
+		<result property="treeId" column="TREEID" jdbcType="BIGINT" />
+		<result property="pTreeId" column="PTREEID" jdbcType="BIGINT" />
+		<result property="postId" column="POSTID" jdbcType="BIGINT" />
+		<result property="postCode" column="POSTCODE" jdbcType="VARCHAR" />
+		<result property="roleId" column="ROLEID" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<insert id="insertPost" parameterType="com.glaf.base.modules.sys.model.Post">
+		insert into sys_post
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID,
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="content != null">
+				CONTENT,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="sort != null">
+				SORTNO,
+			</if>
+			<if test="indexUrl != null">
+				INDEXURL,
+			</if>
+			<if test="isUseBranch != null">
+				ISUSEBRANCH,
+			</if>
+			<if test="createDate != null">
+				CREATEDATE,
+			</if>
+			<if test="createBy != null">
+				CREATEBY,
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY,
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE,
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG,
+			</if>
+			<if test="deleteTime != null">
+				DELETETIME
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT},
+
+			<if test="name != null">
+				#{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort, jdbcType=INTEGER},
+			</if>
+			<if test="indexUrl != null">
+				#{indexUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="isUseBranch != null">
+				#{isUseBranch, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				#{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				#{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="deleteTime != null">
+				#{deleteTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updatePost" parameterType="com.glaf.base.modules.sys.model.Post">
+		update sys_post
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORTNO = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="indexUrl != null">
+				INDEXURL = #{indexUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="isUseBranch != null">
+				ISUSEBRANCH = #{isUseBranch, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="deleteTime != null">
+				DELETETIME = #{deleteTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deletePostById" parameterType="long">
+		delete from
+		sys_post
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deletePostByStringId" parameterType="string">
+		delete from
+		sys_post
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deletePosts" parameterType="com.glaf.base.modules.sys.query.PostQuery">
+		delete from sys_post
+		where (
+		ID IN
+		<foreach item="x_rowId" index="index" collection="rowIds"
+			open="(" separator="," close=")">
+			#{x_rowId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getPostById" parameterType="long" resultMap="sysRoleResultMap">
+		select *
+		from sys_post where ID = #{id}
+	</select>
+
+
+	<select id="getPostByStringId" parameterType="string" resultMap="sysRoleResultMap">
+		select * from sys_post where ID = #{id}
+	</select>
+   
+    <select id="getDeptRolePostTreeNodes"  resultMap="deptRolePostTreeNodeMap">
+		select a.name,a.code as deptCode,a.id as deptId,b.ID as treeId,b.PARENT as pTreeId,null as postCode, null as postId,null as roleId,a.SORT 
+		    from sys_department a,sys_tree b where a.NODEID=b.ID   union 
+        select c.name,a.code as deptCode,a.id as deptId,d.ID as treeId,b.ID as pTreeId ,c.code as postCode,c.ID as postId,d.roleId ,a.SORT
+            from sys_department a,sys_tree b,sys_post c,sys_dept_role_post d where a.NODEID=b.ID and c.ID=d.POSTID and a.ID=d.DEPTID
+            order by a.SORT asc
+	</select>
+
+	<select id="getPosts" parameterType="com.glaf.base.modules.sys.query.PostQuery"
+		resultMap="sysRoleResultMap">
+		select E.*
+		<include refid="selectPostsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.SORTNO asc
+			</otherwise>
+		</choose>
+	</select>
+
+    <select id="getPostUsersByPostCodeList" parameterType="map"
+		resultType="string">
+		select a.USERID from sys_post_user a, sys_post b where a.POSTID=b.ID and b.CODE in 
+		   	<foreach item="x_postCode" index="index" collection="postCodes"
+			open="(" separator="," close=")">
+			#{x_postCode}
+		    </foreach>
+	</select>
+   
+	<select id="getPostCount" parameterType="com.glaf.base.modules.sys.query.PostQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectPostsSql" />
+	</select>
+
+
+	<sql id="selectPostsSql">
+
+		from sys_post E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size != 0">
+				and E.NAME IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY = #{createBy}
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size != 0">
+				and E.CODE IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE = #{type}
+			</if>
+
+			<if test="isUseBranch != null and isUseBranch != '' ">
+				and E.ISUSEBRANCH = #{isUseBranch}
+			</if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORTNO &gt;= #{sortGreaterThanOrEqual}
+			</if>
+
+			<if test="sortGreaterThan  != null">
+				and E.SORTNO &gt; #{sortGreaterThan}
+			</if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORTNO &lt;= #{sortLessThanOrEqual}
+			</if>
+
+			<if test="sortLessThan != null">
+				and E.SORTNO &lt; #{sortLessThan}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG = #{deleteFlag}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DataSetAuditMapper">
+
+	<resultMap id="dataSetAuditResultMap" type="com.glaf.datamgr.domain.DataSetAudit">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="datasetId" column="DATASETID_" jdbcType="VARCHAR" />
+		<result property="content" column="CONTENT_" jdbcType="VARCHAR" />
+		<result property="saveFlag" column="SAVEFLAG_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertDataSetAudit" parameterType="com.glaf.datamgr.domain.DataSetAudit">
+		insert into SYS_DATASET_AUDIT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="datasetId != null">
+				,DATASETID_
+			</if>
+			<if test="content != null">
+				,CONTENT_
+			</if>
+			<if test="saveFlag != null">
+				,SAVEFLAG_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="content != null">
+				,#{content, jdbcType=VARCHAR}
+			</if>
+			<if test="saveFlag != null">
+				,#{saveFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<select id="getDataSetAuditById" parameterType="long"
+		resultMap="dataSetAuditResultMap">
+		select * from SYS_DATASET_AUDIT where ID_ = #{id}
+	</select>
+
+
+	<select id="getLastestDataSetAudit" parameterType="string"
+		resultMap="dataSetAuditResultMap">
+
+		select * from SYS_DATASET_AUDIT where
+		DATASETID_ =
+		#{datasetId}
+		and VERSION_ =
+		( select max(VERSION_) from
+		SYS_DATASET_AUDIT where
+		DATASETID_ = #{datasetId} )
+
+	</select>
+
+	<select id="getDataSetAuditMaxVersionByDataSetId" parameterType="string"
+		resultType="integer">
+		select max(VERSION_) from SYS_DATASET_AUDIT where
+		DATASETID_ = #{datasetId}
+	</select>
+
+
+	<select id="getDataSetAudits" parameterType="com.glaf.datamgr.query.DataSetAuditQuery"
+		resultMap="dataSetAuditResultMap">
+		select distinct E.*
+		<include refid="selectDataSetAuditsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.VERSION_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDataSetAuditCount" parameterType="com.glaf.datamgr.query.DataSetAuditQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataSetAuditsSql" />
+	</select>
+
+
+	<sql id="selectDataSetAuditsSql">
+
+		from SYS_DATASET_AUDIT E
+
+		<where>
+			1 = 1
+
+			<if test="datasetId != null and datasetId != '' ">
+				and E.DATASETID_ = #{datasetId}
+			</if>
+
+			<if test="datasetIds != null and datasetIds.size() &gt; 0">
+				and E.DATASETID_ IN
+				<foreach item="x_datasetId" index="index" collection="datasetIds"
+					open="(" separator="," close=")">
+					#{x_datasetId}
+				</foreach>
+			</if>
+
+			<if test="version != null">
+				and E.VERSION_ = #{version}
+			</if>
+
+			<if test="versionGreaterThanOrEqual != null">
+				and E.VERSION_ &gt;= #{versionGreaterThanOrEqual}
+			</if>
+
+			<if test="versionLessThanOrEqual != null">
+				and E.VERSION_ &lt;= #{versionLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

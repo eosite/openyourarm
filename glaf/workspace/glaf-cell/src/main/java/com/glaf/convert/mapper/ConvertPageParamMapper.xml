@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertPageParamMapper">
+
+ 	<resultMap id="convertPageParamResultMap"	type="com.glaf.convert.domain.ConvertPageParam">
+        <id property="cvtParamId" column="CVT_PARAM_ID_" jdbcType="BIGINT" />
+        <result property="cvtId" column="CVT_ID_" jdbcType="BIGINT"/>
+        <result property="paramName" column="PARAM_NAME_" jdbcType="VARCHAR"/>
+        <result property="paramCode" column="PARAM_CODE_" jdbcType="VARCHAR"/>
+        <result property="paramType" column="PARAM_TYPE_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertPageParam" parameterType="com.glaf.convert.domain.ConvertPageParam">
+		insert into CVT_PAGE_PARAM 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    CVT_PARAM_ID_
+			<if test="cvtId != null">
+				,CVT_ID_ 
+			</if>
+			<if test="paramName != null">
+				,PARAM_NAME_ 
+			</if>
+			<if test="paramCode != null">
+				,PARAM_CODE_ 
+			</if>
+			<if test="paramType != null">
+				,PARAM_TYPE_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{cvtParamId, jdbcType=BIGINT}
+	     
+			<if test="cvtId != null">
+				,#{cvtId, jdbcType=BIGINT}
+			</if>
+			<if test="paramName != null">
+				,#{paramName, jdbcType=VARCHAR}
+			</if>
+			<if test="paramCode != null">
+				,#{paramCode, jdbcType=VARCHAR}
+			</if>
+			<if test="paramType != null">
+				,#{paramType, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertPageParam" parameterType="com.glaf.convert.domain.ConvertPageParam">
+		update CVT_PAGE_PARAM
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtId != null">
+				CVT_ID_ = #{cvtId, jdbcType=BIGINT},
+			</if>
+			<if test="paramName != null">
+				PARAM_NAME_ = #{paramName, jdbcType=VARCHAR},
+			</if>
+			<if test="paramCode != null">
+				PARAM_CODE_ = #{paramCode, jdbcType=VARCHAR},
+			</if>
+			<if test="paramType != null">
+				PARAM_TYPE_ = #{paramType, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          CVT_PARAM_ID_ = #{cvtParamId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertPageParamById" parameterType="long"> 
+        delete from CVT_PAGE_PARAM
+        where CVT_PARAM_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertPageParams" parameterType="com.glaf.convert.query.ConvertPageParamQuery">
+		delete from CVT_PAGE_PARAM
+		where ( 
+ 			  CVT_PARAM_ID_ IN
+              <foreach item="x_cvtParamId" index="index" collection="cvtParamIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtParamId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertPageParamById" parameterType="long" resultMap="convertPageParamResultMap">
+		select * from CVT_PAGE_PARAM where CVT_PARAM_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertPageParams" 
+	    parameterType="com.glaf.convert.query.ConvertPageParamQuery"
+		resultMap="convertPageParamResultMap">
+		select distinct E.*
+		<include refid="selectConvertPageParamsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CVT_PARAM_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertPageParamCount" 
+	    parameterType="com.glaf.convert.query.ConvertPageParamQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertPageParamsSql" />
+	</select>
+
+
+	<sql id="selectConvertPageParamsSql">
+
+		from CVT_PAGE_PARAM E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtId != null">
+				and E.CVT_ID_ = #{cvtId}
+            </if>
+
+			<if test="cvtIdGreaterThanOrEqual != null">
+				and E.CVT_ID_ &gt;= #{cvtIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtIdLessThanOrEqual != null">
+				and E.CVT_ID_ &lt;= #{cvtIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtIds != null and cvtIds.size() &gt; 0">
+			    and E.CVT_ID_ IN
+                <foreach item="x_cvtId" index="index" collection="cvtIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="paramName != null and paramName != '' ">
+				and E.PARAM_NAME_ = #{paramName}
+            </if>
+
+			<if test="paramNameLike != null and paramNameLike != '' ">
+				and E.PARAM_NAME_ like #{paramNameLike}
+            </if>
+
+			<if test="paramNames != null and paramNames.size() &gt; 0">
+			    and E.PARAM_NAME_ IN
+                <foreach item="x_paramName" index="index" collection="paramNames" 
+                     open="(" separator="," close=")">
+                  #{x_paramName}
+                </foreach>
+			</if>
+	        
+			<if test="paramCode != null and paramCode != '' ">
+				and E.PARAM_CODE_ = #{paramCode}
+            </if>
+
+			<if test="paramCodeLike != null and paramCodeLike != '' ">
+				and E.PARAM_CODE_ like #{paramCodeLike}
+            </if>
+
+			<if test="paramCodes != null and paramCodes.size() &gt; 0">
+			    and E.PARAM_CODE_ IN
+                <foreach item="x_paramCode" index="index" collection="paramCodes" 
+                     open="(" separator="," close=")">
+                  #{x_paramCode}
+                </foreach>
+			</if>
+	        
+			<if test="paramType != null and paramType != '' ">
+				and E.PARAM_TYPE_ = #{paramType}
+            </if>
+
+			<if test="paramTypeLike != null and paramTypeLike != '' ">
+				and E.PARAM_TYPE_ like #{paramTypeLike}
+            </if>
+
+			<if test="paramTypes != null and paramTypes.size() &gt; 0">
+			    and E.PARAM_TYPE_ IN
+                <foreach item="x_paramType" index="index" collection="paramTypes" 
+                     open="(" separator="," close=")">
+                  #{x_paramType}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

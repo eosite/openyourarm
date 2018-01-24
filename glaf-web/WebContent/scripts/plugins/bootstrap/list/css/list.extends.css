@@ -1,0 +1,8 @@
+.elemtag {
+    border: 1px dashed #88b7ff;
+    background: #258fd7;
+    height: 60px;
+    /*width: 100px;*/
+    text-align: center;
+    padding-top: 10px;
+}

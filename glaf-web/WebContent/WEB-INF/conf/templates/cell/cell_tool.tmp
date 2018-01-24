@@ -1,0 +1,162 @@
+<div class="row col-md-12 spread_tools_combo" id="${id}_combo" data-role="col-md-12" style="${styles}">
+    <div class="row" style="margin: 0px;">
+        <div class="col-md-12 col-xs-12 spread_tools_header">
+            <ul class="nav nav-tabs" style="background-color: #d0ddee;border-bottom:1px solid #b7c3d2;margin-bottom: 0px;">
+            	<#list toolbars as toolbar>
+	                <li class="<#if toolbar_index==0>active</#if>">
+	                    <a href="#${id}_tab_${toolbar_index}" data-toggle="tab" class="titleControl" >${toolbar.toolBarName}</a>
+	                </li>
+	             </#list>
+            </ul>
+            <div class="tab-content">
+            	<#list toolbars as toolbar>
+	                <div class="tab-pane fade <#if toolbar_index==0>active</#if> in" id="${id}_tab_${toolbar_index}">
+	                    <div class="form-inline well well-sm spreadjs_toolbar">
+	                        <#list toolbar.tools as tool>
+                        		<div class="btn-group">
+	                        		<#if tool.icon == 'font-icon'>
+			                            <select class="form-control select2 spread_tools" data-placeholder="请选择..." data-allow-clear="true" tabindex="-1" aria-hidden="true" tooltype="${tool.icon}">
+							            	<option value="Calibri">Calibri</option>
+							            	<option value="SimSun">宋体</option>
+							            	<option value="SimHei">黑体</option>
+							            	<option value="Microsoft YaHei">微软雅黑</option>
+							            	<option value="FangSong">仿宋</option>
+							            	<option value="KaiTi">楷体</option>
+							         	</select>
+			                        <#elseif tool.icon == 'fontsize-icon'>
+			                        	<select class="form-control select2 spread_tools" data-placeholder="请选择..." data-allow-clear="true" tabindex="-1" aria-hidden="true" tooltype="${tool.icon}">
+								        	<option value="8">8</option>
+								        	<option value="9">9</option>
+								            <option value="10">10</option>
+								            <option value="11" selected="">11</option>
+								            <option value="12">12</option>
+								            <option value="14">14</option>
+								            <option value="16">16</option>
+								            <option value="18">18</option>
+								            <option value="20">20</option>
+								            <option value="24">24</option>
+								            <option value="26">26</option>
+								            <option value="28">28</option>
+								            <option value="36">36</option>
+								            <option value="48">48</option>
+								            <option value="72">72</option>
+								        </select>
+			                        <#else>  
+			                        	<button class="icon-btn spread_tools spread_tools_myicon" tooltype="${tool.icon}">
+			                                <div class="ui-icon ${tool.icon}" style="margin-top:0px;"></div>
+			                                <div> ${tool.toolName}</div>
+			                            </button>
+		                            </#if>
+	                            </div>
+	                        </#list>
+	                    </div>
+	                </div>
+                </#list>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 0px;height:100%">
+	    <div class="col-md-12 col-xs-12" style="height:100%">
+	    	<div class="spread_center">
+	        	<div id="${id}" data-role="cell"></div>
+	        </div>
+	        <div class="spreadjs_cell_color" style="">
+	        	<table style="border-collapse:separate; border-spacing:0px 10px;">
+	        		<tr>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(192, 0, 0);" rgbcolor="rgb(192, 0, 0)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(255, 0, 0);" rgbcolor="rgb(255, 0, 0)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(255, 192, 0);" rgbcolor="rgb(255, 192, 0)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(255, 255, 0);" rgbcolor="rgb(255, 255, 0)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(146, 208, 80);" rgbcolor="rgb(146, 208, 80)"></div>
+	        			</td>
+	        		</tr>
+	        		<tr>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(0, 176, 80);" rgbcolor="rgb(0, 176, 80)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(0, 176, 240);" rgbcolor="rgb(0, 176, 240)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(0, 112, 192);" rgbcolor="rgb(0, 112, 192)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(0, 32, 96);" rgbcolor="rgb(0, 32, 96)"></div>
+	        			</td>
+	        			<td>
+	        				<div class="spread_color_chunk" style="background: rgb(112, 48, 160);" rgbcolor="rgb(112, 48, 160)"></div>
+	        			</td>
+	        		</tr>
+	        		<tr>
+	        			<td colspan="5">
+	        				<div >
+	        					<div style="display:inline-block;" class="spread_color_chunk" rgbcolor="" >
+									
+								</div>
+	        					<div style="display:inline;padding-left:10px">
+	        						无颜色
+	        					</div>
+	        				</div>
+	        			</td>
+	        		</tr>
+	        		<tr>
+	        			<td colspan="5">
+	        				<div class="form-group" style="margin-bottom:0px;">
+	        					其它：<input type="text" class="form-control" style="height:33px">
+	        				</div>
+	        			</td>
+	        		</tr>
+	        	</table>
+	        </div>
+	    </div>
+	</div>
+    <div class="row spread_foot" style="margin: 0px;">
+		<div class="col-md-12 col-xs-12" style="padding: 0px;height:100%">
+			<div class="btn-group dropup spread_zoomBt">
+                 <button type="button" class="btn btn-default spreadjs_zoomval">100%</button>
+                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                     <i class="fa fa-angle-up"></i>
+                 </button>
+                 <ul class="dropdown-menu" role="menu">
+                     <li>
+                         <a href="javascript:;" val="400" class="spreadjs_zoomlink">400%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="300" class="spreadjs_zoomlink">300%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="200" class="spreadjs_zoomlink">200%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="150" class="spreadjs_zoomlink">150%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="100" class="spreadjs_zoomlink">100%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="75" class="spreadjs_zoomlink">75%</a>
+                     </li>
+                     <li>
+                         <a href="javascript:;" val="50" class="spreadjs_zoomlink">50%</a>
+                     </li>
+                     <li class="divider"> </li>
+                     <li >
+                         <a href="javascript:;" val="100"  class="spreadjs_zoomlink"><i class="fa fa-file-o"></i> 实际大小</a>
+                     </li>
+                 </ul>
+             </div>
+			<div class="spread_zoom">
+			   <input type="text" class="spreadjs_rangeSlider" style="display:none;" value="100"/>
+			</div>
+		</div>
+	</div>
+</div>

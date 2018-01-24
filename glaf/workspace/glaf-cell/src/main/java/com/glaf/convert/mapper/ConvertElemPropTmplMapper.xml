@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.convert.mapper.ConvertElemPropTmplMapper">
+
+ 	<resultMap id="convertElemPropTmplResultMap"	type="com.glaf.convert.domain.ConvertElemPropTmpl">
+        <id property="elemPropId" column="ELEMPROP_ID_" jdbcType="BIGINT" />
+        <result property="cvtId" column="CVT_ID_" jdbcType="BIGINT"/>
+        <result property="rowIndex" column="ROW_INDEX_" jdbcType="INTEGER"/>
+        <result property="colIndex" column="COL_INDEX_" jdbcType="INTEGER"/>
+        <result property="cellPropVal" column="CELL_PROP_VAL_" jdbcType="VARCHAR"/>
+        <result property="cellProp" column="CELL_PROP_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATE_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifyDatetime" column="MODIFY_DATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertConvertElemPropTmpl" parameterType="com.glaf.convert.domain.ConvertElemPropTmpl">
+		insert into CVT_ELEMPROP_TMPL 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ELEMPROP_ID_
+			<if test="cvtId != null">
+				,CVT_ID_ 
+			</if>
+			<if test="rowIndex != null">
+				,ROW_INDEX_ 
+			</if>
+			<if test="colIndex != null">
+				,COL_INDEX_ 
+			</if>
+			<if test="cellPropVal != null">
+				,CELL_PROP_VAL_ 
+			</if>
+			<if test="cellProp != null">
+				,CELL_PROP_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATE_DATETIME_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFY_DATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{elemPropId, jdbcType=BIGINT}
+	     
+			<if test="cvtId != null">
+				,#{cvtId, jdbcType=BIGINT}
+			</if>
+			<if test="rowIndex != null">
+				,#{rowIndex, jdbcType=INTEGER}
+			</if>
+			<if test="colIndex != null">
+				,#{colIndex, jdbcType=INTEGER}
+			</if>
+			<if test="cellPropVal != null">
+				,#{cellPropVal, jdbcType=VARCHAR}
+			</if>
+			<if test="cellProp != null">
+				,#{cellProp, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateConvertElemPropTmpl" parameterType="com.glaf.convert.domain.ConvertElemPropTmpl">
+		update CVT_ELEMPROP_TMPL
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cvtId != null">
+				CVT_ID_ = #{cvtId, jdbcType=BIGINT},
+			</if>
+			<if test="rowIndex != null">
+				ROW_INDEX_ = #{rowIndex, jdbcType=INTEGER},
+			</if>
+			<if test="colIndex != null">
+				COL_INDEX_ = #{colIndex, jdbcType=INTEGER},
+			</if>
+			<if test="cellPropVal != null">
+				CELL_PROP_VAL_ = #{cellPropVal, jdbcType=VARCHAR},
+			</if>
+			<if test="cellProp != null">
+				CELL_PROP_ = #{cellProp, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATE_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFY_DATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ELEMPROP_ID_ = #{elemPropId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteConvertElemPropTmplById" parameterType="long"> 
+        delete from CVT_ELEMPROP_TMPL
+        where ELEMPROP_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteConvertElemPropTmpls" parameterType="com.glaf.convert.query.ConvertElemPropTmplQuery">
+		delete from CVT_ELEMPROP_TMPL
+		where ( 
+ 			  ELEMPROP_ID_ IN
+              <foreach item="x_elemPropId" index="index" collection="elemPropIds" 
+                     open="(" separator="," close=")">
+                  #{x_elemPropId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getConvertElemPropTmplById" parameterType="long" resultMap="convertElemPropTmplResultMap">
+		select * from CVT_ELEMPROP_TMPL where ELEMPROP_ID_ = #{id}
+	</select>
+
+
+	<select id="getConvertElemPropTmpls" 
+	    parameterType="com.glaf.convert.query.ConvertElemPropTmplQuery"
+		resultMap="convertElemPropTmplResultMap">
+		select distinct E.*
+		<include refid="selectConvertElemPropTmplsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ELEMPROP_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getConvertElemPropTmplCount" 
+	    parameterType="com.glaf.convert.query.ConvertElemPropTmplQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectConvertElemPropTmplsSql" />
+	</select>
+
+
+	<sql id="selectConvertElemPropTmplsSql">
+
+		from CVT_ELEMPROP_TMPL E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cvtId != null">
+				and E.CVT_ID_ = #{cvtId}
+            </if>
+
+			<if test="cvtIdGreaterThanOrEqual != null">
+				and E.CVT_ID_ &gt;= #{cvtIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cvtIdLessThanOrEqual != null">
+				and E.CVT_ID_ &lt;= #{cvtIdLessThanOrEqual}
+            </if>
+
+			<if test="cvtIds != null and cvtIds.size() &gt; 0">
+			    and E.CVT_ID_ IN
+                <foreach item="x_cvtId" index="index" collection="cvtIds" 
+                     open="(" separator="," close=")">
+                  #{x_cvtId}
+                </foreach>
+			</if>
+      
+
+			<if test="rowIndex != null">
+				and E.ROW_INDEX_ = #{rowIndex}
+            </if>
+
+			<if test="rowIndexGreaterThanOrEqual != null">
+				and E.ROW_INDEX_ &gt;= #{rowIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="rowIndexLessThanOrEqual != null">
+				and E.ROW_INDEX_ &lt;= #{rowIndexLessThanOrEqual}
+            </if>
+
+			<if test="rowIndexs != null and rowIndexs.size() &gt; 0">
+			    and E.ROW_INDEX_ IN
+                <foreach item="x_rowIndex" index="index" collection="rowIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_rowIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="colIndex != null">
+				and E.COL_INDEX_ = #{colIndex}
+            </if>
+
+			<if test="colIndexGreaterThanOrEqual != null">
+				and E.COL_INDEX_ &gt;= #{colIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="colIndexLessThanOrEqual != null">
+				and E.COL_INDEX_ &lt;= #{colIndexLessThanOrEqual}
+            </if>
+
+			<if test="colIndexs != null and colIndexs.size() &gt; 0">
+			    and E.COL_INDEX_ IN
+                <foreach item="x_colIndex" index="index" collection="colIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_colIndex}
+                </foreach>
+			</if>
+      
+	        
+			<if test="cellPropVal != null and cellPropVal != '' ">
+				and E.CELL_PROP_VAL_ = #{cellPropVal}
+            </if>
+
+			<if test="cellPropValLike != null and cellPropValLike != '' ">
+				and E.CELL_PROP_VAL_ like #{cellPropValLike}
+            </if>
+
+			<if test="cellPropVals != null and cellPropVals.size() &gt; 0">
+			    and E.CELL_PROP_VAL_ IN
+                <foreach item="x_cellPropVal" index="index" collection="cellPropVals" 
+                     open="(" separator="," close=")">
+                  #{x_cellPropVal}
+                </foreach>
+			</if>
+	        
+			<if test="cellProp != null and cellProp != '' ">
+				and E.CELL_PROP_ = #{cellProp}
+            </if>
+
+			<if test="cellPropLike != null and cellPropLike != '' ">
+				and E.CELL_PROP_ like #{cellPropLike}
+            </if>
+
+			<if test="cellProps != null and cellProps.size() &gt; 0">
+			    and E.CELL_PROP_ IN
+                <foreach item="x_cellProp" index="index" collection="cellProps" 
+                     open="(" separator="," close=")">
+                  #{x_cellProp}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATE_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATE_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFY_DATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

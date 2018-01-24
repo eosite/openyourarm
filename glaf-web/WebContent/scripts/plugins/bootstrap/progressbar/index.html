@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>datepicker</title>
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet">
+<link href="../base/css/font-awesome.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+
+
+<script>
+$(function(){	
+	$("#container").on("click",'#btn',function(){
+		show();
+	});
+	$("#btn2").on("click",'',function(){
+		show();
+	});
+})
+
+function show(){
+	alert("1111");
+			
+}
+
+
+</script>
+</head>
+<body>
+
+
+
+
+
+<div >
+<div class="progress " style="margin-bottom:0px; left:100px;position: relative;cursor: not-allowed;" >
+   <div class="progress-bar progress-bar-danger id frame-variable" frame-variable="fv1"
+      aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 	
+      style="width: 40%;" >
+      <span class="sr-only">10% 完成</span>
+   </div> 
+</div>
+</div>
+
+
+<div class="progress progress-striped active" style="margin-bottom:0px;">
+   <div class="progress-bar progress-bar-danger id frame-variable"  frame-variable="fv1"
+      aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
+      style="width: 40%;">
+	   <span class="sr-only">10% 完成</span>
+   </div>
+</div>
+
+
+
+<label class="control-label id frame-variable" frame-variable="fv1">CHINAISS</label>
+<div class="col-md-1">
+	<span class="label label-default id frame-variable" style="white-space:normal;line-height:1.4;" frame-variable="fv1">华闽通达
+	12315416546</span>
+</div>	
+<div>
+	<span class="label label-default id frame-variable" style="white-space:normal;line-height:1.4;" frame-variable="fv1">华闽通达</span>
+</div>
+
+
+<div class=" input-group" style="text-align: left; vertical-align: top;" >
+	
+	<input type="text" class = "form-control id frame-variable" frame-variable="fv1" placeholder="Enter your name ..." > 
+	<span class="input-group-addon ">
+		<i class="fa fa-envelope"></i>
+	</span>
+</div>   
+
+	<div class = "input-icon">
+	<i class="fa fa-user fa-spin font-blue " style="font-size: 1.5em;"></i>
+	<input type="text" style="border:none;border-bottom:1px solid red" class = "form-control id frame-variable" frame-variable="fv1" placeholder="Enter your name ..." > 
+	</div>
+	
+	<div class = "input-icon right">
+		<i class="fa fa-user fa-spin font-red " style="font-size: 1.5em;"></i>
+		<input type="text" class="form-control id frame-variable" frame-variable="fv1"  placeholder="方框图标  ..." >
+	</div>
+	
+	
+	<div class="form-group form-md-line-input  form-md-floating-label has-warning" style="margin:0 0 0px;padding-top:0px;"  >	
+		<div class = "input-icon ">
+			<i class="fa fa-user fa-spin font-red " style="font-size: 1.5em;"></i>
+			<input type="text" class="form-control id frame-variable" frame-variable="fv1"  placeholder="Enter your name  ..." >
+			<label for=""></label>
+			<span class="help-block">请正确输入...</span>
+		</div>
+		
+	</div>                                     
+	 
+	
+	
+	
+	 
+	<div class="form-group form-md-line-input has-success">
+        <input type="text" class="form-control"   placeholder="">
+        <label for="form_control_1">我是label</label>
+    </div>
+	
+	<div class="form-group form-md-line-input has-error">
+           <input type="text" class="form-control" placeholder="">
+           <label for="form_control_1">我是label</label>
+           <span class="help-block">请正确输入...</span>
+    </div>
+	
+	 <div class="form-group form-md-line-input form-md-floating-label has-warning">
+           <input type="text" class="form-control">
+           <label for="form_control_1">我是label</label>
+           <span class="help-block">请正确输入...</span>
+     </div>
+											
+	
+	
+	<div id="container">
+		<button id="btn" class="btn btn-primary">getDate</button>
+		<button id="btn2" class="btn btn-primary">getDate</button>
+	</div>
+	
+   
+   
+</body>
+</html>

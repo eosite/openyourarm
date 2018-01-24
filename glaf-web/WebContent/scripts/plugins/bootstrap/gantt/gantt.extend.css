@@ -1,0 +1,31 @@
+.ganttButtonBar {
+    padding: inherit;
+    height: inherit;
+    font-size: 12px;
+}
+
+.taskEditRow,
+.emptyRow {
+    height: 20px;
+}
+
+.taskEditRow input {
+    font-size: 11px;
+    height: inherit;
+}
+
+.gdfCell {
+    padding: 0px 2px;
+}
+.gdfTable td, .gdfTable th{
+  font-size: 11px;
+}
+.ganttHighLight{
+  height: 20px;
+}
+TH, .tableHeader{
+  background-color: #5DA4D8;
+}
+BODY, TBODY{
+  font-size: 11px;
+}

@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.CellMyTaskMapper">
+
+ 	<resultMap id="cellMyTaskResultMap"	type="com.glaf.isdp.domain.CellMyTask">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOPID" jdbcType="VARCHAR"/>
+        <result property="fillFormId" column="FILLFORM_ID" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="indexId" column="INDEX_ID" jdbcType="INTEGER"/>
+        <result property="taskId" column="TASK_ID" jdbcType="VARCHAR"/>
+        <result property="fileDotFileId" column="FILEDOT_FILEID" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="projName" column="PROJNAME" jdbcType="VARCHAR"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="typeIndexId" column="TYPE_INDEX_ID" jdbcType="INTEGER"/>
+        <result property="page" column="PAGE" jdbcType="INTEGER"/>
+        <result property="finishInt" column="FINISHINT" jdbcType="INTEGER"/>
+        <result property="formTypeInt" column="FORMTYPEINT" jdbcType="INTEGER"/>
+        <result property="flagInt" column="FLAGINT" jdbcType="INTEGER"/>
+        <result property="intInFlow" column="INTINFLOW" jdbcType="INTEGER"/>
+        <result property="mainId" column="MAIN_ID" jdbcType="VARCHAR"/>
+        <result property="intLastPage" column="INTLASTPAGE" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertCellMyTask" parameterType="com.glaf.isdp.domain.CellMyTask">
+		insert into CELL_MYTASK 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="topId != null">
+				,TOPID 
+			</if>
+			<if test="fillFormId != null">
+				,FILLFORM_ID 
+			</if>
+			<if test="ctime != null">
+				,CTIME 
+			</if>
+			<if test="indexId != null">
+				,INDEX_ID 
+			</if>
+			<if test="taskId != null">
+				,TASK_ID 
+			</if>
+			<if test="fileDotFileId != null">
+				,FILEDOT_FILEID 
+			</if>
+			<if test="name != null">
+				,NAME 
+			</if>
+			<if test="projName != null">
+				,PROJNAME 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="typeIndexId != null">
+				,TYPE_INDEX_ID 
+			</if>
+			<if test="page != null">
+				,PAGE 
+			</if>
+			<if test="finishInt != null">
+				,FINISHINT 
+			</if>
+			<if test="formTypeInt != null">
+				,FORMTYPEINT 
+			</if>
+			<if test="flagInt != null">
+				,FLAGINT 
+			</if>
+			<if test="intInFlow != null">
+				,INTINFLOW 
+			</if>
+			<if test="mainId != null">
+				,MAIN_ID 
+			</if>
+			<if test="intLastPage != null">
+				,INTLASTPAGE 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="fillFormId != null">
+				,#{fillFormId, jdbcType=VARCHAR}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="taskId != null">
+				,#{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="fileDotFileId != null">
+				,#{fileDotFileId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="projName != null">
+				,#{projName, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="typeIndexId != null">
+				,#{typeIndexId, jdbcType=INTEGER}
+			</if>
+			<if test="page != null">
+				,#{page, jdbcType=INTEGER}
+			</if>
+			<if test="finishInt != null">
+				,#{finishInt, jdbcType=INTEGER}
+			</if>
+			<if test="formTypeInt != null">
+				,#{formTypeInt, jdbcType=INTEGER}
+			</if>
+			<if test="flagInt != null">
+				,#{flagInt, jdbcType=INTEGER}
+			</if>
+			<if test="intInFlow != null">
+				,#{intInFlow, jdbcType=INTEGER}
+			</if>
+			<if test="mainId != null">
+				,#{mainId, jdbcType=VARCHAR}
+			</if>
+			<if test="intLastPage != null">
+				,#{intLastPage, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateCellMyTask" parameterType="com.glaf.isdp.domain.CellMyTask">
+		update CELL_MYTASK
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topId != null">
+				TOPID = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="fillFormId != null">
+				FILLFORM_ID = #{fillFormId, jdbcType=VARCHAR},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="taskId != null">
+				TASK_ID = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="fileDotFileId != null">
+				FILEDOT_FILEID = #{fileDotFileId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="projName != null">
+				PROJNAME = #{projName, jdbcType=VARCHAR},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="typeIndexId != null">
+				TYPE_INDEX_ID = #{typeIndexId, jdbcType=INTEGER},
+			</if>
+			<if test="page != null">
+				PAGE = #{page, jdbcType=INTEGER},
+			</if>
+			<if test="finishInt != null">
+				FINISHINT = #{finishInt, jdbcType=INTEGER},
+			</if>
+			<if test="formTypeInt != null">
+				FORMTYPEINT = #{formTypeInt, jdbcType=INTEGER},
+			</if>
+			<if test="flagInt != null">
+				FLAGINT = #{flagInt, jdbcType=INTEGER},
+			</if>
+			<if test="intInFlow != null">
+				INTINFLOW = #{intInFlow, jdbcType=INTEGER},
+			</if>
+			<if test="mainId != null">
+				MAIN_ID = #{mainId, jdbcType=VARCHAR},
+			</if>
+			<if test="intLastPage != null">
+				INTLASTPAGE = #{intLastPage, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteCellMyTaskById" parameterType="string"> 
+        delete from CELL_MYTASK
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteCellMyTasks" parameterType="com.glaf.isdp.query.CellMyTaskQuery">
+		delete from CELL_MYTASK
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getCellMyTaskById" parameterType="string" resultMap="cellMyTaskResultMap">
+		select * from CELL_MYTASK where ID = #{id}
+	</select>
+
+
+	<select id="getCellMyTasks" 
+	    parameterType="com.glaf.isdp.query.CellMyTaskQuery"
+		resultMap="cellMyTaskResultMap">
+		select distinct E.*
+		<include refid="selectCellMyTasksSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getCellMyTaskCount" 
+	    parameterType="com.glaf.isdp.query.CellMyTaskQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectCellMyTasksSql" />
+	</select>
+
+
+	<sql id="selectCellMyTasksSql">
+
+		from CELL_MYTASK E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOPID = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOPID IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="fillFormId != null and fillFormId != '' ">
+				and E.FILLFORM_ID = #{fillFormId}
+            </if>
+
+			<if test="fillFormIdLike != null and fillFormIdLike != '' ">
+				and E.FILLFORM_ID like #{fillFormIdLike}
+            </if>
+
+			<if test="fillFormIds != null and fillFormIds.size() &gt; 0">
+			    and E.FILLFORM_ID IN
+                <foreach item="x_fillFormId" index="index" collection="fillFormIds" 
+                     open="(" separator="," close=")">
+                  #{x_fillFormId}
+                </foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.INDEX_ID IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="taskId != null and taskId != '' ">
+				and E.TASK_ID = #{taskId}
+            </if>
+
+			<if test="taskIdLike != null and taskIdLike != '' ">
+				and E.TASK_ID like #{taskIdLike}
+            </if>
+
+			<if test="taskIds != null and taskIds.size() &gt; 0">
+			    and E.TASK_ID IN
+                <foreach item="x_taskId" index="index" collection="taskIds" 
+                     open="(" separator="," close=")">
+                  #{x_taskId}
+                </foreach>
+			</if>
+	        
+			<if test="fileDotFileId != null and fileDotFileId != '' ">
+				and E.FILEDOT_FILEID = #{fileDotFileId}
+            </if>
+
+			<if test="fileDotFileIdLike != null and fileDotFileIdLike != '' ">
+				and E.FILEDOT_FILEID like #{fileDotFileIdLike}
+            </if>
+
+			<if test="fileDotFileIds != null and fileDotFileIds.size() &gt; 0">
+			    and E.FILEDOT_FILEID IN
+                <foreach item="x_fileDotFileId" index="index" collection="fileDotFileIds" 
+                     open="(" separator="," close=")">
+                  #{x_fileDotFileId}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="projName != null and projName != '' ">
+				and E.PROJNAME = #{projName}
+            </if>
+
+			<if test="projNameLike != null and projNameLike != '' ">
+				and E.PROJNAME like #{projNameLike}
+            </if>
+
+			<if test="projNames != null and projNames.size() &gt; 0">
+			    and E.PROJNAME IN
+                <foreach item="x_projName" index="index" collection="projNames" 
+                     open="(" separator="," close=")">
+                  #{x_projName}
+                </foreach>
+			</if>
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+
+			<if test="typeIndexId != null">
+				and E.TYPE_INDEX_ID = #{typeIndexId}
+            </if>
+
+			<if test="typeIndexIdGreaterThanOrEqual != null">
+				and E.TYPE_INDEX_ID &gt;= #{typeIndexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="typeIndexIdLessThanOrEqual != null">
+				and E.TYPE_INDEX_ID &lt;= #{typeIndexIdLessThanOrEqual}
+            </if>
+
+			<if test="typeIndexIds != null and typeIndexIds.size() &gt; 0">
+			    and E.TYPE_INDEX_ID IN
+                <foreach item="x_typeIndexId" index="index" collection="typeIndexIds" 
+                     open="(" separator="," close=")">
+                  #{x_typeIndexId}
+                </foreach>
+			</if>
+      
+
+			<if test="page != null">
+				and E.PAGE = #{page}
+            </if>
+
+			<if test="pageGreaterThanOrEqual != null">
+				and E.PAGE &gt;= #{pageGreaterThanOrEqual}
+            </if>
+
+			<if test="pageLessThanOrEqual != null">
+				and E.PAGE &lt;= #{pageLessThanOrEqual}
+            </if>
+
+			<if test="pages != null and pages.size() &gt; 0">
+			    and E.PAGE IN
+                <foreach item="x_page" index="index" collection="pages" 
+                     open="(" separator="," close=")">
+                  #{x_page}
+                </foreach>
+			</if>
+      
+
+			<if test="finishInt != null">
+				and E.FINISHINT = #{finishInt}
+            </if>
+
+			<if test="finishIntGreaterThanOrEqual != null">
+				and E.FINISHINT &gt;= #{finishIntGreaterThanOrEqual}
+            </if>
+
+			<if test="finishIntLessThanOrEqual != null">
+				and E.FINISHINT &lt;= #{finishIntLessThanOrEqual}
+            </if>
+
+			<if test="finishInts != null and finishInts.size() &gt; 0">
+			    and E.FINISHINT IN
+                <foreach item="x_finishInt" index="index" collection="finishInts" 
+                     open="(" separator="," close=")">
+                  #{x_finishInt}
+                </foreach>
+			</if>
+      
+
+			<if test="formTypeInt != null">
+				and E.FORMTYPEINT = #{formTypeInt}
+            </if>
+
+			<if test="formTypeIntGreaterThanOrEqual != null">
+				and E.FORMTYPEINT &gt;= #{formTypeIntGreaterThanOrEqual}
+            </if>
+
+			<if test="formTypeIntLessThanOrEqual != null">
+				and E.FORMTYPEINT &lt;= #{formTypeIntLessThanOrEqual}
+            </if>
+
+			<if test="formTypeInts != null and formTypeInts.size() &gt; 0">
+			    and E.FORMTYPEINT IN
+                <foreach item="x_formTypeInt" index="index" collection="formTypeInts" 
+                     open="(" separator="," close=")">
+                  #{x_formTypeInt}
+                </foreach>
+			</if>
+      
+
+			<if test="flagInt != null">
+				and E.FLAGINT = #{flagInt}
+            </if>
+
+			<if test="flagIntGreaterThanOrEqual != null">
+				and E.FLAGINT &gt;= #{flagIntGreaterThanOrEqual}
+            </if>
+
+			<if test="flagIntLessThanOrEqual != null">
+				and E.FLAGINT &lt;= #{flagIntLessThanOrEqual}
+            </if>
+
+			<if test="flagInts != null and flagInts.size() &gt; 0">
+			    and E.FLAGINT IN
+                <foreach item="x_flagInt" index="index" collection="flagInts" 
+                     open="(" separator="," close=")">
+                  #{x_flagInt}
+                </foreach>
+			</if>
+      
+
+			<if test="intInFlow != null">
+				and E.INTINFLOW = #{intInFlow}
+            </if>
+
+			<if test="intInFlowGreaterThanOrEqual != null">
+				and E.INTINFLOW &gt;= #{intInFlowGreaterThanOrEqual}
+            </if>
+
+			<if test="intInFlowLessThanOrEqual != null">
+				and E.INTINFLOW &lt;= #{intInFlowLessThanOrEqual}
+            </if>
+
+			<if test="intInFlows != null and intInFlows.size() &gt; 0">
+			    and E.INTINFLOW IN
+                <foreach item="x_intInFlow" index="index" collection="intInFlows" 
+                     open="(" separator="," close=")">
+                  #{x_intInFlow}
+                </foreach>
+			</if>
+      
+	        
+			<if test="mainId != null and mainId != '' ">
+				and E.MAIN_ID = #{mainId}
+            </if>
+
+			<if test="mainIdLike != null and mainIdLike != '' ">
+				and E.MAIN_ID like #{mainIdLike}
+            </if>
+
+			<if test="mainIds != null and mainIds.size() &gt; 0">
+			    and E.MAIN_ID IN
+                <foreach item="x_mainId" index="index" collection="mainIds" 
+                     open="(" separator="," close=")">
+                  #{x_mainId}
+                </foreach>
+			</if>
+
+			<if test="intLastPage != null">
+				and E.INTLASTPAGE = #{intLastPage}
+            </if>
+
+			<if test="intLastPageGreaterThanOrEqual != null">
+				and E.INTLASTPAGE &gt;= #{intLastPageGreaterThanOrEqual}
+            </if>
+
+			<if test="intLastPageLessThanOrEqual != null">
+				and E.INTLASTPAGE &lt;= #{intLastPageLessThanOrEqual}
+            </if>
+
+			<if test="intLastPages != null and intLastPages.size() &gt; 0">
+			    and E.INTLASTPAGE IN
+                <foreach item="x_intLastPage" index="index" collection="intLastPages" 
+                     open="(" separator="," close=")">
+                  #{x_intLastPage}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SqlExportMapper">
+
+	<resultMap id="sqlExportResultMap" type="com.glaf.datamgr.domain.SqlExport">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="serviceKey" column="SERVICEKEY_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="operation" column="OPERATION_" jdbcType="VARCHAR" />
+		<result property="exportFlag" column="EXPORTFLAG_" jdbcType="VARCHAR" />
+		<result property="exportDBName" column="EXPORTDBNAME_"
+			jdbcType="VARCHAR" />
+		<result property="lastExportStatus" column="LASTEXPORTSTATUS_"
+			jdbcType="INTEGER" />
+		<result property="lastExportTime" column="LASTEXPORTTIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="datasetIds" column="DATASETIDS_" jdbcType="VARCHAR" />
+		<result property="sqlDefIds" column="SQLDEFIDS_" jdbcType="VARCHAR" />
+		<result property="scheduleFlag" column="SCHEDULEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="createTableFlag" column="CREATETABLEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="deleteFetch" column="DELETEFETCH_" jdbcType="VARCHAR" />
+		<result property="publicFlag" column="PUBLICFLAG_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSqlExport" parameterType="com.glaf.datamgr.domain.SqlExport">
+		insert into SYS_SQL_EXPORT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="operation != null">
+				,OPERATION_
+			</if>
+			<if test="exportFlag != null">
+				,EXPORTFLAG_
+			</if>
+			<if test="exportDBName != null">
+				,EXPORTDBNAME_
+			</if>
+			<if test="lastExportStatus != null">
+				,LASTEXPORTSTATUS_
+			</if>
+			<if test="lastExportTime != null">
+				,LASTEXPORTTIME_
+			</if>
+			<if test="serviceKey != null">
+				,SERVICEKEY_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="datasetIds != null">
+				,DATASETIDS_
+			</if>
+			<if test="sqlDefIds != null">
+				,SQLDEFIDS_
+			</if>
+			<if test="scheduleFlag != null">
+				,SCHEDULEFLAG_
+			</if>
+			<if test="deleteFetch != null">
+				,DELETEFETCH_
+			</if>
+			<if test="publicFlag != null">
+				,PUBLICFLAG_
+			</if>
+			<if test="createTableFlag != null">
+				,CREATETABLEFLAG_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="operation != null">
+				,#{operation, jdbcType=VARCHAR}
+			</if>
+			<if test="exportFlag != null">
+				,#{exportFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="exportDBName != null">
+				,#{exportDBName, jdbcType=VARCHAR}
+			</if>
+			<if test="lastExportStatus != null">
+				,#{lastExportStatus, jdbcType=INTEGER}
+			</if>
+			<if test="lastExportTime != null">
+				,#{lastExportTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="serviceKey != null">
+				,#{serviceKey, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="datasetIds != null">
+				,#{datasetIds, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlDefIds != null">
+				,#{sqlDefIds, jdbcType=VARCHAR}
+			</if>
+			<if test="scheduleFlag != null">
+				,#{scheduleFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFetch != null">
+				,#{deleteFetch, jdbcType=VARCHAR}
+			</if>
+			<if test="publicFlag != null">
+				,#{publicFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="createTableFlag != null">
+				,#{createTableFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertSqlExport" parameterType="java.util.List">
+		insert into SYS_SQL_EXPORT (
+		ID_
+		,NAME_
+		,TITLE_
+		,TYPE_
+		,OPERATION_
+		,EXPORTFLAG_
+		,EXPORTDBNAME_
+		,LASTEXPORTSTATUS_
+		,LASTEXPORTTIME_
+		,SERVICEKEY_
+		,USERID_
+		,SQLDEFIDS_
+		,SCHEDULEFLAG_
+		,DELETEFETCH_
+		,PUBLICFLAG_
+		,CREATETABLEFLAG_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		) values
+		<foreach collection="list" item="sqlExport" index="index"
+			separator=",">
+			(
+			#{sqlExport.id, jdbcType=BIGINT}
+			,#{sqlExport.name,
+			jdbcType=VARCHAR}
+			,#{sqlExport.title, jdbcType=VARCHAR}
+			,#{sqlExport.type, jdbcType=VARCHAR}
+			,#{sqlExport.operation,
+			jdbcType=VARCHAR}
+			,#{sqlExport.exportFlag, jdbcType=VARCHAR}
+			,#{sqlExport.exportDBName, jdbcType=VARCHAR}
+			,#{sqlExport.lastExportStatus, jdbcType=INTEGER}
+			,#{sqlExport.lastExportTime, jdbcType=TIMESTAMP}
+			,#{sqlExport.serviceKey, jdbcType=VARCHAR}
+			,#{sqlExport.userId,
+			jdbcType=VARCHAR}
+			,#{sqlExport.sqlDefIds, jdbcType=VARCHAR}
+			,#{sqlExport.scheduleFlag, jdbcType=VARCHAR}
+			,#{sqlExport.deleteFetch, jdbcType=VARCHAR}
+			,#{sqlExport.publicFlag,
+			jdbcType=VARCHAR}
+			,#{sqlExport.createTableFlag, jdbcType=VARCHAR}
+			,#{sqlExport.locked, jdbcType=INTEGER}
+			,#{sqlExport.createBy,
+			jdbcType=VARCHAR}
+			,#{sqlExport.createTime, jdbcType=TIMESTAMP}
+			,#{sqlExport.updateBy, jdbcType=VARCHAR}
+			,#{sqlExport.updateTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertSqlExport_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="sqlExport" index="index">
+			insert into
+			SYS_SQL_EXPORT (
+			ID_
+			,NAME_
+			,TITLE_
+			,TYPE_
+			,OPERATION_
+			,EXPORTFLAG_
+			,EXPORTDBNAME_
+			,LASTEXPORTSTATUS_
+			,LASTEXPORTTIME_
+			,SERVICEKEY_
+			,USERID_
+			,SQLDEFIDS_
+			,SCHEDULEFLAG_
+			,DELETEFETCH_
+			,PUBLICFLAG_
+			,CREATETABLEFLAG_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			) values (
+			#{sqlExport.id, jdbcType=BIGINT}
+			,#{sqlExport.name, jdbcType=VARCHAR}
+			,#{sqlExport.title, jdbcType=VARCHAR}
+			,#{sqlExport.type,
+			jdbcType=VARCHAR}
+			,#{sqlExport.operation, jdbcType=VARCHAR}
+			,#{sqlExport.exportFlag, jdbcType=VARCHAR}
+			,#{sqlExport.exportDBName,
+			jdbcType=VARCHAR}
+			,#{sqlExport.lastExportStatus, jdbcType=INTEGER}
+			,#{sqlExport.lastExportTime, jdbcType=TIMESTAMP}
+			,#{sqlExport.serviceKey, jdbcType=VARCHAR}
+			,#{sqlExport.userId,
+			jdbcType=VARCHAR}
+			,#{sqlExport.sqlDefIds, jdbcType=VARCHAR}
+			,#{sqlExport.scheduleFlag, jdbcType=VARCHAR}
+			,#{sqlExport.deleteFetch, jdbcType=VARCHAR}
+			,#{sqlExport.publicFlag,
+			jdbcType=VARCHAR}
+			,#{sqlExport.createTableFlag, jdbcType=VARCHAR}
+			,#{sqlExport.locked, jdbcType=INTEGER}
+			,#{sqlExport.createBy,
+			jdbcType=VARCHAR}
+			,#{sqlExport.createTime, jdbcType=TIMESTAMP}
+			,#{sqlExport.updateBy, jdbcType=VARCHAR}
+			,#{sqlExport.updateTime,
+			jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateSqlExport" parameterType="com.glaf.datamgr.domain.SqlExport">
+		update SYS_SQL_EXPORT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="operation != null">
+				OPERATION_ = #{operation, jdbcType=VARCHAR},
+			</if>
+			<if test="exportFlag != null">
+				EXPORTFLAG_ = #{exportFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="exportDBName != null">
+				EXPORTDBNAME_ = #{exportDBName, jdbcType=VARCHAR},
+			</if>
+			<if test="lastExportStatus != null">
+				LASTEXPORTSTATUS_ = #{lastExportStatus,
+				jdbcType=INTEGER},
+			</if>
+			<if test="lastExportTime != null">
+				LASTEXPORTTIME_ = #{lastExportTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="serviceKey != null">
+				SERVICEKEY_ = #{serviceKey, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="datasetIds != null">
+				DATASETIDS_ = #{datasetIds, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlDefIds != null">
+				SQLDEFIDS_ = #{sqlDefIds, jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleFlag != null">
+				SCHEDULEFLAG_ = #{scheduleFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFetch != null">
+				DELETEFETCH_ = #{deleteFetch, jdbcType=VARCHAR},
+			</if>
+			<if test="publicFlag != null">
+				PUBLICFLAG_ = #{publicFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="createTableFlag != null">
+				CREATETABLEFLAG_ = #{createTableFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<update id="updateSqlExportExportStatus" parameterType="com.glaf.datamgr.domain.SqlExport">
+		update SYS_SQL_EXPORT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="lastExportStatus != null">
+				LASTEXPORTSTATUS_ = #{lastExportStatus,
+				jdbcType=INTEGER},
+			</if>
+			<if test="lastExportTime != null">
+				LASTEXPORTTIME_ = #{lastExportTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSqlExportById" parameterType="long">
+		delete from
+		SYS_SQL_EXPORT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSqlExports" parameterType="com.glaf.datamgr.query.SqlExportQuery">
+		delete from SYS_SQL_EXPORT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSqlExportById" parameterType="long" resultMap="sqlExportResultMap">
+		select * from SYS_SQL_EXPORT where ID_ = #{id}
+	</select>
+
+
+	<select id="getSqlExports" parameterType="com.glaf.datamgr.query.SqlExportQuery"
+		resultMap="sqlExportResultMap">
+		select distinct E.*
+		<include refid="selectSqlExportsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSqlExportCount" parameterType="com.glaf.datamgr.query.SqlExportQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSqlExportsSql" />
+	</select>
+
+
+	<sql id="selectSqlExportsSql">
+
+		from SYS_SQL_EXPORT E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="exportFlag != null and exportFlag != '' ">
+				and E.EXPORTFLAG_ = #{exportFlag}
+			</if>
+
+			<if test="lastExportTimeGreaterThanOrEqual != null">
+				and E.LASTEXPORTTIME_ &gt;=
+				#{lastExportTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="lastExportTimeLessThanOrEqual != null">
+				and E.LASTEXPORTTIME_ &lt;=
+				#{lastExportTimeLessThanOrEqual}
+			</if>
+
+			<if test="scheduleFlag != null and scheduleFlag != '' ">
+				and E.SCHEDULEFLAG_ = #{scheduleFlag}
+			</if>
+
+			<if test="publicFlag != null and publicFlag != '' ">
+				and E.PUBLICFLAG_ = #{publicFlag}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

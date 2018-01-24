@@ -1,0 +1,111 @@
+{
+	"id": "ztree",
+	"title": "Bootstrap Ztree",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "style",
+			"title": "风格",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setStyle",
+			"valrange": [{
+			    "name":"字体",
+				"title": "字体",
+				"value": "awesome"
+			}]
+		},{
+			"id": "font",
+			"title": "字体大小",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "fontSize",
+				"title": "大",
+				"type": "int",
+				"maxval":"1000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontSize",
+				"unit":""
+			}]
+		},{
+			"id": "fontColor",
+			"title": "字体颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontColor"
+		},{
+			"id": "lineHeight",
+			"title": "行高",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "lineHeight",
+				"title": "高",
+				"type": "int",
+				"maxval":"1000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setLineHeight",
+				"unit":""
+			}]
+		},{
+			"id": "icon",
+			"title": "内置图标",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "iconWidth",
+				"title": "宽",
+				"type": "int",
+				"maxval":"1000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setIconWidth",
+				"unit":""
+			}]
+		},{
+			"id": "imgStatus",
+			"title": "图片",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setImg",
+			"valrange": [{
+			    "name":"隐藏",
+				"title": "隐藏",
+				"value": "none"
+			}]
+		}]
+	}]
+}

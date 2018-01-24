@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.uis.mapper.UisAppUserMapper">
+
+ 	<resultMap id="uisAppUserResultMap"	type="com.glaf.base.modules.uis.domain.UisAppUser">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="userId" column="USER_ID_" jdbcType="VARCHAR"/>
+        <result property="appId" column="APP_ID_" jdbcType="VARCHAR"/>
+        <result property="userName" column="USER_NAME_" jdbcType="VARCHAR"/>
+        <result property="email" column="EMAIL_" jdbcType="VARCHAR"/>
+        <result property="tel" column="TEL_" jdbcType="VARCHAR"/>
+        <result property="mobile" column="MOBILE_" jdbcType="VARCHAR"/>
+        <result property="age" column="AGE_" jdbcType="INTEGER"/>
+        <result property="sex" column="SEX_" jdbcType="INTEGER"/>
+        <result property="qq" column="QQ_" jdbcType="VARCHAR"/>
+        <result property="weq" column="WEQ_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertUisAppUser" parameterType="com.glaf.base.modules.uis.domain.UisAppUser">
+		insert into UIS_APP_USER 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="userId != null">
+				,USER_ID_ 
+			</if>
+			<if test="appId != null">
+				,APP_ID_ 
+			</if>
+			<if test="userName != null">
+				,USER_NAME_ 
+			</if>
+			<if test="email != null">
+				,EMAIL_ 
+			</if>
+			<if test="tel != null">
+				,TEL_ 
+			</if>
+			<if test="mobile != null">
+				,MOBILE_ 
+			</if>
+			<if test="age != null">
+				,AGE_ 
+			</if>
+			<if test="desc != null">
+				,DESC_ 
+			</if>
+			<if test="sex != null">
+				,SEX_ 
+			</if>
+			<if test="qq != null">
+				,QQ_ 
+			</if>
+			<if test="weq != null">
+				,WEQ_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="appId != null">
+				,#{appId, jdbcType=VARCHAR}
+			</if>
+			<if test="userName != null">
+				,#{userName, jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+			<if test="tel != null">
+				,#{tel, jdbcType=VARCHAR}
+			</if>
+			<if test="mobile != null">
+				,#{mobile, jdbcType=VARCHAR}
+			</if>
+			<if test="age != null">
+				,#{age, jdbcType=INTEGER}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null">
+				,#{sex, jdbcType=INTEGER}
+			</if>
+			<if test="qq != null">
+				,#{qq, jdbcType=VARCHAR}
+			</if>
+			<if test="weq != null">
+				,#{weq, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateUisAppUser" parameterType="com.glaf.base.modules.uis.domain.UisAppUser">
+		update UIS_APP_USER
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="userId != null">
+				USER_ID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				APP_ID_ = #{appId, jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				USER_NAME_ = #{userName, jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				EMAIL_ = #{email, jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				TEL_ = #{tel, jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				MOBILE_ = #{mobile, jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				AGE_ = #{age, jdbcType=INTEGER},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX_ = #{sex, jdbcType=INTEGER},
+			</if>
+			<if test="qq != null">
+				QQ_ = #{qq, jdbcType=VARCHAR},
+			</if>
+			<if test="weq != null">
+				WEQ_ = #{weq, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteUisAppUserById" parameterType="string"> 
+        delete from UIS_APP_USER
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteUisAppUsers" parameterType="com.glaf.base.modules.uis.query.UisAppUserQuery">
+		delete from UIS_APP_USER
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getUisAppUserById" parameterType="string" resultMap="uisAppUserResultMap">
+		select * from UIS_APP_USER where ID_ = #{id}
+	</select>
+
+
+	<select id="getUisAppUsers" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppUserQuery"
+		resultMap="uisAppUserResultMap">
+		select distinct E.*
+		<include refid="selectUisAppUsersSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getUisAppUserCount" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppUserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUisAppUsersSql" />
+	</select>
+
+
+	<sql id="selectUisAppUsersSql">
+
+		from UIS_APP_USER E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="userId != null and userId != '' ">
+				and E.USER_ID_ = #{userId}
+            </if>
+
+			<if test="userIdLike != null and userIdLike != '' ">
+				and E.USER_ID_ like #{userIdLike}
+            </if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+			    and E.USER_ID_ IN
+                <foreach item="x_userId" index="index" collection="userIds" 
+                     open="(" separator="," close=")">
+                  #{x_userId}
+                </foreach>
+			</if>
+	        
+			<if test="appId != null and appId != '' ">
+				and E.APP_ID_ = #{appId}
+            </if>
+
+			<if test="appIdLike != null and appIdLike != '' ">
+				and E.APP_ID_ like #{appIdLike}
+            </if>
+
+			<if test="appIds != null and appIds.size() &gt; 0">
+			    and E.APP_ID_ IN
+                <foreach item="x_appId" index="index" collection="appIds" 
+                     open="(" separator="," close=")">
+                  #{x_appId}
+                </foreach>
+			</if>
+	        
+			<if test="userName != null and userName != '' ">
+				and E.USER_NAME_ = #{userName}
+            </if>
+
+			<if test="userNameLike != null and userNameLike != '' ">
+				and E.USER_NAME_ like #{userNameLike}
+            </if>
+
+			<if test="userNames != null and userNames.size() &gt; 0">
+			    and E.USER_NAME_ IN
+                <foreach item="x_userName" index="index" collection="userNames" 
+                     open="(" separator="," close=")">
+                  #{x_userName}
+                </foreach>
+			</if>
+	        
+			<if test="email != null and email != '' ">
+				and E.EMAIL_ = #{email}
+            </if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.EMAIL_ like #{emailLike}
+            </if>
+
+			<if test="emails != null and emails.size() &gt; 0">
+			    and E.EMAIL_ IN
+                <foreach item="x_email" index="index" collection="emails" 
+                     open="(" separator="," close=")">
+                  #{x_email}
+                </foreach>
+			</if>
+	        
+			<if test="tel != null and tel != '' ">
+				and E.TEL_ = #{tel}
+            </if>
+
+			<if test="telLike != null and telLike != '' ">
+				and E.TEL_ like #{telLike}
+            </if>
+
+			<if test="tels != null and tels.size() &gt; 0">
+			    and E.TEL_ IN
+                <foreach item="x_tel" index="index" collection="tels" 
+                     open="(" separator="," close=")">
+                  #{x_tel}
+                </foreach>
+			</if>
+	        
+			<if test="mobile != null and mobile != '' ">
+				and E.MOBILE_ = #{mobile}
+            </if>
+
+			<if test="mobileLike != null and mobileLike != '' ">
+				and E.MOBILE_ like #{mobileLike}
+            </if>
+
+			<if test="mobiles != null and mobiles.size() &gt; 0">
+			    and E.MOBILE_ IN
+                <foreach item="x_mobile" index="index" collection="mobiles" 
+                     open="(" separator="," close=")">
+                  #{x_mobile}
+                </foreach>
+			</if>
+
+			<if test="age != null">
+				and E.AGE_ = #{age}
+            </if>
+
+			<if test="ageGreaterThanOrEqual != null">
+				and E.AGE_ &gt;= #{ageGreaterThanOrEqual}
+            </if>
+
+			<if test="ageLessThanOrEqual != null">
+				and E.AGE_ &lt;= #{ageLessThanOrEqual}
+            </if>
+
+			<if test="ages != null and ages.size() &gt; 0">
+			    and E.AGE_ IN
+                <foreach item="x_age" index="index" collection="ages" 
+                     open="(" separator="," close=")">
+                  #{x_age}
+                </foreach>
+			</if>
+      
+
+			<if test="sex != null">
+				and E.SEX_ = #{sex}
+            </if>
+
+			<if test="sexGreaterThanOrEqual != null">
+				and E.SEX_ &gt;= #{sexGreaterThanOrEqual}
+            </if>
+
+			<if test="sexLessThanOrEqual != null">
+				and E.SEX_ &lt;= #{sexLessThanOrEqual}
+            </if>
+
+			<if test="sexs != null and sexs.size() &gt; 0">
+			    and E.SEX_ IN
+                <foreach item="x_sex" index="index" collection="sexs" 
+                     open="(" separator="," close=")">
+                  #{x_sex}
+                </foreach>
+			</if>
+      
+	        
+			<if test="qq != null and qq != '' ">
+				and E.QQ_ = #{qq}
+            </if>
+
+			<if test="qqLike != null and qqLike != '' ">
+				and E.QQ_ like #{qqLike}
+            </if>
+
+			<if test="qqs != null and qqs.size() &gt; 0">
+			    and E.QQ_ IN
+                <foreach item="x_qq" index="index" collection="qqs" 
+                     open="(" separator="," close=")">
+                  #{x_qq}
+                </foreach>
+			</if>
+	        
+			<if test="weq != null and weq != '' ">
+				and E.WEQ_ = #{weq}
+            </if>
+
+			<if test="weqLike != null and weqLike != '' ">
+				and E.WEQ_ like #{weqLike}
+            </if>
+
+			<if test="weqs != null and weqs.size() &gt; 0">
+			    and E.WEQ_ IN
+                <foreach item="x_weq" index="index" collection="weqs" 
+                     open="(" separator="," close=")">
+                  #{x_weq}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

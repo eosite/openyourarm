@@ -1,0 +1,13 @@
+如果使用CXF作为服务端及客户端，均需要把lib目录下的jar复制到WebContent\WEB-INF\lib目录下。
+如果使用CXF作为服务端，还要把web.xml的CXF注释打开。
+
+    <servlet>
+	<servlet-name>CXFServlet</servlet-name>
+	<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	<load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+	<servlet-name>CXFServlet</servlet-name>
+	<url-pattern>/ws/*</url-pattern>
+    </servlet-mapping> 

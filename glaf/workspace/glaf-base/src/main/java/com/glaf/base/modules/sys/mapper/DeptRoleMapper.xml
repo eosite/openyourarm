@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.DeptRoleMapper">
+
+	<resultMap id="deptRoleResultMap" type="com.glaf.base.modules.sys.model.DeptRole">
+		<id property="id" column="ID" jdbcType="BIGINT" />
+		<result property="deptId" column="DEPTID" jdbcType="BIGINT" />
+		<result property="deptFlag" column="DEPTFLAG" jdbcType="INTEGER" />
+		<result property="menuFlag" column="MENUFLAG" jdbcType="INTEGER" />
+		<result property="roleId" column="ROLEID" jdbcType="BIGINT" />
+		<result property="isPropagationAllowed" column="ISPROPAGATIONALLOWED_"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertDeptRole" parameterType="com.glaf.base.modules.sys.model.DeptRole">
+		insert into SYS_DEPT_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID
+			<if test="deptId != null">
+				,DEPTID
+			</if>
+			<if test="deptFlag != null">
+				,DEPTFLAG
+			</if>
+			<if test="menuFlag != null">
+				,MENUFLAG
+			</if>
+			<if test="roleId != null">
+				,ROLEID
+			</if>
+			<if test="isPropagationAllowed != null">
+				,ISPROPAGATIONALLOWED_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="deptId != null">
+				,#{deptId, jdbcType=BIGINT}
+			</if>
+			<if test="deptFlag != null">
+				,#{deptFlag, jdbcType=INTEGER}
+			</if>
+			<if test="menuFlag != null">
+				,#{menuFlag, jdbcType=INTEGER}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=BIGINT}
+			</if>
+			<if test="isPropagationAllowed != null">
+				,#{isPropagationAllowed, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertDeptRole" parameterType="java.util.List">
+		insert into SYS_DEPT_ROLE (
+		ID
+		,DEPTID
+		,DEPTFLAG
+		,MENUFLAG
+		,ROLEID
+		,ISPROPAGATIONALLOWED_
+		) values
+		<foreach collection="list" item="deptRole" index="index"
+			separator=",">
+			(
+			#{deptRole.id, jdbcType=BIGINT}
+			,#{deptRole.deptId,
+			jdbcType=BIGINT}
+			,#{deptRole.deptFlag, jdbcType=INTEGER}
+			,#{deptRole.menuFlag, jdbcType=INTEGER}
+			,#{deptRole.roleId,
+			jdbcType=BIGINT}
+			,#{deptRole.isPropagationAllowed, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertDeptRole_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="deptRole" index="index">
+			insert into
+			SYS_DEPT_ROLE (
+			ID
+			,DEPTID
+			,DEPTFLAG
+			,MENUFLAG
+			,ROLEID
+			,ISPROPAGATIONALLOWED_
+			)
+			values (
+			#{deptRole.id, jdbcType=BIGINT}
+			,#{deptRole.deptId,
+			jdbcType=BIGINT}
+			,#{deptRole.deptFlag,
+			jdbcType=INTEGER}
+			,#{deptRole.menuFlag, jdbcType=INTEGER}
+			,#{deptRole.roleId, jdbcType=BIGINT}
+			,#{deptRole.isPropagationAllowed, jdbcType=VARCHAR}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		SYS_DEPT_ROLE
+		where ID = #{id}
+	</delete>
+
+
+	<delete id="deleteByDeptId" parameterType="long">
+		delete from
+		SYS_DEPT_ROLE
+		where DEPTID = #{deptId}
+	</delete>
+
+
+	<select id="getDeptRoleById" parameterType="long" resultMap="deptRoleResultMap">
+		select * from SYS_DEPT_ROLE where ID = #{id}
+	</select>
+
+
+	<select id="getDeptRoles" parameterType="com.glaf.base.modules.sys.query.DeptRoleQuery"
+		resultMap="deptRoleResultMap">
+		select distinct E.*
+		<include refid="selectDeptRolesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDeptRoleCount" parameterType="com.glaf.base.modules.sys.query.DeptRoleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDeptRolesSql" />
+	</select>
+
+
+	<sql id="selectDeptRolesSql">
+
+		from SYS_DEPT_ROLE E
+
+		<where>
+			1 = 1
+
+			<if test="deptId != null">
+				and E.DEPTID = #{deptId}
+			</if>
+
+			<if test="deptIds != null and deptIds.size() &gt; 0">
+				and E.DEPTID IN
+				<foreach item="x_deptId" index="index" collection="deptIds"
+					open="(" separator="," close=")">
+					#{x_deptId}
+				</foreach>
+			</if>
+
+			<if test="deptFlag != null">
+				and E.DEPTFLAG = #{deptFlag}
+			</if>
+			
+			<if test="menuFlag != null">
+				and E.MENUFLAG = #{menuFlag}
+			</if>
+
+			<if test="roleId != null">
+				and E.ROLEID = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+				and E.ROLEID IN
+				<foreach item="x_roleId" index="index" collection="roleIds"
+					open="(" separator="," close=")">
+					#{x_roleId}
+				</foreach>
+			</if>
+
+			<if test="isPropagationAllowed != null and isPropagationAllowed != '' ">
+				and E.ISPROPAGATIONALLOWED_ = #{isPropagationAllowed}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

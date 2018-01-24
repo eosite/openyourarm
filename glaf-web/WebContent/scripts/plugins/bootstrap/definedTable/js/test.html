@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Cache-Control" content="public" />
+<title>新首页</title>
+<link rel="stylesheet/less" type="text/css" href="/glaf/scripts/designer/less/page.less" />
+<script src="/glaf/scripts/designer/less/less.min.js" type="text/javascript"></script>
+<link href="/glaf/scripts/defineKendouibt.css" rel="stylesheet" type="text/css" > 
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/home/responsive/ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/home/responsive/dist/css/skins/skin-blue.min.css">
+<link rel="stylesheet" href="/glaf/scripts/jquery-ui.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+        href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/uniform/css/uniform.default.css"  />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/css/components.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/css/plugins.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/layouts/layout2/css/layout.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/layouts/layout2/css/custom.min.css"
+	type="text/css" />
+<link rel="stylesheet" href="/glaf/scripts/designer/bootstrap_extend.css">
+<!-- form -->
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/pagination/css/pagination.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/touchspin/css/bootstrap.touchspin.min.css"/>
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/menu/ext/megamenu.extends.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-2.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-3.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-4.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-5.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/datepicker/css/bootstrap-datepicker3.min.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/calendar/css/fullcalendar.min.css" />
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/calendar/ext/calendar.extends.css"/>
+<!--animation-->
+<link rel="stylesheet/less" type="text/css" href="/glaf/scripts/designer/animate.css" />
+<!-- select2 -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- iCheck -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
+<!-- jquery fileupload -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css" />
+<!-- messenger -->
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-block.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-future.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-air.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-ice.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-flat.css">
+<!-- dialog --> 
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/dialog/css/bootstrap-dialog.min.css">
+<style type="text/css">
+html, body{ margin:0; height:100%; }
+.autoHt{
+	height:100%;
+}
+</style>
+<script>
+//$.fn.modal.Constructor.prototype.enforceFocus = function() {};
+var contextPath = '/glaf', _pageParameters = {"sys_date":1511588607574,"actorId":"admin","id":"06c1823bc1fd4a42a20fa36317d66671","detail":{"pageRuleId":"cf33776c473f4347996b82e2bd0b715c","id":"06c1823bc1fd4a42a20fa36317d66671"},"username":"admin"} ,pageParameters = JSON.stringify(_pageParameters), pageLevel, pageed,isWeighting,mtValidate;
+</script>
+<script type="text/javascript" src="/glaf/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/debug/mtdebug.js"></script>
+<!-- core -->
+<script type="text/javascript" src="/glaf/scripts/jquery.mtResizable.js"></script>
+<script type="text/javascript" src="/glaf/scripts/resize/jquery-resize.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/additional-methods.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script type='text/javascript' src='/glaf/scripts/uuid.js'></script>
+<!-- select2 -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<!--form-->
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/textbox/ext/jquery.textbox.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/touchspin/ext/jquery.touchspin.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/touchspin/ext/jquery.touchspin.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/tagsinput/bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/textarea/ext/jquery.textarea.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/progressbar/ext/jquery.progressbar.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/menu/ext/jquery.megamenu.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/ext/jquery.loginpage.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datetimepicker/ext/jquery.datetimepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/daterangepicker/js/bootstrap-daterangepicker.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/daterangepicker/ext/jquery.daterangepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datepicker/ext/jquery.datepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/js/moment.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/ext/lang-zh-cn.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/ext/jquery.calendar.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/jquery.core.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/pagination/js/jquery.pagination.extends.js"></script>
+<script type="text/javascript" src="/glaf/webfile/js/combine.js"></script>
+<script type="text/javascript" src="/glaf/scripts/mui/js/mui.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/definedTable/js/jquery.definedTable.extend.js"></script>
+<script type='text/javascript' src='/glaf/scripts/jquery.fileUpload.plugin.js'></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/confirmation/bootstrap-confirmation.min.js"></script>
+<!-- iCheck -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/icheck/icheck.js" type="text/javascript"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<!-- jquery-file-upload -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/load-image.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<!-- slimscroll -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<!-- messenger -->
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger-theme-flat.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger-theme-future.js"></script>
+<!-- dialog --> 
+<script src="/glaf/scripts/plugins/bootstrap/dialog/js/bootstrap-dialog.min.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/dialog/js/jquery.dialog.extends.js"></script>
+<!-- tabs -->
+<script src="/glaf/scripts/plugins/bootstrap/tabs/js/jquery.tabs.extends.js" type="text/javascript"></script>
+<!-- altTemplate -->
+<script src="/glaf/scripts/artTemplate/dist/template.js"></script>
+<script src="/glaf/scripts/artTemplate/dataUtils.js"></script>
+<!-- jquery-validation -->
+<script src="/glaf/scripts/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/portlet/jquery.portlet.extends.js"></script>
+<!--动画-->
+<script src="/glaf/scripts/designer/animate.js" type="text/javascript"></script>
+<script src="/glaf/scripts/designer/metro_render.js"></script>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/grid/css/grid.css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/bootstrap-select/css/bootstrap-select.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/gridList/css/gridList.extends.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/sidebar/css/sidebar.extends.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedCard/css/definedCard.css">
+<link href="/glaf/scripts/plugins/bootstrap/fullpage/css/jquery.fullPage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/ztree/css/zTreeStyle/zTreeStyle.css"><script type="text/javascript" src="/glaf/scripts/bootstrap.extend.all.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highstock/highstock.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/highcharts-3d.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/highcharts-more.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/modules/funnel.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/modules/heatmap.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/modules/treemap.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="/glaf/scripts/highcharts/themes/default.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
+<script src="/glaf/scripts/plugins/bootstrap/grid/js/jquery.grid.extends.js" type="text/javascript"></script>
+<script>
+	var _param;
+	$(function(){
+		jQuery("#definedTable_1484706242679").definedTable({id : "definedTable_1484706242679",rid : "5def253891a7408d8eba2a3a72d1ccb0",        scrollload : eval('true'),    downRefresh : eval('true'),customdefined:[{"name":"","value":[]}],template : {"colspan":"4","serverPaging":"false","rowspan":"4","pageable":"true","pageSize":"10","spanLevel":"rowspan","htmldata":"<table> \n <tbody> \n  <tr class=\"firstRow\"> \n   <td width=\"1051\" valign=\"top\" style=\"word-break: break-all;\"> {{if '1' == '1'}}1{{ else }}0{{/if}} ~F{default.cell_useradd8237.cell_useradd8237_user4} </td> \n  </tr> \n </tbody> \n</table> \n<p> <br> </p>","valueKey":"cell_useradd8237_0_cell_useradd8237_user3","combine":"true"},        params : getParams('definedTable_1484706242679')});$('body').data('page', {fade:1,duration:3});
+	})
+</script>
+<script>mtValidate = '[]';</script>
+<script type="text/javascript"></script>
+<script type="text/javascript"></script>
+<script></script>
+<script type="text/javascript" src="/glaf/scripts/defineBootstrapUiInit.js"></script>
+</head>
+<body class="page">
+<div class="row col-md-12_1511581446113" style="position:absolute;width: 800px; height: 300px;" id="col-md-12_1511581446113" data-role="col-md-12" crtltype="kendo"> 
+	<div class="col-md-12" id="col-md-12_1511581446113_column_1" style="height: 100%; width: 100%;"> 
+		<div id="definedTable_1484706242679" data-role="definedTable" class=""> 
+		<style id="definedTable_1484706242679_styler_init">#definedTable_1484706242679 tr[role='k-row'].selected>td{border:1px solid #c75757;background-color: #68e37f;}</style> 
+		</div> 
+	</div> 
+</div>
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/gridList/css/gridList.extends.css"> 
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/sidebar/css/sidebar.extends.css"> 
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedCard/css/definedCard.css"> 
+<link href="/glaf/scripts/plugins/bootstrap/fullpage/css/jquery.fullPage.css" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/ztree/css/zTreeStyle/zTreeStyle.css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/mui/css/mui.min.css">
+<script>
+$(function(){
+
+});
+</script>
+</body>
+</html>

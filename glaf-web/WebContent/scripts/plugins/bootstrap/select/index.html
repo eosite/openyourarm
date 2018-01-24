@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>datepicker</title>
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet">
+<link href="../base/css/font-awesome.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+<link href="../../../metronic/4.5.2/theme/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="../../../metronic/4.5.2/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- select2 -->
+<script src="../../../metronic/4.5.2/theme/assets/global/plugins/select2/js/select2.js" type="text/javascript"></script>
+
+
+<script>
+$(function(){	
+	var data =  [{id:111,text:"飞机",value:"feiji"},{id:222,text:"大炮",value:"dapao"}]
+	$("#select1").select2({
+		data: data
+	});
+
+	// $("#select1").select2({
+	// 	  ajax: {
+	// 		url: contextPath + options.editor.url.replace("contextPath",""),
+	// 		dataType: 'json',
+	// 		contentType:"application/x-www-form-urlencoded",
+	// 		delay: 250,
+	// 		data: function (params) {
+	// 		  return $.extend({
+	// 			q: params.term, // search term
+	// 			page: params.page
+	// 		  },options.editor.params);
+	// 		},
+	// 		processResults: function (data, params) {
+	// 		  params.page = params.page || 1;
+	// 		  for(var i=0;i<data.length;i++){
+	// 			data[i].id=i;
+	// 			data[i].text = data[i][options.editor.params.text];
+	// 			data[i].value = data[i][options.editor.params.value]; 
+	// 		  }
+	// 		  return {
+	// 			results: data,
+	// 			pagination: {
+	// 			  more: (params.page * 30) < data.total_count
+	// 			}
+	// 		  };
+	// 		},
+	// 		cache: true
+	// 	  }
+	//  });
+	$(".able").on("click", function(){
+		var text = $(this).text();
+		
+		$("#select1").prop("disabled", text === 'DISABLE');
+	});
+})
+
+</script>
+</head>
+<body>
+			
+	<select id="select1" class="form-control"></select>
+  
+	<button class="able">ENABLE</button>
+	<button class="able">DISABLE</button>
+	
+</body>
+</html>

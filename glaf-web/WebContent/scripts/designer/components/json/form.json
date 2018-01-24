@@ -1,0 +1,29 @@
+{
+	"id": "form",
+	"title": "表单",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "icon-roll",
+			"title": "小于800px不折行",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "是",
+				"value": "yes"
+			},
+			{
+				"title": "否",
+				"value": "no"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setNotWrap"
+		}]
+	}]
+}

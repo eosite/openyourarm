@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>datepicker</title>
+<link href="../base/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../metronic/4.5.2/theme/assets/global/css/components.min.css" rel="stylesheet">
+<link href="../base/css/font-awesome.min.css" rel="stylesheet">
+<script src="../jquery.min.js"></script>
+<link href="css/bootstrap-datepicker3.min.css" rel="stylesheet"></link>
+<script src="js/bootstrap-datepicker.js"></script> 
+
+<script>
+$(function(){	
+
+	
+})
+
+function show(){
+
+	var value = $("textarea").val();
+	alert(value);
+			
+}
+
+
+</script>
+</head>
+<body>
+
+
+
+	
+	<div>
+		<textarea class="form-control id frame-variable" frame-variable="fv1" rows="3"></textarea>
+	</div>
+	
+
+
+<div style="text-align: left; vertical-align: top;">
+	<input type="text" class = "form-control input-medium id frame-variable" frame-variable="fv1" placeholder="Enter your name ..." style="font-size:10px;letter-spacing:5px;font-weight:bold;font-style:italic;color:red;font-family:Microsoft YaHei" ondblclick="show();"> 
+</div>   
+	 
+	
+	<div class="form-group form-md-line-input has-success" style="margin:0 0 0px;padding-top:0px;" >		
+		<input type="text" class="form-control input-medium id frame-variable" frame-variable="fv1"  placeholder="Enter your name  ..." disabled>
+	</div>                                      
+									
+	
+	
+	
+	<button id="btn" class="btn btn-primary" onclick="show();">getDate</button>
+    <button id="btn2" class="btn btn-primary">getDate</button>
+   
+   
+</body>
+</html>

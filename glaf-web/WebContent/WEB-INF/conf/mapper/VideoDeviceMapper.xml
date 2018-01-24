@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.video.mapper.VideoDeviceMapper">
+
+	<resultMap id="videoDeviceResultMap" type="com.glaf.video.domain.VideoDevice">
+		<id property="deviceId" column="DEVICEID_" jdbcType="VARCHAR" />
+		<result property="developerId" column="DEVELOPERID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="deviceName" column="DEVICENAME_" jdbcType="VARCHAR" />
+		<result property="deviceSerial" column="DEVICESERIAL_"
+			jdbcType="VARCHAR" />
+		<result property="safeKey" column="SAFEKEY_" jdbcType="VARCHAR" />
+		<result property="picUrl" column="PICURL_" jdbcType="VARCHAR" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="indexId" column="INDEXID_" jdbcType="INTEGER" />
+		<result property="indexName" column="INDEXNAME_" jdbcType="VARCHAR" />
+		<result property="defence" column="DEFENCE_" jdbcType="INTEGER" />
+		<result property="isEncrypt" column="ISENCRYPT_" jdbcType="INTEGER" />
+		<result property="isShared" column="ISSHARED_" jdbcType="INTEGER" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="INTEGER" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertVideoDevice" parameterType="com.glaf.video.domain.VideoDevice">
+		insert into VIDEO_DEVICE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			DEVICEID_
+			<if test="developerId != null">
+				,DEVELOPERID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="deviceName != null">
+				,DEVICENAME_
+			</if>
+			<if test="deviceSerial != null">
+				,DEVICESERIAL_
+			</if>
+			<if test="safeKey != null">
+				,SAFEKEY_
+			</if>
+			<if test="picUrl != null">
+				,PICURL_
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="indexId != null">
+				,INDEXID_
+			</if>
+			<if test="indexName != null">
+				,INDEXNAME_
+			</if>
+			<if test="defence != null">
+				,DEFENCE_
+			</if>
+			<if test="isEncrypt != null">
+				,ISENCRYPT_
+			</if>
+			<if test="isShared != null">
+				,ISSHARED_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{deviceId, jdbcType=VARCHAR}
+
+			<if test="developerId != null">
+				,#{developerId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceName != null">
+				,#{deviceName, jdbcType=VARCHAR}
+			</if>
+			<if test="deviceSerial != null">
+				,#{deviceSerial, jdbcType=VARCHAR}
+			</if>
+			<if test="safeKey != null">
+				,#{safeKey, jdbcType=VARCHAR}
+			</if>
+			<if test="picUrl != null">
+				,#{picUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="indexName != null">
+				,#{indexName, jdbcType=VARCHAR}
+			</if>
+			<if test="defence != null">
+				,#{defence, jdbcType=INTEGER}
+			</if>
+			<if test="isEncrypt != null">
+				,#{isEncrypt, jdbcType=INTEGER}
+			</if>
+			<if test="isShared != null">
+				,#{isShared, jdbcType=INTEGER}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertVideoDevice" parameterType="java.util.List">
+		insert into VIDEO_DEVICE (
+		DEVICEID_
+		,DEVELOPERID_
+		,NAME_
+		,CODE_
+		,DESC_
+		,DEVICENAME_
+		,DEVICESERIAL_
+		,SAFEKEY_
+		,PICURL_
+		,DATABASEID_
+		,INDEXID_
+		,INDEXNAME_
+		,DEFENCE_
+		,ISENCRYPT_
+		,ISSHARED_
+		,STATUS_
+		,TYPE_
+		,SORTNO_
+		,CREATEBY_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="videoDevice" index="index"
+			separator=",">
+			(
+			#{videoDevice.deviceId, jdbcType=VARCHAR}
+			,#{videoDevice.developerId, jdbcType=VARCHAR}
+			,#{videoDevice.name,
+			jdbcType=VARCHAR}
+			,#{videoDevice.code, jdbcType=VARCHAR}
+			,#{videoDevice.desc, jdbcType=VARCHAR}
+			,#{videoDevice.deviceName,
+			jdbcType=VARCHAR}
+			,#{videoDevice.deviceSerial, jdbcType=VARCHAR}
+			,#{videoDevice.safeKey, jdbcType=VARCHAR}
+			,#{videoDevice.picUrl,
+			jdbcType=VARCHAR}
+			,#{videoDevice.databaseId, jdbcType=BIGINT}
+			,#{videoDevice.indexId, jdbcType=INTEGER}
+			,#{videoDevice.indexName,
+			jdbcType=VARCHAR}
+			,#{videoDevice.defence, jdbcType=INTEGER}
+			,#{videoDevice.isEncrypt, jdbcType=INTEGER}
+			,#{videoDevice.isShared,
+			jdbcType=INTEGER}
+			,#{videoDevice.status, jdbcType=INTEGER}
+			,#{videoDevice.type, jdbcType=INTEGER}
+			,#{videoDevice.sortNo,
+			jdbcType=INTEGER}
+			,#{videoDevice.createBy, jdbcType=VARCHAR}
+			,#{videoDevice.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertVideoDevice_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="videoDevice" index="index">
+			insert
+			into VIDEO_DEVICE (
+			DEVICEID_
+			,DEVELOPERID_
+			,NAME_
+			,CODE_
+			,DESC_
+			,DEVICENAME_
+			,DEVICESERIAL_
+			,SAFEKEY_
+			,PICURL_
+			,DATABASEID_
+			,INDEXID_
+			,INDEXNAME_
+			,DEFENCE_
+			,ISENCRYPT_
+			,ISSHARED_
+			,STATUS_
+			,TYPE_
+			,SORTNO_
+			,CREATEBY_
+			,CREATETIME_
+			) values (
+			#{videoDevice.deviceId,
+			jdbcType=VARCHAR}
+			,#{videoDevice.developerId, jdbcType=VARCHAR}
+			,#{videoDevice.name, jdbcType=VARCHAR}
+			,#{videoDevice.code,
+			jdbcType=VARCHAR}
+			,#{videoDevice.desc, jdbcType=VARCHAR}
+			,#{videoDevice.deviceName, jdbcType=VARCHAR}
+			,#{videoDevice.deviceSerial, jdbcType=VARCHAR}
+			,#{videoDevice.safeKey, jdbcType=VARCHAR}
+			,#{videoDevice.picUrl,
+			jdbcType=VARCHAR}
+			,#{videoDevice.databaseId, jdbcType=BIGINT}
+			,#{videoDevice.indexId, jdbcType=INTEGER}
+			,#{videoDevice.indexName,
+			jdbcType=VARCHAR}
+			,#{videoDevice.defence, jdbcType=INTEGER}
+			,#{videoDevice.isEncrypt, jdbcType=INTEGER}
+			,#{videoDevice.isShared,
+			jdbcType=INTEGER}
+			,#{videoDevice.status, jdbcType=INTEGER}
+			,#{videoDevice.type, jdbcType=INTEGER}
+			,#{videoDevice.sortNo,
+			jdbcType=INTEGER}
+			,#{videoDevice.createBy, jdbcType=VARCHAR}
+			,#{videoDevice.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateVideoDevice" parameterType="com.glaf.video.domain.VideoDevice">
+		update VIDEO_DEVICE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="deviceName != null">
+				DEVICENAME_ = #{deviceName, jdbcType=VARCHAR},
+			</if>
+			<if test="deviceSerial != null">
+				DEVICESERIAL_ = #{deviceSerial, jdbcType=VARCHAR},
+			</if>
+			<if test="safeKey != null">
+				SAFEKEY_ = #{safeKey, jdbcType=VARCHAR},
+			</if>
+			<if test="picUrl != null">
+				PICURL_ = #{picUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="indexId != null">
+				INDEXID_ = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="indexName != null">
+				INDEXNAME_ = #{indexName, jdbcType=VARCHAR},
+			</if>
+			<if test="defence != null">
+				DEFENCE_ = #{defence, jdbcType=INTEGER},
+			</if>
+			<if test="isEncrypt != null">
+				ISENCRYPT_ = #{isEncrypt, jdbcType=INTEGER},
+			</if>
+			<if test="isShared != null">
+				ISSHARED_ = #{isShared, jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		DEVICEID_ = #{deviceId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteVideoDeviceById" parameterType="string">
+		delete from
+		VIDEO_DEVICE
+		where DEVICEID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteVideoDevices" parameterType="com.glaf.video.query.VideoDeviceQuery">
+		delete from VIDEO_DEVICE
+		where (
+		DEVICEID_ IN
+		<foreach item="x_deviceId" index="index" collection="deviceIds"
+			open="(" separator="," close=")">
+			#{x_deviceId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getVideoDeviceById" parameterType="string"
+		resultMap="videoDeviceResultMap">
+		select * from VIDEO_DEVICE where DEVICEID_ = #{id}
+	</select>
+
+
+	<select id="getVideoDevices" parameterType="com.glaf.video.query.VideoDeviceQuery"
+		resultMap="videoDeviceResultMap">
+		select distinct E.*
+		<include refid="selectVideoDevicesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.DEVICEID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getVideoDeviceCount" parameterType="com.glaf.video.query.VideoDeviceQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectVideoDevicesSql" />
+	</select>
+
+
+	<sql id="selectVideoDevicesSql">
+
+		from VIDEO_DEVICE E
+
+		<where>
+			1 = 1
+
+			<if test="developerId != null and developerId != '' ">
+				and E.DEVELOPERID_ = #{developerId}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+			</if>
+
+			<if test="deviceName != null and deviceName != '' ">
+				and E.DEVICENAME_ = #{deviceName}
+			</if>
+
+			<if test="deviceNameLike != null and deviceNameLike != '' ">
+				and E.DEVICENAME_ like #{deviceNameLike}
+			</if>
+
+			<if test="deviceSerial != null and deviceSerial != '' ">
+				and E.DEVICESERIAL_ = #{deviceSerial}
+			</if>
+
+			<if test="deviceSerialLike != null and deviceSerialLike != '' ">
+				and E.DEVICESERIAL_ like #{deviceSerialLike}
+			</if>
+
+			<if test="safeKey != null and safeKey != '' ">
+				and E.SAFEKEY_ = #{safeKey}
+			</if>
+
+			<if test="safeKeyLike != null and safeKeyLike != '' ">
+				and E.SAFEKEY_ like #{safeKeyLike}
+			</if>
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="indexId != null">
+				and E.INDEXID_ = #{indexId}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

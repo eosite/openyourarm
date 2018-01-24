@@ -1,0 +1,17 @@
+.hmtd-xs .mui-switch{
+    height: 23px;
+}
+.hmtd-xs .mui-switch:before{
+    top: 2px;
+    font-size: 12px;
+}
+.hmtd-xs .mui-switch .mui-switch-handle{
+    height: 20px;
+}
+.circle .mui-switch .mui-switch-handle{
+	border-radius: 16px !important;
+}
+
+.circle .mui-switch{
+    border-radius: 20px !important;
+}

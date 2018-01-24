@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 公共信息，也可以用dubbo.properties配置 -->
+	<dubbo:application name="annotation-consumer"/>
+	<dubbo:provider timeout="120000"/>
+	<!--<dubbo:registry protocol="zookeeper" address="192.168.56.129:2181" check="false"/>-->
+	<!--<dubbo:protocol host="192.168.56.1"/>-->
+	<dubbo:consumer check="false"/>
+	<dubbo:registry protocol="zookeeper" address="192.168.10.121:2181,192.168.10.121:2182,192.168.10.121:2183,192.168.10.121:2184,192.168.10.121:2185" check="false"/>
+	<!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
+	<dubbo:annotation package="com.glaf.mqdata.web.dubbo.client" />
+</beans>

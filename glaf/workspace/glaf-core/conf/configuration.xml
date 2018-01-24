@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="resources/mybatis/mapper/GlobalMapper.xml" />
+		<mapper resource="resources/mybatis/mapper/IdentityMgmtMapper.xml" />
+		<mapper resource="com/glaf/core/mapper/IdMapper.xml" />
+		<mapper resource="com/glaf/core/mapper/TableDataMapper.xml" />
+		<mapper resource="com/glaf/core/mapper/TablePageMapper.xml" />
+	</mappers>
+</configuration>

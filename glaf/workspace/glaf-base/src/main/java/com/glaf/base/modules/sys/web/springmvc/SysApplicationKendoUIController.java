@@ -1,0 +1,667 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.glaf.base.modules.sys.web.springmvc;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.glaf.base.modules.sys.SysConstants;
+import com.glaf.base.modules.sys.model.SysApplication;
+import com.glaf.base.modules.sys.model.SysRole;
+import com.glaf.base.modules.sys.model.SysTree;
+import com.glaf.base.modules.sys.query.SysApplicationQuery;
+import com.glaf.base.modules.sys.service.SysApplicationService;
+import com.glaf.base.modules.sys.service.SysTreeService;
+import com.glaf.base.modules.sys.util.SysApplicationDomainFactory;
+import com.glaf.base.utils.ParamUtil;
+import com.glaf.core.base.ColumnModel;
+import com.glaf.core.base.DataRequest;
+import com.glaf.core.base.DataRequest.SortDescriptor;
+import com.glaf.core.base.TableModel;
+import com.glaf.core.config.ViewProperties;
+import com.glaf.core.factory.DataServiceFactory;
+import com.glaf.core.util.JsonUtils;
+import com.glaf.core.util.ParamUtils;
+import com.glaf.core.util.RequestUtils;
+import com.glaf.core.util.ResponseUtils;
+import com.glaf.core.util.Tools;
+
+@Controller("/system/application")
+@RequestMapping("/system/application")
+public class SysApplicationKendoUIController {
+	private static final Log logger = LogFactory.getLog(SysApplicationKendoUIController.class);
+
+	private SysApplicationService sysApplicationService;
+
+	private SysTreeService sysTreeService;
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public @ResponseBody SysApplication create(HttpServletRequest request, @RequestBody Map<String, Object> model) {
+		SysApplication bean = new SysApplication();
+		try {
+			Tools.populate(bean, model);
+		} catch (Exception ex) {
+		}
+		bean.setName(ParamUtils.getString(model, "name"));
+		bean.setCode(ParamUtils.getString(model, "code"));
+		bean.setDesc(ParamUtils.getString(model, "desc"));
+		bean.setUrl(ParamUtils.getString(model, "url"));
+		bean.setImagePath(ParamUtils.getString(model, "imagePath"));
+		bean.setShowMenu(ParamUtils.getInt(model, "showMenu"));
+		bean.setShowType(request.getParameter("showType"));
+		bean.setPageId(ParamUtil.getParameter(request, "pageId"));
+		bean.setLinkParam(ParamUtils.getString(model, "linkParam"));
+		bean.setPrintParam(ParamUtils.getString(model, "printParam"));
+		bean.setUpdateBy(RequestUtils.getActorId(request));
+		bean.setLocked(ParamUtils.getInt(model, "locked"));
+		bean.setRefId1(ParamUtils.getInt(model, "refId1"));
+		bean.setRefName1(ParamUtils.getString(model, "refName1"));
+		bean.setRefId2(ParamUtils.getInt(model, "refId2"));
+		bean.setRefName2(ParamUtils.getString(model, "refName2"));
+		bean.setRefId3(ParamUtils.getInt(model, "refId3"));
+		bean.setRefName3(ParamUtils.getString(model, "refName3"));
+		bean.setRefId4(ParamUtils.getInt(model, "refId4"));
+		bean.setRefName4(ParamUtils.getString(model, "refName4"));
+		bean.setRefId5(ParamUtils.getInt(model, "refId5"));
+		bean.setRefName5(ParamUtils.getString(model, "refName5"));
+
+		SysTree node = new SysTree();
+		node.setName(bean.getName());
+		node.setDesc(bean.getName());
+		node.setCode(bean.getCode());
+		node.setCreateBy(RequestUtils.getActorId(request));
+		if (ParamUtils.getLong(model, "parent") > 0) {
+			node.setParentId(ParamUtils.getLong(model, "parent"));
+		}
+		bean.setNode(node);
+
+		try {
+			sysApplicationService.create(bean);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			logger.error(ex);
+		}
+
+		return bean;
+	}
+
+	/**
+	 * 显示修改页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	public ModelAndView edit(HttpServletRequest request, ModelMap modelMap) {
+		// RequestUtils.setRequestParameterToAttribute(request);
+		long appId = ParamUtil.getIntParameter(request, "appId", 0);
+		if (appId != 0) {
+			SysApplication bean = sysApplicationService.findById(appId);
+			request.setAttribute("application", bean);
+		}
+
+		SysTree parent = sysTreeService.getSysTreeByCode(SysConstants.TREE_APP);
+		List<SysTree> list = new ArrayList<SysTree>();
+		parent.setDeep(0);
+		list.add(parent);
+		sysTreeService.getSysTree(list, parent.getId(), 1);
+		request.setAttribute("treeList", list);
+
+		String x_view = ViewProperties.getString("application.edit");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/app/edit", modelMap);
+	}
+
+	@RequestMapping("/json")
+	@ResponseBody
+	public byte[] json(HttpServletRequest request, @RequestBody DataRequest dataRequest) throws IOException {
+		Map<String, Object> params = RequestUtils.getParameterMap(request);
+		SysApplicationQuery query = new SysApplicationQuery();
+		Tools.populate(query, params);
+		query.setDeleteFlag(0);
+		query.setDataRequest(dataRequest);
+		SysApplicationDomainFactory.processDataRequest(dataRequest);
+		logger.debug("dataRequest:" + dataRequest);
+
+		JSONArray result = new JSONArray();
+		int total = sysApplicationService.getSysApplicationCountByQueryCriteria(query);
+		if (total > 0) {
+
+			String orderName = null;
+			String order = null;
+
+			if (dataRequest.getSort() != null && !dataRequest.getSort().isEmpty()) {
+				SortDescriptor sort = dataRequest.getSort().get(0);
+				orderName = sort.getField();
+				order = sort.getDir();
+				logger.debug("orderName:" + orderName);
+				logger.debug("order:" + order);
+			}
+
+			if (StringUtils.isNotEmpty(orderName)) {
+				query.setSortColumn(orderName);
+				if (StringUtils.equals(order, "desc")) {
+					query.setSortOrder(" desc ");
+				}
+			}
+
+			int start = 0;
+			List<SysApplication> list = sysApplicationService.getSysApplicationsByQueryCriteria(0, 10000, query);
+
+			if (list != null && !list.isEmpty()) {
+
+				for (SysApplication sysApplication : list) {
+					JSONObject rowJSON = sysApplication.toJsonObject();
+					rowJSON.put("id", sysApplication.getId());
+					rowJSON.put("applicationId", sysApplication.getId());
+					rowJSON.put("startIndex", ++start);
+					result.add(rowJSON);
+				}
+
+			}
+		}
+		logger.debug("json:" + result.toString());
+		return result.toString().getBytes("UTF-8");
+	}
+
+	@RequestMapping
+	public ModelAndView list(HttpServletRequest request, ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+		String x_query = request.getParameter("x_query");
+		if (StringUtils.equals(x_query, "true")) {
+			Map<String, Object> paramMap = RequestUtils.getParameterMap(request);
+			String x_complex_query = JsonUtils.encode(paramMap);
+			x_complex_query = RequestUtils.encodeString(x_complex_query);
+			request.setAttribute("x_complex_query", x_complex_query);
+		} else {
+			request.setAttribute("x_complex_query", "");
+		}
+		String view = request.getParameter("view");
+		if (StringUtils.isNotEmpty(view)) {
+			return new ModelAndView(view, modelMap);
+		}
+
+		String x_view = ViewProperties.getString("application.list");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/app/list", modelMap);
+	}
+
+	/**
+	 * 显示修改页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/permission")
+	public ModelAndView permission(HttpServletRequest request, ModelMap modelMap) {
+		// RequestUtils.setRequestParameterToAttribute(request);
+		long id = ParamUtil.getIntParameter(request, "id", 0);
+		if (id > 0) {
+			SysApplication bean = sysApplicationService.findById(id);
+			if (bean != null) {
+				List<SysRole> roles = sysApplicationService.getApplicationRoleWithUsers(bean.getId());
+				request.setAttribute("bean", bean);
+				request.setAttribute("roles", roles);
+			}
+		}
+
+		String x_view = ViewProperties.getString("application.permission");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/app/permission", modelMap);
+	}
+
+	/**
+	 * 显示排序页面
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/showSort")
+	public ModelAndView showSort(HttpServletRequest request, ModelMap modelMap) {
+		// RequestUtils.setRequestParameterToAttribute(request);
+		long nodeId = ParamUtil.getIntParameter(request, "nodeId", 0);
+		if (nodeId > 0) {
+			List<SysTree> trees = sysTreeService.getSysTreeList(nodeId);
+			request.setAttribute("trees", trees);
+		}
+
+		String x_view = ViewProperties.getString("application.showSort");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/app/showSort", modelMap);
+	}
+
+	/**
+	 * 提交增加信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/saveSort")
+	@ResponseBody
+	public byte[] saveSort(HttpServletRequest request) {
+		String items = request.getParameter("items");
+		if (StringUtils.isNotEmpty(items)) {
+			int sort = 0;
+			List<TableModel> rows = new ArrayList<TableModel>();
+			StringTokenizer token = new StringTokenizer(items, ",");
+			while (token.hasMoreTokens()) {
+				String item = token.nextToken();
+				if (StringUtils.isNotEmpty(item)) {
+					sort++;
+					TableModel t1 = new TableModel();
+					t1.setTableName("sys_tree");
+					ColumnModel idColumn1 = new ColumnModel();
+					idColumn1.setColumnName("ID");
+					idColumn1.setValue(Long.parseLong(item));
+					t1.setIdColumn(idColumn1);
+					ColumnModel column = new ColumnModel();
+					column.setColumnName("SORT");
+					column.setValue(sort);
+					t1.addColumn(column);
+					rows.add(t1);
+
+					TableModel t2 = new TableModel();
+					t2.setTableName("sys_application");
+					ColumnModel idColumn2 = new ColumnModel();
+					idColumn2.setColumnName("NODEID");
+					idColumn2.setValue(Long.parseLong(item));
+					t2.setIdColumn(idColumn2);
+					ColumnModel column2 = new ColumnModel();
+					column2.setColumnName("SORT");
+					column2.setValue(sort);
+					t2.addColumn(column2);
+					rows.add(t2);
+				}
+			}
+			try {
+				DataServiceFactory.getInstance().updateAllTableData(rows);
+				return ResponseUtils.responseResult(true);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
+	 * 提交增加信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/saveAdd")
+	@ResponseBody
+	public byte[] saveAdd(HttpServletRequest request, ModelMap modelMap) {
+		// 将当前上下文初始化给 CommonsMutipartResolver（多部分解析器）
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
+				request.getSession().getServletContext());
+		// 检查form中是否有enctype="multipart/form-data"
+		if (multipartResolver.isMultipart(request)) {
+			MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+			SysApplication bean = new SysApplication();
+			Map<String, Object> dataMap = RequestUtils.getParameterMap(req);
+			try {
+				Tools.populate(bean, dataMap);
+			} catch (Exception ex) {
+			}
+
+			bean.setName(ParamUtil.getParameter(req, "name"));
+			bean.setCode(ParamUtil.getParameter(req, "code"));
+			bean.setDesc(ParamUtil.getParameter(req, "desc"));
+			bean.setUrl(ParamUtil.getParameter(req, "url"));
+			bean.setImagePath(ParamUtil.getParameter(req, "imagePath"));
+			bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
+			bean.setShowType(request.getParameter("showType"));
+			bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
+			bean.setPrintParam(ParamUtil.getParameter(req, "printParam"));
+			bean.setDatabaseId(ParamUtil.getLongParameter(req, "databaseId", 0));
+			bean.setUid(ParamUtil.getParameter(req, "uid"));
+			bean.setFlowid(req.getParameter("flowid"));
+			bean.setCellTreedotIndex(req.getParameter("cellTreedotIndex"));
+			bean.setPosition(req.getParameter("position"));
+			bean.setPageId(ParamUtil.getParameter(request, "pageId"));
+			bean.setSystemFlag(ParamUtil.getParameter(req, "systemFlag"));
+			bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));
+			bean.setRefName1(ParamUtil.getParameter(req, "refName1"));
+			bean.setRefId2(ParamUtil.getIntParameter(req, "refId2", 0));
+			bean.setRefName2(ParamUtil.getParameter(req, "refName2"));
+			bean.setRefId3(ParamUtil.getIntParameter(req, "refId3", 0));
+			bean.setRefName3(ParamUtil.getParameter(req, "refName3"));
+			bean.setRefId4(ParamUtil.getIntParameter(req, "refId4", 0));
+			bean.setRefName4(ParamUtil.getParameter(req, "refName4"));
+			bean.setRefId5(ParamUtil.getIntParameter(req, "refId5", 0));
+			bean.setRefName5(ParamUtil.getParameter(req, "refName5"));
+			bean.setCreateBy(RequestUtils.getActorId(request));
+			if (StringUtils.isEmpty(bean.getRefName2())) {
+				bean.setUid("");
+			}
+			if (StringUtils.isEmpty(bean.getRefName3())) {
+				bean.setPageId("");
+			}
+			if (StringUtils.isEmpty(bean.getRefName5())) {
+				bean.setCellTreedotIndex("");
+			}
+
+			SysTree node = new SysTree();
+			node.setName(bean.getName());
+			node.setDesc(bean.getName());
+			node.setCode(bean.getCode());
+			node.setCreateBy(RequestUtils.getActorId(request));
+			node.setParentId((long) ParamUtil.getIntParameter(req, "parent", 0));
+			bean.setNode(node);
+
+			Map<String, MultipartFile> fileMap = req.getFileMap();
+			Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
+			for (Entry<String, MultipartFile> entry : entrySet) {
+				MultipartFile mFile = entry.getValue();
+				if (StringUtils.equals(mFile.getName(), "linkFileName")) {
+					if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+						String filename = mFile.getOriginalFilename();
+						bean.setLinkFileName(filename);
+						bean.setLinkType("T");
+						try {
+							bean.setLinkFileContent(mFile.getBytes());
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
+					}
+				}
+				if (StringUtils.equals(mFile.getName(), "printFileName")) {
+					if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+						String filename = mFile.getOriginalFilename();
+						bean.setPrintFileName(filename);
+						bean.setPrintType("T");
+						try {
+							bean.setPrintFileContent(mFile.getBytes());
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
+					}
+				}
+			}
+
+			try {
+				boolean ret = sysApplicationService.create(bean);
+				if (ret) {// 保存成功
+					return ResponseUtils.responseResult(true);
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+		return ResponseUtils.responseResult(false);
+	}
+
+	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping("/saveModify")
+	@ResponseBody
+	public byte[] saveModify(HttpServletRequest request, ModelMap modelMap) {
+		// 将当前上下文初始化给 CommonsMutipartResolver（多部分解析器）
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
+				request.getSession().getServletContext());
+		// 检查form中是否有enctype="multipart/form-data"
+		if (multipartResolver.isMultipart(request)) {
+			MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+			long appId = ParamUtil.getIntParameter(req, "appId", 0);
+			SysApplication bean = sysApplicationService.findById(appId);
+			if (bean != null) {
+				Map<String, Object> dataMap = RequestUtils.getParameterMap(request);
+				try {
+					Tools.populate(bean, dataMap);
+				} catch (Exception ex) {
+				}
+				bean.setName(ParamUtil.getParameter(req, "name"));
+				bean.setCode(ParamUtil.getParameter(req, "code"));
+				bean.setDesc(ParamUtil.getParameter(req, "desc"));
+				bean.setUrl(ParamUtil.getParameter(req, "url"));
+				bean.setImagePath(ParamUtil.getParameter(req, "imagePath"));
+				bean.setShowMenu(ParamUtil.getIntParameter(req, "showMenu", 0));
+				bean.setShowType(request.getParameter("showType"));
+				bean.setLinkParam(ParamUtil.getParameter(req, "linkParam"));
+				bean.setPrintParam(ParamUtil.getParameter(req, "printParam"));
+				bean.setDatabaseId(ParamUtil.getLongParameter(req, "databaseId", 0));
+				bean.setUid(ParamUtil.getParameter(req, "uid"));
+				bean.setFlowid(req.getParameter("flowid"));
+				bean.setCellTreedotIndex(req.getParameter("cellTreedotIndex"));
+				bean.setPosition(req.getParameter("position"));
+				bean.setPageId(ParamUtil.getParameter(request, "pageId"));
+				bean.setSystemFlag(ParamUtil.getParameter(req, "systemFlag"));
+				bean.setUpdateBy(RequestUtils.getActorId(request));
+				bean.setLocked(ParamUtil.getIntParameter(req, "locked", 0));
+				bean.setRefId1(ParamUtil.getIntParameter(req, "refId1", 0));
+				bean.setRefName1(ParamUtil.getParameter(req, "refName1"));
+				bean.setRefId2(ParamUtil.getIntParameter(req, "refId2", 0));
+				bean.setRefName2(ParamUtil.getParameter(req, "refName2"));
+				bean.setRefId3(ParamUtil.getIntParameter(req, "refId3", 0));
+				bean.setRefName3(ParamUtil.getParameter(req, "refName3"));
+				bean.setRefId4(ParamUtil.getIntParameter(req, "refId4", 0));
+				bean.setRefName4(ParamUtil.getParameter(req, "refName4"));
+				bean.setRefId5(ParamUtil.getIntParameter(req, "refId5", 0));
+				bean.setRefName5(ParamUtil.getParameter(req, "refName5"));
+
+				if (StringUtils.isEmpty(bean.getRefName2())) {
+					bean.setUid("");
+				}
+				if (StringUtils.isEmpty(bean.getRefName3())) {
+					bean.setPageId("");
+				}
+				if (StringUtils.isEmpty(bean.getRefName5())) {
+					bean.setCellTreedotIndex("");
+				}
+
+				SysTree node = bean.getNode();
+				node.setName(bean.getName());
+				node.setCode(bean.getCode());
+				node.setDesc(bean.getName());
+				node.setParentId(ParamUtil.getLongParameter(req, "parent", 0));
+				bean.setNode(node);
+
+				Map<String, MultipartFile> fileMap = req.getFileMap();
+				Set<Entry<String, MultipartFile>> entrySet = fileMap.entrySet();
+				for (Entry<String, MultipartFile> entry : entrySet) {
+					MultipartFile mFile = entry.getValue();
+					if (StringUtils.equals(mFile.getName(), "linkFileName")) {
+						if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+							String filename = mFile.getOriginalFilename();
+							bean.setLinkFileName(filename);
+							bean.setLinkType("T");
+							try {
+								bean.setLinkFileContent(mFile.getBytes());
+							} catch (IOException ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+					if (StringUtils.equals(mFile.getName(), "printFileName")) {
+						if (mFile.getOriginalFilename() != null && mFile.getSize() > 0) {
+							String filename = mFile.getOriginalFilename();
+							bean.setPrintFileName(filename);
+							bean.setPrintType("T");
+							try {
+								bean.setPrintFileContent(mFile.getBytes());
+							} catch (IOException ex) {
+								ex.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+			boolean ret = false;
+			try {
+				ret = sysApplicationService.update(bean);
+				if (ret) {// 保存成功
+					return ResponseUtils.responseResult(true);
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+		return ResponseUtils.responseResult(false);
+	}
+
+	@javax.annotation.Resource
+	public void setSysApplicationService(SysApplicationService sysApplicationService) {
+		this.sysApplicationService = sysApplicationService;
+	}
+
+	@javax.annotation.Resource
+	public void setSysTreeService(SysTreeService sysTreeService) {
+		this.sysTreeService = sysTreeService;
+	}
+
+	@RequestMapping("/showPermission")
+	public ModelAndView showPermission(HttpServletRequest request, ModelMap modelMap) {
+		RequestUtils.setRequestParameterToAttribute(request);
+
+		String x_view = ViewProperties.getString("application.showPermission");
+		if (StringUtils.isNotEmpty(x_view)) {
+			return new ModelAndView(x_view, modelMap);
+		}
+
+		return new ModelAndView("/kendoui/sys/app/permission_frame", modelMap);
+	}
+
+	/**
+	 * 提交修改信息
+	 * 
+	 * @param request
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public @ResponseBody SysApplication update(HttpServletRequest request, @RequestBody Map<String, Object> model) {
+		logger.debug("model:" + model);
+		long appId = ParamUtils.getLong(model, "appId");
+		logger.debug("appId:" + appId);
+		SysApplication bean = sysApplicationService.findById(appId);
+		if (bean != null) {
+			try {
+				Tools.populate(bean, model);
+			} catch (Exception ex) {
+			}
+			bean.setName(ParamUtils.getString(model, "name"));
+			bean.setCode(ParamUtils.getString(model, "code"));
+			bean.setDesc(ParamUtils.getString(model, "desc"));
+			bean.setUrl(ParamUtils.getString(model, "url"));
+			bean.setImagePath(ParamUtils.getString(model, "imagePath"));
+			bean.setShowMenu(ParamUtils.getInt(model, "showMenu"));
+			bean.setShowType(request.getParameter("showType"));
+			bean.setPageId(ParamUtil.getParameter(request, "pageId"));
+			bean.setLinkParam(ParamUtils.getString(model, "linkParam"));
+			bean.setPrintParam(ParamUtils.getString(model, "printParam"));
+			bean.setUpdateBy(RequestUtils.getActorId(request));
+			bean.setLocked(ParamUtils.getInt(model, "locked"));
+			bean.setDatabaseId(ParamUtil.getLongParameter(request, "databaseId", 0));
+			bean.setUid(ParamUtil.getParameter(request, "uid"));
+			bean.setFlowid(ParamUtil.getParameter(request, "flowid"));
+			bean.setCellTreedotIndex(ParamUtil.getParameter(request, "cellTreedotIndex"));
+			bean.setPosition(ParamUtil.getParameter(request, "position"));
+			bean.setSystemFlag(ParamUtil.getParameter(request, "systemFlag"));
+			bean.setRefId1(ParamUtils.getInt(model, "refId1"));
+			bean.setRefName1(ParamUtils.getString(model, "refName1"));
+			bean.setRefId2(ParamUtils.getInt(model, "refId2"));
+			bean.setRefName2(ParamUtils.getString(model, "refName2"));
+			bean.setRefId3(ParamUtils.getInt(model, "refId3"));
+			bean.setRefName3(ParamUtils.getString(model, "refName3"));
+			bean.setRefId4(ParamUtils.getInt(model, "refId4"));
+			bean.setRefName4(ParamUtils.getString(model, "refName4"));
+			bean.setRefId5(ParamUtils.getInt(model, "refId5"));
+			bean.setRefName5(ParamUtils.getString(model, "refName5"));
+
+			if (StringUtils.isEmpty(bean.getRefName2())) {
+				bean.setUid("");
+			}
+			if (StringUtils.isEmpty(bean.getRefName3())) {
+				bean.setPageId("");
+			}
+			if (StringUtils.isEmpty(bean.getRefName5())) {
+				bean.setCellTreedotIndex("");
+			}
+
+			SysTree node = bean.getNode();
+			node.setName(bean.getName());
+			node.setCode(bean.getCode());
+			node.setDesc(bean.getName());
+			if (ParamUtils.getLong(model, "parent") > 0) {
+				node.setParentId(ParamUtils.getLong(model, "parent"));
+			}
+			bean.setNode(node);
+
+			try {
+				sysApplicationService.update(bean);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				logger.error(ex);
+			}
+		}
+
+		return bean;
+	}
+
+}

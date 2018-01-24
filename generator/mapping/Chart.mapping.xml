@@ -1,0 +1,53 @@
+
+<mapping>
+    <entity name="Chart" package="com.glaf.chart" moduleName="apps" table="BI_CHART" title="Chart" englishTitle="Chart">
+        <id name="id" column="ID_" type="String" title="Id" englishTitle="Id" length="50"/>
+        <property name="nodeId" column="NODEID_" type="Long" title="NodeId" englishTitle="NodeId" editable="true"/>
+        <property name="datasetIds" column="DATASETIDS_" type="String" title="DatasetIds" 
+		          englishTitle="DatasetIds" length="255" editable="true"/>
+		<property name="secondDatasetIds" column="SECOND_DATASETIDS_" type="String" title="Second DatasetIds" 
+		          englishTitle="Second DatasetIds" length="500" editable="true"/>
+		<property name="thirdDatasetIds" column="THIRD_DATASETIDS_" type="String" title="Third DatasetIds" 
+		          englishTitle="Third DatasetIds" length="500" editable="true"/>
+        <property name="queryIds" column="QUERYIDS_" type="String" title="QueryIds" englishTitle="QueryIds" length="255" editable="true"/>
+        <property name="querySQL" column="QUERYSQL_" type="String" title="QuerySQL" englishTitle="QuerySQL" length="255" editable="true"/>
+        <property name="subject" column="SUBJECT_" type="String" title="Subject" englishTitle="Subject" length="255" editable="true"/>
+        <property name="chartName" column="CHARTNAME_" type="String" title="ChartName" englishTitle="ChartName" length="255" editable="true"/>
+        <property name="chartType" column="CHARTTYPE_" type="String" title="ChartType" 
+		          englishTitle="ChartType" length="50" editable="true"/>
+		<property name="secondChartType" column="SECOND_CHARTTYPE_" type="String" title="Second ChartType" 
+		          englishTitle="Second ChartType" length="50" editable="true"/>
+		<property name="thirdChartType" column="THIRD_CHARTTYPE_" type="String" title="Third ChartType" 
+		          englishTitle="Third ChartType" length="50" editable="true"/>
+        <property name="chartFont" column="CHARTFONT_" type="String" title="ChartFont" englishTitle="ChartFont" length="255" editable="true"/>
+        <property name="chartFontSize" column="CHARTFONTSIZE_" type="Integer" title="ChartFontSize" englishTitle="ChartFontSize" editable="true"/>
+        <property name="chartTitle" column="CHARTTITLE_" type="String" title="ChartTitle" englishTitle="ChartTitle" length="255" editable="true"/>
+        <property name="chartSubTitle" column="CHARTSUBTITLE_" type="String" title="ChartSubTitle" englishTitle="ChartSubTitle" length="255" editable="true"/>
+        <property name="chartTitleFont" column="CHARTTITLEFONT_" type="String" title="ChartTitleFont" englishTitle="ChartTitleFont" length="255" editable="true"/>
+        <property name="chartTitleFontSize" column="CHARTTITLEFONTSIZE_" type="Integer" title="ChartTitleFontSize" englishTitle="ChartTitleFontSize" editable="true"/>
+        <property name="chartSubTitleFontSize" column="CHARTSUBTITLEFONTSIZE_" type="Integer" title="ChartSubTitleFontSize" englishTitle="ChartSubTitleFontSize" editable="true"/>
+        <property name="chartWidth" column="CHARTWIDTH_" type="Integer" title="ChartWidth" englishTitle="ChartWidth" editable="true"/>
+        <property name="chartHeight" column="CHARTHEIGHT_" type="Integer" title="ChartHeight" englishTitle="ChartHeight" editable="true"/>
+        <property name="legend" column="LEGEND_" type="String" title="Legend" englishTitle="Legend" length="255" editable="true"/>
+        <property name="tooltip" column="TOOLTIP_" type="String" title="Tooltip" englishTitle="Tooltip" length="100" editable="true"/>
+        <property name="mapping" column="MAPPING_" type="String" title="Mapping" englishTitle="Mapping" length="50" editable="true"/>
+        <property name="coordinateX" column="COORDINATEX_" type="String" title="CoordinateX" englishTitle="CoordinateX" length="255" editable="true"/>
+        <property name="coordinateY" column="COORDINATEY_" type="String" title="CoordinateY" englishTitle="CoordinateY" length="255" editable="true"/>
+		<property name="secondCoordinateX" column="SECOND_COORDINATEX_" type="String" title="SecondCoordinateX" englishTitle="SecondCoordinateX" length="255" editable="true"/>
+        <property name="secondCoordinateY" column="SECOND_COORDINATEY_" type="String" title="SecondCoordinateY" englishTitle="SecondCoordinateY" length="255" editable="true"/>
+        <property name="plotOrientation" column="PLOTORIENTATION_" type="String" title="PlotOrientation" englishTitle="PlotOrientation" length="255" editable="true"/>
+        <property name="imageType" column="IMAGETYPE_" type="String" title="ImageType" englishTitle="ImageType" length="255" editable="true"/>
+		<property name="theme" column="THEME_" type="String" title="theme" englishTitle="theme" length="50" editable="true"/>
+        <property name="enable3DFlag" column="ENABLE3DFLAG_" type="String" title="Enable3DFlag" englishTitle="Enable3DFlag" length="1" editable="true"/>
+		<property name="gradientFlag" column="GRADIENTFLAG_" type="String" title="GradientFlag" englishTitle="GradientFlag" length="1" editable="true"/>
+        <property name="enableFlag" column="ENABLEFLAG_" type="String" title="EnableFlag" englishTitle="EnableFlag" length="1" editable="true"/>
+        <property name="databaseId" column="DATABASEID_" type="Long" title="DatabaseId" englishTitle="DatabaseId" editable="true"/>
+        <property name="maxRowCount" column="MAXROWCOUNT_" type="Integer" title="MaxRowCount" englishTitle="MaxRowCount" editable="true"/>
+		<property name="maxScale" column="MAXSCALE_" type="Double" title="MaxScale" englishTitle="MaxScale" editable="true"/>
+		<property name="minScale" column="MINSCALE_" type="Double" title="MinScale" englishTitle="MinScale" editable="true"/>
+		<property name="stepScale" column="STEPSCALE_" type="Double" title="StepScale" englishTitle="StepScale" editable="true"/> 
+		
+        <property name="createBy" column="CREATEBY_" type="String" title="CreateBy" englishTitle="CreateBy" length="255" editable="true"/>
+        <property name="createDate" column="CREATEDATE_" type="Date" title="CreateDate" englishTitle="CreateDate" editable="true"/>
+    </entity>
+</mapping>

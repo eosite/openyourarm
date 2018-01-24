@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.project.mapper.ProjectOwnerMapper">
+
+	<resultMap id="projectOwnerResultMap" type="com.glaf.base.project.domain.ProjectOwner">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="projectId" column="PROJECTID_" jdbcType="BIGINT" />
+		<result property="actorId" column="ACTORID_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertProjectOwner" parameterType="com.glaf.base.project.domain.ProjectOwner">
+
+		insert into
+		PROJECT_OWNER ( ID_,PROJECTID_,ACTORID_ )
+		values
+		(#{id,jdbcType=BIGINT},
+		#{projectId, jdbcType=BIGINT},
+		#{actorId,jdbcType=VARCHAR}
+		)
+
+	</insert>
+
+
+	<delete id="deleteAccessor" parameterType="com.glaf.base.project.domain.ProjectOwner">
+		delete from
+		PROJECT_OWNER
+		where PROJECTID_ = #{projectId}
+		and ACTORID_ =
+		#{actorId}
+	</delete>
+
+
+	<delete id="deleteProjectOwnerByProjectId" parameterType="long">
+		delete from PROJECT_OWNER
+		where PROJECTID_ = #{projectId}
+	</delete>
+
+
+	<delete id="deleteProjectOwnerByActorId" parameterType="string">
+		delete
+		from PROJECT_OWNER
+		where ACTORID_ = #{actorId}
+	</delete>
+
+
+	<select id="getProjectOwneresByProjectId" parameterType="long"
+		resultMap="projectOwnerResultMap">
+		select * from PROJECT_OWNER
+		where PROJECTID_ =
+		#{projectId}
+	</select>
+
+
+	<select id="getProjectOwneresByActorId" parameterType="string"
+		resultMap="projectOwnerResultMap">
+		select *
+		from PROJECT_OWNER
+		where ACTORID_ = #{actorId}
+	</select>
+	
+
+	<select id="getAllProjectOwneres" resultMap="projectOwnerResultMap">
+		select *
+		from
+		PROJECT_OWNER
+	</select>
+
+</mapper>

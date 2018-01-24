@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.project.mapper.ProjectDatabaseMapper">
+
+	<resultMap id="projectDatabaseResultMap" type="com.glaf.base.project.domain.ProjectDatabase">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="projectId" column="PROJECTID_" jdbcType="BIGINT" />
+	</resultMap>
+
+
+	<insert id="insertProjectDatabase" parameterType="com.glaf.base.project.domain.ProjectDatabase">
+		insert into PROJECT_DATABASE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="projectId != null">
+				,PROJECTID_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="projectId != null">
+				,#{projectId, jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<delete id="deleteProjectDatabaseById" parameterType="long">
+		delete from
+		PROJECT_DATABASE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteProjectDatabasesByDatabaseId" parameterType="long">
+
+		delete from PROJECT_DATABASE
+		where DATABASEID_ = #{databaseId}
+
+	</delete>
+
+
+	<delete id="deleteProjectDatabasesByProjectId" parameterType="long">
+
+		delete from PROJECT_DATABASE
+		where PROJECTID_ = #{projectId}
+
+	</delete>
+
+
+	<select id="getProjectDatabaseById" parameterType="long"
+		resultMap="projectDatabaseResultMap">
+		select * from PROJECT_DATABASE where ID_ = #{id}
+	</select>
+
+
+	<select id="getProjectDatabasesByProjectId" parameterType="long"
+		resultMap="projectDatabaseResultMap">
+
+		select * from PROJECT_DATABASE
+		where PROJECTID_ =
+		#{projectId}
+
+	</select>
+
+
+	<select id="getProjectDatabases" parameterType="com.glaf.base.project.query.ProjectDatabaseQuery"
+		resultMap="projectDatabaseResultMap">
+		select distinct E.*
+		<include refid="selectProjectDatabasesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getProjectDatabaseCount" parameterType="com.glaf.base.project.query.ProjectDatabaseQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjectDatabasesSql" />
+	</select>
+
+
+	<sql id="selectProjectDatabasesSql">
+
+		from PROJECT_DATABASE E
+
+		<where>
+			1 = 1
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="projectId != null">
+				and E.PROJECTID_ = #{projectId}
+			</if>
+
+			<if test="projectIds != null and projectIds.size() &gt; 0">
+				and E.PROJECTID_ IN
+				<foreach item="x_projectId" index="index" collection="projectIds"
+					open="(" separator="," close=")">
+					#{x_projectId}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,101 @@
+<div id="Video_ID" videoid="Video_ID" data-role="video" rid="videoRid" style="width:100%;height:99%">
+	<div id="Video_ID_vertical" style="width:100%;height:100%;display: inline-flex;" >
+		<div style="border: 0px;" class="mt-left" style="width:100%;height:100%;position: relative; top: 0px;bottom:0px; left: 0px;right:233px;" >
+			<div align="left" style="display:none;">
+					<ul>
+				        <li>设备名称：
+				          <input type="text" name="DeviceName" id="DeviceName" class="longinput" readonly>
+				          <button class="normalbtn" onClick="ButtonPress('getDevName')">获取</button>
+				        </li>
+				        <li>通道列表：
+				          <select name="ChannelList" id="ChannelList" class="longinput">
+				           
+				          </select>
+				          <button class="normalbtn" onClick="ButtonPress('getDevChan')" >获取</button>
+				        </li>
+				        <li>
+				          <button class="normalbtn" onClick="ButtonPress('Preview:start')" style=" margin-left:60px;">&Delta;开始预览</button>
+				          <button class="normalbtn" onClick="ButtonPress('Preview:stop')" style=" margin-left:13px;">&nabla;停止预览</button>
+				        </li>
+		       		 </ul>
+				</div>
+				<div id="BodyRight" >
+			      <div id="OCXBody">
+			        <div class="smallocxdiv" id="NetPlayOCX1">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" codebase="${contextPath}/scripts/NetVideoActiveX23/codebase/NetVideoActiveX23.cab#version=2,3,19,1" standby="Waiting..." id="HIKOBJECT1" width="100%" height="100%" name="HIKOBJECT1" ></object>
+			        </div>
+			        <div class="smallocxdiv" id="NetPlayOCX2">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT2" width="100%" height="100%" name="HIKOBJECT2" ></object>
+			        </div>
+			        <div class="smallocxdiv" id="NetPlayOCX3">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT3" width="100%" height="100%" name="HIKOBJECT3" ></object>
+			        </div>
+			        <div class="smallocxdiv" id="NetPlayOCX4">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT4" width="100%" height="100%" name="HIKOBJECT4" ></object>
+			        </div>
+			        <div class="smallocxdiv" id="NetPlayOCX5" style="border: 1px solid rgb(235, 235, 235); border-image: none;">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT5" width="100%" height="100%" name="HIKOBJECT5" ></object>
+			        </div>
+					<div class="smallocxdiv" id="NetPlayOCX6">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT6" width="100%" height="100%" name="HIKOBJECT6" ></object>
+			        </div>
+					<div class="smallocxdiv" id="NetPlayOCX7" style="border: 1px solid rgb(235, 235, 235); border-image: none;">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT7" width="100%" height="100%" name="HIKOBJECT7" ></object>
+			        </div>
+					<div class="smallocxdiv" id="NetPlayOCX8" style="border: 1px solid rgb(235, 235, 235); border-image: none;">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT8" width="100%" height="100%" name="HIKOBJECT8" ></object>
+			        </div>
+					<div class="smallocxdiv" id="NetPlayOCX9" style="border: 1px solid rgb(235, 235, 235); border-image: none;">
+			          <object classid="CLSID:CAFCF48D-8E34-4490-8154-026191D73924" standby="Waiting..." id="HIKOBJECT9" width="100%" height="100%" name="HIKOBJECT9" ></object>
+			        </div>
+			        
+			        <div style="float:right; display:none;"></div>
+			      </div>
+			      <div class='videoTitle' align="left">日志（运行结果）
+			      	<span style="margin-left:170px; cursor:pointer" onClick="ArrangeWindow(1)">一画面</span>
+			      	<span style="margin-left:20px; cursor:pointer" onClick="ArrangeWindow(4)">四画面</span>
+			      	<span style="margin-left:20px; cursor:pointer" onClick="ArrangeWindow(9)">九画面</span>
+			      </div>
+			      <div id="OperatLogBody" align="left"></div>
+			    </div>
+		</div>
+		<div class="mt-separate" style="background-color: #daecf4;position: relative;border-style: solid;border-color: #daecf4;top:0px;bottom:0px;width:6px;"></div>
+		<div class="mt-right" style="border: 0px;width:198px;float:right; top: 0px;bottom:0px; right: 212px;">
+			<div class="videoTitle" align="center">设备列表</div>
+			    <div align="center" style='height:30%;'>
+			    	<table border='0' width='100%' height='auto' id="ChannelList-0" ></table>
+			    </div>
+			    
+				<div class="videoTitle" align="center">云台控制</div>
+			    <div align='center' style="width:99%;position:relative;">
+					<div id='pic-0' style="width:100%; height:160px;position:relative;display: inline-block;">	
+						<div style="z-index:2;height:160px;position:relative;top:10px;">
+							<img src="${contextPath}/scripts/NetVideoActiveX23/doc/bfq/bfj.png" />
+						</div>
+						<a class="stop01 k-btn" t='PTZ:stop'></a>
+						<a class="sm k-btn" t='PTZ:up'></a>
+						<a class="zuos k-btn" t='PTZ:leftup'></a>
+						<a class="yous k-btn" t='PTZ:rightup'></a>
+						<a class="zuob k-btn" t='PTZ:left'></a>
+						<a class="youb k-btn" t='PTZ:right'></a>
+						<a class="zuox k-btn" t='PTZ:leftdown'></a>
+						<a class="youx k-btn" t='PTZ:rightdown'></a>
+						<a class="xm k-btn" t='PTZ:down'></a>
+					</div>
+					<br>
+					<div style='width:100%;top:200px;position:absolute;'>
+					    <button class='k-button k-btn' t='zoom:in' >放大</button>
+					    <button class='k-button k-btn' t='zoom:out' >缩小</button>
+					    <br><br>
+					    <button class='k-button' onclick="ButtonPress('CatPic:bmp')" >拍照</button>
+					    <button class='k-button' onclick="ButtonPress('Record:start')" >录像</button>
+					    <button class='k-button' onclick="ButtonPress('Record:stop')" >停止录像</button>
+					    <br><br>
+						<button class='k-button k-music'>
+							<img class="k-image" alt="music" src="${contextPath }/images/music-false.png" />
+						</button>
+					</div>
+			    </div>
+		</div>
+	</div>
+</div>

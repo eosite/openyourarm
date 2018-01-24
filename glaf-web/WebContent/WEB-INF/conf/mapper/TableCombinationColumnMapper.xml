@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TableCombinationColumnMapper">
+
+	<resultMap id="tableCombinationColumnResultMap"
+		type="com.glaf.datamgr.domain.TableCombinationColumn">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="combinationId" column="COMBINATIONID_"
+			jdbcType="BIGINT" />
+		<result property="sourceColumnName" column="SOURCECOLUMNNAME_"
+			jdbcType="VARCHAR" />
+		<result property="datasetId" column="DATASETID_" jdbcType="VARCHAR" />
+		<result property="targetTableName" column="TARGETTABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="targetColumnName" column="TARGETCOLUMNNAME_"
+			jdbcType="VARCHAR" />
+		<result property="targetColumnLabel" column="TARGETCOLUMNLABEL_"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertTableCombinationColumn" parameterType="com.glaf.datamgr.domain.TableCombinationColumn">
+		insert into TABLE_COMBINATION_COL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="combinationId != null">
+				,COMBINATIONID_
+			</if>
+			<if test="sourceColumnName != null">
+				,SOURCECOLUMNNAME_
+			</if>
+			<if test="datasetId != null">
+				,DATASETID_
+			</if>
+			<if test="targetTableName != null">
+				,TARGETTABLENAME_
+			</if>
+			<if test="targetColumnName != null">
+				,TARGETCOLUMNNAME_
+			</if>
+			<if test="targetColumnLabel != null">
+				,TARGETCOLUMNLABEL_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="combinationId != null">
+				,#{combinationId, jdbcType=BIGINT}
+			</if>
+			<if test="sourceColumnName != null">
+				,#{sourceColumnName, jdbcType=VARCHAR}
+			</if>
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTableName != null">
+				,#{targetTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="targetColumnName != null">
+				,#{targetColumnName, jdbcType=VARCHAR}
+			</if>
+			<if test="targetColumnLabel != null">
+				,#{targetColumnLabel, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<delete id="deleteTableCombinationColumns" parameterType="long">
+		delete
+		from TABLE_COMBINATION_COL
+		where COMBINATIONID_ = #{combinationId}
+	</delete>
+
+
+	<select id="getTableCombinationColumnById" parameterType="long"
+		resultMap="tableCombinationColumnResultMap">
+		select * from TABLE_COMBINATION_COL where ID_ = #{id}
+	</select>
+
+
+	<select id="getTableCombinationColumns" parameterType="long"
+		resultMap="tableCombinationColumnResultMap">
+
+		select E.*
+		from TABLE_COMBINATION_COL E
+		where E.COMBINATIONID_
+		= #{combinationId}
+
+	</select>
+
+</mapper>

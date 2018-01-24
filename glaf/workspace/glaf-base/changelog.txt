@@ -1,0 +1,13 @@
+2013.11.16
+1、修改com.glaf.base.modules.sys.springmvc.MyPortalController
+   修改main方法，去掉进入主界面时不需要加载的对象
+
+2、修改com.glaf.base.security.BaseIdentityFactory
+   修正public static List<String> getUserRoleCodes(List<String> actorIds) 方法直接返回null的bug
+
+3、修改com.glaf.base.modules.sys.service.mybatis.SysApplicationServiceImpl
+   方法public void deleteById(Long appId) 有bug，删除模块时未删除树节点
+
+2014.03.19
+1、修改com.glaf.base.modules.sys.service.mybatis.SysApplicationServiceImpl第445行bug
+TreeModel treeModel = sysTreeService.findById(bean.getNodeId());

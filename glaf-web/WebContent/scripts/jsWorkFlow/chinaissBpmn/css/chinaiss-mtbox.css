@@ -1,0 +1,128 @@
+ .mtbox {
+	border: 1px solid #E0ECFF;
+}
+
+.mtbox_container {
+	height: 100%;
+	position: relative;
+}
+
+.mtbox_inner {
+	width: 18px;
+	height: 100%;
+	background-color: #E0ECFF;
+	display: block;
+	top: 0px;
+	left: 0px;
+}
+
+.mtbox_view {
+	height: 100%;
+	display: block;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.mtbox_footer {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	border-top: 1px dotted #ccc;
+}
+
+.mtbox_header,
+.mtbox_group {
+	height: 26px;
+	line-height: 26px;
+}
+
+.mtbox_header {
+	background-color: #efefef;
+}
+
+.mtbox_group {
+	background-color: #E0ECFF;
+	font-weight: 900;
+}
+
+.mtbox_table {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.mtbox .mtbox_content.mtbox_scroll {
+	overflow: hidden;
+}
+
+.mtbox_view .mtbox_content.mtbox_scroll {
+	overflow-y: scroll;
+}
+
+.mtbox .mtbox_content .mtbox_table tr,
+.mtbox .mtbox_content .mtbox_table td {
+	height: 25px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.mtbox .mtbox_inner .mtbox_content .mtbox_table tr {
+	border-bottom: 1px dotted #ccc;
+}
+
+.mtbox .mtbox_content .mtbox_table td {
+	height: 24px;
+	border-bottom: 1px dotted #ccc;
+}
+
+.mtbox_inner .mtbox_header,
+.mtbox_inner .mtbox_table td,
+.mtbox_view .mtbox_table td:not(:last-child) {
+	border-right: 1px dotted #8B8989;
+}
+
+.mtbox_expand:before {
+	content: "+";
+	position: relative;
+	font-weight: 900;
+	font-size: 24px;
+	top: 0;
+	left: 1px;
+	cursor: pointer;
+}
+
+.mtbox_collapse:before {
+	content: "-";
+	position: relative;
+	font-weight: 900;
+	font-size: 24px;
+	top: 0;
+	left: 1px;
+	cursor: pointer;
+}
+
+.mtbox_view .mtbox_content::-webkit-scrollbar {
+	width: 2px;
+	height: 4px;
+	background-color: #F5F5F5;
+}
+
+.mtbox_view .mtbox_content::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.mtbox_view .mtbox_content::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+.mtbox_cell{
+	padding-left: 4px;
+}
+.mtbox_select{
+	background-color: #ffe48d;
+}

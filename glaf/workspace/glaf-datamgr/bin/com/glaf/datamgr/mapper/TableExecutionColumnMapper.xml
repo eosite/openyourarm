@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TableExecutionColumnMapper">
+
+	<resultMap id="tableExecutionColumnResultMap" type="com.glaf.datamgr.domain.TableExecutionColumn">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="executionId" column="EXECUTIONID_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMNNAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="valueExpression" column="VALUEEXPRESSION_"
+			jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertTableExecutionColumn" parameterType="com.glaf.datamgr.domain.TableExecutionColumn">
+		insert into SYS_TABLE_EXECUTION_COLUMN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="executionId != null">
+				,EXECUTIONID_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="columnName != null">
+				,COLUMNNAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="valueExpression != null">
+				,VALUEEXPRESSION_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="executionId != null">
+				,#{executionId, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="valueExpression != null">
+				,#{valueExpression, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTableExecutionColumn" parameterType="java.util.List">
+		insert into SYS_TABLE_EXECUTION_COLUMN (
+		ID_
+		,EXECUTIONID_
+		,TITLE_
+		,COLUMNNAME_
+		,TYPE_
+		,VALUEEXPRESSION_
+		,LOCKED_
+		) values
+		<foreach collection="list" item="tableExecutionColumn" index="index"
+			separator=",">
+			(
+			#{tableExecutionColumn.id, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.executionId, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.title, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.columnName, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.type, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.valueExpression, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTableExecutionColumn_oracle"
+		parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="tableExecutionColumn" index="index">
+			insert into SYS_TABLE_EXECUTION_COLUMN (
+			ID_
+			,EXECUTIONID_
+			,TITLE_
+			,COLUMNNAME_
+			,TYPE_
+			,VALUEEXPRESSION_
+			,LOCKED_
+			) values (
+			#{tableExecutionColumn.id, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.executionId, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.title, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.columnName, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.type, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.valueExpression, jdbcType=VARCHAR}
+			,#{tableExecutionColumn.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTableExecutionColumn" parameterType="com.glaf.datamgr.domain.TableExecutionColumn">
+		update SYS_TABLE_EXECUTION_COLUMN
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="executionId != null">
+				EXECUTIONID_ = #{executionId, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="columnName != null">
+				COLUMNNAME_ = #{columnName, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="valueExpression != null">
+				VALUEEXPRESSION_ = #{valueExpression, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteTableExecutionColumnById" parameterType="string">
+		delete from SYS_TABLE_EXECUTION_COLUMN
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTableExecutionColumnsByExecutionId"
+		parameterType="string">
+		delete from SYS_TABLE_EXECUTION_COLUMN
+		where EXECUTIONID_
+		= #{executionId}
+	</delete>
+
+
+	<select id="getTableExecutionColumnById" parameterType="string"
+		resultMap="tableExecutionColumnResultMap">
+		select * from SYS_TABLE_EXECUTION_COLUMN where ID_ = #{id}
+	</select>
+
+
+	<select id="getTableExecutionColumnsByExecutionId"
+		parameterType="string" resultMap="tableExecutionColumnResultMap">
+		select * from
+		SYS_TABLE_EXECUTION_COLUMN where EXECUTIONID_ = #{executionId}
+	</select>
+
+
+	<select id="getTableExecutionColumns" parameterType="com.glaf.datamgr.query.TableExecutionColumnQuery"
+		resultMap="tableExecutionColumnResultMap">
+		select distinct E.*
+		<include refid="selectTableExecutionColumnsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTableExecutionColumnCount" parameterType="com.glaf.datamgr.query.TableExecutionColumnQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTableExecutionColumnsSql" />
+	</select>
+
+
+	<sql id="selectTableExecutionColumnsSql">
+
+		from SYS_TABLE_EXECUTION_COLUMN E
+
+		<where>
+			1 = 1
+
+			<if test="executionId != null and executionId != '' ">
+				and E.EXECUTIONID_ = #{executionId}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="columnName != null and columnName != '' ">
+				and E.COLUMNNAME_ = #{columnName}
+			</if>
+
+			<if test="columnNameLike != null and columnNameLike != '' ">
+				and E.COLUMNNAME_ like #{columnNameLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.EntitySegmentMapper">
+
+	<resultMap id="entitySegmentResultMap" type="com.glaf.datamgr.domain.EntitySegment">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+		<result property="operation" column="OPERATION_" jdbcType="VARCHAR" />
+		<result property="namespace" column="NAMESPACE_" jdbcType="VARCHAR" />
+		<result property="parameterType" column="PARAMETERTYPE_"
+			jdbcType="VARCHAR" />
+		<result property="resultType" column="RESULTTYPE_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertEntitySegment" parameterType="com.glaf.datamgr.domain.EntitySegment">
+		insert into SYS_ENTITY_SEGMENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_
+			</if>
+			<if test="operation != null">
+				,OPERATION_
+			</if>
+			<if test="namespace != null">
+				,NAMESPACE_
+			</if>
+			<if test="parameterType != null">
+				,PARAMETERTYPE_
+			</if>
+			<if test="resultType != null">
+				,RESULTTYPE_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="operation != null">
+				,#{operation, jdbcType=VARCHAR}
+			</if>
+			<if test="namespace != null">
+				,#{namespace, jdbcType=VARCHAR}
+			</if>
+			<if test="parameterType != null">
+				,#{parameterType, jdbcType=VARCHAR}
+			</if>
+			<if test="resultType != null">
+				,#{resultType, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertEntitySegment" parameterType="java.util.List">
+		insert into SYS_ENTITY_SEGMENT (
+		ID_
+		,TITLE_
+		,DESCRIPTION_
+		,OPERATION_
+		,NAMESPACE_
+		,PARAMETERTYPE_
+		,RESULTTYPE_
+		,LOCKED_
+		) values
+		<foreach collection="list" item="entitySegment" index="index"
+			separator=",">
+			(
+			#{entitySegment.id, jdbcType=VARCHAR}
+			,#{entitySegment.title, jdbcType=VARCHAR}
+			,#{entitySegment.description, jdbcType=VARCHAR}
+			,#{entitySegment.operation, jdbcType=VARCHAR}
+			,#{entitySegment.namespace, jdbcType=VARCHAR}
+			,#{entitySegment.parameterType, jdbcType=VARCHAR}
+			,#{entitySegment.resultType, jdbcType=VARCHAR}
+			,#{entitySegment.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertEntitySegment_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="entitySegment" index="index">
+			insert
+			into SYS_ENTITY_SEGMENT (
+			ID_
+			,TITLE_
+			,DESCRIPTION_
+			,OPERATION_
+			,NAMESPACE_
+			,PARAMETERTYPE_
+			,RESULTTYPE_
+			,LOCKED_
+			) values (
+			#{entitySegment.id, jdbcType=VARCHAR}
+			,#{entitySegment.title,
+			jdbcType=VARCHAR}
+			,#{entitySegment.description, jdbcType=VARCHAR}
+			,#{entitySegment.operation, jdbcType=VARCHAR}
+			,#{entitySegment.namespace, jdbcType=VARCHAR}
+			,#{entitySegment.parameterType, jdbcType=VARCHAR}
+			,#{entitySegment.resultType, jdbcType=VARCHAR}
+			,#{entitySegment.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateEntitySegment" parameterType="com.glaf.datamgr.domain.EntitySegment">
+		update SYS_ENTITY_SEGMENT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+	</update>
+
+
+	<delete id="deleteEntitySegmentById" parameterType="string">
+		delete from
+		SYS_ENTITY_SEGMENT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteEntitySegments" parameterType="com.glaf.datamgr.query.EntitySegmentQuery">
+		delete from SYS_ENTITY_SEGMENT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getEntitySegmentById" parameterType="string"
+		resultMap="entitySegmentResultMap">
+		select * from SYS_ENTITY_SEGMENT where ID_ = #{id}
+	</select>
+
+
+	<select id="getEntitySegments" parameterType="com.glaf.datamgr.query.EntitySegmentQuery"
+		resultMap="entitySegmentResultMap">
+		select distinct E.*
+		<include refid="selectEntitySegmentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getEntitySegmentCount" parameterType="com.glaf.datamgr.query.EntitySegmentQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEntitySegmentsSql" />
+	</select>
+
+
+	<sql id="selectEntitySegmentsSql">
+
+		from SYS_ENTITY_SEGMENT E
+
+		<where>
+			1 = 1
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+			</if>
+
+			<if test="namespaceLike != null and namespaceLike != '' ">
+				and E.NAMESPACE_ like #{namespaceLike}
+			</if>
+
+			<if test="parameterType != null and parameterType != '' ">
+				and E.PARAMETERTYPE_ = #{parameterType}
+			</if>
+
+			<if test="parameterTypeLike != null and parameterTypeLike != '' ">
+				and E.PARAMETERTYPE_ like #{parameterTypeLike}
+			</if>
+
+			<if test="resultType != null and resultType != '' ">
+				and E.RESULTTYPE_ = #{resultType}
+			</if>
+
+			<if test="resultTypeLike != null and resultTypeLike != '' ">
+				and E.RESULTTYPE_ like #{resultTypeLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,48 @@
+<style type="text/css">
+.videoTitle {
+	width: 99%;
+	height: 22px;
+	padding-top: 3px;
+	padding-left: 5px;
+	font-weight: bold;
+	background-color: #EBEBEB;
+}
+#OperatLogBody {
+	width:99%;
+	height:150px;
+	overflow:auto;
+	padding:2px;
+	border:1px solid #EBEBEB;
+}
+.smallocxdiv{float:left;display:; width:30%; height:30%;}
+</style>
+<link rel="stylesheet" type="text/css" href="${contextPath}/scripts/NetVideoActiveX23/doc/css/bfq.css"/>
+<script type='text/javascript' src='${contextPath}/scripts/ysVideo.js'></script>
+<script type="text/javascript" for="HIKOBJECT1" event="SelectWindow()">
+	ChangeStatus(1);
+</script>
+<script type="text/javascript" for="HIKOBJECT2" event="SelectWindow()">
+	ChangeStatus(2);
+</script>
+<script type="text/javascript" for="HIKOBJECT3" event="SelectWindow()">
+	ChangeStatus(3);
+</script>
+<script type="text/javascript" for="HIKOBJECT4" event="SelectWindow()">
+	ChangeStatus(4);
+</script>
+<script type="text/javascript" for="HIKOBJECT5" event="SelectWindow()">
+	ChangeStatus(5);
+</script>
+<script type="text/javascript" for="HIKOBJECT6" event="SelectWindow()">
+	ChangeStatus(6);
+</script>
+<script type="text/javascript" for="HIKOBJECT7" event="SelectWindow()">
+	ChangeStatus(7);
+</script>
+<script type="text/javascript" for="HIKOBJECT8" event="SelectWindow()">
+	ChangeStatus(8);
+</script>
+<script type="text/javascript" for="HIKOBJECT9" event="SelectWindow()">
+	ChangeStatus(9);
+</script>
+<script type='text/javascript'src='${contextPath}/scripts/NetVideoActiveX23/codebase/video.js'></script>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FlowForwardDMapper">
+
+ 	<resultMap id="flowForwardDResultMap"	type="com.glaf.isdp.domain.FlowForwardD">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="processId" column="PROCESS_ID" jdbcType="VARCHAR"/>
+        <result property="activId" column="ACTIV_ID" jdbcType="VARCHAR"/>
+        <result property="activPre" column="ACTIV_PRE" jdbcType="VARCHAR"/>
+        <result property="activNext" column="ACTIV_NEXT" jdbcType="VARCHAR"/>
+        <result property="isSave" column="ISSAVE" jdbcType="INTEGER"/>
+        <result property="isDel" column="ISDEL" jdbcType="INTEGER"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertFlowForwardD" parameterType="com.glaf.isdp.domain.FlowForwardD">
+		insert into FLOW_FORWARD_D 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="processId != null">
+				,PROCESS_ID 
+			</if>
+			<if test="activId != null">
+				,ACTIV_ID 
+			</if>
+			<if test="activPre != null">
+				,ACTIV_PRE 
+			</if>
+			<if test="activNext != null">
+				,ACTIV_NEXT 
+			</if>
+			<if test="isSave != null">
+				,ISSAVE 
+			</if>
+			<if test="isDel != null">
+				,ISDEL 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="activId != null">
+				,#{activId, jdbcType=VARCHAR}
+			</if>
+			<if test="activPre != null">
+				,#{activPre, jdbcType=VARCHAR}
+			</if>
+			<if test="activNext != null">
+				,#{activNext, jdbcType=VARCHAR}
+			</if>
+			<if test="isSave != null">
+				,#{isSave, jdbcType=INTEGER}
+			</if>
+			<if test="isDel != null">
+				,#{isDel, jdbcType=INTEGER}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFlowForwardD" parameterType="com.glaf.isdp.domain.FlowForwardD">
+		update FLOW_FORWARD_D
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="processId != null">
+				PROCESS_ID = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="activId != null">
+				ACTIV_ID = #{activId, jdbcType=VARCHAR},
+			</if>
+			<if test="activPre != null">
+				ACTIV_PRE = #{activPre, jdbcType=VARCHAR},
+			</if>
+			<if test="activNext != null">
+				ACTIV_NEXT = #{activNext, jdbcType=VARCHAR},
+			</if>
+			<if test="isSave != null">
+				ISSAVE = #{isSave, jdbcType=INTEGER},
+			</if>
+			<if test="isDel != null">
+				ISDEL = #{isDel, jdbcType=INTEGER},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFlowForwardDById" parameterType="string"> 
+        delete from FLOW_FORWARD_D
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFlowForwardDs" parameterType="com.glaf.isdp.query.FlowForwardDQuery">
+		delete from FLOW_FORWARD_D
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowForwardDById" parameterType="string" resultMap="flowForwardDResultMap">
+		select * from FLOW_FORWARD_D where ID = #{id}
+	</select>
+
+
+	<select id="getFlowForwardDs" 
+	    parameterType="com.glaf.isdp.query.FlowForwardDQuery"
+		resultMap="flowForwardDResultMap">
+		select distinct E.*
+		<include refid="selectFlowForwardDsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFlowForwardDCount" 
+	    parameterType="com.glaf.isdp.query.FlowForwardDQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowForwardDsSql" />
+	</select>
+
+
+	<sql id="selectFlowForwardDsSql">
+
+		from FLOW_FORWARD_D E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="processId != null and processId != '' ">
+				and E.PROCESS_ID = #{processId}
+            </if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESS_ID like #{processIdLike}
+            </if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.PROCESS_ID IN
+                <foreach item="x_processId" index="index" collection="processIds" 
+                     open="(" separator="," close=")">
+                  #{x_processId}
+                </foreach>
+			</if>
+	        
+			<if test="activId != null and activId != '' ">
+				and E.ACTIV_ID = #{activId}
+            </if>
+
+			<if test="activIdLike != null and activIdLike != '' ">
+				and E.ACTIV_ID like #{activIdLike}
+            </if>
+
+			<if test="activIds != null and activIds.size() &gt; 0">
+			    and E.ACTIV_ID IN
+                <foreach item="x_activId" index="index" collection="activIds" 
+                     open="(" separator="," close=")">
+                  #{x_activId}
+                </foreach>
+			</if>
+	        
+			<if test="activPre != null and activPre != '' ">
+				and E.ACTIV_PRE = #{activPre}
+            </if>
+
+			<if test="activPreLike != null and activPreLike != '' ">
+				and E.ACTIV_PRE like #{activPreLike}
+            </if>
+
+			<if test="activPres != null and activPres.size() &gt; 0">
+			    and E.ACTIV_PRE IN
+                <foreach item="x_activPre" index="index" collection="activPres" 
+                     open="(" separator="," close=")">
+                  #{x_activPre}
+                </foreach>
+			</if>
+	        
+			<if test="activNext != null and activNext != '' ">
+				and E.ACTIV_NEXT = #{activNext}
+            </if>
+
+			<if test="activNextLike != null and activNextLike != '' ">
+				and E.ACTIV_NEXT like #{activNextLike}
+            </if>
+
+			<if test="activNexts != null and activNexts.size() &gt; 0">
+			    and E.ACTIV_NEXT IN
+                <foreach item="x_activNext" index="index" collection="activNexts" 
+                     open="(" separator="," close=")">
+                  #{x_activNext}
+                </foreach>
+			</if>
+
+			<if test="isSave != null">
+				and E.ISSAVE = #{isSave}
+            </if>
+
+			<if test="isSaveGreaterThanOrEqual != null">
+				and E.ISSAVE &gt;= #{isSaveGreaterThanOrEqual}
+            </if>
+
+			<if test="isSaveLessThanOrEqual != null">
+				and E.ISSAVE &lt;= #{isSaveLessThanOrEqual}
+            </if>
+
+			<if test="isSaves != null and isSaves.size() &gt; 0">
+			    and E.ISSAVE IN
+                <foreach item="x_isSave" index="index" collection="isSaves" 
+                     open="(" separator="," close=")">
+                  #{x_isSave}
+                </foreach>
+			</if>
+      
+
+			<if test="isDel != null">
+				and E.ISDEL = #{isDel}
+            </if>
+
+			<if test="isDelGreaterThanOrEqual != null">
+				and E.ISDEL &gt;= #{isDelGreaterThanOrEqual}
+            </if>
+
+			<if test="isDelLessThanOrEqual != null">
+				and E.ISDEL &lt;= #{isDelLessThanOrEqual}
+            </if>
+
+			<if test="isDels != null and isDels.size() &gt; 0">
+			    and E.ISDEL IN
+                <foreach item="x_isDel" index="index" collection="isDels" 
+                     open="(" separator="," close=")">
+                  #{x_isDel}
+                </foreach>
+			</if>
+      
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

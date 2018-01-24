@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.uis.mapper.UisAppRegisterMapper">
+
+ 	<resultMap id="uisAppRegisterResultMap"	type="com.glaf.base.modules.uis.domain.UisAppRegister">
+        <id property="appId" column="APP_ID_" jdbcType="VARCHAR"/>
+        <result property="appName" column="APP_NAME_" jdbcType="VARCHAR"/>
+        <result property="loginAddress" column="LOGIN_ADDRESS_" jdbcType="VARCHAR"/>
+        <result property="ssoServiceId" column="SSO_SERVICE_ID_" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS_" jdbcType="INTEGER"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertUisAppRegister" parameterType="com.glaf.base.modules.uis.domain.UisAppRegister">
+		insert into UIS_APP_REGISTER 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    APP_ID_
+			<if test="appName != null">
+				,APP_NAME_ 
+			</if>
+			<if test="loginAddress != null">
+				,LOGIN_ADDRESS_ 
+			</if>
+			<if test="ssoServiceId != null">
+				,SSO_SERVICE_ID_ 
+			</if>
+			<if test="desc != null">
+				,DESC_ 
+			</if>
+			<if test="logoPic != null">
+				,LOGO_PIC_ 
+			</if>
+			<if test="status != null">
+				,STATUS_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{appId, jdbcType=VARCHAR}
+	     
+			<if test="appName != null">
+				,#{appName, jdbcType=VARCHAR}
+			</if>
+			<if test="loginAddress != null">
+				,#{loginAddress, jdbcType=VARCHAR}
+			</if>
+			<if test="ssoServiceId != null">
+				,#{ssoServiceId, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="logoPic != null">
+				,#{logoPic, jdbcType=BLOB}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateUisAppRegister" parameterType="com.glaf.base.modules.uis.domain.UisAppRegister">
+		update UIS_APP_REGISTER
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="appName != null">
+				APP_NAME_ = #{appName, jdbcType=VARCHAR},
+			</if>
+			<if test="loginAddress != null">
+				LOGIN_ADDRESS_ = #{loginAddress, jdbcType=VARCHAR},
+			</if>
+			<if test="ssoServiceId != null">
+				SSO_SERVICE_ID_ = #{ssoServiceId, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="logoPic != null">
+				LOGO_PIC_ = #{logoPic, jdbcType=BLOB},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          APP_ID_ = #{appId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteUisAppRegisterById" parameterType="string"> 
+        delete from UIS_APP_REGISTER
+        where APP_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteUisAppRegisters" parameterType="com.glaf.base.modules.uis.query.UisAppRegisterQuery">
+		delete from UIS_APP_REGISTER
+		where ( 
+ 			  APP_ID_ IN
+              <foreach item="x_appId" index="index" collection="appIds" 
+                     open="(" separator="," close=")">
+                  #{x_appId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getUisAppRegisterById" parameterType="string" resultMap="uisAppRegisterResultMap">
+		select * from UIS_APP_REGISTER where APP_ID_ = #{id}
+	</select>
+
+
+	<select id="getUisAppRegisters" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppRegisterQuery"
+		resultMap="uisAppRegisterResultMap">
+		select distinct E.*
+		<include refid="selectUisAppRegistersSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.APP_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getUisAppRegisterCount" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppRegisterQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUisAppRegistersSql" />
+	</select>
+
+
+	<sql id="selectUisAppRegistersSql">
+
+		from UIS_APP_REGISTER E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="appName != null and appName != '' ">
+				and E.APP_NAME_ = #{appName}
+            </if>
+
+			<if test="appNameLike != null and appNameLike != '' ">
+				and E.APP_NAME_ like #{appNameLike}
+            </if>
+
+			<if test="appNames != null and appNames.size() &gt; 0">
+			    and E.APP_NAME_ IN
+                <foreach item="x_appName" index="index" collection="appNames" 
+                     open="(" separator="," close=")">
+                  #{x_appName}
+                </foreach>
+			</if>
+	        
+			<if test="loginAddress != null and loginAddress != '' ">
+				and E.LOGIN_ADDRESS_ = #{loginAddress}
+            </if>
+
+			<if test="loginAddressLike != null and loginAddressLike != '' ">
+				and E.LOGIN_ADDRESS_ like #{loginAddressLike}
+            </if>
+
+			<if test="loginAddresss != null and loginAddresss.size() &gt; 0">
+			    and E.LOGIN_ADDRESS_ IN
+                <foreach item="x_loginAddress" index="index" collection="loginAddresss" 
+                     open="(" separator="," close=")">
+                  #{x_loginAddress}
+                </foreach>
+			</if>
+	        
+			<if test="ssoServiceId != null and ssoServiceId != '' ">
+				and E.SSO_SERVICE_ID_ = #{ssoServiceId}
+            </if>
+
+			<if test="ssoServiceIdLike != null and ssoServiceIdLike != '' ">
+				and E.SSO_SERVICE_ID_ like #{ssoServiceIdLike}
+            </if>
+
+			<if test="ssoServiceIds != null and ssoServiceIds.size() &gt; 0">
+			    and E.SSO_SERVICE_ID_ IN
+                <foreach item="x_ssoServiceId" index="index" collection="ssoServiceIds" 
+                     open="(" separator="," close=")">
+                  #{x_ssoServiceId}
+                </foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+            </if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS_ &gt;= #{statusGreaterThanOrEqual}
+            </if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS_ &lt;= #{statusLessThanOrEqual}
+            </if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+			    and E.STATUS_ IN
+                <foreach item="x_status" index="index" collection="statuss" 
+                     open="(" separator="," close=")">
+                  #{x_status}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

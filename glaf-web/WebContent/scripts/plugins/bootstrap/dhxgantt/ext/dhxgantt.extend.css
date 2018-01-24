@@ -1,0 +1,99 @@
+/*周末颜色*/
+.weekend{
+	/*background: #dbdcdb;*/
+}
+/*选中行周末颜色*/
+.gantt_selected .weekend{
+	/*background: #f7eb91;*/
+}
+/*任务周末颜色*/
+.taskweekend{
+	/*background: #dbdcdb;*/
+}
+/*选中行任务周末颜色*/
+.gantt_selected .taskweekend{
+	/*background: #5868c5;*/
+}
+
+
+.gantt_section_time .gantt_time_selects select{
+	vertical-align: top;
+}
+
+.gantt_section_time .gantt_duration span{
+	margin-left : 20px;
+}
+
+.gantt_grid_scale .gantt_grid_head_cell,.gantt_row .gantt_cell{
+	border-right:1px solid black ;
+}
+.gantt_grid_scale .gantt_grid_head_cell:last-child,.gantt_row .gantt_cell:last-child{
+	border-right-width : 0px !important;
+}
+
+.gantt_grid_head_cell .gantt_sort{
+	position: relative;
+}
+
+.gantt_tree_icon.gantt_loading{
+	background-image: url(./loading.gif?_1) !important;
+}
+
+.gantt_task,.gantt_grid{
+	overflow-x: scroll;
+}
+.gantt_hor_scroll{
+	display : none !important;
+}
+
+.gantt_row .gantt_cell:last-child{
+	border-right-style:none !important;
+}
+
+.gantt_grid{
+	border-right-style: none !important;
+}
+
+.gantt_grid_resize_wrap_my {
+    cursor: col-resize;
+    position: absolute;
+    width: 5px;
+    margin-left: -5px;
+    z-index: 1;
+    border-right: 1px solid dimgrey;
+    border-left: 1px solid dimgrey;
+}
+.gantt_grid_resize_wrap_my .gantt_grid_resize_my {
+    background-color: #000;
+    width: 1px;
+    margin: 0 auto;
+}
+
+.gantt_grid_column_resize_wrap_my{
+    cursor: col-resize;
+    display: inline-block;
+    position: relative;
+    width: 0px;
+    margin-left: 0px;
+}
+.gantt_grid_column_resize_wrap_my .gantt_grid_column_resize_my {
+    background-color: #000;
+    height: 100%;
+    width: 3px;
+    margin: 0 auto;
+    margin-left: -2px;
+    cursor: col-resize;
+    position: absolute;
+    z-index: 99999;
+}
+
+.gantt_task{
+	margin-left:5px;
+}
+.gantt_hor_scroll{
+	display: none !important;
+}
+/*.gantt_grid_data,.gantt_grid_scale{
+    width: auto !important;
+    overflow: initial !important;
+}*/

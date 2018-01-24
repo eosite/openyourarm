@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function-configuration>
+	<!-- 系统函数默认配置 -->
+	<bean class="org.wltea.expression.function.SystemFunctions">
+		<function name="CONTAINS" method="contains">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="STARTSWITH" method="startsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="ENDSWITH" method="endsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CALCDATE" method="calcDate">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="SYSDATE" method="sysDate" />
+		<function name="DAYEQUALS" method="dayEquals">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+	</bean>
+	
+	<!-- 用户函数配置  请在这里定制您自己的函数	-->
+<!-- 日期时间函数 -->
+<bean class="org.wltea.expression.function.DateFunc">
+<function name="DATE" method="getDate">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="TIME" method="getTime">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="DATETIME" method="getDateTime">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="YEAR" method="getYear">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="MONTH" method="getMonth">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="DAYOFMONTH" method="getDayOfMonth">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="DAYOFWEEK" method="getDayOfWeek">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="HOUR" method="getHour">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="MINUTE" method="getMinute">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="SECOND" method="getSecond">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="MILLISECOND" method="getMilliSecond">
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="DIFFDATETIME" method="getDiffDatetime">
+<parameter-type>java.util.Date</parameter-type>
+<parameter-type>java.util.Date</parameter-type>
+<parameter-type>java.lang.String</parameter-type>
+</function>
+<function name="FORMATDATETIME" method="formatDatetime">
+<parameter-type>java.util.Date</parameter-type>
+<parameter-type>java.lang.String</parameter-type>
+</function>
+<function name="EQUALDATE" method="equalDate">
+<parameter-type>java.util.Date</parameter-type>
+<parameter-type>java.util.Date</parameter-type>
+</function>
+<function name="EQUALDATETIME" method="equalDateTime">
+<parameter-type>java.util.Date</parameter-type>
+<parameter-type>java.util.Date</parameter-type>
+</function>
+</bean>
+</function-configuration>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.AuthorityUserMapper">
+
+	<resultMap id="authorityUserResultMap" type="com.glaf.base.modules.sys.model.AuthorityUser">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="actorId" column="ACTORID_" jdbcType="VARCHAR" />
+		<result property="roleId" column="ROLEID_" jdbcType="BIGINT" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertAuthorityUser" parameterType="com.glaf.base.modules.sys.model.AuthorityUser">
+		insert into SYS_AUTHORITY_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="actorId != null">
+				,ACTORID_
+			</if>
+			<if test="roleId != null">
+				,ROLEID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="actorId != null">
+				,#{actorId, jdbcType=VARCHAR}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=BIGINT}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertAuthorityUser" parameterType="java.util.List">
+		insert into SYS_AUTHORITY_USER (
+		ID_
+		,ACTORID_
+		,ROLEID_
+		,CREATEBY_
+		,CREATETIME_
+		) values
+		<foreach collection="list" item="authorityUser" index="index"
+			separator=",">
+			(
+			#{authorityUser.id, jdbcType=BIGINT}
+			,#{authorityUser.actorId, jdbcType=VARCHAR}
+			,#{authorityUser.roleId,
+			jdbcType=BIGINT}
+			,#{authorityUser.createBy, jdbcType=VARCHAR}
+			,#{authorityUser.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertAuthorityUser_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="authorityUser" index="index">
+			insert
+			into SYS_AUTHORITY_USER (
+			ID_
+			,ACTORID_
+			,ROLEID_
+			,CREATEBY_
+			,CREATETIME_
+			)
+			values (
+			#{authorityUser.id, jdbcType=BIGINT}
+			,#{authorityUser.actorId, jdbcType=VARCHAR}
+			,#{authorityUser.roleId,
+			jdbcType=BIGINT}
+			,#{authorityUser.createBy, jdbcType=VARCHAR}
+			,#{authorityUser.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<delete id="deleteAuthorityUserById" parameterType="long">
+		delete from
+		SYS_AUTHORITY_USER
+		where ID_ = #{id}
+	</delete>
+	
+	
+	<delete id="deleteAuthorityUserByActorId" parameterType="string">
+		delete from
+		SYS_AUTHORITY_USER
+		where ACTORID_ = #{actorId}
+	</delete>
+	
+	
+	<delete id="deleteAuthorityUserByRoleId" parameterType="long">
+		delete from
+		SYS_AUTHORITY_USER
+		where ROLEID_ = #{roleId}
+	</delete>
+
+
+	<select id="getAuthorityUserById" parameterType="long"
+		resultMap="authorityUserResultMap">
+		select * from SYS_AUTHORITY_USER where ID_ = #{id}
+	</select>
+
+
+	<select id="getAuthorityUsers" parameterType="com.glaf.base.modules.sys.query.AuthorityUserQuery"
+		resultMap="authorityUserResultMap">
+		select distinct E.*
+		<include refid="selectAuthorityUsersSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getAuthorityUserCount" parameterType="com.glaf.base.modules.sys.query.AuthorityUserQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectAuthorityUsersSql" />
+	</select>
+
+
+	<sql id="selectAuthorityUsersSql">
+
+		from SYS_AUTHORITY_USER E
+
+		<where>
+			1 = 1
+
+			<if test="actorId != null and actorId != '' ">
+				and E.ACTORID_ = #{actorId}
+			</if>
+
+			<if test="actorIds != null and actorIds.size() &gt; 0">
+				and E.ACTORID_ IN
+				<foreach item="x_actorId" index="index" collection="actorIds"
+					open="(" separator="," close=")">
+					#{x_actorId}
+				</foreach>
+			</if>
+
+			<if test="roleId != null">
+				and E.ROLEID_ = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+				and E.ROLEID_ IN
+				<foreach item="x_roleId" index="index" collection="roleIds"
+					open="(" separator="," close=")">
+					#{x_roleId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

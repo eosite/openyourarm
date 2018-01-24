@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+  <entity table="treepinfo" title="WBS实例树" parseType="sqlite" exportType="json" aggregationKeys="index_id" insertOnly="false" 
+          primaryKey="index_id" batchSize="100" name="treepinfo">
+	<id name="index_id" column="index_id" type="Integer" title="index_id" exportFlag="true"/>
+    <property name="id" column="id" type="String" title="id" length="100" exportFlag="true"/>
+	<property name="parent_id" column="parent_id" type="Integer" title="parent_id" exportFlag="true"/>
+	<property name="index_name" column="index_name" type="String" title="index_name" length="255" exportFlag="true"/>
+	<property name="trial_type" column="trial_type" type="String" title="trial_type" length="255" exportFlag="true"/>
+	<property name="aggregationKey" column="aggregationKey" type="String" title="聚合键" length="500"/>
+	<statements>
+	  <statement>
+	    update treepinfo set treepinfo.trial_type = (
+			select s_treewbs.trial_type  from s_treewbs 
+			where s_treewbs.index_id = treepinfo.wbsindex 
+			and s_treewbs.trial_type != treepinfo.trial_type
+			and s_treewbs.trial_type is not null
+			)
+			where exists (
+			    select  s_treewbs.index_id  from  s_treewbs    
+			    where  s_treewbs.index_id = treepinfo.wbsindex 
+			    and s_treewbs.trial_type != treepinfo.trial_type
+			    and s_treewbs.trial_type is not null
+		)  
+	  </statement>
+	</statements>
+  </entity>
+</mapping>

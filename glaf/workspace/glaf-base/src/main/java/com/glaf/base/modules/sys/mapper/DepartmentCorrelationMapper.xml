@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.sys.mapper.DepartmentCorrelationMapper">
+
+	<resultMap id="departmentCorrelationResultMap"
+		type="com.glaf.base.modules.sys.model.DepartmentCorrelation">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="deptId" column="DEPTID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="sysId" column="SYSID_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertDepartmentCorrelation"
+		parameterType="com.glaf.base.modules.sys.model.DepartmentCorrelation">
+		insert into SYS_DEPARTMENT_CORRELATION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="deptId != null">
+				,DEPTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="sysId != null">
+				,SYSID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="deptId != null">
+				,#{deptId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertDepartmentCorrelation" parameterType="java.util.List">
+		insert into SYS_DEPARTMENT_CORRELATION (
+		ID_
+		,DEPTID_
+		,NAME_
+		,CODE_
+		,SYSID_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		) values
+		<foreach collection="list" item="departmentCorrelation" index="index"
+			separator=",">
+			(
+			#{departmentCorrelation.id, jdbcType=BIGINT}
+			,#{departmentCorrelation.deptId, jdbcType=BIGINT}
+			,#{departmentCorrelation.name, jdbcType=VARCHAR}
+			,#{departmentCorrelation.code, jdbcType=VARCHAR}
+			,#{departmentCorrelation.sysId, jdbcType=VARCHAR}
+			,#{departmentCorrelation.createBy, jdbcType=VARCHAR}
+			,#{departmentCorrelation.createTime, jdbcType=TIMESTAMP}
+			,#{departmentCorrelation.updateBy, jdbcType=VARCHAR}
+			,#{departmentCorrelation.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertDepartmentCorrelation_oracle"
+		parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="departmentCorrelation" index="index">
+			insert into SYS_DEPARTMENT_CORRELATION (
+			ID_
+			,DEPTID_
+			,NAME_
+			,CODE_
+			,SYSID_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			) values (
+			#{departmentCorrelation.id, jdbcType=BIGINT}
+			,#{departmentCorrelation.deptId, jdbcType=BIGINT}
+			,#{departmentCorrelation.name, jdbcType=VARCHAR}
+			,#{departmentCorrelation.code, jdbcType=VARCHAR}
+			,#{departmentCorrelation.sysId, jdbcType=VARCHAR}
+			,#{departmentCorrelation.createBy, jdbcType=VARCHAR}
+			,#{departmentCorrelation.createTime, jdbcType=TIMESTAMP}
+			,#{departmentCorrelation.updateBy, jdbcType=VARCHAR}
+			,#{departmentCorrelation.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateDepartmentCorrelation"
+		parameterType="com.glaf.base.modules.sys.model.DepartmentCorrelation">
+		update SYS_DEPARTMENT_CORRELATION
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteDepartmentCorrelationById" parameterType="long">
+		delete from SYS_DEPARTMENT_CORRELATION
+		where ID_ = #{id}
+	</delete>
+
+
+	<select id="getDepartmentCorrelationById" parameterType="long"
+		resultMap="departmentCorrelationResultMap">
+		select * from SYS_DEPARTMENT_CORRELATION where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepartmentCorrelations"
+		parameterType="com.glaf.base.modules.sys.query.DepartmentCorrelationQuery"
+		resultMap="departmentCorrelationResultMap">
+		select distinct E.*
+		<include refid="selectDepartmentCorrelationsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDepartmentCorrelationCount"
+		parameterType="com.glaf.base.modules.sys.query.DepartmentCorrelationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepartmentCorrelationsSql" />
+	</select>
+
+
+	<sql id="selectDepartmentCorrelationsSql">
+
+		from SYS_DEPARTMENT_CORRELATION E
+
+		<where>
+			1 = 1
+
+			<if test="deptId != null">
+				and E.DEPTID_ = #{deptId}
+			</if>
+
+			<if test="deptIds != null and deptIds.size() &gt; 0">
+				and E.DEPTID_ IN
+				<foreach item="x_deptId" index="index" collection="deptIds"
+					open="(" separator="," close=")">
+					#{x_deptId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+			</if>
+
+			<if test="sysId != null and sysId != '' ">
+				and E.SYSID_ = #{sysId}
+			</if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+				and E.SYSID_ IN
+				<foreach item="x_sysId" index="index" collection="sysIds"
+					open="(" separator="," close=")">
+					#{x_sysId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

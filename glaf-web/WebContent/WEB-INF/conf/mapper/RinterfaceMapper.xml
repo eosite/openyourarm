@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.RinterfaceMapper">
+
+	<resultMap id="rinterfaceResultMap" type="com.glaf.isdp.domain.Rinterface">
+		<!-- <id property="id" column="ID_" jdbcType="BIGINT" /> -->
+		<result property="listId" column="LISTID" jdbcType="VARCHAR" />
+		<result property="indexId" column="INDEX_ID" jdbcType="VARCHAR" />
+		<result property="frmtype" column="FRMTYPE" jdbcType="VARCHAR" />
+		<result property="issystem" column="ISSYSTEM" jdbcType="VARCHAR" />
+		<result property="fname" column="FNAME" jdbcType="VARCHAR" />
+		<result property="dname" column="DNAME" jdbcType="VARCHAR" />
+		<result property="dtype" column="DTYPE" jdbcType="VARCHAR" />
+		<result property="showtype" column="SHOWTYPE" jdbcType="VARCHAR" />
+		<result property="strlen" column="STRLEN" jdbcType="INTEGER" />
+		<result property="form" column="FORM" jdbcType="VARCHAR" />
+		<result property="intype" column="INTYPE" jdbcType="VARCHAR" />
+		<result property="hintID" column="HINTID" jdbcType="VARCHAR" />
+		<result property="listno" column="LISTNO" jdbcType="INTEGER" />
+		<result property="ztype" column="ZTYPE" jdbcType="VARCHAR" />
+		<result property="ismustfill" column="ISMUSTFILL" jdbcType="VARCHAR" />
+		<result property="isListShow" column="ISLISTSHOW" jdbcType="VARCHAR" />
+		<result property="listweigth" column="LISTWEIGTH" jdbcType="INTEGER" />
+		<result property="isallwidth" column="ISALLWIDTH" jdbcType="VARCHAR" />
+		<result property="istname" column="ISTNAME" jdbcType="VARCHAR" />
+		<result property="importType" column="IMPORT_TYPE" jdbcType="INTEGER" />
+		<result property="datapoint" column="DATAPOINT" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="isPrimaryKey" column="ISPRIMARYKEY" jdbcType="VARCHAR" />
+		<result property="isGroupBy" column="ISGROUPBY" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertRinterface" parameterType="com.glaf.isdp.domain.Rinterface">
+		insert into R_INTERFACE
+		<trim prefix="(" suffix=")" suffixOverrides="," prefixOverrides=",">
+
+			<if test="indexId != null">
+				INDEX_ID
+			</if>
+			<if test="frmtype != null">
+				,FRMTYPE
+			</if>
+			<if test="listId != null">
+				,LISTID
+			</if>
+			<if test="issystem != null">
+				,ISSYSTEM
+			</if>
+			<if test="fname != null">
+				,FNAME
+			</if>
+			<if test="dname != null">
+				,DNAME
+			</if>
+			<if test="dtype != null">
+				,DTYPE
+			</if>
+			<if test="showtype != null">
+				,SHOWTYPE
+			</if>
+			<if test="strlen != null">
+				,STRLEN
+			</if>
+			<if test="form != null">
+				,FORM
+			</if>
+			<if test="intype != null">
+				,INTYPE
+			</if>
+			<if test="hintID != null">
+				,HINTID
+			</if>
+			<if test="listno != null">
+				,LISTNO
+			</if>
+			<if test="ztype != null">
+				,ZTYPE
+			</if>
+			<if test="ismustfill != null">
+				,ISMUSTFILL
+			</if>
+			<if test="isListShow != null">
+				,ISLISTSHOW
+			</if>
+			<if test="listweigth != null">
+				,LISTWEIGTH
+			</if>
+			<if test="isallwidth != null">
+				,ISALLWIDTH
+			</if>
+			<if test="istname != null">
+				,ISTNAME
+			</if>
+			<if test="importType != null">
+				,IMPORT_TYPE
+			</if>
+			<if test="datapoint != null">
+				,DATAPOINT
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+			<if test="isPrimaryKey != null">
+				,ISPRIMARYKEY
+			</if>
+			<if test="isGroupBy != null">
+				,ISGROUPBY
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=","
+			prefixOverrides=",">
+
+
+			<if test="indexId != null">
+				#{indexId, jdbcType=VARCHAR}
+			</if>
+			<if test="frmtype != null">
+				,#{frmtype, jdbcType=VARCHAR}
+			</if>
+			<if test="listId != null">
+				,#{listId, jdbcType=VARCHAR}
+			</if>
+			<if test="issystem != null">
+				,#{issystem, jdbcType=VARCHAR}
+			</if>
+			<if test="fname != null">
+				,#{fname, jdbcType=VARCHAR}
+			</if>
+			<if test="dname != null">
+				,#{dname, jdbcType=VARCHAR}
+			</if>
+			<if test="dtype != null">
+				,#{dtype, jdbcType=VARCHAR}
+			</if>
+			<if test="showtype != null">
+				,#{showtype, jdbcType=VARCHAR}
+			</if>
+			<if test="strlen != null">
+				,#{strlen, jdbcType=INTEGER}
+			</if>
+			<if test="form != null">
+				,#{form, jdbcType=VARCHAR}
+			</if>
+			<if test="intype != null">
+				,#{intype, jdbcType=VARCHAR}
+			</if>
+			<if test="hintID != null">
+				,#{hintID, jdbcType=VARCHAR}
+			</if>
+			<if test="listno != null">
+				,#{listno, jdbcType=INTEGER}
+			</if>
+			<if test="ztype != null">
+				,#{ztype, jdbcType=VARCHAR}
+			</if>
+			<if test="ismustfill != null">
+				,#{ismustfill, jdbcType=VARCHAR}
+			</if>
+			<if test="isListShow != null">
+				,#{isListShow, jdbcType=VARCHAR}
+			</if>
+			<if test="listweigth != null">
+				,#{listweigth, jdbcType=INTEGER}
+			</if>
+			<if test="isallwidth != null">
+				,#{isallwidth, jdbcType=VARCHAR}
+			</if>
+			<if test="istname != null">
+				,#{istname, jdbcType=VARCHAR}
+			</if>
+			<if test="importType != null">
+				,#{importType, jdbcType=INTEGER}
+			</if>
+			<if test="datapoint != null">
+				,#{datapoint, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="isPrimaryKey != null">
+				,#{isPrimaryKey, jdbcType=VARCHAR}
+			</if>
+			<if test="isGroupBy != null">
+				,#{isGroupBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateRinterface" parameterType="com.glaf.isdp.domain.Rinterface">
+		update R_INTERFACE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=VARCHAR},
+			</if>
+			<if test="frmtype != null">
+				FRMTYPE = #{frmtype, jdbcType=VARCHAR},
+			</if>
+			<if test="listId != null">
+				LISTID = #{listId, jdbcType=VARCHAR},
+			</if>
+			<if test="issystem != null">
+				ISSYSTEM = #{issystem, jdbcType=VARCHAR},
+			</if>
+			<if test="fname != null">
+				FNAME = #{fname, jdbcType=VARCHAR},
+			</if>
+			<if test="dname != null">
+				DNAME = #{dname, jdbcType=VARCHAR},
+			</if>
+			<if test="dtype != null">
+				DTYPE = #{dtype, jdbcType=VARCHAR},
+			</if>
+			<if test="showtype != null">
+				SHOWTYPE = #{showtype, jdbcType=VARCHAR},
+			</if>
+			<if test="strlen != null">
+				STRLEN = #{strlen, jdbcType=INTEGER},
+			</if>
+			<if test="form != null">
+				FORM = #{form, jdbcType=VARCHAR},
+			</if>
+			<if test="intype != null">
+				INTYPE = #{intype, jdbcType=VARCHAR},
+			</if>
+			<if test="hintID != null">
+				HINTID = #{hintID, jdbcType=VARCHAR},
+			</if>
+			<if test="listno != null">
+				LISTNO = #{listno, jdbcType=INTEGER},
+			</if>
+			<if test="ztype != null">
+				ZTYPE = #{ztype, jdbcType=VARCHAR},
+			</if>
+			<if test="ismustfill != null">
+				ISMUSTFILL = #{ismustfill, jdbcType=VARCHAR},
+			</if>
+			<if test="isListShow != null">
+				ISLISTSHOW = #{isListShow, jdbcType=VARCHAR},
+			</if>
+			<if test="listweigth != null">
+				LISTWEIGTH = #{listweigth, jdbcType=INTEGER},
+			</if>
+			<if test="isallwidth != null">
+				ISALLWIDTH = #{isallwidth, jdbcType=VARCHAR},
+			</if>
+			<if test="istname != null">
+				ISTNAME = #{istname, jdbcType=VARCHAR},
+			</if>
+			<if test="importType != null">
+				IMPORT_TYPE = #{importType, jdbcType=INTEGER},
+			</if>
+			<if test="datapoint != null">
+				DATAPOINT = #{datapoint, jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATEBY = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="isPrimaryKey != null">
+				ISPRIMARYKEY = #{isPrimaryKey, jdbcType=VARCHAR},
+			</if>
+			<if test="isGroupBy != null">
+				ISGROUPBY = #{isGroupBy, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		LISTID = #{listId, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteRinterfaceById" parameterType="string">
+		delete from
+		R_INTERFACE
+		where LISTID = #{id}
+	</delete>
+
+
+	<delete id="deleteRinterfaces" parameterType="com.glaf.isdp.query.RinterfaceQuery">
+		delete from R_INTERFACE
+		where (
+		listId IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getRinterfaceById" parameterType="string"
+		resultMap="rinterfaceResultMap">
+		select * from R_INTERFACE where LISTID = #{id}
+	</select>
+
+
+	<select id="getRinterfaces" parameterType="com.glaf.isdp.query.RinterfaceQuery"
+		resultMap="rinterfaceResultMap">
+		select distinct E.*
+		<include refid="selectRinterfacesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.LISTID desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getRinterfaceCount" parameterType="com.glaf.isdp.query.RinterfaceQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectRinterfacesSql" />
+	</select>
+
+
+	<sql id="selectRinterfacesSql">
+
+		from R_INTERFACE E
+
+		<where>
+			1 = 1
+
+
+			<if test="indexId != null and indexId != '' ">
+				and E.INDEX_ID = #{indexId}
+			</if>
+
+			<if test="indexIdLike != null and indexIdLike != '' ">
+				and E.INDEX_ID like #{indexIdLike}
+			</if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+				and E.INDEX_ID IN
+				<foreach item="x_indexId" index="index" collection="indexIds"
+					open="(" separator="," close=")">
+					#{x_indexId}
+				</foreach>
+			</if>
+
+			<if test="frmtype != null and frmtype != '' ">
+				and E.FRMTYPE = #{frmtype}
+			</if>
+
+			<if test="frmtypeLike != null and frmtypeLike != '' ">
+				and E.FRMTYPE like #{frmtypeLike}
+			</if>
+
+			<if test="frmtypes != null and frmtypes.size() &gt; 0">
+				and E.FRMTYPE IN
+				<foreach item="x_frmtype" index="index" collection="frmtypes"
+					open="(" separator="," close=")">
+					#{x_frmtype}
+				</foreach>
+			</if>
+
+			<if test="listId != null and listId != '' ">
+				and E.LISTID = #{listId}
+			</if>
+
+			<if test="listIdLike != null and listIdLike != '' ">
+				and E.LISTID like #{listIdLike}
+			</if>
+
+			<if test="listIds != null and listIds.size() &gt; 0">
+				and E.LISTID IN
+				<foreach item="x_listId" index="index" collection="listIds"
+					open="(" separator="," close=")">
+					#{x_listId}
+				</foreach>
+			</if>
+
+			<if test="issystem != null and issystem != '' ">
+				and E.ISSYSTEM = #{issystem}
+			</if>
+
+			<if test="issystemLike != null and issystemLike != '' ">
+				and E.ISSYSTEM like #{issystemLike}
+			</if>
+
+			<if test="issystems != null and issystems.size() &gt; 0">
+				and E.ISSYSTEM IN
+				<foreach item="x_issystem" index="index" collection="issystems"
+					open="(" separator="," close=")">
+					#{x_issystem}
+				</foreach>
+			</if>
+
+			<if test="fname != null and fname != '' ">
+				and E.FNAME = #{fname}
+			</if>
+
+			<if test="fnameLike != null and fnameLike != '' ">
+				and E.FNAME like #{fnameLike}
+			</if>
+
+			<if test="fnames != null and fnames.size() &gt; 0">
+				and E.FNAME IN
+				<foreach item="x_fname" index="index" collection="fnames"
+					open="(" separator="," close=")">
+					#{x_fname}
+				</foreach>
+			</if>
+
+			<if test="dname != null and dname != '' ">
+				and E.DNAME = #{dname}
+			</if>
+
+			<if test="dnameLike != null and dnameLike != '' ">
+				and E.DNAME like #{dnameLike}
+			</if>
+
+			<if test="dnames != null and dnames.size() &gt; 0">
+				and E.DNAME IN
+				<foreach item="x_dname" index="index" collection="dnames"
+					open="(" separator="," close=")">
+					#{x_dname}
+				</foreach>
+			</if>
+
+			<if test="dtype != null and dtype != '' ">
+				and E.DTYPE = #{dtype}
+			</if>
+
+			<if test="dtypeLike != null and dtypeLike != '' ">
+				and E.DTYPE like #{dtypeLike}
+			</if>
+
+			<if test="dtypes != null and dtypes.size() &gt; 0">
+				and E.DTYPE IN
+				<foreach item="x_dtype" index="index" collection="dtypes"
+					open="(" separator="," close=")">
+					#{x_dtype}
+				</foreach>
+			</if>
+
+			<if test="showtype != null and showtype != '' ">
+				and E.SHOWTYPE = #{showtype}
+			</if>
+
+			<if test="showtypeLike != null and showtypeLike != '' ">
+				and E.SHOWTYPE like #{showtypeLike}
+			</if>
+
+			<if test="showtypes != null and showtypes.size() &gt; 0">
+				and E.SHOWTYPE IN
+				<foreach item="x_showtype" index="index" collection="showtypes"
+					open="(" separator="," close=")">
+					#{x_showtype}
+				</foreach>
+			</if>
+
+			<if test="strlen != null">
+				and E.STRLEN = #{strlen}
+			</if>
+
+			<if test="strlenGreaterThanOrEqual != null">
+				and E.STRLEN &gt;= #{strlenGreaterThanOrEqual}
+			</if>
+
+			<if test="strlenLessThanOrEqual != null">
+				and E.STRLEN &lt;= #{strlenLessThanOrEqual}
+			</if>
+
+			<if test="strlens != null and strlens.size() &gt; 0">
+				and E.STRLEN IN
+				<foreach item="x_strlen" index="index" collection="strlens"
+					open="(" separator="," close=")">
+					#{x_strlen}
+				</foreach>
+			</if>
+
+
+			<if test="form != null and form != '' ">
+				and E.FORM = #{form}
+			</if>
+
+			<if test="formLike != null and formLike != '' ">
+				and E.FORM like #{formLike}
+			</if>
+
+			<if test="forms != null and forms.size() &gt; 0">
+				and E.FORM IN
+				<foreach item="x_form" index="index" collection="forms"
+					open="(" separator="," close=")">
+					#{x_form}
+				</foreach>
+			</if>
+
+			<if test="intype != null and intype != '' ">
+				and E.INTYPE = #{intype}
+			</if>
+
+			<if test="intypeLike != null and intypeLike != '' ">
+				and E.INTYPE like #{intypeLike}
+			</if>
+
+			<if test="intypes != null and intypes.size() &gt; 0">
+				and E.INTYPE IN
+				<foreach item="x_intype" index="index" collection="intypes"
+					open="(" separator="," close=")">
+					#{x_intype}
+				</foreach>
+			</if>
+
+			<if test="hintID != null and hintID != '' ">
+				and E.HINTID = #{hintID}
+			</if>
+
+			<if test="hintIDLike != null and hintIDLike != '' ">
+				and E.HINTID like #{hintIDLike}
+			</if>
+
+			<if test="hintIDs != null and hintIDs.size() &gt; 0">
+				and E.HINTID IN
+				<foreach item="x_hintID" index="index" collection="hintIDs"
+					open="(" separator="," close=")">
+					#{x_hintID}
+				</foreach>
+			</if>
+
+			<if test="listno != null">
+				and E.LISTNO = #{listno}
+			</if>
+
+			<if test="listnoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listnoGreaterThanOrEqual}
+			</if>
+
+			<if test="listnoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listnoLessThanOrEqual}
+			</if>
+
+			<if test="listnos != null and listnos.size() &gt; 0">
+				and E.LISTNO IN
+				<foreach item="x_listno" index="index" collection="listnos"
+					open="(" separator="," close=")">
+					#{x_listno}
+				</foreach>
+			</if>
+
+
+			<if test="ztype != null and ztype != '' ">
+				and E.ZTYPE = #{ztype}
+			</if>
+
+			<if test="ztypeLike != null and ztypeLike != '' ">
+				and E.ZTYPE like #{ztypeLike}
+			</if>
+
+			<if test="ztypes != null and ztypes.size() &gt; 0">
+				and E.ZTYPE IN
+				<foreach item="x_ztype" index="index" collection="ztypes"
+					open="(" separator="," close=")">
+					#{x_ztype}
+				</foreach>
+			</if>
+
+			<if test="ismustfill != null and ismustfill != '' ">
+				and E.ISMUSTFILL = #{ismustfill}
+			</if>
+
+			<if test="ismustfillLike != null and ismustfillLike != '' ">
+				and E.ISMUSTFILL like #{ismustfillLike}
+			</if>
+
+			<if test="ismustfills != null and ismustfills.size() &gt; 0">
+				and E.ISMUSTFILL IN
+				<foreach item="x_ismustfill" index="index" collection="ismustfills"
+					open="(" separator="," close=")">
+					#{x_ismustfill}
+				</foreach>
+			</if>
+
+			<if test="isListShow != null and isListShow != '' ">
+				and E.ISLISTSHOW = #{isListShow}
+			</if>
+
+			<if test="isListShowLike != null and isListShowLike != '' ">
+				and E.ISLISTSHOW like #{isListShowLike}
+			</if>
+
+			<if test="isListShows != null and isListShows.size() &gt; 0">
+				and E.ISLISTSHOW IN
+				<foreach item="x_isListShow" index="index" collection="isListShows"
+					open="(" separator="," close=")">
+					#{x_isListShow}
+				</foreach>
+			</if>
+
+			<if test="listweigth != null">
+				and E.LISTWEIGTH = #{listweigth}
+			</if>
+
+			<if test="listweigthGreaterThanOrEqual != null">
+				and E.LISTWEIGTH &gt;= #{listweigthGreaterThanOrEqual}
+			</if>
+
+			<if test="listweigthLessThanOrEqual != null">
+				and E.LISTWEIGTH &lt;= #{listweigthLessThanOrEqual}
+			</if>
+
+			<if test="listweigths != null and listweigths.size() &gt; 0">
+				and E.LISTWEIGTH IN
+				<foreach item="x_listweigth" index="index" collection="listweigths"
+					open="(" separator="," close=")">
+					#{x_listweigth}
+				</foreach>
+			</if>
+
+
+			<if test="isallwidth != null and isallwidth != '' ">
+				and E.ISALLWIDTH = #{isallwidth}
+			</if>
+
+			<if test="isallwidthLike != null and isallwidthLike != '' ">
+				and E.ISALLWIDTH like #{isallwidthLike}
+			</if>
+
+			<if test="isallwidths != null and isallwidths.size() &gt; 0">
+				and E.ISALLWIDTH IN
+				<foreach item="x_isallwidth" index="index" collection="isallwidths"
+					open="(" separator="," close=")">
+					#{x_isallwidth}
+				</foreach>
+			</if>
+
+			<if test="istname != null and istname != '' ">
+				and E.ISTNAME = #{istname}
+			</if>
+
+			<if test="istnameLike != null and istnameLike != '' ">
+				and E.ISTNAME like #{istnameLike}
+			</if>
+
+			<if test="istnames != null and istnames.size() &gt; 0">
+				and E.ISTNAME IN
+				<foreach item="x_istname" index="index" collection="istnames"
+					open="(" separator="," close=")">
+					#{x_istname}
+				</foreach>
+			</if>
+
+			<if test="importType != null">
+				and E.IMPORT_TYPE = #{importType}
+			</if>
+
+			<if test="importTypeGreaterThanOrEqual != null">
+				and E.IMPORT_TYPE &gt;= #{importTypeGreaterThanOrEqual}
+			</if>
+
+			<if test="importTypeLessThanOrEqual != null">
+				and E.IMPORT_TYPE &lt;= #{importTypeLessThanOrEqual}
+			</if>
+
+			<if test="importTypes != null and importTypes.size() &gt; 0">
+				and E.IMPORT_TYPE IN
+				<foreach item="x_importType" index="index" collection="importTypes"
+					open="(" separator="," close=")">
+					#{x_importType}
+				</foreach>
+			</if>
+
+
+			<if test="datapoint != null">
+				and E.DATAPOINT = #{datapoint}
+			</if>
+
+			<if test="datapointGreaterThanOrEqual != null">
+				and E.DATAPOINT &gt;= #{datapointGreaterThanOrEqual}
+			</if>
+
+			<if test="datapointLessThanOrEqual != null">
+				and E.DATAPOINT &lt;= #{datapointLessThanOrEqual}
+			</if>
+
+			<if test="datapoints != null and datapoints.size() &gt; 0">
+				and E.DATAPOINT IN
+				<foreach item="x_datapoint" index="index" collection="datapoints"
+					open="(" separator="," close=")">
+					#{x_datapoint}
+				</foreach>
+			</if>
+
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="isPrimaryKey != null and isPrimaryKey != '' ">
+				and E.ISPRIMARYKEY = #{isPrimaryKey}
+			</if>
+
+			<if test="isPrimaryKeyLike != null and isPrimaryKeyLike != '' ">
+				and E.ISPRIMARYKEY like #{isPrimaryKeyLike}
+			</if>
+
+			<if test="isPrimaryKeys != null and isPrimaryKeys.size() &gt; 0">
+				and E.ISPRIMARYKEY IN
+				<foreach item="x_isPrimaryKey" index="index" collection="isPrimaryKeys"
+					open="(" separator="," close=")">
+					#{x_isPrimaryKey}
+				</foreach>
+			</if>
+
+			<if test="isGroupBy != null and isGroupBy != '' ">
+				and E.ISGROUPBY = #{isGroupBy}
+			</if>
+
+			<if test="isGroupByLike != null and isGroupByLike != '' ">
+				and E.ISGROUPBY like #{isGroupByLike}
+			</if>
+
+			<if test="isGroupBys != null and isGroupBys.size() &gt; 0">
+				and E.ISGROUPBY IN
+				<foreach item="x_isGroupBy" index="index" collection="isGroupBys"
+					open="(" separator="," close=")">
+					#{x_isGroupBy}
+				</foreach>
+			</if>
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

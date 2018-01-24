@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.uis.mapper.UisAppUserIdMappingMapper">
+
+ 	<resultMap id="uisAppUserIdMappingResultMap"	type="com.glaf.base.modules.uis.domain.UisAppUserIdMapping">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="appUserId" column="APP_USER_ID_" jdbcType="VARCHAR"/>
+        <result property="userId" column="USER_ID_" jdbcType="VARCHAR"/>
+        <result property="appId" column="APP_ID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertUisAppUserIdMapping" parameterType="com.glaf.base.modules.uis.domain.UisAppUserIdMapping">
+		insert into UIS_APP_USERID_MAPPING 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="appUserId != null">
+				,APP_USER_ID_ 
+			</if>
+			<if test="userId != null">
+				,USER_ID_ 
+			</if>
+			<if test="appId != null">
+				,APP_ID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="appUserId != null">
+				,#{appUserId, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="appId != null">
+				,#{appId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateUisAppUserIdMapping" parameterType="com.glaf.base.modules.uis.domain.UisAppUserIdMapping">
+		update UIS_APP_USERID_MAPPING
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="appUserId != null">
+				APP_USER_ID_ = #{appUserId, jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				APP_ID_ = #{appId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteUisAppUserIdMappingById" parameterType="long"> 
+        delete from UIS_APP_USERID_MAPPING
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteUisAppUserIdMappings" parameterType="com.glaf.base.modules.uis.query.UisAppUserIdMappingQuery">
+		delete from UIS_APP_USERID_MAPPING
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getUisAppUserIdMappingById" parameterType="long" resultMap="uisAppUserIdMappingResultMap">
+		select * from UIS_APP_USERID_MAPPING where ID_ = #{id}
+	</select>
+
+
+	<select id="getUisAppUserIdMappings" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppUserIdMappingQuery"
+		resultMap="uisAppUserIdMappingResultMap">
+		select distinct E.*
+		<include refid="selectUisAppUserIdMappingsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getUisAppUserIdMappingCount" 
+	    parameterType="com.glaf.base.modules.uis.query.UisAppUserIdMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUisAppUserIdMappingsSql" />
+	</select>
+
+
+	<sql id="selectUisAppUserIdMappingsSql">
+
+		from UIS_APP_USERID_MAPPING E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="appUserId != null and appUserId != '' ">
+				and E.APP_USER_ID_ = #{appUserId}
+            </if>
+
+			<if test="appUserIdLike != null and appUserIdLike != '' ">
+				and E.APP_USER_ID_ like #{appUserIdLike}
+            </if>
+
+			<if test="appUserIds != null and appUserIds.size() &gt; 0">
+			    and E.APP_USER_ID_ IN
+                <foreach item="x_appUserId" index="index" collection="appUserIds" 
+                     open="(" separator="," close=")">
+                  #{x_appUserId}
+                </foreach>
+			</if>
+	        
+			<if test="userId != null and userId != '' ">
+				and E.USER_ID_ = #{userId}
+            </if>
+
+			<if test="userIdLike != null and userIdLike != '' ">
+				and E.USER_ID_ like #{userIdLike}
+            </if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+			    and E.USER_ID_ IN
+                <foreach item="x_userId" index="index" collection="userIds" 
+                     open="(" separator="," close=")">
+                  #{x_userId}
+                </foreach>
+			</if>
+	        
+			<if test="appId != null and appId != '' ">
+				and E.APP_ID_ = #{appId}
+            </if>
+
+			<if test="appIdLike != null and appIdLike != '' ">
+				and E.APP_ID_ like #{appIdLike}
+            </if>
+
+			<if test="appIds != null and appIds.size() &gt; 0">
+			    and E.APP_ID_ IN
+                <foreach item="x_appId" index="index" collection="appIds" 
+                     open="(" separator="," close=")">
+                  #{x_appId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<meta http-equiv="Cache-Control" content="public" />
+<title>自定义卡片</title>
+<link rel="stylesheet/less" type="text/css" href="/glaf/scripts/designer/less/page.less" />
+<script src="/glaf/scripts/designer/less/less.min.js" type="text/javascript"></script>
+<link href="/glaf/scripts/defineKendouibt.css" rel="stylesheet" type="text/css" > 
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/home/responsive/ionicons/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/home/responsive/dist/css/skins/skin-blue.min.css">
+<link rel="stylesheet" href="/glaf/scripts/jquery-ui.min.css">
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+        href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/uniform/css/uniform.default.css"  />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/css/components.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/global/css/plugins.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/layouts/layout2/css/layout.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="/glaf/scripts/metronic/4.5.2/theme/assets/layouts/layout2/css/custom.min.css"
+	type="text/css" />
+<link rel="stylesheet" href="/glaf/scripts/designer/bootstrap_extend.css">
+<!-- form -->
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/pagination/css/pagination.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/touchspin/css/bootstrap.touchspin.min.css"/>
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/tagsinput/bootstrap-tagsinput.css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/menu/ext/megamenu.extends.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-2.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-3.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-4.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/login/css/login-5.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/datepicker/css/bootstrap-datepicker3.min.css"/>
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/calendar/css/fullcalendar.min.css" />
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/calendar/ext/calendar.extends.css"/>
+<!--animation-->
+<link rel="stylesheet/less" type="text/css" href="/glaf/scripts/designer/animate.css" />
+<!-- select2 -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- iCheck -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
+<!-- jquery fileupload -->
+<link href="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css" />
+<!-- messenger -->
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-block.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-future.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-air.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-ice.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/glaf/scripts/plugins/bootstrap/messenger/build/css/messenger-theme-flat.css">
+<!-- dialog --> 
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/plugins/bootstrap/dialog/css/bootstrap-dialog.min.css">
+<style type="text/css">
+html, body{ margin:0; height:100%; }
+.autoHt{
+	height:100%;
+}
+</style>
+<script>
+//$.fn.modal.Constructor.prototype.enforceFocus = function() {};
+var contextPath = '/glaf', _pageParameters = {"sys_date":1498817458041,"actorId":"admin","id":"8cd172c76be746f3acf0d5c0de930c80","detail":{"pageRuleId":"994fb5d8a5d242618b7d6cc5b5fc52a6","id":"8cd172c76be746f3acf0d5c0de930c80","isPublish":"true"},"isPublish":"true","username":"系统管理员"} ,pageParameters = JSON.stringify(_pageParameters), pageLevel, pageed,isWeighting,mtValidate;
+</script>
+<!--debuger-->
+<script type="text/javascript" src="/glaf/scripts/debug/vconsole.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/base64.js"></script>
+<script type="text/javascript" src="/glaf/scripts/RSA-min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/jsencrypt.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/debug/mtdebug.js"></script>
+<!-- core -->
+<script type="text/javascript" src="/glaf/scripts/jquery.mtResizable.js"></script>
+<script type="text/javascript" src="/glaf/scripts/resize/jquery-resize.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/additional-methods.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script type='text/javascript' src='/glaf/scripts/uuid.js'></script>
+<!-- select2 -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<!--form-->
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/textbox/ext/jquery.textbox.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/touchspin/ext/jquery.touchspin.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/touchspin/ext/jquery.touchspin.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/tagsinput/bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/textarea/ext/jquery.textarea.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/progressbar/ext/jquery.progressbar.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/menu/ext/jquery.megamenu.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/login/ext/jquery.loginpage.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datetimepicker/ext/jquery.datetimepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/daterangepicker/js/bootstrap-daterangepicker.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/daterangepicker/ext/jquery.daterangepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/datepicker/ext/jquery.datepicker.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/js/moment.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/ext/lang-zh-cn.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/calendar/ext/jquery.calendar.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/jquery.core.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/pagination/js/jquery.pagination.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/definedTable/js/jquery.definedTable.extend.js"></script>
+<script type='text/javascript' src='/glaf/scripts/jquery.fileUpload.plugin.js'></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/confirmation/bootstrap-confirmation.min.js"></script>
+<!-- iCheck -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/icheck/icheck.js" type="text/javascript"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<!-- jquery-file-upload -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/load-image.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<!-- slimscroll -->
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js" type="text/javascript"></script>
+<script src="/glaf/scripts/metronic/4.5.2/theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<!-- messenger -->
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger.min.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger-theme-flat.js"></script>
+<script type="text/javascript" src="/glaf/scripts/plugins/bootstrap/messenger/build/js/messenger-theme-future.js"></script>
+<!-- dialog --> 
+<script src="/glaf/scripts/plugins/bootstrap/dialog/js/bootstrap-dialog.min.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/dialog/js/jquery.dialog.extends.js"></script>
+<!-- tabs -->
+<script src="/glaf/scripts/plugins/bootstrap/tabs/js/jquery.tabs.extends.js" type="text/javascript"></script>
+<!-- altTemplate -->
+<script src="/glaf/scripts/artTemplate/dist/template.js"></script>
+<script src="/glaf/scripts/artTemplate/dataUtils.js"></script>
+<!-- jquery-validation -->
+<script src="/glaf/scripts/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/portlet/jquery.portlet.extends.js"></script>
+<!--动画-->
+<script src="/glaf/scripts/designer/animate.js" type="text/javascript"></script>
+<script src="/glaf/scripts/designer/metro_render.js"></script>
+<style id="definedcard_1490681268602_styler_init">#definedcard_1490681268602 .definedCardExt_content .definedCardExt_list li .list_item_conent{text-align:center;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;}#definedcard_1490681268602 .definedCardExt_content .definedCardExt_list {}#definedcard_1490681268602 .definedCardExt_content .definedCardExt_list li{text-align:center;}#definedcard_1490681268602 .definedCardExt_content .definedCardExt_list .selected .list_item_conent{border-color:#0638cc !important;}#definedcard_1490681268602 .definedCardExt_content .definedCardExt_list .list_item_conent:hover{border-color:#1cb804 !important;}</style><link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedCard/css/definedCard.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/gridList/css/gridList.extends.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/sidebar/css/sidebar.extends.css">
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedCard/css/definedCard.css">
+<link href="/glaf/scripts/plugins/bootstrap/fullpage/css/jquery.fullPage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/ztree/css/zTreeStyle/zTreeStyle.css"><script type="text/javascript">var debuggerVar_ = {"":"textboxbt_1490687633707_控件-->value","mtCloseTab":"关闭选项卡(主页)","activateTab":"激活选卡事件","onCheckRow":"勾选节点事件","loadEnd":"数据加载完事件","mouseover":"鼠标移入事件","editRow":"行编辑","otherFunc":"其他功能","mtConfirm":"确认警示操作","cellFunc":"Cell表功能","flickerAndHighlightingGis":"闪烁加粗(适用于线)","movesectionUp":"向上滚动","eventClick":"日程单击事件","nodeChange":"值变化事件","mtCancel":"流程挂起","setValueByName":"赋值(变长)","callYsVideo":"手机视频监控","mouseup":"鼠标移出事件","menuClick":"菜单单击事件","tableCombination":"组合表调度","sendDown":"下发事件","994e14bea5524920a74554ec11edfda8":"textboxbt_1490687633707_控件","BimClick":"单击节点","cancelDisableCell":"取消禁用格","col1480057021672":"definedcard_1490681268602_控件-->联动","onclick":"单击事件","definedcard_1490681268602":"definedcard_1490681268602_控件","checkRow":"勾选节点","active":"正在进行步骤","click":"单击事件","onUploadSucess":"上传完成事件","blukCancelDisableCell":"批量取消禁用","select2View":"选中节点","closeCurwindow":"关闭窗口","removeAllSelected":"取消所有选中","checkRecord":"勾选记录","994fb5d8a5d242618b7d6cc5b5fc52a6":"自定义卡片","changeByinput":"内容变更事件","dbkeyup":"键盘监听","bindpopover":"绑定弹出框","_init_":"控件初始化事件","textboxbt_1490687633707":"textboxbt_1490687633707_控件","mtAlert":"警示操作","mtActive":"流程激活","linkage":"联动操作","changeSeriesValue":"修改曲线值","addRow":"新增行","callScan":"扫描二维码","addSiblings":"添加兄弟节点","selectNode":"选中节点事件","flickerGis":"闪烁","tenabled":"启用","close":"关闭","mtOpenTab":"打开选项卡(主页)","afterLoad":"加载完某一直屏后","mtLogin":"登录操作","setTabName":"名称赋值","draopOver":"移入事件","showTab":"显示选卡项","setImgPic":"图片赋值","mtCancel0":"流程挂起","MtProtect":"修订加密/解密","o1490836277548":"jjjjjjjjjjjjjjjjjjjjjj","mtbutton_1490751995035":"mtbutton_1490751995035_控件","refresh":"刷新","uploadSucess":"上传完成事件","initpopover":"弹出框初始化事件","onLoadSuccess":"加载完事件","systemServer":"系统内置服务","justClick":"表格非数据区单击事件","open":"打开","mtSubmit0":"流程提交","dblClickEvent":"双击事件","listenVal":"监听值变化触发","mtPagePrint":"页面打印","showChilds":"展开选中节点的子节点","selectRow":"选中记录","wpfMobileNotification":"wpf移动通知","showToolbar":"显示工具栏","dblclick":"双击事件","setVideoSource":"赋值播放源","hideTab":"隐藏选卡项","uncheck":"不选（icheck）","activeTab":"激活选卡","MtShowDialog":"OFFICE另存","invert":"反选（icheck）","selectIndex":"赋值序号","cancelSelect":"取消选中","check":"选中（icheck）","clickStep":"单击步骤事件","exprCalc":"表达式计算","moveSlideLeft":"向左滑动","hidelist":"隐藏子列表","setIndex":"堆叠顺序","listenEnter":"回车事件","setCyclicTask":"定时循环任务","dayClick":"日历单击事件","OfficeSave":"Office保存","showlist":"展开子列表","mtStop":"流程停止","listSelected":"列表选中","pageFunc":"页面功能","mtReject":"流程撤回(作废)","show":"显示","disableCell":"禁用单元格","setRandomParent":"赋值附件信息","cancelSelectNodes":"取消选中","cellCriterion":"华表引用","copyContent":"内容赋值给二维码","load":"加载","daa3c7aa8f1c4c279bf592d8ab3a7dfa":"mtbutton_1490751995035_控件","clearCyclicTask":"清除定时循环任务","activeEvent":"选项卡激活事件","ShowRevisions":"修订显示隐藏","sendAllDown":"整表下发事件","thidden":"隐藏","grefresh":"刷新操作","setAttachmentId":"赋值附件ID","changeByName":"内容变更触发(变长)","nodeRefresh":"当前节点和子节点刷新","checkAll":"全选（icheck）","getSelect":"获取选中","schedulerFunc":"调度功能","hideWindow":"隐藏弹窗","print":"Office打印","mtCellPrint":"Cell打印","tableTransform":"表列转换调度","fresh":"刷新操作","moveSlideRight":"向右滑动","gsaveChange":"保存操作","loadSucess":"数据加载完事件","drapStart":"拖拽开始事件","removeNodes":"删除节点","dbclick":"双击事件","hideToolbar":"隐藏工具栏","mt_service":"微服务","binding":"绑定提示框事件","mobileFunc":"手机功能","pageInit":"页面初始化","mtBack0":"流程退回","logout":"退出系统","cancelAllDisableCell":"取消全部禁用格","dropStartEvent":"拖拽开始事件","addChildren":"添加子节点","singleClick":"单击事件","highlightingGis":"高亮(加粗适用于线)","Cancels":"作废","parentRefresh":"当前节点和父节点刷新","linkagePage":"联动页面","appendSetValue":"追加赋值","mtsearch":"查询服务","mtVali":"验证事件","onkeyup":"键盘监听","gongjulanshijian":"工具栏事件","callLogin":"手机登录","afterSlideload":"加载完某一横屏后","col1490687640408":"textboxbt_1490687633707_控件-->textboxbt_1490687633707_控件输入形参","beginEditEvent":"开始编辑事件","cell_useradd8261_0_cell_useradd8261_user1":"definedcard_1490681268602_控件-->选中格-->名称","save":"保存","showAndHideOtherGis":"显示并隐藏其他图标","addParent":"添加父节点","hideGis":"隐藏图标事件","insertStaticNestData":"插入行数据","mtSave":"保存操作","dropNestEvent":"拖入事件","blukDisableCell":"批量禁用单元格","nodeUnchecked":"取消选中节点事件","tSelectFirst":"默认选中第一行","oncloseEvent":"页面关闭事件","nodeChecked":"选中节点事件","change":"值变化事件","display":"隐藏/显示","mtActive0":"流程激活","insertStaticRow":"插入行数据","previewGis":"预览功能","taskTable":"批量任务表调度","hide":"隐藏","dblclickNode":"双击节点事件","clickNode":"点击节点事件","nodeMessage":"短信服务","nodeUnChecked":"取消选中节点事件","appendValue":"追加赋值","loadEndExecOne":"数据加载完执行一次事件","serverFunc":"数据服务","mtReject0":"流程撤回","showAndHideLastGis":"显示并隐藏上一个图标","pageClose":"关闭页面","keypress":"键盘事件","cancelLoading":"取消加载效果","zoomGis":"地图放大","inithind":"提示框初始化事件","setRowBgColor":"行背景色","expandNode":"展开节点","mtCellExport":"Cell导出Excel","downloadSional":"下载二维码","changeTitleColor":"改变节点颜色","setVideoPreImg":"赋值预览图片","droppend":"拖入事件","initExtent":"还原初始化位置","visible":"显示","f2b1992245cd4076973e5adb0383c5ff":"definedcard_1490681268602_控件","setValueByDynamic":"赋值(华表变长)","endEdit":"取消编辑事件","gchange":"选择行事件","clickEvent":"单击事件","onloadSuccess":"数据加载完事件","collect":"逐级汇总事件","showTrack":"装载轨迹","dragBar":"拖动滑条","curwindow":"子窗口化","setRamdomparent":"赋值附件信息","addNode":"增加节点","mtStop0":"流程停止","error":"步骤错误","tclear":"清空","convertService":"转换服务","reload":"刷新事件","downSqlLite":"导出sqllite","tdisabled":"禁用","systemFunc":"系统功能","mtServiceFun":"服务类","startSetValue":"开始日期赋值","jsgisInit":"地图初始化","checkedNode":"勾选节点","checkEvent":"勾选事件","mtLoading":"加载效果","callTif":"手机查看TIF","flowFunc":"流程功能","showAndHideGis":"显示隐藏图标","refreshAndExpandNode":"展开并刷新其子节点","clear":"清空图片信息","tshow":"显示","mtSubmit":"流程提交","getMapJsonData":"获取地图信息","mtcrud":"CUD事件","setValue":"设置页面缓存","movesectionDown":"向下滚动","callLogout":"手机退出","locateAndShowWindow":"弹出窗口","memorySetValue":"记忆控件赋值","activated":"选卡激活事件"};</script><script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/core.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/utils.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/base.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/validate.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/treelistbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/pagebt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/bindEvent.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/btalert.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/btmessenger.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/calendarbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/datebt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/icheckbox.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/icheckradio.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/list.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/login.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/megamenu.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/metroselect.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/mtbutton.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/progressbarbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/textareabt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/textboxbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/touchspin.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/ztree.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/nestable.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/echarts.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/diagrambt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/editorbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/charts.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/gridbt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/imageupload.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/custom.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/a.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/definedTable.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/step.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/label.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/jqfileupload.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/gantt.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/cell.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/bootstraptabs.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/bootstrapdialog.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/colmd.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/carousel.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/tagsinput.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/sidebar.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/sionalcode.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/bim.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/gridList.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/excelUpload.extends.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/svgEditor.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/bridgeseam.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/jsgis.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/mobile.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/videoplay.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/definedCard.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/mapext.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/rangeSlider.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/fullpage.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/kendo/bootstrap/image.extend.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/definedPanel/ext/jquery.definedPanel.extend.js"></script>
+<script src="/glaf/scripts/plugins/bootstrap/definedCard/ext/jquery.definedCard.extend.js"></script>
+<script type="text/javascript" src="/glaf/scripts/defineBootstrapUiInit.js"></script>
+</head>
+<body class="page">
+<div class="definedPanel"> 
+	<div class="definedPanelList">
+		<div class="definedPanelItem">
+			<div class="definedPanelTitle">
+				<div class="caption">
+	              <i class="fa fa-gift"></i><span class="frame-variable portlet_1501485388650" contenteditable="true" frame-variable="fv1">标题 </span></div>
+			</div>
+			<div class="definedPanelContentList">
+				<div class="definedPanleContent">
+					<img src="/glaf/mx/form/imageUpload?method=download2&amp;databaseId=&amp;mode=ATTA&amp;id=2a393f60d5e34094b920780a8e68cdba&amp;rp=476" width="100" height="100" border="0" vspace="0" title="" alt="" style="width: 100px; height: 100px;">
+				</div>
+				<div class="definedPanleContent">
+					<img src="/glaf/mx/form/imageUpload?method=download2&amp;databaseId=&amp;mode=ATTA&amp;id=2a393f60d5e34094b920780a8e68cdba&amp;rp=476" width="100" height="100" border="0" vspace="0" title="" alt="" style="width: 100px; height: 100px;">
+				</div>
+				<div class="definedPanleContent">
+					<img src="/glaf/mx/form/imageUpload?method=download2&amp;databaseId=&amp;mode=ATTA&amp;id=2a393f60d5e34094b920780a8e68cdba&amp;rp=476" width="100" height="100" border="0" vspace="0" title="" alt="" style="width: 100px; height: 100px;">
+				</div>
+				<div class="definedPanleContent">
+					<img src="/glaf/mx/form/imageUpload?method=download2&amp;databaseId=&amp;mode=ATTA&amp;id=2a393f60d5e34094b920780a8e68cdba&amp;rp=476" width="100" height="100" border="0" vspace="0" title="" alt="" style="width: 100px; height: 100px;">
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+<div id="definedPanel2" class="definedPanel inlineContent"> 
+
+	</div>
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedPanel/definedPanel.extend.css"> 
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/gridList/css/gridList.extends.css"> 
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/sidebar/css/sidebar.extends.css"> 
+<link rel="stylesheet" href="/glaf/scripts/plugins/bootstrap/definedCard/css/definedCard.css"> 
+<link href="/glaf/scripts/plugins/bootstrap/fullpage/css/jquery.fullPage.css" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="/glaf/scripts/ztree/css/zTreeStyle/zTreeStyle.css"> 
+<div id="definedCarddefinedcard_1490681268602-f2b1992245cd4076973e5adb0383c5ff" style="display:none;"> 
+ <button id="o1490836277548" t-events="true" data-role="button" crtltype="kendo" title="" cname="jjjjjjjjjjjjjjjjjjjjjj"></button> 
+ <button id="o1490836288779" t-events="true" data-role="button" crtltype="kendo" title="" cname="bbbbbbbbbb"></button> 
+</div>
+<script>
+
+
+	$("#definedPanel2").definedPanelExt();
+
+
+</script>
+</body>
+</html>

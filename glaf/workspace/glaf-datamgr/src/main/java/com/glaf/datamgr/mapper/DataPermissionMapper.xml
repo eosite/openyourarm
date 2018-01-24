@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.DataPermissionMapper">
+
+	<resultMap id="dataPermissionResultMap" type="com.glaf.datamgr.domain.DataPermission">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="businessKey" column="BUSINESSKEY_" jdbcType="VARCHAR" />
+		<result property="businessType" column="BUSINESSTYPE_"
+			jdbcType="VARCHAR" />
+		<result property="accessType" column="ACCESSTYPE_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="roleId" column="ROLEID_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertDataPermission" parameterType="com.glaf.datamgr.domain.DataPermission">
+		insert into SYS_DATA_PERMISSION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="businessKey != null">
+				,BUSINESSKEY_
+			</if>
+			<if test="businessType != null">
+				,BUSINESSTYPE_
+			</if>
+			<if test="accessType != null">
+				,ACCESSTYPE_
+			</if>
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="roleId != null">
+				,ROLEID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="businessKey != null">
+				,#{businessKey, jdbcType=VARCHAR}
+			</if>
+			<if test="businessType != null">
+				,#{businessType, jdbcType=VARCHAR}
+			</if>
+			<if test="accessType != null">
+				,#{accessType, jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="roleId != null">
+				,#{roleId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertDataPermission" parameterType="java.util.List">
+		insert into SYS_DATA_PERMISSION (
+		ID_
+		,DATABASEID_
+		,BUSINESSKEY_
+		,BUSINESSTYPE_
+		,ACCESSTYPE_
+		,USERID_
+		,ROLEID_
+		,CREATEBY_
+		,CREATETIME_
+		)
+		values
+		<foreach collection="list" item="dataPermission" index="index"
+			separator=",">
+			(
+			#{dataPermission.id, jdbcType=BIGINT}
+			,#{dataPermission.databaseId, jdbcType=BIGINT}
+			,#{dataPermission.businessKey, jdbcType=VARCHAR}
+			,#{dataPermission.businessType, jdbcType=VARCHAR}
+			,#{dataPermission.accessType, jdbcType=VARCHAR}
+			,#{dataPermission.userId, jdbcType=VARCHAR}
+			,#{dataPermission.roleId,
+			jdbcType=VARCHAR}
+			,#{dataPermission.createBy, jdbcType=VARCHAR}
+			,#{dataPermission.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertDataPermission_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="dataPermission" index="index">
+			insert
+			into SYS_DATA_PERMISSION (
+			ID_
+			,DATABASEID_
+			,BUSINESSKEY_
+			,BUSINESSTYPE_
+			,ACCESSTYPE_
+			,USERID_
+			,ROLEID_
+			,CREATEBY_
+			,CREATETIME_
+			) values (
+			#{dataPermission.id, jdbcType=BIGINT}
+			,#{dataPermission.databaseId,
+			jdbcType=BIGINT}
+			,#{dataPermission.businessKey, jdbcType=VARCHAR}
+			,#{dataPermission.businessType, jdbcType=VARCHAR}
+			,#{dataPermission.accessType, jdbcType=VARCHAR}
+			,#{dataPermission.userId, jdbcType=VARCHAR}
+			,#{dataPermission.roleId,
+			jdbcType=VARCHAR}
+			,#{dataPermission.createBy, jdbcType=VARCHAR}
+			,#{dataPermission.createTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<delete id="deleteDataPermissionById" parameterType="long">
+		delete from
+		SYS_DATA_PERMISSION
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteDataPermissionsByBusinessType" parameterType="string">
+		delete from SYS_DATA_PERMISSION
+		where BUSINESSTYPE_ = #{businessType}
+	</delete>
+
+
+	<select id="getDataPermissionById" parameterType="long"
+		resultMap="dataPermissionResultMap">
+		select * from SYS_DATA_PERMISSION where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataPermissions" parameterType="com.glaf.datamgr.query.DataPermissionQuery"
+		resultMap="dataPermissionResultMap">
+		select distinct E.*
+		<include refid="selectDataPermissionsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDataPermissionCount" parameterType="com.glaf.datamgr.query.DataPermissionQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataPermissionsSql" />
+	</select>
+
+
+	<sql id="selectDataPermissionsSql">
+
+		from SYS_DATA_PERMISSION E
+
+		<where>
+			1 = 1
+
+			<if test="accessType != null and accessType != '' ">
+				and E.ACCESSTYPE_ = #{accessType}
+			</if>
+
+			<if test="businessKey != null and businessKey != '' ">
+				and E.BUSINESSKEY_ = #{businessKey}
+			</if>
+
+			<if test="businessType != null and businessType != '' ">
+				and E.BUSINESSTYPE_ = #{businessType}
+			</if>
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="roleId != null and roleId != '' ">
+				and E.ROLEID_ = #{roleId}
+			</if>
+
+			<if test="roleIds != null and roleIds.size() &gt; 0">
+				and E.ROLEID_ IN
+				<foreach item="x_roleId" index="index" collection="roleIds"
+					open="(" separator="," close=")">
+					#{x_roleId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

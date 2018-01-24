@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.ProjInspectionFormMapper">
+
+ 	<resultMap id="projInspectionFormResultMap"	type="com.glaf.isdp.domain.ProjInspectionForm">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="projInspectionId" column="PROJ_INSPECTION_ID" jdbcType="VARCHAR"/>
+        <result property="cellFormId" column="CELL_FORM_ID" jdbcType="VARCHAR"/>
+        <result property="dotUseId" column="DOTUSE_ID" jdbcType="VARCHAR"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="intIsCheck" column="INTISCHECK" jdbcType="INTEGER"/>
+        <result property="intMust" column="INTMUST" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertProjInspectionForm" parameterType="com.glaf.isdp.domain.ProjInspectionForm">
+		insert into PROJ_INSPECTION_FORM 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="projInspectionId != null">
+				,PROJ_INSPECTION_ID 
+			</if>
+			<if test="cellFormId != null">
+				,CELL_FORM_ID 
+			</if>
+			<if test="dotUseId != null">
+				,DOTUSE_ID 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="intIsCheck != null">
+				,INTISCHECK 
+			</if>
+			<if test="intMust != null">
+				,INTMUST 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="projInspectionId != null">
+				,#{projInspectionId, jdbcType=VARCHAR}
+			</if>
+			<if test="cellFormId != null">
+				,#{cellFormId, jdbcType=VARCHAR}
+			</if>
+			<if test="dotUseId != null">
+				,#{dotUseId, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="intIsCheck != null">
+				,#{intIsCheck, jdbcType=INTEGER}
+			</if>
+			<if test="intMust != null">
+				,#{intMust, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateProjInspectionForm" parameterType="com.glaf.isdp.domain.ProjInspectionForm">
+		update PROJ_INSPECTION_FORM
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="projInspectionId != null">
+				PROJ_INSPECTION_ID = #{projInspectionId, jdbcType=VARCHAR},
+			</if>
+			<if test="cellFormId != null">
+				CELL_FORM_ID = #{cellFormId, jdbcType=VARCHAR},
+			</if>
+			<if test="dotUseId != null">
+				DOTUSE_ID = #{dotUseId, jdbcType=VARCHAR},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="intIsCheck != null">
+				INTISCHECK = #{intIsCheck, jdbcType=INTEGER},
+			</if>
+			<if test="intMust != null">
+				INTMUST = #{intMust, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProjInspectionFormById" parameterType="string"> 
+        delete from PROJ_INSPECTION_FORM
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteProjInspectionForms" parameterType="com.glaf.isdp.query.ProjInspectionFormQuery">
+		delete from PROJ_INSPECTION_FORM
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getProjInspectionFormById" parameterType="string" resultMap="projInspectionFormResultMap">
+		select * from PROJ_INSPECTION_FORM where ID = #{id}
+	</select>
+
+
+	<select id="getProjInspectionForms" 
+	    parameterType="com.glaf.isdp.query.ProjInspectionFormQuery"
+		resultMap="projInspectionFormResultMap">
+		select distinct E.*
+		<include refid="selectProjInspectionFormsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getProjInspectionFormCount" 
+	    parameterType="com.glaf.isdp.query.ProjInspectionFormQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProjInspectionFormsSql" />
+	</select>
+
+
+	<sql id="selectProjInspectionFormsSql">
+
+		from PROJ_INSPECTION_FORM E
+		
+		<where>
+		       1 = 1  
+			 <if test="idDateGreaterThanOrEqual != null and idDateGreaterThanOrEqual != '' ">
+			 and LEFT(id,8)&gt;=#{idDateGreaterThanOrEqual}
+			 </if>
+			 
+			 <if test="idDateLessThanOrEqual != null and idDateLessThanOrEqual != ''">
+			 and LEFT(id,8)&lt;=#{idDateLessThanOrEqual}
+			 </if>
+			 
+			 <if test="treepInfoIdLike != null and treepInfoIdLike != ''">
+			 and E.PROJ_INSPECTION_ID IN (select distinct id from proj_Inspection where index_id in (select index_id from treepInfo where id like #{treepInfoIdLike}))
+			 </if>
+	        
+			<if test="projInspectionId != null and projInspectionId != '' ">
+				and E.PROJ_INSPECTION_ID = #{projInspectionId}
+            </if>
+
+			<if test="projInspectionIdLike != null and projInspectionIdLike != '' ">
+				and E.PROJ_INSPECTION_ID like #{projInspectionIdLike}
+            </if>
+
+			<if test="projInspectionIds != null and projInspectionIds.size() &gt; 0">
+			    and E.PROJ_INSPECTION_ID IN
+                <foreach item="x_projInspectionId" index="index" collection="projInspectionIds" 
+                     open="(" separator="," close=")">
+                  #{x_projInspectionId}
+                </foreach>
+			</if>
+	        
+			<if test="cellFormId != null and cellFormId != '' ">
+				and E.CELL_FORM_ID = #{cellFormId}
+            </if>
+
+			<if test="cellFormIdLike != null and cellFormIdLike != '' ">
+				and E.CELL_FORM_ID like #{cellFormIdLike}
+            </if>
+
+			<if test="cellFormIds != null and cellFormIds.size() &gt; 0">
+			    and E.CELL_FORM_ID IN
+                <foreach item="x_cellFormId" index="index" collection="cellFormIds" 
+                     open="(" separator="," close=")">
+                  #{x_cellFormId}
+                </foreach>
+			</if>
+	        
+			<if test="dotUseId != null and dotUseId != '' ">
+				and E.DOTUSE_ID = #{dotUseId}
+            </if>
+
+			<if test="dotUseIdLike != null and dotUseIdLike != '' ">
+				and E.DOTUSE_ID like #{dotUseIdLike}
+            </if>
+
+			<if test="dotUseIds != null and dotUseIds.size() &gt; 0">
+			    and E.DOTUSE_ID IN
+                <foreach item="x_dotUseId" index="index" collection="dotUseIds" 
+                     open="(" separator="," close=")">
+                  #{x_dotUseId}
+                </foreach>
+			</if>
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+
+			<if test="intIsCheck != null">
+				and E.INTISCHECK = #{intIsCheck}
+            </if>
+
+			<if test="intIsCheckGreaterThanOrEqual != null">
+				and E.INTISCHECK &gt;= #{intIsCheckGreaterThanOrEqual}
+            </if>
+
+			<if test="intIsCheckLessThanOrEqual != null">
+				and E.INTISCHECK &lt;= #{intIsCheckLessThanOrEqual}
+            </if>
+
+			<if test="intIsChecks != null and intIsChecks.size() &gt; 0">
+			    and E.INTISCHECK IN
+                <foreach item="x_intIsCheck" index="index" collection="intIsChecks" 
+                     open="(" separator="," close=")">
+                  #{x_intIsCheck}
+                </foreach>
+			</if>
+      
+
+			<if test="intMust != null">
+				and E.INTMUST = #{intMust}
+            </if>
+
+			<if test="intMustGreaterThanOrEqual != null">
+				and E.INTMUST &gt;= #{intMustGreaterThanOrEqual}
+            </if>
+
+			<if test="intMustLessThanOrEqual != null">
+				and E.INTMUST &lt;= #{intMustLessThanOrEqual}
+            </if>
+
+			<if test="intMusts != null and intMusts.size() &gt; 0">
+			    and E.INTMUST IN
+                <foreach item="x_intMust" index="index" collection="intMusts" 
+                     open="(" separator="," close=")">
+                  #{x_intMust}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

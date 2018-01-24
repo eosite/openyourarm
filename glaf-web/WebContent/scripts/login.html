@@ -1,0 +1,215 @@
+
+<HTML>
+    
+    <HEAD>
+        <title>
+            用户登录
+        </title>
+        <meta http-equiv="content-type" content="text/html; charset=gb2312">
+        <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1">
+        <script type="text/javascript">
+            function checkChar(obj) {
+                var val = obj.value;
+                var reg = /[,]|[?]|[=]|[(]|[)]|[|]|["]/g;
+                if (reg.test(val)) {
+                    var newVal = val.replace(reg, "");
+                    obj.value = newVal;
+                }
+            }
+        </script>
+        <style type="text/css">
+            .x-form-label {color: #000000;font: normal 12px tahoma, arial, verdana,
+            sans-serif;width: 80px;}.x-form-text {color: #000000;font: normal 12px
+            tahoma, arial, verdana, sans-serif;width: 180px;}.x-form-password {color:
+            #000000;font: normal 12px tahoma, arial, verdana, sans-serif;width: 180px;}.x-form-select
+            {color: #000000;font: normal 12px tahoma, arial, verdana, sans-serif;width:
+            180px;height:22px;}.x-login-body {width: 350px;height: 120px;}.x-login-main
+            {width: 100%;height: 100%;}.x-login-main-tdstyle{vertical-align:middle;text-align:center;}.login-table-info{width:350px;}.login-table-topTitle
+            {font-family: ''ce'a2'c8'ed'd1'c5'ba'da'; color: #000000;font-size: 13px;
+            font-weight: bold; margin-left:0px;}.login-table-tophr{height: 5px;vertical-align:
+            top;margin-left: 0px;}.login-table-topMsg {font-family:''ce'a2'c8'ed'd1'c5'ba'da';
+            color: #666666;font-size: 13px; height: 25px;vertical-align: top;}.login-button-style{width:
+            70px;height: 27px;font-family: ''cb'ce'cc'e5';color: #FFFFFF;vertical-align:
+            middle;font-size:13px;border:2px outset #FF9900;background-color: #F89E0A;text-align:
+            center;background-repeat: no-repeat;cursor: pointer;}.login-button-font-style{font-family:
+            ''cb'ce'cc'e5';color: #FFFFFF;font-size: 13px; text-align: center;vertical-align:middle;
+            background-color: #F89E0A; width:74px; height: 25px; border: 2px outset
+            #FF9900;}.login-td-topTitle {font-family: ''ce'a2'c8'ed'd1'c5'ba'da';color:
+            #000000;font-size: 14px;font-weight: bold;margin-left:10px;width: 600px;vertical-align:middle;word-break:
+            break-all;word-wrap: break-word;}.login-table-endInfor{margin:10 0 0 0;height:auto;}.login-td-endInfor{font-size:13px;color:#666666;}#logoDiv{float:left;width:80px;height:auto;}#logoTitleDiv{clear:right;height:auto;}#TextInfoDiv{word-break:break-all;word-wrap:break-word;overflow:hidden;}.login-td-topTitleImg{font-family:
+            ''ce'a2'c8'ed'd1'c5'ba'da';color: #000000;font-size: 14px;font-weight:
+            bold;margin-left: 10px;width: 500px;vertical-align: middle;word-break:
+            break-all;word-wrap: break-word;}body {overflow:auto;margin-left: 0px;margin-top:
+            0px;margin-right: 0px;margin-bottom: 0px;}
+        </style>
+        <script type="text/javascript" src="RSA-min.js">
+        </script>
+        <script type="text/javascript">
+            StringFilter = function(sourceStr) {
+                var s = sourceStr;
+                s = s.replace(/&/g, "&amp;");
+                s = s.replace(/ /g, "&nbsp;");
+                s = s.replace(/</g, "&lt;");
+                s = s.replace(/>/g, "&gt;");
+                s = s.replace(/'/g, "'");
+                s = s.replace(/"/g, "&quot;");
+                return s;
+            }
+        </script>
+    </HEAD>
+    
+    <BODY>
+        <table class="x-login-main">
+            <tr>
+                <td>
+                    <form action="" method="post">
+                        <table class="login-table-info" align="center">
+                            <tr>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" class="login-td-topTitle">
+                                                <script>
+                                                    document.write(StringFilter("用户登录"))
+                                                </script>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5" colspan="2" class="login-table-tophr">
+                                                <hr align="left" size="1">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="login-table-topMsg">
+                                                提示：在您使用系统之前，需要进行身份验证。
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="x-login-body">
+                                        <tr onKeyDown="input(event.keyCode);">
+                                            <td class="x-form-label">
+                                                用户名：
+                                            </td>
+                                            <td>
+                                                <input type="text" id="username" name="userName" class="x-form-text" maxlength="63"
+                                                onkeyup="checkChar(this)">
+                                            </td>
+                                        </tr>
+                                        <tr onKeyDown="input(event.keyCode);">
+                                            <td class="x-form-label">
+                                                密&nbsp;&nbsp;&nbsp;码：
+                                            </td>
+                                            <td>
+                                                <input type="password" id="password" class="x-form-password" maxlength="30">
+                                            </td>
+                                        </tr>
+                                     
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td valign="middle">
+                                                            <input type="button" id="login" name="login" class="login-button-style"
+                                                            onClick="submitValue();" value="登&nbsp;录">
+                                                        </td>
+                                                        <td width="20px">
+                                                        </td>
+                                                        <td valign="middle">
+                                                            <input type="button" id="reset" name="reset" class="login-button-style"
+                                                            onClick="resetValue();" value="重&nbsp;置">
+                                                        </td>
+                                                        <td width="20px">
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="login-table-topMsg" id="userLogining" name="userLogining"
+                                                        style="display: none;">
+                                                        </td>
+                                                        <td width="20px">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <input type="hidden" id="actionType" name="actionType" value="umlogin">
+                                    <INPUT TYPE="hidden" id="userIpMac" NAME="userIpMac" value="">
+                                    <INPUT TYPE="hidden" id="authorization" NAME="authorization" value="">
+                                    <INPUT TYPE="hidden" id="redirectUrl" NAME="redirectUrl" value="">
+                                    <table class="login-table-endInfor">
+                                        <tr>
+                                            <td class="login-td-endInfor">
+                                                <div id="TextInfoDiv">
+                                                    <script>
+                                                        document.write(StringFilter(""))
+                                                    </script>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <script language="JavaScript">
+            var form = document.forms[0];
+            form.language.value = 1;
+            if (form.language.value == 0) {
+                document.getElementById("changePwd").style.width = '120px';
+                document.getElementById("login").style.width = '120px';
+                document.getElementById("reset").style.width = '120px';
+            }
+            function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return "";
+            }
+            function input(key) {
+                if (key == 13) {
+                    submitValue();
+                }
+            }
+            function select(obj) {
+                form.actionType.value = "changeLanguage";
+                form.method = "get";
+                form.action = "http://192.168.1.100:8888";
+                form.submit();
+            }
+            var key;
+            var isLogin = 0;
+            function submitValue() {
+                if (isLogin == 1) {
+                    return;
+                }
+                document.getElementById("userLogining").style.display = "";
+                document.getElementById("userLogining").innerHTML = "正在登陆中，请稍候......";
+                setMaxDigits(130);
+                key = new RSAKeyPair("010001", "", "ede42aaa7cd4dcc1d0c807b435bc0eb8e96cc04aacef370e69122ad6b18d79f94ea2a1fdcc5cf9f4d995e937179cefd33e9347fd7b0a98b61a4a639435b78d57");
+                var pwd = form.password.value;
+                form.actionType.value = "umlogin";
+                form.authorization.value = encryptedString(key, pwd);
+                form.redirectUrl.value = GetQueryString("redirect");
+                form.action = "http://192.168.1.100:8888";
+                isLogin = 1;
+                form.submit();
+            }
+            function resetValue() {
+                form.username.value = "";
+                form.password.value = "";
+            }
+            function changePassword() {
+                form.actionType.value = "umModifyPwPage";
+                form.submit();
+            }
+        </script>
+    </BODY>
+
+</HTML>

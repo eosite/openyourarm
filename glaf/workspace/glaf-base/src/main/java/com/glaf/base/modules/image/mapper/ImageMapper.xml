@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.modules.image.mapper.ImageMapper">
+
+	<resultMap id="imageResultMap" type="com.glaf.base.modules.image.domain.Image">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="parentId" column="PARENTID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="filename" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="imagePath" column="IMAGEPATH_" jdbcType="VARCHAR" />
+		<result property="width" column="WIDTH_" jdbcType="INTEGER" />
+		<result property="height" column="HEIGHT_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertImage" parameterType="com.glaf.base.modules.image.domain.Image">
+		insert into T_IMAGE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="filename != null">
+				,FILENAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="imagePath != null">
+				,IMAGEPATH_
+			</if>
+			<if test="width != null">
+				,WIDTH_
+			</if>
+			<if test="height != null">
+				,HEIGHT_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="filename != null">
+				,#{filename, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="imagePath != null">
+				,#{imagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="width != null">
+				,#{width, jdbcType=INTEGER}
+			</if>
+			<if test="height != null">
+				,#{height, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateImage" parameterType="com.glaf.base.modules.image.domain.Image">
+		update T_IMAGE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="filename != null">
+				FILENAME_ = #{filename, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="imagePath != null">
+				IMAGEPATH_ = #{imagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				WIDTH_ = #{width, jdbcType=INTEGER},
+			</if>
+			<if test="height != null">
+				HEIGHT_ = #{height, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteImageById" parameterType="long">
+		delete from T_IMAGE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteImages" parameterType="com.glaf.base.modules.image.query.ImageQuery">
+		delete from T_IMAGE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getImageById" parameterType="long" resultMap="imageResultMap">
+		select
+		* from T_IMAGE where ID_ = #{id}
+	</select>
+
+
+	<select id="getImages" parameterType="com.glaf.base.modules.image.query.ImageQuery"
+		resultMap="imageResultMap">
+		select E.*
+		<include refid="selectImagesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getImageCount" parameterType="com.glaf.base.modules.image.query.ImageQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectImagesSql" />
+	</select>
+
+
+	<sql id="selectImagesSql">
+
+		from T_IMAGE E
+
+		<where>
+			1 = 1
+
+			<if test="parentId != null">
+				and E.PARENTID_ = #{parentId}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+				and E.PARENTID_ IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

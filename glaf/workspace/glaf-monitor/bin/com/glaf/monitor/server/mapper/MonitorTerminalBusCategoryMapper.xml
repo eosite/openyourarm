@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.monitor.server.mapper.MonitorTerminalBusCategoryMapper">
+
+ 	<resultMap id="monitorTerminalBusCategoryResultMap"	type="com.glaf.monitor.server.domain.MonitorTerminalBusCategory">
+        <id property="terminalId" column="TERMINAL_ID_" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="CATEGORY_ID_" jdbcType="INTEGER"/>
+        <result property="createby" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createtime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertMonitorTerminalBusCategory" parameterType="com.glaf.monitor.server.domain.MonitorTerminalBusCategory">
+		insert into MONITOR_TERMINAL_BUS_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    TERMINAL_ID_
+			<if test="categoryId != null">
+				,CATEGORY_ID_ 
+			</if>
+			<if test="createby != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createtime != null">
+				,CREATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{terminalId, jdbcType=VARCHAR}
+	     
+			<if test="categoryId != null">
+				,#{categoryId, jdbcType=INTEGER}
+			</if>
+			<if test="createby != null">
+				,#{createby, jdbcType=VARCHAR}
+			</if>
+			<if test="createtime != null">
+				,#{createtime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMonitorTerminalBusCategory" parameterType="com.glaf.monitor.server.domain.MonitorTerminalBusCategory">
+		update MONITOR_TERMINAL_BUS_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="categoryId != null">
+				CATEGORY_ID_ = #{categoryId, jdbcType=INTEGER},
+			</if>
+			<if test="createby != null">
+				CREATEBY_ = #{createby, jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				CREATETIME_ = #{createtime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          TERMINAL_ID_ = #{terminalId, jdbcType=VARCHAR}
+		
+    </update>
+
+	<delete id="deleteMonitorTerminalBusCategoryByTerminalId" parameterType="string"> 
+        delete from MONITOR_TERMINAL_BUS_CATEGORY
+        where TERMINAL_ID_ =	#{terminalId}
+	</delete>
+	
+	<insert id="blukInsertMonitorTerminalBusCategory" >
+		insert into MONITOR_TERMINAL_BUS_CATEGORY
+		(TERMINAL_ID_,CATEGORY_ID_)
+		values  
+	    <foreach collection="categoryIds" item="item" index="index" separator="," >  
+	        (#{terminalId},#{item})  
+	    </foreach> 
+    </insert>
+ 
+	<delete id="deleteMonitorTerminalBusCategoryById" parameterType="string"> 
+        delete from MONITOR_TERMINAL_BUS_CATEGORY
+        where TERMINAL_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMonitorTerminalBusCategorys" parameterType="com.glaf.monitor.server.query.MonitorTerminalBusCategoryQuery">
+		delete from MONITOR_TERMINAL_BUS_CATEGORY
+		where ( 
+ 			  TERMINAL_ID_ IN
+              <foreach item="x_terminalId" index="index" collection="terminalIds" 
+                     open="(" separator="," close=")">
+                  #{x_terminalId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMonitorTerminalBusCategoryById" parameterType="string" resultMap="monitorTerminalBusCategoryResultMap">
+		select * from MONITOR_TERMINAL_BUS_CATEGORY where TERMINAL_ID_ = #{id}
+	</select>
+
+
+	<select id="getMonitorTerminalBusCategorys" 
+	    parameterType="com.glaf.monitor.server.query.MonitorTerminalBusCategoryQuery"
+		resultMap="monitorTerminalBusCategoryResultMap">
+		select distinct E.*
+		<include refid="selectMonitorTerminalBusCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.TERMINAL_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMonitorTerminalBusCategoryCount" 
+	    parameterType="com.glaf.monitor.server.query.MonitorTerminalBusCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMonitorTerminalBusCategorysSql" />
+	</select>
+
+
+	<sql id="selectMonitorTerminalBusCategorysSql">
+
+		from MONITOR_TERMINAL_BUS_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+			 <if test="terminalId != null">
+				and E.TERMINAL_ID_ = #{terminalId}
+            </if>
+
+			<if test="categoryId != null">
+				and E.CATEGORY_ID_ = #{categoryId}
+            </if>
+
+			<if test="categoryIdGreaterThanOrEqual != null">
+				and E.CATEGORY_ID_ &gt;= #{categoryIdGreaterThanOrEqual}
+            </if>
+
+			<if test="categoryIdLessThanOrEqual != null">
+				and E.CATEGORY_ID_ &lt;= #{categoryIdLessThanOrEqual}
+            </if>
+
+			<if test="categoryIds != null and categoryIds.size() &gt; 0">
+			    and E.CATEGORY_ID_ IN
+                <foreach item="x_categoryId" index="index" collection="categoryIds" 
+                     open="(" separator="," close=")">
+                  #{x_categoryId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createby != null and createby != '' ">
+				and E.CREATEBY_ = #{createby}
+            </if>
+
+			<if test="createbyLike != null and createbyLike != '' ">
+				and E.CREATEBY_ like #{createbyLike}
+            </if>
+
+			<if test="createbys != null and createbys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createby" index="index" collection="createbys" 
+                     open="(" separator="," close=")">
+                  #{x_createby}
+                </foreach>
+			</if>
+
+			<if test="createtimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createtimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createtimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createtimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

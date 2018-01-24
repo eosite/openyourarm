@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.TreepInfoSumMapper">
+
+ 	<resultMap id="treepInfoSumResultMap"	type="com.glaf.isdp.model.TreepInfoSum">
+        <id property="id" column="ID" jdbcType="INTEGER" />
+        <result property="indexId" column="INDEX_ID" jdbcType="INTEGER"/>
+        <result property="unitId" column="UNIT_ID" jdbcType="INTEGER"/>
+        <result property="parentId" column="PARENT_ID" jdbcType="INTEGER"/>
+        <result property="monthCell1Sum" column="MONTH_CELL1_SUM" jdbcType="INTEGER"/>
+        <result property="monthCell1PageSum" column="MONTH_CELL1_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="monthCell2Sum" column="MONTH_CELL2_SUM" jdbcType="INTEGER"/>
+        <result property="monthCell2PageSum" column="MONTH_CELL2_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="monthCell3Sum" column="MONTH_CELL3_SUM" jdbcType="INTEGER"/>
+        <result property="monthCell3PageSum" column="MONTH_CELL3_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="monthIntpFile1Sum" column="MONTH_INTPFILE1_SUM" jdbcType="INTEGER"/>
+        <result property="monthIntpFile1PageSum" column="MONTH_INTPFILE1_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="cell1Sum" column="CELL1_SUM" jdbcType="INTEGER"/>
+        <result property="cell1PageSum" column="CELL1_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="cell2Sum" column="CELL2_SUM" jdbcType="INTEGER"/>
+        <result property="cell2PageSum" column="CELL2_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="cell3Sum" column="CELL3_SUM" jdbcType="INTEGER"/>
+        <result property="cell3PageSum" column="CELL3_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="intpFile1Sum" column="INTPFILE1_SUM" jdbcType="INTEGER"/>
+        <result property="intpFile1PageSum" column="INTPFILE1_PAGE_SUM" jdbcType="INTEGER"/>
+        <result property="type" column="STYPE" jdbcType="VARCHAR"/>
+        <result property="startDate" column="STARTDATE" jdbcType="TIMESTAMP"/>
+        <result property="endDate" column="ENDDATE" jdbcType="TIMESTAMP"/>
+        <result property="countMonth" column="COUNTMONTH" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertTreepInfoSum" parameterType="com.glaf.isdp.model.TreepInfoSum">
+		insert into TREEPINFOSUM 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="indexId != null">
+				,INDEX_ID 
+			</if>
+			<if test="unitId != null">
+				,UNIT_ID 
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID 
+			</if>
+			<if test="monthCell1Sum != null">
+				,MONTH_CELL1_SUM 
+			</if>
+			<if test="monthCell1PageSum != null">
+				,MONTH_CELL1_PAGE_SUM 
+			</if>
+			<if test="monthCell2Sum != null">
+				,MONTH_CELL2_SUM 
+			</if>
+			<if test="monthCell2PageSum != null">
+				,MONTH_CELL2_PAGE_SUM 
+			</if>
+			<if test="monthCell3Sum != null">
+				,MONTH_CELL3_SUM 
+			</if>
+			<if test="monthCell3PageSum != null">
+				,MONTH_CELL3_PAGE_SUM 
+			</if>
+			<if test="monthIntpFile1Sum != null">
+				,MONTH_INTPFILE1_SUM 
+			</if>
+			<if test="monthIntpFile1PageSum != null">
+				,MONTH_INTPFILE1_PAGE_SUM 
+			</if>
+			<if test="cell1Sum != null">
+				,CELL1_SUM 
+			</if>
+			<if test="cell1PageSum != null">
+				,CELL1_PAGE_SUM 
+			</if>
+			<if test="cell2Sum != null">
+				,CELL2_SUM 
+			</if>
+			<if test="cell2PageSum != null">
+				,CELL2_PAGE_SUM 
+			</if>
+			<if test="cell3Sum != null">
+				,CELL3_SUM 
+			</if>
+			<if test="cell3PageSum != null">
+				,CELL3_PAGE_SUM 
+			</if>
+			<if test="intpFile1Sum != null">
+				,INTPFILE1_SUM 
+			</if>
+			<if test="intpFile1PageSum != null">
+				,INTPFILE1_PAGE_SUM 
+			</if>
+			<if test="type != null">
+				,STYPE 
+			</if>
+			<if test="startDate != null">
+				,STARTDATE 
+			</if>
+			<if test="endDate != null">
+				,ENDDATE 
+			</if>
+			<if test="countMonth != null">
+				,COUNTMONTH 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="indexId != null">
+				,#{indexId, jdbcType=INTEGER}
+			</if>
+			<if test="unitId != null">
+				,#{unitId, jdbcType=INTEGER}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell1Sum != null">
+				,#{monthCell1Sum, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell1PageSum != null">
+				,#{monthCell1PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell2Sum != null">
+				,#{monthCell2Sum, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell2PageSum != null">
+				,#{monthCell2PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell3Sum != null">
+				,#{monthCell3Sum, jdbcType=INTEGER}
+			</if>
+			<if test="monthCell3PageSum != null">
+				,#{monthCell3PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="monthIntpFile1Sum != null">
+				,#{monthIntpFile1Sum, jdbcType=INTEGER}
+			</if>
+			<if test="monthIntpFile1PageSum != null">
+				,#{monthIntpFile1PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="cell1Sum != null">
+				,#{cell1Sum, jdbcType=INTEGER}
+			</if>
+			<if test="cell1PageSum != null">
+				,#{cell1PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="cell2Sum != null">
+				,#{cell2Sum, jdbcType=INTEGER}
+			</if>
+			<if test="cell2PageSum != null">
+				,#{cell2PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="cell3Sum != null">
+				,#{cell3Sum, jdbcType=INTEGER}
+			</if>
+			<if test="cell3PageSum != null">
+				,#{cell3PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile1Sum != null">
+				,#{intpFile1Sum, jdbcType=INTEGER}
+			</if>
+			<if test="intpFile1PageSum != null">
+				,#{intpFile1PageSum, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="startDate != null">
+				,#{startDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endDate != null">
+				,#{endDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="countMonth != null">
+				,#{countMonth, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateTreepInfoSum" parameterType="com.glaf.isdp.model.TreepInfoSum">
+		update TREEPINFOSUM
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="indexId != null">
+				INDEX_ID = #{indexId, jdbcType=INTEGER},
+			</if>
+			<if test="unitId != null">
+				UNIT_ID = #{unitId, jdbcType=INTEGER},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID = #{parentId, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell1Sum != null">
+				MONTH_CELL1_SUM = #{monthCell1Sum, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell1PageSum != null">
+				MONTH_CELL1_PAGE_SUM = #{monthCell1PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell2Sum != null">
+				MONTH_CELL2_SUM = #{monthCell2Sum, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell2PageSum != null">
+				MONTH_CELL2_PAGE_SUM = #{monthCell2PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell3Sum != null">
+				MONTH_CELL3_SUM = #{monthCell3Sum, jdbcType=INTEGER},
+			</if>
+			<if test="monthCell3PageSum != null">
+				MONTH_CELL3_PAGE_SUM = #{monthCell3PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="monthIntpFile1Sum != null">
+				MONTH_INTPFILE1_SUM = #{monthIntpFile1Sum, jdbcType=INTEGER},
+			</if>
+			<if test="monthIntpFile1PageSum != null">
+				MONTH_INTPFILE1_PAGE_SUM = #{monthIntpFile1PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="cell1Sum != null">
+				CELL1_SUM = #{cell1Sum, jdbcType=INTEGER},
+			</if>
+			<if test="cell1PageSum != null">
+				CELL1_PAGE_SUM = #{cell1PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="cell2Sum != null">
+				CELL2_SUM = #{cell2Sum, jdbcType=INTEGER},
+			</if>
+			<if test="cell2PageSum != null">
+				CELL2_PAGE_SUM = #{cell2PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="cell3Sum != null">
+				CELL3_SUM = #{cell3Sum, jdbcType=INTEGER},
+			</if>
+			<if test="cell3PageSum != null">
+				CELL3_PAGE_SUM = #{cell3PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile1Sum != null">
+				INTPFILE1_SUM = #{intpFile1Sum, jdbcType=INTEGER},
+			</if>
+			<if test="intpFile1PageSum != null">
+				INTPFILE1_PAGE_SUM = #{intpFile1PageSum, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				STYPE = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="startDate != null">
+				STARTDATE = #{startDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endDate != null">
+				ENDDATE = #{endDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="countMonth != null">
+				COUNTMONTH = #{countMonth, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteTreepInfoSumById" parameterType="integer"> 
+        delete from TREEPINFOSUM
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteTreepInfoSums" parameterType="com.glaf.isdp.query.TreepInfoSumQuery">
+		delete from TREEPINFOSUM
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getTreepInfoSumById" parameterType="integer" resultMap="treepInfoSumResultMap">
+		select * from TREEPINFOSUM where ID = #{id}
+	</select>
+
+
+	<select id="getTreepInfoSums" 
+	    parameterType="com.glaf.isdp.query.TreepInfoSumQuery"
+		resultMap="treepInfoSumResultMap">
+		select distinct E.*
+		<include refid="selectTreepInfoSumsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getTreepInfoSumCount" 
+	    parameterType="com.glaf.isdp.query.TreepInfoSumQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreepInfoSumsSql" />
+	</select>
+
+
+	<sql id="selectTreepInfoSumsSql">
+
+		from TREEPINFOSUM E
+		
+		 
+		<where>
+		       1 = 1  
+
+
+			<if test="indexId != null">
+				and E.INDEX_ID = #{indexId}
+            </if>
+
+			<if test="indexIdGreaterThanOrEqual != null">
+				and E.INDEX_ID &gt;= #{indexIdGreaterThanOrEqual}
+            </if>
+
+			<if test="indexIdLessThanOrEqual != null">
+				and E.INDEX_ID &lt;= #{indexIdLessThanOrEqual}
+            </if>
+
+			<if test="indexIds != null and indexIds.size() &gt; 0">
+			    and E.INDEX_ID IN
+                <foreach item="x_indexId" index="index" collection="indexIds" 
+                     open="(" separator="," close=")">
+                  #{x_indexId}
+                </foreach>
+			</if>
+
+
+			<if test="unitId != null">
+				and E.UNIT_ID = #{unitId}
+            </if>
+
+			<if test="unitIdGreaterThanOrEqual != null">
+				and E.UNIT_ID &gt;= #{unitIdGreaterThanOrEqual}
+            </if>
+
+			<if test="unitIdLessThanOrEqual != null">
+				and E.UNIT_ID &lt;= #{unitIdLessThanOrEqual}
+            </if>
+
+			<if test="unitIds != null and unitIds.size() &gt; 0">
+			    and E.UNIT_ID IN
+                <foreach item="x_unitId" index="index" collection="unitIds" 
+                     open="(" separator="," close=")">
+                  #{x_unitId}
+                </foreach>
+			</if>
+
+
+			<if test="parentId != null">
+				and E.PARENT_ID = #{parentId}
+            </if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENT_ID &gt;= #{parentIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENT_ID &lt;= #{parentIdLessThanOrEqual}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENT_ID IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell1Sum != null">
+				and E.MONTH_CELL1_SUM = #{monthCell1Sum}
+            </if>
+
+			<if test="monthCell1SumGreaterThanOrEqual != null">
+				and E.MONTH_CELL1_SUM &gt;= #{monthCell1SumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell1SumLessThanOrEqual != null">
+				and E.MONTH_CELL1_SUM &lt;= #{monthCell1SumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell1Sums != null and monthCell1Sums.size() &gt; 0">
+			    and E.MONTH_CELL1_SUM IN
+                <foreach item="x_monthCell1Sum" index="index" collection="monthCell1Sums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell1Sum}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell1PageSum != null">
+				and E.MONTH_CELL1_PAGE_SUM = #{monthCell1PageSum}
+            </if>
+
+			<if test="monthCell1PageSumGreaterThanOrEqual != null">
+				and E.MONTH_CELL1_PAGE_SUM &gt;= #{monthCell1PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell1PageSumLessThanOrEqual != null">
+				and E.MONTH_CELL1_PAGE_SUM &lt;= #{monthCell1PageSumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell1PageSums != null and monthCell1PageSums.size() &gt; 0">
+			    and E.MONTH_CELL1_PAGE_SUM IN
+                <foreach item="x_monthCell1PageSum" index="index" collection="monthCell1PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell1PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell2Sum != null">
+				and E.MONTH_CELL2_SUM = #{monthCell2Sum}
+            </if>
+
+			<if test="monthCell2SumGreaterThanOrEqual != null">
+				and E.MONTH_CELL2_SUM &gt;= #{monthCell2SumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell2SumLessThanOrEqual != null">
+				and E.MONTH_CELL2_SUM &lt;= #{monthCell2SumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell2Sums != null and monthCell2Sums.size() &gt; 0">
+			    and E.MONTH_CELL2_SUM IN
+                <foreach item="x_monthCell2Sum" index="index" collection="monthCell2Sums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell2Sum}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell2PageSum != null">
+				and E.MONTH_CELL2_PAGE_SUM = #{monthCell2PageSum}
+            </if>
+
+			<if test="monthCell2PageSumGreaterThanOrEqual != null">
+				and E.MONTH_CELL2_PAGE_SUM &gt;= #{monthCell2PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell2PageSumLessThanOrEqual != null">
+				and E.MONTH_CELL2_PAGE_SUM &lt;= #{monthCell2PageSumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell2PageSums != null and monthCell2PageSums.size() &gt; 0">
+			    and E.MONTH_CELL2_PAGE_SUM IN
+                <foreach item="x_monthCell2PageSum" index="index" collection="monthCell2PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell2PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell3Sum != null">
+				and E.MONTH_CELL3_SUM = #{monthCell3Sum}
+            </if>
+
+			<if test="monthCell3SumGreaterThanOrEqual != null">
+				and E.MONTH_CELL3_SUM &gt;= #{monthCell3SumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell3SumLessThanOrEqual != null">
+				and E.MONTH_CELL3_SUM &lt;= #{monthCell3SumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell3Sums != null and monthCell3Sums.size() &gt; 0">
+			    and E.MONTH_CELL3_SUM IN
+                <foreach item="x_monthCell3Sum" index="index" collection="monthCell3Sums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell3Sum}
+                </foreach>
+			</if>
+
+
+			<if test="monthCell3PageSum != null">
+				and E.MONTH_CELL3_PAGE_SUM = #{monthCell3PageSum}
+            </if>
+
+			<if test="monthCell3PageSumGreaterThanOrEqual != null">
+				and E.MONTH_CELL3_PAGE_SUM &gt;= #{monthCell3PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthCell3PageSumLessThanOrEqual != null">
+				and E.MONTH_CELL3_PAGE_SUM &lt;= #{monthCell3PageSumLessThanOrEqual}
+            </if>
+
+			<if test="monthCell3PageSums != null and monthCell3PageSums.size() &gt; 0">
+			    and E.MONTH_CELL3_PAGE_SUM IN
+                <foreach item="x_monthCell3PageSum" index="index" collection="monthCell3PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_monthCell3PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="monthIntpFile1Sum != null">
+				and E.MONTH_INTPFILE1_SUM = #{monthIntpFile1Sum}
+            </if>
+
+			<if test="monthIntpFile1SumGreaterThanOrEqual != null">
+				and E.MONTH_INTPFILE1_SUM &gt;= #{monthIntpFile1SumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthIntpFile1SumLessThanOrEqual != null">
+				and E.MONTH_INTPFILE1_SUM &lt;= #{monthIntpFile1SumLessThanOrEqual}
+            </if>
+
+			<if test="monthIntpFile1Sums != null and monthIntpFile1Sums.size() &gt; 0">
+			    and E.MONTH_INTPFILE1_SUM IN
+                <foreach item="x_monthIntpFile1Sum" index="index" collection="monthIntpFile1Sums" 
+                     open="(" separator="," close=")">
+                  #{x_monthIntpFile1Sum}
+                </foreach>
+			</if>
+
+
+			<if test="monthIntpFile1PageSum != null">
+				and E.MONTH_INTPFILE1_PAGE_SUM = #{monthIntpFile1PageSum}
+            </if>
+
+			<if test="monthIntpFile1PageSumGreaterThanOrEqual != null">
+				and E.MONTH_INTPFILE1_PAGE_SUM &gt;= #{monthIntpFile1PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="monthIntpFile1PageSumLessThanOrEqual != null">
+				and E.MONTH_INTPFILE1_PAGE_SUM &lt;= #{monthIntpFile1PageSumLessThanOrEqual}
+            </if>
+
+			<if test="monthIntpFile1PageSums != null and monthIntpFile1PageSums.size() &gt; 0">
+			    and E.MONTH_INTPFILE1_PAGE_SUM IN
+                <foreach item="x_monthIntpFile1PageSum" index="index" collection="monthIntpFile1PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_monthIntpFile1PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="cell1Sum != null">
+				and E.CELL1_SUM = #{cell1Sum}
+            </if>
+
+			<if test="cell1SumGreaterThanOrEqual != null">
+				and E.CELL1_SUM &gt;= #{cell1SumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell1SumLessThanOrEqual != null">
+				and E.CELL1_SUM &lt;= #{cell1SumLessThanOrEqual}
+            </if>
+
+			<if test="cell1Sums != null and cell1Sums.size() &gt; 0">
+			    and E.CELL1_SUM IN
+                <foreach item="x_cell1Sum" index="index" collection="cell1Sums" 
+                     open="(" separator="," close=")">
+                  #{x_cell1Sum}
+                </foreach>
+			</if>
+
+
+			<if test="cell1PageSum != null">
+				and E.CELL1_PAGE_SUM = #{cell1PageSum}
+            </if>
+
+			<if test="cell1PageSumGreaterThanOrEqual != null">
+				and E.CELL1_PAGE_SUM &gt;= #{cell1PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell1PageSumLessThanOrEqual != null">
+				and E.CELL1_PAGE_SUM &lt;= #{cell1PageSumLessThanOrEqual}
+            </if>
+
+			<if test="cell1PageSums != null and cell1PageSums.size() &gt; 0">
+			    and E.CELL1_PAGE_SUM IN
+                <foreach item="x_cell1PageSum" index="index" collection="cell1PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_cell1PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="cell2Sum != null">
+				and E.CELL2_SUM = #{cell2Sum}
+            </if>
+
+			<if test="cell2SumGreaterThanOrEqual != null">
+				and E.CELL2_SUM &gt;= #{cell2SumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell2SumLessThanOrEqual != null">
+				and E.CELL2_SUM &lt;= #{cell2SumLessThanOrEqual}
+            </if>
+
+			<if test="cell2Sums != null and cell2Sums.size() &gt; 0">
+			    and E.CELL2_SUM IN
+                <foreach item="x_cell2Sum" index="index" collection="cell2Sums" 
+                     open="(" separator="," close=")">
+                  #{x_cell2Sum}
+                </foreach>
+			</if>
+
+
+			<if test="cell2PageSum != null">
+				and E.CELL2_PAGE_SUM = #{cell2PageSum}
+            </if>
+
+			<if test="cell2PageSumGreaterThanOrEqual != null">
+				and E.CELL2_PAGE_SUM &gt;= #{cell2PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell2PageSumLessThanOrEqual != null">
+				and E.CELL2_PAGE_SUM &lt;= #{cell2PageSumLessThanOrEqual}
+            </if>
+
+			<if test="cell2PageSums != null and cell2PageSums.size() &gt; 0">
+			    and E.CELL2_PAGE_SUM IN
+                <foreach item="x_cell2PageSum" index="index" collection="cell2PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_cell2PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="cell3Sum != null">
+				and E.CELL3_SUM = #{cell3Sum}
+            </if>
+
+			<if test="cell3SumGreaterThanOrEqual != null">
+				and E.CELL3_SUM &gt;= #{cell3SumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell3SumLessThanOrEqual != null">
+				and E.CELL3_SUM &lt;= #{cell3SumLessThanOrEqual}
+            </if>
+
+			<if test="cell3Sums != null and cell3Sums.size() &gt; 0">
+			    and E.CELL3_SUM IN
+                <foreach item="x_cell3Sum" index="index" collection="cell3Sums" 
+                     open="(" separator="," close=")">
+                  #{x_cell3Sum}
+                </foreach>
+			</if>
+
+
+			<if test="cell3PageSum != null">
+				and E.CELL3_PAGE_SUM = #{cell3PageSum}
+            </if>
+
+			<if test="cell3PageSumGreaterThanOrEqual != null">
+				and E.CELL3_PAGE_SUM &gt;= #{cell3PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="cell3PageSumLessThanOrEqual != null">
+				and E.CELL3_PAGE_SUM &lt;= #{cell3PageSumLessThanOrEqual}
+            </if>
+
+			<if test="cell3PageSums != null and cell3PageSums.size() &gt; 0">
+			    and E.CELL3_PAGE_SUM IN
+                <foreach item="x_cell3PageSum" index="index" collection="cell3PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_cell3PageSum}
+                </foreach>
+			</if>
+
+
+			<if test="intpFile1Sum != null">
+				and E.INTPFILE1_SUM = #{intpFile1Sum}
+            </if>
+
+			<if test="intpFile1SumGreaterThanOrEqual != null">
+				and E.INTPFILE1_SUM &gt;= #{intpFile1SumGreaterThanOrEqual}
+            </if>
+
+			<if test="intpFile1SumLessThanOrEqual != null">
+				and E.INTPFILE1_SUM &lt;= #{intpFile1SumLessThanOrEqual}
+            </if>
+
+			<if test="intpFile1Sums != null and intpFile1Sums.size() &gt; 0">
+			    and E.INTPFILE1_SUM IN
+                <foreach item="x_intpFile1Sum" index="index" collection="intpFile1Sums" 
+                     open="(" separator="," close=")">
+                  #{x_intpFile1Sum}
+                </foreach>
+			</if>
+
+
+			<if test="intpFile1PageSum != null">
+				and E.INTPFILE1_PAGE_SUM = #{intpFile1PageSum}
+            </if>
+
+			<if test="intpFile1PageSumGreaterThanOrEqual != null">
+				and E.INTPFILE1_PAGE_SUM &gt;= #{intpFile1PageSumGreaterThanOrEqual}
+            </if>
+
+			<if test="intpFile1PageSumLessThanOrEqual != null">
+				and E.INTPFILE1_PAGE_SUM &lt;= #{intpFile1PageSumLessThanOrEqual}
+            </if>
+
+			<if test="intpFile1PageSums != null and intpFile1PageSums.size() &gt; 0">
+			    and E.INTPFILE1_PAGE_SUM IN
+                <foreach item="x_intpFile1PageSum" index="index" collection="intpFile1PageSums" 
+                     open="(" separator="," close=")">
+                  #{x_intpFile1PageSum}
+                </foreach>
+			</if>
+
+	        
+			<if test="type != null and type != '' ">
+				and E.STYPE = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.STYPE like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.STYPE IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+
+			<if test="startDate != null">
+				and E.STARTDATE = #{startDate}
+            </if>
+
+			<if test="startDateGreaterThanOrEqual != null">
+				and E.STARTDATE &gt;= #{startDateGreaterThanOrEqual}
+            </if>
+
+			<if test="startDateLessThanOrEqual != null">
+				and E.STARTDATE &lt;= #{startDateLessThanOrEqual}
+            </if>
+
+			<if test="startDates != null and startDates.size() &gt; 0">
+			    and E.STARTDATE IN
+                <foreach item="x_startDate" index="index" collection="startDates" 
+                     open="(" separator="," close=")">
+                  #{x_startDate}
+                </foreach>
+			</if>
+
+
+			<if test="endDate != null">
+				and E.ENDDATE = #{endDate}
+            </if>
+
+			<if test="endDateGreaterThanOrEqual != null">
+				and E.ENDDATE &gt;= #{endDateGreaterThanOrEqual}
+            </if>
+
+			<if test="endDateLessThanOrEqual != null">
+				and E.ENDDATE &lt;= #{endDateLessThanOrEqual}
+            </if>
+
+			<if test="endDates != null and endDates.size() &gt; 0">
+			    and E.ENDDATE IN
+                <foreach item="x_endDate" index="index" collection="endDates" 
+                     open="(" separator="," close=")">
+                  #{x_endDate}
+                </foreach>
+			</if>
+			
+			<if test="countMonth != null and countMonth != '' ">
+				and E.COUNTMONTH = #{countMonth}
+            </if>
+
+			<if test="countMonthLike != null and countMonthLike != '' ">
+				and E.COUNTMONTH like #{countMonthLike}
+            </if>
+
+			<if test="countMonths != null and countMonths.size() &gt; 0">
+			    and E.COUNTMONTH IN
+                <foreach item="x_countMonth" index="index" collection="countMonths" 
+                     open="(" separator="," close=")">
+                  #{x_countMonth}
+                </foreach>
+			</if>
+		</where>
+	</sql>
+
+	<select id="getMaxEndDate"  parameterType="com.glaf.isdp.query.TreepInfoSumQuery" resultType="java.util.Date">
+		select max(endDate) as maxEndDate
+		<include refid="selectTreepInfoSumsSql"/>
+	</select>
+	
+	<select id="selectUnitTreepinfoSum" parameterType="com.glaf.isdp.query.TreepInfoSumQuery" resultMap="treepInfoSumResultMap">
+		select unit_id,SUM(month_cell1_sum) as month_cell1_sum,SUM(month_cell1_page_sum) as month_cell1_page_sum,SUM(month_cell2_sum) as month_cell2_sum,SUM(month_cell2_page_sum) as month_cell2_page_sum,
+		SUM(month_cell3_sum) as month_cell3_sum,SUM(month_cell3_page_sum)as month_cell3_page_sum,SUM(month_intpFile1_sum) as month_intpFile1_sum,SUM(month_intpFile1_page_sum) as month_intpFile1_page_sum,
+		SUM(cell1_sum) as cell1_sum,SUM(cell1_page_sum) as cell1_page_sum,SUM(cell2_sum) as cell2_sum,SUM(cell2_page_sum) as cell2_page_sum,SUM(cell3_sum) as cell3_sum,SUM(cell3_page_sum) as cell3_page_sum,
+		SUM(intpFile1_sum) as intpFile1_sum,SUM(intpFile1_page_sum) as intpFile1_page_sum from treepInfoSum where sType='0' 
+		<if test="countMonth != null and countMonth != ''">
+			and countMonth=#{countMonth}
+		</if>
+		<if test="countMonthLike != null and countMonthLike != ''">
+			and countMonth like #{countMonthLike}
+		</if>
+		<if test="countMonths != null and countMonths.size() &gt; 0">
+		    and COUNTMONTH IN
+               <foreach item="x_countMonth" index="index" collection="countMonths" 
+                    open="(" separator="," close=")">
+                 #{x_countMonth}
+               </foreach>
+		</if>
+		<if test="unitId != null">
+			and unit_id = #{unitId}
+		</if>
+		<if test="unitIds != null and unitIds.size() &gt; 0">
+		    and UNIT_ID IN
+               <foreach item="x_unitId" index="index" collection="unitIds" 
+                    open="(" separator="," close=")">
+                 #{x_unitId}
+               </foreach>
+		</if>
+		 group by unit_id
+	</select>
+	
+	<select id="selectSubItemTreepinfoSum" parameterType="com.glaf.isdp.query.TreepInfoSumQuery" resultMap="treepInfoSumResultMap">
+		select index_id,parent_id,SUM(month_cell1_sum) as month_cell1_sum,SUM(month_cell1_page_sum) as month_cell1_page_sum,SUM(month_cell2_sum) as month_cell2_sum,SUM(month_cell2_page_sum) as month_cell2_page_sum,
+		SUM(month_cell3_sum) as month_cell3_sum,SUM(month_cell3_page_sum)as month_cell3_page_sum,SUM(month_intpFile1_sum) as month_intpFile1_sum,SUM(month_intpFile1_page_sum) as month_intpFile1_page_sum,
+		SUM(cell1_sum) as cell1_sum,SUM(cell1_page_sum) as cell1_page_sum,SUM(cell2_sum) as cell2_sum,SUM(cell2_page_sum) as cell2_page_sum,SUM(cell3_sum) as cell3_sum,SUM(cell3_page_sum) as cell3_page_sum,
+		SUM(intpFile1_sum) as intpFile1_sum,SUM(intpFile1_page_sum) as intpFile1_page_sum from treepInfoSum where sType='0' 
+		<if test="countMonth != null and countMonth != ''">
+			and countMonth=#{countMonth}
+		</if>
+		<if test="countMonthLike != null and countMonthLike != ''">
+			and countMonth like #{countMonthLike}
+		</if>
+		<if test="countMonths != null and countMonths.size() &gt; 0">
+		    and COUNTMONTH IN
+               <foreach item="x_countMonth" index="index" collection="countMonths" 
+                    open="(" separator="," close=")">
+                 #{x_countMonth}
+               </foreach>
+		</if>
+		<if test="unitId != null">
+			and unit_id = #{unitId}
+		</if>
+		group by index_id,parent_id
+	</select>
+	
+	<delete id="deleteByCountMonth" parameterType="string">
+		delete from treepinfoSum 
+		where countMonth = #{countMonth}
+	</delete>
+	
+	<select id="genMonthTreepinfoSum" parameterType="map" resultMap="treepInfoSumResultMap">
+	select b.*,c.monthCell1Sum,c.monthCell1PageSum,d.monthCell3Sum,e.monthCell3PageSum,f.monthIntpFile1Sum,f.monthIntpFile1PageSum,g.cell2Sum,g.cell2PageSum,h.cell1Sum,h.cell1PageSum,i.cell3Sum,j.cell3PageSum,k.intpFile1Sum,k.intpFile1PageSum from (
+	        select ${indexId} as index_id,count(index_id) as monthCell2Sum,sum(cnt) as monthCell2PageSum from (
+	                select distinct index_id,count(*) as cnt from cell_fillform E where name not like '%设计指标%' 
+	                <if test="startDate != null">
+	                and LEFT(E.id,8)&gt;=#{startDate} 
+	                </if>
+	                <if test="endDate != null">
+	                and LEFT(E.id,8) &lt;=#{endDate} 
+	                </if>
+	                and exists(select index_id from TreepInfo where id like #{idLike} and index_id=E.index_id)
+	        group by index_id
+	        ) t1  
+	) b left join (
+	        select ${indexId} as index_id,count(index_id) as monthCell1Sum,sum(cell1) as monthCell1PageSum from treepinfo where id like #{idLike} and nodetype='0' and cell1&gt;=1 
+	        <if test="startDate != null">
+	        and CONVERT(VARCHAR(8),BDATE_S,112)&gt;=#{startDate} 
+	        </if>
+	        <if test="endDate != null">
+	        and CONVERT(VARCHAR(8),BDATE_S,112)&lt;=#{endDate}
+	        </if>
+	) c on b.index_id=c.index_id left join (
+	        select  ${indexId} as index_id,count(distinct id) as monthCell3Sum from proj_Inspection 
+	        where  index_id in (select index_id from treepInfo where id like #{idLike})
+	        <if test="startDate != null">
+	        and LEFT(id,8)&gt;=#{startDate} 
+	        </if>
+	        <if test="endDate != null">
+	        and LEFT(id,8)&lt;=#{endDate}
+	        </if>
+	) d on d.index_id=c.index_id left join (
+	        select ${indexId} as index_id,count(*) as monthCell3PageSum from proj_Inspection_Form where 1=1
+	        <if test="startDate != null">
+	         and LEFT(id,8)&gt;=#{startDate} 
+	         </if>
+	         <if test="endDate != null">
+	         and LEFT(id,8)&lt;=#{endDate}
+	         </if>
+	        and PROJ_INSPECTION_ID IN (select distinct id from proj_Inspection where index_id in (select index_id from treepInfo where id like #{idLike}))
+	) e on e.index_id=d.index_id left join (
+	        select ${indexId} as index_id,count(*) as monthIntpFile1Sum,sum(ISNULL(page,0)) as monthIntpFile1PageSum 
+	        from pfile where filingflag='0' 
+	        <if test="startDate != null">
+	        and left(id,8)&gt;=#{startDate} 
+	        </if>
+	        <if test="endDate != null">
+	        and left(id,8)&lt;=#{endDate}
+	        </if>
+	        and pid in (select index_id from treepinfo where  id like  #{idLike} and nodetype='1')
+	) f on f.index_id=e.index_id left join (
+		select ${indexId} as index_id,count(index_id) as cell2Sum,sum(cnt) as cell2PageSum from (
+	                select distinct index_id,count(*) as cnt from cell_fillform E where name not like '%设计指标%' 
+	                <if test="endDate != null">
+	                and LEFT(E.id,8) &lt;=#{endDate} 
+	                </if>
+	                and exists(select index_id from TreepInfo where id like #{idLike} and index_id=E.index_id)
+	        group by index_id
+	        ) t1  
+	) g on g.index_id=f.index_id left join (
+		select ${indexId} as index_id,count(index_id) as cell1Sum,sum(cell1) as cell1PageSum from treepinfo where id like #{idLike} and nodetype='0' and cell1&gt;=1 
+	        <if test="endDate != null">
+	        and CONVERT(VARCHAR(8),BDATE_S,112)&lt;=#{endDate}
+	        </if>
+	) h on h.index_id=g.index_id left join (
+		select  ${indexId} as index_id,count(distinct id) as cell3Sum from proj_Inspection 
+        where  index_id in (select index_id from treepInfo where id like #{idLike})
+        <if test="endDate != null">
+        and LEFT(id,8)&lt;=#{endDate}
+        </if>
+	) i on i.index_id=h.index_id left join (
+		select ${indexId} as index_id,count(*) as cell3PageSum from proj_Inspection_Form where 1=1
+         <if test="endDate != null">
+         and LEFT(id,8)&lt;=#{endDate}
+         </if>
+        and PROJ_INSPECTION_ID IN (select distinct id from proj_Inspection where index_id in (select index_id from treepInfo where id like #{idLike}))
+	) j on j.index_id=i.index_id left join (
+		select ${indexId} as index_id,count(*) as intpFile1Sum,sum(ISNULL(page,0)) as intpFile1PageSum 
+        from pfile where filingflag='0' 
+        <if test="endDate != null">
+        and left(id,8)&lt;=#{endDate}
+        </if>
+        and pid in (select index_id from treepinfo where  id like  #{idLike} and nodetype='1')
+	) k on k.index_id=j.index_id
+	</select>
+</mapper>

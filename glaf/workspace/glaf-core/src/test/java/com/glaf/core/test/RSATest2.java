@@ -1,0 +1,17 @@
+package com.glaf.core.test;
+
+import org.apache.commons.codec.binary.Base64;
+
+import com.glaf.core.util.RSA;
+
+public class RSATest2 {
+
+	public static void main(String[] args) {
+		String publickey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJucJEEenKCP+0DxirU3lyU16UKLnz+OtFSuAh8MvMnrm1jusPwCB8mj+ukyt4ApjUNQiUt1o5R1PbGhhpDn1dDxGgwfl426BObeYzFJqj03OJp8qytAhKghNJ4t8J5+Hsi+dwnZfyGOh8FqeuwuFqN2e19wbIAfLTUvTqDVq+lwIDAQAB";
+		String privatekey = "MIICXQIBAAKBgQCJucJEEenKCP+0DxirU3lyU16UKLnz+OtFSuAh8MvMnrm1jusPwCB8mj+ukyt4ApjUNQiUt1o5R1PbGhhpDn1dDxGgwfl426BObeYzFJqj03OJp8qytAhKghNJ4t8J5+Hsi+dwnZfyGOh8FqeuwuFqN2e19wbIAfLTUvTqDVq+lwIDAQABAoGAclRmVCOatEDsJAk0LWVKOAHFTbDRTRqiFA+oKATA6cgJ2hIeSCDx1v4lR0Kcny9otyCfUvUyTMJNdmEfSnbg0ZCGSGCEmbG5DBUo+dq/AYXD07qUY0xS3tkfPe3uQAER4CInPnv1uE/m5m8O2SpEyTKe0rPsZ98flZPGysNLwcECQQD1yTaAPrMTwbj/shq5ujTLma8LEGMrJfqQaJBlh3dkKhUGsTtjmlFv2WQK4H7jbT5eyfMoUaox6q9sgpQz7kHfAkEAj3Ly6ULKMWlBvKFhkw6HI2GmEXsifW4SE14V01bxLJ6FOtReDjWfR1tefPMZF8KuUvXJMa2zlSifu+z375DKSQJBAJosNgCp08C/0qCpgrQfxkA0TaV+CQam0w5EWNcm61AsSXYiNCOdSBoF3ggom89i1i21Nc6Ds2OOV62UFwygFjcCQFBonsEiLzSDS9XwoEFOY3HxyqUB4NNuX7N7icBte8MHGKdhY1eTtzTIgq6Hlgk7l3vpSl4OgBucKe2tZ01iXAECQQDokciwSuwUjt1E7GV0G1/7FNDkmKHQbp8vbgPNzB8xD6eGoENesckLG86KJ5X8gVoMsh7zGxz5Q6uLHld2Q/ef";
+		byte[] data = Base64.decodeBase64(
+				"Vqdl3EyCQdE3gUZXHPFGWQ3aYkU6IdYiX+wjD93DaSH3oIIgkEQApGDjeFeX+kEpgyzV3m60flDkCOX4hb2IFuULM2EwAHIH7h1y1q4XYUiyzNlPpRB9B9GpeBhQBhNgNJu1JpUz6uzyVt+3DsYybsU0F6uzovVhzPpwa6oss/4=");
+		System.out.println(new String(RSA.decryptByPrivateKey(data, privatekey)));
+		System.out.println(Base64.encodeBase64String(RSA.encryptByPublicKey("中文的字符ABCxyz".getBytes(), publickey)));
+	}
+}

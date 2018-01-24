@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.hyperic.sigar-1.6.3.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/jackson-databind.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/fastjson.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang2.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-lang3.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-httpclient.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/javax.persistence.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/jaxrs-api.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-aop.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-aspects.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-beans.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-context-support.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-context.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-core.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-jdbc.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-orm.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-test.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-tx.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-web.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/spring-webmvc.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/mybatis-spring.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/mybatis.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/slf4j-log4j.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/quartz-all.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/glaf-core"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/dubbo.jar"/>
+	<classpathentry kind="lib" path="/glaf-core/lib/commons-codec.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

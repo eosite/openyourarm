@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.FlowStationMapper">
+
+ 	<resultMap id="flowStationResultMap"	type="com.glaf.isdp.domain.FlowStation">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="processId" column="PROCESS_ID" jdbcType="VARCHAR"/>
+        <result property="activDId" column="ACTIV_D_ID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFlowStation" parameterType="com.glaf.isdp.domain.FlowStation">
+		insert into FLOW_STATION 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="processId != null">
+				,PROCESS_ID 
+			</if>
+			<if test="activDId != null">
+				,ACTIV_D_ID 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="activDId != null">
+				,#{activDId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFlowStation" parameterType="com.glaf.isdp.domain.FlowStation">
+		update FLOW_STATION
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="processId != null">
+				PROCESS_ID = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="activDId != null">
+				ACTIV_D_ID = #{activDId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFlowStationById" parameterType="string"> 
+        delete from FLOW_STATION
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFlowStations" parameterType="com.glaf.isdp.query.FlowStationQuery">
+		delete from FLOW_STATION
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFlowStationById" parameterType="string" resultMap="flowStationResultMap">
+		select * from FLOW_STATION where ID = #{id}
+	</select>
+
+
+	<select id="getFlowStations" 
+	    parameterType="com.glaf.isdp.query.FlowStationQuery"
+		resultMap="flowStationResultMap">
+		select distinct E.*
+		<include refid="selectFlowStationsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFlowStationCount" 
+	    parameterType="com.glaf.isdp.query.FlowStationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFlowStationsSql" />
+	</select>
+
+
+	<sql id="selectFlowStationsSql">
+
+		from FLOW_STATION E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="processId != null and processId != '' ">
+				and E.PROCESS_ID = #{processId}
+            </if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESS_ID like #{processIdLike}
+            </if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.PROCESS_ID IN
+                <foreach item="x_processId" index="index" collection="processIds" 
+                     open="(" separator="," close=")">
+                  #{x_processId}
+                </foreach>
+			</if>
+	        
+			<if test="activDId != null and activDId != '' ">
+				and E.ACTIV_D_ID = #{activDId}
+            </if>
+
+			<if test="activDIdLike != null and activDIdLike != '' ">
+				and E.ACTIV_D_ID like #{activDIdLike}
+            </if>
+
+			<if test="activDIds != null and activDIds.size() &gt; 0">
+			    and E.ACTIV_D_ID IN
+                <foreach item="x_activDId" index="index" collection="activDIds" 
+                     open="(" separator="," close=")">
+                  #{x_activDId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

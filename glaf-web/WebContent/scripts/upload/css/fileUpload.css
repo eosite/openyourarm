@@ -1,0 +1,82 @@
+﻿body {
+	color:#000;
+	background-color:white;
+	font:15px "Courier New", "Lucida Grande", Arial, sans-serif; 
+	letter-spacing:0.01em;
+	margin:15px;
+}
+#controlPanel,#resultPanel{
+	width:380px;
+	margin:10px auto;
+	padding:25px;
+	border:1px solid gray;
+	-moz-border-radius:10px;
+	background:#f8f8f8;
+}
+#errorArea{
+	width:300px;
+	margin:10px auto;
+	padding:10px;
+	border:2px solid gray;
+	-moz-border-radius:10px;
+	background:red;
+}
+#normalMessageArea{
+	width:300px;
+	margin:20px auto;
+	padding:10px;
+	border:2px solid gray;
+	-moz-border-radius:10px;
+	background:yellow;
+}
+#progressBar { padding-top: 5px; }
+#totalProgressBarBox { 
+   	width: 350px; 
+   	height: 20px; 
+   	border: 1px inset; 
+   	background: #eee;
+}
+#totalProgressBarBoxContent { 
+   	width: 0; 
+   	height: 20px; 
+   	border-right: 1px solid #444; 
+   	background: #9ACB34; 
+}
+@charset "UTF-8";
+/*
+ * jQuery File Upload Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+

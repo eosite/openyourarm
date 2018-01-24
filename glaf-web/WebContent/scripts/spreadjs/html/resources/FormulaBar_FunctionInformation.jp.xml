@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="ABS" Param="value" Description="指定した値の絶対値を返します。"/>
+  <Function Name="ACCRINT" Param="issue,first,settle,rate,par,frequency,basis" Description="定期的に利息が支払われる証券の未収利息額を算出します。"/>
+  <Function Name="ACCRINTM" Param="issue,maturity,rate,par,basis" Description="満期に利息が支払われる証券の未収利息額を算出します。"/>
+  <Function Name="ACOS" Param="value" Description="指定の値がコサインとなる角度を返します。戻り値の角度は 0～π（ラジアン単位）です。"/>
+  <Function Name="ACOSH" Param="value" Description="指定した角度のハイパーボリックコサインの逆関数値を算出します。"/>
+  <Function Name="ADDRESS" Param="row,column,absnum,a1style,sheettext" Description="指定の行番号および列番号に基づき、セル アドレスを表すテキストを生成します。"/>
+  <Function Name="AMORDEGRC" Param="cost,datepurchased,firstperiod,salvage,period,drate,basis" Description="日割り計算による減価償却を考慮し、資産耐用年数に基づく減価償却係数を計算に適用して、会計期ごとの減価償却を返します。"/>
+  <Function Name="AMORLINC" Param="cost,datepurchased,firstperiod,salvage,period,drate,basis" Description="日割り計算による減価消却を考慮し、指定の会計期の減価償却費を計算します。"/>
+  <Function Name="AND" Param="logical1,logical2" Description="すべての引数が真であれば True を、１つ以上の引数が偽であれば False を返します。"/>
+  <Function Name="ASIN" Param="value" Description="指定の値がサインとなる角度を返します。戻り値の角度は -π/2～π/2（ラジアン単位）です。"/>
+  <Function Name="ASINH" Param="value" Description="指定した数値のハイパーボリックサインの逆関数値を算出します。"/>
+  <Function Name="ATAN" Param="value" Description="指定の値がタンジェントとなる角度を返します。戻り値の角度は -π/2～π/2（ラジアン単位）です。"/>
+  <Function Name="ATAN2" Param="x,y" Description="指定の x 座標および y 座標のアークタンジェントを返します。戻り値の角度は -π～π（ラジアン単位、ただし -π を除く）です。"/>
+  <Function Name="ATANH" Param="value" Description="指定した数値のハイパーボリックタンジェントの逆関数値を算出します。"/>
+  <Function Name="AVEDEV" Param="value1,value2,..." Description="指定のデータ全体の平均値に対する、個々の値の絶対偏差の平均値を算出します。"/>
+  <Function Name="AVERAGE" Param="value1,value2,..." Description="指定した数値の平均値を算出します。"/>
+  <Function Name="AVERAGEA" Param="value1,value2,..." Description="指定した数値の平均値を算出します。"/>
+  <Function Name="AVERAGEIF" Param="value1,value2,...,condition" Description="指定した基準を満たすデータセットの平均値を計算します。"/>
+  <Function Name="AVERAGEIFS" Param="value1,condition1,value2,...,condition2..." Description="指定した複数の基準を満たすデータセットの平均値を計算します。"/>
+  <Function Name="BESSELI" Param="value,order" Description="純虚数を引数としたときの第１種変形ベッセル関数を返します。"/>
+  <Function Name="BESSELJ" Param="value,order" Description="第１種ベッセル関数を返します。"/>
+  <Function Name="BESSELK" Param="value,order" Description="純虚数を引数としたときの第２種変形ベッセル関数を返します。"/>
+  <Function Name="BESSELY" Param="value,order" Description="第２種ベッセル関数を返します。"/>
+  <Function Name="BETADIST" Param="x,alpha,beta,lower,upper" Description="累積β確率密度関数の値を算出します。"/>
+  <Function Name="BETAINV" Param="prob,alpha,beta,lower,upper" Description="累積β確率密度関数の逆関数の値を算出します。"/>
+  <Function Name="BIN2DEC" Param="number" Description="２進数値を 10 進数値に変換します。"/>
+  <Function Name="BIN2HEX" Param="number,places" Description="２進数値を 16 進数値に変換します。"/>
+  <Function Name="BIN2OCT" Param="number,places" Description="２進数値を８進数値に変換します。"/>
+  <Function Name="BINOMDIST" Param="x,n,p,cumulative" Description="個別項の二項分布の確率を算出します。"/>
+  <Function Name="CEILING" Param="value,signif" Description="指定した基準値の倍数になるように数値を丸め、元の値に最も近い値を返します。"/>
+  <Function Name="CHAR" Param="value" Description="指定した数値に対応する文字を返します。"/>
+  <Function Name="CHIDIST" Param="value,deg" Description="片側カイ２乗分布の確率を算出します。"/>
+  <Function Name="CHIINV" Param="prob,deg" Description="片側カイ２乗分布確率の逆関数を算出します。"/>
+  <Function Name="CHITEST" Param="obs_array,exp_array" Description="カイ２乗分布からの独立性を検定します。"/>
+  <Function Name="CHOOSE" Param="index,value1,value2,..." Description="値リストの中から特定の値を返します。"/>
+  <Function Name="CLEAN" Param="text" Description="指定のテキストから、印刷できないすべての文字を削除します。"/>
+  <Function Name="CODE" Param="text" Description="テキスト内の先頭文字に対応する数値コードを返します。返されるコードは、Unicodeです。"/>
+  <Function Name="COLUMN" Param="reference" Description="参照の列番号を返します。"/>
+  <Function Name="COLUMNS" Param="array" Description="配列内の列数を返します。"/>
+  <Function Name="COMBIN" Param="k,n" Description="総数から指定の個数を抜き取る場合、選択可能な組み合わせの数を返します。"/>
+  <Function Name="COMPLEX" Param="realcoeff,imagcoeff,suffix" Description="実数係数および虚数係数を複素数に変換します。"/>
+  <Function Name="CONCATENATE" Param="text1,text2,...." Description="指定の文字列または数値を１つの文字列に統合します。"/>
+  <Function Name="CONFIDENCE" Param="alpha,stdev,size" Description="母集団の平均値に対する信頼区間を返します。"/>
+  <Function Name="CONVERT" Param="number,from-unit,to-unit" Description="ある計測単位の値を、別の計測単位に変換します。"/>
+  <Function Name="CORREL" Param="array1,array2" Description="２組のデータセット間の相関係数を返します。"/>
+  <Function Name="COS" Param="angle" Description="指定した角度のコサインを返します。"/>
+  <Function Name="COSH" Param="value" Description="指定した角度のハイパーボリックコサインを返します。"/>
+  <Function Name="COUNT" Param="value1,value2,..." Description="指定した複数の値に数値が何個含まれているか個数を返します。"/>
+  <Function Name="COUNTA" Param="value1,value2,..." Description="指定した複数の値に数値が何個含まれているか個数を返します。"/>
+  <Function Name="COUNTBLANK" Param="cellrange" Description="シート上の指定のセル範囲から、空白セルの数を返します。"/>
+  <Function Name="COUNTIF" Param="cellrange,condition" Description="特定の条件を満たすセルの数を返します。"/>
+  <Function Name="COUNTIFS" Param="cellrange,condition" Description="複数の条件を満たすセルの数を返します。"/>
+  <Function Name="COUPDAYBS" Param="settlement,maturity,frequency,basis" Description="証券の利払期間の１日目から受渡日までの日数を計算します。"/>
+  <Function Name="COUPDAYS" Param="settlement,maturity,frequency,basis" Description="証券の利払期間（受渡日を含む）を表す日数を返します。"/>
+  <Function Name="COUPDAYSNC" Param="settlement,maturity,frequency,basis" Description="証券の受渡日から次の利払日までの日数を計算します。"/>
+  <Function Name="COUPNCD" Param="settlement,maturity,frequency,basi" Description="証券の受渡後の次回の利払日を日付値で返します。"/>
+  <Function Name="COUPNUM" Param="settlement,maturity,frequency,basis" Description="証券の受渡日から満期日までの期間中の利払回数を返します。"/>
+  <Function Name="COUPPCD" Param="settlement,maturity,frequency,basis" Description="証券の受渡日直前の利払日を日付値で返します。"/>
+  <Function Name="COVAR" Param="array1,array2" Description="２組の対応するデータの標準偏差の積の平均値を返します。"/>
+  <Function Name="CRITBINOM" Param="n,p,alpha" Description="累積二項分布の値が基準値以上となる最小値を返します。"/>
+  <Function Name="CUMIPMT" Param="rate,nper,pval,startperiod,endperiod,paytype" Description="開始期から終了期までの期間内で、貸付金に対して支払われる利息の累計を計算します。"/>
+  <Function Name="CUMPRINC" Param="rate,nper,pval,startperiod,endperiod,paytype" Description="開始期から終了期までの期間内で、貸付金に対して支払われる元金の累計を計算します。"/>
+  <Function Name="DATE" Param="year,month,day" Description="年、月、日で指定した日付に対する日付オブジェクトを返します。"/>
+  <Function Name="DATEDIF" Param="date1,date2,outputcode" Description="２つの日付間の日数、月数、または年数を返します。"/>
+  <Function Name="DATEVALUE" Param="date_string" Description="指定の日付に対する日時を返します。"/>
+  <Function Name="DAVERAGE" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす値の平均値を計算します。"/>
+  <Function Name="DAY" Param="date" Description="特定の日付に対応する、月内の日（1～31）を返します。"/>
+  <Function Name="DAYS360" Param="startdate,enddate,method" Description="１年を 360 日（１月が 30 日）とみなし、２つの日付間の日数を返します。"/>
+  <Function Name="DB" Param="cost,salvage,life,period,month" Description="定率法を使用して、特定の期の資産の減価償却費を算出します。"/>
+  <Function Name="DCOUNT" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす数値を保持するセル数をカウントします。"/>
+  <Function Name="DCOUNTA" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす、空白以外のセル数をカウントします。"/>
+  <Function Name="DDB" Param="cost,salvage,life,period,factor" Description="倍率法、またはその他の指定の計算方法を使用して、特定の期の資産の減価償却費を算出します。"/>
+  <Function Name="DEC2BIN" Param="number,places" Description="10 進数値を２進数値に変換します。"/>
+  <Function Name="DEC2HEX" Param="number,places" Description="10 進数値を 16 進数値に変換します。"/>
+  <Function Name="DEC2OCT" Param="number,places" Description="10 進数値を８進数値に変換します。"/>
+  <Function Name="DEGREES" Param="angle" Description="指定したラジアン単位の角度の値を度単位に変換します。"/>
+  <Function Name="DELTA" Param="value1,value2" Description="２つの値が等しいかどうかを調べます。２つの値が等しければ１、そうでなければ０を返します。"/>
+  <Function Name="DEVSQ" Param="value1,value2, ..." Description="平均値に対する個々のデータ点の偏差の平方和を算出します。"/>
+  <Function Name="DGET" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす１つの値を抽出します。"/>
+  <Function Name="DISC" Param="settle,mature,pricep,redeem,basis" Description="証券の割引率を算出します。"/>
+  <Function Name="DMAX" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす最大値を返します。"/>
+  <Function Name="DMIN" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす最小値を返します。"/>
+  <Function Name="DOLLAR" Param="value,digits" Description="数値を指定の小数位になるように四捨五入し、通貨書式を施した文字列に変換します。"/>
+  <Function Name="DOLLARDE" Param="fractionaldollar,fraction" Description="分数表記されたドル値を、小数表記のドル値に変換します。"/>
+  <Function Name="DOLLARFR" Param="decimaldollar,fraction" Description="小数表記されたドル値を、分数表記のドル値に変換します。"/>
+  <Function Name="DPRODUCT" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす値を乗算します。"/>
+  <Function Name="DSTDEV" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列における、指定の条件を満たす数値を標本として使用して、母集団の標準偏差を評価します"/>
+  <Function Name="DSTDEVP" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列における、指定の条件を満たす数値を使用して、母集団全体に基づく標準偏差を計算します。"/>
+  <Function Name="DSUM" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列において、指定の条件を満たす数値を加算します。"/>
+  <Function Name="DURATION" Param="settlement,maturity,coupon,yield,frequency,basis" Description="額面を $100 とみなした証券のマコーレー デュレーションを返します。"/>
+  <Function Name="DVAR" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列における、指定の条件を満たす数値を標本として使用して、母集団の分散を評価します。"/>
+  <Function Name="DVARP" Param="database, field, criteria" Description="リストまたはデータベース内の指定の１列における、指定の条件を満たす数値を使用して、母集団全体に基づく分散を計算します。"/>
+  <Function Name="EDATE" Param="startdate,months" Description="指定の日付から、指定の月数だけ前または後の日時を返します。"/>
+  <Function Name="EFFECT" Param="nomrate,comper" Description="指定の名目年利率と１年あたりの複利計算期間に基づき、実効年利率を返します。"/>
+  <Function Name="EOMONTH" Param="startdate,months" Description="指定の日付から、指定の月数だけ前または後の月の最終日（月末日）となる日時を返します。"/>
+  <Function Name="ERF" Param="limit,upperlimit" Description="上限から下限の範囲で、誤差関数の積分値を返します。"/>
+  <Function Name="ERFC" Param="lowerlimit" Description="下限から無限大の範囲で、相補誤差関数の積分値を返します。"/>
+  <Function Name="ERROR.TYPE" Param="errorvalue" Description="エラー値に対応する数値を返します。エラーがない場合は、#N/A を返します。"/>
+  <Function Name="EURO" Param="code" Description="ISO 通貨コードに基づき、１ユーロに相当する通貨値を返します。"/>
+  <Function Name="EUROCONVERT" Param="currency,source,target,fullprecision,triangulation" Description="ユーロ加盟国通貨（ユーロを含む）間で、ある通貨値を別の通貨値に変換します。"/>
+  <Function Name="EVEN" Param="value" Description="指定した値を切り上げ、最も近い偶数の整数値を返します。"/>
+  <Function Name="EXACT" Param="text1,text2" Description="２つの文字列が等しければ True を、そうでなければ False を返します。"/>
+  <Function Name="EXP" Param="value" Description="e（自然対数の底）を底とする、指定の数のべき乗 (ex) を返します。EXP 関数は LN の逆関数です。"/>
+  <Function Name="EXPONDIST" Param="value,lambda,cumulative" Description="指数分布関数または確率密度関数の値を算出します。"/>
+  <Function Name="FACT" Param="number" Description="指定した値の階乗を返します。"/>
+  <Function Name="FACTDOUBLE" Param="number" Description="数値の２乗階乗を返します。"/>
+  <Function Name="FALSE" Param="" Description="論理値０（False）を返します。"/>
+  <Function Name="FDIST" Param="value,degnum,degden" Description="２組のデータ間の分散度を比較する F 確率分布関数を算出します。"/>
+  <Function Name="FIND" Param="findtext,intext,start" Description="テキスト内から指定の文字を検索し、この文字の位置を返します。"/>
+  <Function Name="FINV" Param="p,degnum,degden" Description="F 確率分布関数の逆関数の値を返します。p = FDIST(x,...) であるとき、FINV(p,...) = x となります。"/>
+  <Function Name="FISHER" Param="value" Description="指定の値に対するフィッシャー変換値を算出します。"/>
+  <Function Name="FISHERINV" Param="value" Description="フィッシャー変換の逆関数の値を算出します。"/>
+  <Function Name="FIXED" Param="num,digits,notcomma" Description="数値を指定の小数位になるように四捨五入し、ピリオドとコンマ（指定した場合）による小数書式を適用した結果をテキストとして返します。"/>
+  <Function Name="FLOOR" Param="value,signif" Description="指定した基準値の倍数になるように数値を切り捨て、元の値に最も近い値を返します。"/>
+  <Function Name="FORECAST" Param="value,Yarray,Xarray" Description="既知の値を使用して予測値を算出します。"/>
+  <Function Name="FREQUENCY" Param="dataarray,binarray" Description="指定の値範囲内で値が出現する頻度を計算します。 この関数は、数値の垂直配列を返します。"/>
+  <Function Name="FTEST" Param="array1,array2" Description="F 検定の結果を返します。これは、２つの配列内のデータの分散に有意な差が認められない片側確率の算出結果です。"/>
+  <Function Name="FV" Param="rate,numper,paymt,pval,type" Description="現在価値、定期払い、および特定の利率を条件とし、投資の将来価値を算出します。"/>
+  <Function Name="FVSCHEDULE" Param="principal,schedule" Description="投資期間内の一連の金利を複合計算することにより、初期投資（元金）の将来価値を算出します。"/>
+  <Function Name="GAMMADIST" Param="x,alpha,beta,cumulative" Description="ガンマ分布関数の値を算出します。"/>
+  <Function Name="GAMMAINV" Param="p,alpha,beta" Description="ガンマ累積分布関数の逆関数の値を返します。p = GAMMADIST(x,...) であるとき、GAMMAINV(p,...) = x となります。"/>
+  <Function Name="GAMMALN" Param="value" Description="ガンマ関数の値の自然対数 (x) を返します。"/>
+  <Function Name="GCD" Param="number1,number2" Description="２つの数値間の最大公約数を返します。最大公約数とは、対象となるすべての値を余りを出さずに割り切ることのできる最大の整数です。"/>
+  <Function Name="GEOMEAN" Param="value1,value2,..." Description="一群の正数の相乗平均値を算出します。"/>
+  <Function Name="GESTEP" Param="number,step" Description="数値がしきい値に等しいかどうかを判定します。指定した数値がしきい値と等しいか、それ以上であれば１、そうでない場合は０を返します。"/>
+  <Function Name="GROWTH" Param="y,x,newx,constant" Description="予測される指数曲線を計算します。"/>
+  <Function Name="HARMEAN" Param="value1,value2,..." Description="一群の数値の調和平均を算出します。"/>
+  <Function Name="HEX2BIN" Param="number, places" Description="16 進数値を２進数値に変換します。"/>
+  <Function Name="HEX2DEC" Param="number" Description="16 進数値を 10 進数値に変換します。"/>
+  <Function Name="HEX2OCT" Param="number, places" Description="16 進数値を８進数値に変換します。"/>
+  <Function Name="HLOOKUP" Param="value,array,row,approx" Description="指定範囲の最上行から値を検索し、指定の行から、この値と同じ列内の値を返します。"/>
+  <Function Name="HOUR" Param="time" Description="指定の時刻値に対応する時を返します。"/>
+  <Function Name="HYPGEOMDIST" Param="x,n,M,N" Description="超幾何分布関数の値を算出します。"/>
+  <Function Name="IF" Param="valueTest,valueTrue,valueFalse" Description="論理式の結果を表す値を返します。"/>
+  <Function Name="IFERROR" Param="value,error" Description="数式を評価し、エラーの場合には指定した値、その他の場合には数式の結果を返します。"/>
+  <Function Name="IMABS" Param="complexnum" Description="複素数の絶対値を返します。"/>
+  <Function Name="IMAGINARY" Param="complexnum" Description="複素数の虚数係数を返します。"/>
+  <Function Name="IMARGUMENT" Param="complexnum" Description="ラジアン単位の角度である引数θを返します。"/>
+  <Function Name="IMCONJUGATE" Param="complexnum" Description="複素数の複素共役を返します。"/>
+  <Function Name="IMCOS" Param="complexnum" Description="複素数のコサインを返します。"/>
+  <Function Name="IMDIV" Param="complexnum,complexdenom" Description="２つの複素数の商を返します。"/>
+  <Function Name="IMEXP" Param="complexnum" Description="複素数の指数関数を返します。"/>
+  <Function Name="IMLN" Param="complexnum" Description="複素数の自然対数を返します。"/>
+  <Function Name="IMLOG2" Param="complexnum" Description="複素数の２を底とする対数を返します。"/>
+  <Function Name="IMLOG10" Param="complexnum" Description="複素数の常用対数を返します。"/>
+  <Function Name="IMPOWER" Param="complexnum,powernum" Description="複素数の整数乗を返します。"/>
+  <Function Name="IMPRODUCT" Param="complexnum1,complexnum2, ..." Description="&quot;x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した、最大 29 個の複素数の積を返します。" />
+  <Function Name="IMREAL" Param="complexnum" Description="&quot;x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した複素数の実数係数を返します。" />
+  <Function Name="IMSIN" Param="complexnum" Description="&quot;x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した複素数のサインを返します。" />
+  <Function Name="IMSQRT" Param="complexnum" Description="&quot;x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した複素数の平方根を返します。" />
+  <Function Name="IMSUB" Param="complexnum1,complexnum2" Description="&quot;x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した２つの複素数の差を返します。" />
+  <Function Name="IMSUM" Param="complexnum1,complexnum2, ..." Description="x+yi&quot; または &quot;x+yj&quot; 形式のテキストで指定した２つ以上の複素数の合計を返します。" />
+  <Function Name="INDEX" Param="return,row,col,area" Description="配列またはセル範囲の中から、特定の値または値への参照を返します。"/>
+  <Function Name="INT" Param="value" Description="指定した値の小数部分を切り捨て、最も近い整数値を返します。"/>
+  <Function Name="INTERCEPT" Param="dependent,independent" Description="指定の x 値と y 値を使用して得た回帰直線が y 軸と交わる点を求めます。"/>
+  <Function Name="INTRATE" Param="settle,mature,invest,redeem,basis" Description="全額投資された証券の利率を算出します。"/>
+  <Function Name="IPMT" Param="rate,per,nper,pval,fval,type" Description="借入金返済において、支払うべき金利を算出します。"/>
+  <Function Name="IRR" Param="arrayvals,estimate" Description="一連の定期的なキャッシュフロー（values 引数の配列値で指定）に基づき、内部利益率を算出します。"/>
+  <Function Name="ISBLANK" Param="cellreference" Description="セルなどの値が空白かどうかを判定します。"/>
+  <Function Name="ISERR" Param="cellreference" Description="セルなどの値が、#N/A（利用不可）以外のエラー値を参照するかどうかを判定します。"/>
+  <Function Name="ISERROR" Param="cellreference" Description="セルなどの値が、任意のエラー値を参照するかどうかを判定します。"/>
+  <Function Name="ISEVEN" Param="cellreference" Description="セルなどの値が偶数かどうかを判定します。"/>
+  <Function Name="ISLOGICAL" Param="cellreference" Description="セルなどの値が論理値かどうかを判定します。"/>
+  <Function Name="ISNA" Param="cellreference" Description="セルなどの値が、エラー値 #N/A（利用不可）を参照するかどうかを判定します。"/>
+  <Function Name="ISNONTEXT" Param="cellreference" Description="セルなどの値が、テキスト以外のデータかどうかを判定します。"/>
+  <Function Name="ISNUMBER" Param="cellreference" Description="セルなどの値が数値かどうかを判定します。"/>
+  <Function Name="ISODD" Param="cellreference" Description="セルなどの値が奇数かどうかを判定します。"/>
+  <Function Name="ISPMT" Param="rate,per,nper,pv" Description="指定の投資期間に支払われる金利を計算します。"/>
+  <Function Name="ISREF" Param="cellreference" Description="セルなどの値が、他のセルへの参照かどうかを判定します。"/>
+  <Function Name="ISTEXT" Param="cellreference" Description="セルなどの値が文字列かどうかを判定します。"/>
+  <Function Name="KURT" Param="value1,value2,value3,value4,..." Description="データ集合の尖度を返します。"/>
+  <Function Name="LARGE" Param="array,n" Description="データ集合内で n 番目に大きい値を返します。"/>
+  <Function Name="LCM" Param="number1,number2" Description="指定した整数の最小公倍数を返します。"/>
+  <Function Name="LEFT" Param="mytext,num_chars" Description="テキスト値から先頭（左端）の文字を返します。"/>
+  <Function Name="LEN" Param="value" Description="テキストの文字数を返します。"/>
+  <Function Name="LINEST" Param="y,x,constant,stats" Description="直線に基づく統計値を計算します。"/>
+  <Function Name="LN" Param="value" Description="指定した数の自然対数を返します。LN は EXP の逆関数です。"/>
+  <Function Name="LOG" Param="number,base" Description="Y を底とする数値 X の対数を返します。"/>
+  <Function Name="LOG10" Param="value" Description="10 を底とする数値 X の対数を返します。"/>
+  <Function Name="LOGEST" Param="y,x,constant,stats" Description="データに適合する指数曲線を計算し、この曲線を表す値の配列を返します。"/>
+  <Function Name="LOGINV" Param="prob,mean,stdev" Description="x の対数正規累積分布関数の逆関数の値を算出します。"/>
+  <Function Name="LOGNORMDIST" Param="x,mean,stdev" Description="x の対数正規累積分布関数の値を算出します。"/>
+  <Function Name="LOOKUP" Param="lookupvalue,lookupvector,resultvector" Description="１行または１列内のセル範囲、または配列から値を検索します。"/>
+  <Function Name="LOWER" Param="string" Description="テキストを小文字に変換します。"/>
+  <Function Name="MATCH" Param="value1,array,type" Description="指定された項目の範囲内における相対位置を返します。"/>
+  <Function Name="MAX" Param="value1,value2,..." Description="引数リストの中から最大値を返します。"/>
+  <Function Name="MAXA" Param="value1,value2,..." Description="引数リストの中から最大値を返します。"/>
+  <Function Name="MDETERM" Param="array" Description="配列の行列式を返します。"/>
+  <Function Name="MDURATION" Param="settlement,maturity,coupon,yield,frequency,basis" Description="額面を $100 とみなした証券の修正マコーレー デュレーションを返します。"/>
+  <Function Name="MEDIAN" Param="value1,value2,..." Description="指定した一群の数値の中からメジアン（中央値）を返します。"/>
+  <Function Name="MID" Param="text,start_num,num_chars" Description="テキスト内の指定位置から、指定した数の文字を取り出して返します。"/>
+  <Function Name="MIN" Param="value1,value2,..." Description="引数リストの中から最小値を返します。"/>
+  <Function Name="MINA" Param="value1,value2,..." Description="引数リストの中から最小値を返します。"/>
+  <Function Name="MINUTE" Param="time" Description="引数リストの中から最小値を返します。"/>
+  <Function Name="MINVERSE" Param="array" Description="配列に指定した行列の逆行列を返します。"/>
+  <Function Name="MIRR" Param="arrayvals,payment_int,income_int" Description="一連の定期的なキャッシュフローに基づき、修正内部利益率を算出します。"/>
+  <Function Name="MMULT" Param="array1,array2" Description="２つの配列に指定した行列の積を返します。"/>
+  <Function Name="MOD" Param="dividend,divisor" Description="number 引数（被除数）を divisor 引数（除数）で割ったときの剰余を返します。"/>
+  <Function Name="MODE" Param="value1,value2,..." Description="指定の引数リストの中で、最も頻繁に出現する値を返します。"/>
+  <Function Name="MONTH" Param="date" Description="指定の日付値に対応する月を返します。"/>
+  <Function Name="MROUND" Param="number,multiple" Description="指定の倍数となるように丸めた値を返します。"/>
+  <Function Name="MULTINOMIAL" Param="value1,value2,..." Description="指定された引数リストの多項係数（リスト内の値の和の階乗と、各値の階乗の積との比）を算出します。"/>
+  <Function Name="N" Param="value" Description="数値に変換した値を返します。"/>
+  <Function Name="NA" Param="" Description="「利用不可」を意味するエラー値 #N/A を返します。"/>
+  <Function Name="NEGBINOMDIST" Param="x,r,p" Description="負の二項分布を算出します。"/>
+  <Function Name="NETWORKDAYS" Param="startdate,enddate,holidays" Description="開始日から終了日までの期間内で、完全な稼働日の合計を計算します。"/>
+  <Function Name="NOMINAL" Param="effrate,comper" Description="指定の実効利率と１年あたりの複利計算期間に基づき、名目上の年利率を算出します。"/>
+  <Function Name="NORMDIST" Param="x,mean,stdev,cumulative" Description="指定の平均と標準偏差に対する正規累積分布関数の値を返します。"/>
+  <Function Name="NORMINV" Param="prob,mean,stdev" Description="指定の平均と標準偏差に対する正規累積分布関数の逆関数の値を返します。"/>
+  <Function Name="NORMSDIST" Param="value" Description="標準正規累積分布関数の値を算出します。"/>
+  <Function Name="NORMSINV" Param="prob" Description="標準正規累積分布関数の逆関数の値を返します。この分布では、平均が０、標準偏差が１となります。"/>
+  <Function Name="NOT" Param="value" Description="引数の論理値を逆にします。"/>
+  <Function Name="NOW" Param="" Description="現在の日付と時刻を表す値を返します。"/>
+  <Function Name="NPER" Param="rate,paymt,pval,fval,type" Description="現行価値、将来価値、定期払い、および特定の利率を条件とし、投資に必要な期間（支払回数）を返します。"/>
+  <Function Name="NPV" Param="discount,value1,value2,..." Description="割引率と、将来行われる一連の支払いおよびその収益に基づいて、投資の正味現在価値を算出します。"/>
+  <Function Name="OCT2BIN" Param="number,places" Description="８進数値を２進数値に変換します。"/>
+  <Function Name="OCT2DEC" Param="number" Description="８進数値を 10 進数値に変換します。"/>
+  <Function Name="OCT2HEX" Param="number,places" Description="８進数値を 16 進数値に変換します。"/>
+  <Function Name="ODD" Param="value" Description="指定した値を切り上げ、最も近い奇数の整数値を返します。"/>
+  <Function Name="ODDFPRICE" Param="settle,maturity,issue,first,rate,yield,redeem,freq,basis" Description="１期目の日数が半端な証券に対し、額面 $100 あたりの価格を計算します。"/>
+  <Function Name="ODDFYIELD" Param="settle,maturity,issue,first,rate,price,redeem,freq,basis" Description="１期目の日数が半端な証券の利回りを計算します。"/>
+  <Function Name="ODDLPRICE" Param="settle,maturity,last,rate,yield,redeem,freq,basis" Description="最終期の日数が半端な証券に対し、額面 $100 あたりの価格を計算します。"/>
+  <Function Name="ODDLYIELD" Param="settle,maturity,last,rate,price,redeem,freq,basis" Description="最終期の日数が半端な証券の利回りを計算します。"/>
+  <Function Name="OFFSET" Param="reference,rows,cols,height,width" Description="この関数は、セル範囲への参照を返します。 返されるセル範囲は、単一のセルまたはセル範囲からの行数と列数で指定します。 これにより、単一のセルまたはセル範囲が返されます。"/>
+  <Function Name="OR" Param="argument1,argument2..." Description="いずれかの引数が真であれば１（True）を、すべての引数が偽であれば０（False）を返します。"/>
+  <Function Name="PEARSON" Param="array_ind,array_dep" Description="ピアソンの積率相関係数を返します。これは -1.0～1.0 の範囲の数値であり、２組のデータ間での線形相関の程度を示します。"/>
+  <Function Name="PERCENTILE" Param="array,n" Description="ある範囲内の値の中で n 番目の百分位を持つ値を返します。"/>
+  <Function Name="PERCENTRANK" Param="array,n,sigdig" Description="データセット内の値の順位を、このデータセット内の百分率として返します。"/>
+  <Function Name="PERMUT" Param="k,n" Description="指定した数の標本を抜き取る際の、有効な順列の数を返します。"/>
+  <Function Name="PI" Param="" Description="円周率（π）を 3.1415926536 として返します。"/>
+  <Function Name="PMT" Param="rate,nper,pval,fval,type" Description="現在価値、指定の利率、および支払回数に基づき、借入金返済での定期支払額を算出します。"/>
+  <Function Name="POISSON" Param="nevents,mean,cumulative" Description="ポアソン確率分布の値を算出します。"/>
+  <Function Name="POWER" Param="number,power" Description="指定の数（X）を底とする指数（Y）のべき乗を求めます。"/>
+  <Function Name="PPMT" Param="rate,per,nper,pval,fval,type" Description="元金の返済額を返します。"/>
+  <Function Name="PRICE" Param="settlement,maturity,rate,yield,redeem,frequency,basis" Description="定期的に利息が支払われる証券に対し、額面 $100 あたりの価格を計算します。"/>
+  <Function Name="PRICEDISC" Param="settle,mature,discount,redeem,basis" Description="割引債の額面 $100 あたりの価格を算出します。"/>
+  <Function Name="PRICEMAT" Param="settle,mature,issue,rate,yield,basis" Description="満期日に利息が払われる証券に対し、額面 $100 あたりの価格を返します。"/>
+  <Function Name="PROB" Param="array,probs,lower,upper" Description="特定範囲内の値が上限と下限の間に収まる確率を返します。"/>
+  <Function Name="PRODUCT" Param="value1,value2,..." Description="すべての引数値を乗算して得た積を返します。"/>
+  <Function Name="PROPER" Param="text" Description="文字列内の全英単語の先頭文字を大文字に変換します。"/>
+  <Function Name="PV" Param="rate,numper,paymt,fval,type" Description="特定の利率、定期払いの回数と支払額、および将来価値を条件として、投資の現在価値を返します。"/>
+  <Function Name="QUARTILE" Param="array,quart" Description="データセットから、指定した四分位数（データセットの 1/4［25%］）を返します。"/>
+  <Function Name="QUOTIENT" Param="numerator,denominator" Description="除算で得た商の整数部分を返します。QUOTIENT 関数は、商の余り（剰余）を無視したい場合に使用します。"/>
+  <Function Name="RADIANS" Param="value" Description="度単位の角度の値をラジアン単位に変換します。"/>
+  <Function Name="RADIANS" Param="value" Description="度単位の角度の値をラジアン単位に変換します。"/>
+  <Function Name="RAND" Param="" Description="分布が一様な、0以上1未満の乱数を発生させます。RAND 関数は、スプレッドシートが再計算されるたびに新たな乱数を発生させます。"/>
+  <Function Name="RANDBETWEEN" Param="lower,upper" Description="指定した２つの数値間の範囲で乱数を発生させます。RANDBETWEEN 関数は、シートが再計算されるたびに新たに乱数を発生させます。"/>
+  <Function Name="RANK" Param="number,array,order" Description="数値リストの中から、指定の数値が何番目に位置するかを返します。RANK 関数の返す順位は、リスト内の数値を並べ替えた場合の数値の順位となります。"/>
+  <Function Name="RATE" Param="nper,pmt,pval,fval,type,guess" Description="投資期間を通じた利率を返します。"/>
+  <Function Name="RECEIVED" Param="settle,mature,invest,discount,basis" Description="全額投資された証券に対して、満期に支払われる金額を返します。"/>
+  <Function Name="REPLACE" Param="old_text,start_char,num_chars,new_text" Description="文字列の一部を別の文字列に置き換えます。"/>
+  <Function Name="REPT" Param="text,number" Description="文字列を指定の回数分、繰り返し表示します。"/>
+  <Function Name="RIGHT" Param="text,num_chars" Description="テキスト値から右端の文字を返します。"/>
+  <Function Name="ROMAN" Param="number,style" Description="アラビア数字を、ローマ数字を表すテキストに変換します。"/>
+  <Function Name="ROUND" Param="value,places" Description="指定の数値を、指定の桁数になるように四捨五入します。"/>
+  <Function Name="ROUNDDOWN" Param="value,places" Description="指定の数値を、指定の桁数になるように切り捨てます。"/>
+  <Function Name="ROUNDUP" Param="value,places" Description="指定の数値を、指定の桁数になるように切り上げます。"/>
+  <Function Name="ROW" Param="reference" Description="参照の行番号を返します。"/>
+  <Function Name="ROWS" Param="array" Description="配列内の行数を返します。"/>
+  <Function Name="RSQ" Param="array_dep,array_ind" Description="既知の x と既知の Y を通過する回帰直線のデータ点を使用して、ピアソン積率相関係数の二乗を返します。"/>
+  <Function Name="SEARCH" Param="string1,string2" Description="テキスト内から指定の文字を検索し、テキスト内におけるこの文字の開始位置を返します。"/>
+  <Function Name="SECOND" Param="time" Description="指定の時刻値に対応する秒の値（0～59）を返します。"/>
+  <Function Name="SERIESSUM" Param="x,n,m,coeff" Description="べき級数を返します。"/>
+  <Function Name="SIGN" Param="cellreference" Description="数値の符号を返します。"/>
+  <Function Name="SIN" Param="angle" Description="指定した角度のサインを返します。"/>
+  <Function Name="SINH" Param="value" Description="指定した数値のハイパーボリックサインを返します。"/>
+  <Function Name="SKEW" Param="number1,number2,..." Description="分布の歪度（平均値からのデータの偏り）を返します。"/>
+  <Function Name="SLN" Param="cost,salvage,life" Description="定額法を使用して、１期あたりの資産の減価償却費を算出します。"/>
+  <Function Name="SLOPE" Param="array_dep,array_ind" Description="回帰直線の傾きを算出します。"/>
+  <Function Name="SMALL" Param="array,n" Description="データ集合内で n 番目に小さい値を返します。"/>
+  <Function Name="SQRT" Param="value" Description="指定した数値の正の平方根を返します。"/>
+  <Function Name="SQRTPI" Param="multiple" Description="指定の数値を円周率に掛けた値の正の平方根を返します。"/>
+  <Function Name="STANDARDIZE" Param="x,mean,stdev" Description="特定の平均値と標準偏差で決定される分布を標準化するための変量を返します。"/>
+  <Function Name="STDEVA" Param="value1,value2,..." Description="指定した数値の集合から標準偏差を算出します。"/>
+  <Function Name="STDEVP" Param="value1,value2,..." Description="引数として指定した母集団全体の標準偏差を算出します。"/>
+  <Function Name="STDEVPA" Param="value1,value2,..." Description="引数として指定した母集団全体の標準偏差を算出します。"/>
+  <Function Name="STEYX" Param="array_dep,array_ind" Description="個別の x に対する y の予測値の標準誤差を返します。標準誤差とは、x 値に対して予測される y 値の誤差の量を表す指標です。"/>
+  <Function Name="SUBSTITUTE" Param="text,old_piece,new_piece,instance" Description="既存文字列内の指定の文字を、新規文字列に置き換えます。"/>
+  <Function Name="SUBTOTAL" Param="functioncode,value1,value2,..." Description="小計を返します。"/>
+  <Function Name="SUM" Param="value1,value2,..." Description="セルまたはセルブロックの和を返します。"/>
+  <Function Name="SUMIF" Param="array,condition,sumrange" Description="指定の基準に基づき、セル値を合計します。"/>
+  <Function Name="SUMIFS" Param="array,conditionarray,condition,..." Description="複数の基準に基づき、セル値を合計します。"/>
+  <Function Name="SUMPRODUCT" Param="array1,array2,..." Description="指定の配列内の対応する要素の積を算出し、これらの積の合計を返します。"/>
+  <Function Name="SUMSQ" Param="value1,value2,..." Description="引数に指定した値の２乗の合計を返します。"/>
+  <Function Name="SUMX2MY2" Param="array_x,array_y" Description="２つの配列内の対応する要素の平方差を合計して返します。"/>
+  <Function Name="SUMX2PY2" Param="array_x,array_y" Description="２つの配列内の対応する要素の平方和を合計して返します。"/>
+  <Function Name="SUMXMY2" Param="array_x,array_y" Description="２つの配列内の対応する要素の差を２乗して合計します。"/>
+  <Function Name="SYD" Param="cost,salvage,life,period" Description="定額逓減法を使用して、特定期間の資産の減価償却費を返します。"/>
+  <Function Name="T" Param="value" Description="セル内にテキストが保持されている場合にこのテキストを返します。"/>
+  <Function Name="TAN" Param="angle" Description="指定した角度のタンジェントを返します。"/>
+  <Function Name="TANH" Param="value" Description="指定した数値のハイパーボリックタンジェントを返します。"/>
+  <Function Name="TBILLEQ" Param="settle,mature,discount" Description="米国財務省短期証券（TB）の債券に相当する利回りを返します。"/>
+  <Function Name="TBILLPRICE" Param="settle,mature,discount" Description="米国財務省短期証券（TB）の額面 $100 あたりの価格を返します。"/>
+  <Function Name="TBILLYIELD" Param="settle,mature,priceper" Description="米国財務省短期証券（TB）の利回りを返します。"/>
+  <Function Name="TDIST" Param="x,deg,tails" Description="t 分布の確率を返します。"/>
+  <Function Name="TEXT" Param="value,text" Description="数値を書式設定し、テキストに変換します。"/>
+  <Function Name="TIME" Param="hour,minutes,seconds" Description="指定の時間に対する DateTime オブジェクトを返します。"/>
+  <Function Name="TIMEVALUE" Param="time_string" Description="文字列で表される時刻に対応する時間間隔値を返します。"/>
+  <Function Name="TINV" Param="prog,deg" Description="スチューデントの t 分布の値を、確率と自由度を使用した関数として算出します。"/>
+  <Function Name="TODAY" Param="" Description="現在の日付を表す連続値を返します。"/>
+  <Function Name="TRANSPOSE" Param="array" Description="水平セル範囲を垂直セル範囲として返し、垂直セル範囲を水平セル範囲として返します。"/>
+  <Function Name="TREND" Param="y,x,newx,constant" Description="回帰直線に対して予測される値を返します。"/>
+  <Function Name="TRIM" Param="text" Description="文字列から余分なスペースを削除し、単語間に１文字分のスペースを保ちます。"/>
+  <Function Name="TRIMMEAN" Param="array,percent" Description="上位および下位のデータを除外した、データセット内の中間データの平均値を算出します。"/>
+  <Function Name="TRUE" Param="" Description="論理値１（True）を返します。"/>
+  <Function Name="TRUNC" Param="value,precision" Description="スチューデントの t 検定に関連する確率を返します。"/>
+  <Function Name="TTEST" Param="array1,array2,tails,type" Description="スチューデントの t 検定に関連する確率を返します。"/>
+  <Function Name="TYPE" Param="value" Description="値のデータ型を返します。"/>
+  <Function Name="UPPER" Param="string" Description="テキストを大文字に変換します。"/>
+  <Function Name="VALUE" Param="text" Description="数値を表す文字列を数値に変換します。"/>
+  <Function Name="VAR" Param="value1,value2,..." Description="引数値を母集団の標本とみなし、母集団の分散を算出します。"/>
+  <Function Name="VARA" Param="value1,value2,..." Description="引数値を母集団の標本とみなし、母集団の分散を算出します。"/>
+  <Function Name="VARP" Param="value1,value2,..." Description="母集団全体の分散を算出します。"/>
+  <Function Name="VARPA" Param="value1,value2,..." Description="母集団全体の分散を算出します。"/>
+  <Function Name="VDB" Param="cost,salvage,life,start,end,factor,switchnot" Description="倍率法を使用して、指定した任意の期間における資産の減価償却費を算出します。"/>
+  <Function Name="VLOOKUP" Param="value,array,colindex,approx" Description="指定範囲の最左列から値を検索し、指定の列から、この値と同じ行内の値を返します。"/>
+  <Function Name="WEEKDAY" Param="date,type" Description="指定の日付に対応する曜日を返します。"/>
+  <Function Name="WEEKNUM" Param="date,weektype" Description="指定の日付がその年の何週目に当たるかを表す数値を返します。"/>
+  <Function Name="WEIBULL" Param="x,alpha,beta,cumulative" Description="２つのパラメータによるワイブル分布の値を算出します。これは、信頼性の分析などによく使用されます。"/>
+  <Function Name="WORKDAY" Param="startdate,numdays,holidays" Description="開始日より指定の日数分以前または以降の稼働日の値を返します。"/>
+  <Function Name="XIRR" Param="values,dates,guess" Description="予定されているキャッシュフロー（定期的、または不定期）に基づき、内部利益率を計算します。"/>
+  <Function Name="XNPV" Param="rate,values,dates" Description="予定されているキャッシュフロー（定期的、または不定期）に基づき、正味現在価値を計算します。"/>
+  <Function Name="YEAR" Param="date" Description="指定の日付に対応する年を表す整数を返します。"/>
+  <Function Name="YEARFRAC" Param="startdate,enddate,basis" Description="開始日から終了日までの期間内の完全な日数が、１年のどれだけを占めるかを表す割合を返します。"/>
+  <Function Name="YIELD" Param="settle,maturity,rate,price,redeem,frequency,basis" Description="定期的に利息が支払われる証券の利回りを計算します。"/>
+  <Function Name="YIELDDISC" Param="settle,maturity,price,redeem,basis" Description="割引債の年利回りを計算します。"/>
+  <Function Name="YIELDMAT" Param="settle,maturity,issue,issrate,price,basis" Description="満期に利息が支払われる証券の年利回りを計算します。"/>
+  <Function Name="ZTEST" Param="array,x,sigma" Description="z 検定の有意値を返します。z 検定では、一群のデータに対する検定値 x の標準スコアを生成し、正規分布の両側の確率値を返します。"/>
+</Functions>

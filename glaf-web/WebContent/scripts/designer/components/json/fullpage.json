@@ -1,0 +1,133 @@
+{
+    "id": "fullpage",
+    "title": "全屏滚动",
+    "description": "",
+    "propertyPackages": [
+        {
+            "id": "generalsetting",
+            "title": "常规设置",
+            "description": "",
+            "expland": "true",
+            "properties": [
+                {
+                    "id": "name",
+                    "title": "控件名称",
+                    "type": "string",
+                    "maxlen": "20",
+                    "minlen": "1",
+                    "defaultVal": "",
+                    "inputMode": "input",
+                    "require": "true",
+                    "readonly": "false",
+                    "ctrImpl": "setName"
+                }
+            ]
+        },
+        {
+            "id": "positionsize",
+            "title": "定位及尺寸",
+            "description": "",
+            "expland": "false",
+            "properties": [
+                {
+                    "id": "size",
+                    "title": "尺寸",
+                    "inputMode": "touchspin",
+                    "properties": [
+                        {
+                            "id": "width",
+                            "title": "宽",
+                            "type": "int",
+                            "maxval": "2000",
+                            "minval": "0",
+                            "defaultVal": "",
+                            "inputMode": "touchspin",
+                            "require": "false",
+                            "readonly": "false",
+                            "unit": "px,%,em",
+                            "ctrImpl": "setWidth"
+                        },
+                        {
+                            "id": "height",
+                            "title": "高",
+                            "type": "int",
+                            "maxval": "2000",
+                            "minval": "0",
+                            "defaultVal": "",
+                            "inputMode": "touchspin",
+                            "require": "false",
+                            "readonly": "false",
+                            "unit": "px,%,em",
+                            "ctrImpl": "setHeight"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "addPage",
+            "title": "按位置添加屏",
+            "description": "",
+            "expland": "true",
+            "properties": [
+                {
+                    "id": "pagePosition",
+                    "title": "屏的位置",
+                    "type": "string",
+                    "defaultVal": "top",
+                    "inputMode": "buttongroup",
+                    "require": "false",
+                    "readonly": "false",
+                    "ctrImpl": "addPage",
+                    "valrange": [
+                        {
+                            "name": "上加一屏",
+                            "title": "Top",
+                            "value": "top"
+                        },
+                        {
+                            "name": "下加一屏",
+                            "title": "Bottom",
+                            "value": "bottom"
+                        },
+                        {
+                            "name": "左加一屏",
+                            "title": "Left",
+                            "value": "left"
+                        },
+                        {
+                            "name": "右加一屏",
+                            "title": "Right",
+                            "value": "right"
+                        }
+                    ]
+                }
+            ]
+        },
+          {
+            "id": "deletePage",
+            "title": "按位置删除屏",
+            "description": "",
+            "expland": "true",
+            "properties": [
+                {
+                    "id": "pagePosition",
+                    "title": "屏的位置",
+                    "type": "string",
+                    "defaultVal": "top",
+                    "inputMode": "buttongroup",
+                    "require": "false",
+                    "readonly": "false",
+                    "ctrImpl": "deletePage",
+                    "valrange": [
+                        {
+                            "name": "删除当前屏",
+                            "title": "Right",
+                            "value": "right"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

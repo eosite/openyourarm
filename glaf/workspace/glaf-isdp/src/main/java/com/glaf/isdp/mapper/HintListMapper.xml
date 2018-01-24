@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.isdp.mapper.HintListMapper">
+
+ 	<resultMap id="hintListResultMap"	type="com.glaf.isdp.domain.HintList">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="hintId" column="HINTID" jdbcType="VARCHAR"/>
+        <result property="list" column="LIST" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="hintData" column="HINTDATA" jdbcType="INTEGER"/>
+	</resultMap>
+ 
+ 	<select id="getHintListById" parameterType="string" resultMap="hintListResultMap">
+		SELECT * FROM HINTLIST WHERE ID = #{id}
+	</select>
+	
+	<select id="getHintLitCount" 
+	    parameterType="com.glaf.isdp.query.HintListQuery"
+		resultType="int">
+		SELECT count(*)
+		<include refid="selectHintListsSql" />
+	</select>
+	
+	<select id="getHints" 
+	    parameterType="com.glaf.isdp.query.HintListQuery"
+		resultMap="hintListResultMap">
+		SELECT distinct E.*
+		<include refid="selectHintListsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID ASC
+		  </otherwise>
+        </choose>
+	</select>
+ 
+	<sql id="selectHintListsSql">
+
+		from HINTLIST E
+		
+		<where>
+		       1 = 1  
+			
+			 <if test="id != null and id != '' ">
+			  AND E.ID = #{id}
+			 </if>
+			 
+			  <if test="idLike != null and idLike != '' ">
+			  AND E.ID LIKE #{idLike}
+			 </if>
+			 
+			 <if test="hintId != null and hintId != '' ">
+			  AND E.HINTID = #{hintId}
+			 </if>
+			 
+			 <if test="list != null and list != '' ">
+			  AND E.LIST = #{list}
+			 </if>
+			 
+			 <if test="content != null and content != '' ">
+			  AND E.CONTENT = #{content}
+			 </if>
+			 
+			 <if test="listNo != null">
+			  AND E.LISTNO = #{listNo}
+			 </if>
+			 
+			 <if test="hintData != null and hintData != '' ">
+			  AND E.HINTDATA = #{hintData}
+			 </if>
+		</where>
+	</sql>
+
+</mapper>

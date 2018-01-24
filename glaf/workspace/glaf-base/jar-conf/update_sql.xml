@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+  <statement id="updateTreeTableAggr01" title="更新树表汇总标识" tableExists="SYS_TREETABLE_AGGREGATE">
+        update SYS_TREETABLE_AGGREGATE set PRIVATEFLAG_ = 0 where PRIVATEFLAG_ is null
+  </statement>
+</statements>

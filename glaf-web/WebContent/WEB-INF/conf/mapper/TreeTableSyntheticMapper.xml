@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.TreeTableSyntheticMapper">
+
+	<resultMap id="treeTableSyntheticResultMap" type="com.glaf.datamgr.domain.TreeTableSynthetic">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="sourceTableName" column="SOURCETABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="sourceIdColumn" column="SOURCEIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceIndexIdColumn" column="SOURCEINDEXIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceParentIdColumn" column="SOURCEPARENTIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceTreeIdColumn" column="SOURCETREEIDCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceTextColumn" column="SOURCETEXTCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceWbsIndexColumn" column="SOURCEWBSINDEXCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="sourceDatabaseIds" column="SOURCEDATABASEIDS_"
+			jdbcType="VARCHAR" />
+		<result property="sqlCriteria" column="SQLCRITERIA_" jdbcType="VARCHAR" />
+		<result property="targetTableName" column="TARGETTABLENAME_"
+			jdbcType="VARCHAR" />
+		<result property="targetDatabaseId" column="TARGETDATABASEID_"
+			jdbcType="BIGINT" />
+		<result property="createTableFlag" column="CREATETABLEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="scheduleFlag" column="SCHEDULEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="genNewPrimaryKey" column="GENNEWPRIMARYKEY_"
+			jdbcType="VARCHAR" />
+		<result property="genByMonth" column="GENBYMONTH_" jdbcType="VARCHAR"/>
+		<result property="syntheticFlag" column="SYNTHETICFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="deleteFetch" column="DELETEFETCH_" jdbcType="VARCHAR" />
+		<result property="jobNo" column="JOBNO_" jdbcType="VARCHAR" />
+		<result property="syncStatus" column="SYNCSTATUS_" jdbcType="INTEGER" />
+		<result property="syncTime" column="SYNCTIME_" jdbcType="TIMESTAMP" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTreeTableSynthetic" parameterType="com.glaf.datamgr.domain.TreeTableSynthetic">
+		insert into SYS_TREETABLE_SYNTHETIC
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="sourceTableName != null">
+				,SOURCETABLENAME_
+			</if>
+			<if test="sourceIdColumn != null">
+				,SOURCEIDCOLUMN_
+			</if>
+			<if test="sourceIndexIdColumn != null">
+				,SOURCEINDEXIDCOLUMN_
+			</if>
+			<if test="sourceParentIdColumn != null">
+				,SOURCEPARENTIDCOLUMN_
+			</if>
+			<if test="sourceTreeIdColumn != null">
+				,SOURCETREEIDCOLUMN_
+			</if>
+			<if test="sourceTextColumn != null">
+				,SOURCETEXTCOLUMN_
+			</if>
+			<if test="sourceWbsIndexColumn != null">
+				,SOURCEWBSINDEXCOLUMN_
+			</if>
+			<if test="sourceDatabaseIds != null">
+				,SOURCEDATABASEIDS_
+			</if>
+			<if test="sqlCriteria != null">
+				,SQLCRITERIA_
+			</if>
+			<if test="targetTableName != null">
+				,TARGETTABLENAME_
+			</if>
+			<if test="targetDatabaseId != null">
+				,TARGETDATABASEID_
+			</if>
+			<if test="createTableFlag != null">
+				,CREATETABLEFLAG_
+			</if>
+			<if test="genNewPrimaryKey != null">
+				,GENNEWPRIMARYKEY_
+			</if>
+			<if test="genByMonth != null">
+				,GENBYMONTH_ 
+			</if>
+			<if test="syntheticFlag != null">
+				,SYNTHETICFLAG_
+			</if>
+			<if test="scheduleFlag != null">
+				,SCHEDULEFLAG_
+			</if>
+			<if test="deleteFetch != null">
+				,DELETEFETCH_
+			</if>
+			<if test="jobNo != null">
+				,JOBNO_
+			</if>
+			<if test="syncStatus != null">
+				,SYNCSTATUS_
+			</if>
+			<if test="syncTime != null">
+				,SYNCTIME_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceTableName != null">
+				,#{sourceTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceIdColumn != null">
+				,#{sourceIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceIndexIdColumn != null">
+				,#{sourceIndexIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceParentIdColumn != null">
+				,#{sourceParentIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceTreeIdColumn != null">
+				,#{sourceTreeIdColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceTextColumn != null">
+				,#{sourceTextColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceWbsIndexColumn != null">
+				,#{sourceWbsIndexColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="sourceDatabaseIds != null">
+				,#{sourceDatabaseIds, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlCriteria != null">
+				,#{sqlCriteria, jdbcType=VARCHAR}
+			</if>
+			<if test="targetTableName != null">
+				,#{targetTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="targetDatabaseId != null">
+				,#{targetDatabaseId, jdbcType=BIGINT}
+			</if>
+			<if test="createTableFlag != null">
+				,#{createTableFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="scheduleFlag != null">
+				,#{scheduleFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="genNewPrimaryKey != null">
+				,#{genNewPrimaryKey, jdbcType=VARCHAR}
+			</if>
+			<if test="genByMonth != null">
+				,#{genByMonth, jdbcType=VARCHAR}
+			</if>
+			<if test="syntheticFlag != null">
+				,#{syntheticFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFetch != null">
+				,#{deleteFetch, jdbcType=VARCHAR}
+			</if>
+			<if test="jobNo != null">
+				,#{jobNo, jdbcType=VARCHAR}
+			</if>
+			<if test="syncStatus != null">
+				,#{syncStatus, jdbcType=INTEGER}
+			</if>
+			<if test="syncTime != null">
+				,#{syncTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableSynthetic" parameterType="java.util.List">
+		insert into SYS_TREETABLE_SYNTHETIC (
+		ID_
+		,NAME_
+		,TITLE_
+		,TYPE_
+		,SOURCETABLENAME_
+		,SOURCEIDCOLUMN_
+		,SOURCEINDEXIDCOLUMN_
+		,SOURCEPARENTIDCOLUMN_
+		,SOURCETREEIDCOLUMN_
+		,SOURCETEXTCOLUMN_
+		,SOURCEWBSINDEXCOLUMN_
+		,SOURCEDATABASEIDS_
+		,SQLCRITERIA_
+		,TARGETTABLENAME_
+		,TARGETDATABASEID_
+		,CREATETABLEFLAG_
+		,GENNEWPRIMARYKEY_
+		,GENBYMONTH_ 
+		,SYNTHETICFLAG_
+		,SCHEDULEFLAG_
+		,DELETEFETCH_
+		,JOBNO_
+		,SYNCSTATUS_
+		,SYNCTIME_
+		,SORTNO_
+		,LOCKED_
+		,CREATEBY_
+		,CREATETIME_
+		,UPDATEBY_
+		,UPDATETIME_
+		) values
+		<foreach collection="list" item="treeTableSynthetic" index="index"
+			separator=",">
+			(
+			#{treeTableSynthetic.id, jdbcType=BIGINT}
+			,#{treeTableSynthetic.name, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.title, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.type, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTableName, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceIndexIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceParentIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTreeIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTextColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceWbsIndexColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceDatabaseIds, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sqlCriteria, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.targetTableName, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.targetDatabaseId, jdbcType=BIGINT}
+			,#{treeTableSynthetic.createTableFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.genNewPrimaryKey, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.genByMonth, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.syntheticFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.scheduleFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.deleteFetch, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.jobNo, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.syncStatus, jdbcType=INTEGER}
+			,#{treeTableSynthetic.syncTime, jdbcType=TIMESTAMP}
+			,#{treeTableSynthetic.sortNo, jdbcType=INTEGER}
+			,#{treeTableSynthetic.locked, jdbcType=INTEGER}
+			,#{treeTableSynthetic.createBy, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.createTime, jdbcType=TIMESTAMP}
+			,#{treeTableSynthetic.updateBy, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertTreeTableSynthetic_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="treeTableSynthetic" index="index">
+			insert into SYS_TREETABLE_SYNTHETIC (
+			ID_
+			,NAME_
+			,TITLE_
+			,TYPE_
+			,SOURCETABLENAME_
+			,SOURCEIDCOLUMN_
+			,SOURCEINDEXIDCOLUMN_
+			,SOURCEPARENTIDCOLUMN_
+			,SOURCETREEIDCOLUMN_
+			,SOURCETEXTCOLUMN_
+			,SOURCEWBSINDEXCOLUMN_
+			,SOURCEDATABASEIDS_
+			,SQLCRITERIA_
+			,TARGETTABLENAME_
+			,TARGETDATABASEID_
+			,CREATETABLEFLAG_
+			,GENNEWPRIMARYKEY_
+			,GENBYMONTH_ 
+			,SYNTHETICFLAG_
+			,SCHEDULEFLAG_
+			,DELETEFETCH_
+			,JOBNO_
+			,SYNCSTATUS_
+			,SYNCTIME_
+			,SORTNO_
+			,LOCKED_
+			,CREATEBY_
+			,CREATETIME_
+			,UPDATEBY_
+			,UPDATETIME_
+			) values
+			(
+			#{treeTableSynthetic.id,
+			jdbcType=BIGINT}
+			,#{treeTableSynthetic.name,
+			jdbcType=VARCHAR}
+			,#{treeTableSynthetic.title, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.type, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTableName, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceIndexIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceParentIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTreeIdColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceTextColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceWbsIndexColumn, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sourceDatabaseIds, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.sqlCriteria, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.targetTableName, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.targetDatabaseId, jdbcType=BIGINT}
+			,#{treeTableSynthetic.createTableFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.genNewPrimaryKey, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.genByMonth, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.syntheticFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.scheduleFlag, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.deleteFetch, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.jobNo, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.syncStatus, jdbcType=INTEGER}
+			,#{treeTableSynthetic.syncTime, jdbcType=TIMESTAMP}
+			,#{treeTableSynthetic.sortNo, jdbcType=INTEGER}
+			,#{treeTableSynthetic.locked, jdbcType=INTEGER}
+			,#{treeTableSynthetic.createBy, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.createTime, jdbcType=TIMESTAMP}
+			,#{treeTableSynthetic.updateBy, jdbcType=VARCHAR}
+			,#{treeTableSynthetic.updateTime, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateTreeTableSynthetic" parameterType="com.glaf.datamgr.domain.TreeTableSynthetic">
+		update SYS_TREETABLE_SYNTHETIC
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceTableName != null">
+				SOURCETABLENAME_ = #{sourceTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceIdColumn != null">
+				SOURCEIDCOLUMN_ = #{sourceIdColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="sourceIndexIdColumn != null">
+				SOURCEINDEXIDCOLUMN_ = #{sourceIndexIdColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceParentIdColumn != null">
+				SOURCEPARENTIDCOLUMN_ = #{sourceParentIdColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceTreeIdColumn != null">
+				SOURCETREEIDCOLUMN_ = #{sourceTreeIdColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceTextColumn != null">
+				SOURCETEXTCOLUMN_ = #{sourceTextColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceWbsIndexColumn != null">
+				SOURCEWBSINDEXCOLUMN_ = #{sourceWbsIndexColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sourceDatabaseIds != null">
+				SOURCEDATABASEIDS_ = #{sourceDatabaseIds,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="sqlCriteria != null">
+				SQLCRITERIA_ = #{sqlCriteria, jdbcType=VARCHAR},
+			</if>
+			<if test="targetTableName != null">
+				TARGETTABLENAME_ = #{targetTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="targetDatabaseId != null">
+				TARGETDATABASEID_ = #{targetDatabaseId, jdbcType=BIGINT},
+			</if>
+			<if test="createTableFlag != null">
+				CREATETABLEFLAG_ = #{createTableFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleFlag != null">
+				SCHEDULEFLAG_ = #{scheduleFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="genNewPrimaryKey != null">
+				GENNEWPRIMARYKEY_ = #{genNewPrimaryKey,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="genByMonth != null">
+				GENBYMONTH_ = #{genByMonth, jdbcType=VARCHAR},
+			</if>
+			<if test="syntheticFlag != null">
+				SYNTHETICFLAG_ = #{syntheticFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFetch != null">
+				DELETEFETCH_ = #{deleteFetch, jdbcType=VARCHAR},
+			</if>
+			<if test="syncStatus != null">
+				SYNCSTATUS_ = #{syncStatus, jdbcType=INTEGER},
+			</if>
+			<if test="syncTime != null">
+				SYNCTIME_ = #{syncTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<update id="updateTreeTableSyntheticStatus" parameterType="com.glaf.datamgr.domain.TreeTableSynthetic">
+
+		update SYS_TREETABLE_SYNTHETIC
+		set
+		SYNCSTATUS_ = #{syncStatus, jdbcType=INTEGER},
+		SYNCTIME_ = #{syncTime, jdbcType=TIMESTAMP}
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<update id="resetAllTreeTableSyntheticStatus">
+
+		update
+		SYS_TREETABLE_SYNTHETIC
+		set SYNCSTATUS_ = 0,
+		SYNCTIME_ = null
+		where LOCKED_ = 0
+		and DELETEFLAG_ = 0
+
+	</update>
+
+
+	<delete id="deleteTreeTableSyntheticById" parameterType="long">
+		delete
+		from SYS_TREETABLE_SYNTHETIC
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteTreeTableSynthetics" parameterType="com.glaf.datamgr.query.TreeTableSyntheticQuery">
+		delete from SYS_TREETABLE_SYNTHETIC
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getTreeTableSyntheticById" parameterType="long"
+		resultMap="treeTableSyntheticResultMap">
+		select * from SYS_TREETABLE_SYNTHETIC where ID_ = #{id}
+	</select>
+
+
+	<select id="getTreeTableSynthetics" parameterType="com.glaf.datamgr.query.TreeTableSyntheticQuery"
+		resultMap="treeTableSyntheticResultMap">
+		select distinct E.*
+		<include refid="selectTreeTableSyntheticsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTreeTableSyntheticCount" parameterType="com.glaf.datamgr.query.TreeTableSyntheticQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTreeTableSyntheticsSql" />
+	</select>
+
+
+	<sql id="selectTreeTableSyntheticsSql">
+
+		from SYS_TREETABLE_SYNTHETIC E
+
+		<where>
+			1 = 1
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="sourceTableName != null and sourceTableName != '' ">
+				and E.SOURCETABLENAME_ = #{sourceTableName}
+			</if>
+
+			<if test="sourceTableNameLike != null and sourceTableNameLike != '' ">
+				and E.SOURCETABLENAME_ like #{sourceTableNameLike}
+			</if>
+
+			<if test="targetTableName != null and targetTableName != '' ">
+				and E.TARGETTABLENAME_ = #{targetTableName}
+			</if>
+
+			<if test="targetTableNameLike != null and targetTableNameLike != '' ">
+				and E.TARGETTABLENAME_ like #{targetTableNameLike}
+			</if>
+
+			<if test="syntheticFlag != null and syntheticFlag != '' ">
+				and E.SYNTHETICFLAG_ = #{syntheticFlag}
+			</if>
+
+            <if test="scheduleFlag != null and scheduleFlag != '' ">
+				and E.SCHEDULEFLAG_ = #{scheduleFlag}
+			</if>
+			
+			<if test="syncStatus != null">
+				and E.SYNCSTATUS_ = #{syncStatus}
+			</if>
+
+			<if test="syncTimeGreaterThanOrEqual != null">
+				and E.SYNCTIME_ &gt;= #{syncTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="syncTimeLessThanOrEqual != null">
+				and E.SYNCTIME_ &lt;= #{syncTimeLessThanOrEqual}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

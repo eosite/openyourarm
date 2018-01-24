@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.datamgr.mapper.SqlConditionMapper">
+
+	<resultMap id="sqlConditionResultMap" type="com.glaf.datamgr.domain.SqlCondition">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="sqlDefId" column="SQLDEFID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="required" column="REQUIRED_" jdbcType="VARCHAR" />
+		<result property="collection" column="COLLECTION_" jdbcType="VARCHAR" />
+		<result property="operator" column="OPERATOR_" jdbcType="VARCHAR" />
+		<result property="segment" column="SEGMENT_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertSqlCondition" parameterType="com.glaf.datamgr.domain.SqlCondition">
+		insert into SYS_SQL_CONDITION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="sqlDefId != null">
+				,SQLDEFID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="required != null">
+				,REQUIRED_
+			</if>
+			<if test="collection != null">
+				,COLLECTION_
+			</if>
+			<if test="operator != null">
+				,OPERATOR_
+			</if>
+			<if test="segment != null">
+				,SEGMENT_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="sqlDefId != null">
+				,#{sqlDefId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="required != null">
+				,#{required, jdbcType=VARCHAR}
+			</if>
+			<if test="collection != null">
+				,#{collection, jdbcType=VARCHAR}
+			</if>
+			<if test="operator != null">
+				,#{operator, jdbcType=VARCHAR}
+			</if>
+			<if test="segment != null">
+				,#{segment, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateSqlCondition" parameterType="com.glaf.datamgr.domain.SqlCondition">
+		update SYS_SQL_CONDITION
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="sqlDefId != null">
+				SQLDEFID_ = #{sqlDefId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="required != null">
+				REQUIRED_ = #{required, jdbcType=VARCHAR},
+			</if>
+			<if test="collection != null">
+				COLLECTION_ = #{collection, jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				OPERATOR_ = #{operator, jdbcType=VARCHAR},
+			</if>
+			<if test="segment != null">
+				SEGMENT_ = #{segment, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteSqlConditionById" parameterType="long">
+		delete from
+		SYS_SQL_CONDITION
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteSqlConditions" parameterType="com.glaf.datamgr.query.SqlConditionQuery">
+		delete from SYS_SQL_CONDITION
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getSqlConditionById" parameterType="long"
+		resultMap="sqlConditionResultMap">
+		select * from SYS_SQL_CONDITION where ID_ = #{id}
+	</select>
+
+
+	<select id="getSqlConditions" parameterType="com.glaf.datamgr.query.SqlConditionQuery"
+		resultMap="sqlConditionResultMap">
+		select E.*
+		<include refid="selectSqlConditionsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATETIME_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getSqlConditionCount" parameterType="com.glaf.datamgr.query.SqlConditionQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSqlConditionsSql" />
+	</select>
+
+
+	<sql id="selectSqlConditionsSql">
+
+		from SYS_SQL_CONDITION E
+
+		<where>
+			1 = 1
+
+			<if test="sqlDefId != null">
+				and E.SQLDEFID_ = #{sqlDefId}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

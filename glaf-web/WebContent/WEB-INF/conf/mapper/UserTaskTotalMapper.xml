@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.base.usertask.mapper.UserTaskTotalMapper">
+
+	<resultMap id="userTaskTotalResultMap" type="com.glaf.base.usertask.domain.UserTaskTotal">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="userId" column="USERID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="databaseId" column="DATABASEID_" jdbcType="BIGINT" />
+		<result property="total" column="TOTAL_" jdbcType="INTEGER" />
+		<result property="finished" column="FINISHED_" jdbcType="INTEGER" />
+		<result property="pending" column="PENDING_" jdbcType="INTEGER" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertUserTaskTotal" parameterType="com.glaf.base.usertask.domain.UserTaskTotal">
+		insert into USER_TASK_TOTAL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="userId != null">
+				,USERID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="databaseId != null">
+				,DATABASEID_
+			</if>
+			<if test="total != null">
+				,TOTAL_
+			</if>
+			<if test="finished != null">
+				,FINISHED_
+			</if>
+			<if test="pending != null">
+				,PENDING_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="userId != null">
+				,#{userId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="databaseId != null">
+				,#{databaseId, jdbcType=BIGINT}
+			</if>
+			<if test="total != null">
+				,#{total, jdbcType=INTEGER}
+			</if>
+			<if test="finished != null">
+				,#{finished, jdbcType=INTEGER}
+			</if>
+			<if test="pending != null">
+				,#{pending, jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertUserTaskTotal" parameterType="java.util.List">
+		insert into USER_TASK_TOTAL (
+		ID_
+		,USERID_
+		,NAME_
+		,DATABASEID_
+		,TOTAL_
+		,FINISHED_
+		,PENDING_
+		,TYPE_
+		,CREATETIME_
+		,CREATEBY_
+		) values
+		<foreach collection="list" item="userTaskTotal" index="index"
+			separator=",">
+			(
+			#{userTaskTotal.id, jdbcType=VARCHAR}
+			,#{userTaskTotal.userId, jdbcType=VARCHAR}
+			,#{userTaskTotal.name,
+			jdbcType=VARCHAR}
+			,#{userTaskTotal.databaseId, jdbcType=BIGINT}
+			,#{userTaskTotal.total, jdbcType=INTEGER}
+			,#{userTaskTotal.finished,
+			jdbcType=INTEGER}
+			,#{userTaskTotal.pending, jdbcType=INTEGER}
+			,#{userTaskTotal.type, jdbcType=VARCHAR}
+			,#{userTaskTotal.createTime,
+			jdbcType=TIMESTAMP}
+			,#{userTaskTotal.createBy, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertUserTaskTotal_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="userTaskTotal" index="index">
+			insert
+			into USER_TASK_TOTAL (
+			ID_
+			,USERID_
+			,NAME_
+			,DATABASEID_
+			,TOTAL_
+			,FINISHED_
+			,PENDING_
+			,TYPE_
+			,CREATETIME_
+			,CREATEBY_
+			) values (
+			#{userTaskTotal.id,
+			jdbcType=VARCHAR}
+			,#{userTaskTotal.userId, jdbcType=VARCHAR}
+			,#{userTaskTotal.name, jdbcType=VARCHAR}
+			,#{userTaskTotal.databaseId,
+			jdbcType=BIGINT}
+			,#{userTaskTotal.total, jdbcType=INTEGER}
+			,#{userTaskTotal.finished, jdbcType=INTEGER}
+			,#{userTaskTotal.pending, jdbcType=INTEGER}
+			,#{userTaskTotal.type,
+			jdbcType=VARCHAR}
+			,#{userTaskTotal.createTime, jdbcType=TIMESTAMP}
+			,#{userTaskTotal.createBy, jdbcType=VARCHAR}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updateUserTaskTotal" parameterType="com.glaf.base.usertask.domain.UserTaskTotal">
+		update USER_TASK_TOTAL
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="userId != null">
+				USERID_ = #{userId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="databaseId != null">
+				DATABASEID_ = #{databaseId, jdbcType=BIGINT},
+			</if>
+			<if test="total != null">
+				TOTAL_ = #{total, jdbcType=INTEGER},
+			</if>
+			<if test="finished != null">
+				FINISHED_ = #{finished, jdbcType=INTEGER},
+			</if>
+			<if test="pending != null">
+				PENDING_ = #{pending, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteUserTaskTotalById" parameterType="string">
+		delete from
+		USER_TASK_TOTAL
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteByDatabaseId" parameterType="long">
+		delete from
+		USER_TASK_TOTAL
+		where DATABASEID_ = #{databaseId}
+	</delete>
+
+
+	<select id="getUserTaskTotalById" parameterType="string"
+		resultMap="userTaskTotalResultMap">
+		select * from USER_TASK_TOTAL where ID_ = #{id}
+	</select>
+
+
+	<select id="getUserTaskTotals" parameterType="com.glaf.base.usertask.query.UserTaskTotalQuery"
+		resultMap="userTaskTotalResultMap">
+		select distinct E.*
+		<include refid="selectUserTaskTotalsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getUserTaskTotalCount" parameterType="com.glaf.base.usertask.query.UserTaskTotalQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectUserTaskTotalsSql" />
+	</select>
+
+
+	<sql id="selectUserTaskTotalsSql">
+
+		from USER_TASK_TOTAL E
+
+		<where>
+			1 = 1
+
+			<if test="userId != null and userId != '' ">
+				and E.USERID_ = #{userId}
+			</if>
+
+			<if test="userIds != null and userIds.size() &gt; 0">
+				and E.USERID_ IN
+				<foreach item="x_userId" index="index" collection="userIds"
+					open="(" separator="," close=")">
+					#{x_userId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="databaseId != null">
+				and E.DATABASEID_ = #{databaseId}
+			</if>
+
+			<if test="databaseIds != null and databaseIds.size() &gt; 0">
+				and E.DATABASEID_ IN
+				<foreach item="x_databaseId" index="index" collection="databaseIds"
+					open="(" separator="," close=")">
+					#{x_databaseId}
+				</foreach>
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

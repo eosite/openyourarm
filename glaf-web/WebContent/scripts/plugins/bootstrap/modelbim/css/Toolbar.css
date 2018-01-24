@@ -1,0 +1,630 @@
+
+.toolbar-tools {
+    background: rgba(220,224,224,1.0);
+    border: 1px solid black;
+    border-radius: 6px;
+    margin: 0;
+    padding: 0;
+    height: 42px;
+    opacity: 0.6;
+}
+
+.carsview-tool {
+    width: 34px;
+    height: 34px;
+    margin: 5px;
+    display: inline-block;
+    user-select: none;
+}
+
+
+.active-tool {
+    border-radius: 1px;
+    border-color: #888888;
+    border-style: solid;
+    border-width: 1px;
+    margin: 4px;
+    background-color:#dcdada;
+    box-shadow: 0px 0px 6px #888888;
+}
+
+.tool-separator {
+    width: 1px;
+    height: 100%;
+    background-color: black;
+    user-select: none;
+    pointer-events: none;
+    position: relative;
+    top: -2px;
+    display: inline-block;
+}
+
+.toolbar-submenu {
+    background: rgba(255,255,255,1.0);
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 3px;
+    z-index: 50000;
+    user-select: none;
+}
+
+.toolbar-modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 9000;
+    margin: 0;
+    padding: 0;
+    border: none;
+    top: 0;
+    left: 0;
+}
+
+.submenu-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.slider-menu {
+    height: 125px;
+    width: 30px;
+}
+
+.toolbar-slider {
+    left: 8px;
+    top: 15px;
+}
+
+
+.toolbar-cp-plane {
+    margin-bottom: 4px;
+    background-color: white;
+}
+
+    .toolbar-cp-plane.selected {
+        background-color: lightblue;
+    }
+
+    .toolbar-cp-plane.inverted {
+        background-color: blue;
+    }
+
+
+.submenus {
+    border: 1px solid #020203;
+}
+
+    .submenus:after, .submenus:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .submenus:after {
+        border-color: rgba(136, 183, 213, 0);
+        border-top-color: rgba(255,255,255,1);
+        border-width: 7px;
+        left: 50%;
+        margin-left: -7px;
+    }
+
+    .submenus:before {
+        border-color: rgba(2, 2, 3, 0);
+        border-top-color: #020203;
+        border-width: 8px;
+        left: 50%;
+        margin-left: -8px;
+    }
+
+
+.submenu-icon.disabled {
+    opacity: 0.2;
+}
+
+
+.tool-icon, .submenu-icon {
+    background: url(images/toolbarsprite.png?v=2016U1) no-repeat top left;
+}
+
+/* PASTSE SPRITESHEET FROM  https://draeton.github.io/stitches/ here
+    note you will need to do some renaming of the output in order to make the names match up.
+    ".sprie-" -> ".toolbar-"
+    "-hover" -> ".hover"
+*/
+
+.toolbar-back {
+    width: 32px;
+    height: 32px;
+    background-position: -272px -34px;
+}
+
+    .toolbar-back.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-bottom {
+    width: 32px;
+    height: 32px;
+    background-position: -204px -34px;
+}
+
+    .toolbar-bottom.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-camera {
+    width: 32px;
+    height: 32px;
+    background-position: -272px -34px;
+}
+
+    .toolbar-camera.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-click {
+    width: 32px;
+    height: 32px;
+    background-position: -102px -0px;
+}
+
+    .toolbar-click.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-cuttingplane {
+    width: 32px;
+    height: 32px;
+    background-position: -238px -0px;
+}
+
+    .toolbar-cuttingplane.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+
+
+.toolbar-cuttingplane-x {
+    width: 32px;
+    height: 32px;
+    background-position: -0px -136px;
+}
+.toolbar-cuttingplane-x.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-y {
+    width: 32px;
+    height: 32px;
+    background-position: -68px -136px;
+}
+.toolbar-cuttingplane-y.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-z {
+    width: 32px;
+    height: 32px;
+    background-position: -306px -102px;
+}
+.toolbar-cuttingplane-z.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-face {
+    width: 32px;
+    height: 32px;
+    background-position: -34px -0px;
+}
+.toolbar-cuttingplane-face.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-section {
+    width: 32px;
+    height: 32px;
+    background-position: -272px -102px;
+}
+.toolbar-cuttingplane-section.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-toggle {
+    width: 32px;
+    height: 32px;
+    background-position: -68px -136px;
+}
+.toolbar-cuttingplane-toggle.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-cuttingplane-reset {
+    width: 32px;
+    height: 32px;
+    background-position: -102px -136px;
+}
+
+.toolbar-cuttingplane-reset.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-explode {
+    width: 32px;
+    height: 32px;
+    background-position: -204px -0px;
+}
+
+    .toolbar-explode.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-face {
+    width: 32px;
+    height: 32px;
+    background-position: -34px -0px;
+}
+
+    .toolbar-face.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-front {
+    width: 32px;
+    height: 32px;
+    background-position: -238px -34px;
+}
+
+    .toolbar-front.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-hidden-line {
+    width: 32px;
+    height: 32px;
+    background-position: -68px -68px;
+}
+
+    .toolbar-hidden-line.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-home {
+    width: 32px;
+    height: 32px;
+    background-position: -0px -0px;
+}
+
+    .toolbar-home.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-iso {
+    width: 32px;
+    height: 32px;
+    background-position: -0px -34px;
+}
+
+    .toolbar-iso.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-left {
+    width: 32px;
+    height: 32px;
+    background-position: -136px -34px;
+}
+
+    .toolbar-left.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-measure-angle {
+    width: 32px;
+    height: 32px;
+    background-position: -306px -68px;
+}
+
+    .toolbar-measure-angle.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-measure-distance {
+    width: 32px;
+    height: 32px;
+    background-position: -0px -102px;
+}
+
+    .toolbar-measure-distance.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-measure-edge {
+    width: 32px;
+    height: 32px;
+    background-position: -34px -102px;
+}
+
+    .toolbar-measure-edge.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-measure-point {
+    width: 32px;
+    height: 32px;
+    background-position: -68px -102px;
+}
+
+    .toolbar-measure-point.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-note {
+    width: 32px;
+    height: 32px;
+    background-position: -272px -68px;
+}
+
+    .toolbar-note.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-orbit {
+    width: 32px;
+    height: 32px;
+    background-position: -170px -0px;
+}
+
+    .toolbar-orbit.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-ortho {
+    width: 32px;
+    height: 32px;
+    background-position: -68px -34px;
+}
+
+    .toolbar-ortho.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-persp {
+    width: 32px;
+    height: 32px;
+    background-position: -102px -34px;
+}
+
+    .toolbar-persp.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-redline-circle {
+    width: 32px;
+    height: 32px;
+    background-position: -136px -68px;
+}
+
+    .toolbar-redline-circle.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-redline-freehand {
+    width: 32px;
+    height: 32px;
+    background-position: -238px -68px;
+}
+
+    .toolbar-redline-freehand.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-redline-note {
+    width: 32px;
+    height: 32px;
+    background-position: -204px -68px;
+}
+
+    .toolbar-redline-note.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-redline-rectangle {
+    width: 32px;
+    height: 32px;
+    background-position: -170px -68px;
+}
+
+    .toolbar-redline-rectangle.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-right {
+    width: 32px;
+    height: 32px;
+    background-position: -170px -34px;
+}
+
+    .toolbar-right.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-select {
+    width: 32px;
+    height: 32px;
+    background-position: -102px -102px;
+}
+.toolbar-select.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+.toolbar-area-select {
+    width: 32px;
+    height: 32px;
+    background-position: -136px -102px;
+}
+
+.toolbar-area-select.hover {
+    width: 32px;
+    height: 32px;
+    background-color:#dcdada;
+}
+
+.toolbar-settings {
+    width: 32px;
+    height: 32px;
+    background-position: -306px -0px;
+}
+
+    .toolbar-settings.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-shaded {
+    width: 32px;
+    height: 32px;
+    background-position: -34px -68px;
+}
+
+    .toolbar-shaded.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-snapshot {
+    width: 32px;
+    height: 32px;
+    background-position: -272px -0px;
+}
+
+    .toolbar-snapshot.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-top {
+    width: 32px;
+    height: 32px;
+    background-position: -306px -34px;
+}
+
+    .toolbar-top.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-turntable {
+    width: 32px;
+    height: 32px;
+    background-position: -204px -102px;
+}
+
+    .toolbar-turntable.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-walk {
+    width: 32px;
+    height: 32px;
+    background-position: -170px -102px;
+}
+
+    .toolbar-walk.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-wireframe {
+    width: 32px;
+    height: 32px;
+    background-position: -102px -68px;
+}
+
+    .toolbar-wireframe.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }
+
+.toolbar-wireframeshaded {
+    width: 32px;
+    height: 32px;
+    background-position: -0px -68px;
+}
+
+    .toolbar-wireframeshaded.hover {
+        width: 32px;
+        height: 32px;
+        background-color:#dcdada;
+    }

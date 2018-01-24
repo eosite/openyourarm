@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.deployment.mapper.TemplateVariableMapper">
+
+	<resultMap id="templateVariableResultMap" type="com.glaf.deployment.domain.TemplateVariable">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="templateId" column="TEMPLATEID_" jdbcType="BIGINT" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="mapping" column="MAPPING_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+		<result property="initValue" column="INITVALUE_" jdbcType="VARCHAR" />
+		<result property="multiple" column="MULTIPLE_" jdbcType="INTEGER" />
+		<result property="operation" column="OPERATION_" jdbcType="VARCHAR" />
+		<result property="required" column="REQUIRED_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="active" column="ACTIVE_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertTemplateVariable" parameterType="com.glaf.deployment.domain.TemplateVariable">
+		insert into DC_TEMPLATE_VAR
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="templateId != null">
+				,TEMPLATEID_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="mapping != null">
+				,MAPPING_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_
+			</if>
+			<if test="initValue != null">
+				,INITVALUE_
+			</if>
+			<if test="multiple != null">
+				,MULTIPLE_
+			</if>
+			<if test="operation != null">
+				,OPERATION_
+			</if>
+			<if test="required != null">
+				,REQUIRED_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="active != null">
+				,ACTIVE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="templateId != null">
+				,#{templateId, jdbcType=BIGINT}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="mapping != null">
+				,#{mapping, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="initValue != null">
+				,#{initValue, jdbcType=VARCHAR}
+			</if>
+			<if test="multiple != null">
+				,#{multiple, jdbcType=INTEGER}
+			</if>
+			<if test="operation != null">
+				,#{operation, jdbcType=VARCHAR}
+			</if>
+			<if test="required != null">
+				,#{required, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="active != null">
+				,#{active, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateTemplateVariable" parameterType="com.glaf.deployment.domain.TemplateVariable">
+		update DC_TEMPLATE_VAR
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="templateId != null">
+				TEMPLATEID_ = #{templateId, jdbcType=BIGINT},
+			</if>
+			<if test="category != null">
+				CATEGORY_ = #{category, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="mapping != null">
+				MAPPING_ = #{mapping, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="initValue != null">
+				INITVALUE_ = #{initValue, jdbcType=VARCHAR},
+			</if>
+			<if test="multiple != null">
+				MULTIPLE_ = #{multiple, jdbcType=INTEGER},
+			</if>
+			<if test="operation != null">
+				OPERATION_ = #{operation, jdbcType=VARCHAR},
+			</if>
+			<if test="required != null">
+				REQUIRED_ = #{required, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="active != null">
+				ACTIVE_ = #{active, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteTemplateVariableById" parameterType="long">
+		delete
+		from DC_TEMPLATE_VAR
+		where ID_ = #{id}
+	</delete>
+
+
+	<select id="getTemplateVariableById" parameterType="long"
+		resultMap="templateVariableResultMap">
+		select * from DC_TEMPLATE_VAR where ID_ = #{id}
+	</select>
+
+
+	<select id="getTemplateVariables" parameterType="com.glaf.deployment.query.TemplateVariableQuery"
+		resultMap="templateVariableResultMap">
+		select distinct E.*
+		<include refid="selectTemplateVariablesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getTemplateVariableCount" parameterType="com.glaf.deployment.query.TemplateVariableQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectTemplateVariablesSql" />
+	</select>
+
+
+	<sql id="selectTemplateVariablesSql">
+
+		from DC_TEMPLATE_VAR E
+
+		<where>
+			1 = 1
+
+			<if test="templateId != null">
+				and E.TEMPLATEID_ = #{templateId}
+			</if>
+
+			<if test="templateIds != null and templateIds.size() &gt; 0">
+				and E.TEMPLATEID_ IN
+				<foreach item="x_templateId" index="index" collection="templateIds"
+					open="(" separator="," close=")">
+					#{x_templateId}
+				</foreach>
+			</if>
+
+			<if test="category != null and category != '' ">
+				and E.CATEGORY_ = #{category}
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="mapping != null and mapping != '' ">
+				and E.MAPPING_ = #{mapping}
+			</if>
+
+			<if test="mappingLike != null and mappingLike != '' ">
+				and E.MAPPING_ like #{mappingLike}
+			</if>
+
+			<if test="title != null and title != '' ">
+				and E.TITLE_ = #{title}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+			</if>
+
+			<if test="multiple != null">
+				and E.MULTIPLE_ = #{multiple}
+			</if>
+
+			<if test="operation != null and operation != '' ">
+				and E.OPERATION_ = #{operation}
+			</if>
+
+			<if test="required != null and required != '' ">
+				and E.REQUIRED_ = #{required}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="active != null and active != '' ">
+				and E.ACTIVE_ = #{active}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

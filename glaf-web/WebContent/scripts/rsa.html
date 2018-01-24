@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>RSA</title>
+  <script type="text/javascript" src="jsencrypt.min.js"></script>
+  <script type="text/javascript">
+      function submitENC(){
+           var key = document.getElementById("key").value;
+		   var word = document.getElementById("word").value;
+		   var crypt = new JSEncrypt();
+		   crypt.setPrivateKey(key);
+		   var str = crypt.decrypt(word);
+           document.getElementById("data").value=str;
+	  }
+  </script>
+ </head>
+ <body>
+  <form name="iForm" method="post" action="">
+	rsa key:<textarea id="key" name="key" rows="8" cols="66"></textarea><br><br>
+	word:<input type="text" id="word" name="word" size="40"><br><br>
+	decrypt:<textarea id="data" name="data" rows="4" cols="66"></textarea><br><br>
+	<input type="button" value="OK" onclick="submitENC();">
+  </form>
+ </body>
+</html>

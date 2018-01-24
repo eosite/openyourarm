@@ -1,0 +1,163 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.glaf.base.modules.sys.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.glaf.core.dao.EntityDAO;
+import com.glaf.core.id.IdGenerator;
+import com.glaf.base.modules.sys.model.CellTreedotDot;
+import com.glaf.base.modules.sys.mapper.MyCellTreedotDotMapper;
+import com.glaf.base.modules.sys.query.CellTreedotDotQuery;
+import com.glaf.base.modules.sys.service.ICellTreedotDotService;
+
+@Service("cellTreedotDotService")
+@Transactional(readOnly = true)
+public class CellTreedotDotServiceImpl implements ICellTreedotDotService {
+	protected static final Log logger = LogFactory
+			.getLog(CellTreedotDotServiceImpl.class);
+
+	protected EntityDAO entityDAO;
+
+	protected IdGenerator idGenerator;
+
+	protected SqlSession sqlSession;
+
+	protected MyCellTreedotDotMapper myCellTreedotDotMapper;
+
+	public CellTreedotDotServiceImpl() {
+
+	}
+
+	public int count(CellTreedotDotQuery query) {
+		return myCellTreedotDotMapper
+				.getCellTreedotDotCountByQueryCriteria(query);
+	}
+
+	@Transactional
+	public void deleteById(String id) {
+		myCellTreedotDotMapper.deleteCellTreedotDotById(id);
+	}
+
+	public CellTreedotDot getCellTreedotDot(String id) {
+		CellTreedotDot cellTreedotDot = myCellTreedotDotMapper
+				.getCellTreedotDotById(id);
+		return cellTreedotDot;
+	}
+
+	/**
+	 * 根据查询参数获取记录总数
+	 * 
+	 * @return
+	 */
+	public int getCellTreedotDotCount(Map<String, Object> parameter) {
+		return myCellTreedotDotMapper.getCellTreedotDotCount(parameter);
+	}
+
+	/**
+	 * 根据查询参数获取记录总数
+	 * 
+	 * @return
+	 */
+	public int getCellTreedotDotCountByQueryCriteria(CellTreedotDotQuery query) {
+		return myCellTreedotDotMapper
+				.getCellTreedotDotCountByQueryCriteria(query);
+	}
+
+	/**
+	 * 根据查询参数获取记录列表
+	 * 
+	 * @return
+	 */
+	public List<CellTreedotDot> getCellTreedotDots(Map<String, Object> parameter) {
+		return myCellTreedotDotMapper.getCellTreedotDots(parameter);
+	}
+
+	/**
+	 * 根据查询参数获取一页的数据
+	 * 
+	 * @return
+	 */
+	public List<CellTreedotDot> getCellTreedotDotsByQueryCriteria(int start,
+			int pageSize, CellTreedotDotQuery query) {
+		RowBounds rowBounds = new RowBounds(start, pageSize);
+		List<CellTreedotDot> rows = sqlSession.selectList(
+				"getCellTreedotDotsByQueryCriteria", query, rowBounds);
+		return rows;
+	}
+
+	public List<CellTreedotDot> list(CellTreedotDotQuery query) {
+		List<CellTreedotDot> list = myCellTreedotDotMapper
+				.getCellTreedotDotsByQueryCriteria(query);
+		return list;
+	}
+
+	@Transactional
+	public void save(CellTreedotDot cellTreedotDot) {
+		if (StringUtils.isEmpty(cellTreedotDot.getId())) {
+			cellTreedotDot.setId(idGenerator.getNextId());
+			// cellTreedotDot.setId(idGenerator.getNextId());
+			// cellTreedotDot.setCreateDate(new Date());
+			myCellTreedotDotMapper.insertCellTreedotDot(cellTreedotDot);
+		} else {
+			CellTreedotDot model = this.getCellTreedotDot(cellTreedotDot
+					.getId());
+			if (model != null) {
+				model.setIndexId(cellTreedotDot.getIndexId());
+				if (cellTreedotDot.getFiledotFileid() != null) {
+					model.setFiledotFileid(cellTreedotDot.getFiledotFileid());
+				}
+				model.setListno(cellTreedotDot.getListno());
+				myCellTreedotDotMapper.updateCellTreedotDot(model);
+			}
+		}
+	}
+
+	@javax.annotation.Resource 
+	public void setMyCellTreedotDotMapper(
+			MyCellTreedotDotMapper myCellTreedotDotMapper) {
+		this.myCellTreedotDotMapper = myCellTreedotDotMapper;
+	}
+
+	@javax.annotation.Resource
+	public void setEntityDAO(EntityDAO entityDAO) {
+		this.entityDAO = entityDAO;
+	}
+
+	@javax.annotation.Resource
+	public void setIdGenerator(IdGenerator idGenerator) {
+		this.idGenerator = idGenerator;
+	}
+
+	@javax.annotation.Resource
+	public void setSqlSession(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
+}
