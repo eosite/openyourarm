@@ -1,0 +1,12 @@
+<#list templateList as template>
+	<#if template?exists>
+		 <li id="${template.dataRole}_${template.id}" tmpid="${template.id}" class="mymedia" style="float: left;cursor:pointer;">
+		   <#if template.imglen?exists && template.imglen&gt;0>
+		   <img class="mymedia-object" style="width:100px;height:100px;" src="${contextPath}/service/designer/${template.id}/getTemplateImage" alt="..." title="${template.name}">
+		   <#else>
+		   <img class="mymedia-object" style="width:100px;height:100px;" src="${contextPath}/images/notfound.jpg" alt="..." title="${template.name}">
+		   </#if>
+		   <div class="mymedia-body"><h4 class="mymedia-heading">${template.name}</h4></div>
+		 </li>
+	</#if>
+</#list>

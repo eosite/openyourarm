@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.chinaiss.mapper.GisInfoMapper">
+
+<resultMap id="gisInfoResultMap"	type="com.glaf.chinaiss.model.GisInfo">
+		<id property="id" column="ID" jdbcType="INTEGER" />
+        <result property="index_id" column="INDEX_ID" jdbcType="VARCHAR"/>
+        <result property="name" column="INDEX_NAME" jdbcType="VARCHAR"/>
+        <result property="parent_id" column="PARENT_ID" jdbcType="INTEGER"/>
+        <result property="bDate" column="bdate" jdbcType="TIMESTAMP"/>
+        <result property="eDate" column="edate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+<select id="getgisInfoListById" 
+		parameterType="string" 
+		resultMap="gisInfoResultMap">
+		select * from TREEPINFO where NODETYPE='0' and index_id = #{id} 
+</select>
+
+<select id="getgisInfoListByName" 
+		parameterType="string" 
+		resultMap="gisInfoResultMap">
+		select * from TREEPINFO where NODETYPE='0' and index_name like '%'+#{name}+'%'
+</select>
+
+<select id="getGisGinttTree" 
+		parameterType="com.glaf.chinaiss.model.GisInfo" 
+		resultMap="gisInfoResultMap">
+		select b.projtype,a.projtype,a.* from TREEPINFO a
+		left join TREEPROJ  b on a.index_id = b.index_id
+		where NODETYPE='0'
+		and not exists(select * from s_treewbs where index_id=a.wbsindex  and (INTSTARTNODE=1 or INTRECEIPT=1))
+		<if test="id != null">
+		and a.id like #{id}+'%'
+		</if>
+		<if test="name != null">
+		and a.index_name like '%'+#{name}+'%'
+		</if>
+		and a.nlevel &lt;=4
+		order by a.index_id,a.projtype
+</select>
+
+<select id="getProjDocNum" 
+	    parameterType="string"
+		resultType="int">
+		select count(id) NUM from cell_fillform where index_id in ( 
+		select index_id from TREEPINFO where id like #{id}+'%' and NODETYPE='0' 
+		)
+	</select>
+</mapper>

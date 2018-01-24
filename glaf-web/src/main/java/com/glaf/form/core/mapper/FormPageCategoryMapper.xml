@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormPageCategoryMapper">
+
+ 	<resultMap id="formPageCategoryResultMap"	type="com.glaf.form.core.domain.FormPageCategory">
+        <id property="id" column="ID_" jdbcType="INTEGER" />
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER"/>
+        <result property="sortNo" column="SORTNO_" jdbcType="INTEGER"/>
+        <result property="locked" column="LOCKED_" jdbcType="INTEGER"/>
+        <result property="permission" column="PERMISSION_" jdbcType="VARCHAR"/>
+        <result property="ext1" column="EXT1_" jdbcType="VARCHAR"/>
+        <result property="ext2" column="EXT2_" jdbcType="VARCHAR"/>
+        <result property="ext3" column="EXT3_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATA_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormPageCategory" parameterType="com.glaf.form.core.domain.FormPageCategory">
+		insert into FORM_PAGE_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_ 
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_ 
+			</if>
+			<if test="locked != null">
+				,LOCKED_ 
+			</if>
+			<if test="permission != null">
+				,PERMISSION_ 
+			</if>
+			<if test="ext1 != null">
+				,EXT1_ 
+			</if>
+			<if test="ext2 != null">
+				,EXT2_ 
+			</if>
+			<if test="ext3 != null">
+				,EXT3_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATA_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="permission != null">
+				,#{permission, jdbcType=VARCHAR}
+			</if>
+			<if test="ext1 != null">
+				,#{ext1, jdbcType=VARCHAR}
+			</if>
+			<if test="ext2 != null">
+				,#{ext2, jdbcType=VARCHAR}
+			</if>
+			<if test="ext3 != null">
+				,#{ext3, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormPageCategory" parameterType="com.glaf.form.core.domain.FormPageCategory">
+		update FORM_PAGE_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="permission != null">
+				PERMISSION_ = #{permission, jdbcType=VARCHAR},
+			</if>
+			<if test="ext1 != null">
+				EXT1_ = #{ext1, jdbcType=VARCHAR},
+			</if>
+			<if test="ext2 != null">
+				EXT2_ = #{ext2, jdbcType=VARCHAR},
+			</if>
+			<if test="ext3 != null">
+				EXT3_ = #{ext3, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATA_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteFormPageCategoryById" parameterType="integer"> 
+        delete from FORM_PAGE_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormPageCategorys" parameterType="com.glaf.form.core.query.FormPageCategoryQuery">
+		delete from FORM_PAGE_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormPageCategoryById" parameterType="integer" resultMap="formPageCategoryResultMap">
+		select * from FORM_PAGE_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormPageCategorys" 
+	    parameterType="com.glaf.form.core.query.FormPageCategoryQuery"
+		resultMap="formPageCategoryResultMap">
+		select distinct E.*
+		<include refid="selectFormPageCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormPageCategoryCount" 
+	    parameterType="com.glaf.form.core.query.FormPageCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormPageCategorysSql" />
+	</select>
+
+
+	<sql id="selectFormPageCategorysSql">
+
+		from FORM_PAGE_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETEFLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETEFLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETEFLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+
+			<if test="sortNo != null">
+				and E.SORTNO_ = #{sortNo}
+            </if>
+
+			<if test="sortNoGreaterThanOrEqual != null">
+				and E.SORTNO_ &gt;= #{sortNoGreaterThanOrEqual}
+            </if>
+
+			<if test="sortNoLessThanOrEqual != null">
+				and E.SORTNO_ &lt;= #{sortNoLessThanOrEqual}
+            </if>
+
+			<if test="sortNos != null and sortNos.size() &gt; 0">
+			    and E.SORTNO_ IN
+                <foreach item="x_sortNo" index="index" collection="sortNos" 
+                     open="(" separator="," close=")">
+                  #{x_sortNo}
+                </foreach>
+			</if>
+      
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+            </if>
+
+			<if test="lockedGreaterThanOrEqual != null">
+				and E.LOCKED_ &gt;= #{lockedGreaterThanOrEqual}
+            </if>
+
+			<if test="lockedLessThanOrEqual != null">
+				and E.LOCKED_ &lt;= #{lockedLessThanOrEqual}
+            </if>
+
+			<if test="lockeds != null and lockeds.size() &gt; 0">
+			    and E.LOCKED_ IN
+                <foreach item="x_locked" index="index" collection="lockeds" 
+                     open="(" separator="," close=")">
+                  #{x_locked}
+                </foreach>
+			</if>
+      
+	        
+			<if test="permission != null and permission != '' ">
+				and E.PERMISSION_ = #{permission}
+            </if>
+
+			<if test="permissionLike != null and permissionLike != '' ">
+				and E.PERMISSION_ like #{permissionLike}
+            </if>
+
+			<if test="permissions != null and permissions.size() &gt; 0">
+			    and E.PERMISSION_ IN
+                <foreach item="x_permission" index="index" collection="permissions" 
+                     open="(" separator="," close=")">
+                  #{x_permission}
+                </foreach>
+			</if>
+	        
+			<if test="ext1 != null and ext1 != '' ">
+				and E.EXT1_ = #{ext1}
+            </if>
+
+			<if test="ext1Like != null and ext1Like != '' ">
+				and E.EXT1_ like #{ext1Like}
+            </if>
+
+			<if test="ext1s != null and ext1s.size() &gt; 0">
+			    and E.EXT1_ IN
+                <foreach item="x_ext1" index="index" collection="ext1s" 
+                     open="(" separator="," close=")">
+                  #{x_ext1}
+                </foreach>
+			</if>
+	        
+			<if test="ext2 != null and ext2 != '' ">
+				and E.EXT2_ = #{ext2}
+            </if>
+
+			<if test="ext2Like != null and ext2Like != '' ">
+				and E.EXT2_ like #{ext2Like}
+            </if>
+
+			<if test="ext2s != null and ext2s.size() &gt; 0">
+			    and E.EXT2_ IN
+                <foreach item="x_ext2" index="index" collection="ext2s" 
+                     open="(" separator="," close=")">
+                  #{x_ext2}
+                </foreach>
+			</if>
+	        
+			<if test="ext3 != null and ext3 != '' ">
+				and E.EXT3_ = #{ext3}
+            </if>
+
+			<if test="ext3Like != null and ext3Like != '' ">
+				and E.EXT3_ like #{ext3Like}
+            </if>
+
+			<if test="ext3s != null and ext3s.size() &gt; 0">
+			    and E.EXT3_ IN
+                <foreach item="x_ext3" index="index" collection="ext3s" 
+                     open="(" separator="," close=")">
+                  #{x_ext3}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATA_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATA_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

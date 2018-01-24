@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormPageMapper">
+
+	<resultMap id="formPageResultMap" type="com.glaf.form.core.domain.FormPage">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENTID_" jdbcType="VARCHAR" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="formHtml" column="FORMHTML_" jdbcType="VARCHAR" />
+		<result property="designerHtml" column="DESIGNERHTML_"
+			jdbcType="VARCHAR" />
+		<result property="designerJson" column="DESIGNERJSON_"
+			jdbcType="VARCHAR" />
+		<result property="formConfig" column="FORMCONFIG_" jdbcType="VARCHAR" />
+		<result property="outputHtml" column="OUTPUTHTML_" jdbcType="VARCHAR" />
+		<result property="formType" column="FORMTYPE_" jdbcType="VARCHAR" />
+		<result property="perms" column="PERMS_" jdbcType="VARCHAR" />
+		<result property="addressPerms" column="ADDRESSPERMS_"
+			jdbcType="VARCHAR" />
+		<result property="accessType" column="ACCESSTYPE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="cacheFlag" column="CACHEFLAG_" jdbcType="VARCHAR" />
+		<result property="sortNo" column="SORTNO_" jdbcType="INTEGER" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="publicFlag" column="PUBLICFLAG_" jdbcType="VARCHAR" />
+		<result property="userStyleFlag" column="USERSTYLEFLAG_"
+			jdbcType="VARCHAR" />
+		<result property="businessTable" column="BUSINESSTABLE_"
+			jdbcType="VARCHAR" />
+		<result property="primaryKeyColumn" column="PRIMARYKEYCOLUMN_"
+			jdbcType="VARCHAR" />
+		<result property="processName" column="PROCESSNAME_" jdbcType="VARCHAR" />
+		<result property="taskFlag" column="TASKFLAG_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="uiType" column="UITYPE_" jdbcType="VARCHAR" />
+		<result property="pageCategory" column="PAGECATEGORY_"
+			jdbcType="INTEGER" />
+		<result property="debuggerVar" column="DEBUGGERVAR_" jdbcType="VARCHAR" />
+		
+		<result property="themeTmpId" column="THEME_TMP_ID_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormPage" parameterType="com.glaf.form.core.domain.FormPage">
+		insert into FORM_PAGE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="formHtml != null">
+				,FORMHTML_
+			</if>
+			<if test="designerHtml != null">
+				,DESIGNERHTML_
+			</if>
+			<if test="designerJson != null">
+				,DESIGNERJSON_
+			</if>
+			<if test="formConfig != null">
+				,FORMCONFIG_
+			</if>
+			<if test="outputHtml != null">
+				,OUTPUTHTML_
+			</if>
+			<if test="formType != null">
+				,FORMTYPE_
+			</if>
+			<if test="perms != null">
+				,PERMS_
+			</if>
+			<if test="addressPerms != null">
+				,ADDRESSPERMS_
+			</if>
+			<if test="accessType != null">
+				,ACCESSTYPE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="cacheFlag != null">
+				,CACHEFLAG_
+			</if>
+			<if test="publicFlag != null">
+				,PUBLICFLAG_
+			</if>
+			<if test="userStyleFlag != null">
+				,USERSTYLEFLAG_
+			</if>
+			<if test="businessTable != null">
+				,BUSINESSTABLE_
+			</if>
+			<if test="primaryKeyColumn != null">
+				,PRIMARYKEYCOLUMN_
+			</if>
+			<if test="processName != null">
+				,PROCESSNAME_
+			</if>
+			<if test="taskFlag != null">
+				,TASKFLAG_
+			</if>
+			<if test="sortNo != null">
+				,SORTNO_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="uiType != null">
+				,UITYPE_
+			</if>
+			<if test="pageCategory != null">
+				,PAGECATEGORY_
+			</if>
+			<if test="debuggerVar != null">
+				,DEBUGGERVAR_
+			</if>
+			<if test="themeTmpId != null">
+				,THEME_TMP_ID_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="parentId != null">
+				,#{parentId, jdbcType=VARCHAR}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="formHtml != null">
+				,#{formHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="designerHtml != null">
+				,#{designerHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="designerJson != null">
+				,#{designerJson, jdbcType=VARCHAR}
+			</if>
+			<if test="formConfig != null">
+				,#{formConfig, jdbcType=VARCHAR}
+			</if>
+			<if test="outputHtml != null">
+				,#{outputHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="formType != null">
+				,#{formType, jdbcType=VARCHAR}
+			</if>
+			<if test="perms != null">
+				,#{perms, jdbcType=VARCHAR}
+			</if>
+			<if test="addressPerms != null">
+				,#{addressPerms, jdbcType=VARCHAR}
+			</if>
+			<if test="accessType != null">
+				,#{accessType, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="cacheFlag != null">
+				,#{cacheFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="publicFlag != null">
+				,#{publicFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="userStyleFlag != null">
+				,#{userStyleFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="businessTable != null">
+				,#{businessTable, jdbcType=VARCHAR}
+			</if>
+			<if test="primaryKeyColumn != null">
+				,#{primaryKeyColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="processName != null">
+				,#{processName, jdbcType=VARCHAR}
+			</if>
+			<if test="taskFlag != null">
+				,#{taskFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="sortNo != null">
+				,#{sortNo, jdbcType=INTEGER}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="uiType != null">
+				,#{uiType, jdbcType=VARCHAR}
+			</if>
+			<if test="pageCategory != null">
+				,#{pageCategory, jdbcType=INTEGER}
+			</if>
+			<if test="debuggerVar != null">
+				,#{debuggerVar, jdbcType=VARCHAR}
+			</if>
+			<if test="themeTmpId != null">
+				,#{themeTmpId, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateThemeId">
+		update FORM_PAGE
+		set THEME_TMP_ID_ = #{themeId, jdbcType=VARCHAR}
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateFormPage" parameterType="com.glaf.form.core.domain.FormPage">
+		update FORM_PAGE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=VARCHAR},
+			</if>
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="formHtml != null">
+				FORMHTML_ = #{formHtml, jdbcType=VARCHAR},
+			</if>
+			<if test="designerHtml != null">
+				DESIGNERHTML_ = #{designerHtml, jdbcType=VARCHAR},
+			</if>
+			<if test="designerJson != null">
+				DESIGNERJSON_ = #{designerJson, jdbcType=VARCHAR},
+			</if>
+			<if test="formConfig != null">
+				FORMCONFIG_ = #{formConfig, jdbcType=VARCHAR},
+			</if>
+			<if test="outputHtml != null">
+				OUTPUTHTML_ = #{outputHtml, jdbcType=VARCHAR},
+			</if>
+			<if test="formType != null">
+				FORMTYPE_ = #{formType, jdbcType=VARCHAR},
+			</if>
+			<if test="addressPerms != null">
+				ADDRESSPERMS_ = #{addressPerms, jdbcType=VARCHAR},
+			</if>
+			<if test="perms != null">
+				PERMS_ = #{perms, jdbcType=VARCHAR},
+			</if>
+			<if test="accessType != null">
+				ACCESSTYPE_ = #{accessType, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="cacheFlag != null">
+				CACHEFLAG_ = #{cacheFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="publicFlag != null">
+				PUBLICFLAG_ = #{publicFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="userStyleFlag != null">
+				USERSTYLEFLAG_ = #{userStyleFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="businessTable != null">
+				BUSINESSTABLE_ = #{businessTable, jdbcType=VARCHAR},
+			</if>
+			<if test="primaryKeyColumn != null">
+				PRIMARYKEYCOLUMN_ = #{primaryKeyColumn,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="processName != null">
+				PROCESSNAME_ = #{processName, jdbcType=VARCHAR},
+			</if>
+			<if test="taskFlag != null">
+				TASKFLAG_ = #{taskFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="sortNo != null">
+				SORTNO_ = #{sortNo, jdbcType=INTEGER},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=INTEGER},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="uiType != null">
+				UITYPE_ = #{uiType, jdbcType=VARCHAR},
+			</if>
+			<if test="pageCategory != null">
+				PAGECATEGORY_ = #{pageCategory, jdbcType=INTEGER},
+			</if>
+			<if test="debuggerVar != null">
+				DEBUGGERVAR_ = #{debuggerVar, jdbcType=VARCHAR},
+			</if>
+			<if test="themeTmpId != null">
+				THEME_TMP_ID_ = #{themeTmpId, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFormPageById" parameterType="string">
+		delete from
+		FORM_PAGE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormPages" parameterType="com.glaf.form.core.query.FormPageQuery">
+		delete from FORM_PAGE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormPageById" parameterType="string" resultMap="formPageResultMap">
+		select * from FORM_PAGE where ID_ = #{id}
+	</select>
+
+
+	<select id="getChildren" parameterType="string" resultMap="formPageResultMap">
+		select * from FORM_PAGE where PARENTID_ = #{parentId}
+		order by SORTNO_
+		asc
+	</select>
+
+
+	<select id="getFormPages" parameterType="com.glaf.form.core.query.FormPageQuery"
+		resultMap="formPageResultMap">
+		select E.*
+		<include refid="selectFormPagesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.SORTNO_ asc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormPageCount" parameterType="com.glaf.form.core.query.FormPageQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormPagesSql" />
+	</select>
+
+
+	<sql id="selectFormPagesSql">
+
+		from FORM_PAGE E
+
+		<where>
+			1 = 1
+
+			<if test="nodeParentId != null and nodeParentId != '' ">
+				and E.PARENTID_ = #{nodeParentId}
+			</if>
+
+			<if test="nodeParentIds != null and nodeParentIds.size() &gt; 0">
+				and E.PARENTID_ IN
+				<foreach item="x_parentId" index="index" collection="nodeParentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+				and E.ID_ IN
+				<foreach item="x_id" index="index" collection="ids" open="("
+					separator="," close=")">
+					#{x_id}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="keywordsLike != null and keywordsLike != '' ">
+				and ( E.TITLE_ like #{keywordsLike}
+				or E.NAME_ like
+				#{keywordsLike}
+				)
+			</if>
+
+			<if test="formType != null and formType != '' ">
+				and E.FORMTYPE_ = #{formType}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="uiType != null and uiType != '' ">
+				and E.UITYPE_ = #{uiType}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+
+			<if test="pageCategory != null">
+				and E.PAGECATEGORY_ = #{pageCategory}
+			</if>
+
+		</where>
+	</sql>
+
+	<select id="getFormPageTree" parameterType="com.glaf.form.core.query.FormPageQuery"
+		resultMap="formPageResultMap">
+		select
+		E.ID_,E.CREATEBY_,E.CREATEDATE_,E.DELETEFLAG_,E.DEPLOYMENTID_,E.FORMCONFIG_,E.FORMTYPE_,E.LOCKED_,E.NAME_,E.PARENTID_,E.SORTNO_,E.UPDATEBY_,E.UPDATEDATE_,E.VERSION_,E.PAGECATEGORY_
+		<include refid="selectFormPagesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getPageElementsById" parameterType="string"
+		resultType="map">
+		SELECT
+		FR.NAME_ name,
+		FRP.RULEID_ rid,
+		FRP.VALUE_ value,
+		FRP.M pname,
+		FRP.TYPE pid,
+		FRP.DATAROLE_ dataRole
+		FROM
+		FORM_RULE FR
+		LEFT JOIN
+		(
+		SELECT
+		FRP.RULEID_,
+		FRP.NAME_,
+		FRP.VALUE_,
+		FC.NAME_ M,
+		FC.ID_ TYPE,
+		FC.DATAROLE_
+		FROM
+		FORM_RULE_PROPERTY FRP
+		LEFT JOIN FORM_COMPONENT_PROPERTY FCP
+		ON
+		CONVERT(VARCHAR,FCP.ID_) = FRP.NAME_
+		LEFT JOIN FORM_COMPONENT FC
+		ON
+		FC.ID_ = FCP.COMPONENTID_
+		WHERE
+		FCP.NAME_ = 'html'
+		)
+		FRP
+		ON
+		FR.ID_=FRP.RULEID_
+		WHERE
+		FR.PAGEID_ != FR.NAME_
+		AND FR.PAGEID_ =
+		#{pageId}
+	</select>
+
+	<update id="updateFormPageParentId" parameterType="com.glaf.form.core.query.FormPageQuery">
+		update FORM_PAGE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			UPDATEBY_ = #{actorId, jdbcType=VARCHAR},UPDATEDATE_=#{update, jdbcType=TIMESTAMP},
+			<if test="nodeParentId != null">
+				PARENTID_ = #{nodeParentId, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		<where>
+			<if test="ids != null and ids.size() &gt; 0">
+				ID_ IN
+				<foreach item="x_id" index="index" collection="ids" open="("
+					separator="," close=")">
+					#{x_id}
+				</foreach>
+			</if>
+		</where>
+	</update>
+
+</mapper>

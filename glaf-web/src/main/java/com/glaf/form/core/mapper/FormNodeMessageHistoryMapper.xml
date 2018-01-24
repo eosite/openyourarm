@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormNodeMessageHistoryMapper">
+
+ 	<resultMap id="formNodeMessageHistoryResultMap"	type="com.glaf.form.core.domain.FormNodeMessageHistory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="telephone" column="TELEPHONE_" jdbcType="VARCHAR"/>
+        <result property="msg" column="MSG_" jdbcType="VARCHAR"/>
+        <result property="state" column="STATE_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="result" column="RESULT_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormNodeMessageHistory" parameterType="com.glaf.form.core.domain.FormNodeMessageHistory">
+		insert into FORM_NODE_MESSAGE_HISTORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="telephone != null">
+				,TELEPHONE_ 
+			</if>
+			<if test="msg != null">
+				,MSG_ 
+			</if>
+			<if test="state != null">
+				,STATE_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+			<if test="result != null">
+				,RESULT_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="telephone != null">
+				,#{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="msg != null">
+				,#{msg, jdbcType=VARCHAR}
+			</if>
+			<if test="state != null">
+				,#{state, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="result != null">
+				,#{result, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormNodeMessageHistory" parameterType="com.glaf.form.core.domain.FormNodeMessageHistory">
+		update FORM_NODE_MESSAGE_HISTORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="telephone != null">
+				TELEPHONE_ = #{telephone, jdbcType=VARCHAR},
+			</if>
+			<if test="msg != null">
+				MSG_ = #{msg, jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE_ = #{state, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="result != null">
+				RESULT_ = #{result, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteFormNodeMessageHistoryById" parameterType="long"> 
+        delete from FORM_NODE_MESSAGE_HISTORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormNodeMessageHistorys" parameterType="com.glaf.form.core.query.FormNodeMessageHistoryQuery">
+		delete from FORM_NODE_MESSAGE_HISTORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormNodeMessageHistoryById" parameterType="long" resultMap="formNodeMessageHistoryResultMap">
+		select * from FORM_NODE_MESSAGE_HISTORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormNodeMessageHistorys" 
+	    parameterType="com.glaf.form.core.query.FormNodeMessageHistoryQuery"
+		resultMap="formNodeMessageHistoryResultMap">
+		select distinct E.*
+		<include refid="selectFormNodeMessageHistorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormNodeMessageHistoryCount" 
+	    parameterType="com.glaf.form.core.query.FormNodeMessageHistoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormNodeMessageHistorysSql" />
+	</select>
+
+
+	<sql id="selectFormNodeMessageHistorysSql">
+
+		from FORM_NODE_MESSAGE_HISTORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="telephone != null and telephone != '' ">
+				and E.TELEPHONE_ = #{telephone}
+            </if>
+
+			<if test="telephoneLike != null and telephoneLike != '' ">
+				and E.TELEPHONE_ like #{telephoneLike}
+            </if>
+
+			<if test="telephones != null and telephones.size() &gt; 0">
+			    and E.TELEPHONE_ IN
+                <foreach item="x_telephone" index="index" collection="telephones" 
+                     open="(" separator="," close=")">
+                  #{x_telephone}
+                </foreach>
+			</if>
+	        
+			<if test="msg != null and msg != '' ">
+				and E.MSG_ = #{msg}
+            </if>
+
+			<if test="msgLike != null and msgLike != '' ">
+				and E.MSG_ like #{msgLike}
+            </if>
+
+			<if test="msgs != null and msgs.size() &gt; 0">
+			    and E.MSG_ IN
+                <foreach item="x_msg" index="index" collection="msgs" 
+                     open="(" separator="," close=")">
+                  #{x_msg}
+                </foreach>
+			</if>
+
+			<if test="state != null">
+				and E.STATE_ = #{state}
+            </if>
+
+			<if test="stateGreaterThanOrEqual != null">
+				and E.STATE_ &gt;= #{stateGreaterThanOrEqual}
+            </if>
+
+			<if test="stateLessThanOrEqual != null">
+				and E.STATE_ &lt;= #{stateLessThanOrEqual}
+            </if>
+
+			<if test="states != null and states.size() &gt; 0">
+			    and E.STATE_ IN
+                <foreach item="x_state" index="index" collection="states" 
+                     open="(" separator="," close=")">
+                  #{x_state}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="result != null and result != '' ">
+				and E.RESULT_ = #{result}
+            </if>
+
+			<if test="resultLike != null and resultLike != '' ">
+				and E.RESULT_ like #{resultLike}
+            </if>
+
+			<if test="results != null and results.size() &gt; 0">
+			    and E.RESULT_ IN
+                <foreach item="x_result" index="index" collection="results" 
+                     open="(" separator="," close=")">
+                  #{x_result}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

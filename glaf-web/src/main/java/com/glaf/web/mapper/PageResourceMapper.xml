@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.web.mapper.PageResourceMapper">
+
+	<resultMap id="pageResourceResultMap" type="com.glaf.web.domain.PageResource">
+		<id property="resId" column="RES_ID_" jdbcType="BIGINT" />
+		<result property="resPath" column="RES_PATH_" jdbcType="VARCHAR" />
+		<result property="resFileName" column="RES_FILENAME_" jdbcType="VARCHAR" />
+		<result property="resName" column="RES_NAME_" jdbcType="VARCHAR" />
+		<result property="resType" column="RES_TYPE_" jdbcType="VARCHAR" />
+		<result property="resMime" column="RES_MIME_" jdbcType="VARCHAR"/>
+		<result property="resContent" column="RES_CONTENT_" jdbcType="VARBINARY"
+			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result property="resCrDatetime" column="RES_CRDATETIME_"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertPageResource" parameterType="com.glaf.web.domain.PageResource">
+		insert into PAGE_RESOURCE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			RES_ID_
+			<if test="resPath != null">
+				,RES_PATH_
+			</if>
+			<if test="resFileName != null">
+				,RES_FILENAME_
+			</if>
+			<if test="resName != null">
+				,RES_NAME_
+			</if>
+			<if test="resType != null">
+				,RES_TYPE_
+			</if>
+			<if test="resMime != null">
+				,RES_MIME_ 
+			</if>
+			<if test="resContent != null">
+				,RES_CONTENT_
+			</if>
+			<if test="resCrDatetime != null">
+				,RES_CRDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{resId, jdbcType=BIGINT}
+
+			<if test="resPath != null">
+				,#{resPath, jdbcType=VARCHAR}
+			</if>
+			<if test="resFileName != null">
+				,#{resFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="resName != null">
+				,#{resName, jdbcType=VARCHAR}
+			</if>
+			<if test="resType != null">
+				,#{resType, jdbcType=VARCHAR}
+			</if>
+			<if test="resMime != null">
+				,#{resMime, jdbcType=VARCHAR}
+			</if>
+			<if test="resContent != null">
+				,#{resContent, jdbcType=VARBINARY}
+			</if>
+			<if test="resCrDatetime != null">
+				,#{resCrDatetime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updatePageResource" parameterType="com.glaf.web.domain.PageResource">
+		update PAGE_RESOURCE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="resPath != null">
+				RES_PATH_ = #{resPath, jdbcType=VARCHAR},
+			</if>
+			<if test="resFileName != null">
+				RES_FILENAME_ = #{resFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="resName != null">
+				RES_NAME_ = #{resName, jdbcType=VARCHAR},
+			</if>
+			<if test="resType != null">
+				RES_TYPE_ = #{resType, jdbcType=VARCHAR},
+			</if>
+			<if test="resMime != null">
+				RES_MIME_ = #{resMime, jdbcType=VARCHAR},
+			</if>
+			<if test="resContent != null">
+				RES_CONTENT_ = #{resContent, jdbcType=VARBINARY},
+			</if>
+			<if test="resCrDatetime != null">
+				RES_CRDATETIME_ = #{resCrDatetime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		RES_ID_ = #{resId, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deletePageResourceById" parameterType="long">
+		delete from PAGE_RESOURCE
+		where RES_ID_ = #{id}
+	</delete>
+
+
+	<delete id="deletePageResources" parameterType="com.glaf.web.query.PageResourceQuery">
+		delete from PAGE_RESOURCE
+		where (
+		RES_ID_ IN
+		<foreach item="x_resId" index="index" collection="resIds"
+			open="(" separator="," close=")">
+			#{x_resId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getPageResourceById" parameterType="long"
+		resultMap="pageResourceResultMap">
+		select * from PAGE_RESOURCE where RES_ID_ = #{id}
+	</select>
+
+	<select id="getPageResourceByFilePath" parameterType="string"
+		resultMap="pageResourceResultMap">
+		select * from PAGE_RESOURCE where RES_PATH_ = #{id}
+	</select>
+	<select id="getPageResources" parameterType="com.glaf.web.query.PageResourceQuery"
+		resultMap="pageResourceResultMap">
+		select distinct E.*
+		<include refid="selectPageResourcesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.RES_ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getPageResourceCount" parameterType="com.glaf.web.query.PageResourceQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectPageResourcesSql" />
+	</select>
+
+
+	<sql id="selectPageResourcesSql">
+
+		from PAGE_RESOURCE E
+
+		<where>
+			1 = 1
+
+
+			<if test="resPath != null and resPath != '' ">
+				and E.RES_PATH_ = #{resPath}
+			</if>
+
+			<if test="resPathLike != null and resPathLike != '' ">
+				and E.RES_PATH_ like #{resPathLike}
+			</if>
+
+			<if test="resPaths != null and resPaths.size() &gt; 0">
+				and E.RES_PATH_ IN
+				<foreach item="x_resPath" index="index" collection="resPaths"
+					open="(" separator="," close=")">
+					#{x_resPath}
+				</foreach>
+			</if>
+
+			<if test="resFileName != null and resFileName != '' ">
+				and E.RES_FILENAME_ = #{resFileName}
+			</if>
+
+			<if test="resFileNameLike != null and resFileNameLike != '' ">
+				and E.RES_FILENAME_ like #{resFileNameLike}
+			</if>
+
+			<if test="resFileNames != null and resFileNames.size() &gt; 0">
+				and E.RES_FILENAME_ IN
+				<foreach item="x_resFileName" index="index" collection="resFileNames"
+					open="(" separator="," close=")">
+					#{x_resFileName}
+				</foreach>
+			</if>
+
+			<if test="resName != null and resName != '' ">
+				and E.RES_NAME_ = #{resName}
+			</if>
+
+			<if test="resNameLike != null and resNameLike != '' ">
+				and E.RES_NAME_ like #{resNameLike}
+			</if>
+
+			<if test="resNames != null and resNames.size() &gt; 0">
+				and E.RES_NAME_ IN
+				<foreach item="x_resName" index="index" collection="resNames"
+					open="(" separator="," close=")">
+					#{x_resName}
+				</foreach>
+			</if>
+			<if test="resType != null and resType != '' ">
+				and E.RES_TYPE_ = #{resType}
+			</if>
+
+			<if test="resTypeLike != null and resTypeLike != '' ">
+				and E.RES_TYPE_ like #{resTypeLike}
+			</if>
+
+			<if test="resTypes != null and resTypes.size() &gt; 0">
+				and E.RES_TYPE_ IN
+				<foreach item="x_resType" index="index" collection="resTypes"
+					open="(" separator="," close=")">
+					#{x_resType}
+				</foreach>
+			</if>
+			<if test="resMime != null and resMime != '' ">
+				and E.RES_MIME_ = #{resMime}
+            </if>
+
+			<if test="resMimeLike != null and resMimeLike != '' ">
+				and E.RES_MIME_ like #{resMimeLike}
+            </if>
+
+			<if test="resMimes != null and resMimes.size() &gt; 0">
+			    and E.RES_MIME_ IN
+                <foreach item="x_resMime" index="index" collection="resMimes" 
+                     open="(" separator="," close=")">
+                  #{x_resMime}
+                </foreach>
+			</if>
+			<if test="resCrDatetimeGreaterThanOrEqual != null">
+				and E.RES_CRDATETIME_ &gt;=
+				#{resCrDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="resCrDatetimeLessThanOrEqual != null">
+				and E.RES_CRDATETIME_ &lt;=
+				#{resCrDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.report.mapper.DepReportFormulaMapper">
+
+ 	<resultMap id="depReportFormulaResultMap"	type="com.glaf.dep.report.domain.DepReportFormula">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="cellId" column="CELL_ID_" jdbcType="BIGINT"/>
+        <result property="expression" column="EXPRESSION_" jdbcType="VARCHAR"/>
+        <result property="enCondition" column="ENCONDITION_" jdbcType="VARCHAR"/>
+        <result property="ruleJson" column="RULEJSON_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDateTime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepReportFormula" parameterType="com.glaf.dep.report.domain.DepReportFormula">
+		insert into DEP_REPORT_FORMULA 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="cellId != null">
+				,CELL_ID_ 
+			</if>
+			<if test="expression != null">
+				,EXPRESSION_ 
+			</if>
+			<if test="enCondition != null">
+				,ENCONDITION_ 
+			</if>
+			<if test="ruleJson != null">
+				,RULEJSON_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDateTime != null">
+				,MODIFYDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="cellId != null">
+				,#{cellId, jdbcType=BIGINT}
+			</if>
+			<if test="expression != null">
+				,#{expression, jdbcType=VARCHAR}
+			</if>
+			<if test="enCondition != null">
+				,#{enCondition, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleJson != null">
+				,#{ruleJson, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDateTime != null">
+				,#{modifyDateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepReportFormula" parameterType="com.glaf.dep.report.domain.DepReportFormula">
+		update DEP_REPORT_FORMULA
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cellId != null">
+				CELL_ID_ = #{cellId, jdbcType=BIGINT},
+			</if>
+			<if test="expression != null">
+				EXPRESSION_ = #{expression, jdbcType=VARCHAR},
+			</if>
+			<if test="enCondition != null">
+				ENCONDITION_ = #{enCondition, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleJson != null">
+				RULEJSON_ = #{ruleJson, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDateTime != null">
+				MODIFYDATETIME_ = #{modifyDateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepReportFormulaById" parameterType="long"> 
+        delete from DEP_REPORT_FORMULA
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepReportFormulas" parameterType="com.glaf.dep.report.query.DepReportFormulaQuery">
+		delete from DEP_REPORT_FORMULA
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepReportFormulaById" parameterType="long" resultMap="depReportFormulaResultMap">
+		select * from DEP_REPORT_FORMULA where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepReportFormulas" 
+	    parameterType="com.glaf.dep.report.query.DepReportFormulaQuery"
+		resultMap="depReportFormulaResultMap">
+		select distinct E.*
+		<include refid="selectDepReportFormulasSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepReportFormulaCount" 
+	    parameterType="com.glaf.dep.report.query.DepReportFormulaQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepReportFormulasSql" />
+	</select>
+
+
+	<sql id="selectDepReportFormulasSql">
+
+		from DEP_REPORT_FORMULA E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cellId != null">
+				and E.CELL_ID_ = #{cellId}
+            </if>
+
+			<if test="cellIdGreaterThanOrEqual != null">
+				and E.CELL_ID_ &gt;= #{cellIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cellIdLessThanOrEqual != null">
+				and E.CELL_ID_ &lt;= #{cellIdLessThanOrEqual}
+            </if>
+
+			<if test="cellIds != null and cellIds.size() &gt; 0">
+			    and E.CELL_ID_ IN
+                <foreach item="x_cellId" index="index" collection="cellIds" 
+                     open="(" separator="," close=")">
+                  #{x_cellId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="expression != null and expression != '' ">
+				and E.EXPRESSION_ = #{expression}
+            </if>
+
+			<if test="expressionLike != null and expressionLike != '' ">
+				and E.EXPRESSION_ like #{expressionLike}
+            </if>
+
+			<if test="expressions != null and expressions.size() &gt; 0">
+			    and E.EXPRESSION_ IN
+                <foreach item="x_expression" index="index" collection="expressions" 
+                     open="(" separator="," close=")">
+                  #{x_expression}
+                </foreach>
+			</if>
+	        
+			<if test="enCondition != null and enCondition != '' ">
+				and E.ENCONDITION_ = #{enCondition}
+            </if>
+
+			<if test="enConditionLike != null and enConditionLike != '' ">
+				and E.ENCONDITION_ like #{enConditionLike}
+            </if>
+
+			<if test="enConditions != null and enConditions.size() &gt; 0">
+			    and E.ENCONDITION_ IN
+                <foreach item="x_enCondition" index="index" collection="enConditions" 
+                     open="(" separator="," close=")">
+                  #{x_enCondition}
+                </foreach>
+			</if>
+	        
+			<if test="ruleJson != null and ruleJson != '' ">
+				and E.RULEJSON_ = #{ruleJson}
+            </if>
+
+			<if test="ruleJsonLike != null and ruleJsonLike != '' ">
+				and E.RULEJSON_ like #{ruleJsonLike}
+            </if>
+
+			<if test="ruleJsons != null and ruleJsons.size() &gt; 0">
+			    and E.RULEJSON_ IN
+                <foreach item="x_ruleJson" index="index" collection="ruleJsons" 
+                     open="(" separator="," close=")">
+                  #{x_ruleJson}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDateTimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDateTimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

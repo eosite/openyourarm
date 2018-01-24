@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.workflow.core.mapper.ProcessInsMappingMapper">
+
+ 	<resultMap id="processInsMappingResultMap"	type="com.glaf.workflow.core.domain.ProcessInsMapping">
+        <id property="iD" column="ID_" jdbcType="VARCHAR"/>
+        <result property="srcWbsDefId" column="SRC_WBS_DEF_ID_" jdbcType="INTEGER"/>
+        <result property="srcWbsInsId" column="SRC_WBS_INS_ID_" jdbcType="INTEGER"/>
+        <result property="srcProcDefId" column="SRC_PROC_DEF_ID_" jdbcType="VARCHAR"/>
+        <result property="srcProcInsId" column="SRC_PROC_INS_ID_" jdbcType="VARCHAR"/>
+        <result property="desWbsDefId" column="DES_WBS_DEF_ID_" jdbcType="INTEGER"/>
+        <result property="desWbsInsId" column="DES_WBS_INS_ID_" jdbcType="INTEGER"/>
+        <result property="desProcDefId" column="DES_PROC_DEF_ID_" jdbcType="VARCHAR"/>
+        <result property="desProcInsId" column="DES_PROC_INS_ID_" jdbcType="VARCHAR"/>
+        <result property="srcSysId" column="SRC_SYS_ID_" jdbcType="VARCHAR"/>
+        <result property="desSysId" column="DES_SYS_ID_" jdbcType="VARCHAR"/>
+        <result property="procStatus" column="PROC_STATUS_" jdbcType="INTEGER"/>
+        <result property="procResult" column="PROC_RESULT_" jdbcType="INTEGER"/>
+        <result property="transType" column="TRANSTYPE_" jdbcType="INTEGER"/>
+        <result property="extTransType" column="EXT_TRANSTYPE_" jdbcType="INTEGER"/>
+        <result property="replyFlag" column="REPLYFLAG_" jdbcType="INTEGER"/>
+        <result property="procStartTime" column="PROC_STARTTIME_" jdbcType="TIMESTAMP"/>
+        <result property="procCompTime" column="PROC_COMPTIME_" jdbcType="TIMESTAMP"/>
+        <result property="processInsName" column="PROCESS_INS_NAME_" jdbcType="VARCHAR"/>
+	</resultMap>
+    <resultMap id="processMainTableNameResultMap"	type="com.glaf.workflow.core.domain.ProcessMainTableName">
+        <result property="fillFormId" column="FILLFORM_ID" jdbcType="VARCHAR"/>
+        <result property="fileDotFileid" column="FILEDOT_FILEID" jdbcType="VARCHAR"/>
+        <result property="tableName" column="TABLENAME" jdbcType="VARCHAR"/>
+    </resultMap>
+	<insert id="insertProcessInsMapping" parameterType="com.glaf.workflow.core.domain.ProcessInsMapping">
+		insert into PROCESS_INS_MAPPING 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="srcWbsDefId != null">
+				,SRC_WBS_DEF_ID_ 
+			</if>
+			<if test="srcWbsInsId != null">
+				,SRC_WBS_INS_ID_ 
+			</if>
+			<if test="srcProcDefId != null">
+				,SRC_PROC_DEF_ID_ 
+			</if>
+			<if test="srcProcInsId != null">
+				,SRC_PROC_INS_ID_ 
+			</if>
+			<if test="desWbsDefId != null">
+				,DES_WBS_DEF_ID_ 
+			</if>
+			<if test="desWbsInsId != null">
+				,DES_WBS_INS_ID_ 
+			</if>
+			<if test="desProcDefId != null">
+				,DES_PROC_DEF_ID_ 
+			</if>
+			<if test="desProcInsId != null">
+				,DES_PROC_INS_ID_ 
+			</if>
+			<if test="srcSysId != null">
+				,SRC_SYS_ID_ 
+			</if>
+			<if test="desSysId != null">
+				,DES_SYS_ID_ 
+			</if>
+			<if test="procStatus != null">
+				,PROC_STATUS_ 
+			</if>
+			<if test="procResult != null">
+				,PROC_RESULT_ 
+			</if>
+			<if test="transType != null">
+				,TRANSTYPE_ 
+			</if>
+			<if test="extTransType != null">
+				,EXT_TRANSTYPE_ 
+			</if>
+			<if test="replyFlag != null">
+				,REPLYFLAG_ 
+			</if>
+			<if test="procStartTime != null">
+				,PROC_STARTTIME_ 
+			</if>
+			<if test="procCompTime != null">
+				,PROC_COMPTIME_ 
+			</if>
+			<if test="processInsName != null">
+				,PROCESS_INS_NAME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{iD, jdbcType=VARCHAR}
+	     
+			<if test="srcWbsDefId != null">
+				,#{srcWbsDefId, jdbcType=INTEGER}
+			</if>
+			<if test="srcWbsInsId != null">
+				,#{srcWbsInsId, jdbcType=INTEGER}
+			</if>
+			<if test="srcProcDefId != null">
+				,#{srcProcDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="srcProcInsId != null">
+				,#{srcProcInsId, jdbcType=VARCHAR}
+			</if>
+			<if test="desWbsDefId != null">
+				,#{desWbsDefId, jdbcType=INTEGER}
+			</if>
+			<if test="desWbsInsId != null">
+				,#{desWbsInsId, jdbcType=INTEGER}
+			</if>
+			<if test="desProcDefId != null">
+				,#{desProcDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="desProcInsId != null">
+				,#{desProcInsId, jdbcType=VARCHAR}
+			</if>
+			<if test="srcSysId != null">
+				,#{srcSysId, jdbcType=VARCHAR}
+			</if>
+			<if test="desSysId != null">
+				,#{desSysId, jdbcType=VARCHAR}
+			</if>
+			<if test="procStatus != null">
+				,#{procStatus, jdbcType=INTEGER}
+			</if>
+			<if test="procResult != null">
+				,#{procResult, jdbcType=INTEGER}
+			</if>
+			<if test="transType != null">
+				,#{transType, jdbcType=INTEGER}
+			</if>
+			<if test="extTransType != null">
+				,#{extTransType, jdbcType=INTEGER}
+			</if>
+			<if test="replyFlag != null">
+				,#{replyFlag, jdbcType=INTEGER}
+			</if>
+			<if test="procStartTime != null">
+				,#{procStartTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="procCompTime != null">
+				,#{procCompTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="processInsName != null">
+				,#{processInsName, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateProcessInsMapping" parameterType="com.glaf.workflow.core.domain.ProcessInsMapping">
+		update PROCESS_INS_MAPPING
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="srcWbsDefId != null">
+				SRC_WBS_DEF_ID_ = #{srcWbsDefId, jdbcType=INTEGER},
+			</if>
+			<if test="srcWbsInsId != null">
+				SRC_WBS_INS_ID_ = #{srcWbsInsId, jdbcType=INTEGER},
+			</if>
+			<if test="srcProcDefId != null">
+				SRC_PROC_DEF_ID_ = #{srcProcDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="srcProcInsId != null">
+				SRC_PROC_INS_ID_ = #{srcProcInsId, jdbcType=VARCHAR},
+			</if>
+			<if test="desWbsDefId != null">
+				DES_WBS_DEF_ID_ = #{desWbsDefId, jdbcType=INTEGER},
+			</if>
+			<if test="desWbsInsId != null">
+				DES_WBS_INS_ID_ = #{desWbsInsId, jdbcType=INTEGER},
+			</if>
+			<if test="desProcDefId != null">
+				DES_PROC_DEF_ID_ = #{desProcDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="desProcInsId != null">
+				DES_PROC_INS_ID_ = #{desProcInsId, jdbcType=VARCHAR},
+			</if>
+			<if test="srcSysId != null">
+				SRC_SYS_ID_ = #{srcSysId, jdbcType=VARCHAR},
+			</if>
+			<if test="desSysId != null">
+				DES_SYS_ID_ = #{desSysId, jdbcType=VARCHAR},
+			</if>
+			<if test="procStatus != null">
+				PROC_STATUS_ = #{procStatus, jdbcType=INTEGER},
+			</if>
+			<if test="procResult != null">
+				PROC_RESULT_ = #{procResult, jdbcType=INTEGER},
+			</if>
+			<if test="transType != null">
+				TRANSTYPE_ = #{transType, jdbcType=INTEGER},
+			</if>
+			<if test="extTransType != null">
+				EXT_TRANSTYPE_ = #{extTransType, jdbcType=INTEGER},
+			</if>
+			<if test="replyFlag != null">
+				REPLYFLAG_ = #{replyFlag, jdbcType=INTEGER},
+			</if>
+			<if test="procStartTime != null">
+				PROC_STARTTIME_ = #{procStartTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="procCompTime != null">
+				PROC_COMPTIME_ = #{procCompTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="processInsName != null">
+				PROCESS_INS_NAME_ = #{processInsName, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{iD, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProcessInsMappingById" parameterType="string"> 
+        delete from PROCESS_INS_MAPPING
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteProcessInsMappings" parameterType="com.glaf.workflow.core.query.ProcessInsMappingQuery">
+		delete from PROCESS_INS_MAPPING
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_iD" index="index" collection="iDs" 
+                     open="(" separator="," close=")">
+                  #{x_iD}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getProcessInsMappingById" parameterType="string" resultMap="processInsMappingResultMap">
+		select * from PROCESS_INS_MAPPING where ID_ = #{id}
+	</select>
+
+
+	<select id="getProcessInsMappings" 
+	    parameterType="com.glaf.workflow.core.query.ProcessInsMappingQuery"
+		resultMap="processInsMappingResultMap">
+		select distinct E.*
+		<include refid="selectProcessInsMappingsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+    <!-- 获取流程表单主表主键值 -->
+	<select id="getProcessMainTableNames" 
+	    parameterType="map"
+		resultMap="processMainTableNameResultMap">
+		select b.fillform_id,b.filedot_fileid,c.tablename from flow_process a,cell_mytask b,cell_data_table c where a.Main_id=b.topid and b.filedot_fileid=c.filedot_fileid and c.issubtable=0
+		and a.id=#{id}
+	</select>
+	 <!-- 获取报表流程表单主表主键值 -->
+	<select id="getReportProcessMainTableNames" 
+	    parameterType="map"
+		resultMap="processMainTableNameResultMap">
+		select tablename from cell_data_table where filedot_fileid in (
+		 select c.REPORT_TEMPLATE_ID from flow_process a,flow_activ b,SysReportFlow c where a.id=b.process_id and b.id=c.FLOW_ID and a.id=#{id}
+		) and issubtable=0 
+	</select>
+	<!-- 获取WPF流程表单主表 -->
+	<select id="getWpfProcessMainTableNames" 
+	    parameterType="map"
+		resultMap="processMainTableNameResultMap">
+		select tablename,cell_fillform_id as fillform_id from cell_datatable_wpf where 
+		cell_fillform_id in (select id from cell_fillform_wpf where cell_mytaskmain_id in (select main_id from flow_process where id=#{id}))
+		and tablename=mtablename
+	</select>
+    <select id="getProcessMainTablePrimaryKeyVal" 
+	    parameterType="map"
+		resultType="string">
+		select max(id) from ${tableName} where topid= #{fillFormId} 
+	</select>
+	<select id="getReportProcessMainTablePrimaryKeyVal" 
+	    parameterType="map"
+		resultType="string">
+		select id from ${tableName} e where exists (
+				select c.REPORT_ID,d.ID from flow_process a,flow_activ b,SysReportFlow c,SYSREPORTFILE d where a.id=b.process_id and b.id=c.FLOW_ID 
+				and c.REPORT_ID=d.REPORT_ID and (e.type_id=c.REPORT_ID or e.type_id=d.ID)
+				and a.id=#{processId}
+				)
+	</select>
+	<select id="getProcessInsMappingCount" 
+	    parameterType="com.glaf.workflow.core.query.ProcessInsMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProcessInsMappingsSql" />
+	</select>
+
+    <select id="getActIdByExecoutionId" 
+	    parameterType="string"
+		resultType="string">
+		select ACT_ID_ from ACT_RU_EXECUTION where ID_= #{id}
+	</select>
+	<select id="getActIdByProcessInstId" 
+	    parameterType="string"
+		resultType="string">
+		select ACT_ID_ from ACT_RU_EXECUTION a where PROC_INST_ID_=#{id} and not exists (select * from ACT_RU_EXECUTION b where a.PROC_INST_ID_=b.PROC_INST_ID_ and a.ID_&lt;b.ID_ and ACT_ID_ is not null)
+	</select>
+	<!-- 删除流程变量 -->
+	<delete id="removeVariable" parameterType="map"> 
+        delete from ACT_RU_VARIABLE
+        where PROC_INST_ID_ = #{processInstId} and NAME_=#{varName}
+	</delete>
+	<!-- 清空动态用户变量值-->
+	<update id="emptyAllProcessInstVaribale" parameterType="map"> 
+        UPDATE ACT_RU_VARIABLE set TEXT_=''
+        where PROC_INST_ID_ = #{processInstId} and NAME_ like '%_user' and TASK_ID_ is null
+	</update>
+	<!-- 清空当前任务外的动态用户变量值 -->
+	<update id="emptyProcessInstVaribale" parameterType="map"> 
+        UPDATE ACT_RU_VARIABLE set TEXT_=''
+        where PROC_INST_ID_ = #{processInstId} and NAME_ like '%_user' and TASK_ID_ is null
+        <if test="taskDefKeys != null and taskDefKeys.size() &gt; 0">
+          <foreach item="x_taskDefKey" index="index" collection="taskDefKeys">
+             and NAME_ &lt;&gt; #{x_taskDefKey}
+          </foreach>
+		</if>
+	</update>
+	<!-- 获取流程任务最近一次的执行者 -->
+	<select id="getTaskLastAssignee" parameterType="map" resultType="string">
+	   SELECT
+           A.ASSIGNEE_
+           
+        FROM
+            ACT_HI_TASKINST A
+        LEFT JOIN
+            (
+                SELECT
+                    TASK_ID_,
+                    USER_ID_
+                FROM
+                    ACT_RU_IDENTITYLINK I,
+                    ACT_RU_TASK T
+                WHERE
+                    TASK_ID_ IS NOT NULL
+                AND USER_ID_ IS NOT NULL
+                AND I.TASK_ID_ = T.ID_
+                AND T.ASSIGNEE_ IS NULL
+                AND TYPE_ = 'candidate' ) I
+        ON
+            A.ID_ = I.TASK_ID_
+        WHERE
+            A.END_TIME_ IS NOT NULL and NOT EXISTS (SELECT * FROM  ACT_HI_TASKINST B WHERE A.PROC_INST_ID_=B.PROC_INST_ID_ AND A.TASK_DEF_KEY_=B.TASK_DEF_KEY_ AND A.END_TIME_&lt;B.END_TIME_)
+            
+            and A.PROC_INST_ID_=#{processInstId} and  A.TASK_DEF_KEY_=#{taskKey}
+	</select>
+	<!-- 获取未分配用户任务 -->
+	<select id="getUnassignedAndUnCandidateTasks" parameterType="map" resultType="string">
+	    select A.ID_ from ACT_RU_TASK A where A.ASSIGNEE_  is null and not exists (select * from ACT_RU_IDENTITYLINK B where A.ID_=B.TASK_ID_ and B.USER_ID_ is not null)
+		and not exists (select * from ACT_RU_IDENTITYLINK C, ACT_ID_MEMBERSHIP D where C.GROUP_ID_=D.GROUP_ID_ and  A.ID_=C.TASK_ID_ and D.USER_ID_ is not null) and A.PROC_INST_ID_=#{id}
+	</select>
+	<!-- 获取流程定义的子流程key -->
+	<select id="getSubProcessDefBySuperProcessDef" parameterType="map" resultType="string">
+	    select SUB_PROCESS_KEY_ from ACT_RE_ELEMENTDEF where ELE_TYPE_='CallActivity' and PROCEDEF_ID_=#{id}
+	</select>
+	<sql id="selectProcessInsMappingsSql">
+
+		from PROCESS_INS_MAPPING E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="srcWbsDefId != null">
+				and E.SRC_WBS_DEF_ID_ = #{srcWbsDefId}
+            </if>
+
+			<if test="srcWbsDefIdGreaterThanOrEqual != null">
+				and E.SRC_WBS_DEF_ID_ &gt;= #{srcWbsDefIdGreaterThanOrEqual}
+            </if>
+
+			<if test="srcWbsDefIdLessThanOrEqual != null">
+				and E.SRC_WBS_DEF_ID_ &lt;= #{srcWbsDefIdLessThanOrEqual}
+            </if>
+
+			<if test="srcWbsDefIds != null and srcWbsDefIds.size() &gt; 0">
+			    and E.SRC_WBS_DEF_ID_ IN
+                <foreach item="x_srcWbsDefId" index="index" collection="srcWbsDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcWbsDefId}
+                </foreach>
+			</if>
+      
+
+			<if test="srcWbsInsId != null">
+				and E.SRC_WBS_INS_ID_ = #{srcWbsInsId}
+            </if>
+
+			<if test="srcWbsInsIdGreaterThanOrEqual != null">
+				and E.SRC_WBS_INS_ID_ &gt;= #{srcWbsInsIdGreaterThanOrEqual}
+            </if>
+
+			<if test="srcWbsInsIdLessThanOrEqual != null">
+				and E.SRC_WBS_INS_ID_ &lt;= #{srcWbsInsIdLessThanOrEqual}
+            </if>
+
+			<if test="srcWbsInsIds != null and srcWbsInsIds.size() &gt; 0">
+			    and E.SRC_WBS_INS_ID_ IN
+                <foreach item="x_srcWbsInsId" index="index" collection="srcWbsInsIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcWbsInsId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="srcProcDefId != null and srcProcDefId != '' ">
+				and E.SRC_PROC_DEF_ID_ = #{srcProcDefId}
+            </if>
+
+			<if test="srcProcDefIdLike != null and srcProcDefIdLike != '' ">
+				and E.SRC_PROC_DEF_ID_ like #{srcProcDefIdLike}
+            </if>
+
+			<if test="srcProcDefIds != null and srcProcDefIds.size() &gt; 0">
+			    and E.SRC_PROC_DEF_ID_ IN
+                <foreach item="x_srcProcDefId" index="index" collection="srcProcDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcProcDefId}
+                </foreach>
+			</if>
+	        
+			<if test="srcProcInsId != null and srcProcInsId != '' ">
+				and E.SRC_PROC_INS_ID_ = #{srcProcInsId}
+            </if>
+
+			<if test="srcProcInsIdLike != null and srcProcInsIdLike != '' ">
+				and E.SRC_PROC_INS_ID_ like #{srcProcInsIdLike}
+            </if>
+
+			<if test="srcProcInsIds != null and srcProcInsIds.size() &gt; 0">
+			    and E.SRC_PROC_INS_ID_ IN
+                <foreach item="x_srcProcInsId" index="index" collection="srcProcInsIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcProcInsId}
+                </foreach>
+			</if>
+
+			<if test="desWbsDefId != null">
+				and E.DES_WBS_DEF_ID_ = #{desWbsDefId}
+            </if>
+
+			<if test="desWbsDefIdGreaterThanOrEqual != null">
+				and E.DES_WBS_DEF_ID_ &gt;= #{desWbsDefIdGreaterThanOrEqual}
+            </if>
+
+			<if test="desWbsDefIdLessThanOrEqual != null">
+				and E.DES_WBS_DEF_ID_ &lt;= #{desWbsDefIdLessThanOrEqual}
+            </if>
+
+			<if test="desWbsDefIds != null and desWbsDefIds.size() &gt; 0">
+			    and E.DES_WBS_DEF_ID_ IN
+                <foreach item="x_desWbsDefId" index="index" collection="desWbsDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_desWbsDefId}
+                </foreach>
+			</if>
+      
+
+			<if test="desWbsInsId != null">
+				and E.DES_WBS_INS_ID_ = #{desWbsInsId}
+            </if>
+
+			<if test="desWbsInsIdGreaterThanOrEqual != null">
+				and E.DES_WBS_INS_ID_ &gt;= #{desWbsInsIdGreaterThanOrEqual}
+            </if>
+
+			<if test="desWbsInsIdLessThanOrEqual != null">
+				and E.DES_WBS_INS_ID_ &lt;= #{desWbsInsIdLessThanOrEqual}
+            </if>
+
+			<if test="desWbsInsIds != null and desWbsInsIds.size() &gt; 0">
+			    and E.DES_WBS_INS_ID_ IN
+                <foreach item="x_desWbsInsId" index="index" collection="desWbsInsIds" 
+                     open="(" separator="," close=")">
+                  #{x_desWbsInsId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="desProcDefId != null and desProcDefId != '' ">
+				and E.DES_PROC_DEF_ID_ = #{desProcDefId}
+            </if>
+
+			<if test="desProcDefIdLike != null and desProcDefIdLike != '' ">
+				and E.DES_PROC_DEF_ID_ like #{desProcDefIdLike}
+            </if>
+
+			<if test="desProcDefIds != null and desProcDefIds.size() &gt; 0">
+			    and E.DES_PROC_DEF_ID_ IN
+                <foreach item="x_desProcDefId" index="index" collection="desProcDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_desProcDefId}
+                </foreach>
+			</if>
+	        
+			<if test="desProcInsId != null and desProcInsId != '' ">
+				and E.DES_PROC_INS_ID_ = #{desProcInsId}
+            </if>
+
+			<if test="desProcInsIdLike != null and desProcInsIdLike != '' ">
+				and E.DES_PROC_INS_ID_ like #{desProcInsIdLike}
+            </if>
+
+			<if test="desProcInsIds != null and desProcInsIds.size() &gt; 0">
+			    and E.DES_PROC_INS_ID_ IN
+                <foreach item="x_desProcInsId" index="index" collection="desProcInsIds" 
+                     open="(" separator="," close=")">
+                  #{x_desProcInsId}
+                </foreach>
+			</if>
+	        
+			<if test="srcSysId != null and srcSysId != '' ">
+				and E.SRC_SYS_ID_ = #{srcSysId}
+            </if>
+
+			<if test="srcSysIdLike != null and srcSysIdLike != '' ">
+				and E.SRC_SYS_ID_ like #{srcSysIdLike}
+            </if>
+
+			<if test="srcSysIds != null and srcSysIds.size() &gt; 0">
+			    and E.SRC_SYS_ID_ IN
+                <foreach item="x_srcSysId" index="index" collection="srcSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcSysId}
+                </foreach>
+			</if>
+	        
+			<if test="desSysId != null and desSysId != '' ">
+				and E.DES_SYS_ID_ = #{desSysId}
+            </if>
+
+			<if test="desSysIdLike != null and desSysIdLike != '' ">
+				and E.DES_SYS_ID_ like #{desSysIdLike}
+            </if>
+
+			<if test="desSysIds != null and desSysIds.size() &gt; 0">
+			    and E.DES_SYS_ID_ IN
+                <foreach item="x_desSysId" index="index" collection="desSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_desSysId}
+                </foreach>
+			</if>
+
+			<if test="procStatus != null">
+				and E.PROC_STATUS_ = #{procStatus}
+            </if>
+
+			<if test="procStatusGreaterThanOrEqual != null">
+				and E.PROC_STATUS_ &gt;= #{procStatusGreaterThanOrEqual}
+            </if>
+
+			<if test="procStatusLessThanOrEqual != null">
+				and E.PROC_STATUS_ &lt;= #{procStatusLessThanOrEqual}
+            </if>
+
+			<if test="procStatuss != null and procStatuss.size() &gt; 0">
+			    and E.PROC_STATUS_ IN
+                <foreach item="x_procStatus" index="index" collection="procStatuss" 
+                     open="(" separator="," close=")">
+                  #{x_procStatus}
+                </foreach>
+			</if>
+      
+
+			<if test="procResult != null">
+				and E.PROC_RESULT_ = #{procResult}
+            </if>
+
+			<if test="procResultGreaterThanOrEqual != null">
+				and E.PROC_RESULT_ &gt;= #{procResultGreaterThanOrEqual}
+            </if>
+
+			<if test="procResultLessThanOrEqual != null">
+				and E.PROC_RESULT_ &lt;= #{procResultLessThanOrEqual}
+            </if>
+
+			<if test="procResults != null and procResults.size() &gt; 0">
+			    and E.PROC_RESULT_ IN
+                <foreach item="x_procResult" index="index" collection="procResults" 
+                     open="(" separator="," close=")">
+                  #{x_procResult}
+                </foreach>
+			</if>
+      
+            <if test="transType != null">
+				and E.TRANSTYPE_ = #{transType}
+            </if>
+
+			<if test="transTypeGreaterThanOrEqual != null">
+				and E.TRANSTYPE_ &gt;= #{transTypeGreaterThanOrEqual}
+            </if>
+
+			<if test="transTypeLessThanOrEqual != null">
+				and E.TRANSTYPE_ &lt;= #{transTypeLessThanOrEqual}
+            </if>
+
+			<if test="transTypes != null and transTypes.size() &gt; 0">
+			    and E.TRANSTYPE_ IN
+                <foreach item="x_transType" index="index" collection="transTypes" 
+                     open="(" separator="," close=")">
+                  #{x_transType}
+                </foreach>
+			</if>
+      
+
+			<if test="replyFlag != null">
+				and E.REPLYFLAG_ = #{replyFlag}
+            </if>
+
+			<if test="replyFlagGreaterThanOrEqual != null">
+				and E.REPLYFLAG_ &gt;= #{replyFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="replyFlagLessThanOrEqual != null">
+				and E.REPLYFLAG_ &lt;= #{replyFlagLessThanOrEqual}
+            </if>
+
+			<if test="replyFlags != null and replyFlags.size() &gt; 0">
+			    and E.REPLYFLAG_ IN
+                <foreach item="x_replyFlag" index="index" collection="replyFlags" 
+                     open="(" separator="," close=")">
+                  #{x_replyFlag}
+                </foreach>
+			</if>
+			<if test="procStartTimeGreaterThanOrEqual != null">
+				and E.PROC_STARTTIME_ &gt;= #{procStartTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="procStartTimeLessThanOrEqual != null">
+				and E.PROC_STARTTIME_ &lt;= #{procStartTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="procCompTimeGreaterThanOrEqual != null">
+				and E.PROC_COMPTIME_ &gt;= #{procCompTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="procCompTimeLessThanOrEqual != null">
+				and E.PROC_COMPTIME_ &lt;= #{procCompTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

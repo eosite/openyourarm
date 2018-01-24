@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormParamsMapper">
+
+ 	<resultMap id="formParamsResultMap"	type="com.glaf.form.core.domain.FormParams">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="widgetId" column="WIDGETID_" jdbcType="VARCHAR"/>
+        <result property="paramName" column="PARAMNAME_" jdbcType="VARCHAR"/>
+        <result property="datasetId" column="DATASETID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormParams" parameterType="com.glaf.form.core.domain.FormParams">
+		insert into FORM_PARAMS 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="widgetId != null">
+				,WIDGETID_ 
+			</if>
+			<if test="paramName != null">
+				,PARAMNAME_ 
+			</if>
+			<if test="datasetId != null">
+				,DATASETID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="widgetId != null">
+				,#{widgetId, jdbcType=VARCHAR}
+			</if>
+			<if test="paramName != null">
+				,#{paramName, jdbcType=VARCHAR}
+			</if>
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormParams" parameterType="com.glaf.form.core.domain.FormParams">
+		update FORM_PARAMS
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="widgetId != null">
+				WIDGETID_ = #{widgetId, jdbcType=VARCHAR},
+			</if>
+			<if test="paramName != null">
+				PARAMNAME_ = #{paramName, jdbcType=VARCHAR},
+			</if>
+			<if test="datasetId != null">
+				DATASETID_ = #{datasetId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormParamsById" parameterType="string"> 
+        delete from FORM_PARAMS
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormParamss" parameterType="com.glaf.form.core.query.FormParamsQuery">
+		delete from FORM_PARAMS
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+	
+	<delete id="deleteByParams" >
+		delete from FORM_PARAMS
+		where ( 
+            WIDGETID_ = #{widgetId}
+			<if test="params != null and params.size() &gt; 0 ">
+	 			  AND PARAMNAME_ NOT IN
+	              <foreach item="x_param" index="index" collection="params" 
+	                     open="(" separator="," close=")">
+	                  #{x_param}
+	              </foreach>
+            </if>
+		)
+	</delete>
+
+
+	<select id="getFormParamsById" parameterType="string" resultMap="formParamsResultMap">
+		select * from FORM_PARAMS where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormParamss" 
+	    parameterType="com.glaf.form.core.query.FormParamsQuery"
+		resultMap="formParamsResultMap">
+		select distinct E.*
+		<include refid="selectFormParamssSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormParamsCount" 
+	    parameterType="com.glaf.form.core.query.FormParamsQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormParamssSql" />
+	</select>
+
+
+	<sql id="selectFormParamssSql">
+
+		from FORM_PARAMS E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="widgetId != null and widgetId != '' ">
+				and E.WIDGETID_ = #{widgetId}
+            </if>
+
+			<if test="widgetIdLike != null and widgetIdLike != '' ">
+				and E.WIDGETID_ like #{widgetIdLike}
+            </if>
+
+			<if test="widgetIds != null and widgetIds.size() &gt; 0">
+			    and E.WIDGETID_ IN
+                <foreach item="x_widgetId" index="index" collection="widgetIds" 
+                     open="(" separator="," close=")">
+                  #{x_widgetId}
+                </foreach>
+			</if>
+	        
+			<if test="paramName != null and paramName != '' ">
+				and E.PARAMNAME_ = #{paramName}
+            </if>
+
+			<if test="paramNameLike != null and paramNameLike != '' ">
+				and E.PARAMNAME_ like #{paramNameLike}
+            </if>
+
+			<if test="paramNames != null and paramNames.size() &gt; 0">
+			    and E.PARAMNAME_ IN
+                <foreach item="x_paramName" index="index" collection="paramNames" 
+                     open="(" separator="," close=")">
+                  #{x_paramName}
+                </foreach>
+			</if>
+	        
+			<if test="datasetId != null and datasetId != '' ">
+				and E.DATASETID_ = #{datasetId}
+            </if>
+
+			<if test="datasetIdLike != null and datasetIdLike != '' ">
+				and E.DATASETID_ like #{datasetIdLike}
+            </if>
+
+			<if test="datasetIds != null and datasetIds.size() &gt; 0">
+			    and E.DATASETID_ IN
+                <foreach item="x_datasetId" index="index" collection="datasetIds" 
+                     open="(" separator="," close=")">
+                  #{x_datasetId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<select id="queryByParam" 
+		resultMap="formParamsResultMap">
+		select E.* from FORM_PARAMS E where  
+			E.WIDGETID_ in  ( select ID_ from form_rule where PAGEID_ = #{outPage} and NAME_ = #{outid} )
+<!-- 			E.WIDGETID_ =  ( select top 1 ID_ from form_rule where PAGEID_ = #{outPage} and NAME_ = #{outid} ) -->
+			<if test="odatasetId != null">
+				and E.DATASETID_ = #{odatasetId}
+			</if>
+			and E.PARAMNAME_ = #{param}
+			and E.PAGEID_ = #{outPage}
+	</select>
+	
+	<select id="queryByParamWithRuleId" 
+		resultMap="formParamsResultMap">
+		select E.* from FORM_PARAMS E where  
+			E.WIDGETID_ =  #{ruleId}
+			<if test="odatasetId != null">
+				and E.DATASETID_ = #{odatasetId}
+			</if>
+			and E.PARAMNAME_ = #{param}
+			and E.PAGEID_ = #{outPage}
+	</select>
+
+</mapper>

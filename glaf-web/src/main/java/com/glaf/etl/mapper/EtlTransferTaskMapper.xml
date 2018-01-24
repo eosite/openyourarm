@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.EtlTransferTaskMapper">
+
+	<resultMap id="etlTransferTaskResultMap"	type="com.glaf.etl.domain.EtlTransferTask">
+        <id property="id_" column="ID_" jdbcType="VARCHAR"/>
+        <result property="transId_" column="TRANS_ID_" jdbcType="VARCHAR"/>
+        <result property="taskName_" column="TASK_NAME_" jdbcType="VARCHAR"/>
+        <result property="taskDesc_" column="TASK_DESC_" jdbcType="VARCHAR"/>
+        <result property="commitInterval_" column="COMMIT_INTERVAL_" jdbcType="INTEGER"/>
+        <result property="rollbackTransFlag_" column="ROLLBACK_TRANS_FLAG_" jdbcType="INTEGER"/>
+        <result property="retryFlag_" column="RETRY_FLAG_" jdbcType="INTEGER"/>
+        <result property="retryTimes_" column="RETRY_TIMES_" jdbcType="INTEGER"/>
+        <result property="onPrePostErrorStop_" column="ON_PREPOSTERROR_STOP_" jdbcType="INTEGER"/>
+        <result property="sendMailFlag_" column="SENDMAIL_FLAG_" jdbcType="INTEGER"/>
+        <result property="emailAddress_" column="EMAIL_ADDRESS_" jdbcType="VARCHAR"/>
+        <result property="createBy_" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime_" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy_" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime_" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag_" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="lastStartTime_" column="LAST_START_TIME_" jdbcType="TIMESTAMP"/>
+        <result property="lastEndTime_" column="LAST_END_TIME_" jdbcType="TIMESTAMP"/>
+        <result property="succeed_" column="SUCCEED_" jdbcType="INTEGER"/>
+        <result property="locked_" column="LOCKED_" jdbcType="INTEGER"/>
+        <result property="errorStopAutoRun_" column="ERROR_STOP_AUTORUN_" jdbcType="INTEGER"/>
+	</resultMap>
+
+    <resultMap id="taskSrcTargetResultMap"	type="com.glaf.etl.domain.TaskSrcTarget">
+      <id property="taskId" column="TASKID" jdbcType="VARCHAR"/>
+      <id property="srcId" column="SRCID" jdbcType="VARCHAR"/>
+      <id property="targetId" column="TARGETID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+ 
+	<insert id="insertEtlTransferTask" parameterType="com.glaf.etl.domain.EtlTransferTask">
+		insert into ETL_TRANSFER_TASK_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="transId_ != null">
+				,TRANS_ID_ 
+			</if>
+			<if test="taskName_ != null">
+				,TASK_NAME_ 
+			</if>
+			<if test="taskDesc_ != null">
+				,TASK_DESC_ 
+			</if>
+			<if test="commitInterval_ != null">
+				,COMMIT_INTERVAL_ 
+			</if>
+			<if test="rollbackTransFlag_ != null">
+				,ROLLBACK_TRANS_FLAG_ 
+			</if>
+			<if test="retryFlag_ != null">
+				,RETRY_FLAG_ 
+			</if>
+			<if test="retryTimes_ != null">
+				,RETRY_TIMES_ 
+			</if>
+			<if test="onPrePostErrorStop_ != null">
+				,ON_PREPOSTERROR_STOP_ 
+			</if>
+			<if test="sendMailFlag_ != null">
+				,SENDMAIL_FLAG_ 
+			</if>
+			<if test="emailAddress_ != null">
+				,EMAIL_ADDRESS_ 
+			</if>
+			<if test="createBy_ != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime_ != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy_ != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime_ != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag_ != null">
+				,DELETE_FLAG_ 
+			</if>
+			<if test="lastStartTime_ != null">
+				,LAST_START_TIME_ 
+			</if>
+			<if test="lastEndTime_ != null">
+				,LAST_END_TIME_ 
+			</if>
+			<if test="succeed_ != null">
+				,SUCCEED_ 
+			</if>
+			<if test="locked_ != null">
+				,LOCKED_ 
+			</if>
+			<if test="errorStopAutoRun_ != null">
+				,ERROR_STOP_AUTORUN_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id_, jdbcType=VARCHAR}
+	     
+			<if test="transId_ != null">
+				,#{transId_, jdbcType=VARCHAR}
+			</if>
+			<if test="taskName_ != null">
+				,#{taskName_, jdbcType=VARCHAR}
+			</if>
+			<if test="taskDesc_ != null">
+				,#{taskDesc_, jdbcType=VARCHAR}
+			</if>
+			<if test="commitInterval_ != null">
+				,#{commitInterval_, jdbcType=INTEGER}
+			</if>
+			<if test="rollbackTransFlag_ != null">
+				,#{rollbackTransFlag_, jdbcType=INTEGER}
+			</if>
+			<if test="retryFlag_ != null">
+				,#{retryFlag_, jdbcType=INTEGER}
+			</if>
+			<if test="retryTimes_ != null">
+				,#{retryTimes_, jdbcType=INTEGER}
+			</if>
+			<if test="onPrePostErrorStop_ != null">
+				,#{onPrePostErrorStop_, jdbcType=INTEGER}
+			</if>
+			<if test="sendMailFlag_ != null">
+				,#{sendMailFlag_, jdbcType=INTEGER}
+			</if>
+			<if test="emailAddress_ != null">
+				,#{emailAddress_, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy_ != null">
+				,#{createBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime_ != null">
+				,#{createTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy_ != null">
+				,#{updateBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime_ != null">
+				,#{updateTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag_ != null">
+				,#{deleteFlag_, jdbcType=INTEGER}
+			</if>
+			<if test="lastStartTime_ != null">
+				,#{lastStartTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="lastEndTime_ != null">
+				,#{lastEndTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="succeed_ != null">
+				,#{succeed_, jdbcType=INTEGER}
+			</if>
+			<if test="locked_ != null">
+				,#{locked_, jdbcType=INTEGER}
+			</if>
+			<if test="errorStopAutoRun_ != null">
+				,#{errorStopAutoRun_, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEtlTransferTask" parameterType="com.glaf.etl.domain.EtlTransferTask">
+		update ETL_TRANSFER_TASK_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="transId_ != null">
+				TRANS_ID_ = #{transId_, jdbcType=VARCHAR},
+			</if>
+			<if test="taskName_ != null">
+				TASK_NAME_ = #{taskName_, jdbcType=VARCHAR},
+			</if>
+			<if test="taskDesc_ != null">
+				TASK_DESC_ = #{taskDesc_, jdbcType=VARCHAR},
+			</if>
+			<if test="commitInterval_ != null">
+				COMMIT_INTERVAL_ = #{commitInterval_, jdbcType=INTEGER},
+			</if>
+			<if test="rollbackTransFlag_ != null">
+				ROLLBACK_TRANS_FLAG_ = #{rollbackTransFlag_, jdbcType=INTEGER},
+			</if>
+			<if test="retryFlag_ != null">
+				RETRY_FLAG_ = #{retryFlag_, jdbcType=INTEGER},
+			</if>
+			<if test="retryTimes_ != null">
+				RETRY_TIMES_ = #{retryTimes_, jdbcType=INTEGER},
+			</if>
+			<if test="onPrePostErrorStop_ != null">
+				ON_PREPOSTERROR_STOP_ = #{onPrePostErrorStop_, jdbcType=INTEGER},
+			</if>
+			<if test="sendMailFlag_ != null">
+				SENDMAIL_FLAG_ = #{sendMailFlag_, jdbcType=INTEGER},
+			</if>
+			<if test="emailAddress_ != null">
+				EMAIL_ADDRESS_ = #{emailAddress_, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy_ != null">
+				CREATEBY_ = #{createBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime_ != null">
+				CREATETIME_ = #{createTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy_ != null">
+				UPDATEBY_ = #{updateBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime_ != null">
+				UPDATETIME_ = #{updateTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag_ != null">
+				DELETE_FLAG_ = #{deleteFlag_, jdbcType=INTEGER},
+			</if>
+			<if test="lastStartTime_ != null">
+				LAST_START_TIME_ = #{lastStartTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="lastEndTime_ != null">
+				LAST_END_TIME_ = #{lastEndTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="succeed_ != null">
+				SUCCEED_ = #{succeed_, jdbcType=INTEGER},
+			</if>
+			<if test="locked_ != null">
+				LOCKED_ = #{locked_, jdbcType=INTEGER},
+			</if>
+			<if test="errorStopAutoRun_ != null">
+				ERROR_STOP_AUTORUN_ = #{errorStopAutoRun_, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id_, jdbcType=VARCHAR}
+		
+    </update>
+    <!-- 更新启动状态 -->
+     <update id="updateTransferTaskStartStatus" parameterType="com.glaf.etl.domain.EtlTransferTask">
+          update ETL_TRANSFER_TASK_
+		   set LAST_START_TIME_ = #{lastStartTime_, jdbcType=TIMESTAMP},LOCKED_ = #{locked_, jdbcType=INTEGER} where 
+		   ID_ = #{id_, jdbcType=VARCHAR}
+    </update>
+    <!-- 更新完成状态 -->
+    <update id="updateTransferTaskStatus" parameterType="com.glaf.etl.domain.EtlTransferTask">
+          update ETL_TRANSFER_TASK_
+		   set LAST_END_TIME_ = #{lastEndTime_, jdbcType=TIMESTAMP},LOCKED_ = #{locked_, jdbcType=INTEGER} where 
+		   ID_ = #{id_, jdbcType=VARCHAR}
+    </update>
+	<delete id="deleteEtlTransferTaskById" parameterType="string"> 
+        delete from ETL_TRANSFER_TASK_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEtlTransferTasks" parameterType="com.glaf.etl.query.EtlTransferTaskQuery">
+		delete from ETL_TRANSFER_TASK_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id_" index="index" collection="id_s" 
+                     open="(" separator="," close=")">
+                  #{x_id_}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEtlTransferTaskById" parameterType="string" resultMap="etlTransferTaskResultMap">
+		select * from ETL_TRANSFER_TASK_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getEtlTransferTasks" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskQuery"
+		resultMap="etlTransferTaskResultMap">
+		select  E.*
+		<include refid="selectEtlTransferTasksSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+    <select id="getTaskSrcTargetList" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskQuery"
+		resultMap="taskSrcTargetResultMap">
+		SELECT E.ID_ as taskId,F.ID_ as srcId,G.ID_ as targetId  from ETL_TRANSFER_TASK_ E left join  ETL_TRANSFER_TASK_SRC_ F on  E.ID_=F.TASK_ID_  left join  ETL_TRANSFER_TASK_TARGET_ G on E.ID_=G.TASK_ID_
+		<include refid="selectEtlTransferTasksWhereSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+	
+	<select id="getEtlTransferTaskCount" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEtlTransferTasksSql" />
+	</select>
+
+
+	<sql id="selectEtlTransferTasksSql">
+
+		from ETL_TRANSFER_TASK_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="transId_ != null and transId_ != '' ">
+				and E.TRANS_ID_ = #{transId_}
+            </if>
+
+			<if test="transId_Like != null and transId_Like != '' ">
+				and E.TRANS_ID_ like #{transId_Like}
+            </if>
+
+			<if test="transId_s != null and transId_s.size() &gt; 0">
+			    and E.TRANS_ID_ IN
+                <foreach item="x_transId_" index="index" collection="transId_s" 
+                     open="(" separator="," close=")">
+                  #{x_transId_}
+                </foreach>
+			</if>
+	        
+			<if test="taskName_ != null and taskName_ != '' ">
+				and E.TASK_NAME_ = #{taskName_}
+            </if>
+
+			<if test="taskName_Like != null and taskName_Like != '' ">
+				and E.TASK_NAME_ like #{taskName_Like}
+            </if>
+
+			<if test="taskName_s != null and taskName_s.size() &gt; 0">
+			    and E.TASK_NAME_ IN
+                <foreach item="x_taskName_" index="index" collection="taskName_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskName_}
+                </foreach>
+			</if>
+	        
+			<if test="taskDesc_ != null and taskDesc_ != '' ">
+				and E.TASK_DESC_ = #{taskDesc_}
+            </if>
+
+			<if test="taskDesc_Like != null and taskDesc_Like != '' ">
+				and E.TASK_DESC_ like #{taskDesc_Like}
+            </if>
+
+			<if test="taskDesc_s != null and taskDesc_s.size() &gt; 0">
+			    and E.TASK_DESC_ IN
+                <foreach item="x_taskDesc_" index="index" collection="taskDesc_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskDesc_}
+                </foreach>
+			</if>
+
+			<if test="commitInterval_ != null">
+				and E.COMMIT_INTERVAL_ = #{commitInterval_}
+            </if>
+
+			<if test="commitInterval_GreaterThanOrEqual != null">
+				and E.COMMIT_INTERVAL_ &gt;= #{commitInterval_GreaterThanOrEqual}
+            </if>
+
+			<if test="commitInterval_LessThanOrEqual != null">
+				and E.COMMIT_INTERVAL_ &lt;= #{commitInterval_LessThanOrEqual}
+            </if>
+
+			<if test="commitInterval_s != null and commitInterval_s.size() &gt; 0">
+			    and E.COMMIT_INTERVAL_ IN
+                <foreach item="x_commitInterval_" index="index" collection="commitInterval_s" 
+                     open="(" separator="," close=")">
+                  #{x_commitInterval_}
+                </foreach>
+			</if>
+      
+
+			<if test="rollbackTransFlag_ != null">
+				and E.ROLLBACK_TRANS_FLAG_ = #{rollbackTransFlag_}
+            </if>
+
+			<if test="rollbackTransFlag_GreaterThanOrEqual != null">
+				and E.ROLLBACK_TRANS_FLAG_ &gt;= #{rollbackTransFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="rollbackTransFlag_LessThanOrEqual != null">
+				and E.ROLLBACK_TRANS_FLAG_ &lt;= #{rollbackTransFlag_LessThanOrEqual}
+            </if>
+
+			<if test="rollbackTransFlag_s != null and rollbackTransFlag_s.size() &gt; 0">
+			    and E.ROLLBACK_TRANS_FLAG_ IN
+                <foreach item="x_rollbackTransFlag_" index="index" collection="rollbackTransFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_rollbackTransFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="retryFlag_ != null">
+				and E.RETRY_FLAG_ = #{retryFlag_}
+            </if>
+
+			<if test="retryFlag_GreaterThanOrEqual != null">
+				and E.RETRY_FLAG_ &gt;= #{retryFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="retryFlag_LessThanOrEqual != null">
+				and E.RETRY_FLAG_ &lt;= #{retryFlag_LessThanOrEqual}
+            </if>
+
+			<if test="retryFlag_s != null and retryFlag_s.size() &gt; 0">
+			    and E.RETRY_FLAG_ IN
+                <foreach item="x_retryFlag_" index="index" collection="retryFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_retryFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="retryTimes_ != null">
+				and E.RETRY_TIMES_ = #{retryTimes_}
+            </if>
+
+			<if test="retryTimes_GreaterThanOrEqual != null">
+				and E.RETRY_TIMES_ &gt;= #{retryTimes_GreaterThanOrEqual}
+            </if>
+
+			<if test="retryTimes_LessThanOrEqual != null">
+				and E.RETRY_TIMES_ &lt;= #{retryTimes_LessThanOrEqual}
+            </if>
+
+			<if test="retryTimes_s != null and retryTimes_s.size() &gt; 0">
+			    and E.RETRY_TIMES_ IN
+                <foreach item="x_retryTimes_" index="index" collection="retryTimes_s" 
+                     open="(" separator="," close=")">
+                  #{x_retryTimes_}
+                </foreach>
+			</if>
+      
+
+			<if test="onPrePostErrorStop_ != null">
+				and E.ON_PREPOSTERROR_STOP_ = #{onPrePostErrorStop_}
+            </if>
+
+			<if test="onPrePostErrorStop_GreaterThanOrEqual != null">
+				and E.ON_PREPOSTERROR_STOP_ &gt;= #{onPrePostErrorStop_GreaterThanOrEqual}
+            </if>
+
+			<if test="onPrePostErrorStop_LessThanOrEqual != null">
+				and E.ON_PREPOSTERROR_STOP_ &lt;= #{onPrePostErrorStop_LessThanOrEqual}
+            </if>
+
+			<if test="onPrePostErrorStop_s != null and onPrePostErrorStop_s.size() &gt; 0">
+			    and E.ON_PREPOSTERROR_STOP_ IN
+                <foreach item="x_onPrePostErrorStop_" index="index" collection="onPrePostErrorStop_s" 
+                     open="(" separator="," close=")">
+                  #{x_onPrePostErrorStop_}
+                </foreach>
+			</if>
+      
+
+			<if test="sendMailFlag_ != null">
+				and E.SENDMAIL_FLAG_ = #{sendMailFlag_}
+            </if>
+
+			<if test="sendMailFlag_GreaterThanOrEqual != null">
+				and E.SENDMAIL_FLAG_ &gt;= #{sendMailFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="sendMailFlag_LessThanOrEqual != null">
+				and E.SENDMAIL_FLAG_ &lt;= #{sendMailFlag_LessThanOrEqual}
+            </if>
+
+			<if test="sendMailFlag_s != null and sendMailFlag_s.size() &gt; 0">
+			    and E.SENDMAIL_FLAG_ IN
+                <foreach item="x_sendMailFlag_" index="index" collection="sendMailFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_sendMailFlag_}
+                </foreach>
+			</if>
+      
+	        
+			<if test="emailAddress_ != null and emailAddress_ != '' ">
+				and E.EMAIL_ADDRESS_ = #{emailAddress_}
+            </if>
+
+			<if test="emailAddress_Like != null and emailAddress_Like != '' ">
+				and E.EMAIL_ADDRESS_ like #{emailAddress_Like}
+            </if>
+
+			<if test="emailAddress_s != null and emailAddress_s.size() &gt; 0">
+			    and E.EMAIL_ADDRESS_ IN
+                <foreach item="x_emailAddress_" index="index" collection="emailAddress_s" 
+                     open="(" separator="," close=")">
+                  #{x_emailAddress_}
+                </foreach>
+			</if>
+	        
+			<if test="createBy_ != null and createBy_ != '' ">
+				and E.CREATEBY_ = #{createBy_}
+            </if>
+
+			<if test="createBy_Like != null and createBy_Like != '' ">
+				and E.CREATEBY_ like #{createBy_Like}
+            </if>
+
+			<if test="createBy_s != null and createBy_s.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy_" index="index" collection="createBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_createBy_}
+                </foreach>
+			</if>
+
+			<if test="createTime_GreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="createTime_LessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTime_LessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy_ != null and updateBy_ != '' ">
+				and E.UPDATEBY_ = #{updateBy_}
+            </if>
+
+			<if test="updateBy_Like != null and updateBy_Like != '' ">
+				and E.UPDATEBY_ like #{updateBy_Like}
+            </if>
+
+			<if test="updateBy_s != null and updateBy_s.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy_" index="index" collection="updateBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy_}
+                </foreach>
+			</if>
+
+			<if test="updateTime_GreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="updateTime_LessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag_ != null">
+				and E.DELETE_FLAG_ = #{deleteFlag_}
+            </if>
+
+			<if test="deleteFlag_GreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_LessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlag_LessThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_s != null and deleteFlag_s.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag_" index="index" collection="deleteFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="lastStartTime_GreaterThanOrEqual != null">
+				and E.LAST_START_TIME_ &gt;= #{lastStartTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="lastStartTime_LessThanOrEqual != null">
+				and E.LAST_START_TIME_ &lt;= #{lastStartTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="lastEndTime_GreaterThanOrEqual != null">
+				and E.LAST_END_TIME_ &gt;= #{lastEndTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="lastEndTime_LessThanOrEqual != null">
+				and E.LAST_END_TIME_ &lt;= #{lastEndTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="succeed_ != null">
+				and E.SUCCEED_ = #{succeed_}
+            </if>
+
+			<if test="succeed_GreaterThanOrEqual != null">
+				and E.SUCCEED_ &gt;= #{succeed_GreaterThanOrEqual}
+            </if>
+
+			<if test="succeed_LessThanOrEqual != null">
+				and E.SUCCEED_ &lt;= #{succeed_LessThanOrEqual}
+            </if>
+
+			<if test="succeed_s != null and succeed_s.size() &gt; 0">
+			    and E.SUCCEED_ IN
+                <foreach item="x_succeed_" index="index" collection="succeed_s" 
+                     open="(" separator="," close=")">
+                  #{x_succeed_}
+                </foreach>
+			</if>
+      
+
+			<if test="locked_ != null">
+				and E.LOCKED_ = #{locked_}
+            </if>
+
+			<if test="locked_GreaterThanOrEqual != null">
+				and E.LOCKED_ &gt;= #{locked_GreaterThanOrEqual}
+            </if>
+
+			<if test="locked_LessThanOrEqual != null">
+				and E.LOCKED_ &lt;= #{locked_LessThanOrEqual}
+            </if>
+
+			<if test="locked_s != null and locked_s.size() &gt; 0">
+			    and E.LOCKED_ IN
+                <foreach item="x_locked_" index="index" collection="locked_s" 
+                     open="(" separator="," close=")">
+                  #{x_locked_}
+                </foreach>
+			</if>
+      
+
+			<if test="errorStopAutoRun_ != null">
+				and E.ERROR_STOP_AUTORUN_ = #{errorStopAutoRun_}
+            </if>
+
+			<if test="errorStopAutoRun_GreaterThanOrEqual != null">
+				and E.ERROR_STOP_AUTORUN_ &gt;= #{errorStopAutoRun_GreaterThanOrEqual}
+            </if>
+
+			<if test="errorStopAutoRun_LessThanOrEqual != null">
+				and E.ERROR_STOP_AUTORUN_ &lt;= #{errorStopAutoRun_LessThanOrEqual}
+            </if>
+
+			<if test="errorStopAutoRun_s != null and errorStopAutoRun_s.size() &gt; 0">
+			    and E.ERROR_STOP_AUTORUN_ IN
+                <foreach item="x_errorStopAutoRun_" index="index" collection="errorStopAutoRun_s" 
+                     open="(" separator="," close=")">
+                  #{x_errorStopAutoRun_}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<sql id="selectEtlTransferTasksWhereSql">
+				<where>
+		       1 = 1  
+			 
+	        
+			<if test="transId_ != null and transId_ != '' ">
+				and E.TRANS_ID_ = #{transId_}
+            </if>
+
+			<if test="transId_Like != null and transId_Like != '' ">
+				and E.TRANS_ID_ like #{transId_Like}
+            </if>
+
+			<if test="transId_s != null and transId_s.size() &gt; 0">
+			    and E.TRANS_ID_ IN
+                <foreach item="x_transId_" index="index" collection="transId_s" 
+                     open="(" separator="," close=")">
+                  #{x_transId_}
+                </foreach>
+			</if>
+	        
+			<if test="taskName_ != null and taskName_ != '' ">
+				and E.TASK_NAME_ = #{taskName_}
+            </if>
+
+			<if test="taskName_Like != null and taskName_Like != '' ">
+				and E.TASK_NAME_ like #{taskName_Like}
+            </if>
+
+			<if test="taskName_s != null and taskName_s.size() &gt; 0">
+			    and E.TASK_NAME_ IN
+                <foreach item="x_taskName_" index="index" collection="taskName_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskName_}
+                </foreach>
+			</if>
+	        
+			<if test="taskDesc_ != null and taskDesc_ != '' ">
+				and E.TASK_DESC_ = #{taskDesc_}
+            </if>
+
+			<if test="taskDesc_Like != null and taskDesc_Like != '' ">
+				and E.TASK_DESC_ like #{taskDesc_Like}
+            </if>
+
+			<if test="taskDesc_s != null and taskDesc_s.size() &gt; 0">
+			    and E.TASK_DESC_ IN
+                <foreach item="x_taskDesc_" index="index" collection="taskDesc_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskDesc_}
+                </foreach>
+			</if>
+
+			<if test="commitInterval_ != null">
+				and E.COMMIT_INTERVAL_ = #{commitInterval_}
+            </if>
+
+			<if test="commitInterval_GreaterThanOrEqual != null">
+				and E.COMMIT_INTERVAL_ &gt;= #{commitInterval_GreaterThanOrEqual}
+            </if>
+
+			<if test="commitInterval_LessThanOrEqual != null">
+				and E.COMMIT_INTERVAL_ &lt;= #{commitInterval_LessThanOrEqual}
+            </if>
+
+			<if test="commitInterval_s != null and commitInterval_s.size() &gt; 0">
+			    and E.COMMIT_INTERVAL_ IN
+                <foreach item="x_commitInterval_" index="index" collection="commitInterval_s" 
+                     open="(" separator="," close=")">
+                  #{x_commitInterval_}
+                </foreach>
+			</if>
+      
+
+			<if test="rollbackTransFlag_ != null">
+				and E.ROLLBACK_TRANS_FLAG_ = #{rollbackTransFlag_}
+            </if>
+
+			<if test="rollbackTransFlag_GreaterThanOrEqual != null">
+				and E.ROLLBACK_TRANS_FLAG_ &gt;= #{rollbackTransFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="rollbackTransFlag_LessThanOrEqual != null">
+				and E.ROLLBACK_TRANS_FLAG_ &lt;= #{rollbackTransFlag_LessThanOrEqual}
+            </if>
+
+			<if test="rollbackTransFlag_s != null and rollbackTransFlag_s.size() &gt; 0">
+			    and E.ROLLBACK_TRANS_FLAG_ IN
+                <foreach item="x_rollbackTransFlag_" index="index" collection="rollbackTransFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_rollbackTransFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="retryFlag_ != null">
+				and E.RETRY_FLAG_ = #{retryFlag_}
+            </if>
+
+			<if test="retryFlag_GreaterThanOrEqual != null">
+				and E.RETRY_FLAG_ &gt;= #{retryFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="retryFlag_LessThanOrEqual != null">
+				and E.RETRY_FLAG_ &lt;= #{retryFlag_LessThanOrEqual}
+            </if>
+
+			<if test="retryFlag_s != null and retryFlag_s.size() &gt; 0">
+			    and E.RETRY_FLAG_ IN
+                <foreach item="x_retryFlag_" index="index" collection="retryFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_retryFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="retryTimes_ != null">
+				and E.RETRY_TIMES_ = #{retryTimes_}
+            </if>
+
+			<if test="retryTimes_GreaterThanOrEqual != null">
+				and E.RETRY_TIMES_ &gt;= #{retryTimes_GreaterThanOrEqual}
+            </if>
+
+			<if test="retryTimes_LessThanOrEqual != null">
+				and E.RETRY_TIMES_ &lt;= #{retryTimes_LessThanOrEqual}
+            </if>
+
+			<if test="retryTimes_s != null and retryTimes_s.size() &gt; 0">
+			    and E.RETRY_TIMES_ IN
+                <foreach item="x_retryTimes_" index="index" collection="retryTimes_s" 
+                     open="(" separator="," close=")">
+                  #{x_retryTimes_}
+                </foreach>
+			</if>
+      
+
+			<if test="onPrePostErrorStop_ != null">
+				and E.ON_PREPOSTERROR_STOP_ = #{onPrePostErrorStop_}
+            </if>
+
+			<if test="onPrePostErrorStop_GreaterThanOrEqual != null">
+				and E.ON_PREPOSTERROR_STOP_ &gt;= #{onPrePostErrorStop_GreaterThanOrEqual}
+            </if>
+
+			<if test="onPrePostErrorStop_LessThanOrEqual != null">
+				and E.ON_PREPOSTERROR_STOP_ &lt;= #{onPrePostErrorStop_LessThanOrEqual}
+            </if>
+
+			<if test="onPrePostErrorStop_s != null and onPrePostErrorStop_s.size() &gt; 0">
+			    and E.ON_PREPOSTERROR_STOP_ IN
+                <foreach item="x_onPrePostErrorStop_" index="index" collection="onPrePostErrorStop_s" 
+                     open="(" separator="," close=")">
+                  #{x_onPrePostErrorStop_}
+                </foreach>
+			</if>
+      
+
+			<if test="sendMailFlag_ != null">
+				and E.SENDMAIL_FLAG_ = #{sendMailFlag_}
+            </if>
+
+			<if test="sendMailFlag_GreaterThanOrEqual != null">
+				and E.SENDMAIL_FLAG_ &gt;= #{sendMailFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="sendMailFlag_LessThanOrEqual != null">
+				and E.SENDMAIL_FLAG_ &lt;= #{sendMailFlag_LessThanOrEqual}
+            </if>
+
+			<if test="sendMailFlag_s != null and sendMailFlag_s.size() &gt; 0">
+			    and E.SENDMAIL_FLAG_ IN
+                <foreach item="x_sendMailFlag_" index="index" collection="sendMailFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_sendMailFlag_}
+                </foreach>
+			</if>
+      
+	        
+			<if test="emailAddress_ != null and emailAddress_ != '' ">
+				and E.EMAIL_ADDRESS_ = #{emailAddress_}
+            </if>
+
+			<if test="emailAddress_Like != null and emailAddress_Like != '' ">
+				and E.EMAIL_ADDRESS_ like #{emailAddress_Like}
+            </if>
+
+			<if test="emailAddress_s != null and emailAddress_s.size() &gt; 0">
+			    and E.EMAIL_ADDRESS_ IN
+                <foreach item="x_emailAddress_" index="index" collection="emailAddress_s" 
+                     open="(" separator="," close=")">
+                  #{x_emailAddress_}
+                </foreach>
+			</if>
+	        
+			<if test="createBy_ != null and createBy_ != '' ">
+				and E.CREATEBY_ = #{createBy_}
+            </if>
+
+			<if test="createBy_Like != null and createBy_Like != '' ">
+				and E.CREATEBY_ like #{createBy_Like}
+            </if>
+
+			<if test="createBy_s != null and createBy_s.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy_" index="index" collection="createBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_createBy_}
+                </foreach>
+			</if>
+
+			<if test="createTime_GreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="createTime_LessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTime_LessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy_ != null and updateBy_ != '' ">
+				and E.UPDATEBY_ = #{updateBy_}
+            </if>
+
+			<if test="updateBy_Like != null and updateBy_Like != '' ">
+				and E.UPDATEBY_ like #{updateBy_Like}
+            </if>
+
+			<if test="updateBy_s != null and updateBy_s.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy_" index="index" collection="updateBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy_}
+                </foreach>
+			</if>
+
+			<if test="updateTime_GreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="updateTime_LessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag_ != null">
+				and E.DELETE_FLAG_ = #{deleteFlag_}
+            </if>
+
+			<if test="deleteFlag_GreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_LessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlag_LessThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_s != null and deleteFlag_s.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag_" index="index" collection="deleteFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag_}
+                </foreach>
+			</if>
+      
+
+			<if test="lastStartTime_GreaterThanOrEqual != null">
+				and E.LAST_START_TIME_ &gt;= #{lastStartTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="lastStartTime_LessThanOrEqual != null">
+				and E.LAST_START_TIME_ &lt;= #{lastStartTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="lastEndTime_GreaterThanOrEqual != null">
+				and E.LAST_END_TIME_ &gt;= #{lastEndTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="lastEndTime_LessThanOrEqual != null">
+				and E.LAST_END_TIME_ &lt;= #{lastEndTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="succeed_ != null">
+				and E.SUCCEED_ = #{succeed_}
+            </if>
+
+			<if test="succeed_GreaterThanOrEqual != null">
+				and E.SUCCEED_ &gt;= #{succeed_GreaterThanOrEqual}
+            </if>
+
+			<if test="succeed_LessThanOrEqual != null">
+				and E.SUCCEED_ &lt;= #{succeed_LessThanOrEqual}
+            </if>
+
+			<if test="succeed_s != null and succeed_s.size() &gt; 0">
+			    and E.SUCCEED_ IN
+                <foreach item="x_succeed_" index="index" collection="succeed_s" 
+                     open="(" separator="," close=")">
+                  #{x_succeed_}
+                </foreach>
+			</if>
+      
+
+			<if test="locked_ != null">
+				and E.LOCKED_ = #{locked_}
+            </if>
+
+			<if test="locked_GreaterThanOrEqual != null">
+				and E.LOCKED_ &gt;= #{locked_GreaterThanOrEqual}
+            </if>
+
+			<if test="locked_LessThanOrEqual != null">
+				and E.LOCKED_ &lt;= #{locked_LessThanOrEqual}
+            </if>
+
+			<if test="locked_s != null and locked_s.size() &gt; 0">
+			    and E.LOCKED_ IN
+                <foreach item="x_locked_" index="index" collection="locked_s" 
+                     open="(" separator="," close=")">
+                  #{x_locked_}
+                </foreach>
+			</if>
+      
+
+			<if test="errorStopAutoRun_ != null">
+				and E.ERROR_STOP_AUTORUN_ = #{errorStopAutoRun_}
+            </if>
+
+			<if test="errorStopAutoRun_GreaterThanOrEqual != null">
+				and E.ERROR_STOP_AUTORUN_ &gt;= #{errorStopAutoRun_GreaterThanOrEqual}
+            </if>
+
+			<if test="errorStopAutoRun_LessThanOrEqual != null">
+				and E.ERROR_STOP_AUTORUN_ &lt;= #{errorStopAutoRun_LessThanOrEqual}
+            </if>
+
+			<if test="errorStopAutoRun_s != null and errorStopAutoRun_s.size() &gt; 0">
+			    and E.ERROR_STOP_AUTORUN_ IN
+                <foreach item="x_errorStopAutoRun_" index="index" collection="errorStopAutoRun_s" 
+                     open="(" separator="," close=")">
+                  #{x_errorStopAutoRun_}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

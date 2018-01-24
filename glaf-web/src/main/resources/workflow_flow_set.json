@@ -1,0 +1,68 @@
+{
+	"id":"sequenceFlow",
+	"title": "",
+	"description":"流程连接线",
+	"propertyPackages":
+	[{
+		"id":"baseprop",
+		"title": "基本属性",
+		"description":"",
+		"expland":"true",
+		"properties":
+		[
+			{
+			    "id": "id", 
+			    "title": "ID",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if id?exists>${id[0]}</#if>",
+			    "defaultVal":"flow_${.now?string('yyyyMMddHHmmss')}",
+			    "inputMode": "input",
+				"readonly":"true",
+			    "require":"true"
+			},{
+			    "id": "name", 
+			    "title": "名称",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if name?exists>${name[0]?json_string}</#if>",
+			    "inputMode": "input",
+			    "require":"true"
+			},
+			{
+			    "id": "description", 
+			    "title": "描述",
+			    "type": "string",
+			    "maxlen":"150",
+			    "minlen":"",
+			    "value": "<#if description?exists>${description[0]?json_string}</#if>",
+			    "inputMode": "input",
+			    "require":""
+			},
+			{
+			    "id": "expression", 
+			    "title": "条件表达式",
+			    "type": "string",
+			    "value": {"expVal":"<#if expression?exists>${expression[0]?json_string}</#if>","expActVal":"<#if expressionAct?exists>${expressionAct[0]?json_string}</#if>","varVal":<#if expressionVar?exists><#if expressionVar[0]==''>{}<#else>${expressionVar[0]}</#if><#else>{}</#if>},
+			    "inputMode": "template",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"expression\" ondblclick=\"openExpressionDialog(this)\" style=\"width:200px;\" readonly value=\"<#if expression?exists>${expression[0]?html}</#if>\" /><input type=\"hidden\" name=\"expressionAct\"  value=\"<#if expressionAct?exists>${expressionAct[0]?html}</#if>\" /><input type=\"hidden\" name=\"expressionVar\" value=\"<#if expressionVar?exists>${expressionVar[0]?html}</#if>\" /><input type=\"radio\" name=\"approve\" value=\"true\" onclick=\"setExpression('1')\"/>同意<input type=\"radio\" name=\"approve\" value=\"false\" onclick=\"setExpression('0')\"/>不同意<input type=\"radio\" name=\"approve\" value=\"\" onclick=\"setExpression('')\"/>清空",
+			    "require":""
+			},
+			{
+			    "id": "defaultFlow", 
+			    "title": "默认流",
+			    "type": "string",
+			    "maxlen":"",
+			    "minlen":"",
+				"defaultVal":"0",
+			    "value": "<#if defaultFlow?exists>${defaultFlow[0]}</#if>",
+			    "checkedval":"0",
+			    "inputMode": "checkbox",
+			    "require":""
+			}
+		]
+	}
+]
+ }

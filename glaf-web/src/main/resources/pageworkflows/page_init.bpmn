@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn20" id="adhoc-definitions">
+  <process id="page_init_activiti" name="PageInit Activiti Process" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <receiveTask id="ReceiveTask1" name="省级初始化"></receiveTask>
+    <receiveTask id="ReceiveTask2" name="市初始化"></receiveTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="ReceiveTask1"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="ReceiveTask1" targetRef="ReceiveTask2"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="ReceiveTask2" targetRef="endevent1"></sequenceFlow>
+    <dataObject id="jsFunction" name="js方法" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="jsParam" name="js参数" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_page_init_activiti">
+    <bpmndi:BPMNPlane bpmnElement="page_init_activiti" id="BPMNPlane_page_init_activiti">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="40.0" y="276.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="650.0" y="276.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ReceiveTask1" id="BPMNShape_ReceiveTask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="200.0" y="266.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="ReceiveTask2" id="BPMNShape_ReceiveTask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="400.0" y="266.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="75.0" y="293.0"></omgdi:waypoint>
+        <omgdi:waypoint x="200.0" y="293.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="305.0" y="293.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="293.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="505.0" y="293.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="293.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

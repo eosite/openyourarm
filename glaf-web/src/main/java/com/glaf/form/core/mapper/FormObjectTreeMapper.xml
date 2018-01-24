@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormObjectTreeMapper">
+
+ 	<resultMap id="formObjectTreeResultMap"	type="com.glaf.form.core.domain.FormObjectTree">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="desc" column="DESC_" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOP_ID_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREE_ID_" jdbcType="VARCHAR"/>
+        <result property="level" column="LEVEL_" jdbcType="INTEGER"/>
+        <result property="createBy" column="CREATE_BY_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATE_DATE_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATE_BY_" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATE_DATE_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormObjectTree" parameterType="com.glaf.form.core.domain.FormObjectTree">
+		insert into FORM_OBJECT_TREE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="desc != null">
+				,DESC_ 
+			</if>
+			<if test="topId != null">
+				,TOP_ID_ 
+			</if>
+			<if test="treeId != null">
+				,TREE_ID_ 
+			</if>
+			<if test="level != null">
+				,LEVEL_ 
+			</if>
+			<if test="createBy != null">
+				,CREATE_BY_ 
+			</if>
+			<if test="createDate != null">
+				,CREATE_DATE_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATE_BY_ 
+			</if>
+			<if test="updateDate != null">
+				,UPDATE_DATE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormObjectTree" parameterType="com.glaf.form.core.domain.FormObjectTree">
+		update FORM_OBJECT_TREE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOP_ID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREE_ID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATE_BY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormObjectTreeById" parameterType="string"> 
+        delete from FORM_OBJECT_TREE
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormObjectTrees" parameterType="com.glaf.form.core.query.FormObjectTreeQuery">
+		delete from FORM_OBJECT_TREE
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormObjectTreeById" parameterType="string" resultMap="formObjectTreeResultMap">
+		select * from FORM_OBJECT_TREE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormObjectTrees" 
+	    parameterType="com.glaf.form.core.query.FormObjectTreeQuery"
+		resultMap="formObjectTreeResultMap">
+		select E.*
+		<include refid="selectFormObjectTreesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormObjectTreeCount" 
+	    parameterType="com.glaf.form.core.query.FormObjectTreeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormObjectTreesSql" />
+	</select>
+
+
+	<sql id="selectFormObjectTreesSql">
+
+		from FORM_OBJECT_TREE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="desc != null and desc != '' ">
+				and E.DESC_ = #{desc}
+            </if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+            </if>
+
+			<if test="descs != null and descs.size() &gt; 0">
+			    and E.DESC_ IN
+                <foreach item="x_desc" index="index" collection="descs" 
+                     open="(" separator="," close=")">
+                  #{x_desc}
+                </foreach>
+			</if>
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOP_ID_ = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOP_ID_ like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOP_ID_ IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREE_ID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREE_ID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREE_ID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+
+			<if test="level != null">
+				and E.LEVEL_ = #{level}
+            </if>
+
+			<if test="levelGreaterThanOrEqual != null">
+				and E.LEVEL_ &gt;= #{levelGreaterThanOrEqual}
+            </if>
+
+			<if test="levelLessThanOrEqual != null">
+				and E.LEVEL_ &lt;= #{levelLessThanOrEqual}
+            </if>
+
+			<if test="levels != null and levels.size() &gt; 0">
+			    and E.LEVEL_ IN
+                <foreach item="x_level" index="index" collection="levels" 
+                     open="(" separator="," close=")">
+                  #{x_level}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATE_BY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATE_BY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATE_BY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATE_DATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATE_DATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATE_BY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATE_BY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATE_BY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATE_DATE_ &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATE_DATE_ &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.SysReportTemplateMapper">
+
+ 	<resultMap id="sysReportTemplateResultMap"	type="com.glaf.report.core.domain.SysReportTemplate">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="reportTemplateName" column="REPORT_TEMPLATE_NAME" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="utime" column="UTIME" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertSysReportTemplate" parameterType="com.glaf.report.core.domain.SysReportTemplate">
+		insert into SYSREPORTTEMPLATE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="reportTemplateName != null">
+				,REPORT_TEMPLATE_NAME 
+			</if>
+			<if test="reportTemplateFile != null">
+				,REPORT_TEMPLATE_FILE 
+			</if>
+			<if test="ctime != null">
+				,CTIME 
+			</if>
+			<if test="utime != null">
+				,UTIME 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="reportTemplateName != null">
+				,#{reportTemplateName, jdbcType=VARCHAR}
+			</if>
+			<if test="reportTemplateFile != null">
+				,#{reportTemplateFile, jdbcType=BLOB}
+			</if>
+			<if test="ctime != null">
+				,#{ctime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="utime != null">
+				,#{utime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSysReportTemplate" parameterType="com.glaf.report.core.domain.SysReportTemplate">
+		update SYSREPORTTEMPLATE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="reportTemplateName != null">
+				REPORT_TEMPLATE_NAME = #{reportTemplateName, jdbcType=VARCHAR},
+			</if>
+			<if test="reportTemplateFile != null">
+				REPORT_TEMPLATE_FILE = #{reportTemplateFile, jdbcType=BLOB},
+			</if>
+			<if test="ctime != null">
+				CTIME = #{ctime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="utime != null">
+				UTIME = #{utime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteSysReportTemplateById" parameterType="string"> 
+        delete from SYSREPORTTEMPLATE
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteSysReportTemplates" parameterType="com.glaf.report.core.query.SysReportTemplateQuery">
+		delete from SYSREPORTTEMPLATE
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSysReportTemplateById" parameterType="string" resultMap="sysReportTemplateResultMap">
+		select * from SYSREPORTTEMPLATE where ID = #{id}
+	</select>
+
+
+	<select id="getSysReportTemplates" 
+	    parameterType="com.glaf.report.core.query.SysReportTemplateQuery"
+		resultMap="sysReportTemplateResultMap">
+		select E.ID,E.REPORT_TEMPLATE_NAME,E.CTIME,E.UTIME
+		<include refid="selectSysReportTemplatesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getSysReportTemplateCount" 
+	    parameterType="com.glaf.report.core.query.SysReportTemplateQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysReportTemplatesSql" />
+	</select>
+
+
+	<sql id="selectSysReportTemplatesSql">
+
+		from SYSREPORTTEMPLATE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="reportTemplateName != null and reportTemplateName != '' ">
+				and E.REPORT_TEMPLATE_NAME = #{reportTemplateName}
+            </if>
+
+			<if test="reportTemplateNameLike != null and reportTemplateNameLike != '' ">
+				and E.REPORT_TEMPLATE_NAME like #{reportTemplateNameLike}
+            </if>
+
+			<if test="reportTemplateNames != null and reportTemplateNames.size() &gt; 0">
+			    and E.REPORT_TEMPLATE_NAME IN
+                <foreach item="x_reportTemplateName" index="index" collection="reportTemplateNames" 
+                     open="(" separator="," close=")">
+                  #{x_reportTemplateName}
+                </foreach>
+			</if>
+
+			<if test="ctimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{ctimeGreaterThanOrEqual}
+            </if>
+
+			<if test="ctimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{ctimeLessThanOrEqual}
+            </if>
+
+
+			<if test="utimeGreaterThanOrEqual != null">
+				and E.UTIME &gt;= #{utimeGreaterThanOrEqual}
+            </if>
+
+			<if test="utimeLessThanOrEqual != null">
+				and E.UTIME &lt;= #{utimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

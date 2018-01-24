@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormAttachmentMapper">
+
+	<resultMap id="formAttachmentMap" type="com.glaf.form.core.domain.FormAttachment">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="parent" column="PARENT_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="fileName" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="fileSize" column="FILESIZE_" jdbcType="INTEGER" />
+		<result property="saveServicePath" column="SAVESERVICEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="version" column="VISION_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="business" column="BUSINESS" jdbcType="VARCHAR" />
+		<result property="filenameThu" column="FILENAME_THU_" jdbcType="VARCHAR" />
+		<result property="filesizeThu" column="FILESIZE_THU_" jdbcType="INTEGER" />
+		<result property="filepathThu" column="FILEPATH_THU_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap id="formAttachmentBlobMap" type="com.glaf.form.core.domain.FormAttachment">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="parent" column="PARENT_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="fileName" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="fileSize" column="FILESIZE_" jdbcType="INTEGER" />
+		<result property="fileContent" column="FILECONTENT_" jdbcType="BLOB" />
+		<result property="saveServicePath" column="SAVESERVICEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="version" column="VISION_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP" />
+		<result property="business" column="BUSINESS" jdbcType="VARCHAR" />
+		<result property="filenameThu" column="FILENAME_THU_" jdbcType="VARCHAR" />
+		<result property="filesizeThu" column="FILESIZE_THU_" jdbcType="INTEGER" />
+		<result property="filecontentThu" column="FILECONTENT_THU_"
+			jdbcType="BLOB" />
+		<result property="filepathThu" column="FILEPATH_THU_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormAttachment" parameterType="com.glaf.form.core.domain.FormAttachment"
+		keyProperty="id">
+		insert into FORM_ATTACHMENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_,
+			PARENT_
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="fileName != null">
+				,FILENAME_
+			</if>
+			<if test="fileSize != null">
+				,FILESIZE_
+			</if>
+			<if test="fileContent != null">
+				,FILECONTENT_
+			</if>
+			<if test="saveServicePath != null">
+				,SAVESERVICEPATH_
+			</if>
+			<if test="version != null">
+				,VISION_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE
+			</if>
+			<if test="business != null">
+				,BUSINESS
+			</if>
+
+			<if test="filenameThu != null">
+				,FILENAME_THU_
+			</if>
+			<if test="filesizeThu != null">
+				,FILESIZE_THU_
+			</if>
+			<if test="filecontentThu != null">
+				,FILECONTENT_THU_
+			</if>
+			<if test="filepathThu != null">
+				,FILEPATH_THU_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR},
+			#{parent, jdbcType=VARCHAR}
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileSize != null">
+				,#{fileSize, jdbcType=INTEGER}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="saveServicePath != null">
+				,#{saveServicePath, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=VARCHAR}
+			</if>
+			<if test="business != null">
+				,#{business, jdbcType=VARCHAR}
+			</if>
+
+			<if test="filenameThu != null">
+				,#{filenameThu, jdbcType=VARCHAR}
+			</if>
+			<if test="filesizeThu != null">
+				,#{filesizeThu, jdbcType=INTEGER}
+			</if>
+			<if test="filecontentThu != null">
+				,#{filecontentThu, jdbcType=BLOB}
+			</if>
+			<if test="filepathThu != null">
+				,#{filepathThu, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormAttachment" parameterType="com.glaf.form.core.domain.FormAttachment">
+		UPDATE FORM_ATTACHMENT SET
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="parent != null">
+				PARENT_ = #{parent, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				FILENAME_ = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileSize != null">
+				FILESIZE_ = #{fileSize, jdbcType=INTEGER},
+			</if>
+			<if test="fileContent != null">
+				FILECONTENT_ = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="saveServicePath != null">
+				SAVESERVICEPATH_ = #{saveServicePath, jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VISION_ = #{version, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=VARCHAR},
+			</if>
+			<if test="business != null">
+				BUSINESS = #{business, jdbcType=VARCHAR},
+			</if>
+			<if test="filenameThu != null">
+				FILENAME_THU_ = #{filenameThu, jdbcType=VARCHAR},
+			</if>
+			<if test="filesizeThu != null">
+				FILESIZE_THU_ = #{filesizeThu, jdbcType=INTEGER},
+			</if>
+			<if test="filecontentThu != null">
+				FILECONTENT_THU_ = #{filecontentThu, jdbcType=BLOB},
+			</if>
+			<if test="filepathThu != null">
+				FILEPATH_THU_ = #{filepathThu, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+	</update>
+
+
+	<delete id="deleteFormAttachmentById" parameterType="string">
+		DELETE FROM
+		FORM_ATTACHMENT WHERE ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormAttachmentByIds" parameterType="list">
+		DELETE FROM FORM_ATTACHMENT
+		WHERE ID_ IN
+		<foreach collection="rowIds" open="(" separator="," close=")"
+			item="x_id">
+			#{x_id}
+		</foreach>
+	</delete>
+
+
+	<delete id="deleteFormAttachmentByParent" parameterType="string">
+		DELETE
+		FROM FORM_ATTACHMENT WHERE PARENT_ = #{parent}
+	</delete>
+
+
+	<select id="getFormAttachmentById" parameterType="string"
+		resultMap="formAttachmentBlobMap">
+		SELECT * FROM FORM_ATTACHMENT WHERE ID_ = #{id}
+	</select>
+	
+	
+	<select id="getFormAttachmentNotContentById" parameterType="string"
+		resultMap="formAttachmentMap">
+		SELECT E.ID_, E.PARENT_, E.TYPE_, E.FILENAME_, E.FILESIZE_,
+		E.SAVESERVICEPATH_, E.VISION_, E.STATUS_, E.CREATEBY,
+		E.CREATEDATE, E.UPDATEBY, E.UPDATEDATE, E.BUSINESS, 
+		E.FILENAME_THU_, E.FILESIZE_THU_, E.FILEPATH_THU_ 
+		FROM FORM_ATTACHMENT E WHERE E.ID_ = #{id}
+	</select>
+
+
+	<select id="getFormAttachmentCount" parameterType="com.glaf.form.core.query.FormAttachmentQuery"
+		resultType="integer">
+		SELECT COUNT(*)
+		<include refid="selectFormAttachmentsSql" />
+	</select>
+
+
+	<select id="getFormAttachments" parameterType="com.glaf.form.core.query.FormAttachmentQuery"
+		resultMap="formAttachmentBlobMap">
+		SELECT E.* 
+		
+		<include refid="selectFormAttachmentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE DESC
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormAttachmentsNotContent" parameterType="com.glaf.form.core.query.FormAttachmentQuery"
+		resultMap="formAttachmentMap">
+		SELECT
+		E.ID_, E.PARENT_, E.TYPE_, E.FILENAME_, E.FILESIZE_, E.SAVESERVICEPATH_,
+		E.VISION_, E.STATUS_, E.CREATEBY,
+		E.CREATEDATE, E.UPDATEBY, E.UPDATEDATE, E.BUSINESS,
+		E.FILENAME_THU_, E.FILESIZE_THU_, E.FILEPATH_THU_
+		
+		<include refid="selectFormAttachmentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE DESC
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<sql id="selectFormAttachmentsSql">
+		FROM FORM_ATTACHMENT E
+		<where>
+			1=1
+			<if test="id != null">
+				and E.ID_ = #{id}
+			</if>
+
+			<if test="rowIds != null and rowIds.size() &gt; 0 ">
+				and E.ID_ IN
+				<foreach collection="rowIds" open="(" separator="," close=")"
+					item="x_id">
+					#{x_id}
+				</foreach>
+			</if>
+
+			<if test="parent != null and parent != '' ">
+				and E.PARENT_ = #{parent}
+			</if>
+
+			<if test="parents != null and parents.size() &gt; 0 ">
+				and E.PARENT_ IN
+				<foreach collection="parents" open="(" separator="," close=")"
+					item="x_parent">
+					#{x_parent}
+				</foreach>
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0 ">
+				and E.TYPE_ IN
+				<foreach collection="types" open="(" separator="," close=")"
+					item="x_type">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="fileName != null and fileName != '' ">
+				and E.FILENAME_ = #{fileName}
+			</if>
+
+			<if test="fileNames != null and fileNames.size &gt; 0">
+				and E.FILENAME_ IN
+				<foreach collection="fileNames" open="(" separator=","
+					close=")" item="x_fileName">
+					#{x_fileName}
+				</foreach>
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILENAME_ = #{fileNameLike}
+			</if>
+
+			<if test="saveServicePath != null and saveServicePath != '' ">
+				and E.SAVESERVICEPATH_ = #{saveServicePath}
+			</if>
+
+			<if test="version != null and version != '' ">
+				and E.VERSION_ = #{version}
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY = #{createBy}
+			</if>
+
+			<if test="createDate != null">
+				and E.CREATEDATE = #{createDate}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY = #{updateBy}
+			</if>
+
+			<if test="updateDate != null">
+				and E.UPDATEDATE = #{updateDate}
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="business != null">
+				and E.BUSINESS = #{business}
+			</if>
+
+			<if test="businesses != null and businesses.size &gt; 0">
+				and E.BUSINESS IN
+				<foreach collection="businesses" open="(" separator=","
+					close=")" item="x_business">
+					#{x_business}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+</mapper>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseComponentMapper">
+
+ 	<resultMap id="depBaseComponentResultMap" type="com.glaf.dep.base.domain.DepBaseComponent">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDateTime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="VARCHAR"/>
+        <result property="htmlTemplate" column="HTML_TEMPLATE_" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="depBaseComponentExtResultMap" type="com.glaf.dep.base.domain.DepBaseComponent" extends="depBaseComponentResultMap">
+		<collection property="props" ofType="com.glaf.dep.base.domain.DepBaseProp"
+        	column="ID_" fetchType="lazy" 
+        	select="com.glaf.dep.base.mapper.DepBasePropMapper.getDepBasePropByComponentId" />
+	</resultMap>
+
+ 
+	<insert id="insertDepBaseComponent" parameterType="com.glaf.dep.base.domain.DepBaseComponent">
+		insert into DEP_BASE_COMPONENT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDateTime != null">
+				,MODIFYDATETIME_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="htmlTemplate != null">
+				,HTML_TEMPLATE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDateTime != null">
+				,#{modifyDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="htmlTemplate != null">
+				,#{htmlTemplate, jdbcType=CLOB}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseComponent" parameterType="com.glaf.dep.base.domain.DepBaseComponent">
+		update DEP_BASE_COMPONENT
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDateTime != null">
+				MODIFYDATETIME_ = #{modifyDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="htmlTemplate != null">
+				HTML_TEMPLATE_ = #{htmlTemplate, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBaseComponentById" parameterType="string"> 
+        delete from DEP_BASE_COMPONENT
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepBaseComponents" parameterType="com.glaf.dep.base.query.DepBaseComponentQuery">
+		delete from DEP_BASE_COMPONENT
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBaseComponentById" parameterType="string" resultMap="depBaseComponentResultMap">
+		select * from DEP_BASE_COMPONENT where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepBaseComponents" flushCache="true"
+	    parameterType="com.glaf.dep.base.query.DepBaseComponentQuery"
+		resultMap="depBaseComponentResultMap">
+		select E.*
+		<include refid="selectDepBaseComponentsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBaseComponentCount" 
+	    parameterType="com.glaf.dep.base.query.DepBaseComponentQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseComponentsSql" />
+	</select>
+
+	<select id="getDepBaseComponentsByRuleId" parameterType="string" resultMap="depBaseComponentExtResultMap">
+		select * from DEP_BASE_COMPONENT a,DEP_BASE_COMPPROP b where a.ID_=b.DEP_BASE_COMPONENT_ID_
+		and b.RULEID_=#{ruleId}
+	</select>
+
+	<sql id="selectDepBaseComponentsSql">
+
+		from DEP_BASE_COMPONENT E
+		
+		<where>
+		       1 = 1  
+			 <if test="ids != null and ids.size() &gt; 0">
+			    and E.ID_ IN
+                <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDateTimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDateTimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="delFlag != null and delFlag != '' ">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagLike != null and delFlagLike != '' ">
+				and E.DELFLAG_ like #{delFlagLike}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

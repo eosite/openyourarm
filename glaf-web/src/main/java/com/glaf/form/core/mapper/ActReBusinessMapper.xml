@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.ActReBusinessMapper">
+
+	<resultMap id="actReBusinessResultMap" type="com.glaf.form.core.domain.ActReBusiness">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="bustbName" column="BUSTBNAME_" jdbcType="VARCHAR" />
+		<result property="bustbId" column="BUSTBID_" jdbcType="VARCHAR" />
+		<result property="busValue" column="BUSVALUE_" jdbcType="VARCHAR" />
+		<result property="processId" column="PROCESSID_" jdbcType="VARCHAR" />
+		<result property="processName" column="PROCESSNAME_" jdbcType="VARCHAR" />
+		<result property="pageId" column="PAGEID_" jdbcType="VARCHAR" />
+		<result property="key" column="KEY_" jdbcType="VARCHAR" />
+		<result property="url" column="URL_" jdbcType="VARCHAR" />
+		<result property="defId" column="DEF_ID_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<insert id="insertActReBusiness" parameterType="com.glaf.form.core.domain.ActReBusiness">
+		insert into ACT_RE_BUSINESS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="bustbName != null">
+				,BUSTBNAME_
+			</if>
+			<if test="bustbId != null">
+				,BUSTBID_
+			</if>
+			<if test="busValue != null">
+				,BUSVALUE_
+			</if>
+			<if test="processId != null">
+				,PROCESSID_
+			</if>
+			<if test="processName != null">
+				,PROCESSNAME_
+			</if>
+			<if test="pageId != null">
+				,PAGEID_
+			</if>
+			<if test="key != null">
+				,KEY_
+			</if>
+			<if test="url != null">
+				,URL_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+			<if test="defId != null">
+				,DEF_ID_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="bustbName != null">
+				,#{bustbName, jdbcType=VARCHAR}
+			</if>
+			<if test="bustbId != null">
+				,#{bustbId, jdbcType=VARCHAR}
+			</if>
+			<if test="busValue != null">
+				,#{busValue, jdbcType=VARCHAR}
+			</if>
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="processName != null">
+				,#{processName, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="key != null">
+				,#{key, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				,#{url, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="defId != null">
+				,#{defId, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateActReBusiness" parameterType="com.glaf.form.core.domain.ActReBusiness">
+		update ACT_RE_BUSINESS
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="bustbName != null">
+				BUSTBNAME_ = #{bustbName, jdbcType=VARCHAR},
+			</if>
+			<if test="bustbId != null">
+				BUSTBID_ = #{bustbId, jdbcType=VARCHAR},
+			</if>
+			<if test="busValue != null">
+				BUSVALUE_ = #{busValue, jdbcType=VARCHAR},
+			</if>
+			<if test="processId != null">
+				PROCESSID_ = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="processName != null">
+				PROCESSNAME_ = #{processName, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="key != null">
+				KEY_ = #{key, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL_ = #{url, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="defId != null">
+				DEF_ID_ = #{defId, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteActReBusinessById" parameterType="long">
+		delete from
+		ACT_RE_BUSINESS
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteActReBusinesss" parameterType="com.glaf.form.core.query.ActReBusinessQuery">
+		delete from ACT_RE_BUSINESS
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getActReBusinessById" parameterType="long"
+		resultMap="actReBusinessResultMap">
+		select * from ACT_RE_BUSINESS where ID_ = #{id}
+	</select>
+
+
+	<select id="getActReBusinesss" parameterType="com.glaf.form.core.query.ActReBusinessQuery"
+		resultMap="actReBusinessResultMap">
+		select distinct E.*
+		<include refid="selectActReBusinesssSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getActReBusinessCount" parameterType="com.glaf.form.core.query.ActReBusinessQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectActReBusinesssSql" />
+	</select>
+
+
+	<sql id="selectActReBusinesssSql">
+
+		from ACT_RE_BUSINESS E
+
+		<where>
+			1 = 1
+
+
+			<if test="bustbName != null and bustbName != '' ">
+				and E.BUSTBNAME_ = #{bustbName}
+			</if>
+
+			<if test="bustbNameLike != null and bustbNameLike != '' ">
+				and E.BUSTBNAME_ like #{bustbNameLike}
+			</if>
+
+			<if test="bustbNames != null and bustbNames.size() &gt; 0">
+				and E.BUSTBNAME_ IN
+				<foreach item="x_bustbName" index="index" collection="bustbNames"
+					open="(" separator="," close=")">
+					#{x_bustbName}
+				</foreach>
+			</if>
+
+			<if test="bustbId != null and bustbId != '' ">
+				and E.BUSTBID_ = #{bustbId}
+			</if>
+
+			<if test="bustbIdLike != null and bustbIdLike != '' ">
+				and E.BUSTBID_ like #{bustbIdLike}
+			</if>
+
+			<if test="bustbIds != null and bustbIds.size() &gt; 0">
+				and E.BUSTBID_ IN
+				<foreach item="x_bustbId" index="index" collection="bustbIds"
+					open="(" separator="," close=")">
+					#{x_bustbId}
+				</foreach>
+			</if>
+
+			<if test="busValue != null and busValue != '' ">
+				and E.BUSVALUE_ = #{busValue}
+			</if>
+
+			<if test="busValueLike != null and busValueLike != '' ">
+				and E.BUSVALUE_ like #{busValueLike}
+			</if>
+
+			<if test="busValues != null and busValues.size() &gt; 0">
+				and E.BUSVALUE_ IN
+				<foreach item="x_busValue" index="index" collection="busValues"
+					open="(" separator="," close=")">
+					#{x_busValue}
+				</foreach>
+			</if>
+
+			<if test="processId != null and processId != '' ">
+				and E.PROCESSID_ = #{processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESSID_ like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+				and E.PROCESSID_ IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+			<if test="processName != null and processName != '' ">
+				and E.PROCESSNAME_ = #{processName}
+			</if>
+
+			<if test="processNameLike != null and processNameLike != '' ">
+				and E.PROCESSNAME_ like #{processNameLike}
+			</if>
+
+			<if test="processNames != null and processNames.size() &gt; 0">
+				and E.PROCESSNAME_ IN
+				<foreach item="x_processName" index="index" collection="processNames"
+					open="(" separator="," close=")">
+					#{x_processName}
+				</foreach>
+			</if>
+
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+			</if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+			</if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+				and E.PAGEID_ IN
+				<foreach item="x_pageId" index="index" collection="pageIds"
+					open="(" separator="," close=")">
+					#{x_pageId}
+				</foreach>
+			</if>
+
+			<if test="key != null and key != '' ">
+				and E.KEY_ = #{key}
+			</if>
+
+			<if test="keyLike != null and keyLike != '' ">
+				and E.KEY_ like #{keyLike}
+			</if>
+
+			<if test="keys != null and keys.size() &gt; 0">
+				and E.KEY_ IN
+				<foreach item="x_key" index="index" collection="keys" open="("
+					separator="," close=")">
+					#{x_key}
+				</foreach>
+			</if>
+
+			<if test="url != null and url != '' ">
+				and E.URL_ = #{url}
+			</if>
+
+			<if test="urlLike != null and urlLike != '' ">
+				and E.URL_ like #{urlLike}
+			</if>
+
+			<if test="urls != null and urls.size() &gt; 0">
+				and E.URL_ IN
+				<foreach item="x_url" index="index" collection="urls" open="("
+					separator="," close=")">
+					#{x_url}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="defId != null and defId != '' ">
+				and E.DEF_ID_ = #{defId}
+			</if>
+
+			<if test="defIdLike != null and defIdLike != '' ">
+				and E.DEF_ID_ like #{defIdLike}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.workflow.core.mapper.ProcessDefMappingMapper">
+
+ 	<resultMap id="processDefMappingResultMap"	type="com.glaf.workflow.core.domain.ProcessDefMapping">
+        <id property="iD" column="ID_" jdbcType="VARCHAR"/>
+        <result property="srcProcDefId" column="SRC_PROC_DEF_ID_" jdbcType="VARCHAR"/>
+        <result property="desProcDefId" column="DES_PROC_DEF_ID_" jdbcType="VARCHAR"/>
+        <result property="srcSysId" column="SRC_SYS_ID_" jdbcType="VARCHAR"/>
+        <result property="desSysId" column="DES_SYS_ID_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREAT_DATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertProcessDefMapping" parameterType="com.glaf.workflow.core.domain.ProcessDefMapping">
+		insert into PROCESS_DEF_MAPPING 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="srcProcDefId != null">
+				,SRC_PROC_DEF_ID_ 
+			</if>
+			<if test="desProcDefId != null">
+				,DES_PROC_DEF_ID_ 
+			</if>
+			<if test="srcSysId != null">
+				,SRC_SYS_ID_ 
+			</if>
+			<if test="desSysId != null">
+				,DES_SYS_ID_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREAT_DATETIME_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{iD, jdbcType=VARCHAR}
+	     
+			<if test="srcProcDefId != null">
+				,#{srcProcDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="desProcDefId != null">
+				,#{desProcDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="srcSysId != null">
+				,#{srcSysId, jdbcType=VARCHAR}
+			</if>
+			<if test="desSysId != null">
+				,#{desSysId, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateProcessDefMapping" parameterType="com.glaf.workflow.core.domain.ProcessDefMapping">
+		update PROCESS_DEF_MAPPING
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="srcProcDefId != null">
+				SRC_PROC_DEF_ID_ = #{srcProcDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="desProcDefId != null">
+				DES_PROC_DEF_ID_ = #{desProcDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="srcSysId != null">
+				SRC_SYS_ID_ = #{srcSysId, jdbcType=VARCHAR},
+			</if>
+			<if test="desSysId != null">
+				DES_SYS_ID_ = #{desSysId, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREAT_DATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{iD, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteProcessDefMappingById" parameterType="string"> 
+        delete from PROCESS_DEF_MAPPING
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteProcessDefMappings" parameterType="com.glaf.workflow.core.query.ProcessDefMappingQuery">
+		delete from PROCESS_DEF_MAPPING
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_iD" index="index" collection="iDs" 
+                     open="(" separator="," close=")">
+                  #{x_iD}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getProcessDefMappingById" parameterType="string" resultMap="processDefMappingResultMap">
+		select * from PROCESS_DEF_MAPPING where ID_ = #{id}
+	</select>
+	
+    <select id="getProcessDefMappingByImpProcessDefAndImpSysId" parameterType="map" resultMap="processDefMappingResultMap">
+		select * from PROCESS_DEF_MAPPING where SRC_PROC_DEF_ID_= #{impProcessDef} 
+		<!--后续考虑多平台交互 and SRC_SYS_ID_=#{sysId} and DES_SYS_ID_=#{impSysId} -->
+	</select>
+
+	<select id="getProcessDefMappings" 
+	    parameterType="com.glaf.workflow.core.query.ProcessDefMappingQuery"
+		resultMap="processDefMappingResultMap">
+		select distinct E.*
+		<include refid="selectProcessDefMappingsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getProcessDefMappingCount" 
+	    parameterType="com.glaf.workflow.core.query.ProcessDefMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectProcessDefMappingsSql" />
+	</select>
+
+
+	<sql id="selectProcessDefMappingsSql">
+
+		from PROCESS_DEF_MAPPING E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="srcProcDefId != null and srcProcDefId != '' ">
+				and E.SRC_PROC_DEF_ID_ = #{srcProcDefId}
+            </if>
+
+			<if test="srcProcDefIdLike != null and srcProcDefIdLike != '' ">
+				and E.SRC_PROC_DEF_ID_ like #{srcProcDefIdLike}
+            </if>
+
+			<if test="srcProcDefIds != null and srcProcDefIds.size() &gt; 0">
+			    and E.SRC_PROC_DEF_ID_ IN
+                <foreach item="x_srcProcDefId" index="index" collection="srcProcDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcProcDefId}
+                </foreach>
+			</if>
+	        
+			<if test="desProcDefId != null and desProcDefId != '' ">
+				and E.DES_PROC_DEF_ID_ = #{desProcDefId}
+            </if>
+
+			<if test="desProcDefIdLike != null and desProcDefIdLike != '' ">
+				and E.DES_PROC_DEF_ID_ like #{desProcDefIdLike}
+            </if>
+
+			<if test="desProcDefIds != null and desProcDefIds.size() &gt; 0">
+			    and E.DES_PROC_DEF_ID_ IN
+                <foreach item="x_desProcDefId" index="index" collection="desProcDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_desProcDefId}
+                </foreach>
+			</if>
+	        
+			<if test="srcSysId != null and srcSysId != '' ">
+				and E.SRC_SYS_ID_ = #{srcSysId}
+            </if>
+
+			<if test="srcSysIdLike != null and srcSysIdLike != '' ">
+				and E.SRC_SYS_ID_ like #{srcSysIdLike}
+            </if>
+
+			<if test="srcSysIds != null and srcSysIds.size() &gt; 0">
+			    and E.SRC_SYS_ID_ IN
+                <foreach item="x_srcSysId" index="index" collection="srcSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_srcSysId}
+                </foreach>
+			</if>
+	        
+			<if test="desSysId != null and desSysId != '' ">
+				and E.DES_SYS_ID_ = #{desSysId}
+            </if>
+
+			<if test="desSysIdLike != null and desSysIdLike != '' ">
+				and E.DES_SYS_ID_ like #{desSysIdLike}
+            </if>
+
+			<if test="desSysIds != null and desSysIds.size() &gt; 0">
+			    and E.DES_SYS_ID_ IN
+                <foreach item="x_desSysId" index="index" collection="desSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_desSysId}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREAT_DATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREAT_DATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

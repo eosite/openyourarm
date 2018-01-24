@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormPageHistoryMapper">
+
+	<resultMap id="formPageHistoryResultMap" type="com.glaf.form.core.domain.FormPageHistory">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="pageId" column="PAGEID_" jdbcType="VARCHAR" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="formHtml" column="FORMHTML_" jdbcType="VARCHAR" />
+		<result property="formConfig" column="FORMCONFIG_" jdbcType="VARCHAR" />
+		<result property="outputHtml" column="OUTPUTHTML_" jdbcType="VARCHAR" />
+		<result property="formType" column="FORMTYPE_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		
+		<result property="designerHtml" column="DESIGNERHTML_"
+			jdbcType="VARCHAR" />
+		<result property="designerJson" column="DESIGNERJSON_"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormPageHistory" parameterType="com.glaf.form.core.domain.FormPageHistory">
+		insert into FORM_PAGE_HISTORY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="pageId != null">
+				,PAGEID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="formHtml != null">
+				,FORMHTML_
+			</if>
+			<if test="formConfig != null">
+				,FORMCONFIG_
+			</if>
+			<if test="outputHtml != null">
+				,OUTPUTHTML_
+			</if>
+			<if test="formType != null">
+				,FORMTYPE_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="designerHtml != null">
+				,DESIGNERHTML_
+			</if>
+			<if test="designerJson != null">
+				,DESIGNERJSON_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="formHtml != null">
+				,#{formHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="formConfig != null">
+				,#{formConfig, jdbcType=VARCHAR}
+			</if>
+			<if test="outputHtml != null">
+				,#{outputHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="formType != null">
+				,#{formType, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="designerHtml != null">
+				,#{designerHtml, jdbcType=VARCHAR}
+			</if>
+			<if test="designerJson != null">
+				,#{designerJson, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertFormPageHistory" parameterType="java.util.List">
+		insert into FORM_PAGE_HISTORY (
+		ID_
+		,PAGEID_
+		,DEPLOYMENTID_
+		,FORMHTML_
+		,FORMCONFIG_
+		,OUTPUTHTML_
+		,FORMTYPE_
+		,VERSION_
+		,CREATEDATE_
+		,CREATEBY_
+		)
+		values
+		<foreach collection="list" item="formPageHistory" index="index"
+			separator=",">
+			(
+			#{formPageHistory.id, jdbcType=VARCHAR}
+			,#{formPageHistory.pageId, jdbcType=VARCHAR}
+			,#{formPageHistory.deploymentId, jdbcType=VARCHAR}
+			,#{formPageHistory.formHtml, jdbcType=VARCHAR}
+			,#{formPageHistory.formConfig, jdbcType=VARCHAR}
+			,#{formPageHistory.outputHtml, jdbcType=VARCHAR}
+			,#{formPageHistory.formType, jdbcType=VARCHAR}
+			,#{formPageHistory.version, jdbcType=INTEGER}
+			,#{formPageHistory.createDate, jdbcType=TIMESTAMP}
+			,#{formPageHistory.createBy, jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertFormPageHistory_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="formPageHistory" index="index">
+			insert into FORM_PAGE_HISTORY (
+			ID_
+			,PAGEID_
+			,DEPLOYMENTID_
+			,FORMHTML_
+			,FORMCONFIG_
+			,OUTPUTHTML_
+			,FORMTYPE_
+			,VERSION_
+			,CREATEDATE_
+			,CREATEBY_
+			)
+			values (
+			#{formPageHistory.id, jdbcType=VARCHAR}
+			,#{formPageHistory.pageId, jdbcType=VARCHAR}
+			,#{formPageHistory.deploymentId, jdbcType=VARCHAR}
+			,#{formPageHistory.formHtml, jdbcType=VARCHAR}
+			,#{formPageHistory.formConfig, jdbcType=VARCHAR}
+			,#{formPageHistory.outputHtml, jdbcType=VARCHAR}
+			,#{formPageHistory.formType, jdbcType=VARCHAR}
+			,#{formPageHistory.version, jdbcType=INTEGER}
+			,#{formPageHistory.createDate, jdbcType=TIMESTAMP}
+			,#{formPageHistory.createBy, jdbcType=VARCHAR}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<select id="getMaxVersionFormPageHistory" parameterType="string"
+		resultType="java.lang.Integer">
+		select max(VERSION_) from FORM_PAGE_HISTORY where PAGEID_ =
+		#{pageId}
+	</select>
+
+
+	<select id="getFormPageHistoryById" parameterType="string"
+		resultMap="formPageHistoryResultMap">
+		select * from FORM_PAGE_HISTORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormPageHistorys" parameterType="com.glaf.form.core.query.FormPageHistoryQuery"
+		resultMap="formPageHistoryResultMap">
+		select distinct E.*
+		<include refid="selectFormPageHistorysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormPageHistoryCount" parameterType="com.glaf.form.core.query.FormPageHistoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormPageHistorysSql" />
+	</select>
+
+
+	<sql id="selectFormPageHistorysSql">
+
+		from FORM_PAGE_HISTORY E
+
+		<where>
+			1 = 1
+
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+	
+	<delete id="deleteOldVersion">
+	delete from FORM_PAGE_HISTORY where PAGEID_ = #{pageId} and VERSION_ &lt; (select max(VERSION_)-#{num} from FORM_PAGE_HISTORY where PAGEID_ = #{pageId})
+	</delete>
+
+</mapper>

@@ -1,0 +1,79 @@
+{
+	"id":"workflow",
+	"title": "",
+	"description":"工作流整体",
+	"propertyPackages":
+	[{
+		"id":"baseprop",
+		"title": "基本属性",
+		"description":"",
+		"expland":"true",
+		"properties":
+		[
+			{
+			    "id": "id", 
+			    "title": "流程标识",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if id?exists>${id[0]}</#if>",
+			    "inputMode": "input",
+				"readonly":"true",
+			    "require":"true",
+			    "hide":"true"
+			},{
+			    "id": "name", 
+			    "title": "名称",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if name?exists>${name[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true"
+			},
+			{
+			    "id": "description", 
+			    "title": "说明",
+			    "type": "string",
+			    "maxlen":"150",
+			    "minlen":"",
+			    "value": "<#if description?exists>${description[0]}</#if>",
+			    "inputMode": "input",
+			    "require":""
+			}
+		]
+	},{
+		"id":"varprop",
+		"title": "流程变量",
+		"description":"",
+		"expland":"false",
+		"properties":
+		[
+		   <#if varcode?exists>
+		   <#list varcode as code>
+			{
+			    "id": "variable", 
+			    "title": "<input type=\"text\" name=\"varname\" class=\"textCls k-textbox\" value=\"${varname[code_index]}\" style=\"width:62%\" /><input type=\"text\" name=\"varcode\" value=\"${code}\" class=\"textCls k-textbox\" readonly=\"true\" style=\"width:35%\" />",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "value":{"varcode":"${code}","varname":"${varname[code_index]}","varDataType":"${varDataType[code_index]}"},
+			    "template":"<select class=\"k-input k-state-default\" name=\"varDataType\"><option value=\"string\" <#if varDataType[code_index]=='string'>selected</#if>>字符型</option><option value=\"int\" <#if varDataType[code_index]=='int'>selected</#if>>整型</option><option value=\"double\" <#if varDataType[code_index]=='double'>selected</#if>>浮点型</option><option value=\"boolean\" <#if varDataType[code_index]=='boolean'>selected</#if>>布尔型</option></select>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}<#if code_index+1&lt;varcode?size>,</#if>
+			</#list>
+			<#else>
+			{
+			    "id": "variable", 
+			    "title": "<input type=\"text\" name=\"varname\" class=\"textCls k-textbox\" value=\"\" style=\"width:62%\" /><input type=\"text\" name=\"varcode\" value=\"param1\" class=\"textCls k-textbox\" style=\"width:35%\" readonly=\"true\"  />",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<select class=\"k-input k-state-default\" name=\"varDataType\"><option value=\"string\">字符型</option><option value=\"int\">整型</option><option value=\"double\">浮点型</option><option value=\"boolean\">布尔型</option></select>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}
+			</#if>
+		]
+	}
+]
+ }

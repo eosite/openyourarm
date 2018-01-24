@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.EtlTransferTaskInstMapper">
+
+ 	<resultMap id="etlTransferTaskInstResultMap"	type="com.glaf.etl.domain.EtlTransferTaskInst">
+        <id property="id_" column="ID_" jdbcType="VARCHAR"/>
+        <result property="taskId_" column="TASK_ID_" jdbcType="VARCHAR"/>
+        <result property="startTime_" column="START_TIME_" jdbcType="TIMESTAMP"/>
+        <result property="endTime_" column="END_TIME_" jdbcType="TIMESTAMP"/>
+        <result property="succeed_" column="SUCCEED_" jdbcType="INTEGER"/>
+        <result property="srcSuccessRows_" column="SRC_SUCCESS_ROWS_" jdbcType="BIGINT"/>
+        <result property="srcFailedRows_" column="SRC_FAILED_ROWS_" jdbcType="BIGINT"/>
+        <result property="targetSuccessRows_" column="TARGET_SUCCESS_ROWS_" jdbcType="BIGINT"/>
+        <result property="targetFailedRows_" column="TARGET_FAILED_ROWS_" jdbcType="BIGINT"/>
+	</resultMap>
+
+ 
+	<insert id="insertEtlTransferTaskInst" parameterType="com.glaf.etl.domain.EtlTransferTaskInst">
+		insert into ETL_TRANSFER_TASK_INST_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="taskId_ != null">
+				,TASK_ID_ 
+			</if>
+			<if test="startTime_ != null">
+				,START_TIME_ 
+			</if>
+			<if test="endTime_ != null">
+				,END_TIME_ 
+			</if>
+			<if test="succeed_ != null">
+				,SUCCEED_ 
+			</if>
+			<if test="srcSuccessRows_ != null">
+				,SRC_SUCCESS_ROWS_ 
+			</if>
+			<if test="srcFailedRows_ != null">
+				,SRC_FAILED_ROWS_ 
+			</if>
+			<if test="targetSuccessRows_ != null">
+				,TARGET_SUCCESS_ROWS_ 
+			</if>
+			<if test="targetFailedRows_ != null">
+				,TARGET_FAILED_ROWS_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id_, jdbcType=VARCHAR}
+	     
+			<if test="taskId_ != null">
+				,#{taskId_, jdbcType=VARCHAR}
+			</if>
+			<if test="startTime_ != null">
+				,#{startTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="endTime_ != null">
+				,#{endTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="succeed_ != null">
+				,#{succeed_, jdbcType=INTEGER}
+			</if>
+			<if test="srcSuccessRows_ != null">
+				,#{srcSuccessRows_, jdbcType=BIGINT}
+			</if>
+			<if test="srcFailedRows_ != null">
+				,#{srcFailedRows_, jdbcType=BIGINT}
+			</if>
+			<if test="targetSuccessRows_ != null">
+				,#{targetSuccessRows_, jdbcType=BIGINT}
+			</if>
+			<if test="targetFailedRows_ != null">
+				,#{targetFailedRows_, jdbcType=BIGINT}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEtlTransferTaskInst" parameterType="com.glaf.etl.domain.EtlTransferTaskInst">
+		update ETL_TRANSFER_TASK_INST_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="taskId_ != null">
+				TASK_ID_ = #{taskId_, jdbcType=VARCHAR},
+			</if>
+			<if test="startTime_ != null">
+				START_TIME_ = #{startTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime_ != null">
+				END_TIME_ = #{endTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="succeed_ != null">
+				SUCCEED_ = #{succeed_, jdbcType=INTEGER},
+			</if>
+			<if test="srcSuccessRows_ != null">
+				SRC_SUCCESS_ROWS_ = #{srcSuccessRows_, jdbcType=BIGINT},
+			</if>
+			<if test="srcFailedRows_ != null">
+				SRC_FAILED_ROWS_ = #{srcFailedRows_, jdbcType=BIGINT},
+			</if>
+			<if test="targetSuccessRows_ != null">
+				TARGET_SUCCESS_ROWS_ = #{targetSuccessRows_, jdbcType=BIGINT},
+			</if>
+			<if test="targetFailedRows_ != null">
+				TARGET_FAILED_ROWS_ = #{targetFailedRows_, jdbcType=BIGINT},
+			</if>
+        </trim>
+		where
+          ID_ = #{id_, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteEtlTransferTaskInstById" parameterType="string"> 
+        delete from ETL_TRANSFER_TASK_INST_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEtlTransferTaskInsts" parameterType="com.glaf.etl.query.EtlTransferTaskInstQuery">
+		delete from ETL_TRANSFER_TASK_INST_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id_" index="index" collection="id_s" 
+                     open="(" separator="," close=")">
+                  #{x_id_}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEtlTransferTaskInstById" parameterType="string" resultMap="etlTransferTaskInstResultMap">
+		select * from ETL_TRANSFER_TASK_INST_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getEtlTransferTaskInsts" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskInstQuery"
+		resultMap="etlTransferTaskInstResultMap">
+		select distinct E.*
+		<include refid="selectEtlTransferTaskInstsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEtlTransferTaskInstCount" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskInstQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEtlTransferTaskInstsSql" />
+	</select>
+
+
+	<sql id="selectEtlTransferTaskInstsSql">
+
+		from ETL_TRANSFER_TASK_INST_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="taskId_ != null and taskId_ != '' ">
+				and E.TASK_ID_ = #{taskId_}
+            </if>
+
+			<if test="taskId_Like != null and taskId_Like != '' ">
+				and E.TASK_ID_ like #{taskId_Like}
+            </if>
+
+			<if test="taskId_s != null and taskId_s.size() &gt; 0">
+			    and E.TASK_ID_ IN
+                <foreach item="x_taskId_" index="index" collection="taskId_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskId_}
+                </foreach>
+			</if>
+
+			<if test="startTime_GreaterThanOrEqual != null">
+				and E.START_TIME_ &gt;= #{startTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="startTime_LessThanOrEqual != null">
+				and E.START_TIME_ &lt;= #{startTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="endTime_GreaterThanOrEqual != null">
+				and E.END_TIME_ &gt;= #{endTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="endTime_LessThanOrEqual != null">
+				and E.END_TIME_ &lt;= #{endTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="succeed_ != null">
+				and E.SUCCEED_ = #{succeed_}
+            </if>
+
+			<if test="succeed_GreaterThanOrEqual != null">
+				and E.SUCCEED_ &gt;= #{succeed_GreaterThanOrEqual}
+            </if>
+
+			<if test="succeed_LessThanOrEqual != null">
+				and E.SUCCEED_ &lt;= #{succeed_LessThanOrEqual}
+            </if>
+
+			<if test="succeed_s != null and succeed_s.size() &gt; 0">
+			    and E.SUCCEED_ IN
+                <foreach item="x_succeed_" index="index" collection="succeed_s" 
+                     open="(" separator="," close=")">
+                  #{x_succeed_}
+                </foreach>
+			</if>
+      
+
+			<if test="srcSuccessRows_ != null">
+				and E.SRC_SUCCESS_ROWS_ = #{srcSuccessRows_}
+            </if>
+
+			<if test="srcSuccessRows_GreaterThanOrEqual != null">
+				and E.SRC_SUCCESS_ROWS_ &gt;= #{srcSuccessRows_GreaterThanOrEqual}
+            </if>
+
+			<if test="srcSuccessRows_LessThanOrEqual != null">
+				and E.SRC_SUCCESS_ROWS_ &lt;= #{srcSuccessRows_LessThanOrEqual}
+            </if>
+
+			<if test="srcSuccessRows_s != null and srcSuccessRows_s.size() &gt; 0">
+			    and E.SRC_SUCCESS_ROWS_ IN
+                <foreach item="x_srcSuccessRows_" index="index" collection="srcSuccessRows_s" 
+                     open="(" separator="," close=")">
+                  #{x_srcSuccessRows_}
+                </foreach>
+			</if>
+      
+
+			<if test="srcFailedRows_ != null">
+				and E.SRC_FAILED_ROWS_ = #{srcFailedRows_}
+            </if>
+
+			<if test="srcFailedRows_GreaterThanOrEqual != null">
+				and E.SRC_FAILED_ROWS_ &gt;= #{srcFailedRows_GreaterThanOrEqual}
+            </if>
+
+			<if test="srcFailedRows_LessThanOrEqual != null">
+				and E.SRC_FAILED_ROWS_ &lt;= #{srcFailedRows_LessThanOrEqual}
+            </if>
+
+			<if test="srcFailedRows_s != null and srcFailedRows_s.size() &gt; 0">
+			    and E.SRC_FAILED_ROWS_ IN
+                <foreach item="x_srcFailedRows_" index="index" collection="srcFailedRows_s" 
+                     open="(" separator="," close=")">
+                  #{x_srcFailedRows_}
+                </foreach>
+			</if>
+      
+
+			<if test="targetSuccessRows_ != null">
+				and E.TARGET_SUCCESS_ROWS_ = #{targetSuccessRows_}
+            </if>
+
+			<if test="targetSuccessRows_GreaterThanOrEqual != null">
+				and E.TARGET_SUCCESS_ROWS_ &gt;= #{targetSuccessRows_GreaterThanOrEqual}
+            </if>
+
+			<if test="targetSuccessRows_LessThanOrEqual != null">
+				and E.TARGET_SUCCESS_ROWS_ &lt;= #{targetSuccessRows_LessThanOrEqual}
+            </if>
+
+			<if test="targetSuccessRows_s != null and targetSuccessRows_s.size() &gt; 0">
+			    and E.TARGET_SUCCESS_ROWS_ IN
+                <foreach item="x_targetSuccessRows_" index="index" collection="targetSuccessRows_s" 
+                     open="(" separator="," close=")">
+                  #{x_targetSuccessRows_}
+                </foreach>
+			</if>
+      
+
+			<if test="targetFailedRows_ != null">
+				and E.TARGET_FAILED_ROWS_ = #{targetFailedRows_}
+            </if>
+
+			<if test="targetFailedRows_GreaterThanOrEqual != null">
+				and E.TARGET_FAILED_ROWS_ &gt;= #{targetFailedRows_GreaterThanOrEqual}
+            </if>
+
+			<if test="targetFailedRows_LessThanOrEqual != null">
+				and E.TARGET_FAILED_ROWS_ &lt;= #{targetFailedRows_LessThanOrEqual}
+            </if>
+
+			<if test="targetFailedRows_s != null and targetFailedRows_s.size() &gt; 0">
+			    and E.TARGET_FAILED_ROWS_ IN
+                <foreach item="x_targetFailedRows_" index="index" collection="targetFailedRows_s" 
+                     open="(" separator="," close=")">
+                  #{x_targetFailedRows_}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

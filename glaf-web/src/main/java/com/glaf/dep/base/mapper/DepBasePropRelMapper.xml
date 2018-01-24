@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBasePropRelMapper">
+
+ 	<resultMap id="depBasePropRelResultMap"	type="com.glaf.dep.base.domain.DepBasePropRel">
+        <id property="ruleId" column="RULEID_" jdbcType="VARCHAR"/>
+        <id property="relRuleId" column="RELRULEID_" jdbcType="VARCHAR"/>
+        <result property="relType" column="RELTYPE_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="relRuleName" column="RELRULENAME_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBasePropRel" parameterType="com.glaf.dep.base.domain.DepBasePropRel">
+		insert into DEP_BASE_PROPREL 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    RULEID_
+			<if test="relRuleId != null">
+				,RELRULEID_ 
+			</if>
+			<if test="relType != null">
+				,RELTYPE_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{ruleId, jdbcType=VARCHAR}
+	     
+			<if test="relRuleId != null">
+				,#{relRuleId, jdbcType=VARCHAR}
+			</if>
+			<if test="relType != null">
+				,#{relType, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBasePropRel" parameterType="com.glaf.dep.base.domain.DepBasePropRel">
+		update DEP_BASE_PROPREL
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="relRuleId != null">
+				RELRULEID_ = #{relRuleId, jdbcType=VARCHAR},
+			</if>
+			<if test="relType != null">
+				RELTYPE_ = #{relType, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          RULEID_ = #{ruleId, jdbcType=VARCHAR} and RELRULEID_=#{relRuleId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteByRuleId" parameterType="string"> 
+        delete from DEP_BASE_PROPREL
+        where RULEID_ =	#{id}
+	</delete>
+
+	<delete id="deleteByPrimaryKey" parameterType="map">
+		delete from DEP_BASE_PROPREL 
+		where RULEID_ = #{ruleId} and RELRULEID_=#{relRuleId}
+	</delete>
+
+	<select id="getDepBasePropRelById" parameterType="string" resultMap="depBasePropRelResultMap">
+		select * from DEP_BASE_PROPREL where RULEID_ = #{id}
+	</select>
+
+
+	<select id="getDepBasePropRels" 
+	    parameterType="com.glaf.dep.base.query.DepBasePropRelQuery"
+		resultMap="depBasePropRelResultMap">
+		select distinct E.*
+		<include refid="selectDepBasePropRelsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.RULEID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBasePropRelCount" 
+	    parameterType="com.glaf.dep.base.query.DepBasePropRelQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBasePropRelsSql" />
+	</select>
+
+
+	<sql id="selectDepBasePropRelsSql">
+
+		from DEP_BASE_PROPREL E
+		
+		<where>
+		       1 = 1  
+			
+			<if test="ruleId != null and ruleId != '' ">
+				and E.RULEID_ = #{ruleId}
+			</if>
+			
+			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+				and E.RULEID_ IN
+				<foreach collection="ruleIds" item="x_ruleId" index="index"
+					open="(" separator="," close=")">
+					#{x_ruleId}
+				</foreach>
+			</if>
+	        
+			<if test="relRuleId != null and relRuleId != '' ">
+				and E.RELRULEID_ = #{relRuleId}
+            </if>
+
+			<if test="relRuleIdLike != null and relRuleIdLike != '' ">
+				and E.RELRULEID_ like #{relRuleIdLike}
+            </if>
+
+			<if test="relRuleIds != null and relRuleIds.size() &gt; 0">
+			    and E.RELRULEID_ IN
+                <foreach item="x_relRuleId" index="index" collection="relRuleIds" 
+                     open="(" separator="," close=")">
+                  #{x_relRuleId}
+                </foreach>
+			</if>
+	        
+			<if test="relType != null and relType != '' ">
+				and E.RELTYPE_ = #{relType}
+            </if>
+
+			<if test="relTypeLike != null and relTypeLike != '' ">
+				and E.RELTYPE_ like #{relTypeLike}
+            </if>
+
+			<if test="relTypes != null and relTypes.size() &gt; 0">
+			    and E.RELTYPE_ IN
+                <foreach item="x_relType" index="index" collection="relTypes" 
+                     open="(" separator="," close=")">
+                  #{x_relType}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+	<select id="getDepBasePropRelByPrimaryKey" parameterType="map" resultMap="depBasePropRelResultMap">
+		select * from DEP_BASE_PROPREL where RULEID_=#{ruleId} and RELRULEID_=#{relRuleId}
+	</select>
+	
+	<select id="selectDepBasePropRelByRuleId" parameterType="string" 
+		resultMap="depBasePropRelResultMap">
+		select E.*,F.RULENAME_ as RELRULENAME_ from DEP_BASE_PROPREL E left join DEP_BASE_PROP F on E.RELRULEID_=F.RULEID_
+		where E.RULEID_=#{ruleId}
+	</select>
+</mapper>

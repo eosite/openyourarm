@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseCategoryMapper">
+
+ 	<resultMap id="depBaseCategoryResultMap"	type="com.glaf.dep.base.domain.DepBaseCategory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREEID_" jdbcType="VARCHAR"/>
+        <result property="expandFlag" column="EXPANDFLAG_" jdbcType="VARCHAR"/>
+        <result property="pid" column="PID_" jdbcType="BIGINT"/>
+        <result property="orderNo" column="ORDERNO_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDateTime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="VARCHAR"/>
+        <result property="toolBarTemplate" column="TOOLBAR_TEMPLATE_" jdbcType="VARCHAR"/>
+        <result property="childrenNum" column="CHILDREN_NUM_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBaseCategory" parameterType="com.glaf.dep.base.domain.DepBaseCategory">
+		insert into DEP_BASE_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="treeId != null">
+				,TREEID_ 
+			</if>
+			<if test="expandFlag != null">
+				,EXPANDFLAG_ 
+			</if>
+			<if test="pid != null">
+				,PID_ 
+			</if>
+			<if test="orderNo != null">
+				,ORDERNO_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDateTime != null">
+				,MODIFYDATETIME_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="toolBarTemplate != null">
+				,TOOLBAR_TEMPLATE_
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="expandFlag != null">
+				,#{expandFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=BIGINT}
+			</if>
+			<if test="orderNo != null">
+				,#{orderNo, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDateTime != null">
+				,#{modifyDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="toolBarTemplate != null">
+				,#{toolBarTemplate, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseCategory" parameterType="com.glaf.dep.base.domain.DepBaseCategory">
+		update DEP_BASE_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="expandFlag != null">
+				EXPANDFLAG_ = #{expandFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				PID_ = #{pid, jdbcType=BIGINT},
+			</if>
+			<if test="orderNo != null">
+				ORDERNO_ = #{orderNo, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDateTime != null">
+				MODIFYDATETIME_ = #{modifyDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="toolBarTemplate != null">
+				TOOLBAR_TEMPLATE_ = #{toolBarTemplate, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBaseCategoryById" parameterType="long"> 
+        delete from DEP_BASE_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepBaseCategorys" parameterType="com.glaf.dep.base.query.DepBaseCategoryQuery">
+		delete from DEP_BASE_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBaseCategoryById" parameterType="long" resultMap="depBaseCategoryResultMap">
+		select * from DEP_BASE_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepBaseCategorys" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCategoryQuery"
+		resultMap="depBaseCategoryResultMap">
+		select E.*,c.cnt as CHILDREN_NUM_
+		<include refid="selectDepBaseCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ORDERNO_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBaseCategoryCount" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseCategorysSql" />
+	</select>
+	
+	<select id="getChildrenByPid" parameterType="long" resultMap="depBaseCategoryResultMap">
+		select E.*,c.cnt as CHILDREN_NUM_
+		from DEP_BASE_CATEGORY E
+		left join (
+			select b.PID_,count(ID_) cnt from DEP_BASE_CATEGORY b group by b.PID_
+		) c on c.PID_=E.ID_
+		where 1=1 and E.PID_ = #{pid}
+	</select>
+
+
+	<sql id="selectDepBaseCategorysSql">
+
+		from DEP_BASE_CATEGORY E
+		left join (
+			select b.PID_,count(ID_) cnt from DEP_BASE_CATEGORY b group by b.PID_
+		) c on c.PID_=E.ID_
+		<where>
+		       1 = 1  
+		       
+		    ${sqlCondition}
+		    <if test="id != null">
+		    	and E.ID_ = #{id}
+		    </if>
+		    
+		    <if test="ids != null and ids.size() &gt; 0">
+		    	and E.ID_ IN 
+		    	<foreach item="x_id" index="index" collection="ids"
+		    		open="(" separator="," close=")">
+		    		#{x_id}
+		    	</foreach>
+		    </if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREEID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+	        
+			<if test="expandFlag != null and expandFlag != '' ">
+				and E.EXPANDFLAG_ = #{expandFlag}
+            </if>
+
+			<if test="expandFlagLike != null and expandFlagLike != '' ">
+				and E.EXPANDFLAG_ like #{expandFlagLike}
+            </if>
+
+			<if test="expandFlags != null and expandFlags.size() &gt; 0">
+			    and E.EXPANDFLAG_ IN
+                <foreach item="x_expandFlag" index="index" collection="expandFlags" 
+                     open="(" separator="," close=")">
+                  #{x_expandFlag}
+                </foreach>
+			</if>
+
+			<if test="pid != null">
+				and E.PID_ = #{pid}
+            </if>
+
+			<if test="pidGreaterThanOrEqual != null">
+				and E.PID_ &gt;= #{pidGreaterThanOrEqual}
+            </if>
+
+			<if test="pidLessThanOrEqual != null">
+				and E.PID_ &lt;= #{pidLessThanOrEqual}
+            </if>
+
+			<if test="pids != null and pids.size() &gt; 0">
+			    and E.PID_ IN
+                <foreach item="x_pid" index="index" collection="pids" 
+                     open="(" separator="," close=")">
+                  #{x_pid}
+                </foreach>
+			</if>
+      
+
+			<if test="orderNo != null">
+				and E.ORDERNO_ = #{orderNo}
+            </if>
+
+			<if test="orderNoGreaterThanOrEqual != null">
+				and E.ORDERNO_ &gt;= #{orderNoGreaterThanOrEqual}
+            </if>
+
+			<if test="orderNoLessThanOrEqual != null">
+				and E.ORDERNO_ &lt;= #{orderNoLessThanOrEqual}
+            </if>
+
+			<if test="orderNos != null and orderNos.size() &gt; 0">
+			    and E.ORDERNO_ IN
+                <foreach item="x_orderNo" index="index" collection="orderNos" 
+                     open="(" separator="," close=")">
+                  #{x_orderNo}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDateTimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDateTimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="delFlag != null and delFlag != '' ">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagLike != null and delFlagLike != '' ">
+				and E.DELFLAG_ like #{delFlagLike}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<update id="updateDelFlagByTreeId" parameterType="map">
+		update DEP_BASE_CATEGORY set DELFLAG_= #{delFlag} where TREEID_ like #{treeId}
+	</update>
+
+	<select id="getDepBaseCategorysByCode" parameterType="string" resultMap="depBaseCategoryResultMap">
+		select top 1 * from DEP_BASE_CATEGORY where CODE_=#{code}
+	</select>
+	
+	<select id="getDepBaseCategorysByCode_oracle" parameterType="string" resultMap="depBaseCategoryResultMap">
+		select * from DEP_BASE_CATEGORY where CODE_=#{code} and rownum &lt;= 1
+	</select>
+	
+	<select id="getMaxCodeByPid" parameterType="map" resultType="string">
+		select MAX(CODE_) from DEP_BASE_CATEGORY where PID_ = #{pId}
+		<if test="code != null and code != '' ">
+			and CODE_ like #{code}
+		</if>
+	</select>
+</mapper>

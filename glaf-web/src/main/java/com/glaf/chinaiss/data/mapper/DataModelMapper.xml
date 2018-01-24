@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.chinaiss.data.mapper.DataModelMapper">
+
+	<resultMap id="dataModelResultMap" type="com.glaf.chinaiss.data.domain.DataModel">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="description" column="DESCRIPTION_" jdbcType="VARCHAR" />
+		<result property="json" column="JSON_" jdbcType="VARCHAR" />
+		<result property="topId" column="TOPID_" jdbcType="VARCHAR" />
+		<result property="treeId" column="TREEID_" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENTID_" jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="model" column="model_" jdbcType="BOOLEAN" />
+	</resultMap>
+
+	<insert id="insertDataModel" parameterType="com.glaf.chinaiss.data.domain.DataModel">
+		insert into DATA_MODEL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_
+			</if>
+			<if test="json != null">
+				,JSON_
+			</if>
+			<if test="topId != null">
+				,TOPID_
+			</if>
+			<if test="treeId != null">
+				,TREEID_
+			</if>
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="json != null">
+				,#{json, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDataModel" parameterType="com.glaf.chinaiss.data.domain.DataModel">
+		update DATA_MODEL
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="json != null">
+				JSON_ = #{json, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOPID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREEID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteDataModelById" parameterType="string">
+		delete from
+		DATA_MODEL
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteDataModels" parameterType="com.glaf.chinaiss.data.query.DataModelQuery">
+		delete from DATA_MODEL
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDataModelById" parameterType="string" resultMap="dataModelResultMap">
+		select * from DATA_MODEL where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataModels" parameterType="com.glaf.chinaiss.data.query.DataModelQuery"
+		resultMap="dataModelResultMap">
+		select distinct E.*
+		<include refid="selectDataModelsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDataModelCount" parameterType="com.glaf.chinaiss.data.query.DataModelQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataModelsSql" />
+	</select>
+
+
+	<sql id="selectDataModelsSql">
+
+		from DATA_MODEL E
+
+		<where>
+			1 = 1
+
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+           <if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+			</if>
+
+			<if test="codess != null and codes.size() &gt; 0">
+				and E.CODE_ IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if> 
+			<if test="description != null and description != '' ">
+				and E.DESCRIPTION_ = #{description}
+			</if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+			</if>
+
+			<if test="descriptions != null and descriptions.size() &gt; 0">
+				and E.DESCRIPTION_ IN
+				<foreach item="x_description" index="index" collection="descriptions"
+					open="(" separator="," close=")">
+					#{x_description}
+				</foreach>
+			</if>
+
+			<if test="json != null and json != '' ">
+				and E.JSON_ = #{json}
+			</if>
+
+			<if test="jsonLike != null and jsonLike != '' ">
+				and E.JSON_ like #{jsonLike}
+			</if>
+
+			<if test="jsons != null and jsons.size() &gt; 0">
+				and E.JSON_ IN
+				<foreach item="x_json" index="index" collection="jsons"
+					open="(" separator="," close=")">
+					#{x_json}
+				</foreach>
+			</if>
+
+			<if test="topId != null and topId != '' ">
+				and E.TOPID_ = #{topId}
+			</if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID_ like #{topIdLike}
+			</if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+				and E.TOPID_ IN
+				<foreach item="x_topId" index="index" collection="topIds"
+					open="(" separator="," close=")">
+					#{x_topId}
+				</foreach>
+			</if>
+
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ = #{treeId}
+			</if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID_ like #{treeIdLike}
+			</if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+				and E.TREEID_ IN
+				<foreach item="x_treeId" index="index" collection="treeIds"
+					open="(" separator="," close=")">
+					#{x_treeId}
+				</foreach>
+			</if>
+
+			<if test="parentId != null and parentId != '' ">
+				and E.PARENTID_ = #{parentId}
+			</if>
+
+			<if test="parentIdLike != null and parentIdLike != '' ">
+				and E.PARENTID_ like #{parentIdLike}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+				and E.PARENTID_ IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+	<select id="getDataModelsWithTree" resultMap="dataModelResultMap">
+		SELECT
+		t.name_,
+		t.code_,
+		t.id_,
+		t.treeid_,
+		t.topid_ parentid_,
+		0 AS model_
+		FROM
+		data_model_tree t
+		UNION
+		(
+		SELECT
+		m.name_,
+		m.code_,
+		m.id_,
+		NULL AS treeid_,
+		m.parentid_,
+		1 AS model_
+		FROM
+		data_model m )
+	</select>
+
+	<select id="getDataModelTablesByTreeId" resultType="map" parameterType="string">
+		SELECT
+		DMTB.TABLENAME_,
+		DMTB.NAME_
+		FROM
+		DATA_MODEL_TREE DMT
+		LEFT JOIN
+		DATA_MODEL
+		DM
+		ON
+		DMT.ID_ = DM.PARENTID_
+		LEFT JOIN
+		DATA_MODEL_TABLES DMTB
+		ON
+		DM.ID_ =
+		DMTB.PARENTID_
+		WHERE
+		DMT.TREEID_ LIKE #{treeId}
+		AND DMTB.TABLENAME_ IS NOT NULL 
+		AND DM.ID_ IS NOT NULL
+		GROUP BY DMTB.TABLENAME_, DMTB.NAME_
+	</select>
+
+</mapper>

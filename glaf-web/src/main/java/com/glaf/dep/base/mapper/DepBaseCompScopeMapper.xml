@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseCompScopeMapper">
+
+ 	<resultMap id="depBaseCompScopeResultMap"	type="com.glaf.dep.base.domain.DepBaseCompScope">
+        <id property="depBaseComponentId" column="DEP_BASE_COMPONENT_ID_" jdbcType="VARCHAR"/>
+        <id property="depBaseUIId" column="DEP_BASE_UI_ID_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBaseCompScope" parameterType="com.glaf.dep.base.domain.DepBaseCompScope">
+		insert into DEP_BASE_COMPSCOPE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    DEP_BASE_COMPONENT_ID_
+			<if test="depBaseUIId != null">
+				,DEP_BASE_UI_ID_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{depBaseComponentId, jdbcType=VARCHAR}
+	     
+			<if test="depBaseUIId != null">
+				,#{depBaseUIId, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseCompScope" parameterType="com.glaf.dep.base.domain.DepBaseCompScope">
+		update DEP_BASE_COMPSCOPE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="depBaseUIId != null">
+				DEP_BASE_UI_ID_ = #{depBaseUIId, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          DEP_BASE_COMPONENT_ID_ = #{depBaseComponentId, jdbcType=VARCHAR}
+		
+    </update>
+
+	<delete id="deleteByComponentId" parameterType="string">
+		delete from DEP_BASE_COMPSCOPE where DEP_BASE_COMPONENT_ID_ = #{componentId}
+	</delete>
+	
+	<delete id="deleteByUIId" parameterType="string">
+		delete from DEP_BASE_COMPSCOPE where DEP_BASE_UI_ID_ = #{uiid}
+	</delete>
+
+	<select id="getDepBaseCompScopeById" parameterType="string" resultMap="depBaseCompScopeResultMap">
+		select * from DEP_BASE_COMPSCOPE where DEP_BASE_COMPONENT_ID_ = #{depBaseComponentId}
+	</select>
+
+
+	<select id="getDepBaseCompScopes" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCompScopeQuery"
+		resultMap="depBaseCompScopeResultMap">
+		select distinct E.*
+		<include refid="selectDepBaseCompScopesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBaseCompScopeCount" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCompScopeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseCompScopesSql" />
+	</select>
+
+
+	<sql id="selectDepBaseCompScopesSql">
+
+		from DEP_BASE_COMPSCOPE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="depBaseUIId != null and depBaseUIId != '' ">
+				and E.DEP_BASE_UI_ID_ = #{depBaseUIId}
+            </if>
+
+			<if test="depBaseUIIdLike != null and depBaseUIIdLike != '' ">
+				and E.DEP_BASE_UI_ID_ like #{depBaseUIIdLike}
+            </if>
+
+			<if test="depBaseUIIds != null and depBaseUIIds.size() &gt; 0">
+			    and E.DEP_BASE_UI_ID_ IN
+                <foreach item="x_depBaseUIId" index="index" collection="depBaseUIIds" 
+                     open="(" separator="," close=")">
+                  #{x_depBaseUIId}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<select id="getDepBaseCompScopesByComponentId" parameterType="string" resultMap="depBaseCompScopeResultMap">
+		select * from DEP_BASE_COMPSCOPE where DEP_BASE_COMPONENT_ID_ = #{componentId}
+	</select>
+	
+	<select id="getDepBaseCompScopesByUIId" parameterType="string" resultMap="depBaseCompScopeResultMap">
+		select * from DEP_BASE_COMPSCOPE where DEP_BASE_UI_ID_ = #{uiId}
+	</select>
+
+</mapper>

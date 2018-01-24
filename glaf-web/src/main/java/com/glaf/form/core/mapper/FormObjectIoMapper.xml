@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormObjectIoMapper">
+
+ 	<resultMap id="formObjectIoResultMap"	type="com.glaf.form.core.domain.FormObjectIo">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="codeMapping" column="CODE_MAPPING_" jdbcType="VARCHAR"/>
+        <result property="paramType" column="PARAM_TYPE_" jdbcType="VARCHAR"/>
+        <result property="defValue" column="DEFVALUE_" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+        <result property="parent_id" column="PARENT_ID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormObjectIo" parameterType="com.glaf.form.core.domain.FormObjectIo">
+		insert into FORM_OBJECT_IO 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="codeMapping != null">
+				,CODE_MAPPING_ 
+			</if>
+			<if test="paramType != null">
+				,PARAM_TYPE_ 
+			</if>
+			<if test="defValue != null">
+				,DEFVALUE_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="parent_id != null">
+				,PARENT_ID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="codeMapping != null">
+				,#{codeMapping, jdbcType=VARCHAR}
+			</if>
+			<if test="paramType != null">
+				,#{paramType, jdbcType=VARCHAR}
+			</if>
+			<if test="defValue != null">
+				,#{defValue, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="parent_id != null">
+				,#{parent_id, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormObjectIo" parameterType="com.glaf.form.core.domain.FormObjectIo">
+		update FORM_OBJECT_IO
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="codeMapping != null">
+				CODE_MAPPING_ = #{codeMapping, jdbcType=VARCHAR},
+			</if>
+			<if test="paramType != null">
+				PARAM_TYPE_ = #{paramType, jdbcType=VARCHAR},
+			</if>
+			<if test="defValue != null">
+				DEFVALUE_ = #{defValue, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="parent_id != null">
+				PARENT_ID_ = #{parent_id, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormObjectIoById" parameterType="string"> 
+        delete from FORM_OBJECT_IO
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormObjectIos" parameterType="com.glaf.form.core.query.FormObjectIoQuery">
+		delete from FORM_OBJECT_IO
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormObjectIoById" parameterType="string" resultMap="formObjectIoResultMap">
+		select * from FORM_OBJECT_IO where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormObjectIos" 
+	    parameterType="com.glaf.form.core.query.FormObjectIoQuery"
+		resultMap="formObjectIoResultMap">
+		select E.*
+		<include refid="selectFormObjectIosSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormObjectIoCount" 
+	    parameterType="com.glaf.form.core.query.FormObjectIoQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormObjectIosSql" />
+	</select>
+
+
+	<sql id="selectFormObjectIosSql">
+
+		from FORM_OBJECT_IO E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="codeMapping != null and codeMapping != '' ">
+				and E.CODE_MAPPING_ = #{codeMapping}
+            </if>
+
+			<if test="codeMappingLike != null and codeMappingLike != '' ">
+				and E.CODE_MAPPING_ like #{codeMappingLike}
+            </if>
+
+			<if test="codeMappings != null and codeMappings.size() &gt; 0">
+			    and E.CODE_MAPPING_ IN
+                <foreach item="x_codeMapping" index="index" collection="codeMappings" 
+                     open="(" separator="," close=")">
+                  #{x_codeMapping}
+                </foreach>
+			</if>
+	        
+			<if test="paramType != null and paramType != '' ">
+				and E.PARAM_TYPE_ = #{paramType}
+            </if>
+
+			<if test="paramTypeLike != null and paramTypeLike != '' ">
+				and E.PARAM_TYPE_ like #{paramTypeLike}
+            </if>
+
+			<if test="paramTypes != null and paramTypes.size() &gt; 0">
+			    and E.PARAM_TYPE_ IN
+                <foreach item="x_paramType" index="index" collection="paramTypes" 
+                     open="(" separator="," close=")">
+                  #{x_paramType}
+                </foreach>
+			</if>
+	        
+			<if test="defValue != null and defValue != '' ">
+				and E.DEFVALUE_ = #{defValue}
+            </if>
+
+			<if test="defValueLike != null and defValueLike != '' ">
+				and E.DEFVALUE_ like #{defValueLike}
+            </if>
+
+			<if test="defValues != null and defValues.size() &gt; 0">
+			    and E.DEFVALUE_ IN
+                <foreach item="x_defValue" index="index" collection="defValues" 
+                     open="(" separator="," close=")">
+                  #{x_defValue}
+                </foreach>
+			</if>
+	        
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+	        
+			<if test="parent_id != null and parent_id != '' ">
+				and E.PARENT_ID_ = #{parent_id}
+            </if>
+
+			<if test="parent_idLike != null and parent_idLike != '' ">
+				and E.PARENT_ID_ like #{parent_idLike}
+            </if>
+
+			<if test="parent_ids != null and parent_ids.size() &gt; 0">
+			    and E.PARENT_ID_ IN
+                <foreach item="x_parent_id" index="index" collection="parent_ids" 
+                     open="(" separator="," close=")">
+                  #{x_parent_id}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

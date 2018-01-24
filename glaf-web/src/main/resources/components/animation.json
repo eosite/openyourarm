@@ -1,0 +1,458 @@
+{
+	"id": "animation",
+	"title": "动画效果",
+	"description": "",
+	"propertyPackages": [
+	 {
+		"id": "timesetting",
+		"title": "动画编排",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+		    "id": "generalsetting",
+			"title": "执行时间",
+			"inputMode": "touchspin",
+			"properties": [
+		
+		{
+				"id": "continueTime",
+				"title": "持续",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setContinueTime",
+				"unit":"s"
+			},{
+				"id": "delayTime",
+				"title": "延迟",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setDelayTime",
+				"unit":"s"
+			},{
+				"id": "looptimes",
+				"title": "次数",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"-1",
+				"defaultVal": "1",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setLooptimes"
+			}]}]
+	},
+   {
+		"id": "animationlist",
+		"title": "动画列表",
+		"description": "",
+		"expland": "true",
+		"inputMode": "list",
+		"ctrImpl": "setAnimation",
+		"properties": [
+			{
+			"id": "bounce",
+			"title": "弹跳",
+			"icon": "",
+			"style":"bounce"
+			},{
+			"id": "flash",
+			"title": "闪烁",
+			"icon": "",
+			"style":"flash"
+			},{
+			"id": "pulse",
+			"title": "脉动",
+			"icon": "",
+			"style":"pulse"
+			},{
+			"id": "rubberBand",
+			"title": "橡皮筋",
+			"icon": "",
+			"style":"rubberBand"
+			},{
+			"id": "shake",
+			"title": "震动",
+			"icon": "",
+			"style":"shake"
+			},{
+			"id": "swing",
+			"title": "摇摆",
+			"icon": "",
+			"style":"swing"
+			},{
+			"id": "tada",
+			"title": "晃动震荡",
+			"icon": "",
+			"style":"tada"
+			},{
+			"id": "wobble",
+			"title": "摇晃",
+			"icon": "",
+			"style":"wobble"
+			},{
+			"id": "jello",
+			"title": "晃动",
+			"icon": "",
+			"style":"jello"
+			}
+			,{
+			"id": "bounceIn",
+			"title": "飞入",
+			"icon": "",
+			"style":"bounceIn"
+			},{
+			"id": "bounceInDown",
+			"title": "上飞入",
+			"icon": "",
+			"style":"bounceInDown"
+			},{
+			"id": "bounceInLeft",
+			"title": "左飞入",
+			"icon": "",
+			"style":"bounceInLeft"
+			},{
+			"id": "bounceInRight",
+			"title": "右飞入",
+			"icon": "",
+			"style":"bounceInRight"
+			},{
+			"id": "bounceInUp",
+			"title": "下飞入",
+			"icon": "",
+			"style":"bounceInUp"
+			},
+			{
+			"id": "bounceOut",
+			"title": "飞出",
+			"icon": "",
+			"style":"bounceOut"
+			},{
+			"id": "bounceOutDown",
+			"title": "下飞出",
+			"icon": "",
+			"style":"bounceOutDown"
+			},{
+			"id": "bounceOutLeft",
+			"title": "左飞出",
+			"icon": "",
+			"style":"bounceOutLeft"
+			},{
+			"id": "bounceOutRight",
+			"title": "右飞出",
+			"icon": "",
+			"style":"bounceOutRight"
+			},{
+			"id": "bounceOutUp",
+			"title": "上飞出",
+			"icon": "",
+			"style":"bounceOutUp"
+			},
+			{
+			"id": "fadeIn",
+			"title": "渐显",
+			"icon": "",
+			"style":"fadeIn"
+			},{
+			"id": "fadeInDown",
+			"title": "下飞入渐显",
+			"icon": "",
+			"style":"fadeInDown"
+			},{
+			"id": "fadeInDownBig",
+			"title": "远下飞入渐显",
+			"icon": "",
+			"style":"fadeInDownBig"
+			},{
+			"id": "fadeInLeft",
+			"title": "左飞入渐显",
+			"icon": "",
+			"style":"fadeInLeft"
+			},{
+			"id": "fadeInLeftBig",
+			"title": "远左飞入渐显",
+			"icon": "",
+			"style":"fadeInLeftBig"
+			},{
+			"id": "fadeInRight",
+			"title": "右飞入渐显",
+			"icon": "",
+			"style":"fadeInRight"
+			},{
+			"id": "fadeInRightBig",
+			"title": "远右飞入渐显",
+			"icon": "",
+			"style":"fadeInRightBig"
+			},{
+			"id": "fadeInUp",
+			"title": "上飞入渐显",
+			"icon": "",
+			"style":"fadeInUp"
+			},{
+			"id": "fadeInUpBig",
+			"title": "远上飞入渐显",
+			"icon": "",
+			"style":"fadeInUpBig"
+			},
+			{
+			"id": "fadeOut",
+			"title": "淡出",
+			"icon": "",
+			"style":"fadeOut"
+			},{
+			"id": "fadeOutDown",
+			"title": "往下淡出",
+			"icon": "",
+			"style":"fadeOutDown"
+			},{
+			"id": "fadeOutDownBig",
+			"title": "往远下淡出",
+			"icon": "",
+			"style":"fadeOutDownBig"
+			},{
+			"id": "fadeOutLeft",
+			"title": "往左淡出",
+			"icon": "",
+			"style":"fadeOutLeft"
+			},{
+			"id": "fadeOutLeftBig",
+			"title": "往远左淡出",
+			"icon": "",
+			"style":"fadeOutLeftBig"
+			},{
+			"id": "fadeOutRight",
+			"title": "往右淡出",
+			"icon": "",
+			"style":"fadeOutRight"
+			},{
+			"id": "fadeOutRightBig",
+			"title": "往远右淡出",
+			"icon": "",
+			"style":"fadeOutRightBig"
+			},{
+			"id": "fadeOutUp",
+			"title": "往上淡出",
+			"icon": "",
+			"style":"fadeOutUp"
+			},{
+			"id": "fadeOutUpBig",
+			"title": "往远上淡出",
+			"icon": "",
+			"style":"fadeOutUpBig"
+			},
+			{
+			"id": "flip",
+			"title": "翻转",
+			"icon": "",
+			"style":"flip"
+			},
+			{
+			"id": "flipInX",
+			"title": "横向翻入",
+			"icon": "",
+			"style":"flipInX"
+			},
+			{
+			"id": "flipInY",
+			"title": "纵向翻入",
+			"icon": "",
+			"style":"flipInY"
+			},
+			{
+			"id": "flipOutX",
+			"title": "横向翻出",
+			"icon": "",
+			"style":"flipOutX"
+			},
+			{
+			"id": "flipOutY",
+			"title": "纵向翻出",
+			"icon": "",
+			"style":"flipOutY"
+			},
+			{
+			"id": "lightSpeedIn",
+			"title": "急速飞入",
+			"icon": "",
+			"style":"lightSpeedIn"
+			},{
+			"id": "lightSpeedOut",
+			"title": "急速飞出",
+			"icon": "",
+			"style":"lightSpeedOut"
+			},
+			{
+			"id": "rotateIn",
+			"title": "旋入",
+			"icon": "",
+			"style":"rotateIn"
+			},{
+			"id": "rotateInDownLeft",
+			"title": "左下旋入",
+			"icon": "",
+			"style":"rotateInDownLeft"
+			},{
+			"id": "rotateInDownRight",
+			"title": "右下旋入",
+			"icon": "",
+			"style":"rotateInDownRight"
+			},{
+			"id": "rotateInUpLeft",
+			"title": "左上旋入",
+			"icon": "",
+			"style":"rotateInUpLeft"
+			},{
+			"id": "rotateInUpRight",
+			"title": "右上旋入",
+			"icon": "",
+			"style":"rotateInUpRight"
+			},
+			{
+			"id": "rotateOut",
+			"title": "旋出",
+			"icon": "",
+			"style":"rotateOut"
+			},{
+			"id": "rotateOutDownLeft",
+			"title": "左下旋出",
+			"icon": "",
+			"style":"rotateOutDownLeft"
+			},{
+			"id": "rotateOutDownRight",
+			"title": "右下旋出",
+			"icon": "",
+			"style":"rotateOutDownRight"
+			},{
+			"id": "rotateOutUpLeft",
+			"title": "左上旋出",
+			"icon": "",
+			"style":"rotateOutUpLeft"
+			},{
+			"id": "rotateOutUpRight",
+			"title": "右上旋出",
+			"icon": "",
+			"style":"rotateOutUpRight"
+			},
+			{
+			"id": "slideInUp",
+			"title": "往上滑入",
+			"icon": "",
+			"style":"slideInUp"
+			},{
+			"id": "slideInDown",
+			"title": "往下滑入",
+			"icon": "",
+			"style":"slideInDown"
+			},{
+			"id": "slideInLeft",
+			"title": "往左滑入",
+			"icon": "",
+			"style":"slideInLeft"
+			},{
+			"id": "slideInRight",
+			"title": "往右滑入",
+			"icon": "",
+			"style":"slideInRight"
+			},
+			{
+			"id": "slideOutUp",
+			"title": "向上滑出",
+			"icon": "",
+			"style":"slideOutUp"
+			},{
+			"id": "slideOutDown",
+			"title": "向下滑出",
+			"icon": "",
+			"style":"slideOutDown"
+			},{
+			"id": "slideOutLeft",
+			"title": "向左滑出",
+			"icon": "",
+			"style":"slideOutLeft"
+			},{
+			"id": "slideOutRight",
+			"title": "向右滑出",
+			"icon": "",
+			"style":"slideOutRight"
+			},
+			{
+			"id": "zoomIn",
+			"title": "放大",
+			"icon": "",
+			"style":"zoomIn"
+			},{
+			"id": "zoomInDown",
+			"title": "下移放大",
+			"icon": "",
+			"style":"zoomInDown"
+			},{
+			"id": "zoomInLeft",
+			"title": "左移放大",
+			"icon": "",
+			"style":"zoomInLeft"
+			},{
+			"id": "zoomInRight",
+			"title": "右移放大",
+			"icon": "",
+			"style":"zoomInRight"
+			},{
+			"id": "zoomInUp",
+			"title": "上移放大",
+			"icon": "",
+			"style":"zoomInUp"
+			},
+			{
+			"id": "zoomOut",
+			"title": "缩小",
+			"icon": "",
+			"style":"zoomOut"
+			},{
+			"id": "zoomOutDown",
+			"title": "下移缩小",
+			"icon": "",
+			"style":"zoomOutDown"
+			},{
+			"id": "zoomOutLeft",
+			"title": "左移缩小",
+			"icon": "",
+			"style":"zoomOutLeft"
+			},{
+			"id": "zoomOutRight",
+			"title": "右移缩小",
+			"icon": "",
+			"style":"zoomOutRight"
+			},{
+			"id": "zoomOutUp",
+			"title": "上移缩小",
+			"icon": "",
+			"style":"zoomOutUp"
+			},
+			{
+			"id": "hinge",
+			"title": "折叶效果",
+			"icon": "",
+			"style":"hinge"
+			},{
+			"id": "rollIn",
+			"title": "滚入",
+			"icon": "",
+			"style":"rollIn"
+			},{
+			"id": "rollOut",
+			"title": "滚出",
+			"icon": "",
+			"style":"rollOut"
+			}
+			]
+			
+		}]
+	}

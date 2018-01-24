@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBasePropCategoryMapper">
+
+ 	<resultMap id="depBasePropCategoryResultMap"	type="com.glaf.dep.base.domain.DepBasePropCategory">
+        <id property="ruleId" column="RULEID_" jdbcType="VARCHAR"/>
+        <id property="depBaseCategoryId" column="DEP_BASE_CATEGORY_ID_" jdbcType="BIGINT"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBasePropCategory" parameterType="com.glaf.dep.base.domain.DepBasePropCategory">
+		insert into DEP_BASE_PROPCATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    RULEID_
+			<if test="depBaseCategoryId != null">
+				,DEP_BASE_CATEGORY_ID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{ruleId, jdbcType=VARCHAR}
+	     
+			<if test="depBaseCategoryId != null">
+				,#{depBaseCategoryId, jdbcType=BIGINT}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBasePropCategory" parameterType="com.glaf.dep.base.domain.DepBasePropCategory">
+		update DEP_BASE_PROPCATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="depBaseCategoryId != null">
+				DEP_BASE_CATEGORY_ID_ = #{depBaseCategoryId, jdbcType=BIGINT},
+			</if>
+        </trim>
+		where
+          RULEID_ = #{ruleId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBasePropCategoryById" parameterType="string"> 
+        delete from DEP_BASE_PROPCATEGORY
+        where RULEID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepBasePropCategorys" parameterType="com.glaf.dep.base.query.DepBasePropCategoryQuery">
+		delete from DEP_BASE_PROPCATEGORY
+		where ( 
+ 			  RULEID_ IN
+              <foreach item="x_ruleId" index="index" collection="ruleIds" 
+                     open="(" separator="," close=")">
+                  #{x_ruleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBasePropCategoryById" parameterType="string" resultMap="depBasePropCategoryResultMap">
+		select * from DEP_BASE_PROPCATEGORY where RULEID_ = #{id}
+	</select>
+
+
+	<select id="getDepBasePropCategorys" 
+	    parameterType="com.glaf.dep.base.query.DepBasePropCategoryQuery"
+		resultMap="depBasePropCategoryResultMap">
+		select distinct E.*
+		<include refid="selectDepBasePropCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.RULEID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBasePropCategoryCount" 
+	    parameterType="com.glaf.dep.base.query.DepBasePropCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBasePropCategorysSql" />
+	</select>
+
+
+	<sql id="selectDepBasePropCategorysSql">
+
+		from DEP_BASE_PROPCATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="depBaseCategoryId != null">
+				and E.DEP_BASE_CATEGORY_ID_ = #{depBaseCategoryId}
+            </if>
+            
+            <if test="depBaseCategoryIds != null and depBaseCategoryIds.size() &gt; 0">
+            	and E.DEP_BASE_CATEGORY_ID_ IN
+            	<foreach collection="depBaseCategoryIds" item="x_categoryId"
+            	open="(" separator="," close=")">
+            	#{x_categoryId}
+            	</foreach>
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<delete id="deleteByRuleId" parameterType="int">
+		delete from DEP_BASE_PROPCATEGORY where RULEID_ = #{ruleId}
+	</delete>
+	
+	<select id="getDepBasePropCategory" parameterType="com.glaf.dep.base.query.DepBasePropCategoryQuery" resultMap="depBasePropCategoryResultMap">
+		select * from DEP_BASE_PROPCATEGORY where RULEID_=#{ruleId} and DEP_BASE_CATEGORY_ID_=#{depBaseCategoryId}
+	</select>
+
+</mapper>

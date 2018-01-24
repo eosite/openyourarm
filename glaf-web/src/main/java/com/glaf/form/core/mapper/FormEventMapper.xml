@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormEventMapper">
+
+ 	<resultMap id="formEventResultMap"	type="com.glaf.form.core.domain.FormEvent">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="diagram" column="DIAGRAM_" jdbcType="VARCHAR"/>
+        <result property="rule" column="RULE_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="eleId" column="ELEID_" jdbcType="VARCHAR"/>
+        <result property="version" column="VERSION_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormEvent" parameterType="com.glaf.form.core.domain.FormEvent">
+		insert into FORM_EVENT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="diagram != null">
+				,DIAGRAM_ 
+			</if>
+			<if test="rule != null">
+				,RULE_ 
+			</if>
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_ 
+			</if>
+			<if test="eleId != null">
+				,ELEID_ 
+			</if>
+			<if test="version != null">
+				,VERSION_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="diagram != null">
+				,#{diagram, jdbcType=VARCHAR}
+			</if>
+			<if test="rule != null">
+				,#{rule, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="eleId != null">
+				,#{eleId, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormEvent" parameterType="com.glaf.form.core.domain.FormEvent">
+		update FORM_EVENT
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="diagram != null">
+				DIAGRAM_ = #{diagram, jdbcType=VARCHAR},
+			</if>
+			<if test="rule != null">
+				RULE_ = #{rule, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="eleId != null">
+				ELEID_ = #{eleId, jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormEventById" parameterType="string"> 
+        delete from FORM_EVENT
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormEvents" parameterType="com.glaf.form.core.query.FormEventQuery">
+		delete from FORM_EVENT
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormEventById" parameterType="string" resultMap="formEventResultMap">
+		select * from FORM_EVENT where ID = #{id}
+	</select>
+
+
+	<select id="getFormEvents" 
+	    parameterType="com.glaf.form.core.query.FormEventQuery"
+		resultMap="formEventResultMap">
+		select E.*
+		<include refid="selectFormEventsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormEventCount" 
+	    parameterType="com.glaf.form.core.query.FormEventQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormEventsSql" />
+	</select>
+
+
+	<sql id="selectFormEventsSql">
+
+		from FORM_EVENT E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="diagram != null and diagram != '' ">
+				and E.DIAGRAM_ = #{diagram}
+            </if>
+
+			<if test="diagramLike != null and diagramLike != '' ">
+				and E.DIAGRAM_ like #{diagramLike}
+            </if>
+
+			<if test="diagrams != null and diagrams.size() &gt; 0">
+			    and E.DIAGRAM_ IN
+                <foreach item="x_diagram" index="index" collection="diagrams" 
+                     open="(" separator="," close=")">
+                  #{x_diagram}
+                </foreach>
+			</if>
+	        
+			<if test="rule != null and rule != '' ">
+				and E.RULE_ = #{rule}
+            </if>
+
+			<if test="ruleLike != null and ruleLike != '' ">
+				and E.RULE_ like #{ruleLike}
+            </if>
+
+			<if test="rules != null and rules.size() &gt; 0">
+			    and E.RULE_ IN
+                <foreach item="x_rule" index="index" collection="rules" 
+                     open="(" separator="," close=")">
+                  #{x_rule}
+                </foreach>
+			</if>
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			
+			<if test="eleId != null and eleId != '' ">
+				and E.ELEID_ = #{eleId}
+            </if>
+            
+			<if test="version != null and version != '' ">
+				and E.VERSION_ = #{version}
+            </if>
+			 
+		</where>
+	</sql>
+
+</mapper>

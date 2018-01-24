@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function-configuration>
+	<!-- 系统函数默认配置 -->
+	<bean class="org.wltea.expression.function.SystemFunctions">
+		<function name="CONTAINS" method="contains">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="STARTSWITH" method="startsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="ENDSWITH" method="endsWith">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CALCDATE" method="calcDate">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="SYSDATE" method="sysDate" />
+		<function name="DAYEQUALS" method="dayEquals">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+	</bean>
+	<!-- 用户函数配置，请在这里定制您自己的函数 -->
+	<!-- 日期时间函数 -->
+	<bean class="com.glaf.expression.core.util.DateFunc">
+		<function name="DATE" method="getDate">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="TIME" method="getTime">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="DATETIME" method="getDateTime">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="YEAR" method="getYear">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="MONTH" method="getMonth">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="DAYOFMONTH" method="getDayOfMonth">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="DAYOFWEEK" method="getDayOfWeek">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="HOUR" method="getHour">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="MINUTE" method="getMinute">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="SECOND" method="getSecond">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="MILLISECOND" method="getMilliSecond">
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="DIFFDATETIME" method="getDiffDatetime">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="FORMATDATETIME" method="formatDatetime">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="GETFD" method="getFormatDatetime">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="EQUALDATE" method="equalDate">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+		<function name="EQUALDATETIME" method="equalDateTime">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.util.Date</parameter-type>
+		</function>
+	</bean>
+	<!-- 文本函数 -->
+	<bean class="com.glaf.expression.core.util.StringFunc">
+		<function name="CONC" method="concatenate">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="LEN" method="len">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="GETOCCURSIZE" method="getOccurSize">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="FIND" method="find">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="SEARCH" method="search">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="LOWER" method="lower">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="UPPER" method="upper">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="SUBSTRING" method="subString">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>int</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="TRIM" method="trim">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="REPLACE" method="replace">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="REPLACEALL" method="replaceAll">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="ARRAYCONTAINS" method="arrayContains">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="SPLITSTR" method="splitStr">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="FORMAT" method="format">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+	</bean>
+	<!-- 数学与三角函数 -->
+	<bean class="com.glaf.expression.core.util.MathFunc">
+		<function name="ABS" method="abs">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ACOS" method="acos">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ACOSH" method="acosh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ASIN" method="asin">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ASINH" method="asinh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ATAN" method="atan">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ATAN2" method="atan2">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ATANH" method="atanh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="COS" method="cos">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="COSH" method="cosh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CBRT" method="cbrt">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CEIL" method="ceil">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="EXP" method="exp">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="FLOOR" method="floor">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="LOG" method="log">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="LOG10" method="log10">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="LOG1P" method="log1P">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="NEXTAFTER" method="nextAfter">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="NEXTUP" method="nextUp">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="MAX" method="max">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="MIN" method="min">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="PI" method="pi" />
+		<function name="POWER" method="power">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ROUND" method="round">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="RAND" method="rand" />
+		<function name="RANDBETWEEN" method="randBetween">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="SIGN" method="sign">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="SIN" method="sin">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="SINH" method="sinh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="TAN" method="tan">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="TANH" method="tanh">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="TRUNC" method="trunc">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="TODEGREES" method="toDegrees">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="TORADIANS" method="toRadians">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="ADD" method="add">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="SUB" method="sub">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="MUL" method="mul">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="DIV" method="div">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+		<function name="FORMATNUMBER" method="formatNumber">
+			<parameter-type>java.lang.Object</parameter-type>
+			<parameter-type>int</parameter-type>
+		</function>
+	</bean>
+	<!--类型转换 -->
+	<bean class="com.glaf.expression.core.util.DataTypeFunc">
+		<function name="CASTSTRING" method="castToString">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CASTINT" method="castToInt">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CASTLONG" method="castToLong">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CASTFLOAT" method="castToFloat">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="CASTDOUBLE" method="castToDouble">
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="TO_DATE" method="to_date">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="TO_CHAR" method="to_char">
+			<parameter-type>java.util.Date</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+	</bean>
+	<!-- 系统常量 -->
+	<bean class="com.glaf.expression.core.util.SysConstantFunc">
+		<function name="SYS_NAME" method="getSysName" />
+		<function name="SYS_VERSION" method="getSysVersion" />
+		<function name="CURR_USERNAME" method="getCurrentUserName">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CURR_ACCOUNT" method="getCurrentUserAccount">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CURR_DEPT" method="getCurrentUserDept">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="CURR_DEPT_ID" method="getCurrentUserDeptId">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+	</bean>
+	<!-- ID生成规则 -->
+	<bean class="com.glaf.expression.core.util.SysIdFunc">
+		<function name="OID" method="getOid">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="SEQ" method="getSeq">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="MAXVAL" method="getMaxVal">
+			<parameter-type>java.lang.String</parameter-type>
+			<parameter-type>java.lang.String</parameter-type>
+		</function>
+		<function name="UUID" method="getUUID" />
+		<function name="USER_ID" method="getUserId">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+	</bean>
+	<!-- 金额处理 -->
+	<bean class="com.glaf.expression.core.util.AmountFunc">
+		<function name="CONVERTAMOUNT" method="convertAmount">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+		<function name="FORMATAMOUNT" method="formatAmount">
+			<parameter-type>java.lang.Object</parameter-type>
+		</function>
+	</bean>
+</function-configuration>

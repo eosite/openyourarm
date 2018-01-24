@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormWorkFlowRuleMapper">
+
+	<resultMap id="formWorkFlowRuleResultMap" type="com.glaf.form.core.domain.FormWorkFlowRule">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="actResDefId" column="ACT_RESDEF_ID_"
+			jdbcType="BIGINT" />
+		<result property="actResourceId" column="ACT_RESOURCE_ID_"
+			jdbcType="VARCHAR" />
+		<result property="actTaskId" column="ACT_TASKID_" jdbcType="VARCHAR" />
+		<result property="actTaskName" column="ACT_TASKNAME_" jdbcType="VARCHAR" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="bytes" column="BYTES_" jdbcType="VARCHAR" />
+		<result property="pageId" column="PAGE_ID_" jdbcType="VARCHAR" />
+		<result property="defId" column="DEF_ID_" jdbcType="VARCHAR" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFormWorkFlowRule" parameterType="com.glaf.form.core.domain.FormWorkFlowRule">
+		insert into FORM_WORKFLOW_RULE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="actResDefId != null">
+				,ACT_RESDEF_ID_
+			</if>
+			<if test="actResourceId != null">
+				,ACT_RESOURCE_ID_
+			</if>
+			<if test="actTaskId != null">
+				,ACT_TASKID_
+			</if>
+			<if test="actTaskName != null">
+				,ACT_TASKNAME_
+			</if>
+			<if test="bytes != null">
+				,BYTES_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+			<if test="pageId != null">
+				,PAGE_ID_
+			</if>
+
+			<if test="defId != null">
+				,DEF_ID_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="actResDefId != null">
+				,#{actResDefId, jdbcType=BIGINT}
+			</if>
+			<if test="actResourceId != null">
+				,#{actResourceId, jdbcType=VARCHAR}
+			</if>
+			<if test="actTaskId != null">
+				,#{actTaskId, jdbcType=VARCHAR}
+			</if>
+			<if test="actTaskName != null">
+				,#{actTaskName, jdbcType=VARCHAR}
+			</if>
+			<if test="bytes != null">
+				,#{bytes, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+
+			<if test="defId != null">
+				,#{defId, jdbcType=VARCHAR}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormWorkFlowRule" parameterType="com.glaf.form.core.domain.FormWorkFlowRule">
+		update FORM_WORKFLOW_RULE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="actResDefId != null">
+				ACT_RESDEF_ID_ = #{actResDefId, jdbcType=BIGINT},
+			</if>
+			<if test="actResourceId != null">
+				ACT_RESOURCE_ID_ = #{actResourceId, jdbcType=VARCHAR},
+			</if>
+			<if test="actTaskId != null">
+				ACT_TASKID_ = #{actTaskId, jdbcType=VARCHAR},
+			</if>
+			<if test="actTaskName != null">
+				ACT_TASKNAME_ = #{actTaskName, jdbcType=VARCHAR},
+			</if>
+			<if test="bytes != null">
+				BYTES_ = #{bytes, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="pageId != null">
+				PAGE_ID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="defId != null">
+				DEF_ID_ = #{defId, jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteFormWorkFlowRuleById" parameterType="long">
+		delete
+		from FORM_WORKFLOW_RULE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormWorkFlowRules" parameterType="com.glaf.form.core.query.FormWorkFlowRuleQuery">
+		delete from FORM_WORKFLOW_RULE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormWorkFlowRuleById" parameterType="long"
+		resultMap="formWorkFlowRuleResultMap">
+		select * from FORM_WORKFLOW_RULE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormWorkFlowRules" parameterType="com.glaf.form.core.query.FormWorkFlowRuleQuery"
+		resultMap="formWorkFlowRuleResultMap">
+		select E.*
+		<include refid="selectFormWorkFlowRulesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getNextVersionByPageId" parameterType="string"
+		resultType="int">
+		SELECT MAX(VERSION_) VERSION FROM FORM_WORKFLOW_RULE WHERE
+		PAGE_ID_ = #{pageId} AND DEF_ID_ IS NULL
+	</select>
+
+	<select id="getFormWorkFlowRuleCount" parameterType="com.glaf.form.core.query.FormWorkFlowRuleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormWorkFlowRulesSql" />
+	</select>
+
+
+	<sql id="selectFormWorkFlowRulesSql">
+
+		from FORM_WORKFLOW_RULE E
+
+		<where>
+			1 = 1
+
+
+			<if test="actResDefId != null">
+				and E.ACT_RESDEF_ID_ = #{actResDefId}
+			</if>
+
+			<if test="actResDefIdGreaterThanOrEqual != null">
+				and E.ACT_RESDEF_ID_ &gt;=
+				#{actResDefIdGreaterThanOrEqual}
+			</if>
+
+			<if test="actResDefIdLessThanOrEqual != null">
+				and E.ACT_RESDEF_ID_ &lt;= #{actResDefIdLessThanOrEqual}
+			</if>
+
+			<if test="actResDefIds != null and actResDefIds.size() &gt; 0">
+				and E.ACT_RESDEF_ID_ IN
+				<foreach item="x_actResDefId" index="index" collection="actResDefIds"
+					open="(" separator="," close=")">
+					#{x_actResDefId}
+				</foreach>
+			</if>
+
+
+			<if test="actResourceId != null and actResourceId != '' ">
+				and E.ACT_RESOURCE_ID_ = #{actResourceId}
+			</if>
+
+			<if test="actResourceIdLike != null and actResourceIdLike != '' ">
+				and E.ACT_RESOURCE_ID_ like #{actResourceIdLike}
+			</if>
+
+			<if test="actResourceIds != null and actResourceIds.size() &gt; 0">
+				and E.ACT_RESOURCE_ID_ IN
+				<foreach item="x_actResourceId" index="index" collection="actResourceIds"
+					open="(" separator="," close=")">
+					#{x_actResourceId}
+				</foreach>
+			</if>
+
+			<if test="actTaskId != null and actTaskId != '' ">
+				and E.ACT_TASKID_ = #{actTaskId}
+			</if>
+
+			<if test="actTaskIdLike != null and actTaskIdLike != '' ">
+				and E.ACT_TASKID_ like #{actTaskIdLike}
+			</if>
+
+			<if test="actTaskIds != null and actTaskIds.size() &gt; 0">
+				and E.ACT_TASKID_ IN
+				<foreach item="x_actTaskId" index="index" collection="actTaskIds"
+					open="(" separator="," close=")">
+					#{x_actTaskId}
+				</foreach>
+			</if>
+
+			<if test="actTaskName != null and actTaskName != '' ">
+				and E.ACT_TASKNAME_ = #{actTaskName}
+			</if>
+
+			<if test="actTaskNameLike != null and actTaskNameLike != '' ">
+				and E.ACT_TASKNAME_ like #{actTaskNameLike}
+			</if>
+
+			<if test="actTaskNames != null and actTaskNames.size() &gt; 0">
+				and E.ACT_TASKNAME_ IN
+				<foreach item="x_actTaskName" index="index" collection="actTaskNames"
+					open="(" separator="," close=")">
+					#{x_actTaskName}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGE_ID_ = #{pageId}
+			</if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGE_ID_ like #{pageIdLike}
+			</if>
+
+			<if test="defId != null and defId != '' ">
+				and E.DEF_ID_ = #{defId}
+			</if>
+
+			<if test="defIdLike != null and defIdLike != '' ">
+				and E.DEF_ID_ like #{defIdLike}
+			</if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+				and E.PAGE_ID_ IN
+				<foreach item="x_pageId" index="index" collection="pageIds"
+					open="(" separator="," close=")">
+					#{x_pageId}
+				</foreach>
+			</if>
+
+			<if test="version != null">
+				and E.VERSION_ = #{version}
+			</if>
+
+			<if test="versionGreaterThanOrEqual != null">
+				and E.VERSION_ &gt;= #{versionGreaterThanOrEqual}
+			</if>
+
+			<if test="versionLessThanOrEqual != null">
+				and E.VERSION_ &lt;= #{versionLessThanOrEqual}
+			</if>
+
+			<if test="versions != null and versions.size() &gt; 0">
+				and E.VERSION_ IN
+				<foreach item="x_version" index="index" collection="versions"
+					open="(" separator="," close=")">
+					#{x_version}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

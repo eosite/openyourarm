@@ -1,0 +1,360 @@
+{
+	"id":"userTask",
+	"title": "用户任务属性",
+	"description":"描述用户任务属性规则",
+	"propertyPackages":
+	[{
+		"id":"baseprop",
+		"title": "基本属性",
+		"description":"",
+		"expland":"true",
+		"properties":
+		[
+			{
+			    "id": "id", 
+			    "title": "ID",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if id?exists>${id[0]}</#if>",
+			    "defaultVal":"userTask_${.now?string('yyyyMMddHHmmss')}",
+			    "inputMode": "input",
+			    "readonly":"true",
+			    "require":"true",
+			    "onblur":"updateProperties(this)"
+			},{
+			    "id": "name", 
+			    "title": "名称",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if name?exists>${name[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true"
+			},
+			{
+			    "id": "description", 
+			    "title": "描述",
+			    "type": "string",
+			    "maxlen":"150",
+			    "minlen":"",
+			    "value": "<#if description?exists>${description[0]}</#if>",
+			    "inputMode": "input",
+			    "require":""
+			},
+			{
+			    "id": "submitterTask", 
+			    "title": "提单人任务",
+			    "type": "string",
+			    "maxlen":"1",
+			    "minlen":"",
+				"defaultVal":"1",
+				"checkedval":"1",
+			    "value": "<#if submitterTask?exists>${submitterTask[0]}</#if>",
+			    "inputMode": "checkbox",
+			    "require":""
+			}
+		]
+	},{
+		"id":"taskrunprop",
+		"title": "任务执行方式",
+		"description":"",
+		"properties":
+		[
+			{
+			    "id": "actmode", 
+			    "title": "执行方式",
+			    "type": "string",
+			    "value": "<#if actmode?exists>${actmode[0]}</#if>",
+			    "defaultVal":"singlesign",
+			    "inputMode": "radio",
+			    "valrange":[{"title":"单签","value":"singlesign"},{"title":"会签","value":"countersign"}],
+			    "require":"true",
+			    "properties":[{
+			       "id": "countersigntype", 
+			       "title": "会签方式",
+			       "type": "string",
+			       "value": "<#if countersigntype?exists>${countersigntype[0]}</#if>",
+			       "defaultVal":"sequential",
+			       "inputMode": "select",
+			       "valrange":[{"title":"顺序","value":"sequential"},{"title":"并行","value":"parallel"}],
+			       "require":"",
+			       "usecondition":"countersign"
+			    }]
+			},{
+			    "id": "skip", 
+			    "title": "连续任务跳过",
+			    "type": "string",
+			    "value": "<#if skip?exists>${skip[0]}</#if>",
+			    "defaultVal":"0",
+			    "inputMode": "select",
+			    "valrange":[{"title":"否","value":"0"},{"title":"是","value":"1"}],
+			    "require":"true"
+			},
+			{
+			    "id": "manualsign", 
+			    "title": "手动签收",
+			    "type": "string",
+			    "value": "<#if manualsign?exists>${manualsign[0]}</#if>",
+			    "defaultVal":"0",
+			    "inputMode": "select",
+			    "valrange":[{"title":"否","value":"0"},{"title":"是","value":"1"}],
+			    "require":"true"
+			},
+			{
+			    "id": "requireddate", 
+			    "title": "要求完成时间",
+			    "properties":[
+				      {
+					    "id": "reference", 
+					    "title": "参照点",
+					    "type": "string",
+					    "value": "<#if reference?exists>${reference[0]}</#if>",
+					    "defaultVal":"preTaskFinishDate",
+					    "inputMode": "select",
+					    "valrange":[{"title":"提单时间","value":"subdate"},{"title":"签收时间","value":"signdate"},{"title":"上个任务完成时间","value":"preTaskFinishDate"}],
+					    "require":"false"
+				     }, {
+					    "id": "expire", 
+					    "title": "期限",
+					    "type": "int",
+					    "value": "<#if expire?exists>${expire[0]}</#if>",
+					    "defaultVal":"",
+					    "inputMode": "input",
+					    "maxval":"90",
+			            "minval":"1",
+					    "require":"false",
+					    "template":"#expire#单位天"
+				     }
+			    ]
+			}
+		]
+	},{
+		"id":"assignprop",
+		"title": "人员安排",
+		"description":"",
+		"properties":
+		[
+		   <#if assignType?exists>
+		   <#list assignType as assign>
+		   <#assign x="${(assign=='departRole')?string('|',',')}">
+			{
+			    "id": "assign", 
+			    "title": "<select name=\"assignType\"><option value=\"user\" <#if assign=='user'>selected</#if>>人员</option><option value=\"submitter\" <#if assign=='submitter'>selected</#if>>提单人</option><option value=\"role\" <#if assign=='role'>selected</#if>>角色</option><option value=\"departRole\" <#if assign=='departRole'>selected</#if>>部门角色</option><option value=\"post\" <#if assign=='post'>selected</#if>>岗位</option></select>",
+			    "showtitle":"false",
+			    "type": "string",
+			    "value":{"assignType":"${assign}","operation":"${operation[assign_index]}","assignval":"${assignvalhidden[assign_index]}"},
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<select class=\"k-input k-state-default\" name=\"operation\"><option value=\"include\" <#if operation[assign_index]=='include'>selected</#if>>包含</option><option value=\"exclude\" <#if operation[assign_index]=='exclude'>selected</#if>>排除</option></select>&nbsp;&nbsp;<div name=\"detailcontent\" style=\"display:inline-block\"><#list assignvalhidden[assign_index]?split(x) as assignvalItem><span class=\"tooltips\" hef=\"#tooltips\">${assignval[assign_index]?split(x)[assignvalItem_index]}<a class=\"removea\" hef=\"#\" onclick=\"removeAssignDetail('${assignvalItem}','${assignval[assign_index]?split(x)[assignvalItem_index]}')\">×</a></span></#list></div><input type=\"hidden\" id=\"assignval_${assign_index}\" name=\"assignval\" class=\"k-textbox\" style=\"width:150px;\" value=\"${assignval[assign_index]}\" ondblclick=\"openAssignChooseDialog(this)\"/> <input type=\"hidden\" id=\"assignvalhidden_${assign_index}\" name=\"assignvalhidden\" value=\"${assignvalhidden[assign_index]}\" /><img alt=\"\" src=\"contextPath/images/user_edit.png\" onclick=\"openAssignChooseDialog(this)\" style=\"vertical-align:middle;\" /><img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addAssign()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeAssign()\" style=\"vertical-align:middle;\" />"
+			}<#if assign_index+1&lt;assignType?size>,</#if>
+			</#list>
+			<#else>
+			{
+			    "id": "assign", 
+			    "title": "<select name=\"assignType\"><option value=\"user\">人员</option><option value=\"submitter\">提单人</option><option value=\"role\">角色</option><option value=\"departRole\">部门角色</option><option value=\"post\">岗位</option></select>",
+			    "showtitle":"false",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<select class=\"k-input k-state-default\" name=\"operation\"><option value=\"include\">包含</option><option value=\"exclude\">排除</option></select>&nbsp;&nbsp;<div name=\"detailcontent\" style=\"display:inline-block\"></div><input type=\"hidden\" id=\"assignval_1\" name=\"assignval\" /><input type=\"hidden\" id=\"assignvalhidden_1\" name=\"assignvalhidden\" /> <img alt=\"\" src=\"contextPath/images/user_edit.png\" onclick=\"openAssignChooseDialog(this)\" style=\"vertical-align:middle;\" /><img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addAssign()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeAssign()\" style=\"vertical-align:middle;\" />"
+			}
+			</#if>
+		]
+	},{
+		"id":"warnprop",
+		"title": "提醒设置",
+		"description":"",
+		"properties":
+		[
+			{
+			    "id": "mail", 
+			    "title": "邮件",
+			    "properties":[
+			{
+			    "id": "taskwarm", 
+			    "title": "待办提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[0]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[0]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "value": "<#if submitTo?exists>${submitTo[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "value": "<#if copyTo?exists>${copyTo[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			},{
+			    "id": "exceedwarm", 
+			    "title": "超期提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[1]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[1]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "inputMode": "input",
+			    "value": "<#if submitTo?exists>${submitTo[1]}</#if>",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "inputMode": "input",
+			    "value": "<#if copyTo?exists>${copyTo[1]}</#if>",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			},{
+			    "id": "finishwarm", 
+			    "title": "已办提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[2]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[2]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "value": "<#if submitTo?exists>${submitTo[2]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "value": "<#if copyTo?exists>${copyTo[2]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			}
+		  ]
+			},
+			{
+			    "id": "sms", 
+			    "title": "短信",
+			    "properties":[
+			{
+			    "id": "taskwarm", 
+			    "title": "待办提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[3]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[3]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "value": "<#if submitTo?exists>${submitTo[3]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "value": "<#if copyTo?exists>${copyTo[3]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			},{
+			    "id": "exceedwarm", 
+			    "title": "超期提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[4]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[4]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "value": "<#if submitTo?exists>${submitTo[4]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "value": "<#if copyTo?exists>${copyTo[4]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			},{
+			    "id": "finishwarm", 
+			    "title": "已办提醒",
+			    "properties":[{
+			    "id": "warmtime", 
+			    "title": "提醒次数/时间",
+			    "type": "string",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"warmtimes\" style=\"width:30px;\" value=\"<#if warmtimes?exists>${warmtimes[5]}</#if>\" />次/时间表达式<input type=\"text\" class=\"textCls k-textbox\" name=\"exprval\" value=\"<#if exprval?exists>${exprval[5]}</#if>\" ondblclick=\"openCronDefinedDialog(this)\"/>"
+			},{
+			    "id": "submitTo", 
+			    "title": "主送",
+			    "type": "string",
+			    "value": "<#if submitTo?exists>${submitTo[5]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			},{
+			    "id": "copyTo", 
+			    "title": "抄送",
+			    "type": "string",
+			    "value": "<#if copyTo?exists>${copyTo[5]}</#if>",
+			    "inputMode": "input",
+			    "require":"true",
+			    "maxlen":"250",
+			    "minlen":"30"
+			}]
+			}
+		  ]
+			}
+		]
+	}]
+ }

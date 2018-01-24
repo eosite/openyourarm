@@ -1,0 +1,117 @@
+{
+	"id": "metrolist",
+	"title": "Metronic List",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "size",
+			"title": "尺寸",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"unit":"px,%,em",
+				"ctrImpl": "setWidth"
+			},
+			{
+				"id": "height",
+				"title": "高",
+				"type": "int",
+			    "maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"unit":"px,%,em",
+				"ctrImpl": "setHeight"
+			}]
+		}]
+	},{
+		"id": "background",
+		"title": "背景",
+		"description": "",
+		"expland": "false",
+		"properties": [{
+			"id": "header-style",
+			"title": "标题风格",
+			"type": "string",
+			"defaultVal": "default",
+			"inputMode": "select",
+			"valrange": [
+			{	
+				"title": "红色",
+				"value": "bg-red"
+			},
+			{	
+				"title": "蓝色",
+				"value": "bg-blue"
+			},{
+				"title": "暗色",
+				"value": "bg-dark"
+			},{
+				"title": "淡蓝",
+				"value": "bg-blue-chambray"
+			},
+			{	
+				"title": "翠绿",
+				"value": "bg-green-sharp"   
+			},{
+				"title": "绿色",
+				"value": "bg-green-seagreen"
+			},{
+				"title": "暗灰",
+				"value": "bg-grey-gallery"
+			},{
+				"title": "黄色",
+				"value": "bg-yellow-crusta"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setHeaderStyle"
+		}]
+	},{
+		"id": "font",
+		"title": "文本",
+		"description": "",
+		"expland": "false",
+		"properties":[{
+			"id": "font-color",
+			"title": "文本颜色",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "colorpicker",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFontColor"
+		}]
+	}]
+}

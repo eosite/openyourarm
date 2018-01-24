@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormEventTemplateMapper">
+
+ 	<resultMap id="formEventTemplateResultMap"	type="com.glaf.form.core.domain.FormEventTemplate">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="pId" column="PID_" jdbcType="VARCHAR"/>
+        <result property="complexId" column="COMPLEXID_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK_" jdbcType="VARCHAR"/>
+        <result property="diagram" column="DIAGRAM_" jdbcType="VARCHAR"/>
+        <result property="rule" column="RULE_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="complexRule" column="COMPLEX_RULE_" jdbcType="VARCHAR"/>
+        <result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="viewType" column="VIEWTYPE_" jdbcType="VARCHAR"/>
+        <result property="tableRule" column="TABLE_RULE_" jdbcType="VARCHAR"/>
+        <result property="complexTableRule" column="COMPLEX_TABLE_RULE_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormEventTemplate" parameterType="com.glaf.form.core.domain.FormEventTemplate">
+		insert into FORM_EVENT_TEMPLATE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="pId != null">
+				,PID_ 
+			</if>
+			<if test="complexId != null">
+				,COMPLEXID_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="remark != null">
+				,REMARK_ 
+			</if>
+			<if test="diagram != null">
+				,DIAGRAM_ 
+			</if>
+			<if test="rule != null">
+				,RULE_ 
+			</if>
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="complexRule != null">
+				,COMPLEX_RULE_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_ 
+			</if>
+			<if test="viewType != null">
+				,VIEWTYPE_ 
+			</if>
+			<if test="tableRule != null">
+				,TABLE_RULE_ 
+			</if>
+			<if test="complexTableRule != null">
+				,COMPLEX_TABLE_RULE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pId != null">
+				,#{pId, jdbcType=VARCHAR}
+			</if>
+			<if test="complexId != null">
+				,#{complexId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null">
+				,#{remark, jdbcType=VARCHAR}
+			</if>
+			<if test="diagram != null">
+				,#{diagram, jdbcType=VARCHAR}
+			</if>
+			<if test="rule != null">
+				,#{rule, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="complexRule != null">
+				,#{complexRule, jdbcType=VARCHAR}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="viewType != null">
+				,#{viewType, jdbcType=VARCHAR}
+			</if>
+			<if test="tableRule != null">
+				,#{tableRule, jdbcType=VARCHAR}
+			</if>
+			<if test="complexTableRule != null">
+				,#{complexTableRule, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormEventTemplate" parameterType="com.glaf.form.core.domain.FormEventTemplate">
+		update FORM_EVENT_TEMPLATE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pId != null">
+				PID_ = #{pId, jdbcType=VARCHAR},
+			</if>
+			<if test="complexId != null">
+				COMPLEXID_ = #{complexId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK_ = #{remark, jdbcType=VARCHAR},
+			</if>
+			<if test="diagram != null">
+				DIAGRAM_ = #{diagram, jdbcType=VARCHAR},
+			</if>
+			<if test="rule != null">
+				RULE_ = #{rule, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="complexRule != null">
+				COMPLEX_RULE_ = #{complexRule, jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="viewType != null">
+				VIEWTYPE_ = #{viewType, jdbcType=VARCHAR},
+			</if>
+			<if test="tableRule != null">
+				TABLE_RULE_ = #{tableRule, jdbcType=VARCHAR},
+			</if>
+			<if test="complexTableRule != null">
+				COMPLEX_TABLE_RULE_ = #{complexTableRule, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormEventTemplateById" parameterType="string"> 
+        delete from FORM_EVENT_TEMPLATE
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormEventTemplates" parameterType="com.glaf.form.core.query.FormEventTemplateQuery">
+		delete from FORM_EVENT_TEMPLATE
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormEventTemplateById" parameterType="string" resultMap="formEventTemplateResultMap">
+		select * from FORM_EVENT_TEMPLATE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormEventTemplates" 
+	    parameterType="com.glaf.form.core.query.FormEventTemplateQuery"
+		resultMap="formEventTemplateResultMap">
+		select E.*
+		<include refid="selectFormEventTemplatesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormEventTemplateCount" 
+	    parameterType="com.glaf.form.core.query.FormEventTemplateQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormEventTemplatesSql" />
+	</select>
+
+
+	<sql id="selectFormEventTemplatesSql">
+
+		from FORM_EVENT_TEMPLATE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="pId != null and pId != '' ">
+				and E.PID_ = #{pId}
+            </if>
+
+			<if test="pIdLike != null and pIdLike != '' ">
+				and E.PID_ like #{pIdLike}
+            </if>
+
+			<if test="pIds != null and pIds.size() &gt; 0">
+			    and E.PID_ IN
+                <foreach item="x_pId" index="index" collection="pIds" 
+                     open="(" separator="," close=")">
+                  #{x_pId}
+                </foreach>
+			</if>
+	        
+			<if test="complexId != null and complexId != '' ">
+				and E.COMPLEXID_ = #{complexId}
+            </if>
+
+			<if test="complexIdLike != null and complexIdLike != '' ">
+				and E.COMPLEXID_ like #{complexIdLike}
+            </if>
+
+			<if test="complexIds != null and complexIds.size() &gt; 0">
+			    and E.COMPLEXID_ IN
+                <foreach item="x_complexId" index="index" collection="complexIds" 
+                     open="(" separator="," close=")">
+                  #{x_complexId}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="remark != null and remark != '' ">
+				and E.REMARK_ = #{remark}
+            </if>
+
+			<if test="remarkLike != null and remarkLike != '' ">
+				and E.REMARK_ like #{remarkLike}
+            </if>
+
+			<if test="remarks != null and remarks.size() &gt; 0">
+			    and E.REMARK_ IN
+                <foreach item="x_remark" index="index" collection="remarks" 
+                     open="(" separator="," close=")">
+                  #{x_remark}
+                </foreach>
+			</if>
+	        
+			<if test="diagram != null and diagram != '' ">
+				and E.DIAGRAM_ = #{diagram}
+            </if>
+
+			<if test="diagramLike != null and diagramLike != '' ">
+				and E.DIAGRAM_ like #{diagramLike}
+            </if>
+
+			<if test="diagrams != null and diagrams.size() &gt; 0">
+			    and E.DIAGRAM_ IN
+                <foreach item="x_diagram" index="index" collection="diagrams" 
+                     open="(" separator="," close=")">
+                  #{x_diagram}
+                </foreach>
+			</if>
+	        
+			<if test="rule != null and rule != '' ">
+				and E.RULE_ = #{rule}
+            </if>
+
+			<if test="ruleLike != null and ruleLike != '' ">
+				and E.RULE_ like #{ruleLike}
+            </if>
+
+			<if test="rules != null and rules.size() &gt; 0">
+			    and E.RULE_ IN
+                <foreach item="x_rule" index="index" collection="rules" 
+                     open="(" separator="," close=")">
+                  #{x_rule}
+                </foreach>
+			</if>
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="complexRule != null and complexRule != '' ">
+				and E.COMPLEX_RULE_ = #{complexRule}
+            </if>
+
+			<if test="complexRuleLike != null and complexRuleLike != '' ">
+				and E.COMPLEX_RULE_ like #{complexRuleLike}
+            </if>
+
+			<if test="complexRules != null and complexRules.size() &gt; 0">
+			    and E.COMPLEX_RULE_ IN
+                <foreach item="x_complexRule" index="index" collection="complexRules" 
+                     open="(" separator="," close=")">
+                  #{x_complexRule}
+                </foreach>
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETEFLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETEFLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETEFLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

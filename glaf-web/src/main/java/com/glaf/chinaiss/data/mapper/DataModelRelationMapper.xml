@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.chinaiss.data.mapper.DataModelRelationMapper">
+
+ 	<resultMap id="dataModelRelationResultMap"	type="com.glaf.chinaiss.data.domain.DataModelRelation">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="columnName" column="COLUMNNAME_" jdbcType="VARCHAR"/>
+        <result property="description" column="DESCRIPTION_" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+        <result property="relateTable" column="RELATETABLE_" jdbcType="VARCHAR"/>
+        <result property="relateColumn" column="RELATECOLUMN_" jdbcType="VARCHAR"/>
+        <result property="relateType" column="RELATETYPE_" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOPID_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENTID_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP"/>
+        <result property="listNo" column="LISTNO_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertDataModelRelation" parameterType="com.glaf.chinaiss.data.domain.DataModelRelation">
+		insert into DATA_MODEL_RELATION 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="columnName != null">
+				,COLUMNNAME_ 
+			</if>
+			<if test="description != null">
+				,DESCRIPTION_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="relateTable != null">
+				,RELATETABLE_ 
+			</if>
+			<if test="relateColumn != null">
+				,RELATECOLUMN_ 
+			</if>
+			<if test="relateType != null">
+				,RELATETYPE_ 
+			</if>
+			<if test="topId != null">
+				,TOPID_ 
+			</if>
+			<if test="parentId != null">
+				,PARENTID_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_ 
+			</if>
+			<if test="listNo != null">
+				,LISTNO_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="description != null">
+				,#{description, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="relateTable != null">
+				,#{relateTable, jdbcType=VARCHAR}
+			</if>
+			<if test="relateColumn != null">
+				,#{relateColumn, jdbcType=VARCHAR}
+			</if>
+			<if test="relateType != null">
+				,#{relateType, jdbcType=VARCHAR}
+			</if>
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDataModelRelation" parameterType="com.glaf.chinaiss.data.domain.DataModelRelation">
+		update DATA_MODEL_RELATION
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="columnName != null">
+				COLUMNNAME_ = #{columnName, jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				DESCRIPTION_ = #{description, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="relateTable != null">
+				RELATETABLE_ = #{relateTable, jdbcType=VARCHAR},
+			</if>
+			<if test="relateColumn != null">
+				RELATECOLUMN_ = #{relateColumn, jdbcType=VARCHAR},
+			</if>
+			<if test="relateType != null">
+				RELATETYPE_ = #{relateType, jdbcType=VARCHAR},
+			</if>
+			<if test="topId != null">
+				TOPID_ = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="listNo != null">
+				LISTNO_ = #{listNo, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDataModelRelationById" parameterType="string"> 
+        delete from DATA_MODEL_RELATION
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDataModelRelations" parameterType="com.glaf.chinaiss.data.query.DataModelRelationQuery">
+		delete from DATA_MODEL_RELATION
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDataModelRelationById" parameterType="string" resultMap="dataModelRelationResultMap">
+		select * from DATA_MODEL_RELATION where ID_ = #{id}
+	</select>
+
+
+	<select id="getDataModelRelations" 
+	    parameterType="com.glaf.chinaiss.data.query.DataModelRelationQuery"
+		resultMap="dataModelRelationResultMap">
+		select distinct E.*
+		<include refid="selectDataModelRelationsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDataModelRelationCount" 
+	    parameterType="com.glaf.chinaiss.data.query.DataModelRelationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDataModelRelationsSql" />
+	</select>
+
+
+	<sql id="selectDataModelRelationsSql">
+
+		from DATA_MODEL_RELATION E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="columnName != null and columnName != '' ">
+				and E.COLUMNNAME_ = #{columnName}
+            </if>
+
+			<if test="columnNameLike != null and columnNameLike != '' ">
+				and E.COLUMNNAME_ like #{columnNameLike}
+            </if>
+
+			<if test="columnNames != null and columnNames.size() &gt; 0">
+			    and E.COLUMNNAME_ IN
+                <foreach item="x_columnName" index="index" collection="columnNames" 
+                     open="(" separator="," close=")">
+                  #{x_columnName}
+                </foreach>
+			</if>
+	        
+			<if test="description != null and description != '' ">
+				and E.DESCRIPTION_ = #{description}
+            </if>
+
+			<if test="descriptionLike != null and descriptionLike != '' ">
+				and E.DESCRIPTION_ like #{descriptionLike}
+            </if>
+
+			<if test="descriptions != null and descriptions.size() &gt; 0">
+			    and E.DESCRIPTION_ IN
+                <foreach item="x_description" index="index" collection="descriptions" 
+                     open="(" separator="," close=")">
+                  #{x_description}
+                </foreach>
+			</if>
+	        
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+	        
+			<if test="relateTable != null and relateTable != '' ">
+				and E.RELATETABLE_ = #{relateTable}
+            </if>
+
+			<if test="relateTableLike != null and relateTableLike != '' ">
+				and E.RELATETABLE_ like #{relateTableLike}
+            </if>
+
+			<if test="relateTables != null and relateTables.size() &gt; 0">
+			    and E.RELATETABLE_ IN
+                <foreach item="x_relateTable" index="index" collection="relateTables" 
+                     open="(" separator="," close=")">
+                  #{x_relateTable}
+                </foreach>
+			</if>
+	        
+			<if test="relateColumn != null and relateColumn != '' ">
+				and E.RELATECOLUMN_ = #{relateColumn}
+            </if>
+
+			<if test="relateColumnLike != null and relateColumnLike != '' ">
+				and E.RELATECOLUMN_ like #{relateColumnLike}
+            </if>
+
+			<if test="relateColumns != null and relateColumns.size() &gt; 0">
+			    and E.RELATECOLUMN_ IN
+                <foreach item="x_relateColumn" index="index" collection="relateColumns" 
+                     open="(" separator="," close=")">
+                  #{x_relateColumn}
+                </foreach>
+			</if>
+	        
+			<if test="relateType != null and relateType != '' ">
+				and E.RELATETYPE_ = #{relateType}
+            </if>
+
+			<if test="relateTypeLike != null and relateTypeLike != '' ">
+				and E.RELATETYPE_ like #{relateTypeLike}
+            </if>
+
+			<if test="relateTypes != null and relateTypes.size() &gt; 0">
+			    and E.RELATETYPE_ IN
+                <foreach item="x_relateType" index="index" collection="relateTypes" 
+                     open="(" separator="," close=")">
+                  #{x_relateType}
+                </foreach>
+			</if>
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOPID_ = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID_ like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOPID_ IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="parentId != null and parentId != '' ">
+				and E.PARENTID_ = #{parentId}
+            </if>
+
+			<if test="parentIdLike != null and parentIdLike != '' ">
+				and E.PARENTID_ like #{parentIdLike}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENTID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+
+			<if test="listNo != null">
+				and E.LISTNO_ = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO_ &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO_ &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO_ IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

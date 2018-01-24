@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.report.mapper.DepReportTmpCategoryMapper">
+
+ 	<resultMap id="depReportTmpCategoryResultMap"	type="com.glaf.dep.report.domain.DepReportTmpCategory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="depId" column="DEP_ID_" jdbcType="BIGINT"/>
+        <result property="tmpId" column="TMP_ID_" jdbcType="BIGINT"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepReportTmpCategory" parameterType="com.glaf.dep.report.domain.DepReportTmpCategory">
+		insert into DEP_REPORT_TMPCATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="depId != null">
+				,DEP_ID_ 
+			</if>
+			<if test="tmpId != null">
+				,TMP_ID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="depId != null">
+				,#{depId, jdbcType=BIGINT}
+			</if>
+			<if test="tmpId != null">
+				,#{tmpId, jdbcType=BIGINT}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepReportTmpCategory" parameterType="com.glaf.dep.report.domain.DepReportTmpCategory">
+		update DEP_REPORT_TMPCATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="depId != null">
+				DEP_ID_ = #{depId, jdbcType=BIGINT},
+			</if>
+			<if test="tmpId != null">
+				TMP_ID_ = #{tmpId, jdbcType=BIGINT},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepReportTmpCategoryById" parameterType="long"> 
+        delete from DEP_REPORT_TMPCATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepReportTmpCategorys" parameterType="com.glaf.dep.report.query.DepReportTmpCategoryQuery">
+		delete from DEP_REPORT_TMPCATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepReportTmpCategoryById" parameterType="long" resultMap="depReportTmpCategoryResultMap">
+		select * from DEP_REPORT_TMPCATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepReportTmpCategorys" 
+	    parameterType="com.glaf.dep.report.query.DepReportTmpCategoryQuery"
+		resultMap="depReportTmpCategoryResultMap">
+		select distinct E.*
+		<include refid="selectDepReportTmpCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepReportTmpCategoryCount" 
+	    parameterType="com.glaf.dep.report.query.DepReportTmpCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepReportTmpCategorysSql" />
+	</select>
+
+
+	<sql id="selectDepReportTmpCategorysSql">
+
+		from DEP_REPORT_TMPCATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="depId != null">
+				and E.DEP_ID_ = #{depId}
+            </if>
+
+			<if test="depIdGreaterThanOrEqual != null">
+				and E.DEP_ID_ &gt;= #{depIdGreaterThanOrEqual}
+            </if>
+
+			<if test="depIdLessThanOrEqual != null">
+				and E.DEP_ID_ &lt;= #{depIdLessThanOrEqual}
+            </if>
+
+			<if test="depIds != null and depIds.size() &gt; 0">
+			    and E.DEP_ID_ IN
+                <foreach item="x_depId" index="index" collection="depIds" 
+                     open="(" separator="," close=")">
+                  #{x_depId}
+                </foreach>
+			</if>
+      
+
+			<if test="tmpId != null">
+				and E.TMP_ID_ = #{tmpId}
+            </if>
+
+			<if test="tmpIdGreaterThanOrEqual != null">
+				and E.TMP_ID_ &gt;= #{tmpIdGreaterThanOrEqual}
+            </if>
+
+			<if test="tmpIdLessThanOrEqual != null">
+				and E.TMP_ID_ &lt;= #{tmpIdLessThanOrEqual}
+            </if>
+
+			<if test="tmpIds != null and tmpIds.size() &gt; 0">
+			    and E.TMP_ID_ IN
+                <foreach item="x_tmpId" index="index" collection="tmpIds" 
+                     open="(" separator="," close=")">
+                  #{x_tmpId}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

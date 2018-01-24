@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.ReportTmpColMappingMapper">
+
+	<resultMap id="reportTmpColMappingResultMap"
+		type="com.glaf.report.core.domain.ReportTmpColMapping">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="dataSetMappingId" column="DATASET_MAPPING_ID_"
+			jdbcType="VARCHAR" />
+		<result property="dataSetCode" column="DATASET_CODE_" jdbcType="VARCHAR" />
+		<result property="colCode" column="COL_CODE_" jdbcType="VARCHAR" />
+		<result property="colName" column="COL_NAME_" jdbcType="VARCHAR" />
+		<result property="colTitle" column="COL_TITLE_" jdbcType="VARCHAR" />
+		<result property="colDtype" column="COL_DTYPE_" jdbcType="VARCHAR" />
+		<result property="colMappingCode" column="COL_MAPPING_CODE_"
+			jdbcType="VARCHAR" />
+		<result property="colMappingName" column="COL_MAPPING_NAME_"
+			jdbcType="VARCHAR" />
+		<result property="colMappingTitle" column="COL_MAPPING_TITLE_"
+			jdbcType="VARCHAR" />
+		<result property="colMappingDtype" column="COL_MAPPING_DTYPE_"
+			jdbcType="VARCHAR" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="selectReportTmpColMappingsByDataSetId" parameterType="string" resultMap="reportTmpColMappingResultMap">
+		SELECT * FROM REPORT_TMP_COL_MAPPING WHERE
+		DATASET_MAPPING_ID_ = #{id}
+	</select>
+
+	<insert id="insertReportTmpColMapping" parameterType="com.glaf.report.core.domain.ReportTmpColMapping">
+		insert into REPORT_TMP_COL_MAPPING
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="dataSetMappingId != null">
+				,DATASET_MAPPING_ID_
+			</if>
+			<if test="colCode != null">
+				,COL_CODE_
+			</if>
+			<if test="colName != null">
+				,COL_NAME_
+			</if>
+			<if test="colTitle != null">
+				,COL_TITLE_
+			</if>
+			<if test="colDtype != null">
+				,COL_DTYPE_
+			</if>
+			<if test="colMappingCode != null">
+				,COL_MAPPING_CODE_
+			</if>
+			<if test="colMappingName != null">
+				,COL_MAPPING_NAME_
+			</if>
+			<if test="colMappingTitle != null">
+				,COL_MAPPING_TITLE_
+			</if>
+			<if test="colMappingDtype != null">
+				,COL_MAPPING_DTYPE_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="dataSetMappingId != null">
+				,#{dataSetMappingId, jdbcType=VARCHAR}
+			</if>
+			<if test="colCode != null">
+				,#{colCode, jdbcType=VARCHAR}
+			</if>
+			<if test="colName != null">
+				,#{colName, jdbcType=VARCHAR}
+			</if>
+			<if test="colTitle != null">
+				,#{colTitle, jdbcType=VARCHAR}
+			</if>
+			<if test="colDtype != null">
+				,#{colDtype, jdbcType=VARCHAR}
+			</if>
+			<if test="colMappingCode != null">
+				,#{colMappingCode, jdbcType=VARCHAR}
+			</if>
+			<if test="colMappingName != null">
+				,#{colMappingName, jdbcType=VARCHAR}
+			</if>
+			<if test="colMappingTitle != null">
+				,#{colMappingTitle, jdbcType=VARCHAR}
+			</if>
+			<if test="colMappingDtype != null">
+				,#{colMappingDtype, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateReportTmpColMapping" parameterType="com.glaf.report.core.domain.ReportTmpColMapping">
+		update REPORT_TMP_COL_MAPPING
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="dataSetMappingId != null">
+				DATASET_MAPPING_ID_ = #{dataSetMappingId,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="colCode != null">
+				COL_CODE_ = #{colCode, jdbcType=VARCHAR},
+			</if>
+			<if test="colName != null">
+				COL_NAME_ = #{colName, jdbcType=VARCHAR},
+			</if>
+			<if test="colTitle != null">
+				COL_TITLE_ = #{colTitle, jdbcType=VARCHAR},
+			</if>
+			<if test="colDtype != null">
+				COL_DTYPE_ = #{colDtype, jdbcType=VARCHAR},
+			</if>
+			<if test="colMappingCode != null">
+				COL_MAPPING_CODE_ = #{colMappingCode, jdbcType=VARCHAR},
+			</if>
+			<if test="colMappingName != null">
+				COL_MAPPING_NAME_ = #{colMappingName, jdbcType=VARCHAR},
+			</if>
+			<if test="colMappingTitle != null">
+				COL_MAPPING_TITLE_ = #{colMappingTitle,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="colMappingDtype != null">
+				COL_MAPPING_DTYPE_ = #{colMappingDtype,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteReportTmpColMappingById" parameterType="string">
+		delete
+		from REPORT_TMP_COL_MAPPING
+		where ID_ = #{id}
+	</delete>
+
+	<delete id="deleteReportTmpColMappingByParentId" parameterType="string">
+		delete
+		from REPORT_TMP_COL_MAPPING
+		where DATASET_MAPPING_ID_ = #{id}
+	</delete>
+
+	<delete id="deleteIfDataSetNotExists">
+		DELETE
+		FROM
+		REPORT_TMP_COL_MAPPING
+		WHERE
+		DATASET_MAPPING_ID_ NOT IN
+		(
+		SELECT
+		ID_
+		FROM
+		REPORT_TMP_DATASET_MAPPING
+		)
+	</delete>
+
+
+	<delete id="deleteReportTmpColMappings" parameterType="com.glaf.report.core.query.ReportTmpColMappingQuery">
+		delete from REPORT_TMP_COL_MAPPING
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getReportTmpColMappingById" parameterType="string"
+		resultMap="reportTmpColMappingResultMap">
+		select * from REPORT_TMP_COL_MAPPING where ID_ = #{id}
+	</select>
+
+
+	<select id="getReportTmpColMappings" parameterType="com.glaf.report.core.query.ReportTmpColMappingQuery"
+		resultMap="reportTmpColMappingResultMap">
+		select distinct E.*
+		<include refid="selectReportTmpColMappingsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getReportTmpColMappingsByTmpMappingId"
+		parameterType="string" resultMap="reportTmpColMappingResultMap">
+		select E.*,F.DATASET_CODE_ from REPORT_TMP_COL_MAPPING
+		E,REPORT_TMP_DATASET_MAPPING F where E.DATASET_MAPPING_ID_=F.ID_ AND F.TMP_MAPPING_ID_ = #{id}
+	</select>
+
+	<select id="getReportTmpColMappingCount" parameterType="com.glaf.report.core.query.ReportTmpColMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportTmpColMappingsSql" />
+	</select>
+
+
+	<sql id="selectReportTmpColMappingsSql">
+
+		from REPORT_TMP_COL_MAPPING E
+
+		<where>
+			1 = 1
+
+
+			<if test="dataSetMappingId != null and dataSetMappingId != '' ">
+				and E.DATASET_MAPPING_ID_ = #{dataSetMappingId}
+			</if>
+
+			<if test="dataSetMappingIdLike != null and dataSetMappingIdLike != '' ">
+				and E.DATASET_MAPPING_ID_ like #{dataSetMappingIdLike}
+			</if>
+
+			<if test="dataSetMappingIds != null and dataSetMappingIds.size() &gt; 0">
+				and E.DATASET_MAPPING_ID_ IN
+				<foreach item="x_dataSetMappingId" index="index" collection="dataSetMappingIds"
+					open="(" separator="," close=")">
+					#{x_dataSetMappingId}
+				</foreach>
+			</if>
+
+			<if test="colCode != null and colCode != '' ">
+				and E.COL_CODE_ = #{colCode}
+			</if>
+
+			<if test="colCodeLike != null and colCodeLike != '' ">
+				and E.COL_CODE_ like #{colCodeLike}
+			</if>
+
+			<if test="colCodes != null and colCodes.size() &gt; 0">
+				and E.COL_CODE_ IN
+				<foreach item="x_colCode" index="index" collection="colCodes"
+					open="(" separator="," close=")">
+					#{x_colCode}
+				</foreach>
+			</if>
+
+			<if test="colName != null and colName != '' ">
+				and E.COL_NAME_ = #{colName}
+			</if>
+
+			<if test="colNameLike != null and colNameLike != '' ">
+				and E.COL_NAME_ like #{colNameLike}
+			</if>
+
+			<if test="colNames != null and colNames.size() &gt; 0">
+				and E.COL_NAME_ IN
+				<foreach item="x_colName" index="index" collection="colNames"
+					open="(" separator="," close=")">
+					#{x_colName}
+				</foreach>
+			</if>
+
+			<if test="colTitle != null and colTitle != '' ">
+				and E.COL_TITLE_ = #{colTitle}
+			</if>
+
+			<if test="colTitleLike != null and colTitleLike != '' ">
+				and E.COL_TITLE_ like #{colTitleLike}
+			</if>
+
+			<if test="colTitles != null and colTitles.size() &gt; 0">
+				and E.COL_TITLE_ IN
+				<foreach item="x_colTitle" index="index" collection="colTitles"
+					open="(" separator="," close=")">
+					#{x_colTitle}
+				</foreach>
+			</if>
+
+			<if test="colDtype != null and colDtype != '' ">
+				and E.COL_DTYPE_ = #{colDtype}
+			</if>
+
+			<if test="colDtypeLike != null and colDtypeLike != '' ">
+				and E.COL_DTYPE_ like #{colDtypeLike}
+			</if>
+
+			<if test="colDtypes != null and colDtypes.size() &gt; 0">
+				and E.COL_DTYPE_ IN
+				<foreach item="x_colDtype" index="index" collection="colDtypes"
+					open="(" separator="," close=")">
+					#{x_colDtype}
+				</foreach>
+			</if>
+
+			<if test="colMappingCode != null and colMappingCode != '' ">
+				and E.COL_MAPPING_CODE_ = #{colMappingCode}
+			</if>
+
+			<if test="colMappingCodeLike != null and colMappingCodeLike != '' ">
+				and E.COL_MAPPING_CODE_ like #{colMappingCodeLike}
+			</if>
+
+			<if test="colMappingCodes != null and colMappingCodes.size() &gt; 0">
+				and E.COL_MAPPING_CODE_ IN
+				<foreach item="x_colMappingCode" index="index" collection="colMappingCodes"
+					open="(" separator="," close=")">
+					#{x_colMappingCode}
+				</foreach>
+			</if>
+
+			<if test="colMappingName != null and colMappingName != '' ">
+				and E.COL_MAPPING_NAME_ = #{colMappingName}
+			</if>
+
+			<if test="colMappingNameLike != null and colMappingNameLike != '' ">
+				and E.COL_MAPPING_NAME_ like #{colMappingNameLike}
+			</if>
+
+			<if test="colMappingNames != null and colMappingNames.size() &gt; 0">
+				and E.COL_MAPPING_NAME_ IN
+				<foreach item="x_colMappingName" index="index" collection="colMappingNames"
+					open="(" separator="," close=")">
+					#{x_colMappingName}
+				</foreach>
+			</if>
+
+			<if test="colMappingTitle != null and colMappingTitle != '' ">
+				and E.COL_MAPPING_TITLE_ = #{colMappingTitle}
+			</if>
+
+			<if test="colMappingTitleLike != null and colMappingTitleLike != '' ">
+				and E.COL_MAPPING_TITLE_ like #{colMappingTitleLike}
+			</if>
+
+			<if test="colMappingTitles != null and colMappingTitles.size() &gt; 0">
+				and E.COL_MAPPING_TITLE_ IN
+				<foreach item="x_colMappingTitle" index="index" collection="colMappingTitles"
+					open="(" separator="," close=")">
+					#{x_colMappingTitle}
+				</foreach>
+			</if>
+
+			<if test="colMappingDtype != null and colMappingDtype != '' ">
+				and E.COL_MAPPING_DTYPE_ = #{colMappingDtype}
+			</if>
+
+			<if test="colMappingDtypeLike != null and colMappingDtypeLike != '' ">
+				and E.COL_MAPPING_DTYPE_ like #{colMappingDtypeLike}
+			</if>
+
+			<if test="colMappingDtypes != null and colMappingDtypes.size() &gt; 0">
+				and E.COL_MAPPING_DTYPE_ IN
+				<foreach item="x_colMappingDtype" index="index" collection="colMappingDtypes"
+					open="(" separator="," close=")">
+					#{x_colMappingDtype}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

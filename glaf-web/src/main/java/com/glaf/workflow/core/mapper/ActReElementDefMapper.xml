@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.workflow.core.mapper.ActReElementDefMapper">
+
+	<resultMap id="actReElementDefResultMap" type="com.glaf.workflow.core.domain.ActReElementDef">
+		<id property="ID" column="ID_" jdbcType="BIGINT" />
+		<result property="eleType" column="ELE_TYPE_" jdbcType="VARCHAR" />
+		<result property="eleResourceId" column="ELE_RESOURCE_ID_"
+			jdbcType="VARCHAR" />
+		<result property="eleID" column="ELE_ID_" jdbcType="VARCHAR" />
+		<result property="eleName" column="ELE_NAME_" jdbcType="VARCHAR" />
+		<result property="subProcessKey" column="SUB_PROCESS_KEY_" jdbcType="VARCHAR" />
+		<result property="eleDesc" column="ELE_DESC" jdbcType="VARCHAR" />
+		<result property="modelId" column="MODEL_ID_" jdbcType="VARCHAR" />
+		<result property="proceDefId" column="PROCEDEF_ID_" jdbcType="VARCHAR" />
+		<result property="bytes" column="BYTES_" jdbcType="VARCHAR" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modify" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="submitterTaskFlag" column="SUBMITTERTASKFLAG_"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertActReElementDef" parameterType="com.glaf.workflow.core.domain.ActReElementDef">
+		insert into ACT_RE_ELEMENTDEF
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="eleType != null">
+				,ELE_TYPE_
+			</if>
+			<if test="eleResourceId != null">
+				,ELE_RESOURCE_ID_
+			</if>
+			<if test="eleID != null">
+				,ELE_ID_
+			</if>
+			<if test="eleName != null">
+				,ELE_NAME_
+			</if>
+			<if test="subProcessKey != null">
+				,SUB_PROCESS_KEY_
+			</if>
+			<if test="eleDesc != null">
+				,ELE_DESC
+			</if>
+			<if test="modelId != null">
+				,MODEL_ID_
+			</if>
+			<if test="proceDefId != null">
+				,PROCEDEF_ID_
+			</if>
+			<if test="bytes != null">
+				,BYTES_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modify != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+			<if test="submitterTaskFlag != null">
+				,SUBMITTERTASKFLAG_
+			</if>
+			
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{ID, jdbcType=BIGINT}
+
+			<if test="eleType != null">
+				,#{eleType, jdbcType=VARCHAR}
+			</if>
+			<if test="eleResourceId != null">
+				,#{eleResourceId, jdbcType=VARCHAR}
+			</if>
+			<if test="eleID != null">
+				,#{eleID, jdbcType=VARCHAR}
+			</if>
+			<if test="eleName != null">
+				,#{eleName, jdbcType=VARCHAR}
+			</if>
+			<if test="subProcessKey != null">
+				,#{subProcessKey, jdbcType=VARCHAR}
+			</if>
+			<if test="eleDesc != null">
+				,#{eleDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="modelId != null">
+				,#{modelId, jdbcType=VARCHAR}
+			</if>
+			<if test="proceDefId != null">
+				,#{proceDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="bytes != null">
+				,#{bytes, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modify != null">
+				,#{modify, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="submitterTaskFlag != null">
+				,#{submitterTaskFlag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateActReElementDef" parameterType="com.glaf.workflow.core.domain.ActReElementDef">
+		update ACT_RE_ELEMENTDEF
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="eleType != null">
+				ELE_TYPE_ = #{eleType, jdbcType=VARCHAR},
+			</if>
+			<if test="eleResourceId != null">
+				ELE_RESOURCE_ID_ = #{eleResourceId, jdbcType=VARCHAR},
+			</if>
+			<if test="eleID != null">
+				ELE_ID_ = #{eleID, jdbcType=VARCHAR},
+			</if>
+			<if test="eleName != null">
+				ELE_NAME_ = #{eleName, jdbcType=VARCHAR},
+			</if>
+			<if test="subProcessKey != null">
+				SUB_PROCESS_KEY_ = #{subProcessKey, jdbcType=VARCHAR},
+			</if>
+			<if test="eleDesc != null">
+				ELE_DESC = #{eleDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="modelId != null">
+				MODEL_ID_ = #{modelId, jdbcType=VARCHAR},
+			</if>
+			<if test="proceDefId != null">
+				PROCEDEF_ID_ = #{proceDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="bytes != null">
+				BYTES_ = #{bytes, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modify != null">
+				MODIFIER_ = #{modify, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="submitterTaskFlag != null">
+				SUBMITTERTASKFLAG_ = #{submitterTaskFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{ID, jdbcType=BIGINT}
+
+	</update>
+
+    <update id="updateProcedefIdByModelId" parameterType="string">
+       update ACT_RE_ELEMENTDEF
+		 set PROCEDEF_ID_=#{processDefId, jdbcType=VARCHAR} where MODEL_ID_=#{modelId, jdbcType=VARCHAR} 
+		 and PROCEDEF_ID_ is null
+	</update>
+	
+	<update id="updateDeploymentIdByModelId" parameterType="string">
+       update ACT_RE_MODEL
+		 set DEPLOYMENT_ID_=#{deploymentId, jdbcType=VARCHAR} where ID_=#{modelId, jdbcType=VARCHAR} 
+	</update>
+	
+	<delete id="deleteActReElementDefById" parameterType="long">
+		delete from ACT_RE_ELEMENTDEF
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteActReElementDefs" parameterType="com.glaf.workflow.core.query.ActReElementDefQuery">
+		delete from ACT_RE_ELEMENTDEF
+		where (
+		ID_ IN
+		<foreach item="x_ID" index="index" collection="IDs" open="("
+			separator="," close=")">
+			#{x_ID}
+		</foreach>
+		)
+	</delete>
+	<delete id="deleteActReElementDefByModelIdResourceId"
+		parameterType="map">
+		delete from ACT_RE_ELEMENTDEF
+		where MODEL_ID_ = #{modelId} and ELE_RESOURCE_ID_=#{resourceId} and
+		PROCEDEF_ID_ is null
+	</delete>
+
+	<select id="getActReElementDefById" parameterType="long"
+		resultMap="actReElementDefResultMap">
+		select * from ACT_RE_ELEMENTDEF where ID_ = #{id}
+	</select>
+
+
+	<select id="getActReElementDefs" parameterType="com.glaf.workflow.core.query.ActReElementDefQuery"
+		resultMap="actReElementDefResultMap">
+		select E.*
+		<include refid="selectActReElementDefsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 获取工作流定义属性定义-->
+	<select id="getWorkflowActReElementDefsByModelIdProDefId"
+		parameterType="map" resultMap="actReElementDefResultMap">
+		select E.* from ACT_RE_ELEMENTDEF E where
+		  MODEL_ID_=#{modelId} 
+		<choose>
+			<when test="processDefId != null">
+				and PROCEDEF_ID_=#{processDefId}
+			</when>
+			<otherwise>
+				and PROCEDEF_ID_ is null
+			</otherwise>
+		</choose>
+
+	</select>
+	<select id="getActReElementDefByProcessDefinitionIdResourceId"
+		parameterType="map" resultMap="actReElementDefResultMap">
+		select E.* from ACT_RE_ELEMENTDEF E where
+		  (ELE_RESOURCE_ID_=#{resourceId} or ELE_ID_=#{resourceId}) and PROCEDEF_ID_=#{processDefId}
+	</select>
+	<select id="getActReElementDefCount" parameterType="com.glaf.workflow.core.query.ActReElementDefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectActReElementDefsSql" />
+	</select>
+	<!-- 删除 resourceIds以外的元素-->
+    <delete id="removeDeletedElementsByNotInIds"
+		parameterType="map">
+		delete from ACT_RE_ELEMENTDEF
+		where MODEL_ID_ = #{modelId} and 
+		PROCEDEF_ID_ is null and ELE_RESOURCE_ID_ NOT IN
+		<foreach item="x_resourceId" index="index" collection="resourceIds" open="("
+			separator="," close=")">
+			#{x_resourceId}
+		</foreach>
+	</delete>
+
+	<sql id="selectActReElementDefsSql">
+
+		from ACT_RE_ELEMENTDEF E
+
+		<where>
+			1 = 1
+
+
+			<if test="eleType != null and eleType != '' ">
+				and E.ELE_TYPE_ = #{eleType}
+			</if>
+
+			<if test="eleTypeLike != null and eleTypeLike != '' ">
+				and E.ELE_TYPE_ like #{eleTypeLike}
+			</if>
+
+			<if test="eleTypes != null and eleTypes.size() &gt; 0">
+				and E.ELE_TYPE_ IN
+				<foreach item="x_eleType" index="index" collection="eleTypes"
+					open="(" separator="," close=")">
+					#{x_eleType}
+				</foreach>
+			</if>
+
+			<if test="eleResourceId != null and eleResourceId != '' ">
+				and E.ELE_RESOURCE_ID_ = #{eleResourceId}
+			</if>
+
+			<if test="eleResourceIdLike != null and eleResourceIdLike != '' ">
+				and E.ELE_RESOURCE_ID_ like #{eleResourceIdLike}
+			</if>
+
+			<if test="eleResourceIds != null and eleResourceIds.size() &gt; 0">
+				and E.ELE_RESOURCE_ID_ IN
+				<foreach item="x_eleResourceId" index="index" collection="eleResourceIds"
+					open="(" separator="," close=")">
+					#{x_eleResourceId}
+				</foreach>
+			</if>
+
+			<if test="eleID != null and eleID != '' ">
+				and E.ELE_ID_ = #{eleID}
+			</if>
+
+			<if test="eleIDLike != null and eleIDLike != '' ">
+				and E.ELE_ID_ like #{eleIDLike}
+			</if>
+
+			<if test="eleIDs != null and eleIDs.size() &gt; 0">
+				and E.ELE_ID_ IN
+				<foreach item="x_eleID" index="index" collection="eleIDs"
+					open="(" separator="," close=")">
+					#{x_eleID}
+				</foreach>
+			</if>
+
+			<if test="eleName != null and eleName != '' ">
+				and E.ELE_NAME_ = #{eleName}
+			</if>
+
+			<if test="eleNameLike != null and eleNameLike != '' ">
+				and E.ELE_NAME_ like #{eleNameLike}
+			</if>
+
+			<if test="eleNames != null and eleNames.size() &gt; 0">
+				and E.ELE_NAME_ IN
+				<foreach item="x_eleName" index="index" collection="eleNames"
+					open="(" separator="," close=")">
+					#{x_eleName}
+				</foreach>
+			</if>
+
+			<if test="eleDesc != null and eleDesc != '' ">
+				and E.ELE_DESC = #{eleDesc}
+			</if>
+
+			<if test="eleDescLike != null and eleDescLike != '' ">
+				and E.ELE_DESC like #{eleDescLike}
+			</if>
+
+			<if test="eleDescs != null and eleDescs.size() &gt; 0">
+				and E.ELE_DESC IN
+				<foreach item="x_eleDesc" index="index" collection="eleDescs"
+					open="(" separator="," close=")">
+					#{x_eleDesc}
+				</foreach>
+			</if>
+
+			<if test="modelId != null and modelId != '' ">
+				and E.MODEL_ID_ = #{modelId}
+			</if>
+
+			<if test="modelIdLike != null and modelIdLike != '' ">
+				and E.MODEL_ID_ like #{modelIdLike}
+			</if>
+
+			<if test="modelIds != null and modelIds.size() &gt; 0">
+				and E.MODEL_ID_ IN
+				<foreach item="x_modelId" index="index" collection="modelIds"
+					open="(" separator="," close=")">
+					#{x_modelId}
+				</foreach>
+			</if>
+            <if test="proceDefId == null or proceDefId == '' ">
+				and (E.PROCEDEF_ID_ is null or E.PROCEDEF_ID_='')
+			</if>
+			<if test="proceDefId != null and proceDefId != '' ">
+				and E.PROCEDEF_ID_ = #{proceDefId}
+			</if>
+
+			<if test="proceDefIdLike != null and proceDefIdLike != '' ">
+				and E.PROCEDEF_ID_ like #{proceDefIdLike}
+			</if>
+
+			<if test="proceDefIds != null and proceDefIds.size() &gt; 0">
+				and E.PROCEDEF_ID_ IN
+				<foreach item="x_proceDefId" index="index" collection="proceDefIds"
+					open="(" separator="," close=")">
+					#{x_proceDefId}
+				</foreach>
+			</if>
+
+			<if test="bytes != null and bytes != '' ">
+				and E.BYTES_ = #{bytes}
+			</if>
+
+			<if test="bytesLike != null and bytesLike != '' ">
+				and E.BYTES_ like #{bytesLike}
+			</if>
+
+			<if test="bytess != null and bytess.size() &gt; 0">
+				and E.BYTES_ IN
+				<foreach item="x_bytes" index="index" collection="bytess"
+					open="(" separator="," close=")">
+					#{x_bytes}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modify != null and modify != '' ">
+				and E.MODIFIER_ = #{modify}
+			</if>
+
+			<if test="modifyLike != null and modifyLike != '' ">
+				and E.MODIFIER_ like #{modifyLike}
+			</if>
+
+			<if test="modifys != null and modifys.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modify" index="index" collection="modifys"
+					open="(" separator="," close=")">
+					#{x_modify}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

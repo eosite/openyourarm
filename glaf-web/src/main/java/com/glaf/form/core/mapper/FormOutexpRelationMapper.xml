@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormOutexpRelationMapper">
+
+ 	<resultMap id="formOutexpRelationResultMap"	type="com.glaf.form.core.domain.FormOutexpRelation">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="widgetId" column="WIDGETID_" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE_" jdbcType="VARCHAR"/>
+        <result property="value" column="VALUE_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormOutexpRelation" parameterType="com.glaf.form.core.domain.FormOutexpRelation">
+		insert into FORM_OUTEXP_RELATION 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="widgetId != null">
+				,WIDGETID_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="value != null">
+				,VALUE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="widgetId != null">
+				,#{widgetId, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormOutexpRelation" parameterType="com.glaf.form.core.domain.FormOutexpRelation">
+		update FORM_OUTEXP_RELATION
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="widgetId != null">
+				WIDGETID_ = #{widgetId, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormOutexpRelationById" parameterType="string"> 
+        delete from FORM_OUTEXP_RELATION
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormOutexpRelations" parameterType="com.glaf.form.core.query.FormOutexpRelationQuery">
+		delete from FORM_OUTEXP_RELATION
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormOutexpRelationById" parameterType="string" resultMap="formOutexpRelationResultMap">
+		select * from FORM_OUTEXP_RELATION where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormOutexpRelations" 
+	    parameterType="com.glaf.form.core.query.FormOutexpRelationQuery"
+		resultMap="formOutexpRelationResultMap">
+		select E.*
+		<include refid="selectFormOutexpRelationsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormOutexpRelationCount" 
+	    parameterType="com.glaf.form.core.query.FormOutexpRelationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormOutexpRelationsSql" />
+	</select>
+
+
+	<sql id="selectFormOutexpRelationsSql">
+
+		from FORM_OUTEXP_RELATION E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="widgetId != null and widgetId != '' ">
+				and E.WIDGETID_ = #{widgetId}
+            </if>
+
+			<if test="widgetIdLike != null and widgetIdLike != '' ">
+				and E.WIDGETID_ like #{widgetIdLike}
+            </if>
+
+			<if test="widgetIds != null and widgetIds.size() &gt; 0">
+			    and E.WIDGETID_ IN
+                <foreach item="x_widgetId" index="index" collection="widgetIds" 
+                     open="(" separator="," close=")">
+                  #{x_widgetId}
+                </foreach>
+			</if>
+	        
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+	        
+			<if test="value != null and value != '' ">
+				and E.VALUE_ = #{value}
+            </if>
+
+			<if test="valueLike != null and valueLike != '' ">
+				and E.VALUE_ like #{valueLike}
+            </if>
+
+			<if test="values != null and values.size() &gt; 0">
+			    and E.VALUE_ IN
+                <foreach item="x_value" index="index" collection="values" 
+                     open="(" separator="," close=")">
+                  #{x_value}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<delete id="delete" parameterType="com.glaf.form.core.query.FormParamsRelationQuery">
+		delete FORM_OUTEXP_RELATION 
+		where PAGEID_ = #{pageId} and WIDGETID_ = #{widgetId}
+	</delete>
+
+</mapper>

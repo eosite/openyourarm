@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.theme.mapper.SysThemeTmpControlMapper">
+
+ 	<resultMap id="sysThemeTmpControlResultMap"	type="com.glaf.theme.domain.SysThemeTmpControl">
+        <id property="controlId" column="CONTROL_ID_" jdbcType="VARCHAR"/>
+        <result property="themeTmpId" column="THEME_TMP_ID_" jdbcType="VARCHAR"/>
+        <result property="commonFlag" column="COMMON_FLAG_" jdbcType="INTEGER"/>
+        <result property="controlName" column="CONTROL_NAME_" jdbcType="VARCHAR"/>
+        <result property="controlCode" column="CONTROL_CODE_" jdbcType="VARCHAR"/>
+        <result property="compType" column="COMP_TYPE_" jdbcType="VARCHAR"/>
+        <result property="elemCode" column="ELEM_CODE_" jdbcType="VARCHAR"/>
+        <result property="compositionFlag" column="COMPOSITION_FLAG_" jdbcType="INTEGER"/>
+        <result property="containerFlag" column="CONTAINER_FLAG_" jdbcType="INTEGER"/>
+        <result property="selectorExp" column="SELECTOR_EXP_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="defaultFlag" column="DEFAULT_FLAG_" jdbcType="INTEGER"/>
+        
+        <result property="cssText" column="CSSTEXT_" jdbcType="BLOB"/>
+        <result property="htmlText" column="HTMLTEXT_" jdbcType="BLOB"/>
+	</resultMap>
+	
+	<resultMap id="sysThemeTmpControlResultBlobMap"	type="com.glaf.theme.domain.SysThemeTmpControl">
+        <id property="controlId" column="CONTROL_ID_" jdbcType="VARCHAR"/>
+        <result property="themeTmpId" column="THEME_TMP_ID_" jdbcType="VARCHAR"/>
+        <result property="commonFlag" column="COMMON_FLAG_" jdbcType="INTEGER"/>
+        <result property="controlName" column="CONTROL_NAME_" jdbcType="VARCHAR"/>
+        <result property="controlCode" column="CONTROL_CODE_" jdbcType="VARCHAR"/>
+        <result property="compType" column="COMP_TYPE_" jdbcType="VARCHAR"/>
+        <result property="elemCode" column="ELEM_CODE_" jdbcType="VARCHAR"/>
+        <result property="compositionFlag" column="COMPOSITION_FLAG_" jdbcType="INTEGER"/>
+        <result property="containerFlag" column="CONTAINER_FLAG_" jdbcType="INTEGER"/>
+        <result property="selectorExp" column="SELECTOR_EXP_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="defaultFlag" column="DEFAULT_FLAG_" jdbcType="INTEGER"/>
+        
+        <result property="thumbnail" column="THUMBNAIL_" jdbcType="BLOB" />
+	</resultMap>
+
+ 
+	<insert id="insertSysThemeTmpControl" parameterType="com.glaf.theme.domain.SysThemeTmpControl">
+		insert into SYS_THEME_TMP_CONTROL_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    CONTROL_ID_
+			<if test="themeTmpId != null">
+				,THEME_TMP_ID_ 
+			</if>
+			<if test="commonFlag != null">
+				,COMMON_FLAG_ 
+			</if>
+			<if test="controlName != null">
+				,CONTROL_NAME_ 
+			</if>
+			<if test="controlCode != null">
+				,CONTROL_CODE_ 
+			</if>
+			<if test="compType != null">
+				,COMP_TYPE_ 
+			</if>
+			<if test="elemCode != null">
+				,ELEM_CODE_ 
+			</if>
+			<if test="compositionFlag != null">
+				,COMPOSITION_FLAG_ 
+			</if>
+			<if test="containerFlag != null">
+				,CONTAINER_FLAG_ 
+			</if>
+			<if test="thumbnail != null">
+				,THUMBNAIL_ 
+			</if>
+			<if test="selectorExp != null">
+				,SELECTOR_EXP_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+			<if test="defaultFlag != null">
+				,DEFAULT_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{controlId, jdbcType=VARCHAR}
+	     
+			<if test="themeTmpId != null">
+				,#{themeTmpId, jdbcType=VARCHAR}
+			</if>
+			<if test="commonFlag != null">
+				,#{commonFlag, jdbcType=INTEGER}
+			</if>
+			<if test="controlName != null">
+				,#{controlName, jdbcType=VARCHAR}
+			</if>
+			<if test="controlCode != null">
+				,#{controlCode, jdbcType=VARCHAR}
+			</if>
+			<if test="compType != null">
+				,#{compType, jdbcType=VARCHAR}
+			</if>
+			<if test="elemCode != null">
+				,#{elemCode, jdbcType=VARCHAR}
+			</if>
+			<if test="compositionFlag != null">
+				,#{compositionFlag, jdbcType=INTEGER}
+			</if>
+			<if test="containerFlag != null">
+				,#{containerFlag, jdbcType=INTEGER}
+			</if>
+			<if test="thumbnail != null">
+				,#{thumbnail, jdbcType=BLOB}
+			</if>
+			<if test="selectorExp != null">
+				,#{selectorExp, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="defaultFlag != null">
+				,#{DEFAULT_FLAG_, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSysThemeTmpControl" parameterType="com.glaf.theme.domain.SysThemeTmpControl">
+		update SYS_THEME_TMP_CONTROL_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="themeTmpId != null">
+				THEME_TMP_ID_ = #{themeTmpId, jdbcType=VARCHAR},
+			</if>
+			<if test="commonFlag != null">
+				COMMON_FLAG_ = #{commonFlag, jdbcType=INTEGER},
+			</if>
+			<if test="controlName != null">
+				CONTROL_NAME_ = #{controlName, jdbcType=VARCHAR},
+			</if>
+			<if test="controlCode != null">
+				CONTROL_CODE_ = #{controlCode, jdbcType=VARCHAR},
+			</if>
+			<if test="compType != null">
+				COMP_TYPE_ = #{compType, jdbcType=VARCHAR},
+			</if>
+			<if test="elemCode != null">
+				ELEM_CODE_ = #{elemCode, jdbcType=VARCHAR},
+			</if>
+			<if test="compositionFlag != null">
+				COMPOSITION_FLAG_ = #{compositionFlag, jdbcType=INTEGER},
+			</if>
+			<if test="containerFlag != null">
+				CONTAINER_FLAG_ = #{containerFlag, jdbcType=INTEGER},
+			</if>
+			<if test="thumbnail != null">
+				THUMBNAIL_ = #{thumbnail, jdbcType=BLOB},
+			</if>
+			<if test="selectorExp != null">
+				SELECTOR_EXP_ = #{selectorExp, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="defaultFlag != null">
+				DEFAULT_FLAG_ = #{defaultFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          CONTROL_ID_ = #{controlId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteSysThemeTmpControlById" parameterType="string"> 
+        delete from SYS_THEME_TMP_CONTROL_
+        where CONTROL_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteSysThemeTmpControls" parameterType="com.glaf.theme.query.SysThemeTmpControlQuery">
+		delete from SYS_THEME_TMP_CONTROL_
+		where ( 
+ 			  CONTROL_ID_ IN
+              <foreach item="x_controlId" index="index" collection="controlIds" 
+                     open="(" separator="," close=")">
+                  #{x_controlId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSysThemeTmpControlById" parameterType="string" resultMap="sysThemeTmpControlResultMap">
+		select * from SYS_THEME_TMP_CONTROL_ where CONTROL_ID_ = #{id}
+	</select>
+	
+	<select id="getThumbnailById" parameterType="string" resultMap="sysThemeTmpControlResultBlobMap">
+		select * from SYS_THEME_TMP_CONTROL_ where CONTROL_ID_ = #{id}
+	</select>
+	
+
+
+	<select id="getSysThemeTmpControls" 
+	    parameterType="com.glaf.theme.query.SysThemeTmpControlQuery"
+		resultMap="sysThemeTmpControlResultMap">
+		select E.*	from SYS_THEME_TMP_CONTROL_ E 
+		<include refid="selectSysThemeTmpControlsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CONTROL_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+	
+	<select id="getSysThemeTmpControlsAndCssText" 
+	    parameterType="com.glaf.theme.query.SysThemeTmpControlQuery"
+		resultMap="sysThemeTmpControlResultMap">
+		select E.*,B.BYTES_ AS CSSTEXT_,C.BYTES_ AS HTMLTEXT_ from SYS_THEME_TMP_CONTROL_ E 
+		left join (
+			SELECT * FROM SYS_THEME_TMP_BYTEARRAY_ C
+			WHERE C.BUSS_TYPE_ = 'CONTROL'
+			AND C.TYPE_ = 'CSS' 
+		) B
+		on B.BUSS_KEY_ = E.CONTROL_ID_
+		left join (
+			SELECT * FROM SYS_THEME_TMP_BYTEARRAY_ C
+			WHERE C.BUSS_TYPE_ = 'CONTROL'
+			AND C.TYPE_ = 'HTML' 
+		) C
+		on C.BUSS_KEY_ = E.CONTROL_ID_
+		<include refid="selectSysThemeTmpControlsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CONTROL_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getSysThemeTmpControlCount" 
+	    parameterType="com.glaf.theme.query.SysThemeTmpControlQuery"
+		resultType="int">
+		select count(*) 		from SYS_THEME_TMP_CONTROL_ E 
+		<include refid="selectSysThemeTmpControlsSql" />
+	</select>
+
+
+	<sql id="selectSysThemeTmpControlsSql">
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="themeTmpId != null and themeTmpId != '' ">
+				and E.THEME_TMP_ID_ = #{themeTmpId}
+            </if>
+
+			<if test="themeTmpIdLike != null and themeTmpIdLike != '' ">
+				and E.THEME_TMP_ID_ like #{themeTmpIdLike}
+            </if>
+
+			<if test="themeTmpIds != null and themeTmpIds.size() &gt; 0">
+			    and E.THEME_TMP_ID_ IN
+                <foreach item="x_themeTmpId" index="index" collection="themeTmpIds" 
+                     open="(" separator="," close=")">
+                  #{x_themeTmpId}
+                </foreach>
+			</if>
+
+			<if test="commonFlag != null">
+				and E.COMMON_FLAG_ = #{commonFlag}
+            </if>
+
+			<if test="commonFlagGreaterThanOrEqual != null">
+				and E.COMMON_FLAG_ &gt;= #{commonFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="commonFlagLessThanOrEqual != null">
+				and E.COMMON_FLAG_ &lt;= #{commonFlagLessThanOrEqual}
+            </if>
+
+			<if test="commonFlags != null and commonFlags.size() &gt; 0">
+			    and E.COMMON_FLAG_ IN
+                <foreach item="x_commonFlag" index="index" collection="commonFlags" 
+                     open="(" separator="," close=")">
+                  #{x_commonFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="controlName != null and controlName != '' ">
+				and E.CONTROL_NAME_ = #{controlName}
+            </if>
+
+			<if test="controlNameLike != null and controlNameLike != '' ">
+				and E.CONTROL_NAME_ like #{controlNameLike}
+            </if>
+
+			<if test="controlNames != null and controlNames.size() &gt; 0">
+			    and E.CONTROL_NAME_ IN
+                <foreach item="x_controlName" index="index" collection="controlNames" 
+                     open="(" separator="," close=")">
+                  #{x_controlName}
+                </foreach>
+			</if>
+	        
+			<if test="controlCode != null and controlCode != '' ">
+				and E.CONTROL_CODE_ = #{controlCode}
+            </if>
+
+			<if test="controlCodeLike != null and controlCodeLike != '' ">
+				and E.CONTROL_CODE_ like #{controlCodeLike}
+            </if>
+
+			<if test="controlCodes != null and controlCodes.size() &gt; 0">
+			    and E.CONTROL_CODE_ IN
+                <foreach item="x_controlCode" index="index" collection="controlCodes" 
+                     open="(" separator="," close=")">
+                  #{x_controlCode}
+                </foreach>
+			</if>
+	        
+			<if test="compType != null and compType != '' ">
+				and E.COMP_TYPE_ = #{compType}
+            </if>
+
+			<if test="compTypeLike != null and compTypeLike != '' ">
+				and E.COMP_TYPE_ like #{compTypeLike}
+            </if>
+
+			<if test="compTypes != null and compTypes.size() &gt; 0">
+			    and E.COMP_TYPE_ IN
+                <foreach item="x_compType" index="index" collection="compTypes" 
+                     open="(" separator="," close=")">
+                  #{x_compType}
+                </foreach>
+			</if>
+	        
+			<if test="elemCode != null and elemCode != '' ">
+				and E.ELEM_CODE_ = #{elemCode}
+            </if>
+
+			<if test="elemCodeLike != null and elemCodeLike != '' ">
+				and E.ELEM_CODE_ like #{elemCodeLike}
+            </if>
+
+			<if test="elemCodes != null and elemCodes.size() &gt; 0">
+			    and E.ELEM_CODE_ IN
+                <foreach item="x_elemCode" index="index" collection="elemCodes" 
+                     open="(" separator="," close=")">
+                  #{x_elemCode}
+                </foreach>
+			</if>
+
+			<if test="compositionFlag != null">
+				and E.COMPOSITION_FLAG_ = #{compositionFlag}
+            </if>
+
+			<if test="compositionFlagGreaterThanOrEqual != null">
+				and E.COMPOSITION_FLAG_ &gt;= #{compositionFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="compositionFlagLessThanOrEqual != null">
+				and E.COMPOSITION_FLAG_ &lt;= #{compositionFlagLessThanOrEqual}
+            </if>
+
+			<if test="compositionFlags != null and compositionFlags.size() &gt; 0">
+			    and E.COMPOSITION_FLAG_ IN
+                <foreach item="x_compositionFlag" index="index" collection="compositionFlags" 
+                     open="(" separator="," close=")">
+                  #{x_compositionFlag}
+                </foreach>
+			</if>
+      
+
+			<if test="containerFlag != null">
+				and E.CONTAINER_FLAG_ = #{containerFlag}
+            </if>
+
+			<if test="containerFlagGreaterThanOrEqual != null">
+				and E.CONTAINER_FLAG_ &gt;= #{containerFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="containerFlagLessThanOrEqual != null">
+				and E.CONTAINER_FLAG_ &lt;= #{containerFlagLessThanOrEqual}
+            </if>
+
+			<if test="containerFlags != null and containerFlags.size() &gt; 0">
+			    and E.CONTAINER_FLAG_ IN
+                <foreach item="x_containerFlag" index="index" collection="containerFlags" 
+                     open="(" separator="," close=")">
+                  #{x_containerFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="selectorExp != null and selectorExp != '' ">
+				and E.SELECTOR_EXP_ = #{selectorExp}
+            </if>
+
+			<if test="selectorExpLike != null and selectorExpLike != '' ">
+				and E.SELECTOR_EXP_ like #{selectorExpLike}
+            </if>
+
+			<if test="selectorExps != null and selectorExps.size() &gt; 0">
+			    and E.SELECTOR_EXP_ IN
+                <foreach item="x_selectorExp" index="index" collection="selectorExps" 
+                     open="(" separator="," close=")">
+                  #{x_selectorExp}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			
+			<if test="defaultFlag != null">
+				and E.DEFAULT_FLAG_ = #{defaultFlag}
+            </if>
+		</where>
+	</sql>
+
+</mapper>

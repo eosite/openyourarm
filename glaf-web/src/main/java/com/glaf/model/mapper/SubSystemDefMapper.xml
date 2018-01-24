@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.model.mapper.SubSystemDefMapper">
+
+ 	<resultMap id="subSystemDefResultMap"	type="com.glaf.model.domain.SubSystemDef">
+        <id property="subSysId" column="SUB_SYS_ID_" jdbcType="VARCHAR" />
+        <result property="oId" column="OID_" jdbcType="BIGINT"/>
+        <result property="sysId" column="SYS_ID_" jdbcType="VARCHAR"/>
+        <result property="level" column="LEVEL_" jdbcType="INTEGER"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="desc" column="DESC_" jdbcType="VARCHAR"/>
+        <result property="parentId_" column="PARENT_ID_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREE_ID_" jdbcType="VARCHAR"/>
+        <result property="currProcDefId" column="CURR_PROCDEF_ID_" jdbcType="VARCHAR"/>
+        <result property="currProcModelId" column="CURR_PROCMODEL_ID_" jdbcType="VARCHAR"/>
+        <result property="currProcDeployId" column="CURR_PROCDEPLOY_ID_" jdbcType="VARCHAR"/>
+        <result property="procDefId" column="PROCDEF_ID_" jdbcType="VARCHAR"/>
+        <result property="procModelId" column="PROCMODEL_ID_" jdbcType="VARCHAR"/>
+        <result property="procDeployId" column="PROCDEPLOY_ID_" jdbcType="VARCHAR"/>
+        <result property="eleType" column="ELE_TYPE_" jdbcType="VARCHAR"/>
+        <result property="dataObjType" column="TYPE_" jdbcType="INTEGER"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="systemProcDefId" column="SYSTEMPROCDEFID" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertSubSystemDef" parameterType="com.glaf.model.domain.SubSystemDef">
+		insert into SUB_SYSTEM_DEF_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    SUB_SYS_ID_
+			<if test="sysId != null">
+				,SYS_ID_ 
+			</if>
+			<if test="oId != null">
+				,OID_ 
+			</if>
+			<if test="level != null">
+				,LEVEL_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="desc != null">
+				,DESC_ 
+			</if>
+			<if test="parentId_ != null">
+				,PARENT_ID_ 
+			</if>
+			<if test="treeId != null">
+				,TREE_ID_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{subSysId, jdbcType=VARCHAR}
+			<if test="sysId != null">
+				,#{sysId, jdbcType=VARCHAR}
+			</if>
+			<if test="oId != null">
+				,#{oId, jdbcType=BIGINT}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=INTEGER}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId_ != null">
+				,#{parentId_, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSubSystemDef" parameterType="com.glaf.model.domain.SubSystemDef">
+		update SUB_SYSTEM_DEF_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="oId != null">
+				OID_ = #{oId, jdbcType=BIGINT},
+			</if>
+			<if test="sysId != null">
+				SYS_ID_ = #{sysId, jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=INTEGER},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId_ != null">
+				PARENT_ID_ = #{parentId_, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREE_ID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          SUB_SYS_ID_ = #{subSysId, jdbcType=VARCHAR}
+		
+    </update>
+
+    <update id="updateNameType" parameterType="com.glaf.model.domain.SubSystemDef">
+       update SUB_SYSTEM_DEF_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          SUB_SYS_ID_ = #{subSysId, jdbcType=VARCHAR}
+    </update>
+    
+	<delete id="deleteSubSystemDefById" parameterType="string"> 
+        delete from SUB_SYSTEM_DEF_
+        where SUB_SYS_ID_ =	#{id}
+	</delete>
+	
+    <delete id="deleteSubSystemDefBySysId" parameterType="string"> 
+        update SUB_SYSTEM_DEF_ set DELETE_FLAG_=1
+        where SYS_ID_ =	#{id}
+	</delete>
+	
+	<delete id="deleteSubSystemDefs" parameterType="com.glaf.model.query.SubSystemDefQuery">
+		delete from SUB_SYSTEM_DEF_
+		where ( 
+ 			  SUB_SYS_ID_ IN
+              <foreach item="x_subSysId" index="index" collection="subSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_subSysId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSubSystemDefById" parameterType="string" resultMap="subSystemDefResultMap">
+		select * from SUB_SYSTEM_DEF_ where SUB_SYS_ID_ = #{id}
+	</select>
+
+
+	<select id="getSubSystemDefs" 
+	    parameterType="com.glaf.model.query.SubSystemDefQuery"
+		resultMap="subSystemDefResultMap">
+		select distinct E.*
+		<include refid="selectSubSystemDefsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.SUB_SYS_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+	
+    <select id="getSystemSubSystems" 
+	    parameterType="string"
+		resultMap="subSystemDefResultMap">
+		select E.*,F.CURR_PROCDEF_ID_,F.PROCDEF_ID_,F.CURR_PROCMODEL_ID_,F.PROCMODEL_ID_,F.PROCDEPLOY_ID_,F.CURR_PROCDEPLOY_ID_,F.ELE_TYPE_ ,F.ID_ as SYSTEMPROCDEFID,0 as TYPE_ from SUB_SYSTEM_DEF_ E left join SYSTEM_PROCDEF_ F on E.SUB_SYS_ID_=F.SUB_SYS_ID_ where E.SYS_ID_=#{sysId} and (ELE_TYPE_ is null or ELE_TYPE_!='dataobj')
+	    union 
+	    select  OID_,
+		     a.SUB_SYS_ID_,
+		     a.SYS_ID_,
+		     a.LEVEL_,
+		     a.CODE_,
+		     a.NAME_,
+		     a.DESC_,
+		     b.PARENT_ID_,
+		     a.TREE_ID_,
+		     a.CREATEBY_,
+		     a.CREATETIME_,
+		     a.UPDATEBY_,
+		     a.UPDATETIME_,
+		     a.DELETE_FLAG_ ,
+		     a.CURR_PROCDEF_ID_,a.PROCDEF_ID_,a.CURR_PROCMODEL_ID_,a.PROCMODEL_ID_,a.PROCDEPLOY_ID_,a.CURR_PROCDEPLOY_ID_,a.ELE_TYPE_ ,a.SYSTEMPROCDEFID,b.TYPE_
+        from 
+		(select E.*,F.CURR_PROCDEF_ID_,F.PROCDEF_ID_,F.CURR_PROCMODEL_ID_,F.PROCMODEL_ID_,F.PROCDEPLOY_ID_,F.CURR_PROCDEPLOY_ID_,F.ELE_TYPE_ ,F.ID_ as SYSTEMPROCDEFID,F.FUNC_ID_ from SUB_SYSTEM_DEF_ E left join SYSTEM_PROCDEF_ F on E.SUB_SYS_ID_=F.SUB_SYS_ID_ 
+		 where E.SYS_ID_=#{sysId} and F.ELE_TYPE_='dataobj')  a,
+		(select B.DATA_OBJ_ID_,C.SUB_SYS_ID_ as PARENT_ID_,B.TYPE_ from SYSTEM_PROCDEF_ A,SYSTEM_FUNC_DATA_OBJ_ B,SUB_SYSTEM_DEF_ C where a.FUNC_ID_=b.FUNC_ID_ and A.SUB_SYS_ID_=C.SUB_SYS_ID_ and C.SYS_ID_=#{sysId})  b where a.FUNC_ID_=b.DATA_OBJ_ID_
+	</select>
+    <select id="getSystemSubSystemsByTreeId" 
+	    parameterType="string"
+		resultMap="subSystemDefResultMap">
+		select E.*,F.CURR_PROCDEF_ID_,F.PROCDEF_ID_,F.CURR_PROCMODEL_ID_,F.PROCMODEL_ID_,F.PROCDEPLOY_ID_,F.CURR_PROCDEPLOY_ID_,F.ELE_TYPE_ ,F.ID_ as SYSTEMPROCDEFID,0 as TYPE_  from SUB_SYSTEM_DEF_ E left join SYSTEM_PROCDEF_ F on E.SUB_SYS_ID_=F.SUB_SYS_ID_ where E.TREE_ID_ like '${treeId}%' and (ELE_TYPE_ is null or ELE_TYPE_!='dataobj')
+	    union 
+	    select  OID_,
+		     a.SUB_SYS_ID_,
+		     a.SYS_ID_,
+		     a.LEVEL_,
+		     a.CODE_,
+		     a.NAME_,
+		     a.DESC_,
+		     b.PARENT_ID_,
+		     a.TREE_ID_,
+		     a.CREATEBY_,
+		     a.CREATETIME_,
+		     a.UPDATEBY_,
+		     a.UPDATETIME_,
+		     a.DELETE_FLAG_ ,
+		     a.CURR_PROCDEF_ID_,a.PROCDEF_ID_,a.CURR_PROCMODEL_ID_,a.PROCMODEL_ID_,a.PROCDEPLOY_ID_,a.CURR_PROCDEPLOY_ID_,a.ELE_TYPE_ ,a.SYSTEMPROCDEFID,b.TYPE_
+        from 
+		(select E.*,F.CURR_PROCDEF_ID_,F.PROCDEF_ID_,F.CURR_PROCMODEL_ID_,F.PROCMODEL_ID_,F.PROCDEPLOY_ID_,F.CURR_PROCDEPLOY_ID_,F.ELE_TYPE_ ,F.ID_ as SYSTEMPROCDEFID,F.FUNC_ID_ from SUB_SYSTEM_DEF_ E left join SYSTEM_PROCDEF_ F on E.SUB_SYS_ID_=F.SUB_SYS_ID_ 
+		 where E.TREE_ID_ like '${treeId}%' and F.ELE_TYPE_='dataobj')  a,
+		(select B.DATA_OBJ_ID_,C.SUB_SYS_ID_ as PARENT_ID_,B.TYPE_ from SYSTEM_PROCDEF_ A,SYSTEM_FUNC_DATA_OBJ_ B,SUB_SYSTEM_DEF_ C where a.FUNC_ID_=b.FUNC_ID_ and A.SUB_SYS_ID_=C.SUB_SYS_ID_ and C.TREE_ID_ like '${treeId}%')  b where a.FUNC_ID_=b.DATA_OBJ_ID_
+	</select>
+	<select id="getSubSystemDefCount" 
+	    parameterType="com.glaf.model.query.SubSystemDefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSubSystemDefsSql" />
+	</select>
+
+
+	<sql id="selectSubSystemDefsSql">
+
+		from SUB_SYSTEM_DEF_ E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="sysId != null">
+				and E.SYS_ID_ = #{sysId}
+            </if>
+
+			<if test="sysIds != null and sysIds.size() &gt; 0">
+			    and E.SYS_ID_ IN
+                <foreach item="x_sysId" index="index" collection="sysIds" 
+                     open="(" separator="," close=")">
+                  #{x_sysId}
+                </foreach>
+			</if>
+      
+
+			<if test="level != null">
+				and E.LEVEL_ = #{level}
+            </if>
+
+			<if test="levelGreaterThanOrEqual != null">
+				and E.LEVEL_ &gt;= #{levelGreaterThanOrEqual}
+            </if>
+
+			<if test="levelLessThanOrEqual != null">
+				and E.LEVEL_ &lt;= #{levelLessThanOrEqual}
+            </if>
+
+			<if test="levels != null and levels.size() &gt; 0">
+			    and E.LEVEL_ IN
+                <foreach item="x_level" index="index" collection="levels" 
+                     open="(" separator="," close=")">
+                  #{x_level}
+                </foreach>
+			</if>
+      
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="desc != null and desc != '' ">
+				and E.DESC_ = #{desc}
+            </if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+            </if>
+
+			<if test="descs != null and descs.size() &gt; 0">
+			    and E.DESC_ IN
+                <foreach item="x_desc" index="index" collection="descs" 
+                     open="(" separator="," close=")">
+                  #{x_desc}
+                </foreach>
+			</if>
+
+			<if test="parentId_ != null">
+				and E.PARENT_ID_ = #{parentId_}
+            </if>
+
+			<if test="parentIds_ != null and parentIds_.size() &gt; 0">
+			    and E.PARENT_ID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds_" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREE_ID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREE_ID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREE_ID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

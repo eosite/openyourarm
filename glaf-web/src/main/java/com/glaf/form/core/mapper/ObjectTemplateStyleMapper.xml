@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.ObjectTemplateStyleMapper">
+
+ 	<resultMap id="objectTemplateStyleResultMap"	type="com.glaf.form.core.domain.ObjectTemplateStyle">
+        <id property="styleId" column="STYLE_ID_" jdbcType="BIGINT" />
+        <result property="ruleContent" column="RULE_CONTENT_" jdbcType="BLOB"/>
+        <result property="styleContent" column="STYLE_CONTENT_" jdbcType="BLOB"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertObjectTemplateStyle" parameterType="com.glaf.form.core.domain.ObjectTemplateStyle">
+		insert into OBJ_TEMPLATE_STYLE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    STYLE_ID_
+			<if test="ruleContent != null">
+				,RULE_CONTENT_ 
+			</if>
+			<if test="styleContent != null">
+				,STYLE_CONTENT_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{styleId, jdbcType=BIGINT}
+	     
+			<if test="ruleContent != null">
+				,#{ruleContent, jdbcType=BLOB}
+			</if>
+			<if test="styleContent != null">
+				,#{styleContent, jdbcType=BLOB}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateObjectTemplateStyle" parameterType="com.glaf.form.core.domain.ObjectTemplateStyle">
+		update OBJ_TEMPLATE_STYLE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="ruleContent != null">
+				RULE_CONTENT_ = #{ruleContent, jdbcType=BLOB},
+			</if>
+			<if test="styleContent != null">
+				STYLE_CONTENT_ = #{styleContent, jdbcType=BLOB},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          STYLE_ID_ = #{styleId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteObjectTemplateStyleById" parameterType="long"> 
+        delete from OBJ_TEMPLATE_STYLE
+        where STYLE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteObjectTemplateStyles" parameterType="com.glaf.form.core.query.ObjectTemplateStyleQuery">
+		delete from OBJ_TEMPLATE_STYLE
+		where ( 
+ 			  STYLE_ID_ IN
+              <foreach item="x_styleId" index="index" collection="styleIds" 
+                     open="(" separator="," close=")">
+                  #{x_styleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getObjectTemplateStyleById" parameterType="long" resultMap="objectTemplateStyleResultMap">
+		select * from OBJ_TEMPLATE_STYLE where STYLE_ID_ = #{id}
+	</select>
+
+
+	<select id="getObjectTemplateStyles" 
+	    parameterType="com.glaf.form.core.query.ObjectTemplateStyleQuery"
+		resultMap="objectTemplateStyleResultMap">
+		select distinct E.*
+		<include refid="selectObjectTemplateStylesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.STYLE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getObjectTemplateStyleCount" 
+	    parameterType="com.glaf.form.core.query.ObjectTemplateStyleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectObjectTemplateStylesSql" />
+	</select>
+
+
+	<sql id="selectObjectTemplateStylesSql">
+
+		from OBJ_TEMPLATE_STYLE E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="delFlag != null">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagGreaterThanOrEqual != null">
+				and E.DELFLAG_ &gt;= #{delFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="delFlagLessThanOrEqual != null">
+				and E.DELFLAG_ &lt;= #{delFlagLessThanOrEqual}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

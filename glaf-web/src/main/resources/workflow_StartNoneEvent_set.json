@@ -1,0 +1,47 @@
+{
+	"id":"startNoneEvent",
+	"title": "",
+	"description":"流程连接线",
+	"propertyPackages":
+	[{
+		"id":"baseprop",
+		"title": "基本属性",
+		"description":"",
+		"expland":"true",
+		"properties":
+		[
+			{
+			    "id": "id", 
+			    "title": "ID",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if id?exists>${id[0]}</#if>",
+			    "defaultVal":"start_${.now?string('yyyyMMddHHmmss')}",
+			    "inputMode": "input",
+				"readonly":"true",
+			    "require":"true"
+			},{
+			    "id": "name", 
+			    "title": "名称",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if name?exists>${name[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true"
+			},
+			{
+			    "id": "description", 
+			    "title": "描述",
+			    "type": "string",
+			    "maxlen":"150",
+			    "minlen":"",
+			    "value": "<#if description?exists>${description[0]}</#if>",
+			    "inputMode": "input",
+			    "require":""
+			}
+		]
+	}
+]
+ }

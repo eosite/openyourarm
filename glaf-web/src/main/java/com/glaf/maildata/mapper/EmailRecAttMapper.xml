@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.maildata.mapper.EmailRecAttMapper">
+
+ 	<resultMap id="emailRecAttResultMap"	type="com.glaf.maildata.domain.EmailRecAtt">
+        <id property="fileId" column="FILEID" jdbcType="VARCHAR"/>
+        <result property="topId" column="TOPID" jdbcType="VARCHAR"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="cTime" column="CTIME" jdbcType="TIMESTAMP"/>
+        <result property="fileContent" column="FILE_CONTENT" jdbcType="BLOB"/>
+        <result property="fileSize" column="FILESIZE" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertEmailRecAtt" parameterType="com.glaf.maildata.domain.EmailRecAtt">
+		insert into EMAIL_RECATT 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    FILEID
+			<if test="topId != null">
+				,TOPID 
+			</if>
+			<if test="fileName != null">
+				,FILE_NAME 
+			</if>
+			<if test="fileContent != null">
+				,FILE_CONTENT 
+			</if>
+			<if test="cTime != null">
+				,CTIME 
+			</if>
+			<if test="fileSize != null">
+				,FILESIZE 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{fileId, jdbcType=VARCHAR}
+	     
+			<if test="topId != null">
+				,#{topId, jdbcType=VARCHAR}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="fileContent != null">
+				,#{fileContent, jdbcType=BLOB}
+			</if>
+			<if test="cTime != null">
+				,#{cTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileSize != null">
+				,#{fileSize, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEmailRecAtt" parameterType="com.glaf.maildata.domain.EmailRecAtt">
+		update EMAIL_RECATT
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="topId != null">
+				TOPID = #{topId, jdbcType=VARCHAR},
+			</if>
+			<if test="fileName != null">
+				FILE_NAME = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="fileContent != null">
+				FILE_CONTENT = #{fileContent, jdbcType=BLOB},
+			</if>
+			<if test="cTime != null">
+				CTIME = #{cTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileSize != null">
+				FILESIZE = #{fileSize, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          FILEID = #{fileId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteEmailRecAttById" parameterType="string"> 
+        delete from EMAIL_RECATT
+        where FILEID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEmailRecAtts" parameterType="com.glaf.maildata.query.EmailRecAttQuery">
+		delete from EMAIL_RECATT
+		where ( 
+ 			  FILEID IN
+              <foreach item="x_fileId" index="index" collection="fileIds" 
+                     open="(" separator="," close=")">
+                  #{x_fileId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEmailRecAttById" parameterType="string" resultMap="emailRecAttResultMap">
+		select * from EMAIL_RECATT where FILEID = #{id}
+	</select>
+	
+    <select id="getEmailRecAttsByMailId" parameterType="string" resultMap="emailRecAttResultMap">
+		select * from EMAIL_RECATT where TOPID = #{id}
+	</select>
+
+	<select id="getEmailRecAtts" 
+	    parameterType="com.glaf.maildata.query.EmailRecAttQuery"
+		resultMap="emailRecAttResultMap">
+		select  E.topid,E.fileID,E.file_name,E.ctime,E.filesize
+		<include refid="selectEmailRecAttsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.FILEID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEmailRecAttCount" 
+	    parameterType="com.glaf.maildata.query.EmailRecAttQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEmailRecAttsSql" />
+	</select>
+
+
+	<sql id="selectEmailRecAttsSql">
+
+		from EMAIL_RECATT E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="topId != null and topId != '' ">
+				and E.TOPID = #{topId}
+            </if>
+
+			<if test="topIdLike != null and topIdLike != '' ">
+				and E.TOPID like #{topIdLike}
+            </if>
+
+			<if test="topIds != null and topIds.size() &gt; 0">
+			    and E.TOPID IN
+                <foreach item="x_topId" index="index" collection="topIds" 
+                     open="(" separator="," close=")">
+                  #{x_topId}
+                </foreach>
+			</if>
+	        
+			<if test="fileName != null and fileName != '' ">
+				and E.FILE_NAME = #{fileName}
+            </if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILE_NAME like #{fileNameLike}
+            </if>
+
+			<if test="fileNames != null and fileNames.size() &gt; 0">
+			    and E.FILE_NAME IN
+                <foreach item="x_fileName" index="index" collection="fileNames" 
+                     open="(" separator="," close=")">
+                  #{x_fileName}
+                </foreach>
+			</if>
+
+			<if test="cTimeGreaterThanOrEqual != null">
+				and E.CTIME &gt;= #{cTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="cTimeLessThanOrEqual != null">
+				and E.CTIME &lt;= #{cTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="fileSize != null">
+				and E.FILESIZE = #{fileSize}
+            </if>
+
+			<if test="fileSizeGreaterThanOrEqual != null">
+				and E.FILESIZE &gt;= #{fileSizeGreaterThanOrEqual}
+            </if>
+
+			<if test="fileSizeLessThanOrEqual != null">
+				and E.FILESIZE &lt;= #{fileSizeLessThanOrEqual}
+            </if>
+
+			<if test="fileSizes != null and fileSizes.size() &gt; 0">
+			    and E.FILESIZE IN
+                <foreach item="x_fileSize" index="index" collection="fileSizes" 
+                     open="(" separator="," close=")">
+                  #{x_fileSize}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

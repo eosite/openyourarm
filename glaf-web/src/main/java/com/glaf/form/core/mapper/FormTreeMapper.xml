@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormTreeMapper">
+
+ 	<resultMap id="formTreeResultMap"	type="com.glaf.form.core.domain.FormTree">
+        <id property="id" column="ID" jdbcType="BIGINT" />
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP"/>
+        <result property="nodeDesc" column="NODEDESC" jdbcType="VARCHAR"/>
+        <result property="discriminator" column="DISCRIMINATOR" jdbcType="VARCHAR"/>
+        <result property="icon" column="ICON" jdbcType="VARCHAR"/>
+        <result property="iconCls" column="ICONCLS" jdbcType="VARCHAR"/>
+        <result property="locked" column="LOCKED" jdbcType="INTEGER"/>
+        <result property="moveable" column="MOVEABLE" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="parent" column="PARENT" jdbcType="BIGINT"/>
+        <result property="sort" column="SORT" jdbcType="INTEGER"/>
+        <result property="treeId" column="TREEID" jdbcType="VARCHAR"/>
+        <result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP"/>
+        <result property="url" column="URL" jdbcType="VARCHAR"/>
+        <result property="category" column="CATEGORY" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormTree" parameterType="com.glaf.form.core.domain.FormTree">
+		insert into FORM_TREE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="code != null">
+				,CODE 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE 
+			</if>
+			<if test="nodeDesc != null">
+				,NODEDESC 
+			</if>
+			<if test="discriminator != null">
+				,DISCRIMINATOR 
+			</if>
+			<if test="icon != null">
+				,ICON 
+			</if>
+			<if test="iconCls != null">
+				,ICONCLS 
+			</if>
+			<if test="locked != null">
+				,LOCKED 
+			</if>
+			<if test="moveable != null">
+				,MOVEABLE 
+			</if>
+			<if test="name != null">
+				,NAME 
+			</if>
+			<if test="parent != null">
+				,PARENT 
+			</if>
+			<if test="sort != null">
+				,SORT 
+			</if>
+			<if test="treeId != null">
+				,TREEID 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE 
+			</if>
+			<if test="url != null">
+				,URL 
+			</if>
+			<if test="category != null">
+				,CATEGORY 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="nodeDesc != null">
+				,#{nodeDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="discriminator != null">
+				,#{discriminator, jdbcType=VARCHAR}
+			</if>
+			<if test="icon != null">
+				,#{icon, jdbcType=VARCHAR}
+			</if>
+			<if test="iconCls != null">
+				,#{iconCls, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="moveable != null">
+				,#{moveable, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="parent != null">
+				,#{parent, jdbcType=BIGINT}
+			</if>
+			<if test="sort != null">
+				,#{sort, jdbcType=INTEGER}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="url != null">
+				,#{url, jdbcType=VARCHAR}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormTree" parameterType="com.glaf.form.core.domain.FormTree">
+		update FORM_TREE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="code != null">
+				CODE = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="nodeDesc != null">
+				NODEDESC = #{nodeDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="discriminator != null">
+				DISCRIMINATOR = #{discriminator, jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				ICON = #{icon, jdbcType=VARCHAR},
+			</if>
+			<if test="iconCls != null">
+				ICONCLS = #{iconCls, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="moveable != null">
+				MOVEABLE = #{moveable, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="parent != null">
+				PARENT = #{parent, jdbcType=BIGINT},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort, jdbcType=INTEGER},
+			</if>
+			<if test="treeId != null">
+				TREEID = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="url != null">
+				URL = #{url, jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				CATEGORY = #{category, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteFormTreeById" parameterType="long"> 
+        delete from FORM_TREE
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormTrees" parameterType="com.glaf.form.core.query.FormTreeQuery">
+		delete from FORM_TREE
+		where ( 
+ 			  ID IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormTreeById" parameterType="long" resultMap="formTreeResultMap">
+		select * from FORM_TREE where ID = #{id}
+	</select>
+
+
+	<select id="getFormTrees" 
+	    parameterType="com.glaf.form.core.query.FormTreeQuery"
+		resultMap="formTreeResultMap">
+		select distinct E.*
+		<include refid="selectFormTreesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormTreeCount" 
+	    parameterType="com.glaf.form.core.query.FormTreeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormTreesSql" />
+	</select>
+
+
+	<sql id="selectFormTreesSql">
+
+		from FORM_TREE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="nodeDesc != null and nodeDesc != '' ">
+				and E.NODEDESC = #{nodeDesc}
+            </if>
+
+			<if test="nodeDescLike != null and nodeDescLike != '' ">
+				and E.NODEDESC like #{nodeDescLike}
+            </if>
+
+			<if test="nodeDescs != null and nodeDescs.size() &gt; 0">
+			    and E.NODEDESC IN
+                <foreach item="x_nodeDesc" index="index" collection="nodeDescs" 
+                     open="(" separator="," close=")">
+                  #{x_nodeDesc}
+                </foreach>
+			</if>
+	        
+			<if test="discriminator != null and discriminator != '' ">
+				and E.DISCRIMINATOR = #{discriminator}
+            </if>
+
+			<if test="discriminatorLike != null and discriminatorLike != '' ">
+				and E.DISCRIMINATOR like #{discriminatorLike}
+            </if>
+
+			<if test="discriminators != null and discriminators.size() &gt; 0">
+			    and E.DISCRIMINATOR IN
+                <foreach item="x_discriminator" index="index" collection="discriminators" 
+                     open="(" separator="," close=")">
+                  #{x_discriminator}
+                </foreach>
+			</if>
+	        
+			<if test="icon != null and icon != '' ">
+				and E.ICON = #{icon}
+            </if>
+
+			<if test="iconLike != null and iconLike != '' ">
+				and E.ICON like #{iconLike}
+            </if>
+
+			<if test="icons != null and icons.size() &gt; 0">
+			    and E.ICON IN
+                <foreach item="x_icon" index="index" collection="icons" 
+                     open="(" separator="," close=")">
+                  #{x_icon}
+                </foreach>
+			</if>
+	        
+			<if test="iconCls != null and iconCls != '' ">
+				and E.ICONCLS = #{iconCls}
+            </if>
+
+			<if test="iconClsLike != null and iconClsLike != '' ">
+				and E.ICONCLS like #{iconClsLike}
+            </if>
+
+			<if test="iconClss != null and iconClss.size() &gt; 0">
+			    and E.ICONCLS IN
+                <foreach item="x_iconCls" index="index" collection="iconClss" 
+                     open="(" separator="," close=")">
+                  #{x_iconCls}
+                </foreach>
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED = #{locked}
+            </if>
+
+			<if test="lockedGreaterThanOrEqual != null">
+				and E.LOCKED &gt;= #{lockedGreaterThanOrEqual}
+            </if>
+
+			<if test="lockedLessThanOrEqual != null">
+				and E.LOCKED &lt;= #{lockedLessThanOrEqual}
+            </if>
+
+			<if test="lockeds != null and lockeds.size() &gt; 0">
+			    and E.LOCKED IN
+                <foreach item="x_locked" index="index" collection="lockeds" 
+                     open="(" separator="," close=")">
+                  #{x_locked}
+                </foreach>
+			</if>
+      
+	        
+			<if test="moveable != null and moveable != '' ">
+				and E.MOVEABLE = #{moveable}
+            </if>
+
+			<if test="moveableLike != null and moveableLike != '' ">
+				and E.MOVEABLE like #{moveableLike}
+            </if>
+
+			<if test="moveables != null and moveables.size() &gt; 0">
+			    and E.MOVEABLE IN
+                <foreach item="x_moveable" index="index" collection="moveables" 
+                     open="(" separator="," close=")">
+                  #{x_moveable}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+
+			<if test="parent != null">
+				and E.PARENT = #{parent}
+            </if>
+
+			<if test="parentGreaterThanOrEqual != null">
+				and E.PARENT &gt;= #{parentGreaterThanOrEqual}
+            </if>
+
+			<if test="parentLessThanOrEqual != null">
+				and E.PARENT &lt;= #{parentLessThanOrEqual}
+            </if>
+
+			<if test="parents != null and parents.size() &gt; 0">
+			    and E.PARENT IN
+                <foreach item="x_parent" index="index" collection="parents" 
+                     open="(" separator="," close=")">
+                  #{x_parent}
+                </foreach>
+			</if>
+      
+
+			<if test="sort != null">
+				and E.SORT = #{sort}
+            </if>
+
+			<if test="sortGreaterThanOrEqual != null">
+				and E.SORT &gt;= #{sortGreaterThanOrEqual}
+            </if>
+
+			<if test="sortLessThanOrEqual != null">
+				and E.SORT &lt;= #{sortLessThanOrEqual}
+            </if>
+
+			<if test="sorts != null and sorts.size() &gt; 0">
+			    and E.SORT IN
+                <foreach item="x_sort" index="index" collection="sorts" 
+                     open="(" separator="," close=")">
+                  #{x_sort}
+                </foreach>
+			</if>
+      
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREEID like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREEID IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="url != null and url != '' ">
+				and E.URL = #{url}
+            </if>
+
+			<if test="urlLike != null and urlLike != '' ">
+				and E.URL like #{urlLike}
+            </if>
+
+			<if test="urls != null and urls.size() &gt; 0">
+			    and E.URL IN
+                <foreach item="x_url" index="index" collection="urls" 
+                     open="(" separator="," close=")">
+                  #{x_url}
+                </foreach>
+			</if>
+	        
+			<if test="category != null and category != '' ">
+				and E.CATEGORY = #{category}
+            </if>
+
+			<if test="categoryLike != null and categoryLike != '' ">
+				and E.CATEGORY like #{categoryLike}
+            </if>
+
+			<if test="categorys != null and categorys.size() &gt; 0">
+			    and E.CATEGORY IN
+                <foreach item="x_category" index="index" collection="categorys" 
+                     open="(" separator="," close=")">
+                  #{x_category}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

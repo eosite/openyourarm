@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.EtlTransferTaskSrcMapper">
+
+ 	<resultMap id="etlTransferTaskSrcResultMap"	type="com.glaf.etl.domain.EtlTransferTaskSrc">
+        <id property="id_" column="ID_" jdbcType="VARCHAR"/>
+        <result property="taskId_" column="TASK_ID_" jdbcType="VARCHAR"/>
+        <result property="srcId_" column="SRC_ID_" jdbcType="VARCHAR"/>
+        <result property="preSQL_" column="PRE_SQL_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="postSQL_" column="POST_SQL_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="distinctFlag_" column="DISTINCT_FLAG_" jdbcType="INTEGER"/>
+        <result property="querySQL_" column="QUERY_SQL_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="ownerName_" column="OWNER_NAME_" jdbcType="VARCHAR"/>
+        <result property="taskConnId_" column="TASK_CONN_ID_" jdbcType="BIGINT"/>
+        <result property="taskDatabaseName_" column="TASK_DATABASENAME_" jdbcType="VARCHAR"/>
+        <result property="orderMapping_" column="ORDER_MAPPING_" jdbcType="INTEGER"/>
+        <result property="createBy_" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime_" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy_" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime_" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertEtlTransferTaskSrc" parameterType="com.glaf.etl.domain.EtlTransferTaskSrc">
+		insert into ETL_TRANSFER_TASK_SRC_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="taskId_ != null">
+				,TASK_ID_ 
+			</if>
+			<if test="srcId_ != null">
+				,SRC_ID_ 
+			</if>
+			<if test="preSQL_ != null">
+				,PRE_SQL_ 
+			</if>
+			<if test="postSQL_ != null">
+				,POST_SQL_ 
+			</if>
+			<if test="distinctFlag_ != null">
+				,DISTINCT_FLAG_ 
+			</if>
+			<if test="querySQL_ != null">
+				,QUERY_SQL_ 
+			</if>
+			<if test="ownerName_ != null">
+				,OWNER_NAME_ 
+			</if>
+			<if test="taskConnId_ != null">
+				,TASK_CONN_ID_ 
+			</if>
+			<if test="taskDatabaseName_ != null">
+				,TASK_DATABASENAME_ 
+			</if>
+			<if test="orderMapping_ != null">
+				,ORDER_MAPPING_ 
+			</if>
+			<if test="createBy_ != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime_ != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy_ != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime_ != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id_, jdbcType=VARCHAR}
+	     
+			<if test="taskId_ != null">
+				,#{taskId_, jdbcType=VARCHAR}
+			</if>
+			<if test="srcId_ != null">
+				,#{srcId_, jdbcType=VARCHAR}
+			</if>
+			<if test="preSQL_ != null">
+				,#{preSQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="postSQL_ != null">
+				,#{postSQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="distinctFlag_ != null">
+				,#{distinctFlag_, jdbcType=INTEGER}
+			</if>
+			<if test="querySQL_ != null">
+				,#{querySQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="ownerName_ != null">
+				,#{ownerName_, jdbcType=VARCHAR}
+			</if>
+			<if test="taskConnId_ != null">
+				,#{taskConnId_, jdbcType=BIGINT}
+			</if>
+			<if test="taskDatabaseName_ != null">
+				,#{taskDatabaseName_, jdbcType=VARCHAR}
+			</if>
+			<if test="orderMapping_ != null">
+				,#{orderMapping_, jdbcType=INTEGER}
+			</if>
+			<if test="createBy_ != null">
+				,#{createBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime_ != null">
+				,#{createTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy_ != null">
+				,#{updateBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime_ != null">
+				,#{updateTime_, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEtlTransferTaskSrc" parameterType="com.glaf.etl.domain.EtlTransferTaskSrc">
+		update ETL_TRANSFER_TASK_SRC_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="taskId_ != null">
+				TASK_ID_ = #{taskId_, jdbcType=VARCHAR},
+			</if>
+			<if test="srcId_ != null">
+				SRC_ID_ = #{srcId_, jdbcType=VARCHAR},
+			</if>
+			<if test="preSQL_ != null">
+				PRE_SQL_ = #{preSQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="postSQL_ != null">
+				POST_SQL_ = #{postSQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="distinctFlag_ != null">
+				DISTINCT_FLAG_ = #{distinctFlag_, jdbcType=INTEGER},
+			</if>
+			<if test="querySQL_ != null">
+				QUERY_SQL_ = #{querySQL_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="ownerName_ != null">
+				OWNER_NAME_ = #{ownerName_, jdbcType=VARCHAR},
+			</if>
+			<if test="taskConnId_ != null">
+				TASK_CONN_ID_ = #{taskConnId_, jdbcType=BIGINT},
+			</if>
+			<if test="taskDatabaseName_ != null">
+				TASK_DATABASENAME_ = #{taskDatabaseName_, jdbcType=VARCHAR},
+			</if>
+			<if test="orderMapping_ != null">
+				ORDER_MAPPING_ = #{orderMapping_, jdbcType=INTEGER},
+			</if>
+			<if test="createBy_ != null">
+				CREATEBY_ = #{createBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime_ != null">
+				CREATETIME_ = #{createTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy_ != null">
+				UPDATEBY_ = #{updateBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime_ != null">
+				UPDATETIME_ = #{updateTime_, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id_, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteEtlTransferTaskSrcById" parameterType="string"> 
+        delete from ETL_TRANSFER_TASK_SRC_
+        where ID_ =	#{id}
+	</delete>
+
+	<delete id="deleteByTaskId" parameterType="string"> 
+        delete from ETL_TRANSFER_TASK_SRC_
+        where TASK_ID_ = #{id}
+	</delete>
+	
+	<delete id="deleteEtlTransferTaskSrcs" parameterType="com.glaf.etl.query.EtlTransferTaskSrcQuery">
+		delete from ETL_TRANSFER_TASK_SRC_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id_" index="index" collection="id_s" 
+                     open="(" separator="," close=")">
+                  #{x_id_}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEtlTransferTaskSrcById" parameterType="string" resultMap="etlTransferTaskSrcResultMap">
+		select * from ETL_TRANSFER_TASK_SRC_ where ID_ = #{id}
+	</select>
+	
+	<select id="getEtlTransferTaskSrcByTaskId" parameterType="string" resultMap="etlTransferTaskSrcResultMap">
+		select * from ETL_TRANSFER_TASK_SRC_ where TASK_ID_ = #{id}
+	</select>
+
+
+	<select id="getEtlTransferTaskSrcs" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskSrcQuery"
+		resultMap="etlTransferTaskSrcResultMap">
+		select distinct E.*
+		<include refid="selectEtlTransferTaskSrcsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEtlTransferTaskSrcCount" 
+	    parameterType="com.glaf.etl.query.EtlTransferTaskSrcQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEtlTransferTaskSrcsSql" />
+	</select>
+
+
+	<sql id="selectEtlTransferTaskSrcsSql">
+
+		from ETL_TRANSFER_TASK_SRC_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="taskId_ != null and taskId_ != '' ">
+				and E.TASK_ID_ = #{taskId_}
+            </if>
+
+			<if test="taskId_Like != null and taskId_Like != '' ">
+				and E.TASK_ID_ like #{taskId_Like}
+            </if>
+
+			<if test="taskId_s != null and taskId_s.size() &gt; 0">
+			    and E.TASK_ID_ IN
+                <foreach item="x_taskId_" index="index" collection="taskId_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskId_}
+                </foreach>
+			</if>
+	        
+			<if test="srcId_ != null and srcId_ != '' ">
+				and E.SRC_ID_ = #{srcId_}
+            </if>
+
+			<if test="srcId_Like != null and srcId_Like != '' ">
+				and E.SRC_ID_ like #{srcId_Like}
+            </if>
+
+			<if test="srcId_s != null and srcId_s.size() &gt; 0">
+			    and E.SRC_ID_ IN
+                <foreach item="x_srcId_" index="index" collection="srcId_s" 
+                     open="(" separator="," close=")">
+                  #{x_srcId_}
+                </foreach>
+			</if>
+
+			<if test="distinctFlag_ != null">
+				and E.DISTINCT_FLAG_ = #{distinctFlag_}
+            </if>
+
+			<if test="distinctFlag_GreaterThanOrEqual != null">
+				and E.DISTINCT_FLAG_ &gt;= #{distinctFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="distinctFlag_LessThanOrEqual != null">
+				and E.DISTINCT_FLAG_ &lt;= #{distinctFlag_LessThanOrEqual}
+            </if>
+
+			<if test="distinctFlag_s != null and distinctFlag_s.size() &gt; 0">
+			    and E.DISTINCT_FLAG_ IN
+                <foreach item="x_distinctFlag_" index="index" collection="distinctFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_distinctFlag_}
+                </foreach>
+			</if>
+      
+	        
+			<if test="ownerName_ != null and ownerName_ != '' ">
+				and E.OWNER_NAME_ = #{ownerName_}
+            </if>
+
+			<if test="ownerName_Like != null and ownerName_Like != '' ">
+				and E.OWNER_NAME_ like #{ownerName_Like}
+            </if>
+
+			<if test="ownerName_s != null and ownerName_s.size() &gt; 0">
+			    and E.OWNER_NAME_ IN
+                <foreach item="x_ownerName_" index="index" collection="ownerName_s" 
+                     open="(" separator="," close=")">
+                  #{x_ownerName_}
+                </foreach>
+			</if>
+
+			<if test="taskConnId_ != null">
+				and E.TASK_CONN_ID_ = #{taskConnId_}
+            </if>
+
+			<if test="taskConnId_GreaterThanOrEqual != null">
+				and E.TASK_CONN_ID_ &gt;= #{taskConnId_GreaterThanOrEqual}
+            </if>
+
+			<if test="taskConnId_LessThanOrEqual != null">
+				and E.TASK_CONN_ID_ &lt;= #{taskConnId_LessThanOrEqual}
+            </if>
+
+			<if test="taskConnId_s != null and taskConnId_s.size() &gt; 0">
+			    and E.TASK_CONN_ID_ IN
+                <foreach item="x_taskConnId_" index="index" collection="taskConnId_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskConnId_}
+                </foreach>
+			</if>
+      
+	        
+			<if test="taskDatabaseName_ != null and taskDatabaseName_ != '' ">
+				and E.TASK_DATABASENAME_ = #{taskDatabaseName_}
+            </if>
+
+			<if test="taskDatabaseName_Like != null and taskDatabaseName_Like != '' ">
+				and E.TASK_DATABASENAME_ like #{taskDatabaseName_Like}
+            </if>
+
+			<if test="taskDatabaseName_s != null and taskDatabaseName_s.size() &gt; 0">
+			    and E.TASK_DATABASENAME_ IN
+                <foreach item="x_taskDatabaseName_" index="index" collection="taskDatabaseName_s" 
+                     open="(" separator="," close=")">
+                  #{x_taskDatabaseName_}
+                </foreach>
+			</if>
+
+			<if test="orderMapping_ != null">
+				and E.ORDER_MAPPING_ = #{orderMapping_}
+            </if>
+
+			<if test="orderMapping_GreaterThanOrEqual != null">
+				and E.ORDER_MAPPING_ &gt;= #{orderMapping_GreaterThanOrEqual}
+            </if>
+
+			<if test="orderMapping_LessThanOrEqual != null">
+				and E.ORDER_MAPPING_ &lt;= #{orderMapping_LessThanOrEqual}
+            </if>
+
+			<if test="orderMapping_s != null and orderMapping_s.size() &gt; 0">
+			    and E.ORDER_MAPPING_ IN
+                <foreach item="x_orderMapping_" index="index" collection="orderMapping_s" 
+                     open="(" separator="," close=")">
+                  #{x_orderMapping_}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createBy_ != null and createBy_ != '' ">
+				and E.CREATEBY_ = #{createBy_}
+            </if>
+
+			<if test="createBy_Like != null and createBy_Like != '' ">
+				and E.CREATEBY_ like #{createBy_Like}
+            </if>
+
+			<if test="createBy_s != null and createBy_s.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy_" index="index" collection="createBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_createBy_}
+                </foreach>
+			</if>
+
+			<if test="createTime_GreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="createTime_LessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTime_LessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy_ != null and updateBy_ != '' ">
+				and E.UPDATEBY_ = #{updateBy_}
+            </if>
+
+			<if test="updateBy_Like != null and updateBy_Like != '' ">
+				and E.UPDATEBY_ like #{updateBy_Like}
+            </if>
+
+			<if test="updateBy_s != null and updateBy_s.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy_" index="index" collection="updateBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy_}
+                </foreach>
+			</if>
+
+			<if test="updateTime_GreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="updateTime_LessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTime_LessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

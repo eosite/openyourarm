@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseWdataSetColumnMapper">
+
+ 	<resultMap id="depBaseWdataSetColumnResultMap"	type="com.glaf.dep.base.domain.DepBaseWdataSetColumn">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="wdataSetId" column="WDATASET_ID_" jdbcType="BIGINT"/>
+        <result property="columnName" column="COLUMN_NAME_" jdbcType="VARCHAR"/>
+        <result property="dataColumnName" column="DATACOLUMN_NAME_" jdbcType="VARCHAR"/>
+        <result property="defaultVal" column="DEFAULTVAL_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDatetime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBaseWdataSetColumn" parameterType="com.glaf.dep.base.domain.DepBaseWdataSetColumn">
+		insert into DEP_BASE_WDATASET_COLUMN_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="wdataSetId != null">
+				,WDATASET_ID_ 
+			</if>
+			<if test="columnName != null">
+				,COLUMN_NAME_ 
+			</if>
+			<if test="dataColumnName != null">
+				,DATACOLUMN_NAME_ 
+			</if>
+			<if test="defaultVal != null">
+				,DEFAULTVAL_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="wdataSetId != null">
+				,#{wdataSetId, jdbcType=BIGINT}
+			</if>
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="dataColumnName != null">
+				,#{dataColumnName, jdbcType=VARCHAR}
+			</if>
+			<if test="defaultVal != null">
+				,#{defaultVal, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseWdataSetColumn" parameterType="com.glaf.dep.base.domain.DepBaseWdataSetColumn">
+		update DEP_BASE_WDATASET_COLUMN_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="wdataSetId != null">
+				WDATASET_ID_ = #{wdataSetId, jdbcType=BIGINT},
+			</if>
+			<if test="columnName != null">
+				COLUMN_NAME_ = #{columnName, jdbcType=VARCHAR},
+			</if>
+			<if test="dataColumnName != null">
+				DATACOLUMN_NAME_ = #{dataColumnName, jdbcType=VARCHAR},
+			</if>
+			<if test="defaultVal != null">
+				DEFAULTVAL_ = #{defaultVal, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBaseWdataSetColumnById" parameterType="long"> 
+        delete from DEP_BASE_WDATASET_COLUMN_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepBaseWdataSetColumns" parameterType="com.glaf.dep.base.query.DepBaseWdataSetColumnQuery">
+		delete from DEP_BASE_WDATASET_COLUMN_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBaseWdataSetColumnById" parameterType="long" resultMap="depBaseWdataSetColumnResultMap">
+		select * from DEP_BASE_WDATASET_COLUMN_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepBaseWdataSetColumns" 
+	    parameterType="com.glaf.dep.base.query.DepBaseWdataSetColumnQuery"
+		resultMap="depBaseWdataSetColumnResultMap">
+		select distinct E.*
+		<include refid="selectDepBaseWdataSetColumnsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBaseWdataSetColumnCount" 
+	    parameterType="com.glaf.dep.base.query.DepBaseWdataSetColumnQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseWdataSetColumnsSql" />
+	</select>
+
+
+	<sql id="selectDepBaseWdataSetColumnsSql">
+
+		from DEP_BASE_WDATASET_COLUMN_ E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="wdataSetId != null">
+				and E.WDATASET_ID_ = #{wdataSetId}
+            </if>
+
+			<if test="wdataSetIdGreaterThanOrEqual != null">
+				and E.WDATASET_ID_ &gt;= #{wdataSetIdGreaterThanOrEqual}
+            </if>
+
+			<if test="wdataSetIdLessThanOrEqual != null">
+				and E.WDATASET_ID_ &lt;= #{wdataSetIdLessThanOrEqual}
+            </if>
+
+			<if test="wdataSetIds != null and wdataSetIds.size() &gt; 0">
+			    and E.WDATASET_ID_ IN
+                <foreach item="x_wdataSetId" index="index" collection="wdataSetIds" 
+                     open="(" separator="," close=")">
+                  #{x_wdataSetId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="columnName != null and columnName != '' ">
+				and E.COLUMN_NAME_ = #{columnName}
+            </if>
+
+			<if test="columnNameLike != null and columnNameLike != '' ">
+				and E.COLUMN_NAME_ like #{columnNameLike}
+            </if>
+
+			<if test="columnNames != null and columnNames.size() &gt; 0">
+			    and E.COLUMN_NAME_ IN
+                <foreach item="x_columnName" index="index" collection="columnNames" 
+                     open="(" separator="," close=")">
+                  #{x_columnName}
+                </foreach>
+			</if>
+	        
+			<if test="dataColumnName != null and dataColumnName != '' ">
+				and E.DATACOLUMN_NAME_ = #{dataColumnName}
+            </if>
+
+			<if test="dataColumnNameLike != null and dataColumnNameLike != '' ">
+				and E.DATACOLUMN_NAME_ like #{dataColumnNameLike}
+            </if>
+
+			<if test="dataColumnNames != null and dataColumnNames.size() &gt; 0">
+			    and E.DATACOLUMN_NAME_ IN
+                <foreach item="x_dataColumnName" index="index" collection="dataColumnNames" 
+                     open="(" separator="," close=")">
+                  #{x_dataColumnName}
+                </foreach>
+			</if>
+	        
+			<if test="defaultVal != null and defaultVal != '' ">
+				and E.DEFAULTVAL_ = #{defaultVal}
+            </if>
+
+			<if test="defaultValLike != null and defaultValLike != '' ">
+				and E.DEFAULTVAL_ like #{defaultValLike}
+            </if>
+
+			<if test="defaultVals != null and defaultVals.size() &gt; 0">
+			    and E.DEFAULTVAL_ IN
+                <foreach item="x_defaultVal" index="index" collection="defaultVals" 
+                     open="(" separator="," close=")">
+                  #{x_defaultVal}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseCompPropMapper">
+
+ 	<resultMap id="depBaseCompPropResultMap"	type="com.glaf.dep.base.domain.DepBaseCompProp">
+        <id property="depBaseComponentId" column="DEP_BASE_COMPONENT_ID_" jdbcType="VARCHAR"/>
+        <id property="ruleId" column="RULEID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepBaseCompProp" parameterType="com.glaf.dep.base.domain.DepBaseCompProp">
+		insert into DEP_BASE_COMPPROP 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    DEP_BASE_COMPONENT_ID_
+			<if test="ruleId != null">
+				,RULEID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{depBaseComponentId, jdbcType=VARCHAR}
+	     
+			<if test="ruleId != null">
+				,#{ruleId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseCompProp" parameterType="com.glaf.dep.base.domain.DepBaseCompProp">
+		update DEP_BASE_COMPPROP
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="ruleId != null">
+				RULEID_ = #{ruleId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          DEP_BASE_COMPONENT_ID_ = #{depBaseComponentId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBaseCompPropByRuleId" parameterType="string"> 
+        delete from DEP_BASE_COMPPROP where RULEID_ =	#{ruleId}
+	</delete>
+	
+	<delete id="deleteByPrimaryKey" parameterType="map">
+		delete from DEP_BASE_COMPPROP where RULEID_=#{ruleId} and DEP_BASE_COMPONENT_ID_=#{componentId}
+	</delete>
+
+	<select id="getDepBaseCompPropById" parameterType="string" resultMap="depBaseCompPropResultMap">
+		select * from DEP_BASE_COMPPROP where DEP_BASE_COMPONENT_ID_ = #{id}
+	</select>
+
+	<select id="getDepBaseCompProps" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCompPropQuery"
+		resultMap="depBaseCompPropResultMap">
+		select distinct E.*
+		<include refid="selectDepBaseCompPropsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.DEP_BASE_COMPONENT_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBaseCompPropCount" 
+	    parameterType="com.glaf.dep.base.query.DepBaseCompPropQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseCompPropsSql" />
+	</select>
+
+
+	<sql id="selectDepBaseCompPropsSql">
+
+		from DEP_BASE_COMPPROP E
+		
+		<where>
+		       1 = 1  
+			<if test="depBaseComponentId != null and depBaseComponentIds != ''">
+				and DEP_BASE_COMPONENT_ID_ = #{depBaseComponentId}
+			</if>
+			
+			<if test="depBaseComponentIds != null and depBaseComponentIds.size() &gt; 0">
+				and DEP_BASE_COMPONENT_ID_ in 
+				<foreach item="x_depBaseComponentId" index="index" collection="depBaseComponentIds" 
+                     open="(" separator="," close=")">
+                  #{x_depBaseComponentId}
+                </foreach>
+			</if>
+	        
+			<if test="ruleId != null and ruleId != '' ">
+				and E.RULEID_ = #{ruleId}
+            </if>
+
+			<if test="ruleIdLike != null and ruleIdLike != '' ">
+				and E.RULEID_ like #{ruleIdLike}
+            </if>
+
+			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+			    and E.RULEID_ IN
+                <foreach item="x_ruleId" index="index" collection="ruleIds" 
+                     open="(" separator="," close=")">
+                  #{x_ruleId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

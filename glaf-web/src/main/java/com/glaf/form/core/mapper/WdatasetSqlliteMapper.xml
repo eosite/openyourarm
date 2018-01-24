@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.WdatasetSqlliteMapper">
+
+	<resultMap id="wdatasetSqlliteResultMap2"	type="com.glaf.form.core.domain.WdatasetSqllite">
+        <id property="id" column="ID_" jdbcType="BIGINT"/>
+        <result property="sqlliteRuleCode" column="SQLLITE_RULE_CODE_" jdbcType="VARCHAR"/>
+        <result property="sqlliteRuleDesc" column="SQLLITE_RULE_DESC_" jdbcType="VARCHAR"/>
+        <result property="sqlliteRuleName" column="SQLLITE_RULE_NAME_" jdbcType="VARCHAR"/>
+        <result property="dataSetsName" column="DATASETS_NAME_" jdbcType="VARCHAR"/>
+        <result property="delflag" column="DELFLAG_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 	<resultMap id="wdatasetSqlliteResultMap"	type="com.glaf.form.core.domain.WdatasetSqllite">
+        <id property="id" column="ID_" jdbcType="BIGINT"/>
+        <result property="sqlliteRuleCode" column="SQLLITE_RULE_CODE_" jdbcType="VARCHAR"/>
+        <result property="sqlliteRuleDesc" column="SQLLITE_RULE_DESC_" jdbcType="VARCHAR"/>
+        <result property="sqlliteRuleName" column="SQLLITE_RULE_NAME_" jdbcType="VARCHAR"/>
+        <result property="dataSetsName" column="DATASETS_NAME_" jdbcType="VARCHAR"/>
+        <result property="delflag" column="DELFLAG_" jdbcType="VARCHAR"/>
+        <result property="ruleJson" column="RULEJSON_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="UPDATEDATE" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertWdatasetSqllite" parameterType="com.glaf.form.core.domain.WdatasetSqllite">
+		insert into DEP_BASE_WDATASET_SQLLITE_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="sqlliteRuleCode != null">
+				,SQLLITE_RULE_CODE_ 
+			</if>
+			<if test="sqlliteRuleDesc != null">
+				,SQLLITE_RULE_DESC_ 
+			</if>
+			<if test="sqlliteRuleName != null">
+				,SQLLITE_RULE_NAME_ 
+			</if>
+			<if test="dataSetsName != null">
+				,DATASETS_NAME_ 
+			</if>
+			<if test="delflag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="ruleJson != null">
+				,RULEJSON_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY 
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="sqlliteRuleCode != null">
+				,#{sqlliteRuleCode, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlliteRuleDesc != null">
+				,#{sqlliteRuleDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="sqlliteRuleName != null">
+				,#{sqlliteRuleName, jdbcType=VARCHAR}
+			</if>
+			<if test="dataSetsName != null">
+				,#{dataSetsName, jdbcType=VARCHAR}
+			</if>
+			<if test="delflag != null">
+				,#{delflag, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleJson != null">
+				,#{ruleJson, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateWdatasetSqllite" parameterType="com.glaf.form.core.domain.WdatasetSqllite">
+		update DEP_BASE_WDATASET_SQLLITE_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="sqlliteRuleCode != null">
+				SQLLITE_RULE_CODE_ = #{sqlliteRuleCode, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlliteRuleDesc != null">
+				SQLLITE_RULE_DESC_ = #{sqlliteRuleDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="sqlliteRuleName != null">
+				SQLLITE_RULE_NAME_ = #{sqlliteRuleName, jdbcType=VARCHAR},
+			</if>
+			<if test="dataSetsName != null">
+				DATASETS_NAME_ = #{dataSetsName, jdbcType=VARCHAR},
+			</if>
+			<if test="delflag != null">
+				DELFLAG_ = #{delflag, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleJson != null">
+				RULEJSON_ = #{ruleJson, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteWdatasetSqlliteById" parameterType="string"> 
+        delete from DEP_BASE_WDATASET_SQLLITE_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteWdatasetSqllites" parameterType="com.glaf.form.core.query.WdatasetSqlliteQuery">
+		delete from DEP_BASE_WDATASET_SQLLITE_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getWdatasetSqlliteById" parameterType="string" resultMap="wdatasetSqlliteResultMap">
+		select * from DEP_BASE_WDATASET_SQLLITE_ where ID_ = #{id}
+	</select>
+
+	<select id="getWdatasetSqllites2" 
+	    parameterType="com.glaf.form.core.query.WdatasetSqlliteQuery"
+		resultMap="wdatasetSqlliteResultMap2">
+		select E.*
+		<include refid="selectWdatasetSqllitesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+	<select id="getWdatasetSqllites" 
+	    parameterType="com.glaf.form.core.query.WdatasetSqlliteQuery"
+		resultMap="wdatasetSqlliteResultMap">
+		select E.*
+		<include refid="selectWdatasetSqllitesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getWdatasetSqlliteCount" 
+	    parameterType="com.glaf.form.core.query.WdatasetSqlliteQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectWdatasetSqllitesSql" />
+	</select>
+
+
+	<sql id="selectWdatasetSqllitesSql">
+
+		from DEP_BASE_WDATASET_SQLLITE_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="sqlliteRuleCode != null and sqlliteRuleCode != '' ">
+				and E.SQLLITE_RULE_CODE_ = #{sqlliteRuleCode}
+            </if>
+
+			<if test="sqlliteRuleCodeLike != null and sqlliteRuleCodeLike != '' ">
+				and E.SQLLITE_RULE_CODE_ like #{sqlliteRuleCodeLike}
+            </if>
+
+			<if test="sqlliteRuleCodes != null and sqlliteRuleCodes.size() &gt; 0">
+			    and E.SQLLITE_RULE_CODE_ IN
+                <foreach item="x_sqlliteRuleCode" index="index" collection="sqlliteRuleCodes" 
+                     open="(" separator="," close=")">
+                  #{x_sqlliteRuleCode}
+                </foreach>
+			</if>
+	        
+			<if test="sqlliteRuleDesc != null and sqlliteRuleDesc != '' ">
+				and E.SQLLITE_RULE_DESC_ = #{sqlliteRuleDesc}
+            </if>
+
+			<if test="sqlliteRuleDescLike != null and sqlliteRuleDescLike != '' ">
+				and E.SQLLITE_RULE_DESC_ like #{sqlliteRuleDescLike}
+            </if>
+
+			<if test="sqlliteRuleDescs != null and sqlliteRuleDescs.size() &gt; 0">
+			    and E.SQLLITE_RULE_DESC_ IN
+                <foreach item="x_sqlliteRuleDesc" index="index" collection="sqlliteRuleDescs" 
+                     open="(" separator="," close=")">
+                  #{x_sqlliteRuleDesc}
+                </foreach>
+			</if>
+	        
+			<if test="sqlliteRuleName != null and sqlliteRuleName != '' ">
+				and E.SQLLITE_RULE_NAME_ = #{sqlliteRuleName}
+            </if>
+
+			<if test="sqlliteRuleNameLike != null and sqlliteRuleNameLike != '' ">
+				and E.SQLLITE_RULE_NAME_ like #{sqlliteRuleNameLike}
+            </if>
+
+			<if test="sqlliteRuleNames != null and sqlliteRuleNames.size() &gt; 0">
+			    and E.SQLLITE_RULE_NAME_ IN
+                <foreach item="x_sqlliteRuleName" index="index" collection="sqlliteRuleNames" 
+                     open="(" separator="," close=")">
+                  #{x_sqlliteRuleName}
+                </foreach>
+			</if>
+	        
+			<if test="dataSetsName != null and dataSetsName != '' ">
+				and E.DATASETS_NAME_ = #{dataSetsName}
+            </if>
+
+			<if test="dataSetsNameLike != null and dataSetsNameLike != '' ">
+				and E.DATASETS_NAME_ like #{dataSetsNameLike}
+            </if>
+
+			<if test="dataSetsNames != null and dataSetsNames.size() &gt; 0">
+			    and E.DATASETS_NAME_ IN
+                <foreach item="x_dataSetsName" index="index" collection="dataSetsNames" 
+                     open="(" separator="," close=")">
+                  #{x_dataSetsName}
+                </foreach>
+			</if>
+	        
+			<if test="delflag != null and delflag != '' ">
+				and E.DELFLAG_ = #{delflag}
+            </if>
+
+			<if test="delflagLike != null and delflagLike != '' ">
+				and E.DELFLAG_ like #{delflagLike}
+            </if>
+
+			<if test="delflags != null and delflags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delflag" index="index" collection="delflags" 
+                     open="(" separator="," close=")">
+                  #{x_delflag}
+                </foreach>
+			</if>
+	        
+			<if test="ruleJson != null and ruleJson != '' ">
+				and E.RULEJSON_ = #{ruleJson}
+            </if>
+
+			<if test="ruleJsonLike != null and ruleJsonLike != '' ">
+				and E.RULEJSON_ like #{ruleJsonLike}
+            </if>
+
+			<if test="ruleJsons != null and ruleJsons.size() &gt; 0">
+			    and E.RULEJSON_ IN
+                <foreach item="x_ruleJson" index="index" collection="ruleJsons" 
+                     open="(" separator="," close=")">
+                  #{x_ruleJson}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE &gt;= #{updateDateGreaterThanOrEqual}
+            </if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE &lt;= #{updateDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

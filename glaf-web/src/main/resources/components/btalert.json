@@ -1,0 +1,46 @@
+{
+	"id": "btalert",
+	"title": "Bootstrap Alert",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "defaultSetting",
+		"title": "默认设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "aria-hidden",
+			"title": "默认隐藏",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "是",
+				"value": "true"
+			},
+			{
+				"title": "否",
+				"value": "false"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setAriaHidden"
+		}]
+	}]
+}

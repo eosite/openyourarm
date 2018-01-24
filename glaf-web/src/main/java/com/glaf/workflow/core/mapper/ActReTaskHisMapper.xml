@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.workflow.core.mapper.ActReTaskHisMapper">
+
+ 	<resultMap id="actReTaskHisResultMap"	type="com.glaf.workflow.core.domain.ActReTaskHis">
+        <id property="id" column="ID_" jdbcType="INTEGER" />
+        <result property="actorId" column="ACTORID_" jdbcType="VARCHAR"/>
+        <result property="taskId" column="TASKID_" jdbcType="VARCHAR"/>
+        <result property="taskName" column="TASKNAME_" jdbcType="VARCHAR"/>
+        <result property="taskKey" column="TASKKEY_" jdbcType="VARCHAR"/>
+        <result property="processId" column="PROCESSID_" jdbcType="VARCHAR"/>
+        <result property="fromKey" column="FROMKEY_" jdbcType="VARCHAR"/>
+        <result property="fromId" column="FROMID_" jdbcType="VARCHAR"/>
+        <result property="fromName" column="FROMNAME_" jdbcType="VARCHAR"/>
+        <result property="fromActorId" column="FROMACTORID_" jdbcType="VARCHAR"/>
+        <result property="variables" column="VARIABLES_" jdbcType="VARCHAR"/>
+        <result property="subType" column="SUBTYPE_" jdbcType="VARCHAR"/>
+        <result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertActReTaskHis" parameterType="com.glaf.workflow.core.domain.ActReTaskHis">
+		insert into ACT_RE_TASK_HIS 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="actorId != null">
+				,ACTORID_ 
+			</if>
+			<if test="taskId != null">
+				,TASKID_ 
+			</if>
+			<if test="taskName != null">
+				,TASKNAME_ 
+			</if>
+			<if test="taskKey != null">
+				,TASKKEY_ 
+			</if>
+			<if test="processId != null">
+				,PROCESSID_ 
+			</if>
+			<if test="fromKey != null">
+				,FROMKEY_ 
+			</if>
+			<if test="fromId != null">
+				,FROMID_ 
+			</if>
+			<if test="fromName != null">
+				,FROMNAME_ 
+			</if>
+			<if test="fromActorId != null">
+				,FROMACTORID_ 
+			</if>
+			<if test="variables != null">
+				,VARIABLES_ 
+			</if>
+			<if test="subType != null">
+				,SUBTYPE_ 
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=INTEGER}
+	     
+			<if test="actorId != null">
+				,#{actorId, jdbcType=VARCHAR}
+			</if>
+			<if test="taskId != null">
+				,#{taskId, jdbcType=VARCHAR}
+			</if>
+			<if test="taskName != null">
+				,#{taskName, jdbcType=VARCHAR}
+			</if>
+			<if test="taskKey != null">
+				,#{taskKey, jdbcType=VARCHAR}
+			</if>
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="fromKey != null">
+				,#{fromKey, jdbcType=VARCHAR}
+			</if>
+			<if test="fromId != null">
+				,#{fromId, jdbcType=VARCHAR}
+			</if>
+			<if test="fromName != null">
+				,#{fromName, jdbcType=VARCHAR}
+			</if>
+			<if test="fromActorId != null">
+				,#{fromActorId, jdbcType=VARCHAR}
+			</if>
+			<if test="variables != null">
+				,#{variables, jdbcType=VARCHAR}
+			</if>
+			<if test="subType != null">
+				,#{subType, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateActReTaskHis" parameterType="com.glaf.workflow.core.domain.ActReTaskHis">
+		update ACT_RE_TASK_HIS
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="actorId != null">
+				ACTORID_ = #{actorId, jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				TASKID_ = #{taskId, jdbcType=VARCHAR},
+			</if>
+			<if test="taskName != null">
+				TASKNAME_ = #{taskName, jdbcType=VARCHAR},
+			</if>
+			<if test="taskKey != null">
+				TASKKEY_ = #{taskKey, jdbcType=VARCHAR},
+			</if>
+			<if test="processId != null">
+				PROCESSID_ = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="fromKey != null">
+				FROMKEY_ = #{fromKey, jdbcType=VARCHAR},
+			</if>
+			<if test="fromId != null">
+				FROMID_ = #{fromId, jdbcType=VARCHAR},
+			</if>
+			<if test="fromName != null">
+				FROMNAME_ = #{fromName, jdbcType=VARCHAR},
+			</if>
+			<if test="fromActorId != null">
+				FROMACTORID_ = #{fromActorId, jdbcType=VARCHAR},
+			</if>
+			<if test="variables != null">
+				VARIABLES_ = #{variables, jdbcType=VARCHAR},
+			</if>
+			<if test="subType != null">
+				SUBTYPE_ = #{subType, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=INTEGER}
+		
+    </update>
+
+ 
+	<delete id="deleteActReTaskHisById" parameterType="integer"> 
+        delete from ACT_RE_TASK_HIS
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteActReTaskHiss" parameterType="com.glaf.workflow.core.query.ActReTaskHisQuery">
+		delete from ACT_RE_TASK_HIS
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getActReTaskHisById" parameterType="integer" resultMap="actReTaskHisResultMap">
+		select * from ACT_RE_TASK_HIS where ID_ = #{id}
+	</select>
+
+
+	<select id="getActReTaskHiss" 
+	    parameterType="com.glaf.workflow.core.query.ActReTaskHisQuery"
+		resultMap="actReTaskHisResultMap">
+		select distinct E.*
+		<include refid="selectActReTaskHissSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getActReTaskHisCount" 
+	    parameterType="com.glaf.workflow.core.query.ActReTaskHisQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectActReTaskHissSql" />
+	</select>
+
+
+	<sql id="selectActReTaskHissSql">
+
+		from ACT_RE_TASK_HIS E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="actorId != null and actorId != '' ">
+				and E.ACTORID_ = #{actorId}
+            </if>
+
+			<if test="actorIdLike != null and actorIdLike != '' ">
+				and E.ACTORID_ like #{actorIdLike}
+            </if>
+
+			<if test="actorIds != null and actorIds.size() &gt; 0">
+			    and E.ACTORID_ IN
+                <foreach item="x_actorId" index="index" collection="actorIds" 
+                     open="(" separator="," close=")">
+                  #{x_actorId}
+                </foreach>
+			</if>
+	        
+			<if test="taskId != null and taskId != '' ">
+				and E.TASKID_ = #{taskId}
+            </if>
+
+			<if test="taskIdLike != null and taskIdLike != '' ">
+				and E.TASKID_ like #{taskIdLike}
+            </if>
+
+			<if test="taskIds != null and taskIds.size() &gt; 0">
+			    and E.TASKID_ IN
+                <foreach item="x_taskId" index="index" collection="taskIds" 
+                     open="(" separator="," close=")">
+                  #{x_taskId}
+                </foreach>
+			</if>
+	        
+			<if test="taskName != null and taskName != '' ">
+				and E.TASKNAME_ = #{taskName}
+            </if>
+
+			<if test="taskNameLike != null and taskNameLike != '' ">
+				and E.TASKNAME_ like #{taskNameLike}
+            </if>
+
+			<if test="taskNames != null and taskNames.size() &gt; 0">
+			    and E.TASKNAME_ IN
+                <foreach item="x_taskName" index="index" collection="taskNames" 
+                     open="(" separator="," close=")">
+                  #{x_taskName}
+                </foreach>
+			</if>
+	        
+			<if test="taskKey != null and taskKey != '' ">
+				and E.TASKKEY_ = #{taskKey}
+            </if>
+
+			<if test="taskKeyLike != null and taskKeyLike != '' ">
+				and E.TASKKEY_ like #{taskKeyLike}
+            </if>
+
+			<if test="taskKeys != null and taskKeys.size() &gt; 0">
+			    and E.TASKKEY_ IN
+                <foreach item="x_taskKey" index="index" collection="taskKeys" 
+                     open="(" separator="," close=")">
+                  #{x_taskKey}
+                </foreach>
+			</if>
+	        
+			<if test="processId != null and processId != '' ">
+				and E.PROCESSID_ = #{processId}
+            </if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESSID_ like #{processIdLike}
+            </if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+			    and E.PROCESSID_ IN
+                <foreach item="x_processId" index="index" collection="processIds" 
+                     open="(" separator="," close=")">
+                  #{x_processId}
+                </foreach>
+			</if>
+	        
+			<if test="fromKey != null and fromKey != '' ">
+				and E.FROMKEY_ = #{fromKey}
+            </if>
+
+			<if test="fromKeyLike != null and fromKeyLike != '' ">
+				and E.FROMKEY_ like #{fromKeyLike}
+            </if>
+
+			<if test="fromKeys != null and fromKeys.size() &gt; 0">
+			    and E.FROMKEY_ IN
+                <foreach item="x_fromKey" index="index" collection="fromKeys" 
+                     open="(" separator="," close=")">
+                  #{x_fromKey}
+                </foreach>
+			</if>
+	        
+			<if test="fromId != null and fromId != '' ">
+				and E.FROMID_ = #{fromId}
+            </if>
+
+			<if test="fromIdLike != null and fromIdLike != '' ">
+				and E.FROMID_ like #{fromIdLike}
+            </if>
+
+			<if test="fromIds != null and fromIds.size() &gt; 0">
+			    and E.FROMID_ IN
+                <foreach item="x_fromId" index="index" collection="fromIds" 
+                     open="(" separator="," close=")">
+                  #{x_fromId}
+                </foreach>
+			</if>
+	        
+			<if test="fromName != null and fromName != '' ">
+				and E.FROMNAME_ = #{fromName}
+            </if>
+
+			<if test="fromNameLike != null and fromNameLike != '' ">
+				and E.FROMNAME_ like #{fromNameLike}
+            </if>
+
+			<if test="fromNames != null and fromNames.size() &gt; 0">
+			    and E.FROMNAME_ IN
+                <foreach item="x_fromName" index="index" collection="fromNames" 
+                     open="(" separator="," close=")">
+                  #{x_fromName}
+                </foreach>
+			</if>
+	        
+			<if test="fromActorId != null and fromActorId != '' ">
+				and E.FROMACTORID_ = #{fromActorId}
+            </if>
+
+			<if test="fromActorIdLike != null and fromActorIdLike != '' ">
+				and E.FROMACTORID_ like #{fromActorIdLike}
+            </if>
+
+			<if test="fromActorIds != null and fromActorIds.size() &gt; 0">
+			    and E.FROMACTORID_ IN
+                <foreach item="x_fromActorId" index="index" collection="fromActorIds" 
+                     open="(" separator="," close=")">
+                  #{x_fromActorId}
+                </foreach>
+			</if>
+	        
+			<if test="variables != null and variables != '' ">
+				and E.VARIABLES_ = #{variables}
+            </if>
+
+			<if test="variablesLike != null and variablesLike != '' ">
+				and E.VARIABLES_ like #{variablesLike}
+            </if>
+
+			<if test="variabless != null and variabless.size() &gt; 0">
+			    and E.VARIABLES_ IN
+                <foreach item="x_variables" index="index" collection="variabless" 
+                     open="(" separator="," close=")">
+                  #{x_variables}
+                </foreach>
+			</if>
+	        
+			<if test="subType != null and subType != '' ">
+				and E.SUBTYPE_ = #{subType}
+            </if>
+
+			<if test="subTypeLike != null and subTypeLike != '' ">
+				and E.SUBTYPE_ like #{subTypeLike}
+            </if>
+
+			<if test="subTypes != null and subTypes.size() &gt; 0">
+			    and E.SUBTYPE_ IN
+                <foreach item="x_subType" index="index" collection="subTypes" 
+                     open="(" separator="," close=")">
+                  #{x_subType}
+                </foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

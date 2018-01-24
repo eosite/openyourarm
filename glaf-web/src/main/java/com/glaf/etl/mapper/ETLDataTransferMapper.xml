@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.ETLDataTransferMapper">
+
+ 	<resultMap id="eTLDataTransferResultMap"	type="com.glaf.etl.domain.ETLDataTransfer">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="dataSrcId" column="DATASRCID_" jdbcType="VARCHAR"/>
+        <result property="targetId" column="TARGET_ID_" jdbcType="VARCHAR"/>
+        <result property="transName" column="TRANSNAME_" jdbcType="VARCHAR"/>
+        <result property="groupColumns" column="GROUPCOLUMNS_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="transferColumns" column="TRANSFERCOLUMNS_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="valueColumns" column="VALUECOLUMNS_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="columnsMapping" column="COLUMN_MAPPING_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="routRule" column="ROUTRULE_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+	</resultMap>
+
+ 
+	<insert id="insertETLDataTransfer" parameterType="com.glaf.etl.domain.ETLDataTransfer">
+		insert into ETL_DATATRANSFER 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="dataSrcId != null">
+				,DATASRCID_ 
+			</if>
+			<if test="targetId != null">
+				,TARGET_ID_ 
+			</if>
+			<if test="transName != null">
+				,TRANSNAME_ 
+			</if>
+			<if test="groupColumns != null">
+				,GROUPCOLUMNS_ 
+			</if>
+			<if test="transferColumns != null">
+				,TRANSFERCOLUMNS_ 
+			</if>
+			<if test="valueColumns != null">
+				,VALUECOLUMNS_ 
+			</if>
+			<if test="columnsMapping != null">
+				,COLUMN_MAPPING_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="routRule != null">
+				,ROUTRULE_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="dataSrcId != null">
+				,#{dataSrcId, jdbcType=VARCHAR}
+			</if>
+			<if test="targetId != null">
+				,#{targetId, jdbcType=VARCHAR}
+			</if>
+			<if test="transName != null">
+				,#{transName, jdbcType=VARCHAR}
+			</if>
+			<if test="groupColumns != null">
+				,#{groupColumns, jdbcType=VARBINARY}
+			</if>
+			<if test="transferColumns != null">
+				,#{transferColumns, jdbcType=VARBINARY}
+			</if>
+			<if test="valueColumns != null">
+				,#{valueColumns, jdbcType=VARBINARY}
+			</if>
+			<if test="columnsMapping != null">
+				,#{columnsMapping, jdbcType=VARBINARY}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="routRule != null">
+				,#{routRule, jdbcType=VARBINARY}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateETLDataTransfer" parameterType="com.glaf.etl.domain.ETLDataTransfer">
+		update ETL_DATATRANSFER
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="dataSrcId != null">
+				DATASRCID_ = #{dataSrcId, jdbcType=VARCHAR},
+			</if>
+			<if test="targetId != null">
+				TARGET_ID_ = #{targetId, jdbcType=VARCHAR},
+			</if>
+			<if test="transName != null">
+				TRANSNAME_ = #{transName, jdbcType=VARCHAR},
+			</if>
+			<if test="groupColumns != null">
+				GROUPCOLUMNS_ = #{groupColumns, jdbcType=VARBINARY},
+			</if>
+			<if test="transferColumns != null">
+				TRANSFERCOLUMNS_ = #{transferColumns, jdbcType=VARBINARY},
+			</if>
+			<if test="valueColumns != null">
+				VALUECOLUMNS_ = #{valueColumns, jdbcType=VARBINARY},
+			</if>
+			<if test="columnsMapping != null">
+				COLUMN_MAPPING_ = #{columnsMapping, jdbcType=VARBINARY},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="routRule != null">
+				ROUTRULE_ = #{routRule,  jdbcType=VARBINARY},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+    <update id="updateColumnMapping" parameterType="map">
+      update ETL_DATATRANSFER
+		set TARGET_ID_ = #{targetId, jdbcType=VARCHAR},COLUMN_MAPPING_ = #{columnMapping, jdbcType=VARBINARY},UPDATEBY_ = #{user, jdbcType=VARCHAR},
+		  UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP}
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+    </update>
+	<delete id="deleteETLDataTransferById" parameterType="string"> 
+        delete from ETL_DATATRANSFER
+        where ID_ =	#{id}
+	</delete>
+	
+
+	
+	<delete id="deleteETLDataTransfers" parameterType="com.glaf.etl.query.ETLDataTransferQuery">
+		delete from ETL_DATATRANSFER
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getETLDataTransferById" parameterType="string" resultMap="eTLDataTransferResultMap">
+		select * from ETL_DATATRANSFER where ID_ = #{id}
+	</select>
+
+
+	<select id="getETLDataTransfers" 
+	    parameterType="com.glaf.etl.query.ETLDataTransferQuery"
+		resultMap="eTLDataTransferResultMap">
+		select E.*
+		<include refid="selectETLDataTransfersSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getETLDataTransferCount" 
+	    parameterType="com.glaf.etl.query.ETLDataTransferQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectETLDataTransfersSql" />
+	</select>
+
+
+	<sql id="selectETLDataTransfersSql">
+
+		from ETL_DATATRANSFER E
+		
+		<where>
+		       1 = 1  
+			<if test="keywordsLike != null and keywordsLike != '' ">
+				and  E.TRANSNAME_ like #{keywordsLike}
+			</if>
+	        
+			<if test="dataSrcId != null and dataSrcId != '' ">
+				and E.DATASRCID_ = #{dataSrcId}
+            </if>
+
+			<if test="dataSrcIdLike != null and dataSrcIdLike != '' ">
+				and E.DATASRCID_ like #{dataSrcIdLike}
+            </if>
+
+			<if test="dataSrcIds != null and dataSrcIds.size() &gt; 0">
+			    and E.DATASRCID_ IN
+                <foreach item="x_dataSrcId" index="index" collection="dataSrcIds" 
+                     open="(" separator="," close=")">
+                  #{x_dataSrcId}
+                </foreach>
+			</if>
+	        
+			<if test="targetId != null and targetId != '' ">
+				and E.TARGET_ID_ = #{targetId}
+            </if>
+
+			<if test="targetIdLike != null and targetIdLike != '' ">
+				and E.TARGET_ID_ like #{targetIdLike}
+            </if>
+
+			<if test="targetIds != null and targetIds.size() &gt; 0">
+			    and E.TARGET_ID_ IN
+                <foreach item="x_targetId" index="index" collection="targetIds" 
+                     open="(" separator="," close=")">
+                  #{x_targetId}
+                </foreach>
+			</if>
+	        
+			<if test="transName != null and transName != '' ">
+				and E.TRANSNAME_ = #{transName}
+            </if>
+
+			<if test="transNameLike != null and transNameLike != '' ">
+				and E.TRANSNAME_ like #{transNameLike}
+            </if>
+
+			<if test="transNames != null and transNames.size() &gt; 0">
+			    and E.TRANSNAME_ IN
+                <foreach item="x_transName" index="index" collection="transNames" 
+                     open="(" separator="," close=")">
+                  #{x_transName}
+                </foreach>
+			</if>
+	        <!-- 
+			<if test="groupColumns != null and groupColumns != '' ">
+				and E.GROUPCOLUMNS_ = #{groupColumns}
+            </if>
+
+			<if test="groupColumnsLike != null and groupColumnsLike != '' ">
+				and E.GROUPCOLUMNS_ like #{groupColumnsLike}
+            </if>
+
+			<if test="groupColumnss != null and groupColumnss.size() &gt; 0">
+			    and E.GROUPCOLUMNS_ IN
+                <foreach item="x_groupColumns" index="index" collection="groupColumnss" 
+                     open="(" separator="," close=")">
+                  #{x_groupColumns}
+                </foreach>
+			</if>
+	        
+			<if test="transferColumns != null and transferColumns != '' ">
+				and E.TRANSFERCOLUMNS_ = #{transferColumns}
+            </if>
+
+			<if test="transferColumnsLike != null and transferColumnsLike != '' ">
+				and E.TRANSFERCOLUMNS_ like #{transferColumnsLike}
+            </if>
+
+			<if test="transferColumnss != null and transferColumnss.size() &gt; 0">
+			    and E.TRANSFERCOLUMNS_ IN
+                <foreach item="x_transferColumns" index="index" collection="transferColumnss" 
+                     open="(" separator="," close=")">
+                  #{x_transferColumns}
+                </foreach>
+			</if>
+	        
+			<if test="valueColumns != null and valueColumns != '' ">
+				and E.VALUECOLUMNS_ = #{valueColumns}
+            </if>
+
+			<if test="valueColumnsLike != null and valueColumnsLike != '' ">
+				and E.VALUECOLUMNS_ like #{valueColumnsLike}
+            </if>
+
+			<if test="valueColumnss != null and valueColumnss.size() &gt; 0">
+			    and E.VALUECOLUMNS_ IN
+                <foreach item="x_valueColumns" index="index" collection="valueColumnss" 
+                     open="(" separator="," close=")">
+                  #{x_valueColumns}
+                </foreach>
+			</if>
+	        
+			<if test="columnsMapping != null and columnsMapping != '' ">
+				and E.COLUMN_MAPPING_ = #{columnsMapping}
+            </if>
+
+			<if test="columnsMappingLike != null and columnsMappingLike != '' ">
+				and E.COLUMN_MAPPING_ like #{columnsMappingLike}
+            </if>
+
+			<if test="columnsMappings != null and columnsMappings.size() &gt; 0">
+			    and E.COLUMN_MAPPING_ IN
+                <foreach item="x_columnsMapping" index="index" collection="columnsMappings" 
+                     open="(" separator="," close=")">
+                  #{x_columnsMapping}
+                </foreach>
+			</if>
+	         -->
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

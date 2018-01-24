@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.report.mapper.DepReportCellPosMapper">
+
+ 	<resultMap id="depReportCellPosResultMap"	type="com.glaf.dep.report.domain.DepReportCellPos">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="cellId" column="CELL_ID_" jdbcType="BIGINT"/>
+        <result property="rowIndex" column="ROW_INDEX_" jdbcType="INTEGER"/>
+        <result property="colIndex" column="COL_INDEX_" jdbcType="INTEGER"/>
+        <result property="varFalg" column="VARFALG_" jdbcType="VARCHAR"/>
+        <result property="direction" column="DIRECTION_" jdbcType="VARCHAR"/>
+        <result property="endRowIndex" column="END_ROW_INDEX_" jdbcType="INTEGER"/>
+        <result property="endColIndex" column="END_COL_INDEX_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepReportCellPos" parameterType="com.glaf.dep.report.domain.DepReportCellPos">
+		insert into DEP_REPORT_CELL_POS 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="cellId != null">
+				,CELL_ID_ 
+			</if>
+			<if test="rowIndex != null">
+				,ROW_INDEX_ 
+			</if>
+			<if test="colIndex != null">
+				,COL_INDEX_ 
+			</if>
+			<if test="varFalg != null">
+				,VARFALG_ 
+			</if>
+			<if test="direction != null">
+				,DIRECTION_ 
+			</if>
+			<if test="endRowIndex != null">
+				,END_ROW_INDEX_ 
+			</if>
+			<if test="endColIndex != null">
+				,END_COL_INDEX_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="cellId != null">
+				,#{cellId, jdbcType=BIGINT}
+			</if>
+			<if test="rowIndex != null">
+				,#{rowIndex, jdbcType=INTEGER}
+			</if>
+			<if test="colIndex != null">
+				,#{colIndex, jdbcType=INTEGER}
+			</if>
+			<if test="varFalg != null">
+				,#{varFalg, jdbcType=VARCHAR}
+			</if>
+			<if test="direction != null">
+				,#{direction, jdbcType=VARCHAR}
+			</if>
+			<if test="endRowIndex != null">
+				,#{endRowIndex, jdbcType=INTEGER}
+			</if>
+			<if test="endColIndex != null">
+				,#{endColIndex, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepReportCellPos" parameterType="com.glaf.dep.report.domain.DepReportCellPos">
+		update DEP_REPORT_CELL_POS
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="cellId != null">
+				CELL_ID_ = #{cellId, jdbcType=BIGINT},
+			</if>
+			<if test="rowIndex != null">
+				ROW_INDEX_ = #{rowIndex, jdbcType=INTEGER},
+			</if>
+			<if test="colIndex != null">
+				COL_INDEX_ = #{colIndex, jdbcType=INTEGER},
+			</if>
+			<if test="varFalg != null">
+				VARFALG_ = #{varFalg, jdbcType=VARCHAR},
+			</if>
+			<if test="direction != null">
+				DIRECTION_ = #{direction, jdbcType=VARCHAR},
+			</if>
+			<if test="endRowIndex != null">
+				END_ROW_INDEX_ = #{endRowIndex, jdbcType=INTEGER},
+			</if>
+			<if test="endColIndex != null">
+				END_COL_INDEX_ = #{endColIndex, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepReportCellPosById" parameterType="long"> 
+        delete from DEP_REPORT_CELL_POS
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepReportCellPoss" parameterType="com.glaf.dep.report.query.DepReportCellPosQuery">
+		delete from DEP_REPORT_CELL_POS
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepReportCellPosById" parameterType="long" resultMap="depReportCellPosResultMap">
+		select * from DEP_REPORT_CELL_POS where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepReportCellPoss" 
+	    parameterType="com.glaf.dep.report.query.DepReportCellPosQuery"
+		resultMap="depReportCellPosResultMap">
+		select distinct E.*
+		<include refid="selectDepReportCellPossSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepReportCellPosCount" 
+	    parameterType="com.glaf.dep.report.query.DepReportCellPosQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepReportCellPossSql" />
+	</select>
+
+
+	<sql id="selectDepReportCellPossSql">
+
+		from DEP_REPORT_CELL_POS E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="cellId != null">
+				and E.CELL_ID_ = #{cellId}
+            </if>
+
+			<if test="cellIdGreaterThanOrEqual != null">
+				and E.CELL_ID_ &gt;= #{cellIdGreaterThanOrEqual}
+            </if>
+
+			<if test="cellIdLessThanOrEqual != null">
+				and E.CELL_ID_ &lt;= #{cellIdLessThanOrEqual}
+            </if>
+
+			<if test="cellIds != null and cellIds.size() &gt; 0">
+			    and E.CELL_ID_ IN
+                <foreach item="x_cellId" index="index" collection="cellIds" 
+                     open="(" separator="," close=")">
+                  #{x_cellId}
+                </foreach>
+			</if>
+      
+
+			<if test="rowIndex != null">
+				and E.ROW_INDEX_ = #{rowIndex}
+            </if>
+
+			<if test="rowIndexGreaterThanOrEqual != null">
+				and E.ROW_INDEX_ &gt;= #{rowIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="rowIndexLessThanOrEqual != null">
+				and E.ROW_INDEX_ &lt;= #{rowIndexLessThanOrEqual}
+            </if>
+
+			<if test="rowIndexs != null and rowIndexs.size() &gt; 0">
+			    and E.ROW_INDEX_ IN
+                <foreach item="x_rowIndex" index="index" collection="rowIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_rowIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="colIndex != null">
+				and E.COL_INDEX_ = #{colIndex}
+            </if>
+
+			<if test="colIndexGreaterThanOrEqual != null">
+				and E.COL_INDEX_ &gt;= #{colIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="colIndexLessThanOrEqual != null">
+				and E.COL_INDEX_ &lt;= #{colIndexLessThanOrEqual}
+            </if>
+
+			<if test="colIndexs != null and colIndexs.size() &gt; 0">
+			    and E.COL_INDEX_ IN
+                <foreach item="x_colIndex" index="index" collection="colIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_colIndex}
+                </foreach>
+			</if>
+      
+	        
+			<if test="varFalg != null and varFalg != '' ">
+				and E.VARFALG_ = #{varFalg}
+            </if>
+
+			<if test="varFalgLike != null and varFalgLike != '' ">
+				and E.VARFALG_ like #{varFalgLike}
+            </if>
+
+			<if test="varFalgs != null and varFalgs.size() &gt; 0">
+			    and E.VARFALG_ IN
+                <foreach item="x_varFalg" index="index" collection="varFalgs" 
+                     open="(" separator="," close=")">
+                  #{x_varFalg}
+                </foreach>
+			</if>
+	        
+			<if test="direction != null and direction != '' ">
+				and E.DIRECTION_ = #{direction}
+            </if>
+
+			<if test="directionLike != null and directionLike != '' ">
+				and E.DIRECTION_ like #{directionLike}
+            </if>
+
+			<if test="directions != null and directions.size() &gt; 0">
+			    and E.DIRECTION_ IN
+                <foreach item="x_direction" index="index" collection="directions" 
+                     open="(" separator="," close=")">
+                  #{x_direction}
+                </foreach>
+			</if>
+
+			<if test="endRowIndex != null">
+				and E.END_ROW_INDEX_ = #{endRowIndex}
+            </if>
+
+			<if test="endRowIndexGreaterThanOrEqual != null">
+				and E.END_ROW_INDEX_ &gt;= #{endRowIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="endRowIndexLessThanOrEqual != null">
+				and E.END_ROW_INDEX_ &lt;= #{endRowIndexLessThanOrEqual}
+            </if>
+
+			<if test="endRowIndexs != null and endRowIndexs.size() &gt; 0">
+			    and E.END_ROW_INDEX_ IN
+                <foreach item="x_endRowIndex" index="index" collection="endRowIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_endRowIndex}
+                </foreach>
+			</if>
+      
+
+			<if test="endColIndex != null">
+				and E.END_COL_INDEX_ = #{endColIndex}
+            </if>
+
+			<if test="endColIndexGreaterThanOrEqual != null">
+				and E.END_COL_INDEX_ &gt;= #{endColIndexGreaterThanOrEqual}
+            </if>
+
+			<if test="endColIndexLessThanOrEqual != null">
+				and E.END_COL_INDEX_ &lt;= #{endColIndexLessThanOrEqual}
+            </if>
+
+			<if test="endColIndexs != null and endColIndexs.size() &gt; 0">
+			    and E.END_COL_INDEX_ IN
+                <foreach item="x_endColIndex" index="index" collection="endColIndexs" 
+                     open="(" separator="," close=")">
+                  #{x_endColIndex}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

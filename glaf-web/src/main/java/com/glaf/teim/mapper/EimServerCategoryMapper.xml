@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.teim.mapper.EimServerCategoryMapper">
+
+ 	<resultMap id="eimServerCategoryResultMap"	type="com.glaf.teim.domain.EimServerCategory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREE_ID_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENT_ID_" jdbcType="BIGINT"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertEimServerCategory" parameterType="com.glaf.teim.domain.EimServerCategory">
+		insert into EIM_SERVER_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="treeId != null">
+				,TREE_ID_ 
+			</if>
+			<if test="parentId != null">
+				,PARENT_ID_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEimServerCategory" parameterType="com.glaf.teim.domain.EimServerCategory">
+		update EIM_SERVER_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREE_ID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENT_ID_ = #{parentId, jdbcType=BIGINT},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+    <update id="rename" parameterType="map">
+		update EIM_SERVER_CATEGORY set NAME_=#{name, jdbcType=VARCHAR},UPDATEBY_ = #{modifier, jdbcType=VARCHAR},UPDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP} where ID_= #{categoryId, jdbcType=BIGINT}
+	</update>
+	
+	<update id="move" parameterType="map">
+		update EIM_SERVER_CATEGORY set PARENT_ID_=#{pId, jdbcType=BIGINT},TREE_ID_=#{treeId, jdbcType=VARCHAR},UPDATEBY_ = #{modifier, jdbcType=VARCHAR},UPDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP} where ID_= #{categoryId, jdbcType=BIGINT}
+	</update>
+	
+	<delete id="deleteEimServerCategoryById" parameterType="long"> 
+        delete from EIM_SERVER_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEimServerCategorys" parameterType="com.glaf.teim.query.EimServerCategoryQuery">
+		delete from EIM_SERVER_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEimServerCategoryById" parameterType="long" resultMap="eimServerCategoryResultMap">
+		select * from EIM_SERVER_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getEimServerCategorys" 
+	    parameterType="com.glaf.teim.query.EimServerCategoryQuery"
+		resultMap="eimServerCategoryResultMap">
+		select distinct E.*
+		<include refid="selectEimServerCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEimServerCategoryCount" 
+	    parameterType="com.glaf.teim.query.EimServerCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEimServerCategorysSql" />
+	</select>
+
+
+	<sql id="selectEimServerCategorysSql">
+
+		from EIM_SERVER_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREE_ID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREE_ID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREE_ID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENT_ID_ = #{parentId}
+            </if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENT_ID_ &gt;= #{parentIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENT_ID_ &lt;= #{parentIdLessThanOrEqual}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENT_ID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

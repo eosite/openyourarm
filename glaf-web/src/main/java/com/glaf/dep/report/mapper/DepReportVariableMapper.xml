@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.report.mapper.DepReportVariableMapper">
+
+ 	<resultMap id="depReportVariableResultMap"	type="com.glaf.dep.report.domain.DepReportVariable">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="repTemplateId" column="REPTEMPLATE_ID_" jdbcType="BIGINT"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="dtype" column="DTYPE_" jdbcType="VARCHAR"/>
+        <result property="defaultVal" column="DEFAULTVAL_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDateTime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertDepReportVariable" parameterType="com.glaf.dep.report.domain.DepReportVariable">
+		insert into DEP_REPORT_VARIABLE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="repTemplateId != null">
+				,REPTEMPLATE_ID_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="dtype != null">
+				,DTYPE_ 
+			</if>
+			<if test="defaultVal != null">
+				,DEFAULTVAL_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDateTime != null">
+				,MODIFYDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="repTemplateId != null">
+				,#{repTemplateId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="dtype != null">
+				,#{dtype, jdbcType=VARCHAR}
+			</if>
+			<if test="defaultVal != null">
+				,#{defaultVal, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDateTime != null">
+				,#{modifyDateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepReportVariable" parameterType="com.glaf.dep.report.domain.DepReportVariable">
+		update DEP_REPORT_VARIABLE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="repTemplateId != null">
+				REPTEMPLATE_ID_ = #{repTemplateId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="dtype != null">
+				DTYPE_ = #{dtype, jdbcType=VARCHAR},
+			</if>
+			<if test="defaultVal != null">
+				DEFAULTVAL_ = #{defaultVal, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDateTime != null">
+				MODIFYDATETIME_ = #{modifyDateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteDepReportVariableById" parameterType="long"> 
+        delete from DEP_REPORT_VARIABLE
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepReportVariables" parameterType="com.glaf.dep.report.query.DepReportVariableQuery">
+		delete from DEP_REPORT_VARIABLE
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepReportVariableById" parameterType="long" resultMap="depReportVariableResultMap">
+		select * from DEP_REPORT_VARIABLE where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepReportVariables" 
+	    parameterType="com.glaf.dep.report.query.DepReportVariableQuery"
+		resultMap="depReportVariableResultMap">
+		select distinct E.*
+		<include refid="selectDepReportVariablesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepReportVariableCount" 
+	    parameterType="com.glaf.dep.report.query.DepReportVariableQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepReportVariablesSql" />
+	</select>
+
+
+	<sql id="selectDepReportVariablesSql">
+
+		from DEP_REPORT_VARIABLE E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="repTemplateId != null">
+				and E.REPTEMPLATE_ID_ = #{repTemplateId}
+            </if>
+
+			<if test="repTemplateIdGreaterThanOrEqual != null">
+				and E.REPTEMPLATE_ID_ &gt;= #{repTemplateIdGreaterThanOrEqual}
+            </if>
+
+			<if test="repTemplateIdLessThanOrEqual != null">
+				and E.REPTEMPLATE_ID_ &lt;= #{repTemplateIdLessThanOrEqual}
+            </if>
+
+			<if test="repTemplateIds != null and repTemplateIds.size() &gt; 0">
+			    and E.REPTEMPLATE_ID_ IN
+                <foreach item="x_repTemplateId" index="index" collection="repTemplateIds" 
+                     open="(" separator="," close=")">
+                  #{x_repTemplateId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="dtype != null and dtype != '' ">
+				and E.DTYPE_ = #{dtype}
+            </if>
+
+			<if test="dtypeLike != null and dtypeLike != '' ">
+				and E.DTYPE_ like #{dtypeLike}
+            </if>
+
+			<if test="dtypes != null and dtypes.size() &gt; 0">
+			    and E.DTYPE_ IN
+                <foreach item="x_dtype" index="index" collection="dtypes" 
+                     open="(" separator="," close=")">
+                  #{x_dtype}
+                </foreach>
+			</if>
+	        
+			<if test="defaultVal != null and defaultVal != '' ">
+				and E.DEFAULTVAL_ = #{defaultVal}
+            </if>
+
+			<if test="defaultValLike != null and defaultValLike != '' ">
+				and E.DEFAULTVAL_ like #{defaultValLike}
+            </if>
+
+			<if test="defaultVals != null and defaultVals.size() &gt; 0">
+			    and E.DEFAULTVAL_ IN
+                <foreach item="x_defaultVal" index="index" collection="defaultVals" 
+                     open="(" separator="," close=")">
+                  #{x_defaultVal}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDateTimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDateTimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.ReportTmpColMapper">
+
+	<resultMap id="reportTmpColResultMap" type="com.glaf.report.core.domain.ReportTmpCol">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="dataSetId" column="DATASET_ID_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="dtype" column="DTYPE_" jdbcType="VARCHAR" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="selectTmpColByDataSetId" resultMap="reportTmpColResultMap">
+		SELECT * FROM
+		REPORT_TMP_COL WHERE DATASET_ID_ =
+		#{id}
+	</select>
+
+
+	<insert id="insertReportTmpCol" parameterType="com.glaf.report.core.domain.ReportTmpCol">
+		insert into REPORT_TMP_COL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="dataSetId != null">
+				,DATASET_ID_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="dtype != null">
+				,DTYPE_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="dataSetId != null">
+				,#{dataSetId, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="dtype != null">
+				,#{dtype, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateReportTmpCol" parameterType="com.glaf.report.core.domain.ReportTmpCol">
+		update REPORT_TMP_COL
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="dataSetId != null">
+				DATASET_ID_ = #{dataSetId, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="dtype != null">
+				DTYPE_ = #{dtype, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteReportTmpColById" parameterType="string">
+		delete from
+		REPORT_TMP_COL
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteReportTmpCols" parameterType="com.glaf.report.core.query.ReportTmpColQuery">
+		delete from REPORT_TMP_COL
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getReportTmpColById" parameterType="string"
+		resultMap="reportTmpColResultMap">
+		select * from REPORT_TMP_COL where ID_ = #{id}
+	</select>
+
+
+	<select id="getReportTmpCols" parameterType="com.glaf.report.core.query.ReportTmpColQuery"
+		resultMap="reportTmpColResultMap">
+		select distinct E.*
+		<include refid="selectReportTmpColsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getReportTmpColCount" parameterType="com.glaf.report.core.query.ReportTmpColQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportTmpColsSql" />
+	</select>
+
+
+	<sql id="selectReportTmpColsSql">
+
+		from REPORT_TMP_COL E
+
+		<where>
+			1 = 1
+
+
+			<if test="dataSetId != null and dataSetId != '' ">
+				and E.DATASET_ID_ = #{dataSetId}
+			</if>
+
+			<if test="dataSetIdLike != null and dataSetIdLike != '' ">
+				and E.DATASET_ID_ like #{dataSetIdLike}
+			</if>
+
+			<if test="dataSetIds != null and dataSetIds.size() &gt; 0">
+				and E.DATASET_ID_ IN
+				<foreach item="x_dataSetId" index="index" collection="dataSetIds"
+					open="(" separator="," close=")">
+					#{x_dataSetId}
+				</foreach>
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+				and E.CODE_ IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="title != null and title != '' ">
+				and E.TITLE_ = #{title}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="titles != null and titles.size() &gt; 0">
+				and E.TITLE_ IN
+				<foreach item="x_title" index="index" collection="titles"
+					open="(" separator="," close=")">
+					#{x_title}
+				</foreach>
+			</if>
+
+			<if test="dtype != null and dtype != '' ">
+				and E.DTYPE_ = #{dtype}
+			</if>
+
+			<if test="dtypeLike != null and dtypeLike != '' ">
+				and E.DTYPE_ like #{dtypeLike}
+			</if>
+
+			<if test="dtypes != null and dtypes.size() &gt; 0">
+				and E.DTYPE_ IN
+				<foreach item="x_dtype" index="index" collection="dtypes"
+					open="(" separator="," close=")">
+					#{x_dtype}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

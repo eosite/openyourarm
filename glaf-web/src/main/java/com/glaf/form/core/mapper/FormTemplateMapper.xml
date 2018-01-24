@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormTemplateMapper">
+
+	<resultMap id="formTemplateResultMap" type="com.glaf.form.core.domain.FormTemplate">
+		<id property="id" column="ID_" jdbcType="INTEGER" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="template" column="TEMPLATE_" jdbcType="VARCHAR" />
+		<result property="image" column="IMAGE_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="image_exists" column="IMAGE_EXISTS" jdbcType="BIGINT" />
+	</resultMap>
+
+
+	<insert id="insertFormTemplate" parameterType="com.glaf.form.core.domain.FormTemplate">
+		insert into FORM_TEMPLATE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="componentId != null">
+				,COMPONENTID_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="template != null">
+				,TEMPLATE_
+			</if>
+			<if test="image != null">
+				,IMAGE_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=INTEGER}
+
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="componentId != null">
+				,#{componentId, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="template != null">
+				,#{template, jdbcType=VARCHAR}
+			</if>
+			<if test="image != null">
+				,#{image, jdbcType=VARBINARY}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormTemplate" parameterType="com.glaf.form.core.domain.FormTemplate">
+		update FORM_TEMPLATE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="componentId != null">
+				COMPONENTID_ = #{componentId, jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="template != null">
+				TEMPLATE_ = #{template, jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				IMAGE_ = #{image, jdbcType=VARBINARY},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=INTEGER}
+
+	</update>
+
+
+	<delete id="deleteFormTemplateById" parameterType="integer">
+		delete from
+		FORM_TEMPLATE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormTemplates" parameterType="com.glaf.form.core.query.FormTemplateQuery">
+		delete from FORM_TEMPLATE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormTemplateById" parameterType="integer"
+		resultMap="formTemplateResultMap">
+		select E.ID_,E.NAME_,E.COMPONENTID_,E.CREATEBY_,E.CREATEDATE_,E.TYPE_,E.TEMPLATE_,E.DELETEFLAG_,DATALENGTH(IMAGE_) image_exists from FORM_TEMPLATE E where E.ID_ = #{id}
+	</select>
+
+	<select id="getFormTemplateById_oracle" parameterType="integer"
+		resultMap="formTemplateResultMap">
+		select E.ID_,E.NAME_,E.COMPONENTID_,E.CREATEBY_,E.CREATEDATE_,E.TYPE_,E.TEMPLATE_,E.DELETEFLAG_,LENGTH(IMAGE_) image_exists from FORM_TEMPLATE E where E.ID_ = #{id}
+	</select>
+
+	<select id="getFormTemplates" parameterType="com.glaf.form.core.query.FormTemplateQuery"
+		resultMap="formTemplateResultMap">
+		select E.ID_,E.NAME_,E.COMPONENTID_,E.CREATEBY_,E.CREATEDATE_,E.TYPE_,E.TEMPLATE_,E.DELETEFLAG_,DATALENGTH(IMAGE_) image_exists 
+		<include refid="selectFormTemplatesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getFormTemplates_oracle" parameterType="com.glaf.form.core.query.FormTemplateQuery"
+		resultMap="formTemplateResultMap">
+		select E.ID_,E.NAME_,E.COMPONENTID_,E.CREATEBY_,E.CREATEDATE_,E.TYPE_,E.TEMPLATE_,E.DELETEFLAG_,LENGTH(IMAGE_) image_exists 
+		<include refid="selectFormTemplatesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormTemplateCount" parameterType="com.glaf.form.core.query.FormTemplateQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormTemplatesSql" />
+	</select>
+
+
+	<sql id="selectFormTemplatesSql">
+
+		from FORM_TEMPLATE E
+
+		<where>
+			1 = 1
+
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="componentId != null">
+				and E.COMPONENTID_ = #{componentId}
+			</if>
+
+			<if test="componentIds != null and componentIds.size() &gt; 0">
+				and E.COMPONENTID_ IN
+				<foreach item="x_componentId" index="index" collection="componentIds"
+					open="(" separator="," close=")">
+					#{x_componentId}
+				</foreach>
+			</if>
+
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="typeLike != null and typeLike != '' ">
+				and E.TYPE_ like #{typeLike}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+				and E.TYPE_ IN
+				<foreach item="x_type" index="index" collection="types"
+					open="(" separator="," close=")">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="template != null and template != '' ">
+				and E.TEMPLATE_ = #{template}
+			</if>
+
+			<if test="templateLike != null and templateLike != '' ">
+				and E.TEMPLATE_ like #{templateLike}
+			</if>
+
+			<if test="templates != null and templates.size() &gt; 0">
+				and E.TEMPLATE_ IN
+				<foreach item="x_template" index="index" collection="templates"
+					open="(" separator="," close=")">
+					#{x_template}
+				</foreach>
+			</if>
+			
+			<if test="image != null and image != '' ">
+				and E.IMAGE_ = #{image}
+			</if>
+
+			<if test="imageLike != null and imageLike != '' ">
+				and E.IMAGE_ like #{imageLike}
+			</if>
+
+			<if test="images != null and images.size() &gt; 0">
+				and E.IMAGE_ IN
+				<foreach item="x_image" index="index" collection="images"
+					open="(" separator="," close=")">
+					#{x_image}
+				</foreach>
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+	
+	<select id="getTemplateImage" parameterType="map" resultMap="formTemplateResultMap">
+		select IMAGE_ from FORM_TEMPLATE where ID_=#{id}
+	</select>
+
+</mapper>

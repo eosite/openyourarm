@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.PageUrlConversionMapper">
+
+	<resultMap id="pageUrlConversionResultMap" type="com.glaf.form.core.domain.PageUrlConversion">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="srcUrl" column="SRCURL_" jdbcType="VARCHAR" />
+		<result property="destUrl" column="DESTURL_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertPageUrlConversion" parameterType="com.glaf.form.core.domain.PageUrlConversion">
+		insert into PAGE_URL_CONVERSION
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="srcUrl != null">
+				,SRCURL_
+			</if>
+			<if test="destUrl != null">
+				,DESTURL_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="srcUrl != null">
+				,#{srcUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="destUrl != null">
+				,#{destUrl, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="bulkInsertPageUrlConversion" parameterType="java.util.List">
+		insert into PAGE_URL_CONVERSION (
+		ID_
+		,SRCURL_
+		,DESTURL_
+		,LOCKED_
+		) values
+		<foreach collection="list" item="pageUrlConversion" index="index"
+			separator=",">
+			(
+			#{pageUrlConversion.id, jdbcType=VARCHAR}
+			,#{pageUrlConversion.srcUrl, jdbcType=VARCHAR}
+			,#{pageUrlConversion.destUrl, jdbcType=VARCHAR}
+			,#{pageUrlConversion.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="bulkInsertPageUrlConversion_oracle" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="pageUrlConversion" index="index">
+			insert into PAGE_URL_CONVERSION (
+			ID_
+			,SRCURL_
+			,DESTURL_
+			,LOCKED_
+			) values
+			(
+			#{pageUrlConversion.id, jdbcType=VARCHAR}
+			,#{pageUrlConversion.srcUrl, jdbcType=VARCHAR}
+			,#{pageUrlConversion.destUrl, jdbcType=VARCHAR}
+			,#{pageUrlConversion.locked, jdbcType=INTEGER}
+			)
+		</foreach>
+		SELECT * FROM dual
+	</insert>
+
+
+	<update id="updatePageUrlConversion" parameterType="com.glaf.form.core.domain.PageUrlConversion">
+		update PAGE_URL_CONVERSION
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="srcUrl != null">
+				SRCURL_ = #{srcUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="destUrl != null">
+				DESTURL_ = #{destUrl, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deletePageUrlConversionById" parameterType="string">
+		delete
+		from PAGE_URL_CONVERSION
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deletePageUrlConversions" parameterType="com.glaf.form.core.query.PageUrlConversionQuery">
+		delete from PAGE_URL_CONVERSION
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getPageUrlConversionById" parameterType="string"
+		resultMap="pageUrlConversionResultMap">
+		select * from PAGE_URL_CONVERSION where ID_ = #{id}
+	</select>
+
+
+	<select id="getPageUrlConversions" parameterType="com.glaf.form.core.query.PageUrlConversionQuery"
+		resultMap="pageUrlConversionResultMap">
+		select distinct E.*
+		<include refid="selectPageUrlConversionsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getPageUrlConversionCount" parameterType="com.glaf.form.core.query.PageUrlConversionQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectPageUrlConversionsSql" />
+	</select>
+
+
+	<sql id="selectPageUrlConversionsSql">
+
+		from PAGE_URL_CONVERSION E
+
+		<where>
+			1 = 1
+
+			<if test="srcUrlLike != null and srcUrlLike != '' ">
+				and E.SRCURL_ like #{srcUrlLike}
+			</if>
+
+			<if test="destUrlLike != null and destUrlLike != '' ">
+				and E.DESTURL_ like #{destUrlLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.pageworkflow.core.mapper.PageComponentMapper">
+
+ 	<resultMap id="pageComponentMapper"	type="com.glaf.pageworkflow.core.domain.PageComponent">
+        <id property="compId" column="compId" jdbcType="BIGINT" />
+        <result property="compName" column="compName" jdbcType="VARCHAR"/>
+        <result property="compType" column="compType" jdbcType="VARCHAR"/>
+        <result property="compkdType" column="compkdType" jdbcType="VARCHAR"/>
+        <result property="pageCompName" column="pageCompName" jdbcType="VARCHAR"/>
+        <result property="pageCompRuleId" column="pageCompRuleId" jdbcType="VARCHAR"/>
+        <result property="pageCompId" column="pageCompId" jdbcType="VARCHAR"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="componentPropertyResultMap"
+		type="com.glaf.pageworkflow.core.domain.ComponentProperty">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="dataType" column="DATATYPE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="kendoComponent" column="KENDOCOMPONENT_"
+			jdbcType="VARCHAR" />
+		<result property="kendoMapping" column="KENDOMAPPING_"
+			jdbcType="VARCHAR" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="enumValue" column="ENUMVALUE_" jdbcType="VARCHAR" />
+		<result property="editor" column="EDITOR_" jdbcType="VARCHAR" />
+		<result property="validator" column="VALIDATOR_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENTID_" jdbcType="INTEGER" />
+		<result property="listNo" column="LISTNO_" jdbcType="INTEGER" />
+		<result property="pValue" column="PVALUE_" jdbcType="VARCHAR" />
+		<result property="defValue" column="DEFVALUE_" jdbcType="VARCHAR" />
+		<result property="level" column="LEVEL_" jdbcType="VARCHAR" />
+		<result property="isSort" column="ISSORT_" jdbcType="INTEGER" />
+		<result property="compType" column="COMPTYPE_" jdbcType="VARCHAR" />
+	</resultMap>
+    <!-- 获取页面包含控件 -->
+	<select id="getPageComponentsByPageId" 
+	    parameterType="string"
+		resultMap="pageComponentMapper">
+		SELECT c.ID_ as compId,c.NAME_ as compName,c.TYPE_ as compType,c.KENDOCOMPONENT_ as compkdType,a.VALUE_ as pageCompName,d.ID_ as pageCompRuleId,d.NAME_ as pageCompId,c.MEDIUMIMAGEPATH_ as icon FROM FORM_RULE_PROPERTY a,FORM_COMPONENT_PROPERTY b,FORM_COMPONENT c,FORM_RULE d WHERE a.NAME_=b.ID_ 
+        AND b.COMPONENTID_=c.ID_ AND a.RULEID_=d.ID_ AND b.COMPONENTID_=d.COMPONENTID_   AND b.DELETEFLAG_&lt;&gt;1 and b.LOCKED_&lt;&gt;1
+        and b.NAME_='html'and d.PAGEID_=#{pageId, jdbcType=VARCHAR} order BY c.PARENTID_ ASC,c.TYPE_,c.KENDOCOMPONENT_,d.NAME_ ASC
+	</select>
+	<select id="getComponentEventPropertiesByPageId" parameterType="string"
+		resultMap="componentPropertyResultMap">
+		 select a.*,b.TYPE_ as COMPTYPE_ FROM FORM_COMPONENT_PROPERTY a, FORM_COMPONENT b WHERE a.COMPONENTID_=b.ID_ and a.TYPE_='Events' AND ISSORT_=0  AND a.KENDOCOMPONENT_ in (SELECT c.KENDOCOMPONENT_  FROM FORM_RULE_PROPERTY a,FORM_COMPONENT_PROPERTY b,FORM_COMPONENT c,FORM_RULE d WHERE a.NAME_= convert(varchar(20),b.ID_)   
+        AND b.COMPONENTID_=c.ID_ AND a.RULEID_=d.ID_ AND b.COMPONENTID_=d.COMPONENTID_ AND b.DELETEFLAG_&lt;&gt;1 AND b.LOCKED_&lt;&gt;1
+        and b.NAME_='html'and d.PAGEID_=#{pageId, jdbcType=VARCHAR} )
+	</select>
+</mapper>

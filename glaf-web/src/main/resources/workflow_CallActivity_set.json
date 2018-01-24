@@ -1,0 +1,122 @@
+{
+	"id":"callActivity",
+	"title": "",
+	"description":"关联子流程",
+	"propertyPackages":
+	[{
+		"id":"baseprop",
+		"title": "基本属性",
+		"description":"",
+		"expland":"true",
+		"properties":
+		[
+			{
+			    "id": "id", 
+			    "title": "编号",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if id?exists>${id[0]}</#if>",
+			    "defaultVal":"subprocess_${.now?string('yyyyMMddHHmmss')}",
+			    "inputMode": "input",
+			    "readonly":"true",
+			    "require":"true"
+			},
+			{
+			    "id": "calledProcess", 
+			    "title": "子流程",
+			    "type": "string",
+			    "value": {"calledProcessKey":"<#if calledProcessKey?exists>${calledProcessKey[0]}</#if>"},
+			    "inputMode": "template",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"calledProcessKey\" ondblclick=\"openProcessSelectDialog(this)\" style=\"width:200px;\" readonly value=\"<#if calledProcessKey?exists>${calledProcessKey[0]}</#if>\" />",
+			    "require":""
+			},{
+			    "id": "name", 
+			    "title": "名称",
+			    "type": "string",
+			    "maxlen":"50",
+			    "minlen":"5",
+			    "value": "<#if name?exists>${name[0]}</#if>",
+			    "inputMode": "input",
+			    "require":"true"
+			},
+			{
+			    "id": "description", 
+			    "title": "说明",
+			    "type": "string",
+			    "maxlen":"150",
+			    "minlen":"",
+			    "value": "<#if description?exists>${description[0]}</#if>",
+			    "inputMode": "input",
+			    "require":""
+			}
+		]
+	},{
+		"id":"inparamprop",
+		"title": "输入参数",
+		"description":"",
+		"expland":"false",
+		"head":"源表达式,目标",
+		"properties":
+		[
+		   <#if srcExpression?exists>
+		   <#list srcExpression as incode>
+			{
+			    "id": "inparam", 
+			    "title": "<input type=\"text\" class=\"textCls k-textbox\" name=\"srcExpression\" ondblclick=\"openSubProcessExpressionDialog(this)\" style=\"width:150px;\" readonly value=\"<#if srcExpression?exists>${srcExpression[0]}</#if>\" /><input type=\"hidden\" name=\"srcExpressionAct\"  value=\"<#if srcExpressionAct?exists>${srcExpressionAct[0]}</#if>\" /><input type=\"hidden\" name=\"srcExpressionVar\" value=\"<#if srcExpressionVar?exists>${srcExpressionVar[0]?html}</#if>\" />",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "value":{"expVal":"<#if srcExpression?exists>${srcExpression[0]}</#if>","expActVal":"<#if srcExpressionAct?exists>${srcExpressionAct[0]}</#if>","varVal":<#if srcExpressionVar?exists><#if srcExpressionVar[0]==''>{}<#else>${srcExpressionVar[0]}</#if><#else>{}</#if>,"targetVal":"<#if targetParam?exists>${targetParam[0]}</#if>","targetActVal":"<#if targetParamAct?exists>${targetParamAct[0]}</#if>"},
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"targetParam\" ondblclick=\"openVariableDialog('calledProcessKey',this)\" style=\"width:150px;\" readonly value=\"<#if targetParam?exists>${targetParam[0]}</#if>\"/><input type=\"hidden\" name=\"targetParamAct\"  value=\"<#if targetParamAct?exists>${targetParamAct[0]}</#if>\"/>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}<#if incode_index+1&lt;srcExpression?size>,</#if>
+			</#list>
+			<#else>
+			{
+			    "id": "inparam", 
+			    "title": "<input type=\"hidden\" name=\"srcExpressionAct\" value=\"param1\"/><input type=\"text\" name=\"srcExpression\" class=\"textCls k-textbox\" ondblclick=\"openSubProcessExpressionDialog(this)\" style=\"width:150px;\"  readonly  value=\"\"/>",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"targetParam\" ondblclick=\"openVariableDialog('calledProcessKey',this)\" style=\"width:150px;\" readonly value=\"\"/><input type=\"hidden\" name=\"targetParamAct\"  value=\"\"/>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}
+			</#if>
+		]
+	},{
+		"id":"outparamprop",
+		"title": "输出参数",
+		"description":"",
+		"expland":"false",
+		"head":"源表达式,目标", 
+		"properties":
+		[
+		   <#if outSrcExpression?exists>
+		   <#list outSrcExpression as outcode>
+			{
+			    "id": "outparam", 
+			    "title": "<input type=\"text\" class=\"textCls k-textbox\" name=\"outSrcExpression\" ondblclick=\"openSubProcessExpressionDialog(this)\" style=\"width:150px;\" readonly value=\"<#if outSrcExpression?exists>${outSrcExpression[0]}</#if>\" /><input type=\"hidden\" name=\"outSrcExpressionAct\"  value=\"<#if outSrcExpressionAct?exists>${outSrcExpressionAct[0]}</#if>\" /><input type=\"hidden\" name=\"outSrcExpressionVar\" value=\"<#if outSrcExpressionVar?exists>${outSrcExpressionVar[0]?html}</#if>\" />",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "value":{"expVal":"<#if outSrcExpression?exists>${outSrcExpression[0]}</#if>","expActVal":"<#if outSrcExpressionAct?exists>${outSrcExpressionAct[0]}</#if>","varVal":<#if outSrcExpressionVar?exists><#if outSrcExpressionVar[0]==''>{}<#else>${outSrcExpressionVar[0]}</#if><#else>{}</#if>,"targetVal":"<#if outTargetParam?exists>${outTargetParam[0]}</#if>","targetActVal":"<#if outTargetParamAct?exists>${outTargetParamAct[0]}</#if>"},
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"outTargetParam\" ondblclick=\"openWorkflowVariableDialog(this)\" style=\"width:150px;\" readonly value=\"<#if outTargetParam?exists>${outTargetParam[0]}</#if>\"/><input type=\"hidden\" name=\"outTargetParamAct\"  value=\"<#if outTargetParamAct?exists>${outTargetParamAct[0]}</#if>\"/>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}<#if outcode_index+1&lt;outSrcExpression?size>,</#if>
+			</#list>
+			<#else>
+			{
+			    "id": "outparam", 
+			    "title": "<input type=\"hidden\" name=\"outSrcExpressionAct\" value=\"param1\"/><input type=\"text\" name=\"outSrcExpression\" class=\"textCls k-textbox\"  ondblclick=\"openSubProcessExpressionDialog(this)\" style=\"width:150px;\" readonly value=\"\"/>",
+			    "type": "string",
+			    "showtitle":"false",
+			    "inputMode": "template",
+			    "require":"true",
+			    "template":"<input type=\"text\" class=\"textCls k-textbox\" name=\"outTargetParam\" ondblclick=\"openWorkflowVariableDialog(this)\" style=\"width:150px;\" readonly value=\"\"/><input type=\"hidden\" name=\"outTargetParamAct\"  value=\"\"/>&nbsp;&nbsp;<img alt=\"\" src=\"contextPath/images/add.png\" onclick=\"addVariable()\" style=\"vertical-align:middle;\"/> <img alt=\"\" src=\"contextPath/images/delete.png\" onclick=\"removeVariable()\" style=\"vertical-align:middle;\" />"
+			}
+			</#if>
+		]
+	}
+]
+ }

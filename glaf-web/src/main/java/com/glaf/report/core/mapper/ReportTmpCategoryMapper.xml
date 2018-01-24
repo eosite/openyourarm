@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.ReportTmpCategoryMapper">
+
+ 	<resultMap id="reportTmpCategoryResultMap"	type="com.glaf.report.core.domain.ReportTmpCategory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="templateId" column="TEMPLATE_ID_" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="CATEGORY_ID_" jdbcType="BIGINT"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertReportTmpCategory" parameterType="com.glaf.report.core.domain.ReportTmpCategory">
+		insert into REPORT_TMP_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="templateId != null">
+				,TEMPLATE_ID_ 
+			</if>
+			<if test="categoryId != null">
+				,CATEGORY_ID_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="templateId != null">
+				,#{templateId, jdbcType=VARCHAR}
+			</if>
+			<if test="categoryId != null">
+				,#{categoryId, jdbcType=BIGINT}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateReportTmpCategory" parameterType="com.glaf.report.core.domain.ReportTmpCategory">
+		update REPORT_TMP_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="templateId != null">
+				TEMPLATE_ID_ = #{templateId, jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				CATEGORY_ID_ = #{categoryId, jdbcType=BIGINT},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteReportTmpCategoryById" parameterType="long"> 
+        delete from REPORT_TMP_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteReportTmpCategorys" parameterType="com.glaf.report.core.query.ReportTmpCategoryQuery">
+		delete from REPORT_TMP_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getReportTmpCategoryById" parameterType="long" resultMap="reportTmpCategoryResultMap">
+		select * from REPORT_TMP_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getReportTmpCategorys" 
+	    parameterType="com.glaf.report.core.query.ReportTmpCategoryQuery"
+		resultMap="reportTmpCategoryResultMap">
+		select distinct E.*
+		<include refid="selectReportTmpCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getReportTmpCategoryCount" 
+	    parameterType="com.glaf.report.core.query.ReportTmpCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportTmpCategorysSql" />
+	</select>
+
+
+	<sql id="selectReportTmpCategorysSql">
+
+		from REPORT_TMP_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="templateId != null and templateId != '' ">
+				and E.TEMPLATE_ID_ = #{templateId}
+            </if>
+
+			<if test="templateIdLike != null and templateIdLike != '' ">
+				and E.TEMPLATE_ID_ like #{templateIdLike}
+            </if>
+
+			<if test="templateIds != null and templateIds.size() &gt; 0">
+			    and E.TEMPLATE_ID_ IN
+                <foreach item="x_templateId" index="index" collection="templateIds" 
+                     open="(" separator="," close=")">
+                  #{x_templateId}
+                </foreach>
+			</if>
+
+			<if test="categoryId != null">
+				and E.CATEGORY_ID_ = #{categoryId}
+            </if>
+
+			<if test="categoryIdGreaterThanOrEqual != null">
+				and E.CATEGORY_ID_ &gt;= #{categoryIdGreaterThanOrEqual}
+            </if>
+
+			<if test="categoryIdLessThanOrEqual != null">
+				and E.CATEGORY_ID_ &lt;= #{categoryIdLessThanOrEqual}
+            </if>
+
+			<if test="categoryIds != null and categoryIds.size() &gt; 0">
+			    and E.CATEGORY_ID_ IN
+                <foreach item="x_categoryId" index="index" collection="categoryIds" 
+                     open="(" separator="," close=")">
+                  #{x_categoryId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

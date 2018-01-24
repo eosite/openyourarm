@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.model.mapper.SystemDefMapper">
+
+ 	<resultMap id="systemDefResultMap"	type="com.glaf.model.domain.SystemDef">
+        <id property="sysId" column="SYS_ID_" jdbcType="VARCHAR" />
+        <result property="sysName" column="SYS_NAME_" jdbcType="VARCHAR"/>
+        <result property="sysCode" column="SYS_CODE_" jdbcType="VARCHAR"/>
+        <result property="sysDesc" column="SYS_DESC_" jdbcType="VARCHAR"/>
+        <result property="createBy" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="version" column="VERSION_" jdbcType="VARCHAR"/>
+        <result property="publisher" column="PUBLISHER_" jdbcType="VARCHAR"/>
+        <result property="publishTime" column="PUBLISHTIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertSystemDef" parameterType="com.glaf.model.domain.SystemDef">
+		insert into SYSTEM_DEF_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    SYS_ID_
+			<if test="sysName != null">
+				,SYS_NAME_ 
+			</if>
+			<if test="sysCode != null">
+				,SYS_CODE_ 
+			</if>
+			<if test="sysDesc != null">
+				,SYS_DESC_ 
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+			<if test="version != null">
+				,VERSION_ 
+			</if>
+			<if test="publisher != null">
+				,PUBLISHER_ 
+			</if>
+			<if test="publishTime != null">
+				,PUBLISHTIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{sysId, jdbcType=VARCHAR}
+	     
+			<if test="sysName != null">
+				,#{sysName, jdbcType=VARCHAR}
+			</if>
+			<if test="sysCode != null">
+				,#{sysCode, jdbcType=VARCHAR}
+			</if>
+			<if test="sysDesc != null">
+				,#{sysDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=VARCHAR}
+			</if>
+			<if test="publisher != null">
+				,#{publisher, jdbcType=VARCHAR}
+			</if>
+			<if test="publishTime != null">
+				,#{publishTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSystemDef" parameterType="com.glaf.model.domain.SystemDef">
+		update SYSTEM_DEF_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="sysName != null">
+				SYS_NAME_ = #{sysName, jdbcType=VARCHAR},
+			</if>
+			<if test="sysCode != null">
+				SYS_CODE_ = #{sysCode, jdbcType=VARCHAR},
+			</if>
+			<if test="sysDesc != null">
+				SYS_DESC_ = #{sysDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=VARCHAR},
+			</if>
+			<if test="publisher != null">
+				PUBLISHER_ = #{publisher, jdbcType=VARCHAR},
+			</if>
+			<if test="publishTime != null">
+				PUBLISHTIME_ = #{publishTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          SYS_ID_ = #{sysId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteSystemDefById" parameterType="string"> 
+        delete from SYSTEM_DEF_
+        where SYS_ID_ =	#{id}
+	</delete>
+
+	<delete id="deleteSystemDefBySysId" parameterType="string"> 
+        update SYSTEM_DEF_ set DELETE_FLAG_=1
+        where SYS_ID_ =	#{id}
+	</delete>
+	
+	<delete id="deleteSystemDefs" parameterType="com.glaf.model.query.SystemDefQuery">
+		delete from SYSTEM_DEF_
+		where ( 
+ 			  SYS_ID_ IN
+              <foreach item="x_sysId" index="index" collection="sysIds" 
+                     open="(" separator="," close=")">
+                  #{x_sysId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSystemDefById" parameterType="string" resultMap="systemDefResultMap">
+		select * from SYSTEM_DEF_ where SYS_ID_ = #{id}
+	</select>
+
+
+	<select id="getSystemDefs" 
+	    parameterType="com.glaf.model.query.SystemDefQuery"
+		resultMap="systemDefResultMap">
+		select distinct E.*
+		<include refid="selectSystemDefsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.SYS_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getSystemDefCount" 
+	    parameterType="com.glaf.model.query.SystemDefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSystemDefsSql" />
+	</select>
+
+
+	<sql id="selectSystemDefsSql">
+
+		from SYSTEM_DEF_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="sysName != null and sysName != '' ">
+				and E.SYS_NAME_ = #{sysName}
+            </if>
+
+			<if test="sysNameLike != null and sysNameLike != '' ">
+				and E.SYS_NAME_ like #{sysNameLike}
+            </if>
+
+			<if test="sysNames != null and sysNames.size() &gt; 0">
+			    and E.SYS_NAME_ IN
+                <foreach item="x_sysName" index="index" collection="sysNames" 
+                     open="(" separator="," close=")">
+                  #{x_sysName}
+                </foreach>
+			</if>
+	        
+			<if test="sysCode != null and sysCode != '' ">
+				and E.SYS_CODE_ = #{sysCode}
+            </if>
+
+			<if test="sysCodeLike != null and sysCodeLike != '' ">
+				and E.SYS_CODE_ like #{sysCodeLike}
+            </if>
+
+			<if test="sysCodes != null and sysCodes.size() &gt; 0">
+			    and E.SYS_CODE_ IN
+                <foreach item="x_sysCode" index="index" collection="sysCodes" 
+                     open="(" separator="," close=")">
+                  #{x_sysCode}
+                </foreach>
+			</if>
+	        
+			<if test="sysDesc != null and sysDesc != '' ">
+				and E.SYS_DESC_ = #{sysDesc}
+            </if>
+
+			<if test="sysDescLike != null and sysDescLike != '' ">
+				and E.SYS_DESC_ like #{sysDescLike}
+            </if>
+
+			<if test="sysDescs != null and sysDescs.size() &gt; 0">
+			    and E.SYS_DESC_ IN
+                <foreach item="x_sysDesc" index="index" collection="sysDescs" 
+                     open="(" separator="," close=")">
+                  #{x_sysDesc}
+                </foreach>
+			</if>
+	        
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+            </if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+            </if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy" index="index" collection="createBys" 
+                     open="(" separator="," close=")">
+                  #{x_createBy}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+            </if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+            </if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy" index="index" collection="updateBys" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

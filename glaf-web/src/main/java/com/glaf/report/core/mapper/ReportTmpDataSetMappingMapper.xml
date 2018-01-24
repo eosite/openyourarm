@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.ReportTmpDataSetMappingMapper">
+
+	<resultMap id="reportTmpDataSetMappingResultMap"
+		type="com.glaf.report.core.domain.ReportTmpDataSetMapping">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="tmpMappingId" column="TMP_MAPPING_ID_"
+			jdbcType="VARCHAR" />
+		<result property="templateId" column="TEMPLATE_ID_" jdbcType="VARCHAR" />
+		<result property="dataSetCode" column="DATASET_CODE_" jdbcType="VARCHAR" />
+		<result property="dataSetName" column="DATASET_NAME_" jdbcType="VARCHAR" />
+		<result property="mappingDataSetId" column="MAPPING_DATASET_ID_"
+			jdbcType="VARCHAR" />
+		<result property="mappingDataSetCode" column="MAPPING_DATASET_CODE_"
+			jdbcType="VARCHAR" />
+		<result property="mappingDataSetName" column="MAPPING_DATASET_NAME_"
+			jdbcType="VARCHAR" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+
+		<collection property="reportTmpColMappings" column="ID_"
+			javaType="list" fetchType="lazy"
+			select="com.glaf.report.core.mapper.ReportTmpColMappingMapper.selectReportTmpColMappingsByDataSetId" />
+
+	</resultMap>
+
+	<select id="selectReportTmpDataSetMappingByReportId" resultMap="reportTmpDataSetMappingResultMap">
+		SELECT * FROM REPORT_TMP_DATASET_MAPPING WHERE
+		TMP_MAPPING_ID_ =#{id}
+	</select>
+
+	<insert id="insertReportTmpDataSetMapping" parameterType="com.glaf.report.core.domain.ReportTmpDataSetMapping">
+		insert into REPORT_TMP_DATASET_MAPPING
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="tmpMappingId != null">
+				,TMP_MAPPING_ID_
+			</if>
+			<if test="templateId != null">
+				,TEMPLATE_ID_
+			</if>
+			<if test="dataSetCode != null">
+				,DATASET_CODE_
+			</if>
+			<if test="dataSetName != null">
+				,DATASET_NAME_
+			</if>
+			<if test="mappingDataSetId != null">
+				,MAPPING_DATASET_ID_
+			</if>
+			<if test="mappingDataSetCode != null">
+				,MAPPING_DATASET_CODE_
+			</if>
+			<if test="mappingDataSetName != null">
+				,MAPPING_DATASET_NAME_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="tmpMappingId != null">
+				,#{tmpMappingId, jdbcType=VARCHAR}
+			</if>
+			<if test="templateId != null">
+				,#{templateId, jdbcType=VARCHAR}
+			</if>
+			<if test="dataSetCode != null">
+				,#{dataSetCode, jdbcType=VARCHAR}
+			</if>
+			<if test="dataSetName != null">
+				,#{dataSetName, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingDataSetId != null">
+				,#{mappingDataSetId, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingDataSetCode != null">
+				,#{mappingDataSetCode, jdbcType=VARCHAR}
+			</if>
+			<if test="mappingDataSetName != null">
+				,#{mappingDataSetName, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateReportTmpDataSetMapping" parameterType="com.glaf.report.core.domain.ReportTmpDataSetMapping">
+		update REPORT_TMP_DATASET_MAPPING
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="tmpMappingId != null">
+				TMP_MAPPING_ID_ = #{tmpMappingId, jdbcType=VARCHAR},
+			</if>
+			<if test="templateId != null">
+				TEMPLATE_ID_ = #{templateId, jdbcType=VARCHAR},
+			</if>
+			<if test="dataSetCode != null">
+				DATASET_CODE_ = #{dataSetCode, jdbcType=VARCHAR},
+			</if>
+			<if test="dataSetName != null">
+				DATASET_NAME_ = #{dataSetName, jdbcType=VARCHAR},
+			</if>
+			<if test="mappingDataSetId != null">
+				MAPPING_DATASET_ID_ = #{mappingDataSetId,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="mappingDataSetCode != null">
+				MAPPING_DATASET_CODE_ = #{mappingDataSetCode,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="mappingDataSetName != null">
+				MAPPING_DATASET_NAME_ = #{mappingDataSetName,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteReportTmpDataSetMappingById" parameterType="string">
+		delete from REPORT_TMP_DATASET_MAPPING
+		where ID_ = #{id}
+	</delete>
+	<delete id="deleteReportTmpDataSetMappingByParentId"
+		parameterType="string">
+		delete from REPORT_TMP_DATASET_MAPPING
+		where
+		TMP_MAPPING_ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteReportTmpDataSetMappings"
+		parameterType="com.glaf.report.core.query.ReportTmpDataSetMappingQuery">
+		delete from REPORT_TMP_DATASET_MAPPING
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getReportTmpDataSetMappingById" parameterType="string"
+		resultMap="reportTmpDataSetMappingResultMap">
+		select * from REPORT_TMP_DATASET_MAPPING where ID_ = #{id}
+	</select>
+
+
+	<select id="getReportTmpDataSetMappings"
+		parameterType="com.glaf.report.core.query.ReportTmpDataSetMappingQuery"
+		resultMap="reportTmpDataSetMappingResultMap">
+		select distinct E.*
+		<include refid="selectReportTmpDataSetMappingsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getReportTmpDataSetMappingCount"
+		parameterType="com.glaf.report.core.query.ReportTmpDataSetMappingQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportTmpDataSetMappingsSql" />
+	</select>
+
+
+	<sql id="selectReportTmpDataSetMappingsSql">
+
+		from REPORT_TMP_DATASET_MAPPING E
+
+		<where>
+			1 = 1
+
+
+			<if test="tmpMappingId != null and tmpMappingId != '' ">
+				and E.TMP_MAPPING_ID_ = #{tmpMappingId}
+			</if>
+
+			<if test="tmpMappingIdLike != null and tmpMappingIdLike != '' ">
+				and E.TMP_MAPPING_ID_ like #{tmpMappingIdLike}
+			</if>
+
+			<if test="tmpMappingIds != null and tmpMappingIds.size() &gt; 0">
+				and E.TMP_MAPPING_ID_ IN
+				<foreach item="x_tmpMappingId" index="index" collection="tmpMappingIds"
+					open="(" separator="," close=")">
+					#{x_tmpMappingId}
+				</foreach>
+			</if>
+
+			<if test="templateId != null and templateId != '' ">
+				and E.TEMPLATE_ID_ = #{templateId}
+			</if>
+
+			<if test="templateIdLike != null and templateIdLike != '' ">
+				and E.TEMPLATE_ID_ like #{templateIdLike}
+			</if>
+
+			<if test="templateIds != null and templateIds.size() &gt; 0">
+				and E.TEMPLATE_ID_ IN
+				<foreach item="x_templateId" index="index" collection="templateIds"
+					open="(" separator="," close=")">
+					#{x_templateId}
+				</foreach>
+			</if>
+
+			<if test="dataSetCode != null and dataSetCode != '' ">
+				and E.DATASET_CODE_ = #{dataSetCode}
+			</if>
+
+			<if test="dataSetCodeLike != null and dataSetCodeLike != '' ">
+				and E.DATASET_CODE_ like #{dataSetCodeLike}
+			</if>
+
+			<if test="dataSetCodes != null and dataSetCodes.size() &gt; 0">
+				and E.DATASET_CODE_ IN
+				<foreach item="x_dataSetCode" index="index" collection="dataSetCodes"
+					open="(" separator="," close=")">
+					#{x_dataSetCode}
+				</foreach>
+			</if>
+
+			<if test="dataSetName != null and dataSetName != '' ">
+				and E.DATASET_NAME_ = #{dataSetName}
+			</if>
+
+			<if test="dataSetNameLike != null and dataSetNameLike != '' ">
+				and E.DATASET_NAME_ like #{dataSetNameLike}
+			</if>
+
+			<if test="dataSetNames != null and dataSetNames.size() &gt; 0">
+				and E.DATASET_NAME_ IN
+				<foreach item="x_dataSetName" index="index" collection="dataSetNames"
+					open="(" separator="," close=")">
+					#{x_dataSetName}
+				</foreach>
+			</if>
+
+			<if test="mappingDataSetId != null and mappingDataSetId != '' ">
+				and E.MAPPING_DATASET_ID_ = #{mappingDataSetId}
+			</if>
+
+			<if test="mappingDataSetIdLike != null and mappingDataSetIdLike != '' ">
+				and E.MAPPING_DATASET_ID_ like #{mappingDataSetIdLike}
+			</if>
+
+			<if test="mappingDataSetIds != null and mappingDataSetIds.size() &gt; 0">
+				and E.MAPPING_DATASET_ID_ IN
+				<foreach item="x_mappingDataSetId" index="index" collection="mappingDataSetIds"
+					open="(" separator="," close=")">
+					#{x_mappingDataSetId}
+				</foreach>
+			</if>
+
+			<if test="mappingDataSetCode != null and mappingDataSetCode != '' ">
+				and E.MAPPING_DATASET_CODE_ = #{mappingDataSetCode}
+			</if>
+
+			<if
+				test="mappingDataSetCodeLike != null and mappingDataSetCodeLike != '' ">
+				and E.MAPPING_DATASET_CODE_ like #{mappingDataSetCodeLike}
+			</if>
+
+			<if
+				test="mappingDataSetCodes != null and mappingDataSetCodes.size() &gt; 0">
+				and E.MAPPING_DATASET_CODE_ IN
+				<foreach item="x_mappingDataSetCode" index="index"
+					collection="mappingDataSetCodes" open="(" separator="," close=")">
+					#{x_mappingDataSetCode}
+				</foreach>
+			</if>
+
+			<if test="mappingDataSetName != null and mappingDataSetName != '' ">
+				and E.MAPPING_DATASET_NAME_ = #{mappingDataSetName}
+			</if>
+
+			<if
+				test="mappingDataSetNameLike != null and mappingDataSetNameLike != '' ">
+				and E.MAPPING_DATASET_NAME_ like #{mappingDataSetNameLike}
+			</if>
+
+			<if
+				test="mappingDataSetNames != null and mappingDataSetNames.size() &gt; 0">
+				and E.MAPPING_DATASET_NAME_ IN
+				<foreach item="x_mappingDataSetName" index="index"
+					collection="mappingDataSetNames" open="(" separator="," close=")">
+					#{x_mappingDataSetName}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

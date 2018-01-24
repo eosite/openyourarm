@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormTaskmainMapper">
+
+	<resultMap id="formTaskmainResultMap" type="com.glaf.form.core.domain.FormTaskmain">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="planId" column="PLANID_" jdbcType="BIGINT" />
+		<result property="defId" column="DEFID_" jdbcType="VARCHAR" />
+		<result property="definedId" column="DEFINEDID_" jdbcType="VARCHAR" />
+		<result property="processId" column="PROCESSID_" jdbcType="VARCHAR" />
+		<result property="p_processId" column="P_PROCESSID_" jdbcType="VARCHAR" />
+		<result property="variableVal" column="VARIABLEVAL_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<!-- <collection property="formTasks" fetchType="lazy" column="ID_"
+			select="getFormTasksById">
+		</collection> -->
+	</resultMap>
+
+	<!-- <select id="getFormTasksById"
+		resultMap="com.glaf.form.core.mapper.FormTaskMapper.formTaskResultMap">
+		select * from FORM_TASK where TMID_ = #{id}
+	</select> -->
+
+
+	<insert id="insertFormTaskmain" parameterType="com.glaf.form.core.domain.FormTaskmain">
+		insert into FORM_TASKMAIN
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="planId != null">
+				,PLANID_
+			</if>
+			<if test="defId != null">
+				,DEFID_
+			</if>
+			<if test="definedId != null">
+				,DEFINEDID_
+			</if>
+			<if test="processId != null">
+				,PROCESSID_
+			</if>
+			<if test="p_processId != null">
+				,P_PROCESSID_
+			</if>
+			<if test="variableVal != null">
+				,VARIABLEVAL_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="planId != null">
+				,#{planId, jdbcType=BIGINT}
+			</if>
+			<if test="defId != null">
+				,#{defId, jdbcType=VARCHAR}
+			</if>
+			<if test="definedId != null">
+				,#{definedId, jdbcType=VARCHAR}
+			</if>
+			<if test="processId != null">
+				,#{processId, jdbcType=VARCHAR}
+			</if>
+			<if test="p_processId != null">
+				,#{p_processId, jdbcType=VARCHAR}
+			</if>
+			<if test="variableVal != null">
+				,#{variableVal, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormTaskmain" parameterType="com.glaf.form.core.domain.FormTaskmain">
+		update FORM_TASKMAIN
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="planId != null">
+				PLANID_ = #{planId, jdbcType=BIGINT},
+			</if>
+			<if test="defId != null">
+				DEFID_ = #{defId, jdbcType=VARCHAR},
+			</if>
+			<if test="definedId != null">
+				DEFINEDID_ = #{definedId, jdbcType=VARCHAR},
+			</if>
+			<if test="processId != null">
+				PROCESSID_ = #{processId, jdbcType=VARCHAR},
+			</if>
+			<if test="p_processId != null">
+				P_PROCESSID_ = #{p_processId, jdbcType=VARCHAR},
+			</if>
+			<if test="variableVal != null">
+				VARIABLEVAL_ = #{variableVal, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATEDATE_ = #{createDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteFormTaskmainById" parameterType="long">
+		delete from
+		FORM_TASKMAIN
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormTaskmains" parameterType="com.glaf.form.core.query.FormTaskmainQuery">
+		delete from FORM_TASKMAIN
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormTaskmainById" parameterType="long"
+		resultMap="formTaskmainResultMap">
+		select * from FORM_TASKMAIN where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormTaskmains" parameterType="com.glaf.form.core.query.FormTaskmainQuery"
+		resultMap="formTaskmainResultMap">
+		select distinct E.*
+		<include refid="selectFormTaskmainsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormTaskmainCount" parameterType="com.glaf.form.core.query.FormTaskmainQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormTaskmainsSql" />
+	</select>
+
+
+	<sql id="selectFormTaskmainsSql">
+
+		from FORM_TASKMAIN E
+
+		<where>
+			1 = 1
+
+
+			<if test="planId != null">
+				and E.PLANID_ = #{planId}
+			</if>
+
+			<if test="planIdGreaterThanOrEqual != null">
+				and E.PLANID_ &gt;= #{planIdGreaterThanOrEqual}
+			</if>
+
+			<if test="planIdLessThanOrEqual != null">
+				and E.PLANID_ &lt;= #{planIdLessThanOrEqual}
+			</if>
+
+			<if test="planIds != null and planIds.size() &gt; 0">
+				and E.PLANID_ IN
+				<foreach item="x_planId" index="index" collection="planIds"
+					open="(" separator="," close=")">
+					#{x_planId}
+				</foreach>
+			</if>
+
+
+			<if test="defId != null and defId != '' ">
+				and E.DEFID_ = #{defId}
+			</if>
+
+			<if test="defIdLike != null and defIdLike != '' ">
+				and E.DEFID_ like #{defIdLike}
+			</if>
+
+			<if test="defIds != null and defIds.size() &gt; 0">
+				and E.DEFID_ IN
+				<foreach item="x_defId" index="index" collection="defIds"
+					open="(" separator="," close=")">
+					#{x_defId}
+				</foreach>
+			</if>
+
+			<if test="definedId != null and definedId != '' ">
+				and E.DEFINEDID_ = #{definedId}
+			</if>
+
+			<if test="definedIdLike != null and definedIdLike != '' ">
+				and E.DEFINEDID_ like #{definedIdLike}
+			</if>
+
+			<if test="definedIds != null and definedIds.size() &gt; 0">
+				and E.DEFINEDID_ IN
+				<foreach item="x_definedId" index="index" collection="definedIds"
+					open="(" separator="," close=")">
+					#{x_definedId}
+				</foreach>
+			</if>
+
+			<if test="processId != null and processId != '' ">
+				and E.PROCESSID_ = #{processId}
+			</if>
+			<if test="p_processId != null and p_processId != '' ">
+				and E.P_PROCESSID_ = #{p_processId}
+			</if>
+
+			<if test="processIdLike != null and processIdLike != '' ">
+				and E.PROCESSID_ like #{processIdLike}
+			</if>
+
+			<if test="processIds != null and processIds.size() &gt; 0">
+				and E.PROCESSID_ IN
+				<foreach item="x_processId" index="index" collection="processIds"
+					open="(" separator="," close=")">
+					#{x_processId}
+				</foreach>
+			</if>
+
+			<if test="variableVal != null and variableVal != '' ">
+				and E.VARIABLEVAL_ = #{variableVal}
+			</if>
+
+			<if test="variableValLike != null and variableValLike != '' ">
+				and E.VARIABLEVAL_ like #{variableValLike}
+			</if>
+
+			<if test="variableVals != null and variableVals.size() &gt; 0">
+				and E.VARIABLEVAL_ IN
+				<foreach item="x_variableVal" index="index" collection="variableVals"
+					open="(" separator="," close=")">
+					#{x_variableVal}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS_ &gt;= #{statusGreaterThanOrEqual}
+			</if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS_ &lt;= #{statusLessThanOrEqual}
+			</if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+				and E.STATUS_ IN
+				<foreach item="x_status" index="index" collection="statuss"
+					open="(" separator="," close=")">
+					#{x_status}
+				</foreach>
+			</if>
+
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateDateGreaterThanOrEqual != null">
+				and E.UPDATEDATE_ &gt;= #{updateDateGreaterThanOrEqual}
+			</if>
+
+			<if test="updateDateLessThanOrEqual != null">
+				and E.UPDATEDATE_ &lt;= #{updateDateLessThanOrEqual}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

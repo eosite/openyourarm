@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormComponentMapper">
+
+	<resultMap id="formComponentResultMap" type="com.glaf.form.core.domain.FormComponent">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="parentId" column="PARENTID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="dataRole" column="DATAROLE_" jdbcType="VARCHAR" />
+		<result property="kendoComponent" column="KENDOCOMPONENT_"
+			jdbcType="VARCHAR" />
+		<result property="jsEngine" column="JSENGINE_" jdbcType="VARCHAR" />
+		<result property="jsPath" column="JSPATH_" jdbcType="VARCHAR" />
+		<result property="imageFileName" column="IMAGEFILENAME_"
+			jdbcType="VARCHAR" />
+		<result property="imagePath" column="IMAGEPATH_" jdbcType="VARCHAR" />
+		<result property="smallImageFileName" column="SMALLIMAGEFILENAME_"
+			jdbcType="VARCHAR" />
+		<result property="smallImagePath" column="SMALLIMAGEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="mediumImageFileName" column="MEDIUMIMAGEFILENAME_"
+			jdbcType="VARCHAR" />
+		<result property="mediumImagePath" column="MEDIUMIMAGEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="integral" column="INTEGRAL_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="baseComp" column="BASECOMP_" jdbcType="INTEGER" />
+	</resultMap>
+
+    <resultMap id="formComponentTemplateResultMap" type="com.glaf.form.core.domain.FormComponentTemplate">
+		<result property="componentId" column="COMPONENTID_" jdbcType="VARCHAR" />
+		<result property="template" column="TEMPLATE_" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="formComponentStyleTemplateResultMap" type="com.glaf.form.core.domain.FormComponentStyleTemplate">
+		<result property="componentId" column="COMPONENTID_" jdbcType="VARCHAR" />
+		<result property="dataRole" column="DATAROLE_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="imglen" column="IMGLEN_" jdbcType="BIGINT" />
+		<result property="template" column="TEMPLATE_" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="insertFormComponent" parameterType="com.glaf.form.core.domain.FormComponent">
+		insert into FORM_COMPONENT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="dataRole != null">
+				,DATAROLE_
+			</if>
+			<if test="kendoComponent != null">
+				,KENDOCOMPONENT_
+			</if>
+			<if test="jsEngine != null">
+				,JSENGINE_
+			</if>
+			<if test="jsPath != null">
+				,JSPATH_
+			</if>
+			<if test="imageFileName != null">
+				,IMAGEFILENAME_
+			</if>
+			<if test="imagePath != null">
+				,IMAGEPATH_
+			</if>
+			<if test="smallImageFileName != null">
+				,SMALLIMAGEFILENAME_
+			</if>
+			<if test="smallImagePath != null">
+				,SMALLIMAGEPATH_
+			</if>
+			<if test="mediumImageFileName != null">
+				,MEDIUMIMAGEFILENAME_
+			</if>
+			<if test="mediumImagePath != null">
+				,MEDIUMIMAGEPATH_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="integral != null">
+				,INTEGRAL_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="dataRole != null">
+				,#{dataRole, jdbcType=VARCHAR}
+			</if>
+			<if test="kendoComponent != null">
+				,#{kendoComponent, jdbcType=VARCHAR}
+			</if>
+			<if test="jsEngine != null">
+				,#{jsEngine, jdbcType=VARCHAR}
+			</if>
+			<if test="jsPath != null">
+				,#{jsPath, jdbcType=VARCHAR}
+			</if>
+			<if test="imageFileName != null">
+				,#{imageFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="imagePath != null">
+				,#{imagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="smallImageFileName != null">
+				,#{smallImageFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="smallImagePath != null">
+				,#{smallImagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="mediumImageFileName != null">
+				,#{mediumImageFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="mediumImagePath != null">
+				,#{mediumImagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="integral != null">
+				,#{integral, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateBaseComp">
+		update FORM_COMPONENT
+		set
+			BASECOMP_ = #{baseComp, jdbcType=INTEGER}
+		where
+			ID_ = #{id, jdbcType=BIGINT}
+	</update>
+
+	<update id="updateFormComponent" parameterType="com.glaf.form.core.domain.FormComponent">
+		update FORM_COMPONENT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=BIGINT},
+			</if>
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="dataRole != null">
+				DATAROLE_ = #{dataRole, jdbcType=VARCHAR},
+			</if>
+			<if test="kendoComponent != null">
+				KENDOCOMPONENT_ = #{kendoComponent, jdbcType=VARCHAR},
+			</if>
+			<if test="jsEngine != null">
+				JSENGINE_ = #{jsEngine, jdbcType=VARCHAR},
+			</if>
+			<if test="jsPath != null">
+				JSPATH_ = #{jsPath, jdbcType=VARCHAR},
+			</if>
+			<if test="imageFileName != null">
+				IMAGEFILENAME_ = #{imageFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="imagePath != null">
+				IMAGEPATH_ = #{imagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="smallImageFileName != null">
+				SMALLIMAGEFILENAME_ = #{smallImageFileName,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="smallImagePath != null">
+				SMALLIMAGEPATH_ = #{smallImagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="mediumImageFileName != null">
+				MEDIUMIMAGEFILENAME_ = #{mediumImageFileName,
+				jdbcType=VARCHAR},
+			</if>
+			<if test="mediumImagePath != null">
+				MEDIUMIMAGEPATH_ = #{mediumImagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				CATEGORY_ = #{category, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=INTEGER},
+			</if>
+			<if test="integral != null">
+				INTEGRAL_ = #{integral, jdbcType=INTEGER},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteFormComponentById" parameterType="long">
+		delete from
+		FORM_COMPONENT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormComponents" parameterType="com.glaf.form.core.query.FormComponentQuery">
+		delete from FORM_COMPONENT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormComponentById" parameterType="long"
+		resultMap="formComponentResultMap">
+		select * from FORM_COMPONENT where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormComponents" parameterType="com.glaf.form.core.query.FormComponentQuery"
+		resultMap="formComponentResultMap">
+		select E.*
+		<include refid="selectFormComponentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+    <select id="getFormComponentTemplates" 
+		resultMap="formComponentTemplateResultMap">
+		select TEMPLATE_,COMPONENTID_ from FORM_TEMPLATE a,FORM_COMPONENT b where a.COMPONENTID_=b.ID_ and a.TYPE_='render' and a.DELETEFLAG_&lt;&gt;1
+	</select>
+	
+	<select id="getFormComponentStyleTemplates" 
+		resultMap="formComponentStyleTemplateResultMap">
+      select COMPONENTID_,a.NAME_,DATAROLE_,a.ID_ ,DATALENGTH(IMAGE_) IMGLEN_,TEMPLATE_ from FORM_TEMPLATE a,FORM_COMPONENT b where a.COMPONENTID_=b.ID_ and a.TYPE_='style' and DATAROLE_ is not null and a.DELETEFLAG_&lt;&gt;1 order by COMPONENTID_,a.ID_ asc
+    </select>
+    
+    <select id="getFormComponentStyleTemplateContent" 
+		resultMap="formComponentStyleTemplateResultMap">
+      select DATAROLE_,a.ID_,a.TEMPLATE_ from FORM_TEMPLATE a,FORM_COMPONENT b where a.COMPONENTID_=b.ID_ and a.TYPE_='style' and DATAROLE_ is not null and a.DELETEFLAG_&lt;&gt;1
+    </select>
+    
+    <select id="getFormComponentStyleTemplateContentCount" 
+		resultType="int">
+      select count(a.ID_) from FORM_TEMPLATE a,FORM_COMPONENT b where a.COMPONENTID_=b.ID_ and a.TYPE_='style' and DATAROLE_ is not null and a.DELETEFLAG_&lt;&gt;1
+    </select>
+    
+	<select id="getFormComponentCount" parameterType="com.glaf.form.core.query.FormComponentQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormComponentsSql" />
+	</select>
+
+
+	<sql id="selectFormComponentsSql">
+
+		from FORM_COMPONENT E
+
+		<where>
+			1 = 1
+
+			<if test="parentId != null">
+				and E.PARENTID_ = #{parentId}
+			</if>
+
+			<if test="parentIdNotEqual != null ">
+				and E.PARENTID_ &lt;&gt; #{parentIdNotEqual}
+			</if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+				and E.PARENTID_ IN
+				<foreach item="x_parentId" index="index" collection="parentIds"
+					open="(" separator="," close=")">
+					#{x_parentId}
+				</foreach>
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+            <if test="categoryLike != null and categoryLike != '' ">
+				and E.CATEGORY_ like #{categoryLike}
+			</if>
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+				and E.TYPE_ IN
+				<foreach item="x_type" index="index" collection="types"
+					open="(" separator="," close=")">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="dataRole != null and dataRole != '' ">
+				and E.DATAROLE_ = #{dataRole}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+	<resultMap id="formComponentPropertyResultMap"
+		type="com.glaf.form.core.domain.FormComponentProperty">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="dataType" column="DATATYPE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="kendoComponent" column="KENDOCOMPONENT_"
+			jdbcType="VARCHAR" />
+		<result property="kendoMapping" column="KENDOMAPPING_"
+			jdbcType="VARCHAR" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="enumValue" column="ENUMVALUE_" jdbcType="VARCHAR" />
+		<result property="editor" column="EDITOR_" jdbcType="VARCHAR" />
+		<result property="validator" column="VALIDATOR_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="formTemplateResultMap" type="com.glaf.form.core.domain.FormTemplate">
+		<id property="id" column="ID_" jdbcType="INTEGER" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="INTEGER" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="template" column="TEMPLATE_" jdbcType="VARCHAR" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="selectFormComponentProperty" parameterType="java.lang.Integer"
+		resultMap="formComponentPropertyResultMap">
+		SELECT
+		F.*
+		FROM FORM_COMPONENT_PROPERTY F
+		WHERE F.DELETEFLAG_ = 0 AND F.LOCKED_ = 0 AND F.COMPONENTID_ =
+		#{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectFormTemplates" parameterType="java.lang.Integer"
+		resultMap="formTemplateResultMap">
+		SELECT
+		T.*
+		FROM FORM_TEMPLATE T
+		WHERE T.DELETEFLAG_ = 0 AND T.COMPONENTID_ = #{id,jdbcType=BIGINT}
+	</select>
+	<resultMap type="com.glaf.form.core.domain.FormComponent" id="ComponentPropertyMap"
+		extends="formComponentResultMap">
+		<collection property="properties" column="ID_" javaType="list"
+			ofType="com.glaf.form.core.domain.FormComponentProperty" select="selectFormComponentProperty" />
+		<collection property="templates" column="ID_" javaType="list"
+			ofType="com.glaf.form.core.domain.FormTemplate" select="selectFormTemplates" />
+	</resultMap>
+
+	<select id="getComponentPropertys" parameterType="com.glaf.form.core.query.FormComponentQuery"
+		resultMap="ComponentPropertyMap">
+		select E.*
+		<include refid="selectFormComponentsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormComponentPropertyMapper">
+
+	<resultMap id="formComponentPropertyResultMap"
+		type="com.glaf.form.core.domain.FormComponentProperty">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="BIGINT" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="dataType" column="DATATYPE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="kendoComponent" column="KENDOCOMPONENT_"
+			jdbcType="VARCHAR" />
+		<result property="kendoMapping" column="KENDOMAPPING_"
+			jdbcType="VARCHAR" />
+		<result property="category" column="CATEGORY_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="desc" column="DESC_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="enumValue" column="ENUMVALUE_" jdbcType="VARCHAR" />
+		<result property="editor" column="EDITOR_" jdbcType="VARCHAR" />
+		<result property="validator" column="VALIDATOR_" jdbcType="VARCHAR" />
+		<result property="locked" column="LOCKED_" jdbcType="INTEGER" />
+		<result property="deleteFlag" column="DELETEFLAG_" jdbcType="INTEGER" />
+		<result property="version" column="VERSION_" jdbcType="INTEGER" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENTID_" jdbcType="INTEGER" />
+		<result property="listNo" column="LISTNO_" jdbcType="INTEGER" />
+		<result property="pValue" column="PVALUE_" jdbcType="VARCHAR" />
+		<result property="defValue" column="DEFVALUE_" jdbcType="VARCHAR" />
+		<result property="level" column="LEVEL_" jdbcType="VARCHAR" />
+		<result property="isSort" column="ISSORT_" jdbcType="INTEGER" />
+		<result property="eventFlag" column="EVENTFLAG_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFormComponentProperty" parameterType="com.glaf.form.core.domain.FormComponentProperty">
+		insert into FORM_COMPONENT_PROPERTY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="componentId != null">
+				,COMPONENTID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="dataType != null">
+				,DATATYPE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="category != null">
+				,CATEGORY_
+			</if>
+			<if test="kendoComponent != null">
+				,KENDOCOMPONENT_
+			</if>
+			<if test="kendoMapping != null">
+				,KENDOMAPPING_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="desc != null">
+				,DESC_
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="enumValue != null">
+				,ENUMVALUE_
+			</if>
+			<if test="editor != null">
+				,EDITOR_
+			</if>
+			<if test="validator != null">
+				,VALIDATOR_
+			</if>
+			<if test="locked != null">
+				,LOCKED_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETEFLAG_
+			</if>
+			<if test="version != null">
+				,VERSION_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="updateDate != null">
+				,UPDATEDATE_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			
+			<if test="parentId != null">
+				,PARENTID_
+			</if>
+			<if test="pValue != null">
+				,PVALUE_
+			</if>
+			<if test="defValue != null">
+				,DEFVALUE_
+			</if>
+			<if test="listNo != null">
+				,LISTNO_
+			</if>
+			<if test="level != null">
+				,LEVEL_
+			</if>
+			<if test="isSort != null">
+				,ISSORT_
+			</if>
+			<if test="eventFlag != null">
+				,EVENTFLAG_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="componentId != null">
+				,#{componentId, jdbcType=BIGINT}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="dataType != null">
+				,#{dataType, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="category != null">
+				,#{category, jdbcType=VARCHAR}
+			</if>
+			<if test="kendoComponent != null">
+				,#{kendoComponent, jdbcType=VARCHAR}
+			</if>
+			<if test="kendoMapping != null">
+				,#{kendoMapping, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="desc != null">
+				,#{desc, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+			<if test="enumValue != null">
+				,#{enumValue, jdbcType=VARCHAR}
+			</if>
+			<if test="editor != null">
+				,#{editor, jdbcType=VARCHAR}
+			</if>
+			<if test="validator != null">
+				,#{validator, jdbcType=VARCHAR}
+			</if>
+			<if test="locked != null">
+				,#{locked, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="version != null">
+				,#{version, jdbcType=INTEGER}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateDate != null">
+				,#{updateDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=INTEGER}
+			</if>
+			<if test="pValue != null">
+				,#{pValue, jdbcType=VARCHAR}
+			</if>
+			<if test="defValue != null">
+				,#{defValue, jdbcType=VARCHAR}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=VARCHAR}
+			</if>
+			<if test="isSort != null">
+				,#{isSort, jdbcType=INTEGER}
+			</if>
+			<if test="eventFlag != null">
+				,#{eventFlag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormComponentProperty" parameterType="com.glaf.form.core.domain.FormComponentProperty">
+		update FORM_COMPONENT_PROPERTY
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="kendoMapping != null">
+				KENDOMAPPING_ = #{kendoMapping, jdbcType=VARCHAR},
+			</if>
+			<if test="dataType != null">
+				DATATYPE_ = #{dataType, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				CATEGORY_ = #{category, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="desc != null">
+				DESC_ = #{desc, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+			<if test="enumValue != null">
+				ENUMVALUE_ = #{enumValue, jdbcType=VARCHAR},
+			</if>
+			<if test="editor != null">
+				EDITOR_ = #{editor, jdbcType=VARCHAR},
+			</if>
+			<if test="validator != null">
+				VALIDATOR_ = #{validator, jdbcType=VARCHAR},
+			</if>
+			<if test="locked != null">
+				LOCKED_ = #{locked, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETEFLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="version != null">
+				VERSION_ = #{version, jdbcType=INTEGER},
+			</if>
+			<if test="updateDate != null">
+				UPDATEDATE_ = #{updateDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			
+			<!-- <if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=INTEGER},
+			</if> -->
+			
+			<choose>
+				<when test="parentId == -9999">
+					PARENTID_ = null,
+				</when>
+				<otherwise>
+					<if test="parentId != null">
+						PARENTID_ = #{parentId, jdbcType=INTEGER},
+					</if>
+				</otherwise>
+			</choose>
+			
+			
+			<if test="listNo != null">
+				LISTNO_ = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="pValue != null">
+				PVALUE_ = #{pValue, jdbcType=VARCHAR},
+			</if>
+			<if test="defValue != null">
+				DEFVALUE_ = #{defValue, jdbcType=VARCHAR},
+			</if>
+			
+			<if test="isSort != null">
+				ISSORT_ = #{isSort, jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=VARCHAR},
+			</if>
+			<if test="eventFlag != null">
+				EVENTFLAG_ = #{eventFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteFormComponentPropertyById" parameterType="long">
+		delete from FORM_COMPONENT_PROPERTY
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormComponentPropertys" parameterType="com.glaf.form.core.query.FormComponentPropertyQuery">
+		delete from FORM_COMPONENT_PROPERTY
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormComponentPropertyById" parameterType="long"
+		resultMap="formComponentPropertyResultMap">
+		select * from FORM_COMPONENT_PROPERTY where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormComponentProperties" parameterType="string"
+		resultMap="formComponentPropertyResultMap">
+
+		select * from FORM_COMPONENT_PROPERTY where KENDOCOMPONENT_
+		=
+		#{kendoComponent}
+
+	</select>
+
+
+	<select id="getFormComponentPropertyList" parameterType="com.glaf.form.core.query.FormComponentPropertyQuery"
+		resultMap="formComponentPropertyResultMap">
+		select E.*
+		<include refid="selectFormComponentPropertysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_
+			</otherwise>
+		</choose>
+		
+		<choose>
+			<when test="sortOrder != null">
+				${sortOrder}
+			</when>
+			<otherwise>
+				 desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormComponentPropertyCount" parameterType="com.glaf.form.core.query.FormComponentPropertyQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormComponentPropertysSql" />
+	</select>
+
+
+	<sql id="selectFormComponentPropertysSql">
+
+		from FORM_COMPONENT_PROPERTY E
+
+		<where>
+			1 = 1
+
+			<if test="componentId != null">
+				and E.COMPONENTID_ = #{componentId}
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="ids != null and ids.size() &gt; 0">
+				and E.ID_ IN
+				<foreach item="x_id" index="index" collection="ids"
+					open="(" separator="," close=")">
+					#{x_id}
+				</foreach>
+			</if>
+			
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+			
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="kendoComponent != null and kendoComponent != '' ">
+				and E.KENDOCOMPONENT_ = #{kendoComponent}
+			</if>
+
+			<if test="titleLike != null and titleLike != '' ">
+				and E.TITLE_ like #{titleLike}
+			</if>
+
+			<if test="descLike != null and descLike != '' ">
+				and E.DESC_ like #{descLike}
+			</if>
+
+			<if test="locked != null">
+				and E.LOCKED_ = #{locked}
+			</if>
+
+			<if test="deleteFlag != null">
+				and E.DELETEFLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+			<if test="parentId != null">
+				and E.PARENTID_ = #{parentId}
+			</if>
+			<if test="pValue != null and pValue != '' ">
+				and E.PVALUE_ = #{pValue}
+			</if>
+			<if test="defValue != null and defValue != '' ">
+				and E.DEFVALUE_ = #{defValue}
+			</if>
+			
+			<if test="isSort != null">
+				and E.ISSORT_ = #{isSort}
+			</if>
+			<if test="eventFlag != null">
+				and E.EVENTFLAG_ = #{eventFlag}
+			</if>
+			<if test="type != null">
+				and E.TYPE_ = #{type}
+			</if>
+			<if test="level != null and level != '' ">
+				and E.LEVEL_ = #{level}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+	
+		</where>
+	</sql>
+	
+	<select id="getEventsProperty" 
+		parameterType="int"
+		resultType="map">
+		select a.DATAROLE_,b.NAME_,b.TITLE_,b.VALUE_,b.ID_,b.PARENTID_  
+			from FORM_COMPONENT a 
+			join FORM_COMPONENT_PROPERTY b 
+			on a.ID_ = b.COMPONENTID_  
+			where b.TYPE_ = 'Events' 
+				and b.ISSORT_ = 0  and b.DELETEFLAG_ = 0 and b.LOCKED_ = 0 
+			<if test="eventFlag != null">
+				and b.EVENTFLAG_ = #{eventFlag}
+			</if>
+			
+			order by b.PARENTID_ ASC,b.LISTNO_ ASC
+	</select>
+
+</mapper>

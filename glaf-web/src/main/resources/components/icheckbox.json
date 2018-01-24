@@ -1,0 +1,327 @@
+{
+	"id": "icheckbox",
+	"title": "复选框",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "20",
+			"minlen": "1",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "true",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		},{
+			"id": "content",
+			"title": "文本内容",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContent"
+		},{
+			"id": "contentVal",
+			"title": "文本值",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setContentVal"
+		}]
+	},{
+		"id": "setitem",
+		"title": "设置项",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "setitems",
+			"title": "设置项数",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "items",
+				"title": "",
+				"type": "int",
+				"maxval":"100",
+			    "minval":"1",
+				"defaultVal": "3",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setItems"
+			}]
+		}]
+	},{
+		"id": "skin",
+		"title": "皮肤",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "flag-style",
+			"title": "风格",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setFlagStyle",
+			"valrange": [{
+			    "name":"默认",
+				"title": "默认",
+				"value": "minimal"
+			},{
+				"name":"方正",
+				"title": "方正",
+				"value": "square"
+			},{
+			    "name":"扁平",
+				"title": "扁平",
+				"value": "flat"
+			}]
+		 },{
+			"id": "particular",
+			"title": "独特风格",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setParticular",
+			"valrange": [{
+			    "name":"北极星",
+				"title": "北极星",
+				"value": "polaris"
+			},{
+			    "name":"未来派",
+				"title": "未来派",
+				"value": "futurico"
+			}]
+		 },{
+			"id": "color",
+			"title": "颜色(不适用于独特风格)",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setColor",
+			"valrange": [{
+			    "name":"黑",
+				"title": "黑",
+				"value": "black"
+			},{
+				"name":"红",
+				"title": "红",
+				"value": "red"
+			},{
+			    "name":"绿",
+				"title": "绿",
+				"value": "green"
+			},{
+			    "name":"蓝",
+				"title": "蓝",
+				"value": "blue"
+			},{
+			    "name":"靛",
+				"title": "靛",
+				"value": "aero"
+			},{
+			    "name":"灰",
+				"title": "灰",
+				"value": "grey"
+			},{
+			    "name":"橙",
+				"title": "橙",
+				"value": "orange"
+			},{
+			    "name":"黄",
+				"title": "黄",
+				"value": "yellow"
+			},{
+			    "name":"粉",
+				"title": "粉",
+				"value": "pink"
+			},{
+			    "name":"紫",
+				"title": "紫",
+				"value": "purple"
+			}]
+		 }]
+	},{
+		"id": "horizontal",
+		"title": "水平放置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "horizontal-style",
+			"title": "水平放置",
+			"type": "string",
+			"defaultVal": "",
+			"inputMode": "radio",
+			"valrange": [{
+				"title": "是",
+				"value": "display"
+			},
+			{
+				"title": "否",
+				"value": "hide"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setHorizontalStyle"
+		},{
+			"id": "obj-horizontal-align",
+			"title": "水平对齐",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "left",
+			"inputMode": "buttongroup",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setObjHorizontalAlign",
+			"valrange": [{
+				"title": "水平左对齐",
+				"value": "left",
+				"icon":"align-left"
+			},
+				{
+					"title": "水平居中对齐",
+					"value": "center",
+					"icon":"align-center"
+				},{
+					"title": "右对齐",
+					"value": "right",
+					"icon":"align-right"
+				}]
+		}]
+	},{
+		"id": "font",
+		"title": "文本",
+		"description": "",
+		"expland": "false",
+		"properties": [
+			{
+				"id": "font-family",
+				"title": "字体<i class=\"fa fa-font\"></i>",
+				"type": "string",
+				"maxlen": "50",
+				"minlen": "5",
+				"defaultVal": "宋体",
+				"inputMode": "select",
+				"valrange": [{
+					"title": "Microsoft YaHei",
+					"value": "Microsoft YaHei"
+				},{
+					"title": "Arial",
+					"value": "Arial"
+				},{
+					"title": "Glyphicons Halflings",
+					"value": "Glyphicons Halflings"
+				},{
+					"title": "Consolas",
+					"value": "Consolas"
+				},{
+					"title": "Courier New",
+					"value": "Courier New"
+				},
+					{
+						"title": "宋体",
+						"value": "SimSun"
+					}],
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontFamily"
+			},
+			{
+				"id": "font-color",
+				"title": "颜色",
+				"type": "string",
+				"defaultVal": "",
+				"inputMode": "colorpicker",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontColor"
+			},{
+				"id": "font-style",
+				"title": "字体样式",
+				"type": "string",
+				"defaultVal": "",
+				"inputMode": "buttongroup",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setFontStyle",
+				"valrange": [{
+					"title": "字体加粗",
+					"value": "bold",
+					"icon":"bold"
+				},
+					{
+						"title": "斜体",
+						"value": "italic",
+						"icon":"italic"
+					}]
+			},		{
+				"id": "spacing",
+				"title": "字体间距",
+				"inputMode": "touchspin",
+				"properties": [{
+					"id": "letter-spacing",
+					"title": "横向间距",
+					"icon":"text-width",
+					"type": "int",
+					"maxval":"100",
+					"minval":"0",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setLetterSpacing"
+				}]
+
+			},{
+				"id": "font-size",
+				"title": "字体大小",
+				"inputMode": "touchspin",
+				"properties":[{
+					"id": "font-size",
+					"title": "字体大小",
+					"icon":"font",
+					"type": "int",
+					"maxval":"100",
+					"minval":"0",
+					"defaultVal": "",
+					"inputMode": "touchspin",
+					"require": "false",
+					"readonly": "false",
+					"ctrImpl": "setFontSize"
+				},
+					{
+						"id": "text-indent",
+						"title": "缩进",
+						"icon":"indent",
+						"type": "int",
+						"maxval":"100",
+						"minval":"0",
+						"defaultVal": "",
+						"inputMode": "touchspin",
+						"require": "false",
+						"readonly": "false",
+						"ctrImpl": "setTextIndent"
+					}]
+
+			}]
+	}]
+}

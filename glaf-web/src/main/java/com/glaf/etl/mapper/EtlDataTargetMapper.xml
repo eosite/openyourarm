@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.EtlDataTargetMapper">
+
+ 	<resultMap id="etlDataTargetResultMap"	type="com.glaf.etl.domain.EtlDataTarget">
+        <id property="targetId_" column="TARGET_ID_" jdbcType="VARCHAR"/>
+        <result property="targetName_" column="TARGET_NAME_" jdbcType="VARCHAR"/>
+        <result property="columns_" column="COLUMNS_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="databaseId_" column="DATABASEID_" jdbcType="BIGINT"/>
+        <result property="databaseName_" column="DATABASENAME_" jdbcType="VARCHAR"/>
+        <result property="tableName_" column="TABLENAME_" jdbcType="VARCHAR"/>
+        <result property="routTableRule_" column="ROUT_TABLE_RULE_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="createBy_" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime_" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy_" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime_" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertEtlDataTarget" parameterType="com.glaf.etl.domain.EtlDataTarget">
+		insert into ETL_DATATARGET 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    TARGET_ID_
+			<if test="targetName_ != null">
+				,TARGET_NAME_ 
+			</if>
+			<if test="columns_ != null">
+				,COLUMNS_ 
+			</if>
+			<if test="routTableRule_ != null">
+				,ROUT_TABLE_RULE_ 
+			</if>
+			<if test="databaseId_ != null">
+				,DATABASEID_ 
+			</if>
+			<if test="databaseName_ != null">
+				,DATABASENAME_ 
+			</if>
+			<if test="tableName_ != null">
+				,TABLENAME_ 
+			</if>
+			<if test="createBy_ != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime_ != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy_ != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime_ != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{targetId_, jdbcType=VARCHAR}
+	     
+			<if test="targetName_ != null">
+				,#{targetName_, jdbcType=VARCHAR}
+			</if>
+			<if test="columns_ != null">
+				,#{columns_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="routTableRule_ != null">
+				,#{routTableRule_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="databaseId_ != null">
+				,#{databaseId_, jdbcType=BIGINT}
+			</if>
+			<if test="databaseName_ != null">
+				,#{databaseName_, jdbcType=VARCHAR}
+			</if>
+			<if test="tableName_ != null">
+				,#{tableName_, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy_ != null">
+				,#{createBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime_ != null">
+				,#{createTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy_ != null">
+				,#{updateBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime_ != null">
+				,#{updateTime_, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEtlDataTarget" parameterType="com.glaf.etl.domain.EtlDataTarget">
+		update ETL_DATATARGET
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="targetName_ != null">
+				TARGET_NAME_ = #{targetName_, jdbcType=VARCHAR},
+			</if>
+			<if test="columns_ != null">
+				COLUMNS_ = #{columns_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="routTableRule_ != null">
+				ROUT_TABLE_RULE_ = #{routTableRule_, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="databaseId_ != null">
+				DATABASEID_ = #{databaseId_, jdbcType=BIGINT},
+			</if>
+			<if test="databaseName_ != null">
+				DATABASENAME_ = #{databaseName_, jdbcType=VARCHAR},
+			</if>
+			<if test="tableName_ != null">
+				TABLENAME_ = #{tableName_, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy_ != null">
+				CREATEBY_ = #{createBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime_ != null">
+				CREATETIME_ = #{createTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy_ != null">
+				UPDATEBY_ = #{updateBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime_ != null">
+				UPDATETIME_ = #{updateTime_, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          TARGET_ID_ = #{targetId_, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteEtlDataTargetById" parameterType="string"> 
+        delete from ETL_DATATARGET
+        where TARGET_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEtlDataTargets" parameterType="com.glaf.etl.query.EtlDataTargetQuery">
+		delete from ETL_DATATARGET
+		where ( 
+ 			  TARGET_ID_ IN
+              <foreach item="x_targetId_" index="index" collection="targetId_s" 
+                     open="(" separator="," close=")">
+                  #{x_targetId_}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEtlDataTargetById" parameterType="string" resultMap="etlDataTargetResultMap">
+		select * from ETL_DATATARGET where TARGET_ID_ = #{id}
+	</select>
+
+
+	<select id="getEtlDataTargets" 
+	    parameterType="com.glaf.etl.query.EtlDataTargetQuery"
+		resultMap="etlDataTargetResultMap">
+		select distinct E.*
+		<include refid="selectEtlDataTargetsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.TARGET_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEtlDataTargetCount" 
+	    parameterType="com.glaf.etl.query.EtlDataTargetQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEtlDataTargetsSql" />
+	</select>
+
+
+	<sql id="selectEtlDataTargetsSql">
+
+		from ETL_DATATARGET E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="targetName_ != null and targetName_ != '' ">
+				and E.TARGET_NAME_ = #{targetName_}
+            </if>
+
+			<if test="targetName_Like != null and targetName_Like != '' ">
+				and E.TARGET_NAME_ like #{targetName_Like}
+            </if>
+
+			<if test="targetName_s != null and targetName_s.size() &gt; 0">
+			    and E.TARGET_NAME_ IN
+                <foreach item="x_targetName_" index="index" collection="targetName_s" 
+                     open="(" separator="," close=")">
+                  #{x_targetName_}
+                </foreach>
+			</if>
+	        
+			<if test="databaseId_ != null and databaseId_ != '' ">
+				and E.DATABASEID_ = #{databaseId_}
+            </if>
+
+			<if test="databaseId_Like != null and databaseId_Like != '' ">
+				and E.DATABASEID_ like #{databaseId_Like}
+            </if>
+
+			<if test="databaseId_s != null and databaseId_s.size() &gt; 0">
+			    and E.DATABASEID_ IN
+                <foreach item="x_databaseId_" index="index" collection="databaseId_s" 
+                     open="(" separator="," close=")">
+                  #{x_databaseId_}
+                </foreach>
+			</if>
+	        
+			<if test="databaseName_ != null and databaseName_ != '' ">
+				and E.DATABASENAME_ = #{databaseName_}
+            </if>
+
+			<if test="databaseName_Like != null and databaseName_Like != '' ">
+				and E.DATABASENAME_ like #{databaseName_Like}
+            </if>
+
+			<if test="databaseName_s != null and databaseName_s.size() &gt; 0">
+			    and E.DATABASENAME_ IN
+                <foreach item="x_databaseName_" index="index" collection="databaseName_s" 
+                     open="(" separator="," close=")">
+                  #{x_databaseName_}
+                </foreach>
+			</if>
+	        
+			<if test="tableName_ != null and tableName_ != '' ">
+				and E.TABLENAME_ = #{tableName_}
+            </if>
+
+			<if test="tableName_Like != null and tableName_Like != '' ">
+				and E.TABLENAME_ like #{tableName_Like}
+            </if>
+
+			<if test="tableName_s != null and tableName_s.size() &gt; 0">
+			    and E.TABLENAME_ IN
+                <foreach item="x_tableName_" index="index" collection="tableName_s" 
+                     open="(" separator="," close=")">
+                  #{x_tableName_}
+                </foreach>
+			</if>
+	        
+			<if test="createBy_ != null and createBy_ != '' ">
+				and E.CREATEBY_ = #{createBy_}
+            </if>
+
+			<if test="createBy_Like != null and createBy_Like != '' ">
+				and E.CREATEBY_ like #{createBy_Like}
+            </if>
+
+			<if test="createBy_s != null and createBy_s.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy_" index="index" collection="createBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_createBy_}
+                </foreach>
+			</if>
+
+			<if test="createTime_GreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="createTime_LessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTime_LessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy_ != null and updateBy_ != '' ">
+				and E.UPDATEBY_ = #{updateBy_}
+            </if>
+
+			<if test="updateBy_Like != null and updateBy_Like != '' ">
+				and E.UPDATEBY_ like #{updateBy_Like}
+            </if>
+
+			<if test="updateBy_s != null and updateBy_s.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy_" index="index" collection="updateBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy_}
+                </foreach>
+			</if>
+
+			<if test="updateTime_GreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="updateTime_LessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTime_LessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

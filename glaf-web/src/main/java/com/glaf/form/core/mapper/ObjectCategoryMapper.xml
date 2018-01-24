@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.ObjectCategoryMapper">
+
+ 	<resultMap id="objectCategoryResultMap"	type="com.glaf.form.core.domain.ObjectCategory">
+        <id property="categoryId" column="CATEGORY_ID_" jdbcType="BIGINT" />
+        <result property="treeID" column="TREEID_" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="custom" column="CUSTOM_" jdbcType="INTEGER"/>
+        <result property="owner" column="OWNER_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="PARENTID_" jdbcType="BIGINT"/>
+        <result property="orderNo" column="ORDERNO_" jdbcType="INTEGER"/>
+        <result property="level" column="LEVEL_" jdbcType="INTEGER"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertObjectCategory" parameterType="com.glaf.form.core.domain.ObjectCategory">
+		insert into OBJ_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    CATEGORY_ID_
+			<if test="treeID != null">
+				,TREEID_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="custom != null">
+				,CUSTOM_ 
+			</if>
+			<if test="owner != null">
+				,OWNER_ 
+			</if>
+			<if test="parentId != null">
+				,PARENTID_ 
+			</if>
+			<if test="orderNo != null">
+				,ORDERNO_ 
+			</if>
+			<if test="level != null">
+				,LEVEL_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{categoryId, jdbcType=BIGINT}
+	     
+			<if test="treeID != null">
+				,#{treeID, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="custom != null">
+				,#{custom, jdbcType=INTEGER}
+			</if>
+			<if test="owner != null">
+				,#{owner, jdbcType=VARCHAR}
+			</if>
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="orderNo != null">
+				,#{orderNo, jdbcType=INTEGER}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=INTEGER}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateObjectCategory" parameterType="com.glaf.form.core.domain.ObjectCategory">
+		update OBJ_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="treeID != null">
+				TREEID_ = #{treeID, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="custom != null">
+				CUSTOM_ = #{custom, jdbcType=INTEGER},
+			</if>
+			<if test="owner != null">
+				OWNER_ = #{owner, jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				PARENTID_ = #{parentId, jdbcType=BIGINT},
+			</if>
+			<if test="orderNo != null">
+				ORDERNO_ = #{orderNo, jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=INTEGER},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          CATEGORY_ID_ = #{categoryId, jdbcType=BIGINT}
+		
+    </update>
+
+    <update id="rename" parameterType="map">
+		update OBJ_CATEGORY set NAME_=#{name, jdbcType=VARCHAR} where CATEGORY_ID_= #{categoryId, jdbcType=BIGINT}
+	</update>
+	<delete id="deleteObjectCategoryById" parameterType="long"> 
+        delete from OBJ_CATEGORY
+        where CATEGORY_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteObjectCategorys" parameterType="com.glaf.form.core.query.ObjectCategoryQuery">
+		delete from OBJ_CATEGORY
+		where ( 
+ 			  CATEGORY_ID_ IN
+              <foreach item="x_categoryId" index="index" collection="categoryIds" 
+                     open="(" separator="," close=")">
+                  #{x_categoryId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getObjectCategoryById" parameterType="long" resultMap="objectCategoryResultMap">
+		select * from OBJ_CATEGORY where CATEGORY_ID_ = #{id}
+	</select>
+    <select id="getMaxOrder" parameterType="long" resultType="int">
+		select max(ORDERNO_) from OBJ_CATEGORY where PARENTID_ = #{id}
+	</select> 
+
+	<select id="getObjectCategorys" 
+	    parameterType="com.glaf.form.core.query.ObjectCategoryQuery"
+		resultMap="objectCategoryResultMap">
+		select  E.*
+		<include refid="selectObjectCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CATEGORY_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+    <select id="getPageCompTemplateObjectCategorys" 
+	    parameterType="map"
+		resultMap="objectCategoryResultMap">
+		select  E.* from OBJ_CATEGORY E where (owner_='admin' or owner_=#{actorId})
+			<if test="treeId != null and treeId != '' ">
+				and E.TREEID_ like #{treeId}+'%'
+            </if>
+		   order by PARENTID_ asc,orderno_ asc
+	</select>
+	<select id="getObjectCategoryCount" 
+	    parameterType="com.glaf.form.core.query.ObjectCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectObjectCategorysSql" />
+	</select>
+
+
+	<sql id="selectObjectCategorysSql">
+
+		from OBJ_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="treeID != null and treeID != '' ">
+				and E.TREEID_ = #{treeID}
+            </if>
+
+			<if test="treeIDLike != null and treeIDLike != '' ">
+				and E.TREEID_ like #{treeIDLike}
+            </if>
+
+			<if test="treeIDs != null and treeIDs.size() &gt; 0">
+			    and E.TREEID_ IN
+                <foreach item="x_treeID" index="index" collection="treeIDs" 
+                     open="(" separator="," close=")">
+                  #{x_treeID}
+                </foreach>
+			</if>
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+
+			<if test="custom != null">
+				and E.CUSTOM_ = #{custom}
+            </if>
+
+			<if test="customGreaterThanOrEqual != null">
+				and E.CUSTOM_ &gt;= #{customGreaterThanOrEqual}
+            </if>
+
+			<if test="customLessThanOrEqual != null">
+				and E.CUSTOM_ &lt;= #{customLessThanOrEqual}
+            </if>
+
+			<if test="customs != null and customs.size() &gt; 0">
+			    and E.CUSTOM_ IN
+                <foreach item="x_custom" index="index" collection="customs" 
+                     open="(" separator="," close=")">
+                  #{x_custom}
+                </foreach>
+			</if>
+      
+	        
+			<if test="owner_ != null and owner_ != '' ">
+				and E.OWNER_ = #{owner_}
+            </if>
+
+			<if test="ownerLike_ != null and ownerLike_ != '' ">
+				and E.OWNER_ like #{ownerLike_}
+            </if>
+
+			<if test="owners_ != null and owners_ &gt; 0">
+			    and E.OWNER_ IN
+                <foreach item="x_owner" index="index" collection="owners_" 
+                     open="(" separator="," close=")">
+                  #{x_owner}
+                </foreach>
+			</if>
+
+			<if test="parentId != null">
+				and E.PARENTID_ = #{parentId}
+            </if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENTID_ &gt;= #{parentIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENTID_ &lt;= #{parentIdLessThanOrEqual}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENTID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+      
+
+			<if test="orderNo != null">
+				and E.ORDERNO_ = #{orderNo}
+            </if>
+
+			<if test="orderNoGreaterThanOrEqual != null">
+				and E.ORDERNO_ &gt;= #{orderNoGreaterThanOrEqual}
+            </if>
+
+			<if test="orderNoLessThanOrEqual != null">
+				and E.ORDERNO_ &lt;= #{orderNoLessThanOrEqual}
+            </if>
+
+			<if test="orderNos != null and orderNos.size() &gt; 0">
+			    and E.ORDERNO_ IN
+                <foreach item="x_orderNo" index="index" collection="orderNos" 
+                     open="(" separator="," close=")">
+                  #{x_orderNo}
+                </foreach>
+			</if>
+      
+
+			<if test="delFlag != null">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagGreaterThanOrEqual != null">
+				and E.DELFLAG_ &gt;= #{delFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="delFlagLessThanOrEqual != null">
+				and E.DELFLAG_ &lt;= #{delFlagLessThanOrEqual}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

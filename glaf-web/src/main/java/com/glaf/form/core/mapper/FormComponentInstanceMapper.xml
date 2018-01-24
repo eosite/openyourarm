@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormComponentInstanceMapper">
+
+	<resultMap id="formComponentInstanceResultMap"
+		type="com.glaf.form.core.domain.FormComponentInstance">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="formDesignId" column="FORMDESIGNID_"
+			jdbcType="VARCHAR" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="dataType" column="DATATYPE_" jdbcType="VARCHAR" />
+		<result property="kendoComponent" column="KENDOCOMPONENT_"
+			jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormComponentInstance" parameterType="com.glaf.form.core.domain.FormComponentInstance">
+		insert into FORM_COMPONENT_INSTANCE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="formDesignId != null">
+				,FORMDESIGNID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="componentId != null">
+				,COMPONENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="title != null">
+				,TITLE_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="dataType != null">
+				,DATATYPE_
+			</if>
+			<if test="kendoComponent != null">
+				,KENDOCOMPONENT_
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="formDesignId != null">
+				,#{formDesignId, jdbcType=VARCHAR}
+			</if>
+			<if test="componentId != null">
+				,#{componentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				,#{title, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="dataType != null">
+				,#{dataType, jdbcType=VARCHAR}
+			</if>
+			<if test="kendoComponent != null">
+				,#{kendoComponent, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormComponentInstance" parameterType="com.glaf.form.core.domain.FormComponentInstance">
+		update FORM_COMPONENT_INSTANCE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="formDesignId != null">
+				FORMDESIGNID_ = #{formDesignId, jdbcType=VARCHAR},
+			</if>
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="componentId != null">
+				COMPONENTID_ = #{componentId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				TITLE_ = #{title, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="dataType != null">
+				DATATYPE_ = #{dataType, jdbcType=VARCHAR},
+			</if>
+			<if test="kendoComponent != null">
+				KENDOCOMPONENT_ = #{kendoComponent, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFormComponentInstanceById" parameterType="string">
+		delete from FORM_COMPONENT_INSTANCE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormComponentInstances" parameterType="com.glaf.form.core.query.FormComponentInstanceQuery">
+		delete from FORM_COMPONENT_INSTANCE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormComponentInstanceById" parameterType="string"
+		resultMap="formComponentInstanceResultMap">
+		select * from FORM_COMPONENT_INSTANCE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormComponentInstances" parameterType="com.glaf.form.core.query.FormComponentInstanceQuery"
+		resultMap="formComponentInstanceResultMap">
+		select E.*
+		<include refid="selectFormComponentInstancesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormComponentInstanceCount" parameterType="com.glaf.form.core.query.FormComponentInstanceQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormComponentInstancesSql" />
+	</select>
+
+
+	<sql id="selectFormComponentInstancesSql">
+
+		from FORM_COMPONENT_INSTANCE E
+
+		<where>
+			1 = 1
+
+			<if test="formDesignId != null and formDesignId != '' ">
+				and E.FORMDESIGNID_ = #{formDesignId}
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

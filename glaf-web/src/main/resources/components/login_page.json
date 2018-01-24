@@ -1,0 +1,25 @@
+{
+	"id": "login_page",
+	"title": "登录页面",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "页面名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	}]
+		
+	
+}

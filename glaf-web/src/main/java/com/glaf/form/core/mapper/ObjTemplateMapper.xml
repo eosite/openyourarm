@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.ObjTemplateMapper">
+
+ 	<resultMap id="objTemplateResultMap"	type="com.glaf.form.core.domain.ObjTemplate">
+        <id property="templateId" column="TEMPLATE_ID_" jdbcType="BIGINT" />
+        <result property="tmpName" column="TMP_NAME_" jdbcType="VARCHAR"/>
+        <result property="objType" column="OBJ_TYPE_" jdbcType="VARCHAR"/>
+        <result property="owner" column="OWNER_" jdbcType="VARCHAR"/>
+        <result property="tmpContent" column="TMP_CONTENT_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="thumbnail" column="THUMBNAIL_" jdbcType="VARBINARY" typeHandler="org.apache.ibatis.type.BlobTypeHandler"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertObjTemplate" parameterType="com.glaf.form.core.domain.ObjTemplate">
+		insert into OBJ_TEMPLATE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    TEMPLATE_ID_
+			<if test="tmpName != null">
+				,TMP_NAME_ 
+			</if>
+			<if test="objType != null">
+				,OBJ_TYPE_ 
+			</if>
+			<if test="tmpContent != null">
+				,TMP_CONTENT_ 
+			</if>
+			<if test="thumbnail != null">
+				,THUMBNAIL_ 
+			</if>
+			<if test="owner != null">
+				,OWNER_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{templateId, jdbcType=BIGINT}
+	     
+			<if test="tmpName != null">
+				,#{tmpName, jdbcType=VARCHAR}
+			</if>
+			<if test="objType != null">
+				,#{objType, jdbcType=VARCHAR}
+			</if>
+			<if test="tmpContent != null">
+				,#{tmpContent, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="thumbnail != null">
+				,#{thumbnail, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="owner != null">
+				,#{owner, jdbcType=VARCHAR}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateObjTemplate" parameterType="com.glaf.form.core.domain.ObjTemplate">
+		update OBJ_TEMPLATE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="tmpName != null">
+				TMP_NAME_ = #{tmpName, jdbcType=VARCHAR},
+			</if>
+			<if test="objType != null">
+				OBJ_TYPE_ = #{objType, jdbcType=VARCHAR},
+			</if>
+			<if test="tmpContent != null">
+				TMP_CONTENT_ = #{tmpContent, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="thumbnail != null">
+				THUMBNAIL_ = #{thumbnail, jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="owner != null">
+				OWNER_ = #{owner, jdbcType=VARCHAR},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          TEMPLATE_ID_ = #{templateId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteObjTemplateById" parameterType="long"> 
+        delete from OBJ_TEMPLATE
+        where TEMPLATE_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteObjTemplates" parameterType="com.glaf.form.core.query.ObjTemplateQuery">
+		delete from OBJ_TEMPLATE
+		where ( 
+ 			  TEMPLATE_ID_ IN
+              <foreach item="x_templateId" index="index" collection="templateIds" 
+                     open="(" separator="," close=")">
+                  #{x_templateId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getObjTemplateById" parameterType="long" resultMap="objTemplateResultMap">
+		select * from OBJ_TEMPLATE where TEMPLATE_ID_ = #{id}
+	</select>
+
+
+	<select id="getObjTemplates" 
+	    parameterType="com.glaf.form.core.query.ObjTemplateQuery"
+		resultMap="objTemplateResultMap">
+		select  TEMPLATE_ID_,
+			    TMP_NAME_,
+			    OBJ_TYPE_,
+			    THUMBNAIL_,
+			    OWNER_,
+			    DELFLAG_,
+			    CREATOR_,
+			    CREATETIME_,
+			    MODIFIER_,
+			    UPDATETIME_
+		<include refid="selectObjTemplatesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.TEMPLATE_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+	
+    <select id="getCategoryTemplates" 
+	    parameterType="java.lang.Long"
+		resultMap="objTemplateResultMap">
+		select  E.* from OBJ_TEMPLATE E,OBJ_TEMPLATE_CATEGORY F,OBJ_CATEGORY G where G.CATEGORY_ID_=F.CATEGORY_ID_ and E.TEMPLATE_ID_=F.TEMPLATE_ID_
+		and G.CATEGORY_ID_=#{category}
+
+	</select>
+
+	<select id="getObjTemplateCount" 
+	    parameterType="com.glaf.form.core.query.ObjTemplateQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectObjTemplatesSql" />
+	</select>
+
+
+	<sql id="selectObjTemplatesSql">
+
+		from OBJ_TEMPLATE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="tmpName != null and tmpName != '' ">
+				and E.TMP_NAME_ = #{tmpName}
+            </if>
+
+			<if test="tmpNameLike != null and tmpNameLike != '' ">
+				and E.TMP_NAME_ like #{tmpNameLike}
+            </if>
+
+			<if test="tmpNames != null and tmpNames.size() &gt; 0">
+			    and E.TMP_NAME_ IN
+                <foreach item="x_tmpName" index="index" collection="tmpNames" 
+                     open="(" separator="," close=")">
+                  #{x_tmpName}
+                </foreach>
+			</if>
+	        
+			<if test="objType != null and objType != '' ">
+				and E.OBJ_TYPE_ = #{objType}
+            </if>
+
+			<if test="objTypeLike != null and objTypeLike != '' ">
+				and E.OBJ_TYPE_ like #{objTypeLike}
+            </if>
+
+			<if test="objTypes != null and objTypes.size() &gt; 0">
+			    and E.OBJ_TYPE_ IN
+                <foreach item="x_objType" index="index" collection="objTypes" 
+                     open="(" separator="," close=")">
+                  #{x_objType}
+                </foreach>
+			</if>
+	        
+			<if test="owner_ != null and owner_ != '' ">
+				and E.OWNER_ = #{ownerLike,jdbcType=VARCHAR}
+            </if>
+
+			<if test="ownerLike_ != null and ownerLike != '' ">
+				and E.OWNER_ like #{ownerLike_,jdbcType=VARCHAR}
+            </if>
+
+			<if test="owners_ != null and owners_.size() &gt; 0">
+			    and E.OWNER_ IN
+                <foreach item="x_owner" index="index" collection="owners_" 
+                     open="(" separator="," close=")">
+                  #{x_owner}
+                </foreach>
+			</if>
+
+			<if test="delFlag != null">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagGreaterThanOrEqual != null">
+				and E.DELFLAG_ &gt;= #{delFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="delFlagLessThanOrEqual != null">
+				and E.DELFLAG_ &lt;= #{delFlagLessThanOrEqual}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+            <if test="categoryId != null and categoryId&gt;0">
+				and E.TEMPLATE_ID_ in (select TEMPLATE_ID_ from OBJ_TEMPLATE_CATEGORY where CATEGORY_ID_=#{categoryId,jdbcType=BIGINT}) 
+            </if>
+            <if test="treeId != null">
+				and E.TEMPLATE_ID_ in (select b.TEMPLATE_ID_ from OBJ_CATEGORY a, OBJ_TEMPLATE_CATEGORY b where a.CATEGORY_ID_=b.CATEGORY_ID_ and  treeId_ like #{treeId}+'%') 
+            </if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

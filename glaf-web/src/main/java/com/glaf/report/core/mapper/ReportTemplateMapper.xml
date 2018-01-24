@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.report.core.mapper.ReportTemplateMapper">
+
+	<resultMap id="reportTemplateResultMap" type="com.glaf.report.core.domain.ReportTemplate">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="rev" column="REV_" jdbcType="INTEGER" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="code" column="CODE_" jdbcType="VARCHAR" />
+		<result property="bytes" column="BYTES_" jdbcType="VARBINARY"
+			typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatatime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatatime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="status" column="STATUS" jdbcType="INTEGER" />
+		<result property="publish" column="PUBLISH_" jdbcType="INTEGER" />
+		<result property="publishUser" column="PUBLISH_USER_" jdbcType="VARCHAR" />
+		<result property="publishDatetime" column="PUBLISHDATETIME"
+			jdbcType="TIMESTAMP" />
+		<result property="fileName" column="FILENAME_" jdbcType="VARCHAR" />
+		<result property="ext" column="EXT_" jdbcType="VARCHAR" />
+
+		<collection property="reportTmpDataSets" column="ID_"
+			javaType="list" fetchType="lazy"
+			select="com.glaf.report.core.mapper.ReportTmpDataSetMapper.selectDataSetByReportId" />
+
+	</resultMap>
+
+	<insert id="insertReportTemplate" parameterType="com.glaf.report.core.domain.ReportTemplate">
+		insert into REPORT_TEMPLATE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="rev != null">
+				,REV_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="code != null">
+				,CODE_
+			</if>
+			<if test="bytes != null">
+				,BYTES_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatatime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatatime != null">
+				,MODIFYDATETIME_
+			</if>
+			<if test="status != null">
+				,STATUS
+			</if>
+			<if test="publish != null">
+				,PUBLISH_
+			</if>
+			<if test="publishUser != null">
+				,PUBLISH_USER_
+			</if>
+			<if test="publishDatetime != null">
+				,PUBLISHDATETIME
+			</if>
+			<if test="fileName != null">
+				,FILENAME_
+			</if>
+			<if test="ext != null">
+				,EXT_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="rev != null">
+				,#{rev, jdbcType=INTEGER}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="bytes != null">
+				,#{bytes, jdbcType=VARBINARY,
+				typeHandler=org.apache.ibatis.type.BlobTypeHandler}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatatime != null">
+				,#{createDatatime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatatime != null">
+				,#{modifyDatatime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="publish != null">
+				,#{publish, jdbcType=INTEGER}
+			</if>
+			<if test="publishUser != null">
+				,#{publishUser, jdbcType=VARCHAR}
+			</if>
+			<if test="publishDatetime != null">
+				,#{publishDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="fileName != null">
+				,#{fileName, jdbcType=VARCHAR}
+			</if>
+			<if test="ext != null">
+				,#{ext, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateReportTemplate" parameterType="com.glaf.report.core.domain.ReportTemplate">
+		update REPORT_TEMPLATE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="rev != null">
+				REV_ = #{rev, jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="bytes != null">
+				BYTES_ = #{bytes,
+				jdbcType=VARBINARY,typeHandler=org.apache.ibatis.type.BlobTypeHandler},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatatime != null">
+				CREATEDATETIME_ = #{createDatatime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatatime != null">
+				MODIFYDATETIME_ = #{modifyDatatime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				STATUS = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="publish != null">
+				PUBLISH_ = #{publish, jdbcType=INTEGER},
+			</if>
+			<if test="publishUser != null">
+				PUBLISH_USER_ = #{publishUser, jdbcType=VARCHAR},
+			</if>
+			<if test="publishDatetime != null">
+				PUBLISHDATETIME = #{publishDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="fileName != null">
+				FILENAME_ = #{fileName, jdbcType=VARCHAR},
+			</if>
+			<if test="ext != null">
+				EXT_ = #{ext, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteReportTemplateById" parameterType="string">
+		delete from
+		REPORT_TEMPLATE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteReportTemplates" parameterType="com.glaf.report.core.query.ReportTemplateQuery">
+		delete from REPORT_TEMPLATE
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getReportTemplateById" parameterType="string"
+		resultMap="reportTemplateResultMap">
+		select * from REPORT_TEMPLATE where ID_ = #{id}
+	</select>
+
+
+	<select id="getReportTemplates" parameterType="com.glaf.report.core.query.ReportTemplateQuery"
+		resultMap="reportTemplateResultMap">
+		select distinct ID_,
+		REV_,
+		NAME_,
+		CODE_,
+		CREATOR_,
+		CREATEDATETIME_,
+		MODIFIER_,
+		MODIFYDATETIME_,
+		STATUS,
+		PUBLISH_,
+		PUBLISH_USER_,
+		PUBLISHDATETIME,
+		FILENAME_,
+		EXT_
+		<include refid="selectReportTemplatesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getReportTemplateCount" parameterType="com.glaf.report.core.query.ReportTemplateQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectReportTemplatesSql" />
+	</select>
+
+
+	<sql id="selectReportTemplatesSql">
+
+		from REPORT_TEMPLATE E
+
+		<where>
+			1 = 1
+
+
+			<if test="rev != null">
+				and E.REV_ = #{rev}
+			</if>
+
+			<if test="revGreaterThanOrEqual != null">
+				and E.REV_ &gt;= #{revGreaterThanOrEqual}
+			</if>
+
+			<if test="revLessThanOrEqual != null">
+				and E.REV_ &lt;= #{revLessThanOrEqual}
+			</if>
+
+			<if test="revs != null and revs.size() &gt; 0">
+				and E.REV_ IN
+				<foreach item="x_rev" index="index" collection="revs" open="("
+					separator="," close=")">
+					#{x_rev}
+				</foreach>
+			</if>
+
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+			</if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+			</if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+				and E.CODE_ IN
+				<foreach item="x_code" index="index" collection="codes"
+					open="(" separator="," close=")">
+					#{x_code}
+				</foreach>
+			</if>
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatatimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatatimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatatimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatatimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatatimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatatimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatatimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatatimeLessThanOrEqual}
+			</if>
+
+
+			<if test="status != null">
+				and E.STATUS = #{status}
+			</if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS &gt;= #{statusGreaterThanOrEqual}
+			</if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS &lt;= #{statusLessThanOrEqual}
+			</if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+				and E.STATUS IN
+				<foreach item="x_status" index="index" collection="statuss"
+					open="(" separator="," close=")">
+					#{x_status}
+				</foreach>
+			</if>
+
+
+			<if test="publish != null">
+				and E.PUBLISH_ = #{publish}
+			</if>
+
+			<if test="publishGreaterThanOrEqual != null">
+				and E.PUBLISH_ &gt;= #{publishGreaterThanOrEqual}
+			</if>
+
+			<if test="publishLessThanOrEqual != null">
+				and E.PUBLISH_ &lt;= #{publishLessThanOrEqual}
+			</if>
+
+			<if test="publishs != null and publishs.size() &gt; 0">
+				and E.PUBLISH_ IN
+				<foreach item="x_publish" index="index" collection="publishs"
+					open="(" separator="," close=")">
+					#{x_publish}
+				</foreach>
+			</if>
+
+
+			<if test="publishUser != null and publishUser != '' ">
+				and E.PUBLISH_USER_ = #{publishUser}
+			</if>
+
+			<if test="publishUserLike != null and publishUserLike != '' ">
+				and E.PUBLISH_USER_ like #{publishUserLike}
+			</if>
+
+			<if test="publishUsers != null and publishUsers.size() &gt; 0">
+				and E.PUBLISH_USER_ IN
+				<foreach item="x_publishUser" index="index" collection="publishUsers"
+					open="(" separator="," close=")">
+					#{x_publishUser}
+				</foreach>
+			</if>
+
+			<if test="publishDatetimeGreaterThanOrEqual != null">
+				and E.PUBLISHDATETIME &gt;=
+				#{publishDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="publishDatetimeLessThanOrEqual != null">
+				and E.PUBLISHDATETIME &lt;=
+				#{publishDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="fileName != null and fileName != '' ">
+				and E.FILENAME_ = #{fileName}
+			</if>
+
+			<if test="fileNameLike != null and fileNameLike != '' ">
+				and E.FILENAME_ like #{fileNameLike}
+			</if>
+
+			<if test="fileNames != null and fileNames.size() &gt; 0">
+				and E.FILENAME_ IN
+				<foreach item="x_fileName" index="index" collection="fileNames"
+					open="(" separator="," close=")">
+					#{x_fileName}
+				</foreach>
+			</if>
+
+			<if test="ext != null and ext != '' ">
+				and E.EXT_ = #{ext}
+			</if>
+
+			<if test="extLike != null and extLike != '' ">
+				and E.EXT_ like #{extLike}
+			</if>
+
+			<if test="exts != null and exts.size() &gt; 0">
+				and E.EXT_ IN
+				<foreach item="x_ext" index="index" collection="exts" open="("
+					separator="," close=")">
+					#{x_ext}
+				</foreach>
+			</if>
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+            <if test="categoryId!= null">
+                    and ID_ in (select TEMPLATE_ID_ from REPORT_TMP_CATEGORY where CATEGORY_ID_=#{categoryId})
+            </if>
+		</where>
+	</sql>
+
+</mapper>

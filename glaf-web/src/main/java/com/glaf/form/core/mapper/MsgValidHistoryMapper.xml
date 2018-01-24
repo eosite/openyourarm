@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.MsgValidHistoryMapper">
+
+ 	<resultMap id="msgValidHistoryResultMap"	type="com.glaf.form.core.domain.MsgValidHistory">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="telephone" column="TELEPHONE_" jdbcType="VARCHAR"/>
+        <result property="sendDate" column="SENDDATE_" jdbcType="TIMESTAMP"/>
+        <result property="type" column="TYPE_" jdbcType="INTEGER"/>
+        <result property="typeName" column="TYPENAME_" jdbcType="VARCHAR"/>
+        <result property="url" column="URL_" jdbcType="VARCHAR"/>
+        <result property="msg" column="MSG_" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS_" jdbcType="INTEGER"/>
+        <result property="statusName" column="STATUSNAME_" jdbcType="VARCHAR"/>
+        <result property="result" column="RESULT_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertMsgValidHistory" parameterType="com.glaf.form.core.domain.MsgValidHistory">
+		insert into MSGVALIDHISTORY_ 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="telephone != null">
+				,TELEPHONE_ 
+			</if>
+			<if test="sendDate != null">
+				,SENDDATE_ 
+			</if>
+			<if test="type != null">
+				,TYPE_ 
+			</if>
+			<if test="typeName != null">
+				,TYPENAME_ 
+			</if>
+			<if test="url != null">
+				,URL_ 
+			</if>
+			<if test="msg != null">
+				,MSG_ 
+			</if>
+			<if test="status != null">
+				,STATUS_ 
+			</if>
+			<if test="statusName != null">
+				,STATUSNAME_ 
+			</if>
+			<if test="result != null">
+				,RESULT_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="telephone != null">
+				,#{telephone, jdbcType=VARCHAR}
+			</if>
+			<if test="sendDate != null">
+				,#{sendDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=INTEGER}
+			</if>
+			<if test="typeName != null">
+				,#{typeName, jdbcType=VARCHAR}
+			</if>
+			<if test="url != null">
+				,#{url, jdbcType=VARCHAR}
+			</if>
+			<if test="msg != null">
+				,#{msg, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+			<if test="statusName != null">
+				,#{statusName, jdbcType=VARCHAR}
+			</if>
+			<if test="result != null">
+				,#{result, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateMsgValidHistory" parameterType="com.glaf.form.core.domain.MsgValidHistory">
+		update MSGVALIDHISTORY_
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="telephone != null">
+				TELEPHONE_ = #{telephone, jdbcType=VARCHAR},
+			</if>
+			<if test="sendDate != null">
+				SENDDATE_ = #{sendDate, jdbcType=TIMESTAMP},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=INTEGER},
+			</if>
+			<if test="typeName != null">
+				TYPENAME_ = #{typeName, jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL_ = #{url, jdbcType=VARCHAR},
+			</if>
+			<if test="msg != null">
+				MSG_ = #{msg, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+			<if test="statusName != null">
+				STATUSNAME_ = #{statusName, jdbcType=VARCHAR},
+			</if>
+			<if test="result != null">
+				RESULT_ = #{result, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteMsgValidHistoryById" parameterType="string"> 
+        delete from MSGVALIDHISTORY_
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteMsgValidHistorys" parameterType="com.glaf.form.core.query.MsgValidHistoryQuery">
+		delete from MSGVALIDHISTORY_
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getMsgValidHistoryById" parameterType="string" resultMap="msgValidHistoryResultMap">
+		select * from MSGVALIDHISTORY_ where ID_ = #{id}
+	</select>
+
+
+	<select id="getMsgValidHistorys" 
+	    parameterType="com.glaf.form.core.query.MsgValidHistoryQuery"
+		resultMap="msgValidHistoryResultMap">
+		select distinct E.*
+		<include refid="selectMsgValidHistorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getMsgValidHistoryCount" 
+	    parameterType="com.glaf.form.core.query.MsgValidHistoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectMsgValidHistorysSql" />
+	</select>
+
+
+	<sql id="selectMsgValidHistorysSql">
+
+		from MSGVALIDHISTORY_ E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="telephone != null and telephone != '' ">
+				and E.TELEPHONE_ = #{telephone}
+            </if>
+
+			<if test="telephoneLike != null and telephoneLike != '' ">
+				and E.TELEPHONE_ like #{telephoneLike}
+            </if>
+
+			<if test="telephones != null and telephones.size() &gt; 0">
+			    and E.TELEPHONE_ IN
+                <foreach item="x_telephone" index="index" collection="telephones" 
+                     open="(" separator="," close=")">
+                  #{x_telephone}
+                </foreach>
+			</if>
+
+			<if test="sendDateGreaterThanOrEqual != null">
+				and E.SENDDATE_ &gt;= #{sendDateGreaterThanOrEqual}
+            </if>
+
+			<if test="sendDateLessThanOrEqual != null">
+				and E.SENDDATE_ &lt;= #{sendDateLessThanOrEqual}
+            </if>
+
+
+			<if test="type != null">
+				and E.TYPE_ = #{type}
+            </if>
+
+			<if test="typeGreaterThanOrEqual != null">
+				and E.TYPE_ &gt;= #{typeGreaterThanOrEqual}
+            </if>
+
+			<if test="typeLessThanOrEqual != null">
+				and E.TYPE_ &lt;= #{typeLessThanOrEqual}
+            </if>
+
+			<if test="types != null and types.size() &gt; 0">
+			    and E.TYPE_ IN
+                <foreach item="x_type" index="index" collection="types" 
+                     open="(" separator="," close=")">
+                  #{x_type}
+                </foreach>
+			</if>
+      
+	        
+			<if test="typeName != null and typeName != '' ">
+				and E.TYPENAME_ = #{typeName}
+            </if>
+
+			<if test="typeNameLike != null and typeNameLike != '' ">
+				and E.TYPENAME_ like #{typeNameLike}
+            </if>
+
+			<if test="typeNames != null and typeNames.size() &gt; 0">
+			    and E.TYPENAME_ IN
+                <foreach item="x_typeName" index="index" collection="typeNames" 
+                     open="(" separator="," close=")">
+                  #{x_typeName}
+                </foreach>
+			</if>
+	        
+			<if test="url != null and url != '' ">
+				and E.URL_ = #{url}
+            </if>
+
+			<if test="urlLike != null and urlLike != '' ">
+				and E.URL_ like #{urlLike}
+            </if>
+
+			<if test="urls != null and urls.size() &gt; 0">
+			    and E.URL_ IN
+                <foreach item="x_url" index="index" collection="urls" 
+                     open="(" separator="," close=")">
+                  #{x_url}
+                </foreach>
+			</if>
+	        
+			<if test="msg != null and msg != '' ">
+				and E.MSG_ = #{msg}
+            </if>
+
+			<if test="msgLike != null and msgLike != '' ">
+				and E.MSG_ like #{msgLike}
+            </if>
+
+			<if test="msgs != null and msgs.size() &gt; 0">
+			    and E.MSG_ IN
+                <foreach item="x_msg" index="index" collection="msgs" 
+                     open="(" separator="," close=")">
+                  #{x_msg}
+                </foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+            </if>
+
+			<if test="statusGreaterThanOrEqual != null">
+				and E.STATUS_ &gt;= #{statusGreaterThanOrEqual}
+            </if>
+
+			<if test="statusLessThanOrEqual != null">
+				and E.STATUS_ &lt;= #{statusLessThanOrEqual}
+            </if>
+
+			<if test="statuss != null and statuss.size() &gt; 0">
+			    and E.STATUS_ IN
+                <foreach item="x_status" index="index" collection="statuss" 
+                     open="(" separator="," close=")">
+                  #{x_status}
+                </foreach>
+			</if>
+      
+	        
+			<if test="statusName != null and statusName != '' ">
+				and E.STATUSNAME_ = #{statusName}
+            </if>
+
+			<if test="statusNameLike != null and statusNameLike != '' ">
+				and E.STATUSNAME_ like #{statusNameLike}
+            </if>
+
+			<if test="statusNames != null and statusNames.size() &gt; 0">
+			    and E.STATUSNAME_ IN
+                <foreach item="x_statusName" index="index" collection="statusNames" 
+                     open="(" separator="," close=")">
+                  #{x_statusName}
+                </foreach>
+			</if>
+	        
+			<if test="result != null and result != '' ">
+				and E.RESULT_ = #{result}
+            </if>
+
+			<if test="resultLike != null and resultLike != '' ">
+				and E.RESULT_ like #{resultLike}
+            </if>
+
+			<if test="results != null and results.size() &gt; 0">
+			    and E.RESULT_ IN
+                <foreach item="x_result" index="index" collection="results" 
+                     open="(" separator="," close=")">
+                  #{x_result}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

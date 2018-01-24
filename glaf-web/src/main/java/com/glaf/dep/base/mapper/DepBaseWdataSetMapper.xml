@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBaseWdataSetMapper">
+
+	<resultMap id="depBaseWdataSetResultMap" type="com.glaf.dep.base.domain.DepBaseWdataSet">
+		<id property="id" column="ID_" jdbcType="BIGINT" />
+		<result property="dataSetCode" column="DATASET_CODE_" jdbcType="VARCHAR" />
+		<result property="dataSetName" column="DATASET_NAME_" jdbcType="VARCHAR" />
+		<result property="dataSetDesc" column="DATASET_DESC_" jdbcType="VARCHAR" />
+		<result property="ruleJson" column="RULEJSON_" jdbcType="VARCHAR" />
+		<result property="tableName" column="TABLE_NAME_" jdbcType="VARCHAR" />
+		<result property="dataTableName" column="DATATABLE_NAME_"
+			jdbcType="VARCHAR" />
+		<result property="wtype" column="WTYPE_" jdbcType="VARCHAR" />
+		<result property="ver" column="VER_" jdbcType="INTEGER" />
+		<result property="creator" column="CREATOR_" jdbcType="VARCHAR" />
+		<result property="createDatetime" column="CREATEDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="modifier" column="MODIFIER_" jdbcType="VARCHAR" />
+		<result property="modifyDatetime" column="MODIFYDATETIME_"
+			jdbcType="TIMESTAMP" />
+		<result property="delFlag" column="DELFLAG_" jdbcType="VARCHAR" />
+		<result property="nodeId" column="NODEID_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertDepBaseWdataSet" parameterType="com.glaf.dep.base.domain.DepBaseWdataSet">
+		insert into DEP_BASE_WDATASET
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="dataSetCode != null">
+				,DATASET_CODE_
+			</if>
+			<if test="dataSetName != null">
+				,DATASET_NAME_
+			</if>
+			<if test="dataSetDesc != null">
+				,DATASET_DESC_
+			</if>
+			<if test="ruleJson != null">
+				,RULEJSON_
+			</if>
+			<if test="tableName != null">
+				,TABLE_NAME_
+			</if>
+			<if test="dataTableName != null">
+				,DATATABLE_NAME_
+			</if>
+			<if test="wtype != null">
+				,WTYPE_
+			</if>
+			<if test="ver != null">
+				,VER_
+			</if>
+			<if test="creator != null">
+				,CREATOR_
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_
+			</if>
+			<if test="nodeId != null">
+				,NODEID_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=BIGINT}
+
+			<if test="dataSetCode != null">
+				,#{dataSetCode, jdbcType=VARCHAR}
+			</if>
+			<if test="dataSetName != null">
+				,#{dataSetName, jdbcType=VARCHAR}
+			</if>
+			<if test="dataSetDesc != null">
+				,#{dataSetDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleJson != null">
+				,#{ruleJson, jdbcType=VARCHAR}
+			</if>
+			<if test="tableName != null">
+				,#{tableName, jdbcType=VARCHAR}
+			</if>
+			<if test="dataTableName != null">
+				,#{dataTableName, jdbcType=VARCHAR}
+			</if>
+			<if test="wtype != null">
+				,#{wtype, jdbcType=VARCHAR}
+			</if>
+			<if test="ver != null">
+				,#{ver, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="nodeId != null">
+				,#{nodeId, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateDepBaseWdataSet" parameterType="com.glaf.dep.base.domain.DepBaseWdataSet">
+		update DEP_BASE_WDATASET
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="dataSetCode != null">
+				DATASET_CODE_ = #{dataSetCode, jdbcType=VARCHAR},
+			</if>
+			<if test="dataSetName != null">
+				DATASET_NAME_ = #{dataSetName, jdbcType=VARCHAR},
+			</if>
+			<if test="dataSetDesc != null">
+				DATASET_DESC_ = #{dataSetDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleJson != null">
+				RULEJSON_ = #{ruleJson, jdbcType=VARCHAR},
+			</if>
+			<if test="tableName != null">
+				TABLE_NAME_ = #{tableName, jdbcType=VARCHAR},
+			</if>
+			<if test="dataTableName != null">
+				DATATABLE_NAME_ = #{dataTableName, jdbcType=VARCHAR},
+			</if>
+			<if test="wtype != null">
+				WTYPE_ = #{wtype, jdbcType=VARCHAR},
+			</if>
+			<if test="ver != null">
+				VER_ = #{ver, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="nodeId != null">
+				NODEID_ = #{nodeId, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=BIGINT}
+
+	</update>
+
+
+	<delete id="deleteDepBaseWdataSetById" parameterType="long">
+		delete from DEP_BASE_WDATASET
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteDepBaseWdataSets" parameterType="com.glaf.dep.base.query.DepBaseWdataSetQuery">
+		delete from DEP_BASE_WDATASET
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBaseWdataSetById" parameterType="long"
+		resultMap="depBaseWdataSetResultMap">
+		select * from DEP_BASE_WDATASET where ID_ = #{id}
+	</select>
+
+
+	<select id="getDepBaseWdataSets" parameterType="com.glaf.dep.base.query.DepBaseWdataSetQuery"
+		resultMap="depBaseWdataSetResultMap">
+		select E.*
+		<include refid="selectDepBaseWdataSetsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getDepBaseWdataSetCount" parameterType="com.glaf.dep.base.query.DepBaseWdataSetQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBaseWdataSetsSql" />
+	</select>
+
+
+	<sql id="selectDepBaseWdataSetsSql">
+
+		from DEP_BASE_WDATASET E
+
+		<where>
+			1 = 1
+
+
+			<if test="dataSetCode != null and dataSetCode != '' ">
+				and E.DATASET_CODE_ = #{dataSetCode}
+			</if>
+
+			<if test="dataSetCodeLike != null and dataSetCodeLike != '' ">
+				and E.DATASET_CODE_ like #{dataSetCodeLike}
+			</if>
+
+			<if test="dataSetCodes != null and dataSetCodes.size() &gt; 0">
+				and E.DATASET_CODE_ IN
+				<foreach item="x_dataSetCode" index="index" collection="dataSetCodes"
+					open="(" separator="," close=")">
+					#{x_dataSetCode}
+				</foreach>
+			</if>
+
+			<if test="dataSetName != null and dataSetName != '' ">
+				and E.DATASET_NAME_ = #{dataSetName}
+			</if>
+
+			<if test="dataSetNameLike != null and dataSetNameLike != '' ">
+				and E.DATASET_NAME_ like #{dataSetNameLike}
+			</if>
+
+			<if test="dataSetNames != null and dataSetNames.size() &gt; 0">
+				and E.DATASET_NAME_ IN
+				<foreach item="x_dataSetName" index="index" collection="dataSetNames"
+					open="(" separator="," close=")">
+					#{x_dataSetName}
+				</foreach>
+			</if>
+
+			<if test="dataSetDesc != null and dataSetDesc != '' ">
+				and E.DATASET_DESC_ = #{dataSetDesc}
+			</if>
+
+			<if test="dataSetDescLike != null and dataSetDescLike != '' ">
+				and E.DATASET_DESC_ like #{dataSetDescLike}
+			</if>
+
+			<if test="dataSetDescs != null and dataSetDescs.size() &gt; 0">
+				and E.DATASET_DESC_ IN
+				<foreach item="x_dataSetDesc" index="index" collection="dataSetDescs"
+					open="(" separator="," close=")">
+					#{x_dataSetDesc}
+				</foreach>
+			</if>
+
+			<if test="ruleJson != null and ruleJson != '' ">
+				and E.RULEJSON_ = #{ruleJson}
+			</if>
+
+			<if test="ruleJsonLike != null and ruleJsonLike != '' ">
+				and E.RULEJSON_ like #{ruleJsonLike}
+			</if>
+
+			<if test="ruleJsons != null and ruleJsons.size() &gt; 0">
+				and E.RULEJSON_ IN
+				<foreach item="x_ruleJson" index="index" collection="ruleJsons"
+					open="(" separator="," close=")">
+					#{x_ruleJson}
+				</foreach>
+			</if>
+
+			<if test="tableName != null and tableName != '' ">
+				and E.TABLE_NAME_ = #{tableName}
+			</if>
+
+			<if test="tableNameLike != null and tableNameLike != '' ">
+				and E.TABLE_NAME_ like #{tableNameLike}
+			</if>
+
+			<if test="tableNames != null and tableNames.size() &gt; 0">
+				and E.TABLE_NAME_ IN
+				<foreach item="x_tableName" index="index" collection="tableNames"
+					open="(" separator="," close=")">
+					#{x_tableName}
+				</foreach>
+			</if>
+
+			<if test="dataTableName != null and dataTableName != '' ">
+				and E.DATATABLE_NAME_ = #{dataTableName}
+			</if>
+
+			<if test="dataTableNameLike != null and dataTableNameLike != '' ">
+				and E.DATATABLE_NAME_ like #{dataTableNameLike}
+			</if>
+
+			<if test="dataTableNames != null and dataTableNames.size() &gt; 0">
+				and E.DATATABLE_NAME_ IN
+				<foreach item="x_dataTableName" index="index" collection="dataTableNames"
+					open="(" separator="," close=")">
+					#{x_dataTableName}
+				</foreach>
+			</if>
+
+			<if test="wtype != null and wtype != '' ">
+				and E.WTYPE_ = #{wtype}
+			</if>
+
+			<if test="wtypeLike != null and wtypeLike != '' ">
+				and E.WTYPE_ like #{wtypeLike}
+			</if>
+
+			<if test="wtypes != null and wtypes.size() &gt; 0">
+				and E.WTYPE_ IN
+				<foreach item="x_wtype" index="index" collection="wtypes"
+					open="(" separator="," close=")">
+					#{x_wtype}
+				</foreach>
+			</if>
+
+			<if test="ver != null">
+				and E.VER_ = #{ver}
+			</if>
+
+			<if test="verGreaterThanOrEqual != null">
+				and E.VER_ &gt;= #{verGreaterThanOrEqual}
+			</if>
+
+			<if test="verLessThanOrEqual != null">
+				and E.VER_ &lt;= #{verLessThanOrEqual}
+			</if>
+
+			<if test="vers != null and vers.size() &gt; 0">
+				and E.VER_ IN
+				<foreach item="x_ver" index="index" collection="vers" open="("
+					separator="," close=")">
+					#{x_ver}
+				</foreach>
+			</if>
+
+
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+			</if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+			</if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+				and E.CREATOR_ IN
+				<foreach item="x_creator" index="index" collection="creators"
+					open="(" separator="," close=")">
+					#{x_creator}
+				</foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;=
+				#{createDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;=
+				#{createDatetimeLessThanOrEqual}
+			</if>
+
+
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+			</if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+			</if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+				and E.MODIFIER_ IN
+				<foreach item="x_modifier" index="index" collection="modifiers"
+					open="(" separator="," close=")">
+					#{x_modifier}
+				</foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;=
+				#{modifyDatetimeGreaterThanOrEqual}
+			</if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;=
+				#{modifyDatetimeLessThanOrEqual}
+			</if>
+
+			<if test="delFlag != null and delFlag != '' ">
+				and E.DELFLAG_ = #{delFlag}
+			</if>
+
+			<if test="delFlagLike != null and delFlagLike != '' ">
+				and E.DELFLAG_ like #{delFlagLike}
+			</if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+				and E.DELFLAG_ IN
+				<foreach item="x_delFlag" index="index" collection="delFlags"
+					open="(" separator="," close=")">
+					#{x_delFlag}
+				</foreach>
+			</if>
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormRuleMapper">
+
+	<resultMap id="formRuleResultMap" type="com.glaf.form.core.domain.FormRule">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="componentId" column="COMPONENTID_" jdbcType="BIGINT" />
+		<result property="appId" column="APPID_" jdbcType="VARCHAR" />
+		<result property="pageId" column="PAGEID_" jdbcType="VARCHAR" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="CLOB" />
+		<result property="snapshot" column="SNAPSHOT_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormRule" parameterType="com.glaf.form.core.domain.FormRule">
+		insert into FORM_RULE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="componentId != null">
+				,COMPONENTID_
+			</if>
+			<if test="appId != null">
+				,APPID_
+			</if>
+			<if test="pageId != null">
+				,PAGEID_
+			</if>
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="value != null">
+				,VALUE_
+			</if>
+			<if test="snapshot != null">
+				,SNAPSHOT_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="componentId != null">
+				,#{componentId, jdbcType=BIGINT}
+			</if>
+			<if test="appId != null">
+				,#{appId, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="value != null">
+				,#{value, jdbcType=VARCHAR}
+			</if>
+			<if test="snapshot != null">
+				,#{snapshot, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormRule" parameterType="com.glaf.form.core.domain.FormRule">
+		update FORM_RULE
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="componentId != null">
+				COMPONENTID_ = #{componentId, jdbcType=BIGINT},
+			</if>
+			<if test="appId != null">
+				APPID_ = #{appId, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="value != null">
+				VALUE_ = #{value, jdbcType=VARCHAR},
+			</if>
+			<if test="snapshot != null">
+				SNAPSHOT_ = #{snapshot, jdbcType=VARCHAR},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFormRuleById" parameterType="string">
+		delete from
+		FORM_RULE
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormRulesByPageId" parameterType="string">
+		delete from
+		FORM_RULE
+		where PAGEID_ = #{pageId}
+	</delete>
+
+
+	<select id="getFormRuleById" parameterType="string" resultMap="formRuleResultMap">
+		select * from FORM_RULE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormRules" parameterType="com.glaf.form.core.query.FormRuleQuery"
+		resultMap="formRuleResultMap">
+		select E.*
+		<include refid="selectFormRulesSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormRuleCount" parameterType="com.glaf.form.core.query.FormRuleQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormRulesSql" />
+	</select>
+
+
+	<sql id="selectFormRulesSql">
+
+		from FORM_RULE E
+
+		<where>
+			1 = 1
+
+			<if test="componentId != null">
+				and E.COMPONENTID_ = #{componentId}
+			</if>
+
+			<if test="componentIds != null and componentIds.size() &gt; 0">
+				and E.COMPONENTID_ IN
+				<foreach item="x_componentId" index="index" collection="componentIds"
+					open="(" separator="," close=")">
+					#{x_componentId}
+				</foreach>
+			</if>
+
+			<if test="appId != null and appId != '' ">
+				and E.APPID_ = #{appId}
+			</if>
+
+			<if test="appIds != null and appIds.size() &gt; 0">
+				and E.APPID_ IN
+				<foreach item="x_appId" index="index" collection="appIds"
+					open="(" separator="," close=")">
+					#{x_appId}
+				</foreach>
+			</if>
+
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+			</if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+				and E.PAGEID_ IN
+				<foreach item="x_pageId" index="index" collection="pageIds"
+					open="(" separator="," close=")">
+					#{x_pageId}
+				</foreach>
+			</if>
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+	<delete id="deleteFormRuleByIds" parameterType="java.util.List">
+		delete from
+		FORM_RULE
+		where ( ID_ IN
+			<foreach item="ruleId" index="index" collection="list"  open="("
+				separator="," close=")">
+				#{ruleId}
+			</foreach>
+		)
+	</delete>
+
+</mapper>

@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormRulePropertyMapper">
+
+	<resultMap id="formRulePropertyResultMap" type="com.glaf.form.core.domain.FormRuleProperty">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="ruleId" column="RULEID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<insert id="insertFormRuleProperty" parameterType="com.glaf.form.core.domain.FormRuleProperty">
+
+		insert into
+		FORM_RULE_PROPERTY
+		(ID_, RULEID_, NAME_, VALUE_, CREATEBY_,
+		CREATEDATE_)
+		values (
+		#{id,
+		jdbcType=VARCHAR}
+		,#{ruleId, jdbcType=VARCHAR}
+		,#{name,
+		jdbcType=VARCHAR}
+		,#{value, jdbcType=VARCHAR}
+		,#{createBy,
+		jdbcType=VARCHAR}
+		,#{createDate, jdbcType=TIMESTAMP}
+		)
+
+	</insert>
+
+
+	<update id="updateFormRuleProperty" parameterType="com.glaf.form.core.domain.FormRuleProperty">
+
+		update
+		FORM_RULE_PROPERTY
+		set
+		RULEID_ = #{ruleId, jdbcType=VARCHAR},
+		NAME_ =
+		#{name, jdbcType=VARCHAR},
+		VALUE_ = #{value, jdbcType=VARCHAR}
+		where
+		ID_
+		= #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFormRulePropertyById" parameterType="string">
+		delete
+		from FORM_RULE_PROPERTY
+		where ID_ = #{id}
+	</delete>
+
+	<delete id="deleteFormRulePropertyByRuleId" parameterType="string">
+		delete from FORM_RULE_PROPERTY where RULEID_ = #{ruleId}
+	</delete>
+
+
+	<delete id="deleteFormRulePropertys" parameterType="com.glaf.form.core.query.FormRulePropertyQuery">
+		delete from FORM_RULE_PROPERTY
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormRulePropertyById" parameterType="long"
+		resultMap="formRulePropertyResultMap">
+		select * from FORM_RULE_PROPERTY where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormRulePropertys" parameterType="com.glaf.form.core.query.FormRulePropertyQuery"
+		resultMap="formRulePropertyResultMap">
+		select distinct E.*
+		<include refid="selectFormRulePropertysSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="getStuffByPageIdAndNameLike" parameterType="string"
+		resultType="map">
+		
+		SELECT
+			    A.*,
+			    B.VALUE_ AS TITLE_ ,
+			    P.NAME_ AS PAGENAME_ 
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR,fcr.ID_) = frp.NAME_
+			         WHERE 1 = 1   
+					<if test="name != null and name != '' ">
+						and fcr.NAME_ LIKE #{name}
+					</if>       
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR, fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_ 
+			LEFT JOIN FORM_PAGE P 
+			ON P.ID_ = A.PAGEID_ 
+			WHERE
+			    A.PAGEID_=#{pageId}
+		
+	</select>
+	<select id="getStuffByPageIdAndNameLike_oracle"
+		resultType="map">
+		
+		SELECT
+			    A.*,
+			    B.VALUE_ AS TITLE_ ,
+			    P.NAME_ AS PAGENAME_ 
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			         WHERE 1 = 1   
+					<if test="name != null and name != '' ">
+						and fcr.NAME_ LIKE #{name}
+					</if>       
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_ 
+			LEFT JOIN FORM_PAGE P 
+			ON P.ID_ = A.PAGEID_ 
+			WHERE
+			    A.PAGEID_=#{pageId}
+		
+	</select>
+	
+	<select id="getParametersByPageId" parameterType="string"
+		resultType="map">
+		
+		SELECT
+			    A.*,
+			    B.VALUE_ AS TITLE_
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR, fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.NAME_ LIKE '%Param%'
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR, fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_
+			WHERE
+			    A.PAGEID_=#{pageId}
+		
+	</select>
+	
+	<select id="getParametersByPageId_oracle" parameterType="string"
+		resultType="map">
+		
+		SELECT
+			    A.*,
+			    B.VALUE_ AS TITLE_
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.NAME_ LIKE '%Param%'
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_
+			WHERE
+			    A.PAGEID_=#{pageId}
+		
+	</select>
+
+
+	<select id="getFormRulePropertyCount" parameterType="com.glaf.form.core.query.FormRulePropertyQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormRulePropertysSql" />
+	</select>
+
+
+	<select id="getFormRuleListByRid" parameterType="string"
+		resultType="map">
+		SELECT CP.ID_,FR.PAGEID_,CP.NAME_,CP.TITLE_,RP.VALUE_ FROM
+		FORM_RULE FR LEFT JOIN FORM_RULE_PROPERTY RP ON FR.ID_ = RP.RULEID_
+		LEFT
+		JOIN FORM_COMPONENT_PROPERTY CP ON RP.NAME_ =  CONVERT(VARCHAR, CP.ID_) WHERE CP.ID_ IS NOT NULL AND
+		RP.RULEID_ =
+		#{rid}
+	</select>
+	<select id="getFormRuleListByRid_postgresql" parameterType="string"
+		resultType="map">
+		SELECT CP.ID_,FR.PAGEID_,CP.NAME_,CP.TITLE_,RP.VALUE_ FROM
+		FORM_RULE FR LEFT JOIN FORM_RULE_PROPERTY RP ON FR.ID_ = RP.RULEID_
+		LEFT
+		JOIN FORM_COMPONENT_PROPERTY CP ON RP.NAME_ =  CP.ID_||'' WHERE CP.ID_ IS NOT NULL AND
+		RP.RULEID_ =
+		#{rid}
+	</select>
+	<select id="getFormRuleListByRid_oracle" parameterType="string"
+		resultType="map">
+		SELECT CP.ID_,FR.PAGEID_,CP.NAME_,CP.TITLE_,RP.VALUE_ FROM
+		FORM_RULE FR LEFT JOIN FORM_RULE_PROPERTY RP ON FR.ID_ = RP.RULEID_
+		LEFT
+		JOIN FORM_COMPONENT_PROPERTY CP ON RP.NAME_ = to_char(CP.ID_) WHERE CP.ID_ IS NOT NULL AND
+		RP.RULEID_ =
+		#{rid}
+	</select>
+	
+	<!-- 获取某个页面某个控件某个规则项规则 -->
+	<select id="getPageComponentPropertyRule" parameterType="map"
+		resultMap="formRulePropertyResultMap">
+		SELECT a.VALUE_ from  FORM_RULE_PROPERTY a,
+		 FORM_COMPONENT_PROPERTY b, FORM_RULE c,
+		FORM_COMPONENT d WHERE
+		a.NAME_= CONVERT(VARCHAR,b.ID_) AND a.RULEID_=c.ID_ AND b.NAME_= #{propName} 
+		AND
+		c.PAGEID_=#{pageId} AND c.COMPONENTID_=d.ID_ AND
+		d.DATAROLE_=#{dataRole}
+		<if test="id !=null and id != '' ">
+			AND c.NAME_ = #{id}
+		</if>
+	</select>
+	
+	<select id="getPageComponentPropertyRule_oracle" parameterType="map"
+		resultMap="formRulePropertyResultMap">
+		SELECT a.VALUE_ from  FORM_RULE_PROPERTY a,
+		 FORM_COMPONENT_PROPERTY b, FORM_RULE c,
+		FORM_COMPONENT d WHERE
+		a.NAME_= to_char(b.ID_) AND a.RULEID_=c.ID_ AND b.NAME_= #{propName} 
+		AND
+		c.PAGEID_=#{pageId} AND c.COMPONENTID_=d.ID_ AND
+		d.DATAROLE_=#{dataRole}
+		<if test="id !=null and id != '' ">
+			AND c.NAME_ = #{id}
+		</if>
+	</select>
+
+	<sql id="selectFormRulePropertysSql">
+
+		from FORM_RULE_PROPERTY E
+
+		<where>
+			1 = 1
+
+
+			<if test="ruleId != null and ruleId != '' ">
+				and E.RULEID_ = #{ruleId}
+			</if>
+
+			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+				and E.RULEID_ IN
+				<foreach item="x_ruleId" index="index" collection="ruleIds"
+					open="(" separator="," close=")">
+					#{x_ruleId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="value != null and value != '' ">
+				and E.VALUE_ = #{value}
+			</if>
+
+			<if test="valueLike != null and valueLike != '' ">
+				and E.VALUE_ like #{valueLike}
+			</if>
+
+			<if test="values != null and values.size() &gt; 0">
+				and E.VALUE_ IN
+				<foreach item="x_value" index="index" collection="values"
+					open="(" separator="," close=")">
+					#{x_value}
+				</foreach>
+			</if>
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+	
+	
+	<select id="getAttributeDatasByPageId" parameterType="string"
+		resultMap="formRulePropertyResultMap">
+			select E.* from FORM_RULE_PROPERTY E 
+				JOIN FORM_RULE R ON E.RULEID_= R.ID_ 
+			WHERE E.NAME_ = #{name} 
+				AND R.PAGEID_ = #{pageId} 
+				order by E.CREATEDATE_ DESC
+	</select>
+	
+	<select id="getRuleByName" parameterType="string"
+		resultMap="formRulePropertyResultMap">
+		select FRP.* from FORM_RULE_PROPERTY  FRP 
+			join FORM_COMPONENT_PROPERTY FCP 
+			on FRP.NAME_ = FCP.ID_  
+			and FCP.NAME_ = #{name}  
+			where FRP.RULEID_ in (select ID_ from FORM_RULE WHERE NAME_ = #{widgetId} AND PAGEID_ = #{pageId})
+	</select>
+	
+	
+	<delete id="deleteFormRulePropertyByRuleIds" parameterType="java.util.List">
+		delete from FORM_RULE_PROPERTY
+		where (
+		RULEID_ IN
+		<foreach item="ruleId" index="index" collection="list" open="("
+			separator="," close=")">
+			#{ruleId}
+		</foreach>
+		)
+	</delete>
+	
+	<resultMap id="suffTypeMap" type="com.glaf.form.core.domain.StuffByPageIdsModel">
+		<result property="pageId" column="PAGEID_" jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="value" column="VALUE_" jdbcType="VARCHAR" />
+		<result property="paramType" column="PARAMTYPE_" jdbcType="TIMESTAMP" />
+		<result property="title" column="TITLE_" jdbcType="VARCHAR" />
+		<result property="pageName" column="PAGENAME_" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getStuffByPageIdsAndNameLike2" 
+		parameterType="map"
+		resultMap="suffTypeMap">
+		
+		SELECT
+			    A.PAGEID_ AS PAGEID_,  
+			    A.NAME_ AS NAME_,
+			    A.VALUE_ AS VALUE_,
+			    A.NAME_ AS PARAMTYPE_,
+			    B.VALUE_ AS TITLE_ ,
+			    P.NAME_ AS PAGENAME_ 
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR,fcr.ID_) = frp.NAME_
+			         WHERE 1 = 1   
+					<if test="name != null and name != '' ">
+						and fcr.NAME_ LIKE #{name}
+					</if>       
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR, fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_ 
+			LEFT JOIN FORM_PAGE P 
+			ON P.ID_ = A.PAGEID_ 
+			WHERE
+			    A.PAGEID_ in  
+			    <foreach item="pageId" index="index" collection="pageIdList" open="("
+					separator="," close=")">
+					#{pageId}
+				</foreach> 
+		
+	</select>
+	<select id="getStuffByPageIdsAndNameLike" 
+		parameterType="map"
+		resultType="map">
+		
+		SELECT
+			    A.PAGEID_ AS PAGEID_,  
+			    A.NAME_ AS NAME_,
+			    A.VALUE_ AS VALUE_,
+			    A.NAME_ AS PARAMTYPE_,
+			    B.VALUE_ AS TITLE_ ,
+			    P.NAME_ AS PAGENAME_ 
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR,fcr.ID_) = frp.NAME_
+			         WHERE 1 = 1   
+					<if test="name != null and name != '' ">
+						and fcr.NAME_ LIKE #{name}
+					</if>       
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            CONVERT(VARCHAR, fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_ 
+			LEFT JOIN FORM_PAGE P 
+			ON P.ID_ = A.PAGEID_ 
+			WHERE
+			    A.PAGEID_ in  
+			    <foreach item="pageId" index="index" collection="pageIdList" open="("
+					separator="," close=")">
+					#{pageId}
+				</foreach> 
+		
+	</select>
+	<select id="getStuffByPageIdsAndNameLike_oracle" 
+		parameterType="map"
+		resultType="map">
+		
+		SELECT
+			    A.PAGEID_,  
+			    A.NAME_,
+			    A.VALUE_,
+			    A.NAME_ AS PARAMTYPE_,
+			    B.VALUE_ AS TITLE_ ,
+			    P.NAME_ AS PAGENAME_ 
+			FROM
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_,
+			            fcr.NAME_ AS PARAMTYPE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			         WHERE 1 = 1   
+					<if test="name != null and name != '' ">
+						and fcr.NAME_ LIKE #{name}
+					</if>       
+			    )
+			    A
+			LEFT JOIN
+			    (
+			        SELECT
+			            fr.PAGEID_,
+			            fr.NAME_,
+			            frp.VALUE_
+			        FROM
+			            FORM_RULE fr
+			        LEFT JOIN FORM_RULE_PROPERTY frp
+			        ON
+			            fr.ID_ = frp.RULEID_
+			        LEFT JOIN FORM_COMPONENT_PROPERTY fcr
+			        ON
+			            to_char(fcr.ID_) = frp.NAME_
+			        WHERE
+			            fcr.name_ = 'html'
+			    )
+			    B
+			ON
+			    A.PAGEID_=B.PAGEID_
+			AND A.NAME_ = B.NAME_ 
+			LEFT JOIN FORM_PAGE P 
+			ON P.ID_ = A.PAGEID_ 
+			WHERE
+			    A.PAGEID_ in 
+			    <foreach item="pageId" index="index" collection="pageIdList" open="("
+					separator="," close=")">
+					#{pageId}
+				</foreach>
+		
+	</select>
+</mapper>

@@ -1,0 +1,626 @@
+<#if page?exists>
+.page{
+  <#if page.backgroundColor?exists>background-color:${page.backgroundColor};</#if>
+  <#if page.transparency?exists>opacity:${page.transparency}/100;</#if>
+  <#if page.backgroundSize?exists>background-size:${page.backgroundSize};</#if>
+  <#if page.backgroundRepeat?exists>background-repeat:${page.backgroundRepeat};</#if>
+  <#if page.imgPath?exists>background-image: url('${contextPath}/mx${page.imgPath}');</#if>
+}
+</#if>
+/**栅格行**/
+<#if row?exists>
+.page .row{
+  <#if row.backgroundColor?exists>background-color:${row.backgroundColor};</#if>
+  /**内外间距**/
+  <#if row.marginTop?exists>margin-top:${row.marginTop}px;</#if>
+  <#if row.marginRight?exists>margin-right:${row.marginRight}px;</#if>
+  <#if row.marginBottom?exists>margin-bottom:${row.marginBottom}px;</#if>
+  <#if row.marginLeft?exists>margin-left:${row.marginLeft}px;</#if>
+  <#if row.paddingTop?exists>padding-top:${row.paddingTop}px;</#if>
+  <#if row.paddingRight?exists>padding-right:${row.paddingRight}px;</#if>
+  <#if row.paddingBottom?exists>padding-bottom:${row.paddingBottom}px;</#if>
+  <#if row.paddingLeft?exists>padding-left:${row.paddingLeft}px;</#if>
+  /**边框**/
+  <#if row.borderWidthTop?exists>border-width-top:${row.borderWidthTop}px;</#if>
+  <#if row.borderWidthRight?exists>border-width-right:${row.borderWidthRight}px;</#if>
+  <#if row.borderWidthBottom?exists>border-width-bottom:${row.borderWidthBottom}px;</#if>
+  <#if row.borderWidthLeft?exists>border-width-left:${row.borderWidthLeft}px;</#if>
+  <#if row.borderColor?exists>border-color:${row.borderColor};</#if>
+  <#if row.borderRadius?exists>
+     <#if row.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif row.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif row.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif row.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif row.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if row.borderStyle?exists>border-style:${row.borderStyle};</#if>
+  /**字体**/
+  <#if row.fontFamily?exists>font-family:${row.fontFamily};</#if>
+  <#if row.fontSize?exists>font-size:${row.fontSize};</#if>
+  <#if row.fontColor?exists>font-color:${row.fontColor};</#if>
+  <#if row.letterSpacing?exists>letter-spacing:${row.letterSpacing};</#if>
+  <#if row.lineHeight?exists>line-height:${row.lineHeight};</#if>
+  <#if row.textIndent?exists>text-indent:${row.textIndent};</#if>
+}
+</#if>
+/**栅格列**/
+<#if col?exists>
+.page .row div[class*="col-"]{
+  <#if col.backgroundColor?exists>background-color:${col.backgroundColor};</#if>
+  /**内外间距**/
+  <#if col.marginTop?exists>margin-top:${col.marginTop}px;</#if>
+  <#if col.marginRight?exists>margin-right:${col.marginRight}px;</#if>
+  <#if col.marginBottom?exists>margin-bottom:${col.marginBottom}px;</#if>
+  <#if col.marginLeft?exists>margin-left:${col.marginLeft}px;</#if>
+  <#if col.paddingTop?exists>padding-top:${col.paddingTop}px;</#if>
+  <#if col.paddingRight?exists>padding-right:${col.paddingRight}px;</#if>
+  <#if col.paddingBottom?exists>padding-bottom:${col.paddingBottom}px;</#if>
+  <#if col.paddingLeft?exists>padding-left:${col.paddingLeft}px;</#if>
+  /**边框**/
+  <#if col.borderWidthTop?exists>border-width-top:${col.borderWidthTop}px;</#if>
+  <#if col.borderWidthRight?exists>border-width-right:${col.borderWidthRight}px;</#if>
+  <#if col.borderWidthBottom?exists>border-width-bottom:${col.borderWidthBottom}px;</#if>
+  <#if col.borderWidthLeft?exists>border-width-left:${col.borderWidthLeft}px;</#if>
+  <#if col.borderColor?exists>border-color:${col.borderColor};</#if>
+  <#if col.borderRadius?exists>
+     <#if col.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif col.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif col.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif col.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif col.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if col.borderStyle?exists>border-style:${col.borderStyle};</#if>
+  /**字体**/
+  <#if col.fontFamily?exists>font-family:${col.fontFamily};</#if>
+  <#if col.fontSize?exists>font-size:${col.fontSize};</#if>
+  <#if col.fontColor?exists>font-color:${col.fontColor};</#if>
+  <#if col.letterSpacing?exists>letter-spacing:${col.letterSpacing};</#if>
+  <#if col.lineHeight?exists>line-height:${col.lineHeight};</#if>
+  <#if col.textIndent?exists>text-indent:${col.textIndent};</#if>
+}
+</#if>
+/**按钮**/
+<#if mtbutton?exists>
+   .page  .btn.component  {
+   <#if mtbutton.backgroundColor?exists>background-color:${mtbutton.backgroundColor};</#if>
+   <#if mtbutton.color?exists>color:${mtbutton.color};</#if>
+   <#if mtbutton.sizeVal?exists>
+       <#if mtbutton.sizeVal=="btn-lg">
+	        padding: 10px 16px;
+			font-size: 18px;
+			line-height: 1.33333;
+			border-radius: 6px;
+		 <#elseif mtbutton.sizeVal=="btn-sm">
+		    padding: 5px 10px;
+			font-size: 12px;
+			line-height: 1.5;
+			border-radius: 3px;
+		 <#elseif mtbutton.sizeVal=="hmtd-xs">
+		    height: 25px;
+			font-size: 12px;
+			padding: 0 4px;
+			line-height: 1;
+			border-radius: 3px;
+	   </#if>
+   </#if>
+   <#if mtbutton.borderColor?exists>border-color:${mtbutton.borderColor};</#if>
+   <#if mtbutton.borderStyle?exists>border-style:${mtbutton.borderStyle};</#if>
+   <#if mtbutton.circleStyle?exists>
+       <#if mtbutton.circleStyle=="display">
+	         <#if mtbutton.borderRadius?exists>
+				 <#if mtbutton.borderRadius=="one">
+					 border-radius:4px 4px 4px 4px !important;
+					 <#elseif mtbutton.borderRadius=="two">
+					 border-radius:8px 8px 8px 8px !important;
+					 <#elseif mtbutton.borderRadius=="three">
+					 border-radius:12px 12px 12px 12px !important;
+					 <#elseif mtbutton.borderRadius=="four">
+					 border-radius:16px 16px 16px 16px !important;
+					 <#elseif mtbutton.borderRadius=="five">
+					 border-radius:20px 20px 20px 20px !important;
+					 <#else>
+					 border-radius: 25px !important;
+				 </#if>
+			  </#if>
+	    </#if>
+   </#if>
+   }
+    .page  .btn.component i{
+	  <#if mtbutton.iconColor?exists>
+	      <#if mtbutton.iconColor=="font-default">
+		     color: #3598dc;
+		    <#elseif mtbutton.iconColor=="font-blue">
+			 color: #3598dc;
+		    <#elseif mtbutton.iconColor=="font-dark">
+			 color: #2f353b;
+			<#elseif mtbutton.iconColor=="font-green">
+			 color: #32c5d2;
+			<#elseif mtbutton.iconColor=="font-red">
+			 color: #e7505a;
+			<#elseif mtbutton.iconColor=="font-yellow">
+			 color: #c49f47;
+			<#elseif mtbutton.iconColor=="font-purple">
+			 color: #8E44AD;
+		  </#if>
+	  </#if>
+	}
+	.page  .btn.component:hover{
+		<#if mtbutton.backgroundColor_h?exists>background-color:${mtbutton.backgroundColor_h};</#if>
+		<#if mtbutton.borderColor_h?exists>border-color:${mtbutton.borderColor_h};</#if>
+		<#if mtbutton.fontColor?exists>font-color:${mtbutton.fontColor};</#if>
+	}
+   </#if>
+/**portlet容器**/
+<#if portlet?exists>
+.page .portlet{
+/**内外间距**/
+  <#if portlet.marginTop?exists>margin-top:${portlet.marginTop}px;</#if>
+  <#if portlet.marginRight?exists>margin-right:${portlet.marginRight}px;</#if>
+  <#if portlet.marginBottom?exists>margin-bottom:${portlet.marginBottom}px;</#if>
+  <#if portlet.marginLeft?exists>margin-left:${portlet.marginLeft}px;</#if>
+  <#if portlet.paddingTop?exists>padding-top:${portlet.paddingTop}px;</#if>
+  <#if portlet.paddingRight?exists>padding-right:${portlet.paddingRight}px;</#if>
+  <#if portlet.paddingBottom?exists>padding-bottom:${portlet.paddingBottom}px;</#if>
+  <#if portlet.paddingLeft?exists>padding-left:${portlet.paddingLeft}px;</#if>
+  /**边框**/
+  <#if portlet.borderWidthTop?exists>border-width-top:${portlet.borderWidthTop}px;</#if>
+  <#if portlet.borderWidthRight?exists>border-width-right:${portlet.borderWidthRight}px;</#if>
+  <#if portlet.borderWidthBottom?exists>border-width-bottom:${portlet.borderWidthBottom}px;</#if>
+  <#if portlet.borderWidthLeft?exists>border-width-left:${portlet.borderWidthLeft}px;</#if>
+  <#if portlet.borderColor?exists>border-color:${portlet.borderColor} !important;</#if>
+  <#if portlet.borderRadius?exists>
+     <#if portlet.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif portlet.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif portlet.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif portlet.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif portlet.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if portlet.borderStyle?exists>border-style:${portlet.borderStyle};</#if>
+  <#if portlet.color?exists>
+        border-top-style: initial;
+		border-right-style: solid;
+		border-bottom-style: solid;
+		border-left-style: solid;
+		border-top-color: initial;
+		border-right-color: ${portlet.color} !important;;
+		border-bottom-color: ${portlet.color} !important;;
+		border-left-color: ${portlet.color} !important;;
+		border-image: initial;
+  </#if>
+  }
+.page .portlet .portlet-title{
+  <#if portlet.color?exists>
+      background-color:${portlet.color} !important;
+  </#if>
+   <#if portlet.titleColor?exists>
+       color:${portlet.titleColor} !important;
+   </#if>
+ }
+ .page .portlet .portlet-title .caption{
+   <#if portlet.titleColor?exists>
+      color:${portlet.titleColor} !important;
+   </#if>
+ }
+ .page .portlet .portlet-title .caption i{
+   <#if portlet.titleColor?exists>
+      color:${portlet.titleColor} !important;
+   </#if>
+ }
+ 
+.page .portlet .portlet-body .slimScrollDiv .slimScrollBar{
+    <#if portlet.handleColor?exists>
+      background-color:${portlet.handleColor} !important;
+   </#if>
+ }
+.page .portlet .portlet-body .slimScrollDiv .slimScrollRail{
+   <#if portlet.railColor?exists>
+      background-color:${portlet.railColor} !important;
+   </#if>
+ }
+</#if>
+/**portlet_tabs带选项卡容器**/
+<#if portlet_tabs?exists>
+.page .portlet[data-role='portlet_tabs']{
+/**内外间距**
+<#if portlet_tabs.marginTop?exists>margin-top:${portlet_tabs.marginTop}px;</#if>
+<#if portlet_tabs.marginRight?exists>margin-right:${portlet_tabs.marginRight}px;</#if>
+<#if portlet_tabs.marginBottom?exists>margin-bottom:${portlet_tabs.marginBottom}px;</#if>
+<#if portlet_tabs.marginLeft?exists>margin-left:${portlet_tabs.marginLeft}px;</#if>
+<#if portlet_tabs.paddingTop?exists>padding-top:${portlet_tabs.paddingTop}px;</#if>
+<#if portlet_tabs.paddingRight?exists>padding-right:${portlet_tabs.paddingRight}px;</#if>
+<#if portlet_tabs.paddingBottom?exists>padding-bottom:${portlet_tabs.paddingBottom}px;</#if>
+<#if portlet_tabs.paddingLeft?exists>padding-left:${portlet_tabs.paddingLeft}px;</#if>
+  /**边框**/
+<#if portlet_tabs.borderWidthTop?exists>border-width-top:${portlet_tabs.borderWidthTop}px;</#if>
+<#if portlet_tabs.borderWidthRight?exists>border-width-right:${portlet_tabs.borderWidthRight}px;</#if>
+<#if portlet_tabs.borderWidthBottom?exists>border-width-bottom:${portlet_tabs.borderWidthBottom}px;</#if>
+<#if portlet_tabs.borderWidthLeft?exists>border-width-left:${portlet.borderWidthLeft}px;</#if>
+<#if portlet_tabs.borderColor?exists>border-color:${portlet_tabs.borderColor};</#if>
+<#if portlet_tabs.borderRadius?exists>
+     <#if portlet_tabs.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif portlet_tabs.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif portlet_tabs.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif portlet_tabs.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif portlet_tabs.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+</#if>
+<#if portlet_tabs.borderStyle?exists>border-style:${portlet_tabs.borderStyle} !important;</#if>
+<#if portlet_tabs.color?exists>
+        border-top-style: initial;
+		border-right-style: solid;
+		border-bottom-style: solid;
+		border-left-style: solid;
+		border-top-color: initial;
+		border-right-color: ${portlet_tabs.color} !important;
+		border-bottom-color: ${portlet_tabs.color} !important;
+		border-left-color: ${portlet_tabs.color} !important;
+		border-image: initial;
+</#if>
+  }
+ .page .portlet[data-role='portlet_tabs'] .portlet-title{
+<#if portlet_tabs.color?exists>
+      background-color:${portlet_tabs.color} !important;
+</#if>
+<#if portlet_tabs.titleColor?exists>
+       color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ .page .portlet[data-role='portlet_tabs'] .portlet-title .caption{
+<#if portlet_tabs.titleColor?exists>
+      color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ .page .portlet[data-role='portlet_tabs'] .portlet-title .caption i{
+<#if portlet_tabs.titleColor?exists>
+      color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ 
+ .page .portlet[data-role='portlet_tabs'] .portlet-body .slimScrollDiv .slimScrollBar{
+<#if portlet_tabs.handleColor?exists>
+      background-color:${portlet_tabs.handleColor} !important;
+</#if>
+ }
+ .page .portlet[data-role='portlet_tabs'] .portlet-body .slimScrollDiv .slimScrollRail{
+<#if portlet_tabs.railColor?exists>
+      background-color:${portlet_tabs.railColor} !important;
+</#if>
+ }
+</#if>
+
+/**预览**/
+<#if page?exists>
+.designer{
+  <#if page.backgroundColor?exists>background-color:${page.backgroundColor};</#if>
+  <#if page.transparency?exists>opacity:${page.transparency}/100;</#if>
+  <#if page.backgroundSize?exists>background-size:${page.backgroundSize};</#if>
+  <#if page.backgroundRepeat?exists>background-repeat:${page.backgroundRepeat};</#if>
+  <#if page.imgPath?exists>background-image: url('${contextPath}/mx${page.imgPath}');</#if>
+}
+</#if>
+/**栅格行**/
+<#if row?exists>
+.designer .row{
+  <#if row.backgroundColor?exists>background-color:${row.backgroundColor};</#if>
+  /**内外间距**/
+  <#if row.marginTop?exists>margin-top:${row.marginTop}px;</#if>
+  <#if row.marginRight?exists>margin-right:${row.marginRight}px;</#if>
+  <#if row.marginBottom?exists>margin-bottom:${row.marginBottom}px;</#if>
+  <#if row.marginLeft?exists>margin-left:${row.marginLeft}px;</#if>
+  <#if row.paddingTop?exists>padding-top:${row.paddingTop}px;</#if>
+  <#if row.paddingRight?exists>padding-right:${row.paddingRight}px;</#if>
+  <#if row.paddingBottom?exists>padding-bottom:${row.paddingBottom}px;</#if>
+  <#if row.paddingLeft?exists>padding-left:${row.paddingLeft}px;</#if>
+  /**边框**/
+  <#if row.borderWidthTop?exists>border-width-top:${row.borderWidthTop}px;</#if>
+  <#if row.borderWidthRight?exists>border-width-right:${row.borderWidthRight}px;</#if>
+  <#if row.borderWidthBottom?exists>border-width-bottom:${row.borderWidthBottom}px;</#if>
+  <#if row.borderWidthLeft?exists>border-width-left:${row.borderWidthLeft}px;</#if>
+  <#if row.borderColor?exists>border-color:${row.borderColor};</#if>
+  <#if row.borderRadius?exists>
+     <#if row.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif row.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif row.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif row.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif row.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if row.borderStyle?exists>border-style:${row.borderStyle};</#if>
+  /**字体**/
+  <#if row.fontFamily?exists>font-family:${row.fontFamily};</#if>
+  <#if row.fontSize?exists>font-size:${row.fontSize};</#if>
+  <#if row.fontColor?exists>font-color:${row.fontColor};</#if>
+  <#if row.letterSpacing?exists>letter-spacing:${row.letterSpacing};</#if>
+  <#if row.lineHeight?exists>line-height:${row.lineHeight};</#if>
+  <#if row.textIndent?exists>text-indent:${row.textIndent};</#if>
+}
+</#if>
+/**栅格列**/
+<#if col?exists>
+.designer .row div[class*="col-"]{
+  <#if col.backgroundColor?exists>background-color:${col.backgroundColor};</#if>
+  /**内外间距**/
+  <#if col.marginTop?exists>margin-top:${col.marginTop}px;</#if>
+  <#if col.marginRight?exists>margin-right:${col.marginRight}px;</#if>
+  <#if col.marginBottom?exists>margin-bottom:${col.marginBottom}px;</#if>
+  <#if col.marginLeft?exists>margin-left:${col.marginLeft}px;</#if>
+  <#if col.paddingTop?exists>padding-top:${col.paddingTop}px;</#if>
+  <#if col.paddingRight?exists>padding-right:${col.paddingRight}px;</#if>
+  <#if col.paddingBottom?exists>padding-bottom:${col.paddingBottom}px;</#if>
+  <#if col.paddingLeft?exists>padding-left:${col.paddingLeft}px;</#if>
+  /**边框**/
+  <#if col.borderWidthTop?exists>border-width-top:${col.borderWidthTop}px;</#if>
+  <#if col.borderWidthRight?exists>border-width-right:${col.borderWidthRight}px;</#if>
+  <#if col.borderWidthBottom?exists>border-width-bottom:${col.borderWidthBottom}px;</#if>
+  <#if col.borderWidthLeft?exists>border-width-left:${col.borderWidthLeft}px;</#if>
+  <#if col.borderColor?exists>border-color:${col.borderColor};</#if>
+  <#if col.borderRadius?exists>
+     <#if col.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif col.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif col.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif col.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif col.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if col.borderStyle?exists>border-style:${col.borderStyle};</#if>
+  /**字体**/
+  <#if col.fontFamily?exists>font-family:${col.fontFamily};</#if>
+  <#if col.fontSize?exists>font-size:${col.fontSize};</#if>
+  <#if col.fontColor?exists>font-color:${col.fontColor};</#if>
+  <#if col.letterSpacing?exists>letter-spacing:${col.letterSpacing};</#if>
+  <#if col.lineHeight?exists>line-height:${col.lineHeight};</#if>
+  <#if col.textIndent?exists>text-indent:${col.textIndent};</#if>
+}
+</#if>
+/**按钮**/
+<#if mtbutton?exists>
+   .designer .btn.component  {
+   <#if mtbutton.backgroundColor?exists>background-color:${mtbutton.backgroundColor};</#if>
+   <#if mtbutton.color?exists>color:${mtbutton.color};</#if>
+   <#if mtbutton.sizeVal?exists>
+       <#if mtbutton.sizeVal=="btn-lg">
+	        padding: 10px 16px;
+			font-size: 18px;
+			line-height: 1.33333;
+			border-radius: 6px;
+		 <#elseif mtbutton.sizeVal=="btn-sm">
+		    padding: 5px 10px;
+			font-size: 12px;
+			line-height: 1.5;
+			border-radius: 3px;
+		 <#elseif mtbutton.sizeVal=="hmtd-xs">
+		    height: 25px;
+			font-size: 12px;
+			padding: 0 4px;
+			line-height: 1;
+			border-radius: 3px;
+	   </#if>
+   </#if>
+   <#if mtbutton.borderColor?exists>border-color:${mtbutton.borderColor};</#if>
+   <#if mtbutton.borderStyle?exists>border-style:${mtbutton.borderStyle};</#if>
+   <#if mtbutton.circleStyle?exists>
+       <#if mtbutton.circleStyle=="display">
+	         <#if mtbutton.borderRadius?exists>
+				 <#if mtbutton.borderRadius=="one">
+					 border-radius:4px 4px 4px 4px !important;
+					 <#elseif mtbutton.borderRadius=="two">
+					 border-radius:8px 8px 8px 8px !important;
+					 <#elseif mtbutton.borderRadius=="three">
+					 border-radius:12px 12px 12px 12px !important;
+					 <#elseif mtbutton.borderRadius=="four">
+					 border-radius:16px 16px 16px 16px !important;
+					 <#elseif mtbutton.borderRadius=="five">
+					 border-radius:20px 20px 20px 20px !important;
+					 <#else>
+					 border-radius: 25px !important;
+				 </#if>
+			  </#if>
+	    </#if>
+   </#if>
+   }
+    .designer .btn.component i{
+	  <#if mtbutton.iconColor?exists>
+	      <#if mtbutton.iconColor=="font-default">
+		     color: #3598dc;
+		    <#elseif mtbutton.iconColor=="font-blue">
+			 color: #3598dc;
+		    <#elseif mtbutton.iconColor=="font-dark">
+			 color: #2f353b;
+			<#elseif mtbutton.iconColor=="font-green">
+			 color: #32c5d2;
+			<#elseif mtbutton.iconColor=="font-red">
+			 color: #e7505a;
+			<#elseif mtbutton.iconColor=="font-yellow">
+			 color: #c49f47;
+			<#elseif mtbutton.iconColor=="font-purple">
+			 color: #8E44AD;
+		  </#if>
+	  </#if>
+	}
+	.designer .btn.component:hover{
+		<#if mtbutton.backgroundColor_h?exists>background-color:${mtbutton.backgroundColor_h};</#if>
+		<#if mtbutton.borderColor_h?exists>border-color:${mtbutton.borderColor_h};</#if>
+		<#if mtbutton.fontColor?exists>font-color:${mtbutton.fontColor};</#if>
+	}
+   </#if>
+/**portlet容器**/
+<#if portlet?exists>
+.designer .portlet{
+/**内外间距**/
+  <#if portlet.marginTop?exists>margin-top:${portlet.marginTop}px;</#if>
+  <#if portlet.marginRight?exists>margin-right:${portlet.marginRight}px;</#if>
+  <#if portlet.marginBottom?exists>margin-bottom:${portlet.marginBottom}px;</#if>
+  <#if portlet.marginLeft?exists>margin-left:${portlet.marginLeft}px;</#if>
+  <#if portlet.paddingTop?exists>padding-top:${portlet.paddingTop}px;</#if>
+  <#if portlet.paddingRight?exists>padding-right:${portlet.paddingRight}px;</#if>
+  <#if portlet.paddingBottom?exists>padding-bottom:${portlet.paddingBottom}px;</#if>
+  <#if portlet.paddingLeft?exists>padding-left:${portlet.paddingLeft}px;</#if>
+  /**边框**/
+  <#if portlet.borderWidthTop?exists>border-width-top:${portlet.borderWidthTop}px;</#if>
+  <#if portlet.borderWidthRight?exists>border-width-right:${portlet.borderWidthRight}px;</#if>
+  <#if portlet.borderWidthBottom?exists>border-width-bottom:${portlet.borderWidthBottom}px;</#if>
+  <#if portlet.borderWidthLeft?exists>border-width-left:${portlet.borderWidthLeft}px;</#if>
+  <#if portlet.borderColor?exists>border-color:${portlet.borderColor};</#if>
+  <#if portlet.borderRadius?exists>
+     <#if portlet.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif portlet.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif portlet.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif portlet.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif portlet.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+  </#if>
+  <#if portlet.borderStyle?exists>border-style:${portlet.borderStyle};</#if>
+  <#if portlet.color?exists>
+        border-top-style: initial;
+		border-right-style: solid;
+		border-bottom-style: solid;
+		border-left-style: solid;
+		border-top-color: initial;
+		border-right-color: ${portlet.color} !important;
+		border-bottom-color: ${portlet.color} !important;
+		border-left-color: ${portlet.color} !important;
+		border-image: initial;
+  </#if>
+  }
+.designer .portlet .portlet-title{
+  <#if portlet.color?exists>
+      background-color:${portlet.color} !important;
+  </#if>
+   <#if portlet.titleColor?exists>
+       color:${portlet.titleColor} !important;
+   </#if>
+ }
+ .designer .portlet .portlet-title .caption{
+   <#if portlet.titleColor?exists>
+      color:${portlet.titleColor} !important;
+   </#if>
+ }
+ .designer .portlet .portlet-title .caption i{
+   <#if portlet.titleColor?exists>
+      color:${portlet.titleColor} !important;
+   </#if>
+ }
+ 
+.designer .portlet .portlet-body .slimScrollDiv .slimScrollBar{
+    <#if portlet.handleColor?exists>
+      background-color:${portlet.handleColor} !important;
+   </#if>
+ }
+.designer .portlet .portlet-body .slimScrollDiv .slimScrollRail{
+   <#if portlet.railColor?exists>
+      background-color:${portlet.railColor} !important;
+   </#if>
+ }
+</#if>
+/**portlet_tabs带选项卡容器**/
+<#if portlet_tabs?exists>
+.designer .portlet[data-role='portlet_tabs']{
+/**内外间距**
+<#if portlet_tabs.marginTop?exists>margin-top:${portlet_tabs.marginTop}px;</#if>
+<#if portlet_tabs.marginRight?exists>margin-right:${portlet_tabs.marginRight}px;</#if>
+<#if portlet_tabs.marginBottom?exists>margin-bottom:${portlet_tabs.marginBottom}px;</#if>
+<#if portlet_tabs.marginLeft?exists>margin-left:${portlet_tabs.marginLeft}px;</#if>
+<#if portlet_tabs.paddingTop?exists>padding-top:${portlet_tabs.paddingTop}px;</#if>
+<#if portlet_tabs.paddingRight?exists>padding-right:${portlet_tabs.paddingRight}px;</#if>
+<#if portlet_tabs.paddingBottom?exists>padding-bottom:${portlet_tabs.paddingBottom}px;</#if>
+<#if portlet_tabs.paddingLeft?exists>padding-left:${portlet_tabs.paddingLeft}px;</#if>
+  /**边框**/
+<#if portlet_tabs.borderWidthTop?exists>border-width-top:${portlet_tabs.borderWidthTop}px;</#if>
+<#if portlet_tabs.borderWidthRight?exists>border-width-right:${portlet_tabs.borderWidthRight}px;</#if>
+<#if portlet_tabs.borderWidthBottom?exists>border-width-bottom:${portlet_tabs.borderWidthBottom}px;</#if>
+<#if portlet_tabs.borderWidthLeft?exists>border-width-left:${portlet.borderWidthLeft}px;</#if>
+<#if portlet_tabs.borderColor?exists>border-color:${portlet_tabs.borderColor};</#if>
+<#if portlet_tabs.borderRadius?exists>
+     <#if portlet_tabs.borderRadius=="one">
+		 border-radius:4px 4px 4px 4px !important;
+		 <#elseif portlet_tabs.borderRadius=="two">
+		 border-radius:8px 8px 8px 8px !important;
+		 <#elseif portlet_tabs.borderRadius=="three">
+		 border-radius:12px 12px 12px 12px !important;
+		 <#elseif portlet_tabs.borderRadius=="four">
+		 border-radius:16px 16px 16px 16px !important;
+		 <#elseif portlet_tabs.borderRadius=="five">
+		 border-radius:20px 20px 20px 20px !important;
+	 </#if>
+</#if>
+<#if portlet_tabs.borderStyle?exists>border-style:${portlet_tabs.borderStyle};</#if>
+<#if portlet_tabs.color?exists>
+        border-top-style: initial;
+		border-right-style: solid;
+		border-bottom-style: solid;
+		border-left-style: solid;
+		border-top-color: initial;
+		border-right-color: ${portlet_tabs.color} !important;
+		border-bottom-color: ${portlet_tabs.color} !important;
+		border-left-color: ${portlet_tabs.color} !important;
+		border-image: initial;
+</#if>
+  }
+ .designer .portlet[data-role='portlet_tabs'] .portlet-title{
+<#if portlet_tabs.color?exists>
+      background-color:${portlet_tabs.color} !important;
+</#if>
+<#if portlet_tabs.titleColor?exists>
+       color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ .designer .portlet[data-role='portlet_tabs'] .portlet-title .caption{
+<#if portlet_tabs.titleColor?exists>
+      color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ .designer .portlet[data-role='portlet_tabs'] .portlet-title .caption i{
+<#if portlet_tabs.titleColor?exists>
+      color:${portlet_tabs.titleColor} !important;
+</#if>
+ }
+ 
+ .page .portlet[data-role='portlet_tabs'] .portlet-body .slimScrollDiv .slimScrollBar{
+<#if portlet_tabs.handleColor?exists>
+      background-color:${portlet_tabs.handleColor} !important;
+</#if>
+ }
+ .page .portlet[data-role='portlet_tabs'] .portlet-body .slimScrollDiv .slimScrollRail{
+<#if portlet_tabs.railColor?exists>
+      background-color:${portlet_tabs.railColor} !important;
+</#if>
+ }
+</#if>

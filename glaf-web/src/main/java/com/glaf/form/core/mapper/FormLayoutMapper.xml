@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormLayoutMapper">
+
+	<resultMap id="formLayoutResultMap" type="com.glaf.form.core.domain.FormLayout">
+		<id property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="deploymentId" column="DEPLOYMENTID_"
+			jdbcType="VARCHAR" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="VARCHAR" />
+		<result property="height" column="HEIGHT_" jdbcType="INTEGER" />
+		<result property="width" column="WIDTH_" jdbcType="INTEGER" />
+		<result property="json" column="JSON_" jdbcType="VARCHAR" />
+		<result property="imageFileId" column="IMAGEFILEID_" jdbcType="VARCHAR" />
+		<result property="imageFileName" column="IMAGEFILENAME_"
+			jdbcType="VARCHAR" />
+		<result property="imagePath" column="IMAGEPATH_" jdbcType="VARCHAR" />
+		<result property="smallImagePath" column="SMALLIMAGEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="mediumImagePath" column="MEDIUMIMAGEPATH_"
+			jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATEDATE_" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS_" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="insertFormLayout" parameterType="com.glaf.form.core.domain.FormLayout">
+		insert into FORM_LAYOUT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ID_
+			<if test="deploymentId != null">
+				,DEPLOYMENTID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="type != null">
+				,TYPE_
+			</if>
+			<if test="height != null">
+				,HEIGHT_
+			</if>
+			<if test="width != null">
+				,WIDTH_
+			</if>
+			<if test="json != null">
+				,JSON_
+			</if>
+			<if test="imageFileId != null">
+				,IMAGEFILEID_
+			</if>
+			<if test="imageFileName != null">
+				,IMAGEFILENAME_
+			</if>
+			<if test="imagePath != null">
+				,IMAGEPATH_
+			</if>
+			<if test="smallImagePath != null">
+				,SMALLIMAGEPATH_
+			</if>
+			<if test="mediumImagePath != null">
+				,MEDIUMIMAGEPATH_
+			</if>
+			<if test="createDate != null">
+				,CREATEDATE_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="status != null">
+				,STATUS_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{id, jdbcType=VARCHAR}
+
+			<if test="deploymentId != null">
+				,#{deploymentId, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="type != null">
+				,#{type, jdbcType=VARCHAR}
+			</if>
+			<if test="height != null">
+				,#{height, jdbcType=INTEGER}
+			</if>
+			<if test="width != null">
+				,#{width, jdbcType=INTEGER}
+			</if>
+			<if test="json != null">
+				,#{json, jdbcType=VARCHAR}
+			</if>
+			<if test="imageFileId != null">
+				,#{imageFileId, jdbcType=VARCHAR}
+			</if>
+			<if test="imageFileName != null">
+				,#{imageFileName, jdbcType=VARCHAR}
+			</if>
+			<if test="imagePath != null">
+				,#{imagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="smallImagePath != null">
+				,#{smallImagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="mediumImagePath != null">
+				,#{mediumImagePath, jdbcType=VARCHAR}
+			</if>
+			<if test="createDate != null">
+				,#{createDate, jdbcType=TIMESTAMP}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="status != null">
+				,#{status, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateFormLayout" parameterType="com.glaf.form.core.domain.FormLayout">
+		update FORM_LAYOUT
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="deploymentId != null">
+				DEPLOYMENTID_ = #{deploymentId, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE_ = #{type, jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				HEIGHT_ = #{height, jdbcType=INTEGER},
+			</if>
+			<if test="width != null">
+				WIDTH_ = #{width, jdbcType=INTEGER},
+			</if>
+			<if test="json != null">
+				JSON_ = #{json, jdbcType=VARCHAR},
+			</if>
+			<if test="imageFileId != null">
+				IMAGEFILEID_ = #{imageFileId, jdbcType=VARCHAR},
+			</if>
+			<if test="imageFileName != null">
+				IMAGEFILENAME_ = #{imageFileName, jdbcType=VARCHAR},
+			</if>
+			<if test="imagePath != null">
+				IMAGEPATH_ = #{imagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="smallImagePath != null">
+				SMALLIMAGEPATH_ = #{smallImagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="mediumImagePath != null">
+				MEDIUMIMAGEPATH_ = #{mediumImagePath, jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS_ = #{status, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		ID_ = #{id, jdbcType=VARCHAR}
+
+	</update>
+
+
+	<delete id="deleteFormLayoutById" parameterType="string">
+		delete from
+		FORM_LAYOUT
+		where ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteFormLayouts" parameterType="com.glaf.form.core.query.FormLayoutQuery">
+		delete from FORM_LAYOUT
+		where (
+		ID_ IN
+		<foreach item="x_id" index="index" collection="ids" open="("
+			separator="," close=")">
+			#{x_id}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getFormLayoutById" parameterType="string"
+		resultMap="formLayoutResultMap">
+		select * from FORM_LAYOUT where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormLayouts" parameterType="com.glaf.form.core.query.FormLayoutQuery"
+		resultMap="formLayoutResultMap">
+		select distinct E.*
+		<include refid="selectFormLayoutsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.CREATEDATE_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getFormLayoutCount" parameterType="com.glaf.form.core.query.FormLayoutQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormLayoutsSql" />
+	</select>
+
+
+	<sql id="selectFormLayoutsSql">
+
+		from FORM_LAYOUT E
+
+		<where>
+			1 = 1
+
+			<if test="deploymentId != null and deploymentId != '' ">
+				and E.DEPLOYMENTID_ = #{deploymentId}
+			</if>
+
+			<if test="deploymentIds != null and deploymentIds.size() &gt; 0">
+				and E.DEPLOYMENTID_ IN
+				<foreach item="x_deploymentId" index="index" collection="deploymentIds"
+					open="(" separator="," close=")">
+					#{x_deploymentId}
+				</foreach>
+			</if>
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="type != null and type != '' ">
+				and E.TYPE_ = #{type}
+			</if>
+
+			<if test="types != null and types.size() &gt; 0">
+				and E.TYPE_ IN
+				<foreach item="x_type" index="index" collection="types"
+					open="(" separator="," close=")">
+					#{x_type}
+				</foreach>
+			</if>
+
+			<if test="createDateGreaterThanOrEqual != null">
+				and E.CREATEDATE_ &gt;= #{createDateGreaterThanOrEqual}
+			</if>
+
+			<if test="createDateLessThanOrEqual != null">
+				and E.CREATEDATE_ &lt;= #{createDateLessThanOrEqual}
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="status != null">
+				and E.STATUS_ = #{status}
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

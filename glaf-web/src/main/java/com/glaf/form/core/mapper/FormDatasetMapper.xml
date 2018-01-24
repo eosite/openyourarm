@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormDatasetMapper">
+
+ 	<resultMap id="formDatasetResultMap"	type="com.glaf.form.core.domain.FormDataset">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="datasetId" column="DATASETID_" jdbcType="VARCHAR"/>
+        <result property="columnName" column="COLUMNNAME_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="widgetId" column="WIDGETID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormDataset" parameterType="com.glaf.form.core.domain.FormDataset">
+		insert into FORM_DATASET 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="datasetId != null">
+				,DATASETID_ 
+			</if>
+			<if test="columnName != null">
+				,COLUMNNAME_ 
+			</if>
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="widgetId != null">
+				,WIDGETID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="datasetId != null">
+				,#{datasetId, jdbcType=VARCHAR}
+			</if>
+			<if test="columnName != null">
+				,#{columnName, jdbcType=VARCHAR}
+			</if>
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="widgetId != null">
+				,#{widgetId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormDataset" parameterType="com.glaf.form.core.domain.FormDataset">
+		update FORM_DATASET
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="datasetId != null">
+				DATASETID_ = #{datasetId, jdbcType=VARCHAR},
+			</if>
+			<if test="columnName != null">
+				COLUMNNAME_ = #{columnName, jdbcType=VARCHAR},
+			</if>
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="widgetId != null">
+				WIDGETID_ = #{widgetId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormDatasetById" parameterType="string"> 
+        delete from FORM_DATASET
+        where ID_ =	#{id}
+	</delete>
+	
+	<delete id="deleteByColumns"> 
+        delete from FORM_DATASET
+        where WIDGETID_ =	#{widgetId} 
+        <if test="columns != null and columns.size() &gt; 0">
+         	AND	COLUMNNAME_ NOT IN
+              <foreach item="x_column" index="index" collection="columns" 
+                     open="(" separator="," close=")">
+                  #{x_column}
+              </foreach>
+        </if>
+	</delete>
+
+	
+	<delete id="deleteFormDatasets" parameterType="com.glaf.form.core.query.FormDatasetQuery">
+		delete from FORM_DATASET
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormDatasetById" parameterType="string" resultMap="formDatasetResultMap">
+		select * from FORM_DATASET where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormDatasets" 
+	    parameterType="com.glaf.form.core.query.FormDatasetQuery"
+		resultMap="formDatasetResultMap">
+		select distinct E.*
+		<include refid="selectFormDatasetsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormDatasetCount" 
+	    parameterType="com.glaf.form.core.query.FormDatasetQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormDatasetsSql" />
+	</select>
+
+
+	<sql id="selectFormDatasetsSql">
+
+		from FORM_DATASET E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="datasetId != null and datasetId != '' ">
+				and E.DATASETID_ = #{datasetId}
+            </if>
+
+			<if test="datasetIdLike != null and datasetIdLike != '' ">
+				and E.DATASETID_ like #{datasetIdLike}
+            </if>
+
+			<if test="datasetIds != null and datasetIds.size() &gt; 0">
+			    and E.DATASETID_ IN
+                <foreach item="x_datasetId" index="index" collection="datasetIds" 
+                     open="(" separator="," close=")">
+                  #{x_datasetId}
+                </foreach>
+			</if>
+	        
+			<if test="columnName != null and columnName != '' ">
+				and E.COLUMNNAME_ = #{columnName}
+            </if>
+
+			<if test="columnNameLike != null and columnNameLike != '' ">
+				and E.COLUMNNAME_ like #{columnNameLike}
+            </if>
+
+			<if test="columnNames != null and columnNames.size() &gt; 0">
+			    and E.COLUMNNAME_ IN
+                <foreach item="x_columnName" index="index" collection="columnNames" 
+                     open="(" separator="," close=")">
+                  #{x_columnName}
+                </foreach>
+			</if>
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="widgetId != null and widgetId != '' ">
+				and E.WIDGETID_ = #{widgetId}
+            </if>
+
+			<if test="widgetIdLike != null and widgetIdLike != '' ">
+				and E.WIDGETID_ like #{widgetIdLike}
+            </if>
+
+			<if test="widgetIds != null and widgetIds.size() &gt; 0">
+			    and E.WIDGETID_ IN
+                <foreach item="x_widgetId" index="index" collection="widgetIds" 
+                     open="(" separator="," close=")">
+                  #{x_widgetId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<select id="queryByParam" 
+		resultMap="formDatasetResultMap">
+		select E.* from FORM_DATASET E where
+			<choose>
+	            <when test="ruleId != null and ruleId != ''"> 
+					E.WIDGETID_ =  #{ruleId}
+				</when>
+	            <otherwise>
+	           <!--      E.WIDGETID_ =  ( select top 1 ID_ from form_rule where PAGEID_ = #{pageId} and NAME_ = #{inId} ) --> 
+	                E.WIDGETID_ in  ( select ID_ from form_rule where PAGEID_ = #{pageId} and NAME_ = #{inId} ) 
+	            </otherwise>
+	        </choose>
+	        <if test="datasetId != null">
+				and E.DATASETID_ = #{datasetId}
+			</if>
+			
+			and E.COLUMNNAME_ = #{columnName}
+			and E.PAGEID_ = #{pageId}
+	</select>
+</mapper>

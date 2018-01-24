@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormParamsRelationMapper">
+
+ 	<resultMap id="formParamsRelationResultMap"	type="com.glaf.form.core.domain.FormParamsRelation">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="widgetId" column="WIDGETID_" jdbcType="VARCHAR"/>
+        <result property="pid" column="PID_" jdbcType="VARCHAR"/>
+        <result property="attrName" column="ATTRNAME_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormParamsRelation" parameterType="com.glaf.form.core.domain.FormParamsRelation">
+		insert into FORM_PARAMS_RELATION 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="widgetId != null">
+				,WIDGETID_ 
+			</if>
+			<if test="pid != null">
+				,PID_ 
+			</if>
+			<if test="attrName != null">
+				,ATTRNAME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="widgetId != null">
+				,#{widgetId, jdbcType=VARCHAR}
+			</if>
+			<if test="pid != null">
+				,#{pid, jdbcType=VARCHAR}
+			</if>
+			<if test="attrName != null">
+				,#{attrName, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormParamsRelation" parameterType="com.glaf.form.core.domain.FormParamsRelation">
+		update FORM_PARAMS_RELATION
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="widgetId != null">
+				WIDGETID_ = #{widgetId, jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				PID_ = #{pid, jdbcType=VARCHAR},
+			</if>
+			<if test="attrName != null">
+				ATTRNAME_ = #{attrName, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormParamsRelationById" parameterType="string"> 
+        delete from FORM_PARAMS_RELATION
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormParamsRelations" parameterType="com.glaf.form.core.query.FormParamsRelationQuery">
+		delete from FORM_PARAMS_RELATION
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormParamsRelationById" parameterType="string" resultMap="formParamsRelationResultMap">
+		select * from FORM_PARAMS_RELATION where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormParamsRelations" 
+	    parameterType="com.glaf.form.core.query.FormParamsRelationQuery"
+		resultMap="formParamsRelationResultMap">
+		select distinct E.*
+		<include refid="selectFormParamsRelationsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormParamsRelationCount" 
+	    parameterType="com.glaf.form.core.query.FormParamsRelationQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormParamsRelationsSql" />
+	</select>
+
+
+	<sql id="selectFormParamsRelationsSql">
+
+		from FORM_PARAMS_RELATION E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="widgetId != null and widgetId != '' ">
+				and E.WIDGETID_ = #{widgetId}
+            </if>
+
+			<if test="widgetIdLike != null and widgetIdLike != '' ">
+				and E.WIDGETID_ like #{widgetIdLike}
+            </if>
+
+			<if test="widgetIds != null and widgetIds.size() &gt; 0">
+			    and E.WIDGETID_ IN
+                <foreach item="x_widgetId" index="index" collection="widgetIds" 
+                     open="(" separator="," close=")">
+                  #{x_widgetId}
+                </foreach>
+			</if>
+	        
+			<if test="pid != null and pid != '' ">
+				and E.PID_ = #{pid}
+            </if>
+
+			<if test="pidLike != null and pidLike != '' ">
+				and E.PID_ like #{pidLike}
+            </if>
+
+			<if test="pids != null and pids.size() &gt; 0">
+			    and E.PID_ IN
+                <foreach item="x_pid" index="index" collection="pids" 
+                     open="(" separator="," close=")">
+                  #{x_pid}
+                </foreach>
+			</if>
+	        
+			<if test="attrName != null and attrName != '' ">
+				and E.ATTRNAME_ = #{attrName}
+            </if>
+
+			<if test="attrNameLike != null and attrNameLike != '' ">
+				and E.ATTRNAME_ like #{attrNameLike}
+            </if>
+
+			<if test="attrNames != null and attrNames.size() &gt; 0">
+			    and E.ATTRNAME_ IN
+                <foreach item="x_attrName" index="index" collection="attrNames" 
+                     open="(" separator="," close=")">
+                  #{x_attrName}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+	
+	<delete id="delete" parameterType="com.glaf.form.core.query.FormParamsRelationQuery">
+		delete FORM_PARAMS_RELATION 
+		where PAGEID_ = #{pageId} and WIDGETID_ = #{widgetId} and ATTRNAME_ = #{attrName}
+	</delete>
+	
+	<select id="queryParamRelation" resultType="java.util.Map">
+		SELECT
+		    pe.PAGEID_ as pageId,
+		    page.NAME_ as pageName,
+		    pe.ATTRNAME_ AS widgetAttrName,
+		    pe.WIDGETID_ AS widgetRuleId,
+		    rp.value_ as widgetName,
+		    p.DATASETID_ AS databaseId,
+		    d.NAME_ as databaseName
+		FROM
+		    FORM_PARAMS_RELATION pe
+		JOIN
+		    FORM_PARAMS p
+		ON
+		    pe.PID_ = p.ID_
+		JOIN 
+		    FORM_RULE_PROPERTY rp
+		ON
+		    rp.RULEID_ =  pe.WIDGETID_       
+		JOIN 
+		    FORM_PAGE page 
+		ON 
+		    page.ID_ = pe.PAGEID_
+		LEFT JOIN 
+		    SYS_DATASET d
+		ON
+		    d.ID_ = p.DATASETID_
+		WHERE 
+			 rp.NAME_ in ( select id_ from FORM_COMPONENT_PROPERTY where NAME_ = 'html' ) 
+		<if test="paramName != null and paramName != '' ">		
+			and p.PARAMNAME_ = #{paramName}
+		</if>
+		<if test="widgetRuleId != null and widgetRuleId != '' ">		
+			and p.WIDGETID_ = #{widgetRuleId}
+		</if>
+		<if test="databaseId != null and databaseId != '' ">		
+			and p.DATASETID_ = #{paramName}
+		</if>
+		<if test="pageId != null and pageId != '' ">		
+			and p.PAGEID_ = #{paramName}
+		</if>
+	</select>
+	
+</mapper>

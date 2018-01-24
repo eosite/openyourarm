@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.maildata.mapper.EmailRecMapper">
+
+ 	<resultMap id="emailRecResultMap"	type="com.glaf.maildata.domain.EmailRec">
+        <id property="iD" column="ID" jdbcType="VARCHAR"/>
+        <result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+        <result property="msgId" column="MSGID" jdbcType="VARCHAR"/>
+        <result property="inReplyTo" column="INREPLYTO" jdbcType="VARCHAR"/>
+        <result property="from" column="FROM" jdbcType="VARCHAR"/>
+        <result property="to" column="TO" jdbcType="VARCHAR"/>
+        <result property="cc" column="CC" jdbcType="VARCHAR"/>
+        <result property="date" column="DATE" jdbcType="TIMESTAMP"/>
+        <result property="subject" column="SUBJECT" jdbcType="VARCHAR"/>
+        <result property="replyTo" column="REPLYTO" jdbcType="VARCHAR"/>
+        <result property="text" column="TEXT" jdbcType="VARCHAR" />
+        <result property="intFlag" column="INTFLAG" jdbcType="INTEGER"/>
+        <result property="guidFrom" column="GUID_FROM" jdbcType="VARCHAR"/>
+        <result property="fromSysId" column="FROMSYSID" jdbcType="VARCHAR"/>
+        <result property="intAction" column="INTACTION" jdbcType="INTEGER"/>
+        <result property="intOperat" column="INTOPERAT" jdbcType="INTEGER"/>
+        <result property="listNo" column="LISTNO" jdbcType="INTEGER"/>
+        <result property="toSysId" column="TOSYSID" jdbcType="VARCHAR"/>
+        <result property="atts" column="ATTS" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertEmailRec" parameterType="com.glaf.maildata.domain.EmailRec">
+		insert into EMAIL_REC 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID
+			<if test="email != null">
+				,EMAIL 
+			</if>
+			<if test="msgId != null">
+				,MSGID 
+			</if>
+			<if test="inReplyTo != null">
+				,INREPLYTO 
+			</if>
+			<if test="from != null">
+				,"FROM" 
+			</if>
+			<if test="to != null">
+				,"TO" 
+			</if>
+			<if test="cc != null">
+				,CC 
+			</if>
+			<if test="date != null">
+				,DATE 
+			</if>
+			<if test="subject != null">
+				,SUBJECT 
+			</if>
+			<if test="replyTo != null">
+				,REPLYTO 
+			</if>
+			<if test="text != null">
+				,TEXT 
+			</if>
+			<if test="html != null">
+				,HTML 
+			</if>
+			<if test="intFlag != null">
+				,INTFLAG 
+			</if>
+			<if test="guidFrom != null">
+				,GUID_FROM 
+			</if>
+			<if test="fromSysId != null">
+				,FROMSYSID 
+			</if>
+			<if test="intAction != null">
+				,INTACTION 
+			</if>
+			<if test="intOperat != null">
+				,INTOPERAT 
+			</if>
+			<if test="listNo != null">
+				,LISTNO 
+			</if>
+			<if test="toSysId != null">
+				,TOSYSID 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{iD, jdbcType=VARCHAR}
+	     
+			<if test="email != null">
+				,#{email, jdbcType=VARCHAR}
+			</if>
+			<if test="msgId != null">
+				,#{msgId, jdbcType=VARCHAR}
+			</if>
+			<if test="inReplyTo != null">
+				,#{inReplyTo, jdbcType=VARCHAR}
+			</if>
+			<if test="from != null">
+				,#{from, jdbcType=VARCHAR}
+			</if>
+			<if test="to != null">
+				,#{to, jdbcType=VARCHAR}
+			</if>
+			<if test="cc != null">
+				,#{cc, jdbcType=VARCHAR}
+			</if>
+			<if test="date != null">
+				,#{date, jdbcType=TIMESTAMP}
+			</if>
+			<if test="subject != null">
+				,#{subject, jdbcType=VARCHAR}
+			</if>
+			<if test="replyTo != null">
+				,#{replyTo, jdbcType=VARCHAR}
+			</if>
+			<if test="text != null">
+				,#{text, jdbcType=VARCHAR}
+			</if>
+			<if test="html != null">
+				,#{html, jdbcType=VARCHAR}
+			</if>
+			<if test="intFlag != null">
+				,#{intFlag, jdbcType=INTEGER}
+			</if>
+			<if test="guidFrom != null">
+				,#{guidFrom, jdbcType=VARCHAR}
+			</if>
+			<if test="fromSysId != null">
+				,#{fromSysId, jdbcType=VARCHAR}
+			</if>
+			<if test="intAction != null">
+				,#{intAction, jdbcType=INTEGER}
+			</if>
+			<if test="intOperat != null">
+				,#{intOperat, jdbcType=INTEGER}
+			</if>
+			<if test="listNo != null">
+				,#{listNo, jdbcType=INTEGER}
+			</if>
+			<if test="toSysId != null">
+				,#{toSysId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateEmailRec" parameterType="com.glaf.maildata.domain.EmailRec">
+		update EMAIL_REC
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="email != null">
+				EMAIL = #{email, jdbcType=VARCHAR},
+			</if>
+			<if test="msgId != null">
+				MSGID = #{msgId, jdbcType=VARCHAR},
+			</if>
+			<if test="inReplyTo != null">
+				INREPLYTO = #{inReplyTo, jdbcType=VARCHAR},
+			</if>
+			<if test="from != null">
+				"FROM" = #{from, jdbcType=VARCHAR},
+			</if>
+			<if test="to != null">
+				"TO" = #{to, jdbcType=VARCHAR},
+			</if>
+			<if test="cc != null">
+				CC = #{cc, jdbcType=VARCHAR},
+			</if>
+			<if test="date != null">
+				DATE = #{date, jdbcType=TIMESTAMP},
+			</if>
+			<if test="subject != null">
+				SUBJECT = #{subject, jdbcType=VARCHAR},
+			</if>
+			<if test="replyTo != null">
+				REPLYTO = #{replyTo, jdbcType=VARCHAR},
+			</if>
+			<if test="text != null">
+				TEXT = #{text, jdbcType=VARCHAR},
+			</if>
+			<if test="html != null">
+				HTML = #{html, jdbcType=VARCHAR},
+			</if>
+			<if test="intFlag != null">
+				INTFLAG = #{intFlag, jdbcType=INTEGER},
+			</if>
+			<if test="guidFrom != null">
+				GUID_FROM = #{guidFrom, jdbcType=VARCHAR},
+			</if>
+			<if test="fromSysId != null">
+				FROMSYSID = #{fromSysId, jdbcType=VARCHAR},
+			</if>
+			<if test="intAction != null">
+				INTACTION = #{intAction, jdbcType=INTEGER},
+			</if>
+			<if test="intOperat != null">
+				INTOPERAT = #{intOperat, jdbcType=INTEGER},
+			</if>
+			<if test="listNo != null">
+				LISTNO = #{listNo, jdbcType=INTEGER},
+			</if>
+			<if test="toSysId != null">
+				TOSYSID = #{toSysId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID = #{iD, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteEmailRecById" parameterType="string"> 
+        delete from EMAIL_REC
+        where ID =	#{id}
+	</delete>
+
+	
+	<delete id="deleteEmailRecs" parameterType="com.glaf.maildata.query.EmailRecQuery">
+		delete from EMAIL_REC
+		where ( 
+ 			  ID IN
+              <foreach item="x_iD" index="index" collection="iDs" 
+                     open="(" separator="," close=")">
+                  #{x_iD}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getEmailRecById" parameterType="string" resultMap="emailRecResultMap">
+		select * from EMAIL_REC where ID = #{id}
+	</select>
+
+
+	<select id="getEmailRecs" 
+	    parameterType="com.glaf.maildata.query.EmailRecQuery"
+		resultMap="emailRecResultMap">
+		select  E.id,E.email,E.msgId,E.Inreplyto,E."FROM",E."TO",E.CC,E.DATE,E.Subject,E.replyto,E.intflag,E.GUID_from,
+                 E.fromsysid,E.intaction,E.intOperat,E.listno,E.tosysid,F.atts
+		<include refid="selectEmailRecsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getEmailRecCount" 
+	    parameterType="com.glaf.maildata.query.EmailRecQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEmailRecsSql" />
+	</select>
+
+
+	<sql id="selectEmailRecsSql">
+
+		from EMAIL_REC E left join (select count(fileID) as atts,topid from email_recatt  group by topid) F on E.id=F.topid
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="email != null and email != '' ">
+				and E.EMAIL = #{email}
+            </if>
+
+			<if test="emailLike != null and emailLike != '' ">
+				and E.EMAIL like #{emailLike}
+            </if>
+
+			<if test="emails != null and emails.size() &gt; 0">
+			    and E.EMAIL IN
+                <foreach item="x_email" index="index" collection="emails" 
+                     open="(" separator="," close=")">
+                  #{x_email}
+                </foreach>
+			</if>
+	        
+			<if test="msgId != null and msgId != '' ">
+				and E.MSGID = #{msgId}
+            </if>
+
+			<if test="msgIdLike != null and msgIdLike != '' ">
+				and E.MSGID like #{msgIdLike}
+            </if>
+
+			<if test="msgIds != null and msgIds.size() &gt; 0">
+			    and E.MSGID IN
+                <foreach item="x_msgId" index="index" collection="msgIds" 
+                     open="(" separator="," close=")">
+                  #{x_msgId}
+                </foreach>
+			</if>
+	        
+			<if test="inReplyTo != null and inReplyTo != '' ">
+				and E.INREPLYTO = #{inReplyTo}
+            </if>
+
+			<if test="inReplyToLike != null and inReplyToLike != '' ">
+				and E.INREPLYTO like #{inReplyToLike}
+            </if>
+
+			<if test="inReplyTos != null and inReplyTos.size() &gt; 0">
+			    and E.INREPLYTO IN
+                <foreach item="x_inReplyTo" index="index" collection="inReplyTos" 
+                     open="(" separator="," close=")">
+                  #{x_inReplyTo}
+                </foreach>
+			</if>
+	        
+			<if test="from != null and from != '' ">
+				and E.FROM = #{from}
+            </if>
+
+			<if test="fromLike != null and fromLike != '' ">
+				and E.FROM like #{fromLike}
+            </if>
+
+			<if test="froms != null and froms.size() &gt; 0">
+			    and E.FROM IN
+                <foreach item="x_from" index="index" collection="froms" 
+                     open="(" separator="," close=")">
+                  #{x_from}
+                </foreach>
+			</if>
+	        
+			<if test="to != null and to != '' ">
+				and E.TO = #{to}
+            </if>
+
+			<if test="toLike != null and toLike != '' ">
+				and E.TO like #{toLike}
+            </if>
+
+			<if test="tos != null and tos.size() &gt; 0">
+			    and E.TO IN
+                <foreach item="x_to" index="index" collection="tos" 
+                     open="(" separator="," close=")">
+                  #{x_to}
+                </foreach>
+			</if>
+	        
+			<if test="cc != null and cc != '' ">
+				and E.CC = #{cc}
+            </if>
+
+			<if test="ccLike != null and ccLike != '' ">
+				and E.CC like #{ccLike}
+            </if>
+
+			<if test="ccs != null and ccs.size() &gt; 0">
+			    and E.CC IN
+                <foreach item="x_cc" index="index" collection="ccs" 
+                     open="(" separator="," close=")">
+                  #{x_cc}
+                </foreach>
+			</if>
+
+			<if test="dateGreaterThanOrEqual != null">
+				and E.DATE &gt;= #{dateGreaterThanOrEqual}
+            </if>
+
+			<if test="dateLessThanOrEqual != null">
+				and E.DATE &lt;= #{dateLessThanOrEqual}
+            </if>
+
+	        
+			<if test="subject != null and subject != '' ">
+				and E.SUBJECT = #{subject}
+            </if>
+
+			<if test="subjectLike != null and subjectLike != '' ">
+				and E.SUBJECT like #{subjectLike}
+            </if>
+
+			<if test="subjects != null and subjects.size() &gt; 0">
+			    and E.SUBJECT IN
+                <foreach item="x_subject" index="index" collection="subjects" 
+                     open="(" separator="," close=")">
+                  #{x_subject}
+                </foreach>
+			</if>
+	        
+			<if test="replyTo != null and replyTo != '' ">
+				and E.REPLYTO = #{replyTo}
+            </if>
+
+			<if test="replyToLike != null and replyToLike != '' ">
+				and E.REPLYTO like #{replyToLike}
+            </if>
+
+			<if test="replyTos != null and replyTos.size() &gt; 0">
+			    and E.REPLYTO IN
+                <foreach item="x_replyTo" index="index" collection="replyTos" 
+                     open="(" separator="," close=")">
+                  #{x_replyTo}
+                </foreach>
+			</if>
+
+			<if test="intFlag != null">
+				and E.INTFLAG = #{intFlag}
+            </if>
+
+			<if test="intFlagGreaterThanOrEqual != null">
+				and E.INTFLAG &gt;= #{intFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="intFlagLessThanOrEqual != null">
+				and E.INTFLAG &lt;= #{intFlagLessThanOrEqual}
+            </if>
+
+			<if test="intFlags != null and intFlags.size() &gt; 0">
+			    and E.INTFLAG IN
+                <foreach item="x_intFlag" index="index" collection="intFlags" 
+                     open="(" separator="," close=")">
+                  #{x_intFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="guidFrom != null and guidFrom != '' ">
+				and E.GUID_FROM = #{guidFrom}
+            </if>
+
+			<if test="guidFromLike != null and guidFromLike != '' ">
+				and E.GUID_FROM like #{guidFromLike}
+            </if>
+
+			<if test="guidFroms != null and guidFroms.size() &gt; 0">
+			    and E.GUID_FROM IN
+                <foreach item="x_guidFrom" index="index" collection="guidFroms" 
+                     open="(" separator="," close=")">
+                  #{x_guidFrom}
+                </foreach>
+			</if>
+	        
+			<if test="fromSysId != null and fromSysId != '' ">
+				and E.FROMSYSID = #{fromSysId}
+            </if>
+
+			<if test="fromSysIdLike != null and fromSysIdLike != '' ">
+				and E.FROMSYSID like #{fromSysIdLike}
+            </if>
+
+			<if test="fromSysIds != null and fromSysIds.size() &gt; 0">
+			    and E.FROMSYSID IN
+                <foreach item="x_fromSysId" index="index" collection="fromSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_fromSysId}
+                </foreach>
+			</if>
+
+			<if test="intAction != null">
+				and E.INTACTION = #{intAction}
+            </if>
+
+			<if test="intActionGreaterThanOrEqual != null">
+				and E.INTACTION &gt;= #{intActionGreaterThanOrEqual}
+            </if>
+
+			<if test="intActionLessThanOrEqual != null">
+				and E.INTACTION &lt;= #{intActionLessThanOrEqual}
+            </if>
+
+			<if test="intActions != null and intActions.size() &gt; 0">
+			    and E.INTACTION IN
+                <foreach item="x_intAction" index="index" collection="intActions" 
+                     open="(" separator="," close=")">
+                  #{x_intAction}
+                </foreach>
+			</if>
+      
+
+			<if test="intOperat != null">
+				and E.INTOPERAT = #{intOperat}
+            </if>
+
+			<if test="intOperatGreaterThanOrEqual != null">
+				and E.INTOPERAT &gt;= #{intOperatGreaterThanOrEqual}
+            </if>
+
+			<if test="intOperatLessThanOrEqual != null">
+				and E.INTOPERAT &lt;= #{intOperatLessThanOrEqual}
+            </if>
+
+			<if test="intOperats != null and intOperats.size() &gt; 0">
+			    and E.INTOPERAT IN
+                <foreach item="x_intOperat" index="index" collection="intOperats" 
+                     open="(" separator="," close=")">
+                  #{x_intOperat}
+                </foreach>
+			</if>
+      
+
+			<if test="listNo != null">
+				and E.LISTNO = #{listNo}
+            </if>
+
+			<if test="listNoGreaterThanOrEqual != null">
+				and E.LISTNO &gt;= #{listNoGreaterThanOrEqual}
+            </if>
+
+			<if test="listNoLessThanOrEqual != null">
+				and E.LISTNO &lt;= #{listNoLessThanOrEqual}
+            </if>
+
+			<if test="listNos != null and listNos.size() &gt; 0">
+			    and E.LISTNO IN
+                <foreach item="x_listNo" index="index" collection="listNos" 
+                     open="(" separator="," close=")">
+                  #{x_listNo}
+                </foreach>
+			</if>
+      
+	        
+			<if test="toSysId != null and toSysId != '' ">
+				and E.TOSYSID = #{toSysId}
+            </if>
+
+			<if test="toSysIdLike != null and toSysIdLike != '' ">
+				and E.TOSYSID like #{toSysIdLike}
+            </if>
+
+			<if test="toSysIds != null and toSysIds.size() &gt; 0">
+			    and E.TOSYSID IN
+                <foreach item="x_toSysId" index="index" collection="toSysIds" 
+                     open="(" separator="," close=")">
+                  #{x_toSysId}
+                </foreach>
+			</if>
+			<if test="searchCondition != null and searchCondition!=''">
+				and (E."FROM" like '%${searchCondition}%' or E."TO" like '%${searchCondition}%' or E.SUBJECT like '%${searchCondition}%')
+            </if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

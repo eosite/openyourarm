@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.workflow.core.mapper.ActReCategoryMapper">
+
+ 	<resultMap id="actReCategoryResultMap"	type="com.glaf.workflow.core.domain.ActReCategory">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="parentId" column="PARENT_ID_" jdbcType="BIGINT"/>
+        <result property="code" column="CODE_" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME_" jdbcType="VARCHAR"/>
+        <result property="treeId" column="TREE_ID_" jdbcType="VARCHAR"/>
+        <result property="level" column="LEVEL_" jdbcType="INTEGER"/>
+        <result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDatetime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDatetime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertActReCategory" parameterType="com.glaf.workflow.core.domain.ActReCategory">
+		insert into ACT_RE_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="parentId != null">
+				,PARENT_ID_ 
+			</if>
+			<if test="code != null">
+				,CODE_ 
+			</if>
+			<if test="name != null">
+				,NAME_ 
+			</if>
+			<if test="treeId != null">
+				,TREE_ID_ 
+			</if>
+			<if test="level != null">
+				,LEVEL_ 
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDatetime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDatetime != null">
+				,MODIFYDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="parentId != null">
+				,#{parentId, jdbcType=BIGINT}
+			</if>
+			<if test="code != null">
+				,#{code, jdbcType=VARCHAR}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="treeId != null">
+				,#{treeId, jdbcType=VARCHAR}
+			</if>
+			<if test="level != null">
+				,#{level, jdbcType=INTEGER}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDatetime != null">
+				,#{createDatetime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDatetime != null">
+				,#{modifyDatetime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateActReCategory" parameterType="com.glaf.workflow.core.domain.ActReCategory">
+		update ACT_RE_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="parentId != null">
+				PARENT_ID_ = #{parentId, jdbcType=BIGINT},
+			</if>
+			<if test="code != null">
+				CODE_ = #{code, jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="treeId != null">
+				TREE_ID_ = #{treeId, jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				LEVEL_ = #{level, jdbcType=INTEGER},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDatetime != null">
+				CREATEDATETIME_ = #{createDatetime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDatetime != null">
+				MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteActReCategoryById" parameterType="long"> 
+        delete from ACT_RE_CATEGORY
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteActReCategorys" parameterType="com.glaf.workflow.core.query.ActReCategoryQuery">
+		delete from ACT_RE_CATEGORY
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+    <update id="rename" parameterType="map">
+		update ACT_RE_CATEGORY set NAME_=#{name, jdbcType=VARCHAR},MODIFIER_ = #{modifier, jdbcType=VARCHAR},MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP} where ID_= #{categoryId, jdbcType=BIGINT}
+	</update>
+	
+	<update id="move" parameterType="map">
+		update ACT_RE_CATEGORY set PARENT_ID_=#{pId, jdbcType=BIGINT},TREE_ID_=#{treeId, jdbcType=VARCHAR},MODIFIER_ = #{modifier, jdbcType=VARCHAR},MODIFYDATETIME_ = #{modifyDatetime, jdbcType=TIMESTAMP} where ID_= #{categoryId, jdbcType=BIGINT}
+	</update>
+	
+	<update id="workFlowMoveToCategory" parameterType="map">
+		update ACT_RE_MODEL set TENANT_ID_=#{categoryId, jdbcType=VARCHAR} where ID_ in (${modelId})
+	</update>
+	
+	<select id="getActReCategoryById" parameterType="long" resultMap="actReCategoryResultMap">
+		select * from ACT_RE_CATEGORY where ID_ = #{id}
+	</select>
+
+
+	<select id="getActReCategorys" 
+	    parameterType="com.glaf.workflow.core.query.ActReCategoryQuery"
+		resultMap="actReCategoryResultMap">
+		select distinct E.*
+		<include refid="selectActReCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getActReCategoryCount" 
+	    parameterType="com.glaf.workflow.core.query.ActReCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectActReCategorysSql" />
+	</select>
+
+
+	<sql id="selectActReCategorysSql">
+
+		from ACT_RE_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="parentId != null">
+				and E.PARENT_ID_ = #{parentId}
+            </if>
+
+			<if test="parentIdGreaterThanOrEqual != null">
+				and E.PARENT_ID_ &gt;= #{parentIdGreaterThanOrEqual}
+            </if>
+
+			<if test="parentIdLessThanOrEqual != null">
+				and E.PARENT_ID_ &lt;= #{parentIdLessThanOrEqual}
+            </if>
+
+			<if test="parentIds != null and parentIds.size() &gt; 0">
+			    and E.PARENT_ID_ IN
+                <foreach item="x_parentId" index="index" collection="parentIds" 
+                     open="(" separator="," close=")">
+                  #{x_parentId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="code != null and code != '' ">
+				and E.CODE_ = #{code}
+            </if>
+
+			<if test="codeLike != null and codeLike != '' ">
+				and E.CODE_ like #{codeLike}
+            </if>
+
+			<if test="codes != null and codes.size() &gt; 0">
+			    and E.CODE_ IN
+                <foreach item="x_code" index="index" collection="codes" 
+                     open="(" separator="," close=")">
+                  #{x_code}
+                </foreach>
+			</if>
+	        
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+            </if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+            </if>
+
+			<if test="names != null and names.size() &gt; 0">
+			    and E.NAME_ IN
+                <foreach item="x_name" index="index" collection="names" 
+                     open="(" separator="," close=")">
+                  #{x_name}
+                </foreach>
+			</if>
+	        
+			<if test="treeId != null and treeId != '' ">
+				and E.TREE_ID_ = #{treeId}
+            </if>
+
+			<if test="treeIdLike != null and treeIdLike != '' ">
+				and E.TREE_ID_ like #{treeIdLike}
+            </if>
+
+			<if test="treeIds != null and treeIds.size() &gt; 0">
+			    and E.TREE_ID_ IN
+                <foreach item="x_treeId" index="index" collection="treeIds" 
+                     open="(" separator="," close=")">
+                  #{x_treeId}
+                </foreach>
+			</if>
+
+			<if test="level != null">
+				and E.LEVEL_ = #{level}
+            </if>
+
+			<if test="levelGreaterThanOrEqual != null">
+				and E.LEVEL_ &gt;= #{levelGreaterThanOrEqual}
+            </if>
+
+			<if test="levelLessThanOrEqual != null">
+				and E.LEVEL_ &lt;= #{levelLessThanOrEqual}
+            </if>
+
+			<if test="levels != null and levels.size() &gt; 0">
+			    and E.LEVEL_ IN
+                <foreach item="x_level" index="index" collection="levels" 
+                     open="(" separator="," close=")">
+                  #{x_level}
+                </foreach>
+			</if>
+      
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+            </if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+            </if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag" index="index" collection="deleteFlags" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDatetimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDatetimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDatetimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDatetimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDatetimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDatetimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDatetimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

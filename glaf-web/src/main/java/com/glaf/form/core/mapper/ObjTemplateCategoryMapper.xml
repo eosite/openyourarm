@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.ObjTemplateCategoryMapper">
+
+ 	<resultMap id="objTemplateCategoryResultMap"	type="com.glaf.form.core.domain.ObjTemplateCategory">
+        <id property="categoryId" column="CATEGORY_ID_" jdbcType="BIGINT" />
+        <result property="templateId" column="TEMPLATE_ID_" jdbcType="BIGINT"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+ 
+	<insert id="insertObjTemplateCategory" parameterType="com.glaf.form.core.domain.ObjTemplateCategory">
+		insert into OBJ_TEMPLATE_CATEGORY 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    CATEGORY_ID_
+			<if test="templateId != null">
+				,TEMPLATE_ID_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{categoryId, jdbcType=BIGINT}
+	     
+			<if test="templateId != null">
+				,#{templateId, jdbcType=BIGINT}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateObjTemplateCategory" parameterType="com.glaf.form.core.domain.ObjTemplateCategory">
+		update OBJ_TEMPLATE_CATEGORY
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="templateId != null">
+				TEMPLATE_ID_ = #{templateId, jdbcType=BIGINT},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+        </trim>
+		where
+          CATEGORY_ID_ = #{categoryId, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteObjTemplateCategoryById" parameterType="long"> 
+        delete from OBJ_TEMPLATE_CATEGORY
+        where CATEGORY_ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteObjTemplateCategorys" parameterType="com.glaf.form.core.query.ObjTemplateCategoryQuery">
+		delete from OBJ_TEMPLATE_CATEGORY
+		where ( 
+ 			  CATEGORY_ID_ IN
+              <foreach item="x_categoryId" index="index" collection="categoryIds" 
+                     open="(" separator="," close=")">
+                  #{x_categoryId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getObjTemplateCategoryById" parameterType="long" resultMap="objTemplateCategoryResultMap">
+		select * from OBJ_TEMPLATE_CATEGORY where CATEGORY_ID_ = #{id}
+	</select>
+	
+    <select id="getObjTemplateCategoryByTemplateId" parameterType="long" resultMap="objTemplateCategoryResultMap">
+		select * from OBJ_TEMPLATE_CATEGORY where TEMPLATE_ID_ = #{id}
+	</select>
+
+	<select id="getObjTemplateCategorys" 
+	    parameterType="com.glaf.form.core.query.ObjTemplateCategoryQuery"
+		resultMap="objTemplateCategoryResultMap">
+		select distinct E.*
+		<include refid="selectObjTemplateCategorysSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.CATEGORY_ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getObjTemplateCategoryCount" 
+	    parameterType="com.glaf.form.core.query.ObjTemplateCategoryQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectObjTemplateCategorysSql" />
+	</select>
+
+
+	<sql id="selectObjTemplateCategorysSql">
+
+		from OBJ_TEMPLATE_CATEGORY E
+		
+		<where>
+		       1 = 1  
+			 
+
+			<if test="templateId != null">
+				and E.TEMPLATE_ID_ = #{templateId}
+            </if>
+
+			<if test="templateIdGreaterThanOrEqual != null">
+				and E.TEMPLATE_ID_ &gt;= #{templateIdGreaterThanOrEqual}
+            </if>
+
+			<if test="templateIdLessThanOrEqual != null">
+				and E.TEMPLATE_ID_ &lt;= #{templateIdLessThanOrEqual}
+            </if>
+
+			<if test="templateIds != null and templateIds.size() &gt; 0">
+			    and E.TEMPLATE_ID_ IN
+                <foreach item="x_templateId" index="index" collection="templateIds" 
+                     open="(" separator="," close=")">
+                  #{x_templateId}
+                </foreach>
+			</if>
+      
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+            </if>
+
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

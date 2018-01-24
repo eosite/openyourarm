@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.teim.mapper.EimServerTmpMapper">
+
+	<resultMap id="eimServerTmpResultMap" type="com.glaf.teim.domain.EimServerTmp">
+		<id property="tmpId" column="TMP_ID_" jdbcType="VARCHAR" />
+		<result property="categoryId" column="CATEGORY_ID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="path_" column="PATH_" jdbcType="VARCHAR" />
+		<result property="reqUrlParam" column="REQ_URL_PARAM_"
+			jdbcType="VARCHAR" />
+		<result property="reqType" column="REQ_TYPE_" jdbcType="VARCHAR" />
+		<result property="reqHeader" column="REQ_HEADER_" jdbcType="VARCHAR" />
+		<result property="reqContentType" column="REQ_CONTENT_TYPE_"
+			jdbcType="VARCHAR" />
+		<result property="resContentType" column="RES_CONTENT_TYPE_"
+			jdbcType="VARCHAR" />
+		<result property="reqBody" column="REQ_BODY_" jdbcType="VARCHAR" />
+		<result property="reqBodyCustom" column="REQ_BODY_CUSTOM_" jdbcType="VARCHAR" />
+		<result property="response_" column="RESPONSE_" jdbcType="VARCHAR" />
+		<result property="pagingContent" column="PAGING_CONTENT_"
+			jdbcType="VARCHAR" />
+		<result property="recursiveContent" column="RECURSIVE_CONTENT_"
+			jdbcType="VARCHAR" />
+		<result property="createBy" column="CREATEBY_" jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATETIME_" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="UPDATEBY_" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME_" jdbcType="TIMESTAMP" />
+		<result property="deleteFlag" column="DELETE_FLAG_" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="eimServerTmpTreeResultMap"
+		type="com.glaf.teim.domain.EimServerTmpTree">
+        <result property="parentId" column="PARENT_ID_" jdbcType="BIGINT" />
+		<result property="name" column="NAME_" jdbcType="VARCHAR" />
+		<result property="id" column="ID_" jdbcType="VARCHAR" />
+		<result property="type" column="TYPE_" jdbcType="INTEGER" />
+	</resultMap>
+	<insert id="insertEimServerTmp" parameterType="com.glaf.teim.domain.EimServerTmp">
+		insert into EIM_SERVER_TMP
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			TMP_ID_
+			<if test="categoryId != null">
+				,CATEGORY_ID_
+			</if>
+			<if test="name != null">
+				,NAME_
+			</if>
+			<if test="path_ != null">
+				,PATH_
+			</if>
+			<if test="reqUrlParam != null">
+				,REQ_URL_PARAM_
+			</if>
+			<if test="reqType != null">
+				,REQ_TYPE_
+			</if>
+			<if test="reqHeader != null">
+				,REQ_HEADER_
+			</if>
+			<if test="reqContentType != null">
+				,REQ_CONTENT_TYPE_
+			</if>
+			<if test="resContentType != null">
+				,RES_CONTENT_TYPE_
+			</if>
+			<if test="reqBody != null">
+				,REQ_BODY_
+			</if>
+			<if test="reqBodyCustom != null">
+				,REQ_BODY_CUSTOM_
+			</if>
+			<if test="response_ != null">
+				,RESPONSE_
+			</if>
+			<if test="pagingContent != null">
+				,PAGING_CONTENT_
+			</if>
+			<if test="recursiveContent != null">
+				,RECURSIVE_CONTENT_
+			</if>
+			<if test="createBy != null">
+				,CREATEBY_
+			</if>
+			<if test="createTime != null">
+				,CREATETIME_
+			</if>
+			<if test="updateBy != null">
+				,UPDATEBY_
+			</if>
+			<if test="updateTime != null">
+				,UPDATETIME_
+			</if>
+			<if test="deleteFlag != null">
+				,DELETE_FLAG_
+			</if>
+		</trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			#{tmpId, jdbcType=VARCHAR}
+
+			<if test="categoryId != null">
+				,#{categoryId, jdbcType=BIGINT}
+			</if>
+			<if test="name != null">
+				,#{name, jdbcType=VARCHAR}
+			</if>
+			<if test="path_ != null">
+				,#{path_, jdbcType=VARCHAR}
+			</if>
+			<if test="reqUrlParam != null">
+				,#{reqUrlParam, jdbcType=VARCHAR}
+			</if>
+			<if test="reqType != null">
+				,#{reqType, jdbcType=VARCHAR}
+			</if>
+			<if test="reqHeader != null">
+				,#{reqHeader, jdbcType=VARCHAR}
+			</if>
+			<if test="reqContentType != null">
+				,#{reqContentType, jdbcType=VARCHAR}
+			</if>
+			<if test="resContentType != null">
+				,#{resContentType, jdbcType=VARCHAR}
+			</if>
+			<if test="reqBody != null">
+				,#{reqBody, jdbcType=VARCHAR}
+			</if>
+			<if test="reqBodyCustom != null">
+				,#{reqBodyCustom, jdbcType=VARCHAR}
+			</if>
+			<if test="response_ != null">
+				,#{response_, jdbcType=VARCHAR}
+			</if>
+			<if test="pagingContent != null">
+				,#{pagingContent, jdbcType=VARCHAR}
+			</if>
+			<if test="recursiveContent != null">
+				,#{recursiveContent, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy != null">
+				,#{createBy, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				,#{createTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy != null">
+				,#{updateBy, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				,#{updateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag != null">
+				,#{deleteFlag, jdbcType=INTEGER}
+			</if>
+		</trim>
+	</insert>
+
+
+	<update id="updateEimServerTmp" parameterType="com.glaf.teim.domain.EimServerTmp">
+		update EIM_SERVER_TMP
+		set
+		<trim prefix="" suffix="" suffixOverrides=",">
+			<if test="categoryId != null">
+				CATEGORY_ID_ = #{categoryId, jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				NAME_ = #{name, jdbcType=VARCHAR},
+			</if>
+			<if test="path_ != null">
+				PATH_ = #{path_, jdbcType=VARCHAR},
+			</if>
+			<if test="reqUrlParam != null">
+				REQ_URL_PARAM_ = #{reqUrlParam, jdbcType=VARCHAR},
+			</if>
+			<if test="reqType != null">
+				REQ_TYPE_ = #{reqType, jdbcType=VARCHAR},
+			</if>
+			<if test="reqHeader != null">
+				REQ_HEADER_ = #{reqHeader, jdbcType=VARCHAR},
+			</if>
+			<if test="reqContentType != null">
+				REQ_CONTENT_TYPE_ = #{reqContentType, jdbcType=VARCHAR},
+			</if>
+			<if test="resContentType != null">
+				RES_CONTENT_TYPE_ = #{resContentType, jdbcType=VARCHAR},
+			</if>
+			<if test="reqBody != null">
+				REQ_BODY_ = #{reqBody, jdbcType=VARCHAR},
+			</if>
+			<if test="reqBodyCustom != null">
+				REQ_BODY_CUSTOM_ = #{reqBodyCustom, jdbcType=VARCHAR},
+			</if>
+			<if test="response_ != null">
+				RESPONSE_ = #{response_, jdbcType=VARCHAR},
+			</if>
+			<if test="pagingContent != null">
+				PAGING_CONTENT_=#{pagingContent, jdbcType=VARCHAR},
+			</if>
+			<if test="recursiveContent != null">
+				RECURSIVE_CONTENT_=#{recursiveContent, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy != null">
+				CREATEBY_ = #{createBy, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATETIME_ = #{createTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy != null">
+				UPDATEBY_ = #{updateBy, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATETIME_ = #{updateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG_ = #{deleteFlag, jdbcType=INTEGER},
+			</if>
+		</trim>
+		where
+		TMP_ID_ = #{tmpId, jdbcType=VARCHAR}
+
+	</update>
+
+	<update id="moveToCategory" parameterType="map">
+		update EIM_SERVER_TMP
+		set CATEGORY_ID_=#{categoryId, jdbcType=VARCHAR} where TMP_ID_ in
+		(${tmpIds})
+	</update>
+
+	<delete id="deleteEimServerTmpById" parameterType="string">
+		delete from EIM_SERVER_TMP
+		where TMP_ID_ = #{id}
+	</delete>
+
+
+	<delete id="deleteEimServerTmps" parameterType="com.glaf.teim.query.EimServerTmpQuery">
+		delete from EIM_SERVER_TMP
+		where (
+		TMP_ID_ IN
+		<foreach item="x_tmpId" index="index" collection="tmpIds"
+			open="(" separator="," close=")">
+			#{x_tmpId}
+		</foreach>
+		)
+	</delete>
+
+
+	<select id="getEimServerTmpById" parameterType="string"
+		resultMap="eimServerTmpResultMap">
+		select * from EIM_SERVER_TMP where TMP_ID_ = #{id}
+	</select>
+	<!-- 获取分类树 -->
+	<select id="getEimServerTmpCategoryTree" resultMap="eimServerTmpTreeResultMap">
+		select
+		ID_,PARENT_ID_,NAME_,1 as TYPE_ from EIM_SERVER_CATEGORY
+	</select>
+
+	<!-- 获取模板树 -->
+	<select id="getEimServerTmpTree" resultMap="eimServerTmpTreeResultMap">
+		select TMP_ID_ as
+		ID_,CATEGORY_ID_ as PARENT_ID_ ,NAME_ ,0 as TYPE_ from EIM_SERVER_TMP
+	</select>
+
+	<select id="getEimServerTmps" parameterType="com.glaf.teim.query.EimServerTmpQuery"
+		resultMap="eimServerTmpResultMap">
+		select E.TMP_ID_,
+		E.NAME_,
+		E.CATEGORY_ID_,
+		E.PATH_,
+		E.REQ_TYPE_,
+		E.REQ_CONTENT_TYPE_,
+		E.RES_CONTENT_TYPE_,
+		E.CREATEBY_,
+		E.CREATETIME_,
+		E.UPDATEBY_,
+		E.UPDATETIME_,
+		E.DELETE_FLAG_
+		<include refid="selectEimServerTmpsSql" />
+		<choose>
+			<when test="orderBy != null">
+				order by ${orderBy}
+			</when>
+			<otherwise>
+				order by E.TMP_ID_ desc
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<select id="getEimServerTmpCount" parameterType="com.glaf.teim.query.EimServerTmpQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectEimServerTmpsSql" />
+	</select>
+
+
+	<sql id="selectEimServerTmpsSql">
+
+		from EIM_SERVER_TMP E
+
+		<where>
+			1 = 1
+
+
+			<if test="categoryId == 0">
+				and E.CATEGORY_ID_ is not null
+			</if>
+			<if test="categoryId == -2">
+				and E.CATEGORY_ID_ is null
+			</if>
+			<if
+				test="categoryId != null&amp;&amp;categoryId != 0&amp;&amp;categoryId != -2">
+				and E.CATEGORY_ID_ = #{categoryId}
+			</if>
+
+			<if test="categoryIdGreaterThanOrEqual != null">
+				and E.CATEGORY_ID_ &gt;= #{categoryIdGreaterThanOrEqual}
+			</if>
+
+			<if test="categoryIdLessThanOrEqual != null">
+				and E.CATEGORY_ID_ &lt;= #{categoryIdLessThanOrEqual}
+			</if>
+
+			<if test="categoryIds != null and categoryIds.size() &gt; 0">
+				and E.CATEGORY_ID_ IN
+				<foreach item="x_categoryId" index="index" collection="categoryIds"
+					open="(" separator="," close=")">
+					#{x_categoryId}
+				</foreach>
+			</if>
+
+
+			<if test="name != null and name != '' ">
+				and E.NAME_ = #{name}
+			</if>
+
+			<if test="nameLike != null and nameLike != '' ">
+				and E.NAME_ like #{nameLike}
+			</if>
+
+			<if test="names != null and names.size() &gt; 0">
+				and E.NAME_ IN
+				<foreach item="x_name" index="index" collection="names"
+					open="(" separator="," close=")">
+					#{x_name}
+				</foreach>
+			</if>
+
+			<if test="path_ != null and path_ != '' ">
+				and E.PATH_ = #{path_}
+			</if>
+
+			<if test="path_Like != null and path_Like != '' ">
+				and E.PATH_ like #{path_Like}
+			</if>
+
+			<if test="path_s != null and path_s.size() &gt; 0">
+				and E.PATH_ IN
+				<foreach item="x_path_" index="index" collection="path_s"
+					open="(" separator="," close=")">
+					#{x_path_}
+				</foreach>
+			</if>
+
+			<if test="reqUrlParam != null and reqUrlParam != '' ">
+				and E.REQ_URL_PARAM_ = #{reqUrlParam}
+			</if>
+
+			<if test="reqUrlParamLike != null and reqUrlParamLike != '' ">
+				and E.REQ_URL_PARAM_ like #{reqUrlParamLike}
+			</if>
+
+			<if test="reqUrlParams != null and reqUrlParams.size() &gt; 0">
+				and E.REQ_URL_PARAM_ IN
+				<foreach item="x_reqUrlParam" index="index" collection="reqUrlParams"
+					open="(" separator="," close=")">
+					#{x_reqUrlParam}
+				</foreach>
+			</if>
+
+			<if test="reqType != null and reqType != '' ">
+				and E.REQ_TYPE_ = #{reqType}
+			</if>
+
+			<if test="reqTypeLike != null and reqTypeLike != '' ">
+				and E.REQ_TYPE_ like #{reqTypeLike}
+			</if>
+
+			<if test="reqTypes != null and reqTypes.size() &gt; 0">
+				and E.REQ_TYPE_ IN
+				<foreach item="x_reqType" index="index" collection="reqTypes"
+					open="(" separator="," close=")">
+					#{x_reqType}
+				</foreach>
+			</if>
+
+			<if test="reqHeader != null and reqHeader != '' ">
+				and E.REQ_HEADER_ = #{reqHeader}
+			</if>
+
+			<if test="reqHeaderLike != null and reqHeaderLike != '' ">
+				and E.REQ_HEADER_ like #{reqHeaderLike}
+			</if>
+
+			<if test="reqHeaders != null and reqHeaders.size() &gt; 0">
+				and E.REQ_HEADER_ IN
+				<foreach item="x_reqHeader" index="index" collection="reqHeaders"
+					open="(" separator="," close=")">
+					#{x_reqHeader}
+				</foreach>
+			</if>
+
+			<if test="reqContentType != null and reqContentType != '' ">
+				and E.REQ_CONTENT_TYPE_ = #{reqContentType}
+			</if>
+
+			<if test="reqContentTypeLike != null and reqContentTypeLike != '' ">
+				and E.REQ_CONTENT_TYPE_ like #{reqContentTypeLike}
+			</if>
+
+			<if test="reqContentTypes != null and reqContentTypes.size() &gt; 0">
+				and E.REQ_CONTENT_TYPE_ IN
+				<foreach item="x_reqContentType" index="index" collection="reqContentTypes"
+					open="(" separator="," close=")">
+					#{x_reqContentType}
+				</foreach>
+			</if>
+
+			<if test="resContentType != null and resContentType != '' ">
+				and E.RES_CONTENT_TYPE_ = #{resContentType}
+			</if>
+
+			<if test="resContentTypeLike != null and resContentTypeLike != '' ">
+				and E.RES_CONTENT_TYPE_ like #{resContentTypeLike}
+			</if>
+
+			<if test="resContentTypes != null and resContentTypes.size() &gt; 0">
+				and E.RES_CONTENT_TYPE_ IN
+				<foreach item="x_resContentType" index="index" collection="resContentTypes"
+					open="(" separator="," close=")">
+					#{x_resContentType}
+				</foreach>
+			</if>
+
+			<if test="reqBody != null and reqBody != '' ">
+				and E.REQ_BODY_ = #{reqBody}
+			</if>
+
+			<if test="reqBodyLike != null and reqBodyLike != '' ">
+				and E.REQ_BODY_ like #{reqBodyLike}
+			</if>
+
+			<if test="reqBodys != null and reqBodys.size() &gt; 0">
+				and E.REQ_BODY_ IN
+				<foreach item="x_reqBody" index="index" collection="reqBodys"
+					open="(" separator="," close=")">
+					#{x_reqBody}
+				</foreach>
+			</if>
+
+			<if test="response_ != null and response_ != '' ">
+				and E.RESPONSE_ = #{response_}
+			</if>
+
+			<if test="response_Like != null and response_Like != '' ">
+				and E.RESPONSE_ like #{response_Like}
+			</if>
+
+			<if test="response_s != null and response_s.size() &gt; 0">
+				and E.RESPONSE_ IN
+				<foreach item="x_response_" index="index" collection="response_s"
+					open="(" separator="," close=")">
+					#{x_response_}
+				</foreach>
+			</if>
+
+			<if test="createBy != null and createBy != '' ">
+				and E.CREATEBY_ = #{createBy}
+			</if>
+
+			<if test="createByLike != null and createByLike != '' ">
+				and E.CREATEBY_ like #{createByLike}
+			</if>
+
+			<if test="createBys != null and createBys.size() &gt; 0">
+				and E.CREATEBY_ IN
+				<foreach item="x_createBy" index="index" collection="createBys"
+					open="(" separator="," close=")">
+					#{x_createBy}
+				</foreach>
+			</if>
+
+			<if test="createTimeGreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="createTimeLessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTimeLessThanOrEqual}
+			</if>
+
+
+			<if test="updateBy != null and updateBy != '' ">
+				and E.UPDATEBY_ = #{updateBy}
+			</if>
+
+			<if test="updateByLike != null and updateByLike != '' ">
+				and E.UPDATEBY_ like #{updateByLike}
+			</if>
+
+			<if test="updateBys != null and updateBys.size() &gt; 0">
+				and E.UPDATEBY_ IN
+				<foreach item="x_updateBy" index="index" collection="updateBys"
+					open="(" separator="," close=")">
+					#{x_updateBy}
+				</foreach>
+			</if>
+
+			<if test="updateTimeGreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTimeGreaterThanOrEqual}
+			</if>
+
+			<if test="updateTimeLessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTimeLessThanOrEqual}
+			</if>
+
+
+			<if test="deleteFlag != null">
+				and E.DELETE_FLAG_ = #{deleteFlag}
+			</if>
+
+			<if test="deleteFlagGreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlagGreaterThanOrEqual}
+			</if>
+
+			<if test="deleteFlagLessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlagLessThanOrEqual}
+			</if>
+
+			<if test="deleteFlags != null and deleteFlags.size() &gt; 0">
+				and E.DELETE_FLAG_ IN
+				<foreach item="x_deleteFlag" index="index" collection="deleteFlags"
+					open="(" separator="," close=")">
+					#{x_deleteFlag}
+				</foreach>
+			</if>
+
+			<if test="dataRequest != null and dataRequest.filter != null ">
+				<include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+
+		</where>
+	</sql>
+
+</mapper>

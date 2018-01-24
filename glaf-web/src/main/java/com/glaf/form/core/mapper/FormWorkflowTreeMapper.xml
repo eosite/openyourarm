@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormWorkflowTreeMapper">
+
+ 	<resultMap id="formWorkflowTreeResultMap"	type="com.glaf.form.core.domain.FormWorkflowTree">
+        <id property="id" column="ID_" jdbcType="BIGINT" />
+        <result property="defId" column="DEF_ID_" jdbcType="VARCHAR"/>
+        <result property="p_defId" column="P_DEFID_" jdbcType="VARCHAR"/>
+        <result property="p_processdefId" column="P_PROCESSDEF_ID_" jdbcType="VARCHAR"/>
+        <result property="processdefId" column="PROCESSDEF_ID_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormWorkflowTree" parameterType="com.glaf.form.core.domain.FormWorkflowTree">
+		insert into FORM_WORKFLOW_TREE 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="defId != null">
+				,DEF_ID_ 
+			</if>
+			<if test="p_defId != null">
+				,P_DEFID_ 
+			</if>
+			<if test="p_processdefId != null">
+				,P_PROCESSDEF_ID_ 
+			</if>
+			<if test="processdefId != null">
+				,PROCESSDEF_ID_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=BIGINT}
+	     
+			<if test="defId != null">
+				,#{defId, jdbcType=VARCHAR}
+			</if>
+			<if test="p_defId != null">
+				,#{p_defId, jdbcType=VARCHAR}
+			</if>
+			<if test="p_processdefId != null">
+				,#{p_processdefId, jdbcType=VARCHAR}
+			</if>
+			<if test="processdefId != null">
+				,#{processdefId, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateFormWorkflowTree" parameterType="com.glaf.form.core.domain.FormWorkflowTree">
+		update FORM_WORKFLOW_TREE
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="defId != null">
+				DEF_ID_ = #{defId, jdbcType=VARCHAR},
+			</if>
+			<if test="p_defId != null">
+				P_DEFID_ = #{p_defId, jdbcType=VARCHAR},
+			</if>
+			<if test="p_processdefId != null">
+				P_PROCESSDEF_ID_ = #{p_processdefId, jdbcType=VARCHAR},
+			</if>
+			<if test="processdefId != null">
+				PROCESSDEF_ID_ = #{processdefId, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=BIGINT}
+		
+    </update>
+
+ 
+	<delete id="deleteFormWorkflowTreeById" parameterType="long"> 
+        delete from FORM_WORKFLOW_TREE
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormWorkflowTrees" parameterType="com.glaf.form.core.query.FormWorkflowTreeQuery">
+		delete from FORM_WORKFLOW_TREE
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+	
+	<delete id="deleteFormWorkflowTreesByPdefId" parameterType="string">
+		delete from FORM_WORKFLOW_TREE where p_defid_ = #{defId}
+	</delete>
+
+
+	<select id="getFormWorkflowTreeById" parameterType="long" resultMap="formWorkflowTreeResultMap">
+		select * from FORM_WORKFLOW_TREE where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormWorkflowTrees" 
+	    parameterType="com.glaf.form.core.query.FormWorkflowTreeQuery"
+		resultMap="formWorkflowTreeResultMap">
+		select E.*
+		<include refid="selectFormWorkflowTreesSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormWorkflowTreeCount" 
+	    parameterType="com.glaf.form.core.query.FormWorkflowTreeQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormWorkflowTreesSql" />
+	</select>
+
+
+	<sql id="selectFormWorkflowTreesSql">
+
+		from FORM_WORKFLOW_TREE E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="defId != null and defId != '' ">
+				and E.DEF_ID_ = #{defId}
+            </if>
+
+			<if test="defIdLike != null and defIdLike != '' ">
+				and E.DEF_ID_ like #{defIdLike}
+            </if>
+
+			<if test="defIds != null and defIds.size() &gt; 0">
+			    and E.DEF_ID_ IN
+                <foreach item="x_defId" index="index" collection="defIds" 
+                     open="(" separator="," close=")">
+                  #{x_defId}
+                </foreach>
+			</if>
+	        
+			<if test="p_defId != null and p_defId != '' ">
+				and E.P_DEFID_ = #{p_defId}
+            </if>
+
+			<if test="p_defIdLike != null and p_defIdLike != '' ">
+				and E.P_DEFID_ like #{p_defIdLike}
+            </if>
+
+			<if test="p_defIds != null and p_defIds.size() &gt; 0">
+			    and E.P_DEFID_ IN
+                <foreach item="x_p_defId" index="index" collection="p_defIds" 
+                     open="(" separator="," close=")">
+                  #{x_p_defId}
+                </foreach>
+			</if>
+	        
+			<if test="p_processdefId != null and p_processdefId != '' ">
+				and E.P_PROCESSDEF_ID_ = #{p_processdefId}
+            </if>
+
+			<if test="p_processdefIdLike != null and p_processdefIdLike != '' ">
+				and E.P_PROCESSDEF_ID_ like #{p_processdefIdLike}
+            </if>
+
+			<if test="p_processdefIds != null and p_processdefIds.size() &gt; 0">
+			    and E.P_PROCESSDEF_ID_ IN
+                <foreach item="x_p_processdefId" index="index" collection="p_processdefIds" 
+                     open="(" separator="," close=")">
+                  #{x_p_processdefId}
+                </foreach>
+			</if>
+	        
+			<if test="processdefId != null and processdefId != '' ">
+				and E.PROCESSDEF_ID_ = #{processdefId}
+            </if>
+
+			<if test="processdefIdLike != null and processdefIdLike != '' ">
+				and E.PROCESSDEF_ID_ like #{processdefIdLike}
+            </if>
+
+			<if test="processdefIds != null and processdefIds.size() &gt; 0">
+			    and E.PROCESSDEF_ID_ IN
+                <foreach item="x_processdefId" index="index" collection="processdefIds" 
+                     open="(" separator="," close=")">
+                  #{x_processdefId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.etl.mapper.EtlTransferTaskConfigMapper">
+
+	<resultMap id="TaskConfigResultMap"	type="com.glaf.etl.domain.EtlTransferTaskConfig">
+        <id property="id_" column="ID_" jdbcType="VARCHAR"/>
+        <result property="taskName_" column="TASK_NAME_" jdbcType="VARCHAR"/>
+        <result property="taskDesc_" column="TASK_DESC_" jdbcType="VARCHAR"/>
+        <result property="createBy_" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime_" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="srcDatabaseName_" column="SRCDATABASENAME_" jdbcType="VARCHAR"/>
+        <result property="targetDatabaseName_" column="TARGETDATABASENAME_" jdbcType="VARCHAR"/>
+        
+        <!-- 单个关联对象的加载 
+		<association property="etlTransferTaskSrc" javaType="com.glaf.etl.domain.EtlTransferTaskSrc">
+			<id property="id_" column="ID_" jdbcType="VARCHAR"/>
+       		<result property="taskId_" column="TASK_ID_" jdbcType="VARCHAR"/>
+       		<result property="taskDatabaseName_" column="TASK_DATABASENAME_" jdbcType="VARCHAR"/>
+		</association>
+		<association property="etlTransferTaskTarget" javaType="com.glaf.etl.domain.EtlTransferTaskTarget">
+			 <id property="id_" column="ID_" jdbcType="VARCHAR"/>
+			 <result property="taskId_" column="TASK_ID_" jdbcType="VARCHAR"/>
+        	 <result property="taskDatabaseName_" column="TASK_DATABASENAME_" jdbcType="VARCHAR"/>
+		</association>-->
+	</resultMap>
+
+	<select id="listAllTasks" resultMap="TaskConfigResultMap" parameterType = "com.glaf.etl.query.EtlTransferTaskConfigQuery">
+		select t.ID_,t.TASK_NAME_,t.TASK_DESC_,t.CREATEBY_,t.CREATETIME_,s.TASK_DATABASENAME_ as SRCDATABASENAME_,o.TASK_DATABASENAME_ as TARGETDATABASENAME_ 
+			 from ETL_TRANSFER_TASK_ t 
+			 join ETL_TRANSFER_TASK_SRC_ s on(t.ID_= s.TASK_ID_)
+			 join ETL_TRANSFER_TASK_TARGET_ o on(t.ID_ = o.TASK_ID_)
+		<choose>
+		  <when test="orderBy != null">
+		  	order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by t.ID_ desc
+		  </otherwise>
+        </choose>  
+	</select>
+	
+ 
+ 	<select id="getTaskConfigCount" resultType="int">
+		select count(*)
+			 from ETL_TRANSFER_TASK_ t 
+			 join ETL_TRANSFER_TASK_SRC_ s on(t.ID_= s.TASK_ID_)
+			 join ETL_TRANSFER_TASK_TARGET_ o on(t.ID_ = o.TASK_ID_) 
+	</select>
+ 
+	
+
+</mapper>

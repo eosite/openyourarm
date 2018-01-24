@@ -1,0 +1,65 @@
+{
+	"id": "jqfileupload2",
+	"title": "文件上传",
+	"description": "",
+	"propertyPackages": [{
+		"id": "generalsetting",
+		"title": "常规设置",
+		"description": "",
+		"expland": "true",
+		"properties": [{
+			"id": "name",
+			"title": "控件名称",
+			"type": "string",
+			"maxlen": "50",
+			"minlen": "5",
+			"defaultVal": "",
+			"inputMode": "input",
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setName"
+		}]
+	},{
+		"id": "positionsize",
+		"title": "定位及尺寸",
+		"description": "",
+		"expland": "false",
+		"properties": [
+			{
+			"id": "width",
+			"title": "宽度",
+			"inputMode": "touchspin",
+			"properties": [{
+				"id": "width",
+				"title": "宽",
+				"type": "int",
+				"maxval":"2000",
+			    "minval":"0",
+				"defaultVal": "",
+				"inputMode": "touchspin",
+				"require": "false",
+				"readonly": "false",
+				"ctrImpl": "setWidth"
+			}]
+			},
+			{
+			"id": "size",
+			"title": "大小设置",
+			"type": "string",
+			"defaultVal": "false",
+			"inputMode": "select",
+			"valrange": [{
+			    "name":"默认",
+				"title": "默认",
+				"value": ""
+			},{
+			    "name":"特小",
+				"title": "特小",
+				"value": "hmtd-xs"
+			}],
+			"require": "false",
+			"readonly": "false",
+			"ctrImpl": "setSize"
+			}]
+		}]
+}

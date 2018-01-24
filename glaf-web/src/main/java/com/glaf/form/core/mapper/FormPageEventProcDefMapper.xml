@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.form.core.mapper.FormPageEventProcDefMapper">
+
+ 	<resultMap id="formPageEventProcDefResultMap"	type="com.glaf.form.core.domain.FormPageEventProcDef">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="pageId" column="PAGEID_" jdbcType="VARCHAR"/>
+        <result property="compId" column="COMPID_" jdbcType="VARCHAR"/>
+        <result property="event_" column="EVENT_" jdbcType="VARCHAR"/>
+        <result property="procDefKey" column="PROCDEF_KEY_" jdbcType="VARCHAR"/>
+        <result property="procDefId" column="PROCDEF_ID_" jdbcType="VARCHAR"/>
+        <result property="procModelId" column="PROCMODEL_ID_" jdbcType="VARCHAR"/>
+        <result property="procDeployId" column="PROCDEPLOY_ID_" jdbcType="VARCHAR"/>
+        <result property="procDeployStatus" column="PROCDEPLOY_STATUS_" jdbcType="VARCHAR"/>
+	</resultMap>
+
+ 
+	<insert id="insertFormPageEventProcDef" parameterType="com.glaf.form.core.domain.FormPageEventProcDef">
+		insert into FORM_PAGE_EVENT_PROCDEF 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="pageId != null">
+				,PAGEID_ 
+			</if>
+			<if test="compId != null">
+				,COMPID_ 
+			</if>
+			<if test="event_ != null">
+				,EVENT_ 
+			</if>
+			<if test="procDefKey != null">
+				,PROCDEF_KEY_ 
+			</if>
+			<if test="procDefId != null">
+				,PROCDEF_ID_ 
+			</if>
+			<if test="procModelId != null">
+				,PROCMODEL_ID_ 
+			</if>
+			<if test="procDeployId != null">
+				,PROCDEPLOY_ID_ 
+			</if>
+			<if test="procDeployStatus != null">
+				,PROCDEPLOY_STATUS_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="pageId != null">
+				,#{pageId, jdbcType=VARCHAR}
+			</if>
+			<if test="compId != null">
+				,#{compId, jdbcType=VARCHAR}
+			</if>
+			<if test="event_ != null">
+				,#{event_, jdbcType=VARCHAR}
+			</if>
+			<if test="procDefKey != null">
+				,#{procDefKey, jdbcType=VARCHAR}
+			</if>
+			<if test="procDefId != null">
+				,#{procDefId, jdbcType=VARCHAR}
+			</if>
+			<if test="procModelId != null">
+				,#{procModelId, jdbcType=VARCHAR}
+			</if>
+			<if test="procDeployId != null">
+				,#{procDeployId, jdbcType=VARCHAR}
+			</if>
+			<if test="procDeployStatus != null">
+				,#{procDeployStatus, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+    <!-- 流程发布 -->
+	<update id="updateFormPageEventProcDefById" parameterType="map">
+		update FORM_PAGE_EVENT_PROCDEF
+		set
+				PROCDEF_KEY_ = #{procDefKey, jdbcType=VARCHAR},
+
+				PROCDEF_ID_ = #{procDefId, jdbcType=VARCHAR},
+
+				PROCDEPLOY_ID_ =#{procDeployId, jdbcType=VARCHAR},
+				
+				PROCDEPLOY_STATUS_='1'
+			
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+    <!-- 更新状态为未发布 -->
+    <update id="updateDeployStatus" parameterType="string">
+       update FORM_PAGE_EVENT_PROCDEF set PROCDEPLOY_STATUS_='0' where
+          ID_ = #{id, jdbcType=VARCHAR}
+    </update> 
+	<update id="updateFormPageEventProcDef" parameterType="com.glaf.form.core.domain.FormPageEventProcDef">
+		update FORM_PAGE_EVENT_PROCDEF
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="pageId != null">
+				PAGEID_ = #{pageId, jdbcType=VARCHAR},
+			</if>
+			<if test="compId != null">
+				COMPID_ = #{compId, jdbcType=VARCHAR},
+			</if>
+			<if test="event_ != null">
+				EVENT_ = #{event_, jdbcType=VARCHAR},
+			</if>
+			<if test="procDefKey != null">
+				PROCDEF_KEY_ = #{procDefKey, jdbcType=VARCHAR},
+			</if>
+			<if test="procDefId != null">
+				PROCDEF_ID_ = #{procDefId, jdbcType=VARCHAR},
+			</if>
+			<if test="procModelId != null">
+				PROCMODEL_ID_ = #{procModelId, jdbcType=VARCHAR},
+			</if>
+			<if test="procDeployId != null">
+				PROCDEPLOY_ID_ =#{procDeployId, jdbcType=VARCHAR},
+			</if>
+			<if test="procDeployStatus != null">
+				PROCDEPLOY_STATUS_ =#{procDeployStatus, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteFormPageEventProcDefById" parameterType="string"> 
+        delete from FORM_PAGE_EVENT_PROCDEF
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteFormPageEventProcDefs" parameterType="com.glaf.form.core.query.FormPageEventProcDefQuery">
+		delete from FORM_PAGE_EVENT_PROCDEF
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getFormPageEventProcDefById" parameterType="string" resultMap="formPageEventProcDefResultMap">
+		select * from FORM_PAGE_EVENT_PROCDEF where ID_ = #{id}
+	</select>
+
+
+	<select id="getFormPageEventProcDefs" 
+	    parameterType="com.glaf.form.core.query.FormPageEventProcDefQuery"
+		resultMap="formPageEventProcDefResultMap">
+		select distinct E.*
+		<include refid="selectFormPageEventProcDefsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getFormPageEventProcDefCount" 
+	    parameterType="com.glaf.form.core.query.FormPageEventProcDefQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectFormPageEventProcDefsSql" />
+	</select>
+
+
+	<sql id="selectFormPageEventProcDefsSql">
+
+		from FORM_PAGE_EVENT_PROCDEF E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="pageId != null and pageId != '' ">
+				and E.PAGEID_ = #{pageId}
+            </if>
+
+			<if test="pageIdLike != null and pageIdLike != '' ">
+				and E.PAGEID_ like #{pageIdLike}
+            </if>
+
+			<if test="pageIds != null and pageIds.size() &gt; 0">
+			    and E.PAGEID_ IN
+                <foreach item="x_pageId" index="index" collection="pageIds" 
+                     open="(" separator="," close=")">
+                  #{x_pageId}
+                </foreach>
+			</if>
+	        
+			<if test="compId != null and compId != '' ">
+				and E.COMPID_ = #{compId}
+            </if>
+
+			<if test="compIdLike != null and compIdLike != '' ">
+				and E.COMPID_ like #{compIdLike}
+            </if>
+
+			<if test="compIds != null and compIds.size() &gt; 0">
+			    and E.COMPID_ IN
+                <foreach item="x_compId" index="index" collection="compIds" 
+                     open="(" separator="," close=")">
+                  #{x_compId}
+                </foreach>
+			</if>
+	        
+			<if test="event_ != null and event_ != '' ">
+				and E.EVENT_ = #{event_}
+            </if>
+
+			<if test="event_Like != null and event_Like != '' ">
+				and E.EVENT_ like #{event_Like}
+            </if>
+
+			<if test="event_s != null and event_s.size() &gt; 0">
+			    and E.EVENT_ IN
+                <foreach item="x_event_" index="index" collection="event_s" 
+                     open="(" separator="," close=")">
+                  #{x_event_}
+                </foreach>
+			</if>
+	        
+			<if test="procDefKey != null and procDefKey != '' ">
+				and E.PROCDEF_KEY_ = #{procDefKey}
+            </if>
+
+			<if test="procDefKeyLike != null and procDefKeyLike != '' ">
+				and E.PROCDEF_KEY_ like #{procDefKeyLike}
+            </if>
+
+			<if test="procDefKeys != null and procDefKeys.size() &gt; 0">
+			    and E.PROCDEF_KEY_ IN
+                <foreach item="x_procDefKey" index="index" collection="procDefKeys" 
+                     open="(" separator="," close=")">
+                  #{x_procDefKey}
+                </foreach>
+			</if>
+	        
+			<if test="procDefId != null and procDefId != '' ">
+				and E.PROCDEF_ID_ = #{procDefId}
+            </if>
+
+			<if test="procDefIdLike != null and procDefIdLike != '' ">
+				and E.PROCDEF_ID_ like #{procDefIdLike}
+            </if>
+
+			<if test="procDefIds != null and procDefIds.size() &gt; 0">
+			    and E.PROCDEF_ID_ IN
+                <foreach item="x_procDefId" index="index" collection="procDefIds" 
+                     open="(" separator="," close=")">
+                  #{x_procDefId}
+                </foreach>
+			</if>
+	        
+			<if test="procModelId != null and procModelId != '' ">
+				and E.PROCMODEL_ID_ = #{procModelId}
+            </if>
+
+			<if test="procModelIdLike != null and procModelIdLike != '' ">
+				and E.PROCMODEL_ID_ like #{procModelIdLike}
+            </if>
+
+			<if test="procModelIds != null and procModelIds.size() &gt; 0">
+			    and E.PROCMODEL_ID_ IN
+                <foreach item="x_procModelId" index="index" collection="procModelIds" 
+                     open="(" separator="," close=")">
+                  #{x_procModelId}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.textsearch.mapper.SysFullTextSearchSrcMapper">
+
+ 	<resultMap id="sysFullTextSearchSrcResultMap"	type="com.glaf.textsearch.domain.SysFullTextSearchSrc">
+        <id property="id" column="ID_" jdbcType="VARCHAR"/>
+        <result property="serviceName_" column="SERVICE_NAME_" jdbcType="VARCHAR"/>
+        <result property="serviceAddress_" column="SERVICE_ADDRESS_" jdbcType="VARCHAR"/>
+        <result property="fullTextServer_" column="FULLTEXT_SERVER_" jdbcType="VARCHAR"/>
+        <result property="indexName_" column="INDEX_NAME_" jdbcType="VARCHAR"/>
+        <result property="typeName_" column="TYPE_NAME_" jdbcType="VARCHAR"/>
+        <result property="createBy_" column="CREATEBY_" jdbcType="VARCHAR"/>
+        <result property="createTime_" column="CREATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="updateBy_" column="UPDATEBY_" jdbcType="VARCHAR"/>
+        <result property="updateTime_" column="UPDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="deleteFlag_" column="DELETE_FLAG_" jdbcType="INTEGER"/>
+	</resultMap>
+
+ 
+	<insert id="insertSysFullTextSearchSrc" parameterType="com.glaf.textsearch.domain.SysFullTextSearchSrc">
+		insert into SYS_FULLTEXTSEARCH_SRC 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    ID_
+			<if test="serviceName_ != null">
+				,SERVICE_NAME_ 
+			</if>
+			<if test="serviceAddress_ != null">
+				,SERVICE_ADDRESS_ 
+			</if>
+			<if test="rule_ != null">
+				,RULE_ 
+			</if>
+			<if test="fullTextServer_ != null">
+				,FULLTEXT_SERVER_ 
+			</if>
+			<if test="indexName_ != null">
+				,INDEX_NAME_ 
+			</if>
+			<if test="typeName_ != null">
+				,TYPE_NAME_ 
+			</if>
+			<if test="createBy_ != null">
+				,CREATEBY_ 
+			</if>
+			<if test="createTime_ != null">
+				,CREATETIME_ 
+			</if>
+			<if test="updateBy_ != null">
+				,UPDATEBY_ 
+			</if>
+			<if test="updateTime_ != null">
+				,UPDATETIME_ 
+			</if>
+			<if test="deleteFlag_ != null">
+				,DELETE_FLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{id, jdbcType=VARCHAR}
+	     
+			<if test="serviceName_ != null">
+				,#{serviceName_, jdbcType=VARCHAR}
+			</if>
+			<if test="serviceAddress_ != null">
+				,#{serviceAddress_, jdbcType=VARCHAR}
+			</if>
+			<if test="rule_ != null">
+				,#{rule_, jdbcType=VARCHAR}
+			</if>
+			<if test="fullTextServer_ != null">
+				,#{fullTextServer_, jdbcType=VARCHAR}
+			</if>
+			<if test="indexName_ != null">
+				,#{indexName_, jdbcType=VARCHAR}
+			</if>
+			<if test="typeName_ != null">
+				,#{typeName_, jdbcType=VARCHAR}
+			</if>
+			<if test="createBy_ != null">
+				,#{createBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="createTime_ != null">
+				,#{createTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateBy_ != null">
+				,#{updateBy_, jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime_ != null">
+				,#{updateTime_, jdbcType=TIMESTAMP}
+			</if>
+			<if test="deleteFlag_ != null">
+				,#{deleteFlag_, jdbcType=INTEGER}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateSysFullTextSearchSrc" parameterType="com.glaf.textsearch.domain.SysFullTextSearchSrc">
+		update SYS_FULLTEXTSEARCH_SRC
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="serviceName_ != null">
+				SERVICE_NAME_ = #{serviceName_, jdbcType=VARCHAR},
+			</if>
+			<if test="serviceAddress_ != null">
+				SERVICE_ADDRESS_ = #{serviceAddress_, jdbcType=VARCHAR},
+			</if>
+			<if test="rule_ != null">
+				RULE_ = #{rule_, jdbcType=VARCHAR},
+			</if>
+			<if test="fullTextServer_ != null">
+				FULLTEXT_SERVER_ = #{fullTextServer_, jdbcType=VARCHAR},
+			</if>
+			<if test="indexName_ != null">
+				INDEX_NAME_ = #{indexName_, jdbcType=VARCHAR},
+			</if>
+			<if test="typeName_ != null">
+				TYPE_NAME_ = #{typeName_, jdbcType=VARCHAR},
+			</if>
+			<if test="createBy_ != null">
+				CREATEBY_ = #{createBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="createTime_ != null">
+				CREATETIME_ = #{createTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateBy_ != null">
+				UPDATEBY_ = #{updateBy_, jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime_ != null">
+				UPDATETIME_ = #{updateTime_, jdbcType=TIMESTAMP},
+			</if>
+			<if test="deleteFlag_ != null">
+				DELETE_FLAG_ = #{deleteFlag_, jdbcType=INTEGER},
+			</if>
+        </trim>
+		where
+          ID_ = #{id, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteSysFullTextSearchSrcById" parameterType="string"> 
+        delete from SYS_FULLTEXTSEARCH_SRC
+        where ID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteSysFullTextSearchSrcs" parameterType="com.glaf.textsearch.query.SysFullTextSearchSrcQuery">
+		delete from SYS_FULLTEXTSEARCH_SRC
+		where ( 
+ 			  ID_ IN
+              <foreach item="x_id" index="index" collection="ids" 
+                     open="(" separator="," close=")">
+                  #{x_id}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getSysFullTextSearchSrcById" parameterType="string" resultMap="sysFullTextSearchSrcResultMap">
+		select * from SYS_FULLTEXTSEARCH_SRC where ID_ = #{id}
+	</select>
+
+
+	<select id="getSysFullTextSearchSrcs" 
+	    parameterType="com.glaf.textsearch.query.SysFullTextSearchSrcQuery"
+		resultMap="sysFullTextSearchSrcResultMap">
+		select  E.*
+		<include refid="selectSysFullTextSearchSrcsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.ID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getSysFullTextSearchSrcCount" 
+	    parameterType="com.glaf.textsearch.query.SysFullTextSearchSrcQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectSysFullTextSearchSrcsSql" />
+	</select>
+
+
+	<sql id="selectSysFullTextSearchSrcsSql">
+
+		from SYS_FULLTEXTSEARCH_SRC E
+		
+		<where>
+		       1 = 1  
+			 
+	        
+			<if test="serviceName_ != null and serviceName_ != '' ">
+				and E.SERVICE_NAME_ = #{serviceName_}
+            </if>
+
+			<if test="serviceName_Like != null and serviceName_Like != '' ">
+				and E.SERVICE_NAME_ like #{serviceName_Like}
+            </if>
+
+			<if test="serviceName_s != null and serviceName_s.size() &gt; 0">
+			    and E.SERVICE_NAME_ IN
+                <foreach item="x_serviceName_" index="index" collection="serviceName_s" 
+                     open="(" separator="," close=")">
+                  #{x_serviceName_}
+                </foreach>
+			</if>
+	        
+			<if test="serviceAddress_ != null and serviceAddress_ != '' ">
+				and E.SERVICE_ADDRESS_ = #{serviceAddress_}
+            </if>
+
+			<if test="serviceAddress_Like != null and serviceAddress_Like != '' ">
+				and E.SERVICE_ADDRESS_ like #{serviceAddress_Like}
+            </if>
+
+			<if test="serviceAddress_s != null and serviceAddress_s.size() &gt; 0">
+			    and E.SERVICE_ADDRESS_ IN
+                <foreach item="x_serviceAddress_" index="index" collection="serviceAddress_s" 
+                     open="(" separator="," close=")">
+                  #{x_serviceAddress_}
+                </foreach>
+			</if>
+	        
+			<if test="fullTextServer_ != null and fullTextServer_ != '' ">
+				and E.FULLTEXT_SERVER_ = #{fullTextServer_}
+            </if>
+
+			<if test="fullTextServer_Like != null and fullTextServer_Like != '' ">
+				and E.FULLTEXT_SERVER_ like #{fullTextServer_Like}
+            </if>
+
+			<if test="fullTextServer_s != null and fullTextServer_s.size() &gt; 0">
+			    and E.FULLTEXT_SERVER_ IN
+                <foreach item="x_fullTextServer_" index="index" collection="fullTextServer_s" 
+                     open="(" separator="," close=")">
+                  #{x_fullTextServer_}
+                </foreach>
+			</if>
+	        
+			<if test="indexName_ != null and indexName_ != '' ">
+				and E.INDEX_NAME_ = #{indexName_}
+            </if>
+
+			<if test="indexName_Like != null and indexName_Like != '' ">
+				and E.INDEX_NAME_ like #{indexName_Like}
+            </if>
+
+			<if test="indexName_s != null and indexName_s.size() &gt; 0">
+			    and E.INDEX_NAME_ IN
+                <foreach item="x_indexName_" index="index" collection="indexName_s" 
+                     open="(" separator="," close=")">
+                  #{x_indexName_}
+                </foreach>
+			</if>
+	        
+			<if test="typeName_ != null and typeName_ != '' ">
+				and E.TYPE_NAME_ = #{typeName_}
+            </if>
+
+			<if test="typeName_Like != null and typeName_Like != '' ">
+				and E.TYPE_NAME_ like #{typeName_Like}
+            </if>
+
+			<if test="typeName_s != null and typeName_s.size() &gt; 0">
+			    and E.TYPE_NAME_ IN
+                <foreach item="x_typeName_" index="index" collection="typeName_s" 
+                     open="(" separator="," close=")">
+                  #{x_typeName_}
+                </foreach>
+			</if>
+	        
+			<if test="createBy_ != null and createBy_ != '' ">
+				and E.CREATEBY_ = #{createBy_}
+            </if>
+
+			<if test="createBy_Like != null and createBy_Like != '' ">
+				and E.CREATEBY_ like #{createBy_Like}
+            </if>
+
+			<if test="createBy_s != null and createBy_s.size() &gt; 0">
+			    and E.CREATEBY_ IN
+                <foreach item="x_createBy_" index="index" collection="createBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_createBy_}
+                </foreach>
+			</if>
+
+			<if test="createTime_GreaterThanOrEqual != null">
+				and E.CREATETIME_ &gt;= #{createTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="createTime_LessThanOrEqual != null">
+				and E.CREATETIME_ &lt;= #{createTime_LessThanOrEqual}
+            </if>
+
+	        
+			<if test="updateBy_ != null and updateBy_ != '' ">
+				and E.UPDATEBY_ = #{updateBy_}
+            </if>
+
+			<if test="updateBy_Like != null and updateBy_Like != '' ">
+				and E.UPDATEBY_ like #{updateBy_Like}
+            </if>
+
+			<if test="updateBy_s != null and updateBy_s.size() &gt; 0">
+			    and E.UPDATEBY_ IN
+                <foreach item="x_updateBy_" index="index" collection="updateBy_s" 
+                     open="(" separator="," close=")">
+                  #{x_updateBy_}
+                </foreach>
+			</if>
+
+			<if test="updateTime_GreaterThanOrEqual != null">
+				and E.UPDATETIME_ &gt;= #{updateTime_GreaterThanOrEqual}
+            </if>
+
+			<if test="updateTime_LessThanOrEqual != null">
+				and E.UPDATETIME_ &lt;= #{updateTime_LessThanOrEqual}
+            </if>
+
+
+			<if test="deleteFlag_ != null">
+				and E.DELETE_FLAG_ = #{deleteFlag_}
+            </if>
+
+			<if test="deleteFlag_GreaterThanOrEqual != null">
+				and E.DELETE_FLAG_ &gt;= #{deleteFlag_GreaterThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_LessThanOrEqual != null">
+				and E.DELETE_FLAG_ &lt;= #{deleteFlag_LessThanOrEqual}
+            </if>
+
+			<if test="deleteFlag_s != null and deleteFlag_s.size() &gt; 0">
+			    and E.DELETE_FLAG_ IN
+                <foreach item="x_deleteFlag_" index="index" collection="deleteFlag_s" 
+                     open="(" separator="," close=")">
+                  #{x_deleteFlag_}
+                </foreach>
+			</if>
+      
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+</mapper>

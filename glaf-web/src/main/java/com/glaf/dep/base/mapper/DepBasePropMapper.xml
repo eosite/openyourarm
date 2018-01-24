@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glaf.dep.base.mapper.DepBasePropMapper">
+
+ 	<resultMap id="depBasePropResultMap" type="com.glaf.dep.base.domain.DepBaseProp" extends="depBasePropBaseResultMap">
+        <collection property="components" ofType="com.glaf.dep.base.domain.DepBaseComponent" 
+        	column="RULEID_" fetchType="lazy"
+			select="com.glaf.dep.base.mapper.DepBaseComponentMapper.getDepBaseComponentsByRuleId" />
+	</resultMap>
+	
+	<resultMap id="depBasePropBaseResultMap" type="com.glaf.dep.base.domain.DepBaseProp">
+        <id property="ruleId" column="RULEID_" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result property="ruleCode" column="RULECODE" jdbcType="VARCHAR"/>
+        <result property="ruleName" column="RULENAME_" jdbcType="VARCHAR"/>
+        <result property="ruleDesc" column="RULEDESC" jdbcType="VARCHAR"/>
+        <result property="sysCategory" column="SYSCATEGORY_" jdbcType="VARCHAR"/>
+        <result property="useCategory" column="USECATEGORY_" jdbcType="VARCHAR"/>
+        <result property="openFlag" column="OPENFLAG_" jdbcType="VARCHAR"/>
+        <result property="orderNo" column="ORDERNO_" jdbcType="INTEGER"/>
+        <result property="readOnly" column="READONLY_" jdbcType="VARCHAR"/>
+        <result property="repeatFlag" column="REPEATFLAG_" jdbcType="VARCHAR"/>
+        <result property="notNull" column="NOTNULL_" jdbcType="VARCHAR"/>
+        <result property="inputType" column="INPUTTYPE_" jdbcType="VARCHAR"/>
+        <result property="defaultVal" column="DEFAULTVAL_" jdbcType="VARCHAR"/>
+        <result property="extJson" column="EXTJSON_" jdbcType="VARCHAR"/>
+        <result property="creator" column="CREATOR_" jdbcType="VARCHAR"/>
+        <result property="createDateTime" column="CREATEDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="MODIFIER_" jdbcType="VARCHAR"/>
+        <result property="modifyDateTime" column="MODIFYDATETIME_" jdbcType="TIMESTAMP"/>
+        <result property="delFlag" column="DELFLAG_" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<insert id="insertDepBaseProp" parameterType="com.glaf.dep.base.domain.DepBaseProp">
+		insert into DEP_BASE_PROP 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    RULEID_
+			<if test="ruleCode != null">
+				,RULECODE 
+			</if>
+			<if test="ruleName != null">
+				,RULENAME_ 
+			</if>
+			<if test="ruleDesc != null">
+				,RULEDESC 
+			</if>
+			<if test="sysCategory != null">
+				,SYSCATEGORY_ 
+			</if>
+			<if test="useCategory != null">
+				,USECATEGORY_ 
+			</if>
+			<if test="openFlag != null">
+				,OPENFLAG_ 
+			</if>
+			<if test="orderNo != null">
+				,ORDERNO_ 
+			</if>
+			<if test="readOnly != null">
+				,READONLY_ 
+			</if>
+			<if test="repeatFlag != null">
+				,REPEATFLAG_ 
+			</if>
+			<if test="notNull != null">
+				,NOTNULL_ 
+			</if>
+			<if test="inputType != null">
+				,INPUTTYPE_ 
+			</if>
+			<if test="defaultVal != null">
+				,DEFAULTVAL_ 
+			</if>
+			<if test="extJson != null">
+				,EXTJSON_ 
+			</if>
+			<if test="creator != null">
+				,CREATOR_ 
+			</if>
+			<if test="createDateTime != null">
+				,CREATEDATETIME_ 
+			</if>
+			<if test="modifier != null">
+				,MODIFIER_ 
+			</if>
+			<if test="modifyDateTime != null">
+				,MODIFYDATETIME_ 
+			</if>
+			<if test="delFlag != null">
+				,DELFLAG_ 
+			</if>
+        </trim>
+
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			  #{ruleId, jdbcType=VARCHAR}
+	     
+			<if test="ruleCode != null">
+				,#{ruleCode, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleName != null">
+				,#{ruleName, jdbcType=VARCHAR}
+			</if>
+			<if test="ruleDesc != null">
+				,#{ruleDesc, jdbcType=VARCHAR}
+			</if>
+			<if test="sysCategory != null">
+				,#{sysCategory, jdbcType=VARCHAR}
+			</if>
+			<if test="useCategory != null">
+				,#{useCategory, jdbcType=VARCHAR}
+			</if>
+			<if test="openFlag != null">
+				,#{openFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="orderNo != null">
+				,#{orderNo, jdbcType=INTEGER}
+			</if>
+			<if test="readOnly != null">
+				,#{readOnly, jdbcType=VARCHAR}
+			</if>
+			<if test="repeatFlag != null">
+				,#{repeatFlag, jdbcType=VARCHAR}
+			</if>
+			<if test="notNull != null">
+				,#{notNull, jdbcType=VARCHAR}
+			</if>
+			<if test="inputType != null">
+				,#{inputType, jdbcType=VARCHAR}
+			</if>
+			<if test="defaultVal != null">
+				,#{defaultVal, jdbcType=VARCHAR}
+			</if>
+			<if test="extJson != null">
+				,#{extJson, jdbcType=VARCHAR}
+			</if>
+			<if test="creator != null">
+				,#{creator, jdbcType=VARCHAR}
+			</if>
+			<if test="createDateTime != null">
+				,#{createDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifier != null">
+				,#{modifier, jdbcType=VARCHAR}
+			</if>
+			<if test="modifyDateTime != null">
+				,#{modifyDateTime, jdbcType=TIMESTAMP}
+			</if>
+			<if test="delFlag != null">
+				,#{delFlag, jdbcType=VARCHAR}
+			</if>
+	    </trim>
+    </insert>
+
+	 
+	<update id="updateDepBaseProp" parameterType="com.glaf.dep.base.domain.DepBaseProp">
+		update DEP_BASE_PROP
+		set
+        <trim prefix="" suffix="" suffixOverrides=",">		
+			<if test="ruleCode != null">
+				RULECODE = #{ruleCode, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleName != null">
+				RULENAME_ = #{ruleName, jdbcType=VARCHAR},
+			</if>
+			<if test="ruleDesc != null">
+				RULEDESC = #{ruleDesc, jdbcType=VARCHAR},
+			</if>
+			<if test="sysCategory != null">
+				SYSCATEGORY_ = #{sysCategory, jdbcType=VARCHAR},
+			</if>
+			<if test="useCategory != null">
+				USECATEGORY_ = #{useCategory, jdbcType=VARCHAR},
+			</if>
+			<if test="openFlag != null">
+				OPENFLAG_ = #{openFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="orderNo != null">
+				ORDERNO_ = #{orderNo, jdbcType=INTEGER},
+			</if>
+			<if test="readOnly != null">
+				READONLY_ = #{readOnly, jdbcType=VARCHAR},
+			</if>
+			<if test="repeatFlag != null">
+				REPEATFLAG_ = #{repeatFlag, jdbcType=VARCHAR},
+			</if>
+			<if test="notNull != null">
+				NOTNULL_ = #{notNull, jdbcType=VARCHAR},
+			</if>
+			<if test="inputType != null">
+				INPUTTYPE_ = #{inputType, jdbcType=VARCHAR},
+			</if>
+			<if test="defaultVal != null">
+				DEFAULTVAL_ = #{defaultVal, jdbcType=VARCHAR},
+			</if>
+			<if test="extJson != null">
+				EXTJSON_ = #{extJson, jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				CREATOR_ = #{creator, jdbcType=VARCHAR},
+			</if>
+			<if test="createDateTime != null">
+				CREATEDATETIME_ = #{createDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				MODIFIER_ = #{modifier, jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDateTime != null">
+				MODIFYDATETIME_ = #{modifyDateTime, jdbcType=TIMESTAMP},
+			</if>
+			<if test="delFlag != null">
+				DELFLAG_ = #{delFlag, jdbcType=VARCHAR},
+			</if>
+        </trim>
+		where
+          RULEID_ = #{ruleId, jdbcType=VARCHAR}
+		
+    </update>
+
+ 
+	<delete id="deleteDepBasePropById" parameterType="string"> 
+        delete from DEP_BASE_PROP
+        where RULEID_ =	#{id}
+	</delete>
+
+	
+	<delete id="deleteDepBaseProps" parameterType="com.glaf.dep.base.query.DepBasePropQuery">
+		delete from DEP_BASE_PROP
+		where ( 
+ 			  RULEID_ IN
+              <foreach item="x_ruleId" index="index" collection="ruleIds" 
+                     open="(" separator="," close=")">
+                  #{x_ruleId}
+              </foreach>
+		)
+	</delete>
+
+
+	<select id="getDepBasePropById" parameterType="string" resultMap="depBasePropResultMap">
+		select * from DEP_BASE_PROP where RULEID_ = #{id}
+	</select>
+	
+	<select id="getDepBasePropByComponentId" parameterType="string" resultMap="depBasePropResultMap">
+		select * from DEP_BASE_PROP a,DEP_BASE_COMPPROP b where a.RULEID_=b.RULEID_
+		and b.DEP_BASE_COMPONENT_ID_ = #{componentId}
+	</select>
+
+
+	<select id="getDepBaseProps" flushCache="true"
+	    parameterType="com.glaf.dep.base.query.DepBasePropQuery"
+		resultMap="depBasePropResultMap">
+		select E.*
+		<include refid="selectDepBasePropsSql" />
+		<choose>
+		  <when test="orderBy != null">
+		     order by ${orderBy}
+          </when>
+		  <otherwise>
+		      order by E.RULEID_ desc
+		  </otherwise>
+        </choose>
+	</select>
+
+
+	<select id="getDepBasePropCount" 
+	    parameterType="com.glaf.dep.base.query.DepBasePropQuery"
+		resultType="int">
+		select count(*)
+		<include refid="selectDepBasePropsSql" />
+	</select>
+	
+	<select id="getMaxRuleCodeByCategoryCode" parameterType="string" resultType="string">
+		select max(RULECODE) from DEP_BASE_PROP where RULECODE like #{categoryCode}
+	</select>
+	
+	<select id="getNextOrderNo" resultType="int">
+	select max(ORDERNO_)+1 from DEP_BASE_PROP 
+	</select>
+
+	<sql id="selectDepBasePropsSql">
+		
+		from DEP_BASE_PROP E LEFT JOIN DEP_BASE_COMPPROP F
+		ON E.RULEID_=F.DEP_BASE_COMPONENT_ID_
+		<where>
+		       1=1
+			<if test="ruleIds != null and ruleIds.size() &gt; 0">
+				and E.RULEID_ IN
+				<foreach item="x_ruleId" index="index" collection="ruleIds"
+					open="(" separator="," close=")">
+				#{x_ruleId}
+				</foreach>
+			</if>
+	        
+			<if test="ruleCode != null and ruleCode != '' ">
+				and E.RULECODE = #{ruleCode}
+            </if>
+
+			<if test="ruleCodeLike != null and ruleCodeLike != '' ">
+				and E.RULECODE like #{ruleCodeLike}
+            </if>
+
+			<if test="ruleCodes != null and ruleCodes.size() &gt; 0">
+			    and E.RULECODE IN
+                <foreach item="x_ruleCode" index="index" collection="ruleCodes" 
+                     open="(" separator="," close=")">
+                  #{x_ruleCode}
+                </foreach>
+			</if>
+	        
+			<if test="ruleName != null and ruleName != '' ">
+				and E.RULENAME_ = #{ruleName}
+            </if>
+
+			<if test="ruleNameLike != null and ruleNameLike != '' ">
+				and E.RULENAME_ like #{ruleNameLike}
+            </if>
+
+			<if test="ruleNames != null and ruleNames.size() &gt; 0">
+			    and E.RULENAME_ IN
+                <foreach item="x_ruleName" index="index" collection="ruleNames" 
+                     open="(" separator="," close=")">
+                  #{x_ruleName}
+                </foreach>
+			</if>
+	        
+			<if test="ruleDesc != null and ruleDesc != '' ">
+				and E.RULEDESC = #{ruleDesc}
+            </if>
+
+			<if test="ruleDescLike != null and ruleDescLike != '' ">
+				and E.RULEDESC like #{ruleDescLike}
+            </if>
+
+			<if test="ruleDescs != null and ruleDescs.size() &gt; 0">
+			    and E.RULEDESC IN
+                <foreach item="x_ruleDesc" index="index" collection="ruleDescs" 
+                     open="(" separator="," close=")">
+                  #{x_ruleDesc}
+                </foreach>
+			</if>
+	        
+			<if test="sysCategory != null and sysCategory != '' ">
+				and E.SYSCATEGORY_ = #{sysCategory}
+            </if>
+
+			<if test="sysCategoryLike != null and sysCategoryLike != '' ">
+				and E.SYSCATEGORY_ like #{sysCategoryLike}
+            </if>
+
+			<if test="sysCategorys != null and sysCategorys.size() &gt; 0">
+			    and E.SYSCATEGORY_ IN
+                <foreach item="x_sysCategory" index="index" collection="sysCategorys" 
+                     open="(" separator="," close=")">
+                  #{x_sysCategory}
+                </foreach>
+			</if>
+	        
+			<if test="useCategory != null and useCategory != '' ">
+				and E.USECATEGORY_ = #{useCategory}
+            </if>
+
+			<if test="useCategoryLike != null and useCategoryLike != '' ">
+				and E.USECATEGORY_ like #{useCategoryLike}
+            </if>
+
+			<if test="useCategorys != null and useCategorys.size() &gt; 0">
+			    and E.USECATEGORY_ IN
+                <foreach item="x_useCategory" index="index" collection="useCategorys" 
+                     open="(" separator="," close=")">
+                  #{x_useCategory}
+                </foreach>
+			</if>
+	        
+			<if test="openFlag != null and openFlag != '' ">
+				and E.OPENFLAG_ = #{openFlag}
+            </if>
+
+			<if test="openFlagLike != null and openFlagLike != '' ">
+				and E.OPENFLAG_ like #{openFlagLike}
+            </if>
+
+			<if test="openFlags != null and openFlags.size() &gt; 0">
+			    and E.OPENFLAG_ IN
+                <foreach item="x_openFlag" index="index" collection="openFlags" 
+                     open="(" separator="," close=")">
+                  #{x_openFlag}
+                </foreach>
+			</if>
+
+			<if test="orderNo != null">
+				and E.ORDERNO_ = #{orderNo}
+            </if>
+
+			<if test="orderNoGreaterThanOrEqual != null">
+				and E.ORDERNO_ &gt;= #{orderNoGreaterThanOrEqual}
+            </if>
+
+			<if test="orderNoLessThanOrEqual != null">
+				and E.ORDERNO_ &lt;= #{orderNoLessThanOrEqual}
+            </if>
+
+			<if test="orderNos != null and orderNos.size() &gt; 0">
+			    and E.ORDERNO_ IN
+                <foreach item="x_orderNo" index="index" collection="orderNos" 
+                     open="(" separator="," close=")">
+                  #{x_orderNo}
+                </foreach>
+			</if>
+      
+	        
+			<if test="readOnly != null and readOnly != '' ">
+				and E.READONLY_ = #{readOnly}
+            </if>
+
+			<if test="readOnlyLike != null and readOnlyLike != '' ">
+				and E.READONLY_ like #{readOnlyLike}
+            </if>
+
+			<if test="readOnlys != null and readOnlys.size() &gt; 0">
+			    and E.READONLY_ IN
+                <foreach item="x_readOnly" index="index" collection="readOnlys" 
+                     open="(" separator="," close=")">
+                  #{x_readOnly}
+                </foreach>
+			</if>
+	        
+			<if test="repeatFlag != null and repeatFlag != '' ">
+				and E.REPEATFLAG_ = #{repeatFlag}
+            </if>
+
+			<if test="repeatFlagLike != null and repeatFlagLike != '' ">
+				and E.REPEATFLAG_ like #{repeatFlagLike}
+            </if>
+
+			<if test="repeatFlags != null and repeatFlags.size() &gt; 0">
+			    and E.REPEATFLAG_ IN
+                <foreach item="x_repeatFlag" index="index" collection="repeatFlags" 
+                     open="(" separator="," close=")">
+                  #{x_repeatFlag}
+                </foreach>
+			</if>
+	        
+			<if test="notNull != null and notNull != '' ">
+				and E.NOTNULL_ = #{notNull}
+            </if>
+
+			<if test="notNullLike != null and notNullLike != '' ">
+				and E.NOTNULL_ like #{notNullLike}
+            </if>
+
+			<if test="notNulls != null and notNulls.size() &gt; 0">
+			    and E.NOTNULL_ IN
+                <foreach item="x_notNull" index="index" collection="notNulls" 
+                     open="(" separator="," close=")">
+                  #{x_notNull}
+                </foreach>
+			</if>
+	        
+			<if test="inputType != null and inputType != '' ">
+				and E.INPUTTYPE_ = #{inputType}
+            </if>
+
+			<if test="inputTypeLike != null and inputTypeLike != '' ">
+				and E.INPUTTYPE_ like #{inputTypeLike}
+            </if>
+
+			<if test="inputTypes != null and inputTypes.size() &gt; 0">
+			    and E.INPUTTYPE_ IN
+                <foreach item="x_inputType" index="index" collection="inputTypes" 
+                     open="(" separator="," close=")">
+                  #{x_inputType}
+                </foreach>
+			</if>
+	        
+			<if test="defaultVal != null and defaultVal != '' ">
+				and E.DEFAULTVAL_ = #{defaultVal}
+            </if>
+
+			<if test="defaultValLike != null and defaultValLike != '' ">
+				and E.DEFAULTVAL_ like #{defaultValLike}
+            </if>
+
+			<if test="defaultVals != null and defaultVals.size() &gt; 0">
+			    and E.DEFAULTVAL_ IN
+                <foreach item="x_defaultVal" index="index" collection="defaultVals" 
+                     open="(" separator="," close=")">
+                  #{x_defaultVal}
+                </foreach>
+			</if>
+	        
+			<if test="extJson != null and extJson != '' ">
+				and E.EXTJSON_ = #{extJson}
+            </if>
+
+			<if test="extJsonLike != null and extJsonLike != '' ">
+				and E.EXTJSON_ like #{extJsonLike}
+            </if>
+
+			<if test="extJsons != null and extJsons.size() &gt; 0">
+			    and E.EXTJSON_ IN
+                <foreach item="x_extJson" index="index" collection="extJsons" 
+                     open="(" separator="," close=")">
+                  #{x_extJson}
+                </foreach>
+			</if>
+	        
+			<if test="creator != null and creator != '' ">
+				and E.CREATOR_ = #{creator}
+            </if>
+
+			<if test="creatorLike != null and creatorLike != '' ">
+				and E.CREATOR_ like #{creatorLike}
+            </if>
+
+			<if test="creators != null and creators.size() &gt; 0">
+			    and E.CREATOR_ IN
+                <foreach item="x_creator" index="index" collection="creators" 
+                     open="(" separator="," close=")">
+                  #{x_creator}
+                </foreach>
+			</if>
+
+			<if test="createDateTimeGreaterThanOrEqual != null">
+				and E.CREATEDATETIME_ &gt;= #{createDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="createDateTimeLessThanOrEqual != null">
+				and E.CREATEDATETIME_ &lt;= #{createDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="modifier != null and modifier != '' ">
+				and E.MODIFIER_ = #{modifier}
+            </if>
+
+			<if test="modifierLike != null and modifierLike != '' ">
+				and E.MODIFIER_ like #{modifierLike}
+            </if>
+
+			<if test="modifiers != null and modifiers.size() &gt; 0">
+			    and E.MODIFIER_ IN
+                <foreach item="x_modifier" index="index" collection="modifiers" 
+                     open="(" separator="," close=")">
+                  #{x_modifier}
+                </foreach>
+			</if>
+
+			<if test="modifyDateTimeGreaterThanOrEqual != null">
+				and E.MODIFYDATETIME_ &gt;= #{modifyDateTimeGreaterThanOrEqual}
+            </if>
+
+			<if test="modifyDateTimeLessThanOrEqual != null">
+				and E.MODIFYDATETIME_ &lt;= #{modifyDateTimeLessThanOrEqual}
+            </if>
+
+	        
+			<if test="delFlag != null and delFlag != '' ">
+				and E.DELFLAG_ = #{delFlag}
+            </if>
+
+			<if test="delFlagLike != null and delFlagLike != '' ">
+				and E.DELFLAG_ like #{delFlagLike}
+            </if>
+
+			<if test="delFlags != null and delFlags.size() &gt; 0">
+			    and E.DELFLAG_ IN
+                <foreach item="x_delFlag" index="index" collection="delFlags" 
+                     open="(" separator="," close=")">
+                  #{x_delFlag}
+                </foreach>
+			</if>
+            <if test="dataRequest != null and dataRequest.filter != null ">
+			    <include refid="com.glaf.global.GlobalMapper.dataRequestFilterCondition" />
+			</if>
+			 
+		</where>
+	</sql>
+
+
+	<select id="getDepBasePropsByCategoryCode" parameterType="string" resultMap="depBasePropBaseResultMap">
+		select E.* from DEP_BASE_PROP E,DEP_BASE_PROPCATEGORY F,DEP_BASE_CATEGORY G
+		where E.RULEID_ = F.RULEID_ and F.DEP_BASE_CATEGORY_ID_ = G.ID_
+		and G.CODE_ = #{categoryCode}
+	</select>
+</mapper>
